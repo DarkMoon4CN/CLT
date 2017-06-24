@@ -1,0 +1,589 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList;
+@using PagedList.Mvc
+@using ChuangLitouP2P.Models;
+@model PagedList.IPagedList<hx_member_table>
+
+
+@{
+    ViewBag.Title = "loyalty";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+
+
+<link rel="stylesheet" href="/Areas/Admin/style/style.css" />
+<link href="/Areas/Admin/style/jcDate.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/Admin/style/nav_style.css" rel="stylesheet" type="text/css">
+<link rel="/Areas/Admin/stylesheet" href="style/chonzhi.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#time_day").bind("click", function () {
+            settime(0, 0);
+        });
+        $("#time_yesteday").bind("click", function () {
+            settime(-1, -1);
+        });
+        $("#time_week").bind("click", function () {
+            settime(-7, 0);
+        });
+        $("#time_month").bind("click", function () {
+            settime(-30, 0);
+        });
+        $("#cbx_All").bind("click", function () {
+            checkall(this, "cbx_item");
+        });
+        $("#btnSendSMS").bind("click", function () {
+            SendSMS();
+        });
+        $("#btnOutExcel").bind("click", function () {
+            outputExcel();
+        });
+    });
+    function downloadExcel(url) {
+        var obj = $("#downloadExcelBtn");
+        obj.attr("href", url);
+        document.getElementById("downloadExcelBtn").click();
+        // obj.click();
+    }
+
+    function outputExcel() {
+        var username = $("#username").val();
+        var realname = $("#realname").val();
+        var mobile = $("#mobile").val();
+        var useridentity = $("#useridentity").val();
+        var Channelsource = $("#Channelsource").val();
+        var time1 = $("#time1").val();
+        var time2 = $("#time2").val();
+
+
+
+
+        $.ajax({
+            type: 'Get',
+            url: "/admin/Users/IndexToExcel",
+            data: { username: username, realname: realname, mobile: mobile, useridentity: useridentity, Channelsource: Channelsource, time1: time1, time2: time2 },
+            //dataType: dataType,
+            success: function (data) {
+                downloadExcel(data);
+            },
+            error: function () {
+                // view("异常！");
+                //alert("异常！");
+            }
+        });
+    }
+
+    //发送短信
+    function SendSMS() {
+        var strIds = "";
+        $("input[name='cbx_item']").each(function () {
+            if ($(this).attr("checked")) {
+                if (strIds.length > 0) {
+                    strIds = strIds + ",";
+                }
+                strIds = strIds + $(this).val();
+            }
+        });
+
+        var url = "/admin/Users/SMSItem?uids=" + strIds;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '项目初审',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['800px', "600px"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+
+
+    function checkall(obj, name) {
+        if ($(obj).attr("checked"))
+            $("input[name='" + name + "']").attr("checked", "true");
+        else
+            $("input[name='" + name + "']").removeAttr("checked");
+    }
+
+
+    function settime(day1, day2) {
+        var d1 = getDateForDay(day1);
+        var d2 = getDateForDay(day2);
+        $("#time1").val(d1.format("yyyy-MM-dd"));
+        $("#time2").val(d2.format("yyyy-MM-dd"));
+    }
+    function closewindows() {
+        layer.close(editwindow);
+    }
+
+    function loadPage() {
+        var useridentity = $("#hid_useridentity").val();
+        $("#useridentity").val(useridentity);
+        var hid_datawhere = $("#hid_datawhere").val();
+        $("#datawhere").val(hid_datawhere);
+        var hid_timewhere = $("#hid_timewhere")
+        $("#timewhere").val(hid_datawhere);
+    }
+
+    
+</script>
+<script type="text/javascript">
+    var dff;
+    function AjaxStart() {
+        // dff = layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        // var index = parent.layer.close(dff); //获取窗口索引
+        // layer.close(index);
+    }
+
+</script>
+<div class="v_right">
+    <!--投资页面-->
+    <div class="touzi chonzhi">
+        <p class="tP1">
+            当前位置：会员管理 &nbsp;&nbsp;>&nbsp;&nbsp;忠诚度
+        </p>
+        <div class="tz_box cz_box">
+            <p class="tP3" style="padding:13px 0 10px 34px">
+                快速搜索
+            </p>
+
+            @using (Html.BeginForm("loyalty", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm", @class = "form-inline well well-sm" }))
+            {
+
+                @Html.AntiForgeryToken()
+                <p class="tP4 tx_tp4">
+                    <i class="tP4_i1" style="margin-right: 30px;">
+                        <input type="hidden" name="hid_useridentity" id="hid_useridentity" value="@ViewBag.useridentity" />
+                        <input type="hidden" name="hid_datawhere" id="hid_datawhere" value="@ViewBag.datawhere" />
+                        <input type="hidden" name="hid_timewhere" id="hid_timewhere"  value="@ViewBag.timewhere" />
+
+                        姓名：<input type="text" class="txt1" name="realname" value="@ViewBag.realname" />
+                    </i>
+                    <i style="margin-right: 30px;">
+                        手机号：<input type="text" class="txt1" name="mobile"  value="@ViewBag.mobile" />
+                    </i>
+                    <select name="datawhere" id="datawhere" style="padding-left: 10px;height: 24px;margin-right: 1	0px;">
+                        <option value="-1">请选择</option>
+                        <option value="1">充值次数</option>
+                        <option value="2">提现次数</option>
+                        <option value="3">登录次数</option>
+                        <option value="4">投资次数</option>
+                    </select>
+                    <input type="text" name="num1" style="width:90px;height: 20px;margin-left: 10px;margin-right: 6px;" />
+                    ——
+                    <input type="text" name="num2" style="width:90px;height: 20px;margin-left: 6px;margin-right: 10px;" />
+                    <input type="reset" id="btn1" value="清空" />
+                    @UserControl.HX_SelectActUser(1)
+                    <br />
+                    沟通时间：<select name="timewhere" id="" style="padding-left: 10px;height: 24px;">
+                        <option value="-1">请选择</option>
+                        <option value="1">沟通时间</option>
+                        <option value="2">登录时间</option>
+                        <option value="3">注册时间</option>
+                    </select>
+                    <input class="jcDate" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" id="time1" name="time1" value="@ViewBag.time1" autocomplete="off" />
+                    <i class="oI" style="margin-right: 10px;">至</i>
+                    <input class="jcDate" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" id="time2" name="time2" value="@ViewBag.time2" autocomplete="off" />
+                    <span style="margin-left: 34px;" class="add" id="time_day">今天</span>
+                    <span id="time_yesteday">昨天</span>
+                    <span id="time_week">近7天</span>
+                    <span id="time_month">近30天</span>
+                    <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+                </p>
+
+            }
+
+            <h3>
+                投资列表
+            </h3>
+
+
+
+
+            <table class="CRM_tab" cellspacing="0" cellpadding="0">
+                <tr class="tz_tr">
+                    <td width="37">选中</td>
+                    <td width="37">ID</td>
+                    <td width="56">姓名</td>
+                    <td width="86">手机</td>
+                    <td width="52">
+                        等级
+                    </td>
+                    <td width="64" class="tz_td zc_td1 CRM_td">
+                        托管
+
+                    </td>
+                    <td width="80" class="tz_td zc_td CRM_td CRM_td1">
+                        总资产
+
+                    </td>
+                    <td class="tz_td CRM_td zc_td" width="80">
+                        可用资产
+
+                    </td>
+                    <td class="tz_td CRM_td zc_td" width="80">
+                        充值次数
+
+                    </td>
+                    <td class="tz_td CRM_td zc_td" width="80">
+                        投资次数
+
+                    </td>
+                    <td class="tz_td CRM_td zc_td" width="80">
+                        提现次数
+
+                    </td>
+                    <td class="tz_td CRM_td zc_td" width="80">
+                        登录次数
+
+                    </td>
+                    <td width="90">
+                        最后登录
+                    </td>
+                    <td width="90">
+                        注册时间
+                    </td>
+                </tr>
+                @if (Model.Count > 0)
+                {
+                    foreach (hx_member_table item in Model)
+                    {
+
+                        <tr>
+                            <td><input class="one" type="checkbox" name="cbx_item" value="@(item.registerid)" /></td>
+                            <td>@item.registerid</td>
+                            
+                            @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                            {
+                                @*VIP以及以上全部不显示完整手机号*@
+
+                                if (item.username.Length == 11 && !String.IsNullOrEmpty(item.username))
+                                {
+                                    item.username = item.username.Substring(0, 3) + "****" + item.username.Substring(7, 4);
+                                }
+                                if (item.username.Length != 11 && !String.IsNullOrEmpty(item.username) && item.username.Length > 1)
+                                {
+                                    item.username = item.username.Substring(0, 1) + "**";
+                                }
+                                if (item.realname != null && item.realname.Length > 1)
+                                {
+                                    item.realname = item.realname.Substring(0, 1) + "**";
+                                }
+                                item.mobile = item.mobile.Substring(0, 3) + "****" + item.mobile.Substring(7, 4);
+
+                            }
+                            <td><a href="/admin/users/detail?id=@(item.registerid)">@item.realname</a></td>
+                            <td><a href="/admin/users/detail?id=@(item.registerid)">@item.mobile</a></td>
+                            <td>@Utils.RetUseridentity(item.useridentity.ToString())</td>
+                            <td>@(Convert.ToInt32(item.open_tonto_account) == 0 ? "否" : "是")</td>
+                            <td>@item.account_total_assets 元</td>
+                            <td>@item.available_balance 元</td>
+                            <td>@item.RechargeNum</td>
+                            <td>@item.InvestNum</td>
+                            <td>@item.CashNum</td>
+                            <td>@item.LoginNum</td>
+                            <td>@(item.lastlogintime != null ? ((DateTime)item.lastlogintime).ToString("yyyy-MM-dd HH:mm") : "")</td>
+                            <td>@(item.registration_time != null ? ((DateTime)item.registration_time).ToString("yyyy-MM-dd HH:mm") : "")</td>
+                        </tr>
+
+                    }
+                }
+
+
+
+            </table>
+            <div class="tz_all">
+                <input id="checkbox" class="checkbox" type="checkbox" />全选
+                <a href="javascript:void(0);"  class="ffjl">发放奖励</a>
+                <a  href="javascript:void(0);" id="btnSendSMS" >
+                    发送短信
+                </a>
+               
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <div class="pagination ue-clear">
+
+            <div class="pagination-container">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("loyalty", new
+           {
+               page,
+               realname = @ViewBag.realname,
+               mobile = @ViewBag.mobile,
+               useridentity = ViewBag.useridentity,
+               Channelsource = ViewBag.Channelsource,
+               time1 = ViewBag.time1,
+               time2 = ViewBag.time2,
+               datawhere=ViewBag.datawhere,
+               num1=ViewBag.num1,
+               num2 = ViewBag.num2,
+               timewhere=ViewBag.timewhere
+
+           }))
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+</div>
+<script type="text/javascript">
+    loadPage();
+</script>
+
+
+
+<!--弹出框-->
+<div times="1" id="xubox_shade1" class="xubox_shade" style="z-index:100; background-color:#999; opacity:0.7; filter:alpha(opacity=70);display:none;"></div>
+<div class="xubox_layer" style="z-index: 100; width: 350px; height: 360px; margin-left: -175px;margin-top:-180px; top:50%; left: 50%;display:none;">
+    <div style="background-color:#f7f7f7; z-index:100" class="xubox_main">
+
+        <div class="location"></div>
+        <div class="blank10"></div>
+
+
+
+        <div style="cursor: move;" move="ok" class="xubox_title"><em>系统赠送加息券/抵扣券</em></div>
+        <span class="xubox_setwin"><a class="xubox_close xulayer_png32 xubox_close0" href="javascript:;" onclick="closeTck()" style=""></a></span>
+        <span class="xubox_botton"></span>
+
+
+        <form name="form1list" method="post" id="form1list" action="/admin/Users/SendOut" class="registerform">
+            <div class="container">
+
+                <input name="registerid" type="hidden" id="registerid">
+
+                <div class="blank10"></div>
+
+
+
+                <div id="submit_sk" class="search block">
+                    <div class="h">
+                        <span class="icon-sprite icon-list"></span>
+                        <h3>为客户手动添加抵扣券/加息券</h3>
+                    </div>
+
+                    <div class="cnt-wp">
+                        <table style="table-layout: fixed; margin-top: 10px; width: 100%;">
+                            <!-- 抵扣券选择 -->
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:right;">
+                                        <input type="radio" name="typex" value="2" id="type0" checked="checked" onclick="choose(0);"><label for="type0" onclick="choose(0);">抵扣券</label>
+                                    </td>
+                                    <td><input type="radio" name="typex" value="3" id="type1" onclick="choose(1);"><label for="type1" onclick="choose(1);">加息券</label></td>
+                                </tr>
+
+                                <tr atr="rates" style="display:none;">
+                                    <td style="width: 40%; text-align: right;">加息券</td>
+                                    <td>
+                                        <select name="ddlRateList" id="ddlRateList" style="height:20px;width:152px;">
+                                            <option value="0">请选择</option>
+                                            @*<option value="0.2">0.2%加息券</option>
+                                            <option value="0.5">0.5%加息券</option>
+                                            <option value="1">1%加息券</option>
+                                            <option value="1.5">1.5%加息券</option>
+                                            <option value="2">2%加息券</option>
+                                            <option value="2.5">2.5%加息券</option>
+                                            <option value="3">3%加息券</option>*@
+
+                                            <option value="1">1%加息券</option>
+                                            <option value="2">2%加息券</option>
+                                            <option value="3">3%加息券</option>
+
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr atr="bonus">
+                                    <td style="width: 40%; text-align: right;">抵扣券</td>
+                                    <td>
+                                        <select name="bonusType" id="bonusType" style="height:20px;width:152px;">
+                                            <option value="10">10元抵扣券</option>
+                                            <option value="20">20元抵扣券</option>
+                                            <option value="50">50元抵扣券</option>
+                                            <option value="100">100元抵扣券</option>
+                                            <option value="500">500元抵扣券</option>
+
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">标题</td>
+                                    <td>
+                                        <input name="txtTitle" type="text" id="txtTitle" style="height:16px;width:150px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">有效开始日期</td>
+                                    <td>
+                                        <input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:18px;width:110px;" id="time1" name="time1" value="" autocomplete="off" />
+                                    </td>
+                                </tr>
+                                <!-- 结束时间选择 -->
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">有效结束日期</td>
+                                    <td>
+                                        <input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:18px;width:110px;" id="time2" name="time2" value="" autocomplete="off" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">最低使用限额</td>
+                                    <td>
+                                        <input name="Uselower" type="text" value="100" id="Uselower" style="height:16px;width:150px;">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">最高使用限额</td>
+                                    <td>
+                                        <input name="Usehight" type="text" value="200" id="Usehight" style="height:16px;width:150px;">
+                                    </td>
+                                </tr>
+
+                                <!-- 数量填写 -->
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">数量</td>
+                                    <td>
+                                        <input name="bonus_k" type="text" value="1" id="bonus_k" style="height:16px;width:150px;">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <div style="width: 100%; height: auto; text-align: center; margin-top: 10px;">
+                    <input type="submit" name="Button2" value="确定" onclick="return ck();" id="Button2" class="button white medium" style="padding:5px 16px;cursor:pointer;border-radius:5px;background-color:#f7f7f7;border:1px solid #ccc;">
+                    &nbsp;<input type="button" value="关闭" class="medium" onclick="closeTck()" style="padding:5px 16px;cursor:pointer;border-radius:5px;background-color:#f7f7f7;border:1px solid #ccc;">
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+</div>
+
+<script>
+$(function(){
+		$('.cnt-wp table tr').css('background','#f7f7f7');
+		$('.ffjl').click(function(){
+				$('#xubox_shade1').css('display','block');
+				$('.xubox_layer').css('display', 'block');
+				var strIds = "";
+				$("input[name='cbx_item']").each(function () {
+				    if ($(this).attr("checked")) {
+				        if (strIds.length > 0) {
+				            strIds = strIds + ",";
+				        }
+				        strIds = strIds + $(this).val();
+				    }
+				});
+
+				$("#registerid").val(strIds);
+
+
+
+		})
+
+})
+		function closeTck(){
+			$('#xubox_shade1').css('display','none');
+			$('.xubox_layer').css('display','none');
+
+		}
+        function ck() {
+
+
+            var vl = $("#txtTitle").val().trim();
+            if (vl == "")
+            {
+                alert("标题不能为空");
+                return false
+            }
+            vl = $("#bonus_start_time").val().trim();
+            if (vl == "") {
+                alert("开始时间不能为空");
+                return false
+            }
+
+            vl = $("#bonus_end_time").val().trim();
+            if (vl == "") {
+                alert("结束时间不能为空");
+                return false
+            }
+
+            vl = $("#bonus_k").val().trim();
+            if (vl == "") {
+                alert("数量不能为空");
+                return false
+            }
+            if ($("tr[atr=\"rates\"]").css("display") != "none")
+            {
+                vl = $("#ddlRateList").val();
+                if (vl == "0")
+                {
+                    alert("请选择加息券");
+                    return false
+                }
+            }
+
+            if ($("#registerid").val() == "") {
+                alert("请选择用户");
+                return false
+            }
+
+            return true;
+
+        }
+        function choose(i)
+        {
+            if (i == 0) {
+                $("tr[atr=\"rates\"]").hide();
+                $("tr[atr=\"bonus\"]").show();
+            } if (i == 1) {
+                $("tr[atr=\"rates\"]").show();
+                $("tr[atr=\"bonus\"]").hide();
+            }
+        }
+
+</script>

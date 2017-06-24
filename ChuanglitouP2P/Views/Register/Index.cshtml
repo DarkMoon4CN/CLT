@@ -1,0 +1,384 @@
+﻿@using ChuanglitouP2P.Common
+
+@{
+    ViewBag.Title = "创利投注册_注册创利投_创利投用户注册 - 创利投";
+
+    ViewBag.keywords = "创利投,创利投注册,注册创利投,创利投用户注册";
+
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<link rel="shortcut icon" href="/images/favicon.ico"/>
+@Url.File("Content/reg_common.css").ToHtml()
+@Url.File("Scripts/Validform_v5.3.2_min.js").ToHtml()
+@Url.File("Scripts/layer.min.js").ToHtml()
+<script type="text/javascript">
+    var editwindow;
+    $(function () {
+
+        //document.getElementById("ttzcode").value = GetQueryString("ttzcode");
+        //document.getElementById("regid").value = GetQueryString("regid");
+
+        $(".registerform").Validform({
+            tiptype: 4,
+            ajaxPost: true,
+            callback: function (data) {
+                if (data.rs == "y") {
+                    layer.msg("注册成功，正在转向第三方托管账户...", 3, 1);
+                    location.href = data.url;
+                }
+                else {
+                    layer.msg("" + data.error + "", 1, 5);
+                }
+            }
+        });
+
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "vcode": /^[0-9]*$/
+        });
+
+        $("#vsmscode").click(function () {
+
+            var mobile = $("#mobile").val();
+
+            if (mobile == null || mobile.length <= 0) {
+                layer.alert("手机号不能为空");
+                return false;
+            }
+            else {
+                var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+                if (re.test(mobile) == false) {
+                    layer.alert("手机号格式不对!");
+                    $("#mobile").val("");
+                    return false;
+                }
+
+            }
+            $.post("/Register/checkmobile", { "param": mobile }, function (msg) {
+
+                if (msg == "手机号已经被注册") {
+
+                    layer.alert(msg);
+                }
+                else {
+
+                    $.post("/Register/vsmscode", { "mobile": mobile }, function (msg) {
+                        var data = JSON.parse(msg);
+                        if (data.rs == "y") {
+                            settime1();
+                            layer.msg("" + data.info + "", 5, 1);
+
+                        }
+                        else {
+
+                            if (data.info == "v") {
+                                df("ad");
+                            } else {
+                                layer.msg("" + data.info + "", 2, 5);
+                                $("#mobile").val("");
+                            }
+                        }
+
+                    });
+
+                }
+
+            });
+
+        });
+
+        $("#smscode").click(function () {
+            var mobile = $("#mobile").val();
+
+            if (mobile == null || mobile.length <= 0) {
+                layer.alert("手机号不能为空");
+                return false;
+            }
+            else {
+                var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+                if (re.test(mobile) == false) {
+                    layer.alert("手机号格式不对!");
+                    $("#mobile").val("");
+                    return false;
+                }
+            }
+            $.post("/Register/checkmobile", { "param": mobile }, function (msg) {
+                               
+                if (msg == "手机号已经被注册") {
+
+                    layer.alert(msg);
+                }
+                else {
+                    df("sms");
+                }
+            }
+            );
+        });
+
+        $("#vcodec").click(function () {
+            var mobilec = $("#mobile").val();
+            var urlc = "/Register/vcodec?mobile=" + mobilec;
+            $("#vcodec").attr("ajaxurl", urlc);
+        });
+
+
+    });
+
+    function df(sms) {
+        var pageii = $.layer({
+            type: 1,
+            title: false,
+            area: ['700px', '460px'],
+            border: [0],
+            closeBtn: [0, false],
+            shift: 'top',
+            bgcolor: '',
+            page: {
+                html: '<div class="reg_pop_wrap"  id="vcodet" >    <div class="reg_pop_box" style=" width:480px; height:220px; background:#fff; position:fixed; left:50%; top:50%; z-index:99; margin:-160px 0 0 -290px; padding:50px;">    	<div style="font-size:14px; font-weight:bold;">填写验证码完成短信发送</div>        <div style="width:100%; float:left; margin:30px 0 0 0;"><span style="float:left; margin:0 20px 0 0;">验证码：<input  id="Validatecode"  name="" type="text" style="width:160px; height:42px; line-height:42px; border:1px solid #d6d6d6; color:#333; text-indent:5px;" /></span><span><img id="image1" src="/Validate.html?a=@ViewBag.rndstr" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();" /></span></div>        <div><input  id="codebtn" name="" value="发送短信" type="button" style="width:162px; height:45px; line-height:45px; font-size:18px; color:#fff; text-align:center; background:#f76b1e; border:none; cursor:pointer; margin:25px 0 0 48px;font-family:microsoft YaHei;" />    <input id = "pagebtn"  name="" value="关闭窗口" type="button" style="width:162px; height:45px; line-height:45px; font-size:18px; color:#fff; text-align:center; background:#00af96; border:none; cursor:pointer; margin:25px 0 0 48px;font-family:microsoft YaHei;" /></div>    </div></div>'
+
+            }
+        });
+        $('#pagebtn').on('click', function () {
+            layer.close(pageii);
+        });
+        $('#codebtn').on('click', function () {
+            var validvcode = $('#Validatecode').val()
+            var mobile = $("#mobile").val();
+            if (validvcode == null || validvcode.length <= 0) {
+                layer.alert("验证码不能为空");
+                return false;
+            }
+            if (mobile == null || mobile.length <= 0) {
+                layer.alert("手机号不能为空");
+                return false;
+            }
+            else {
+                var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+                if (re.test(mobile) == false) {
+                    layer.alert("手机号格式不对!");
+                    $("#mobile").val("");
+                    return false;
+                }
+            }
+            $.post("/Register/checkmobile", { "param": mobile, }, function (msg) {
+
+                if (msg == "手机号已经被注册") {
+                    layer.alert(msg);
+                }
+                else {
+                    if (sms == "ad") {
+                        $.post("/Register/vsmscode", { "mobile": mobile, "vcode": validvcode }, function (msg) {
+                            var data = JSON.parse(msg);
+                            if (data.rs == "y") {
+                                settime1();
+                                layer.close(pageii);
+                                layer.msg("" + data.info + "", 5, 1);
+                            }
+                            else {
+                                layer.msg("" + data.info + "", 2, 5);
+                            }
+
+                        });
+
+                    }
+                    else {
+                        $.post("/Register/Regsmscode", { "mobile": mobile, "vcode": validvcode }, function (msg) {
+                            var data = JSON.parse(msg);
+                            if (data.rs == "y") {
+                                settime();
+                                layer.close(pageii);
+                                layer.msg("" + data.info + "", 2, 1);
+                            }
+                            else {
+                                if (data.info == "v") {
+                                    layer.close(pageii);
+                                    df("sms");
+                                } else {
+                                    layer.msg("" + data.info + "", 2, 5);
+                                }
+                            }
+
+                        });
+                    }
+                }
+
+            }
+            );
+        });
+
+        changeImg();
+    }
+
+    function changeImg() {
+        $("#image1").attr("src", "/Register/GetValidateCode?a=" + Math.random());
+    }
+
+    var countdown = 60;
+    function settime() {
+        if (countdown == 1) {
+            $("#smscode").removeAttr("disabled");
+            $("#smscode").val("发送验证码");
+            $("#yuyin_code").slideDown();
+            countdown = 60;
+        } else {
+            $("#smscode").attr("disabled", true);
+            $("#smscode").val("" + countdown + "秒后可重发");
+            countdown--;
+            if (countdown > 0) {
+                setTimeout(function () {
+                    settime()
+                }, 1000)
+            }
+        }
+    }
+    var countdown1 = 60;
+    function settime1() {
+        if (countdown1 == 1) {
+            $("#vsmscode").removeAttr("disabled");
+            $("#vsmscode").text("获取语音验证码");
+            $("#yuyin_code").slideUp();
+            countdown1 = 60;
+
+        } else {
+            $("#vsmscode").attr("disabled", true);
+            $("#vsmscode").text("" + countdown1 + "秒后可重获取语音验证码");
+            countdown1--;
+
+            if (countdown1 > 0) {
+                setTimeout(function () {
+                    settime1();
+                }, 1000)
+            }
+        }
+    }
+
+</script>
+
+
+<form id="form1" class="registerform" action="/Register/Add" method="post">
+
+    <div class="login_content">
+        <div class="login_wrap reg_bg clearfix">
+            <div class="login_tit"><h2>账户注册</h2>Hi，新朋友，欢迎注册创利投 </div>
+            <div class="reg_lc"><img src="/images/reg_pic1.jpg" width="847" height="60" alt="" /></div>
+            <div class="login_info_box">
+                <input type="hidden" id="register" name="action" value="register" />
+                <input type="hidden" id="ttzcode" name="ttzcode" value="" />
+                <input type="hidden" id="regid" name="regid" value="" />
+                <ul>
+                    <li class="login_left"><span class="color_red">*</span>手机号</li>
+                    <li><input name="mobile" type="text" id="mobile" class="login_txt" ajaxurl="/Register/checkmobile?action=mobile" datatype="mobile"  nullmsg="请填写手机号！" errormsg="手机号格式不对！" /><span class="reg_icon phone_icon"></span><span class="Validform_checktip"></span></li>
+                </ul>
+                <ul>
+                    <li class="login_left"><span class="color_red">*</span>验证码</li>
+
+
+                    <li><input name="vcodec" id="vcodec" type="text" class="login_txt yzm_txt" ajaxurl="checkregister.html?action=vcodec" datatype="*" nullmsg="请填写验证码" errormsg="请填写正确的验证码" /><span><input name="smscode" id="smscode" value="获取短信验证码" class="obtain_btn" type="button" /></span><span class="reg_icon plane_icon"></span></li>
+                </ul>
+                <ul id="yuyin_code" style="display:block;">
+                    <li class="login_left">&nbsp;</li>
+                    <li><span style="float:left; margin:0 10px 0 0;"><b>如您无法收到短信验证码</b>，请</span><a href="javascript:void(0)" id="vsmscode" class="color_orange">获取语音验证码</a></li>
+                </ul>
+                <ul>
+                    <li class="login_left"><span class="color_red">*</span>密码</li>
+                    <li><input name="userpassword" type="password" id="userpassword" class="login_txt" datatype="*6-16" nullmsg="请设置密码！" errormsg="密码范围在6~16位之间！" /><span class="reg_icon password_icon"></span></li>
+                </ul>
+                <ul>
+                    <li class="login_left"><span class="color_red">*</span>确认密码</li>
+                    <li><input name="reuserpassword" type="password" id="reuserpassword" class="login_txt" datatype="*" recheck="userpassword" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！" /><span class="reg_icon passwordc_icon"></span></li>
+                </ul>
+
+                <div class="clear"></div>
+                <div class="login_xy"><label><input name="services" type="checkbox" id="services" value="1" checked="checked" />我已阅读并接受《<a href="/chuanglitou.pdf" target="_blank"> 创利投注册协议 </a> 》 </label></div>
+                <div>
+                    <input type="submit" name="butreg" id="butreg" value="立即注册" class="login_btn" />
+                </div>
+                <div class="login_anquan">您的信息已通过SSL加密保护，数据传输安全！</div>
+            </div>
+            <div class="reg_right" style="width:243px;">
+                <div class="login_link">已有账户？<a href="/login.html">马上登录>></a></div>
+                <div class="reg_ad">
+
+                    @Html.Raw(ChuanglitouP2P.Common.Utils.GetWebAD(8, 1))
+
+                </div>
+            </div>
+        </div>
+        <div class="login_kefu"><span class="login_kefu_icon">创利投客服热线 010-53732056（工作时间 9:00-18:00）</span><span class="login_qq_icon"><a href="#">在线客服</a></span></div>
+        <div class="clear"></div>
+    </div>
+
+
+
+
+
+
+    
+
+
+    <script type="text/javascript">
+    $(function () {
+        $('#close_im').bind('click', function () {
+            $('#main-im').css("height", "0");
+            $('#im_main').hide();
+            $('#open_im').show();
+        });
+        $('#open_im').bind('click', function (e) {
+            $('#main-im').css("height", "272");
+            $('#im_main').show();
+            $(this).hide();
+        });
+    });
+</script>
+
+  
+    <!-- WPA Button Begin -->
+    <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwNDg0Nl8yNjQ2OTVfNDAwODkwMjIyNl8"></script>
+    <!-- WPA Button END -->
+
+
+
+    <script type="text/javascript" language="javascript">
+    function AddFavorite() {
+        var url = document.URL;
+        var title = "创利投"
+        try {
+            window.external.addFavorite(url, title);
+        } catch (e) {
+            try {
+                window.sidebar.addPanel(title, url, "");
+            } catch (e) {
+                alert("加入收藏失败，请使用Ctrl+D进行添加,或手动在浏览器里进行设置.");
+            }
+        }
+    }
+    </script>
+    <script>
+	window.onload = window.onscroll = window.onresize = function () {
+		var oDiv = document.getElementById('go_top');
+		var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+		var clientheight = document.documentElement.clientHeight;
+		var t = parseInt(scrolltop + (clientheight - oDiv.offsetHeight) / 3);
+		oDiv.style.right = 30 + 'px'
+		oDiv.style.top = 500 + 'px'
+
+		//alert(scrolltop)
+	}
+    </script>
+</form>
+
+
+<div class="reg_pop_wrap" id="vcodet" style="display:none">
+    <div class="reg_pop_bglayer"></div>
+    <div class="reg_pop_box">
+        <div class="reg_pop_tit">填写验证码完成短信发送</div>
+        <div class="reg_pop_item"><span style="float:left; margin:0 20px 0 0;">验证码：<input name="" type="text" class="yzm_txt" /></span><span><img src="/Register/GetValidateCode" /></span></div>
+        <div><input name="" value="发送短信" type="button" class="yz_btn" /></div>
+    </div>
+</div>

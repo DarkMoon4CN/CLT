@@ -1,0 +1,408 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using Webdiyer.WebControls.Mvc;
+@using ChuangLitouP2P.Models;
+@model PagedList<V_YaoQinList>
+@{
+    ViewBag.Title = "邀请奖励";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+    int pageIndex = ViewBag.pageIndex;
+    int pageCount = ViewBag.pageCount;
+}
+<link href="~/css/yaoqingcss.css" rel="stylesheet" />
+    <header class="header">
+                <div class="return"><a href="javascript:history.go(-1);"></a></div>
+                <h2 class="head_title">邀请奖励</h2>
+            </header>
+            <section class="w_yaoqing_tab">
+                <div>
+                    <span class="ys">邀请好友</span><span>邀请列表</span>
+                </div>
+            </section>
+            <div class="w_yaoqing_zhezhao"></div>
+            <div class="w_yaoqing_fenxiang">
+                <img src="~/images/w_yaoqing_fenxiang.png">
+            </div>
+            <section class="w_yaoqing_content">
+                <div class="w_yaoqing_content_1">
+                    <img src="~/images/w_yaoqing_01.jpg">
+                    <img src="~/images/w_yaoqing_02.jpg">
+                    <img src="~/images/w_yaoqing_03.jpg" class="tu3">
+                    <a href="#" class="w_yaoqing_content_1_btn">立即邀请</a>
+                </div>
+                <div class="w_yaoqing_content_2">
+                    <section class="user_form_record">
+                        <div>
+                            @if (Model.Count > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <dl>
+                                        <dt>邀请用户：@item.username</dt>
+                                        <dd style="width:650px;"><div>受邀好友动态：@item.award_description</div></dd>
+                                        <dd style="width:650px;"><div>奖励：@item.income</div></dd>
+                                        <dd style="width:650px;"><div>操作时间：@DateTime.Parse(item.Createtime.ToString())</div></dd>
+                                    </dl>
+                                }
+                            }
+                            else
+                            {
+                                <span style="display: block;margin: 20px;color: #666;text-align: center;margin-top:0px;">暂无记录</span>
+                            }
+                        </div>
+
+                    </section>
+                    <section class="page_box">
+                        <div class="page_prev"><a href="/Invitation/list?pageIndex=@(pageIndex<=1?1:(pageIndex-1))">上一页</a></div>
+                        <div class="page_number">@(pageIndex <= 1 ? 1 : pageIndex)/@(pageCount <= 1 ? 1 : pageCount)</div>
+                        <div class="page_next"><a href="/Invitation/list?pageIndex=@(pageIndex<=1?2:(pageIndex+1))">下一页</a></div>
+                    </section>
+                    <div class="bot_height"></div>
+                </div>
+            </section>
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("footer.footer").hide();
+                $(".w_yaoqing_tab").on("click", "span", function () {
+                    $(this).addClass("ys").siblings().removeClass();
+                    if ($(this).html() == "邀请列表") {
+                        $(".w_yaoqing_content_2").show().siblings().hide();
+                        $("footer.footer").show();
+                    } else {
+                        $(".w_yaoqing_content_1").show().siblings().hide();
+                        $("footer.footer").hide();
+                    }
+                })
+                $(".w_yaoqing_content_1_btn").on("click", function () {
+                    var ua = window.navigator.userAgent.toLowerCase();
+                    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                        $(".w_yaoqing_zhezhao").show();
+                        $(".w_yaoqing_fenxiang").show();
+                    } else {
+                        $(".yaoqing_bg").show();
+                        $('.yaoqing').slideUp();
+                        anim(300);
+                    }
+
+                })
+
+                $(".yaoqing_bg").on("click", function () {
+
+                    $(".yaoqing_bg").hide();
+                    $(".yaoqing").slideDown();
+                    anim(300);
+                })
+
+                function anim(duration) {
+
+                    $('.yaoqing').animate(
+                        { height: 'toggle' },
+                        { duration: duration }
+                    );
+                }
+
+                $(".w_yaoqing_fenxiang").on("click", "img", function () {
+                    $(".w_yaoqing_zhezhao").hide();
+                    $(".w_yaoqing_fenxiang").hide();
+                })
+            });
+        </script>
+        <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript">
+            wx.config({
+                debug: false,
+                appId: '@ViewBag.TXShareHelper.appid',
+                timestamp: '@ViewBag.TXShareHelper.ts',
+                nonceStr: '@ViewBag.TXShareHelper.ns',
+                signature: '@ViewBag.TXShareHelper.sign',
+                jsApiList: [
+                    'onMenuShareAppMessage',
+                    'onMenuShareTimeline'
+                ]
+
+            });
+            wx.ready(function () {
+                wx.onMenuShareAppMessage({
+                    title: '@ViewBag.TXShareHelper.title',
+                    desc: '@ViewBag.TXShareHelper.desc',
+                    link: '@ViewBag.TXShareHelper.link',
+                    imgUrl: '@ViewBag.TXShareHelper.imgUrl',
+                    type: 'link',
+                    dataUrl: '',
+                    success: function () {
+
+                    },
+                    cancel: function () {
+
+                    }
+                });
+                wx.onMenuShareTimeline({
+                    title: '@ViewBag.TXShareHelper.title',
+                    link: '@ViewBag.TXShareHelper.link',
+                    imgUrl: '@ViewBag.TXShareHelper.imgUrl',
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+            });
+            wx.error(function (res) {
+                //alert(res);
+            });
+        </script>
+        <style type="text/css">
+            .yaoqing_bg{
+                margin:0;
+                padding:0;
+                width: 100%;
+                height:100%;
+            position: fixed;
+            left: 0;
+            bottom: 50px;
+            z-index: 101;
+            display:none;
+
+            }
+            .yaoqing{
+                margin:0;
+                padding:0;
+                width: 100%;
+            background-color: rgba(255,255,255,1);
+            position: fixed;
+            left: 0;
+            bottom: 50px;
+            z-index: 102;
+            text-align: center;
+            display:none;
+
+            }
+            .row{
+                width:100%;
+                height:auto;
+                display: -webkit-flex;
+                -webkit-flex-direction: row;
+                text-align:left;
+            }
+            .row>a{
+                width:25%;
+                text-align:center;
+                display:inline-block;
+                height:auto;
+                margin:0.5rem 0;
+                -webkit-flex:1;
+            }
+            .row>a>span{
+                display:block;
+                color:#333;
+                font-family:"微软雅黑";
+                font-size:1em;
+            }
+            .lian_shade{
+                margin:0;
+                padding:0;
+                width: 100%;
+                height:100%;
+                background-color:rgba(0,0,0,.8);
+            position: fixed;
+            left: 0;
+            bottom: 50px;
+            z-index: 103;
+            display:none;
+            }
+            .lian{
+                margin:0;
+                padding:0;
+                width: 100%;
+                height:8rem;
+            position: fixed;
+            left: 0;
+            bottom: 0px;
+            z-index: 104;
+            text-align: center;
+            display:none;
+            }
+            .lian>p{
+                line-height:4rem;
+            }
+
+        </style>
+        <script>
+                $(function () {
+
+                $(".lian_shade").on("click", function () {
+                    $(".lian_shade").hide();
+                    $(".lian").slideDown();
+                    anim(300);
+                });
+
+            });
+
+                function anim(duration) {
+
+                    $('.lian').animate(
+                        { height: 'toggle' },
+                        { duration: duration }
+                    );
+                }
+                //分享到微信
+                function weixin() {
+
+                    $(".lian_shade").show();
+                    $('.lian').slideUp();
+                    anim(300);
+                    function anim(duration) {
+
+                        $('.lian').animate(
+                            { height: 'toggle' },
+                            { duration: duration }
+                        );
+                    }
+
+                }
+                //分享到新浪微博
+                function shareSina() {
+
+                    var sharesinastring = 'http://service.weibo.com/share/share.php?title=创利投喊你领钱啦!新人注册送50元抵扣券！首次投资完成再送50元抵扣券，快快一起理财吧！http://www.chuanglitou.cn/Invitation/S7L803WS.html';
+                    window.location.href = sharesinastring;
+                }
+                function shareQQ() {
+                    var p = {
+                        url: location.href, /*获取URL，可加上来自分享到QQ标识，方便统计*/
+                        desc: '', /*分享理由(风格应模拟用户对话),支持多分享语随机展现（使用|分隔）*/
+                        title: '', /*分享标题(可选)*/
+                        summary: '', /*分享摘要(可选)*/
+                        pics: '', /*分享图片(可选)*/
+                        flash: '', /*视频地址(可选)*/
+                        site: '满艺网', /*分享来源(可选) 如：QQ分享*/
+                        style: '201',
+                        width: 32,
+                        height: 32
+                    };
+                    //分享到QQ
+                    var sharesinastring = 'http://connect.qq.com/widget/shareqq/index.html?url=http%3a%2f%2fwww.chuanglitou.cn%2fInvitation%2fS7L803WS.html&title=%e5%88%9b%e5%88%a9%e6%8a%95%e5%96%8a%e4%bd%a0%e9%a2%86%e9%92%b1%e5%95%a6!%e4%b8%8b%e8%bd%bdAPP%e5%8d%b3%e9%80%811260%e7%8e%b0%e9%87%91%e5%88%b8%ef%bc%8c%e4%b8%8d%e7%94%a8%e9%9d%a0%e6%ad%bb%e5%b7%a5%e8%b5%84%ef%bc%8c%e5%bf%ab%e5%bf%ab%e8%b7%9f%e6%88%91%e7%90%86%e8%b4%a2%e5%90%a7%ef%bc%81%ef%bc%81http%3a%2f%2fwww.chuanglitou.cn%2fInvitation%2fS7L803WS.html&summary=%e5%88%9b%e5%88%a9%e6%8a%95%e5%96%8a%e4%bd%a0%e9%a2%86%e9%92%b1%e5%95%a6!%e4%b8%8b%e8%bd%bdAPP%e5%8d%b3%e9%80%811260%e7%8e%b0%e9%87%91%e5%88%b8%ef%bc%8c%e4%b8%8d%e7%94%a8%e9%9d%a0%e6%ad%bb%e5%b7%a5%e8%b5%84%ef%bc%8c%e5%bf%ab%e5%bf%ab%e8%b7%9f%e6%88%91%e7%90%86%e8%b4%a2%e5%90%a7%ef%bc%81%ef%bc%81http%3a%2f%2fwww.chuanglitou.cn%2fInvitation%2fS7L803WS.html&site=%e5%88%9b%e5%88%a9%e6%8a%95&pics=http%3a%2f%2fwww.chuanglitou.cn%2fimages%2flogo.jpg';
+                    window.location.href = sharesinastring;
+                }
+                 //分享到腾讯微博
+                function shareQQweibo() {
+
+                    var sharesinastring = 'http://share.v.t.qq.com/index.php?c=share&a=index&title=创利投喊你领钱啦!新人注册送50元抵扣券！首次投资完成再送50元抵扣券，快快一起理财吧！http://www.chuanglitou.cn/Invitation/S7L803WS.html';
+
+                    window.location.href = sharesinastring;
+                }
+                //分享到qq空间
+                function qqZone() {
+
+                    var _url = "http://www.chuanglitou.cn";
+                    var _title = "创利投喊你领钱啦!新人注册送50元抵扣券！首次投资完成再送50元抵扣券，快快一起理财吧！http://www.chuanglitou.cn/Invitation/S7L803WS.html";
+                    var _shareUrl = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?';
+
+                    _shareUrl += "url='" + _url+"'";
+                    _shareUrl += "&title='" + _title+"'";
+
+                    window.location.href = _shareUrl;
+
+                }
+
+                function douban() {
+                    var _url = "http://www.chuanglitou.cn";
+                    var _title = "";
+                    var _shareUrl = "http://www.douban.com/recommend/?";
+
+                    _shareUrl += "url=" + _url;
+                    _shareUrl += "&title=" + _title;
+
+                    window.location.href = _shareUrl;
+                }
+                function qqshared() {
+
+                    var _url = "http://www.chuanglitou.cn";
+                    var _title = "创利投喊你领钱啦!新人注册送50元抵扣券！首次投资完成再送50元抵扣券，快快一起理财吧！http://www.chuanglitou.cn/Invitation/S7L803WS.html";
+                    var width=2;
+                    var height=16;
+                    var _shareUrl = "http://connect.qq.com/widget/shareqq/index.html?";
+
+                    _shareUrl += "url=" + _url;
+                    _shareUrl += "&title=" + _title;
+                    _shareUrl+="&width="+width;
+                    _shareUrl += "&height=" + height;
+
+                    window.location.href = _shareUrl;
+                }
+
+                function selectText() {
+                    var doc = document,
+                        text = $("#address").text(),
+                        range,
+                        selection;
+                    if (doc.body.createTextRange) {
+                        range = document.body.createTextRange();
+                        range.moveToElementText(text);
+                        range.select();
+                    } else if (window.getSelection) {
+                        alert("已复制链接")
+                        selection = window.getSelection();
+                        range = document.createRange();
+                        range.selectNodeContents(text);
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                    } else {
+                        alert("none");
+                    }
+                }
+
+                function onfocusFn(tag) {
+                    tag.select();
+                }
+                function onmouseupFn(eventTag) {
+                    var event = eventTag || window.event;
+                    event.preventDefault();
+                }
+
+        </script>
+        <div class="yaoqing_bg"></div>
+        <div class="yaoqing">
+                <div class="row">
+                <a href="#" onclick="weixin()">
+                    <img src="~/images/rWx.png" />
+                    <span>微信好友</span>
+                </a>
+                <a href="#" onclick="douban()">
+                    <img src="~/images/rDb.png" />
+                    <span>豆瓣</span>
+                </a>
+                <a href="#"onclick="shareQQ()">
+                    <img src="~/images/rQq.png" />
+                    <span>QQ好友</span>
+                </a>
+                <a href="#"onclick="shareQQweibo()">
+                    <img src="~/images/rTx.png" />
+                    <span>腾讯微博</span>
+                </a>
+                </div>
+                <div class="row">
+                    <a href="#" onclick="qqZone()">
+                        <img src="~/images/rKj.png" />
+                        <span>QQ空间</span>
+                    </a>
+                    <a href="#" onclick="shareSina()">
+                        <img src="~/images/rWb.png" />
+                        <span>新浪微博</span>
+                    </a>
+                    <a href="#">
+                    </a>
+                    <a href="#">
+                    </a>
+                </div>
+            </div>
+        <div class="lian_shade"></div>
+        <div class="lian">
+            <p style="background-color: rgb(242, 242, 242);" href="javaScripts:void(0)">长按复制下面的链接，去粘贴好友吧：</p>
+            <p style="background-color: rgb(255,255,255);" id="address" href="javaScripts:void(0)">
+                http://www.chuanglitou.cn/Invitation/IW1X5A18.html
+            </p>
+
+
+    </div>

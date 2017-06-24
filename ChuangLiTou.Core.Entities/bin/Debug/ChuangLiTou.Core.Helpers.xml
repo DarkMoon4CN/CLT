@@ -1,0 +1,1401 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ChuangLiTou.Core.Helpers</name>
+    </assembly>
+    <members>
+        <member name="M:ChuangLiTou.Core.Helpers.CacheHelper.GetSystemCache(System.String)">
+            <summary>
+            获取系统缓存
+            </summary>
+            <param name="cacheKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.CacheHelper.SetCache(System.String,System.Object,System.String[])">
+            <summary>
+            创建缓存，同时添加依赖项
+            </summary>
+            <param name="cacheKey"></param>
+            <param name="objType"></param>
+            <param name="dependencies">依赖项</param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.CacheHelper.SetLevel2Cache(System.String,System.Object,System.String[])">
+            <summary>
+            设置二级缓存依赖项
+            </summary>
+            <param name="cacheKey"></param>
+            <param name="objType"></param>
+            <param name="dependencies"></param>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.ConfigHelper">
+            <summary>
+            web.config操作类
+            Copyright (C) Maticsoft
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.ConfigHelper.GetConfigString(System.String)">
+            <summary>
+            得到AppSettings中的配置字符串信息
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.ConfigHelper.GetConfigBool(System.String)">
+            <summary>
+            得到AppSettings中的配置Bool信息
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.ConfigHelper.GetConfigDecimal(System.String)">
+            <summary>
+            得到AppSettings中的配置Decimal信息
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.ConfigHelper.GetConfigInt(System.String)">
+            <summary>
+            得到AppSettings中的配置int信息
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.DataAccess">
+            <summary>
+            抽象工厂模式创建DAL。
+            web.config 需要加入配置：(利用工厂模式+反射机制+缓存机制,实现动态创建不同的数据层对象接口)  
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DataAccess.CreateObject(System.String,System.String)">
+            <summary>
+            创建对象或从缓存获取
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DataAccess.CreateAssembly``1(System.String)">
+            <summary>
+            接口反射
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <param name="className">实现类 类名</param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.DataCache">
+            <summary>
+            缓存相关的操作类
+            Copyright (C) Maticsoft
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DataCache.GetCache(System.String)">
+            <summary>
+            获取当前应用程序指定CacheKey的Cache值
+            </summary>
+            <param name="CacheKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DataCache.SetCache(System.String,System.Object)">
+            <summary>
+            设置当前应用程序指定CacheKey的Cache值
+            </summary>
+            <param name="CacheKey"></param>
+            <param name="objObject"></param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DataCache.RemoveCache(System.String)">
+            <summary>
+            设置当前应用程序删除CacheKey的Cache值
+            </summary>
+            <param name="CacheKey"></param>
+            <param name="objObject"></param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DataCache.SetCache(System.String,System.Object,System.DateTime,System.TimeSpan)">
+            <summary>
+            设置当前应用程序指定CacheKey的Cache值
+            </summary>
+            <param name="CacheKey"></param>
+            <param name="objObject"></param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ColumnExists(System.String,System.String)">
+            <summary>
+            判断是否存在某表的某个字段
+            </summary>
+            <param name="tableName">表名称</param>
+            <param name="columnName">列名称</param>
+            <returns>是否存在</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.TabExists(System.String)">
+            <summary>
+            表是否存在
+            </summary>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.MakeInParam(System.String,System.Data.SqlDbType,System.Int32,System.Object)">
+            <summary>
+            Make input param.
+            </summary>
+            <param name="ParamName">Name of param.</param>
+            <param name="DbType">Param type.</param>
+            <param name="Size">Param size.</param>
+            <param name="Value">Param value.</param>
+            <returns>New parameter.</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.MakeParam(System.String,System.Data.SqlDbType,System.Int32,System.Data.ParameterDirection,System.Object)">
+            <summary>
+            Make stored procedure param.
+            </summary>
+            <param name="paramName">Name of param.</param>
+            <param name="dbType">Param type.</param>
+            <param name="size">Param size.</param>
+            <param name="direction">Parm direction.</param>
+            <param name="value">Param value.</param>
+            <returns>New parameter.</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSql(System.String)">
+            <summary>
+            执行SQL语句，返回影响的记录数
+            </summary>
+            <param name="sqlString">SQL语句</param>
+            <returns>影响的记录数</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.PrepareCommand(System.Data.SqlClient.SqlCommand,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlTransaction,System.Data.CommandType,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Prepare a command for execution
+            </summary>
+            <param name="cmd">SqlCommand object</param>
+            <param name="conn">SqlConnection object</param>
+            <param name="trans">SqlTransaction object</param>
+            <param name="cmdType">Cmd type e.g. stored procedure or text</param>
+            <param name="cmdText">Command text, e.g. Select * from Products</param>
+            <param name="cmdParms">SqlParameters to use in the command</param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSqlTran(System.Collections.Generic.List{ChuangLiTou.Core.Helpers.Util.CommandInfo},System.Collections.Generic.List{ChuangLiTou.Core.Helpers.Util.CommandInfo})">
+            <summary>
+            执行Sql和Oracle滴混合事务
+            </summary>
+            <param name="list">SQL命令行列表</param>
+            <param name="oracleCmdSqlList">Oracle命令行列表</param>
+            <returns>执行结果 0-由于SQL造成事务失败 -1 由于Oracle造成事务失败 1-整体事务执行成功</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSqlTran(System.Collections.Generic.List{System.String})">
+            <summary>
+            执行多条SQL语句，实现数据库事务。
+            </summary>
+            <param name="sqlStringList">多条SQL语句</param>		
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSql(System.String,System.String)">
+            <summary>
+            执行带一个存储过程参数的的SQL语句。
+            </summary>
+            <param name="sqlString">SQL语句</param>
+            <param name="content">参数内容,比如一个字段是格式复杂的文章，有特殊符号，可以通过这个方式添加</param>
+            <returns>影响的记录数</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSqlGet(System.String,System.String)">
+            <summary>
+            执行带一个存储过程参数的的SQL语句。
+            </summary>
+            <param name="sqlString">SQL语句</param>
+            <param name="content">参数内容,比如一个字段是格式复杂的文章，有特殊符号，可以通过这个方式添加</param>
+            <returns>影响的记录数</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSqlInsertImg(System.String,System.Byte[])">
+            <summary>
+            向数据库里插入图像格式的字段(和上面情况类似的另一种实例)
+            </summary>
+            <param name="strSQL">SQL语句</param>
+            <param name="fs">图像字节,数据库的字段类型为image的情况</param>
+            <returns>影响的记录数</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.GetSingle(System.String)">
+            <summary>
+            执行一条计算查询结果语句，返回查询结果（object）。
+            </summary>
+            <param name="sqlString">计算查询结果语句</param>
+            <returns>查询结果（object）</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteReader(System.String)">
+            <summary>
+            执行查询语句，返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
+            </summary>
+            <param name="strSQL">查询语句</param>
+            <returns>SqlDataReader</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.Query(System.String)">
+            <summary>
+            执行查询语句，返回DataSet
+            </summary>
+            <param name="sqlString">查询语句</param>
+            <returns>DataSet</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSql(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行SQL语句，返回影响的记录数
+            </summary>
+            <param name="sqlString">SQL语句</param>
+            <param name="cmdParms"> </param>
+            <returns>影响的记录数</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSqlTran(System.Collections.Hashtable)">
+            <summary>
+            执行多条SQL语句，实现数据库事务。
+            </summary>
+            <param name="sqlStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSqlTran(System.Collections.Generic.List{ChuangLiTou.Core.Helpers.Util.CommandInfo})">
+            <summary>
+            执行多条SQL语句，实现数据库事务。
+            </summary>
+            <param name="cmdList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSqlTranWithIndentity(System.Collections.Generic.List{ChuangLiTou.Core.Helpers.Util.CommandInfo})">
+            <summary>
+            执行多条SQL语句，实现数据库事务。
+            </summary>
+            <param name="sqlStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteSqlTranWithIndentity(System.Collections.Hashtable)">
+            <summary>
+            执行多条SQL语句，实现数据库事务。
+            </summary>
+            <param name="sqlStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.GetSingle(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行一条计算查询结果语句，返回查询结果（object）。
+            </summary>
+            <param name="sqlString">计算查询结果语句</param>
+            <returns>查询结果（object）</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteReader(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行查询语句，返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
+            </summary>
+            <param name="sqlString">查询语句</param>
+            <param name="cmdParms"> </param>
+            <returns>SqlDataReader</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.Query(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行查询语句，返回DataSet
+            </summary>
+            <param name="sqlString">查询语句</param>
+            <param name="cmdParms"> </param>
+            <returns>DataSet</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.RunProcedure(System.String,System.Data.IDataParameter[])">
+            <summary>
+            执行存储过程，返回存储过程return 的值 
+            </summary>
+            <param name="storedProcName">存储过程名</param>
+            <param name="parameters">存储过程参数</param>
+            <returns>获取存储过程return 的值</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.RunProcedure(System.String,System.Data.IDataParameter[],System.String)">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="storedProcName">存储过程名</param>
+            <param name="parameters">存储过程参数</param>
+            <param name="tableName">DataSet结果中的表名</param>
+            <returns>DataSet</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.BuildQueryCommand(System.Data.SqlClient.SqlConnection,System.String,System.Collections.Generic.IEnumerable{System.Data.IDataParameter})">
+            <summary>
+            构建 SqlCommand 对象(用来返回一个结果集，而不是一个整数值)
+            </summary>
+            <param name="connection">数据库连接</param>
+            <param name="storedProcName">存储过程名</param>
+            <param name="parameters">存储过程参数</param>
+            <returns>SqlCommand</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.RunProcedure(System.String,System.Data.IDataParameter[],System.Int32@)">
+            <summary>
+            执行存储过程，返回影响的行数		
+            </summary>
+            <param name="storedProcName">存储过程名</param>
+            <param name="parameters">存储过程参数</param>
+            <param name="rowsAffected">影响的行数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.BuildIntCommand(System.Data.SqlClient.SqlConnection,System.String,System.Data.IDataParameter[])">
+            <summary>
+            创建 SqlCommand 对象实例(用来返回一个整数值)	
+            </summary>
+            <param name="storedProcName">存储过程名</param>
+            <param name="parameters">存储过程参数</param>
+            <returns>SqlCommand 对象实例</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.DbHelper.ExecuteScalar(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute SQL Command
+            </summary>
+            <param name="sqlString">SQL Command</param>
+            <param name="sqlParams">SQL Command Parameters; when no params, the param is null</param>
+            <returns>Execute number of row affected</returns>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.Amount">
+            <summary>
+            投资金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.Circle">
+            <summary>
+            期限
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.CircleType">
+            <summary>
+            期限类型 1月 / 3天  
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.InvestDate">
+            <summary>
+            投资日期
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.ReleaseDate">
+            <summary>
+            借款日期
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.Payinterest">
+            <summary>
+            每月付息日
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.Investmentenddate">
+            <summary>
+            投资到期结束日期
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.InvestObject">
+            <summary>
+            投资身份对象  1投资人需要不进行四舍五入，2借款人需进行四舍五入
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.NominalYearRate">
+            <summary>
+            年利率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.OverheadsRate">
+            <summary>
+            管理费率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.RepaymentMode">
+            <summary>
+            还款方式
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters.RewardRate">
+            <summary>
+            奖厉比例
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo">
+            <summary>
+            投资记录信息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.ActualReceiveDate">
+            <summary>
+            实际收到日期
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.Amount">
+            <summary>
+            应收总额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.Balance">
+            <summary>
+            应收本息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.CurrentInstallments">
+            <summary>
+            当前的分期数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.Interest">
+            <summary>
+            应收利息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.InterestStatus">
+            <summary>
+            利息状态
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.InvestmentID">
+            <summary>
+            投资id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.Memo">
+            <summary>
+            备忘录
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.interestvalue_date">
+            <summary>
+            当前期的投资起息日期
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.NominalReceiveDate">
+            <summary>
+            回报日期
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.Overheads">
+            <summary>
+            管理费用
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.Principal">
+            <summary>
+            应收本金
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.PrincipalStatus">
+            <summary>
+            本金状态
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.TotalInstallments">
+            <summary>
+            分期付款总计
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo.TotalDays">
+            <summary>
+            计息天数
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentTotalIncome">
+            <summary>
+            投资的总收入
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentTotalIncome.ActualMonthRate">
+            <summary>
+            月化收益率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentTotalIncome.ActualYearRate">
+            <summary>
+            年化收益率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentTotalIncome.Interest">
+            <summary>
+            利息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentTotalIncome.Overheads">
+            <summary>
+            管理费用
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentTotalIncome.Reward">
+            <summary>
+            奖金
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentTotalIncome.TotalEarnings">
+            <summary>
+            收益总计
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentTotalIncome.TotalIncome">
+            <summary>
+            还款总计
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.EnumHelper">
+            <summary>
+            把枚举值按照指定的文本显示
+            <remarks>
+            </remarks>
+            </summary>
+            <example>
+            [EnumHelper("枚举列表")]
+            enum MyEnum
+            {
+            	[EnumHelper("枚举1")]
+            	One = 1, 
+            
+            	[EnumHelper("枚举2")]
+            	Two, 
+            
+            	[EnumHelper("枚举3")]
+            	Three
+            }
+            EnumHelper.GetEnumText(typeof(MyEnum));
+            EnumHelper.GetFieldText(MyEnum.Two);
+            EnumHelper.GetFieldTexts(typeof(MyEnum)); 
+            </example>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.EnumHelper.#ctor(System.String,System.Int32)">
+            <summary>
+            描述枚举值
+            </summary>
+            <param name="enumDisplayText">描述内容</param>
+            <param name="enumRank">排列顺序</param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.EnumHelper.#ctor(System.String)">
+            <summary>
+            描述枚举值，默认排序为5
+            </summary>
+            <param name="enumDisplayText">描述内容</param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.EnumHelper.GetEnumText(System.Type)">
+            <summary>
+            得到对枚举的描述文本
+            </summary>
+            <param name="enumType">枚举类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.EnumHelper.GetFieldText(System.Object)">
+            <summary>
+            获得指定枚举类型中，指定值的描述文本。
+            </summary>
+            <param name="enumValue">枚举值，不要作任何类型转换</param>
+            <returns>描述字符串</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.EnumHelper.GetFieldTexts(System.Type)">
+            <summary>
+            得到枚举类型定义的所有文本，按定义的顺序返回
+            </summary>
+            <exception cref="T:System.NotSupportedException"></exception>
+            <param name="enumType">枚举类型</param>
+            <returns>所有定义的文本</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.EnumHelper.GetFieldTexts(System.Type,ChuangLiTou.Core.Helpers.Util.SortType)">
+            <summary>
+            得到枚举类型定义的所有文本
+            </summary>
+            <exception cref="T:System.NotSupportedException"></exception>
+            <param name="enumType">枚举类型</param>
+            <param name="sortType">指定排序类型</param>
+            <returns>所有定义的文本</returns>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.EnumHelper.KVP`2">
+            <summary>
+            存储枚举的键值对对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="S"></typeparam>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.InvestCalculator">
+            <summary>
+            投资计算器
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.CalculateReceiveRecordWithEqualPrincipalAndInterest(ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters)">
+            <summary>
+            按月等额本息
+            </summary>
+            <param name="inverstParas"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.CalculateReceiveRecordWithInterestByMonth(ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters)">
+            <summary>
+            按日计息,每月还息，到期还本
+            </summary>
+            <param name="inverstParas"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.CalculateReceiveRecordWithInterestByMonth1(ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters)">
+            <summary>
+            按日计息,每月还息，到期还本
+            </summary>
+            <param name="inverstParas"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.CalculateTotalIncome(ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters)">
+            <summary>
+            计算投资收入
+            </summary>
+            <param name="inverstParas"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.CalculateTotalIncomeWithEqualPrincipalAndInterest(ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters)">
+            <summary>
+            Calculates the total income with equal principal and interest.
+            </summary>
+            <param name="inverstParas">The inverst paras.</param>
+            <returns>InvestmentTotalIncome.</returns>
+             <remarks>
+             创 建 者：解志辉
+             创建日期：2016-05-17 10:43:10
+             </remarks>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.CalculateTotalIncomeWithEqualPrincipalByQuart(ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters)">
+            <summary>
+            Calculates the total income with equal principal by quart.
+            </summary>
+            <param name="inverstParas">The inverst paras.</param>
+            <returns>InvestmentTotalIncome.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-17 10:43:07
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.CalculateTotalIncomeWithInterestByMonth(ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters)">
+            <summary>
+            以月计算利息的总收入 [以月付息到期还本]
+            </summary>
+            <param name="inverstParas">The inverst paras.</param>
+            <returns>InvestmentTotalIncome.</returns>
+             <remarks>
+             创 建 者：解志辉
+             创建日期：2016-05-17 10:43:05
+            </remarks>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.CalculateTotalIncomeWithLumpSumPrincipalAndInterest(ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters)">
+            <summary>
+            计算总付本金和利息收入总额 天为单位
+            </summary>
+            <param name="inverstParas">The inverst paras.</param>
+            <returns>InvestmentTotalIncome.</returns>
+             <remarks>
+             创 建 者：解志辉
+             创建日期：2016-05-17 10:43:02
+            </remarks>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.CorrectTotalIncome(ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentTotalIncome,ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters)">
+            <summary>
+            Corrects the total income.
+            </summary>
+            <param name="income">The income.</param>
+            <param name="inverstParas">The inverst paras.</param>
+            <returns>InvestmentTotalIncome.</returns>
+             <remarks>
+             创 建 者：解志辉
+             创建日期：2016-05-17 10:43:00
+            </remarks>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.FormatReceiveRecords(System.Collections.Generic.List{ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentReceiveRecordInfo})">
+            <summary>
+            Formats the receive records.
+            </summary>
+            <param name="receiveRecords">The receive records.</param>
+            <returns>List&lt;InvestmentReceiveRecordInfo&gt;.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-17 10:42:57
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.InvestCalculator.Calculationofinterest(ChuangLiTou.Core.Helpers.Entity.Invest.InvestmentParameters)">
+            <summary>
+            计算利息返回分期记录列表
+            </summary>
+            <param name="Minverst">业务对象</param>
+            <returns>List&lt;InvestmentReceiveRecordInfo&gt;.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-17 10:42:53
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.ModelConvertHelper`1">
+            <summary>
+            datatable转list方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.ModelConvertHelper`1.ConvertToModel(System.Data.DataTable)">
+            <summary>
+            datatable转list方法
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.QRCode">
+            <summary>
+            生成带图片的二维码
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.QRCode.CreateImage(System.String)">
+            <summary>
+            生成二维码图片
+            </summary>
+            <param name="link"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.QRCode.CombinImage(System.Drawing.Image,System.Drawing.Image)">
+            <summary>
+            合并图片
+            </summary>
+            <param name="imgBack"></param>
+            <param name="img"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.QRCode.CombinImage(System.Drawing.Image,System.String)">
+            <summary>
+            调用此函数后使此两种图片合并，类似相册，有个
+            背景图，中间贴自己的目标图片
+            </summary>
+            <param name="imgBack">粘贴的源图片</param>
+            <param name="destImg">粘贴的目标图片</param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.QRCode.ResizeImage(System.Drawing.Image,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Resize图片
+            </summary>
+            <param name="bmp">原始Bitmap</param>
+            <param name="newW">新的宽度</param>
+            <param name="newH">新的高度</param>
+            <param name="mode">保留着，暂时未用</param>
+            <returns>处理以后的图片</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.Add``1(System.String,``0)">
+            <summary>
+            设置单体
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="t"></param>
+            <param name="timeSpan"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.Get``1(System.String)">
+            <summary>
+            获取单体
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.Remove(System.String)">
+            <summary>
+            移除单体
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.AddList``1(System.String,``0)">
+            <summary>
+            设置集合缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.RemoveList``1(System.String,``0)">
+            <summary>
+            移除集合缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.RemoveAllList``1(System.String)">
+            <summary>
+            移除所有集合缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.GetListCount(System.String)">
+            <summary>
+            获取集合缓存个数
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.GetRangeList``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取集合缓存某一范围的数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="start"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.GetList``1(System.String)">
+            <summary>
+            获取集合缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.GetList``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            缓存List分页
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.SetListExpire(System.String,System.DateTime)">
+            <summary>
+            设置缓存过期
+            </summary>
+            <param name="key"></param>
+            <param name="datetime"></param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.ContainsSet``1(System.String,``0)">
+            <summary>
+            判断Set集合是否包含指定的对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.RemoveSet``1(System.String,``0)">
+            <summary>
+            移除set
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.ExistHash``1(System.String,System.String)">
+            <summary>
+            判断某个数据是否已经被缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="dataKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.AddHash``1(System.String,System.String,``0)">
+            <summary>
+            存储数据到hash表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="dataKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.RemoveHash(System.String,System.String)">
+            <summary>
+            移除hash中的某值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="dataKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.RemoveHash(System.String)">
+            <summary>
+            移除整个hash
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="dataKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.GetHash``1(System.String,System.String)">
+            <summary>
+            从hash表获取数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="dataKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.GetAllHash``1(System.String)">
+            <summary>
+            获取整个hash的数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.SetExpireHash(System.String,System.DateTime)">
+            <summary>
+            设置缓存过期
+            </summary>
+            <param name="key"></param>
+            <param name="datetime"></param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.AddSortedSet``1(System.String,``0,System.Double)">
+            <summary>
+             添加数据到 SortedSet
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="t"></param>
+            <param name="score"></param>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.RemoveSortedSet``1(System.String,``0)">
+            <summary>
+            移除数据从SortedSet
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.TrimSortedSet(System.String,System.Int32)">
+            <summary>
+            修剪SortedSet
+            </summary>
+            <param name="key"></param>
+            <param name="size">保留的条数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.GetSortedSetCount(System.String)">
+            <summary>
+            获取SortedSet的长度
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.GetSortedSetList``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取SortedSet的分页数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.GetAllSortedSet``1(System.String)">
+            <summary>
+            获取SortedSet的全部数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.RedisHelper.SetExpireSortedSet(System.String,System.DateTime)">
+            <summary>
+            设置缓存过期
+            </summary>
+            <param name="key"></param>
+            <param name="datetime"></param>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.SMSService.statusReport">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.errorCode">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.memo">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.mobile">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.receiveDate">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.reportStatus">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.seqID">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.serviceCodeAdd">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.submitDate">
+            <remarks/>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.SMSService.mo">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.addSerial">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.addSerialRev">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.channelnumber">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.mobileNumber">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.sentTime">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.smsContent">
+            <remarks/>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.SmsHelper.Send(System.String,System.String,System.Int32)">
+            <summary>
+            等于0 发送成功
+            </summary>
+            <param name="mobile">手机</param>
+            <param name="content">内容</param>
+            <param name="type">1 文字短信（默认） 2 语音</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.TypeParse.IsNumeric(System.Object)">
+            <summary>
+            判断对象是否为Int32类型的数字
+            </summary>
+            <param name="Expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.TypeParse.StrToBool(System.Object,System.Boolean)">
+            <summary>
+            string型转换为bool型
+            </summary>
+            <param name="strValue">要转换的字符串</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的bool类型结果</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.TypeParse.StrToInt(System.Object,System.Int32)">
+            <summary>
+            将对象转换为Int32类型
+            </summary>
+            <param name="strValue">要转换的字符串</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的int类型结果</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.TypeParse.StrToFloat(System.Object,System.Single)">
+            <summary>
+            string型转换为float型
+            </summary>
+            <param name="strValue">要转换的字符串</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的int类型结果</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.TypeParse.StrToDecimal(System.Object,System.Decimal)">
+            <summary>
+            string型转换为decimal型
+            </summary>
+            <param name="strValue">要转换的字符串</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的int类型结果</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.TypeParse.IsNumericArray(System.String[])">
+            <summary>
+            判断给定的字符串数组(strNumber)中的数据是不是都为数值型
+            </summary>
+            <param name="strNumber">要确认的字符串数组</param>
+            <returns>是则返加true 不是则返回 false</returns>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.Utils">
+            <summary>
+            工具类
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.Utils.StrToBool(System.Object,System.Boolean)">
+            <summary>
+            string型转换为bool型
+            </summary>
+            <param name="strValue">要转换的字符串</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的bool类型结果</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.Utils.StrToInt(System.Object,System.Int32)">
+            <summary>
+            将对象转换为Int32类型
+            </summary>
+            <param name="strValue">要转换的字符串</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的int类型结果</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.Utils.StrToFloat(System.Object,System.Single)">
+            <summary>
+            string型转换为float型
+            </summary>
+            <param name="strValue">要转换的字符串</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的int类型结果</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.Utils.StrToDecimal(System.Object,System.Decimal)">
+            <summary>
+            string型转换为decimal型
+            </summary>
+            <param name="strValue">要转换的字符串</param>
+            <param name="defValue">缺省值</param>
+            <returns>转换后的int类型结果</returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.Utils.GetTargetDurationDays(System.String,System.String)">
+            <summary>
+            获取标的持续时间。(单位：天)
+            </summary>
+            <param name="startTime">标的开始时间(时间格式:yyyy-MM-dd HH:mm:ss)</param>
+            <param name="endTime">标的结束时间(时间格式:yyyy-MM-dd HH:mm:ss)</param>
+            <returns>持续多少天</returns>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.EffentNextType.None">
+            <summary>
+            对其他语句无任何影响 
+            </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.EffentNextType.WhenHaveContine">
+            <summary>
+            当前语句必须为"select count(1) from .."格式，如果存在则继续执行，不存在回滚事务
+            </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.EffentNextType.WhenNoHaveContine">
+            <summary>
+            当前语句必须为"select count(1) from .."格式，如果不存在则继续执行，存在回滚事务
+            </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.EffentNextType.ExcuteEffectRows">
+            <summary>
+            当前语句影响到的行数必须大于0，否则回滚事务
+            </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.EffentNextType.SolicitationEvent">
+            <summary>
+            引发事件-当前语句必须为"select count(1) from .."格式，如果不存在则继续执行，存在回滚事务
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.Util.SortType">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.SortType.Default">
+             <summary>
+            按枚举顺序默认排序
+             </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.SortType.DisplayText">
+            <summary>
+            按描述值排序
+            </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.SortType.Rank">
+            <summary>
+            按枚举值排序
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.Util.Delete">
+            <summary>
+            删除状态
+            </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.ImageUrlEnum.small">
+            <summary>
+            小尺寸30x30像素
+            </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.ImageUrlEnum.middle">
+            <summary>
+            中尺寸50x50像素
+            </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.ImageUrlEnum.big">
+            <summary>
+            大尺寸180x180像素
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.IPagination.CurrentPage">
+            <summary>
+            Gets the current page number.
+            </summary>
+            <value>The page number.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.IPagination.PageSize">
+            <summary>
+            Gets the size of the page.
+            </summary>
+            <value>The size of the page.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.IPagination.PageCount">
+            <summary> 
+            Gets the total page count.
+            </summary>
+            <value>The total page count.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.IPagination.StartIndex">
+            <summary>
+            Gets the start index of the item.
+            </summary>
+            <value>The start index of the item.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.IPagination.RecordCount">
+            <summary>
+            Gets the total item count.
+            </summary>
+            <value>The total item count.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.IPagination.HasItems">
+            <summary>
+            Determine if there are items.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.IPagination.HasNotItems">
+            <summary>
+            Determine if there are not items.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.IPagination.HasPrevPage">
+            <summary>
+            Determine if previous page is abailable.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.IPagination.HasNextPage">
+            <summary>
+            Determine if next page is available.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.JsonpFormatter.JsonpParameterName">
+            <summary>
+             Name of the query string parameter to look for
+             the jsonp function name
+            </summary>
+        </member>
+        <member name="F:ChuangLiTou.Core.Helpers.Util.JsonpFormatter.JsonpCallbackFunction">
+            <summary>
+            Captured name of the Jsonp function that the JSON call
+            is wrapped in. Set in GetPerRequestFormatter Instance
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.Util.JsonpFormatter.GetPerRequestFormatterInstance(System.Type,System.Net.Http.HttpRequestMessage,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Override this method to capture the Request object
+            </summary>
+            <param name="type"></param>
+            <param name="request"></param>
+            <param name="mediaType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.Util.JsonpFormatter.GetJsonCallbackFunction(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Retrieves the Jsonp Callback function
+            from the query string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.Util.PageParam">
+            <summary>
+            分页参数的设定
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.PageParam.PageCurrent">
+            <summary>
+            获得或设置页面的序数,从1开始。
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.PageParam.StartIndex">
+            <summary>
+            获得或设置返回的记录的起始记录数，从1开始
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.PageParam.PageSize">
+            <summary>
+            获得或设置返回的记录的最大记录数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.PageParam.RecordCount">
+            <summary>
+            获得或设置符合条件的总记录数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.PageParam.PageCount">
+            <summary>
+            获得或设置符合条件的总页数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.PageParam.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.PageParam.Other">
+            <summary>
+            其他参数 xiezhihui add 2012-10-10
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.Util.Pagination`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Object)">
+            <param name="collection">The collection.</param>
+            <param name="startIndex">The start index.</param>
+            <param name="requestedPageSize">The requested count.</param>
+            <param name="recordCount">The total count.</param>
+            <param name="pageCount"> </param>
+            <param name="currentPage"> </param>
+            <param name="other"> </param>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.Pagination`1.RecordCount">
+            <summary>
+            Gets the total item count.
+            </summary>
+            <value>The total item count.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.Pagination`1.PageSize">
+            <summary>
+            Gets the size of the page.
+            </summary>
+            <value>The size of the page.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.Pagination`1.StartIndex">
+            <summary>
+            Gets or sets the start index.
+            </summary>
+            <value>The start index.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.Pagination`1.CurrentPage">
+            <summary>
+            Gets the current page number which start from 1.
+            </summary>
+            <value>The page number.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.Pagination`1.PageCount">
+            <summary>
+            Gets the total page count.
+            </summary>
+            <value>The total page count.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.Pagination`1.HasNextPage">
+            <summary>
+            Determine if next page is available.
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.Util.Pagination`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.Util.Pagination`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.Util.Pagination`1.HasPrevPage">
+            <summary>
+            Determine if previous page is abailable.
+            </summary>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.ValidateHelper.IsTelephone(System.String)">
+            <summary>
+             验证电话号码
+            </summary>
+            <param name="str_telephone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.ValidateHelper.IsHandset(System.String)">
+            <summary>
+             验证手机号码
+            </summary>
+            <param name="str_handset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.ValidateHelper.IsEmail(System.String)">
+            <summary>
+            验证邮箱
+            </summary>
+            <param name="str_Email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTou.Core.Helpers.ValidateHelper.IsPostCode(System.String)">
+            <summary>
+            验证邮政编码
+            </summary>
+            <param name="str_postcode">输入字符串</param>
+            <returns>返回一个bool类型的值</returns>
+        </member>
+    </members>
+</doc>

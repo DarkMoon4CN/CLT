@@ -1,0 +1,399 @@
+﻿@using WeiXin.Controllers
+@using System.Data
+@using ChuanglitouP2P.Common
+@{
+    ViewBag.Title = "创利投_安全阳光的P2B网络理财平台_P2P理财_P2P网贷";
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<style type="text/css">
+    .focus_pic ol li, .focus_pic li {
+        width: auto;
+        height: auto;
+        display: inherit;
+    }
+
+    .jiaobiao {
+        font-size: 14px;
+        color: #FFF;
+        width: 200px;
+        height: 80px;
+        display: block;
+        background: red;
+        text-align: center;
+        line-height: 140px;
+        transform: rotate(40deg);
+        -ms-transform: rotate(40deg);
+        -moz-transform: rotate(40deg);
+        -webkit-transform: rotate(40deg);
+        -o-transform: rotate(40deg);
+        position: absolute;
+        top: -20%;
+        right: -15%;
+    }
+
+    .recom_project, #projectItems div.pitem_title_main {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .recom_projectNew {
+        overflow: hidden;
+        margin: 5px 0 0 0;
+        background: #fff;
+        border: #0094ff solid 1px;
+    }
+
+    ._iconkan {
+        width: 30px;
+        height: 30px;
+        background: url(../images/advantage_icon.png?v=1) no-repeat;
+        background-size: 100%;
+        margin: 7px 0 0 18px;
+    }
+
+    .lickass {
+        height: 100px;
+    }
+</style>
+<div class="focus_pic" id="focus_pic">
+    <ul>
+        @(Html.Raw(Extensions.GetWebAD(11, 8)))
+    </ul>
+    <ol>
+        @(Html.Raw(Extensions.IndexWebAd(11, 8)))
+    </ol>
+</div>
+<section class="statistics_box">
+    <div class="statistics clearfix" style="position: relative;">
+        <dl>
+            <dt><span style="color:#ff6a00">@(Extensions.GetALLFinance())</span>元</dt>
+            <dd>累计交易金额</dd>
+        </dl>
+        <dl style="width:40%;">
+            <dt><span style="color:#ff6a00">@(Extensions.GetInvestment())</span>笔</dt>
+            <dd>累计投资笔数</dd>
+        </dl>
+        <a href="/bigdata.html" style="position: absolute;width:10%;line-height: 14px;right: 1%;top: 28%;color: #01a9eb;border-radius: 2px;text-align: center;font-family: 微软雅黑;border: 1px solid #01a9eb;padding: 0 2px;font-size:0.5em;">
+            平台<br />数据
+        </a>
+    </div>
+    <div class="advantage_box" style="padding-left:6%">
+        <ul>
+            <li class="lickass"><a alt="#" target="_blank"><p><div class="_iconkan adv_icon1"></div></p><div class="advantage_text"><strong>收益稳定</strong><p>历史平均年化<br />收益率8-12%</p></div></a></li>
+            <li class="lickass"><a alt="#" target="_blank"><p><div class="_iconkan adv_icon2"></div></p><div class="advantage_text"><strong>资金安全</strong><p>八级风控<br />第三方资金托管</p></div></a></li>
+            <li class="lickass"><a alt="#" target="_blank"><p><div class="_iconkan adv_icon3"></div></p><div class="advantage_text"><strong>权威专业</strong><p>北股交<br />挂牌上市</p></div></a></li>
+        </ul>
+    </div>
+</section>
+<section class="clear"></section>
+<section class="recom_projectNew">
+    @if (ViewBag.Recommend_Dt != null)
+    {
+        var Recommend_Dt = ViewBag.Recommend_Dt as DataTable;
+        if (Recommend_Dt != null && Recommend_Dt.Rows.Count > 0)
+        {
+            var isStart = 0;
+            var dt = Recommend_Dt;
+            var Endtime = DateTime.Parse(dt.Rows[0]["end_time"].ToString());
+            var Stime = DateTime.Parse(dt.Rows[0]["start_time"].ToString());
+            var online = DateTime.Parse(dt.Rows[0]["sys_time"].ToString());
+            var rpdt = DateTime.Parse(dt.Rows[0]["repayment_date"].ToString());
+
+            var rest = DateTime.Parse(dt.Rows[0]["release_date"].ToString());
+            var diffdays = Utils.DateDiff("Day", DateTime.Parse(rest.ToString("yyyy-MM-dd")), DateTime.Parse(rpdt.ToString("yyyy-MM-dd")));
+
+            var borrowing_balance = decimal.Parse(dt.Rows[0]["borrowing_balance"].ToString());
+            var fundraising_amount = decimal.Parse(dt.Rows[0]["fundraising_amount"].ToString());
+            var Percentage = fundraising_amount / borrowing_balance * 100;
+            if (Percentage > 100) { Percentage = 100M; }
+            var Difference = borrowing_balance - fundraising_amount;
+            if (Difference < 0) { Difference = 0M; }
+
+            <a href="/home/ProjectDetail?targetid=@(dt.Rows[0]["targetid"].ToString())">
+                <div class="recom_project_tit">推荐项目</div>
+                @if (Stime <= online && online > DateTime.Now)
+                {
+                    isStart = 1;
+                }
+                <div class="pitem_title_main">
+                    <div style="width:100%; -webkit-border-radius: 5px;border-radius: 5px;">
+                        <div>
+                            <i style="float:left; margin:0px 5px;"><strong class="recom_title">@(dt.Rows[0]["borrowing_title"].ToString())</strong></i>
+                            @*<i style="float:right; background-color:red; color:#fff;-webkit-border-radius: 5px;border-radius: 5px; margin:1px 1px; padding:0px 3px;font-size:9px;">
+                                @if (!string.IsNullOrWhiteSpace(ViewBag.FanXianSTime)
+        && !string.IsNullOrWhiteSpace(ViewBag.FanXianETime)
+        && ChuanglitouP2P.BLL.TActivity_Luck.GetCurJiaoBiao(Convert.ToDateTime(ViewBag.FanXianSTime), Convert.ToDateTime(ViewBag.FanXianETime), online, Convert.ToInt32(dt.Rows[0]["tender_state"]), Endtime))
+                                {
+                                    if (dt.Rows[0]["life_of_loan"].ToString() == "6")
+                                    {
+                                        <small style="font-size:9px;">
+                                            2% 返现
+                                        </small>
+                                    }
+                                    else if (dt.Rows[0]["life_of_loan"].ToString() == "3")
+                                    {
+                                        <small style="font-size:9px;">
+                                            1% 返现
+                                        </small>
+                                    }
+                                }
+                            </i>*@
+                        </div>
+                        <div style="clear:both; width:100%;height:1px;"></div>
+                        <dl>
+                            <dt style="float:left; margin-left:3%; width:37%;"><h3>@(decimal.Parse(dt.Rows[0]["annual_interest_rate"].ToString()).ToString("0.0"))<small>%</small></h3></dt>
+                            <dd style="float:right; margin:13px 1% 0 0; width:58%;">
+                                <div style="height:100%; float:left; text-align:left; width:45%">
+                                    <p>
+                                        @if (diffdays < 60)
+                                        {
+                                            <span><img src="../images/w_index_biaotu_02.png" width="12" height="12">&nbsp;<small>@(diffdays)天 </small></span>
+                                        }
+                                        else
+                                        {
+                                            <span><img src="../images/w_index_biaotu_02.png" width="12" height="12">&nbsp;<small>@( Utils.GetLife_of_loan(dt.Rows[0]["life_of_loan"].ToString(), dt.Rows[0]["unit_day"].ToString()))</small></span>
+                                        }
+                                    </p>
+                                    <p>&nbsp;锁定期</p>
+                                </div>
+                                <div style="height:100%; float:right; text-align:left;width:55%">
+                                    <p>
+                                        @if (dt.Rows[0]["tender_state"].ToString() == "2")
+                                        {
+                                            <span><img src="../images/w_index_biaotu_01.png" width="12" height="12">&nbsp;<small>@(RMB.GetWebConvertdisp(Difference, 2, true))元</small></span>
+                                        }
+                                        else if (int.Parse(dt.Rows[0]["tender_state"].ToString()) > 3)
+                                        {
+                                            <span><img src="../images/w_index_biaotu_01.png" width="12" height="12">&nbsp;<small>0元</small></span>
+                                        }
+                                    </p>
+                                    <p>&nbsp;剩余可投</p>
+                                </div>
+                            </dd>
+                        </dl>
+                        <div style="clear:both;width:100%;height:1px;"></div>
+                        @if (isStart == 1)
+                        {
+                            <button> 即将开始 </button>
+                        }
+                        else
+                        {
+                            if (dt.Rows[0]["tender_state"].ToString() == "2")
+                            {
+                                if (DateTime.Compare(Endtime, DateTime.Now) <= 0 && Percentage < 100.00M)
+                                {
+                                    <button style="background: #b6b6b6;">
+                                        已结束
+                                    </button>
+                                }
+                                else if (Percentage >= 100.00M)
+                                {
+                                    <button style="background: #b6b6b6;">
+                                        满标
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button>立即投资</button>
+                                }
+                            }
+                            else if (dt.Rows[0]["tender_state"].ToString() == "3")
+                            {
+                                <button style="background: #b6b6b6;">
+                                    满标
+                                </button>
+                            }
+
+                            else if (dt.Rows[0]["tender_state"].ToString() == "4")
+                            {
+                                <button style="background: #b6b6b6;">
+                                    还款中
+                                </button>
+                            }
+                            else if (dt.Rows[0]["tender_state"].ToString() == "5")
+                            {
+                                <button style="background: #b6b6b6;">
+                                    已还清
+                                </button>
+                            }
+                        }
+                        <p></p>
+                    </div>
+                </div>
+                @*<div class="pitem_title_main" style="padding:0 5%;">
+                        <strong class="recom_title">@(dt.Rows[0]["borrowing_title"].ToString())</strong>
+                        <h3>@(decimal.Parse(dt.Rows[0]["annual_interest_rate"].ToString()).ToString("0.0"))<small>%</small></h3>
+                        <p>
+
+                            @if (diffdays < 60)
+                            {
+                                <span> 锁定期：<small>@(diffdays)天 </small></span>
+                            }
+                            else
+                            {
+                                <span>锁定期：<small>@( Utils.GetLife_of_loan(dt.Rows[0]["life_of_loan"].ToString(), dt.Rows[0]["unit_day"].ToString()))</small></span>
+                            }
+
+                            @if (dt.Rows[0]["tender_state"].ToString() == "2")
+                            {
+                                <span>剩余可投：<small>@(RMB.GetWebConvertdisp(Difference, 2, true))元</small></span>
+                            }
+                            else if (int.Parse(dt.Rows[0]["tender_state"].ToString()) > 3)
+                            {
+                                <span>剩余可投：<small>0元</small></span>
+                            }
+                        </p>
+
+                        @if (isStart == 1)
+                        {
+                            <button> 即将开始 </button>
+                        }
+                        else
+                        {
+                            if (dt.Rows[0]["tender_state"].ToString() == "2")
+                            {
+                                if (DateTime.Compare(Endtime, DateTime.Now) <= 0 && Percentage < 100.00M)
+                                {
+                                    <button style="background: #b6b6b6;">
+                                        已结束
+                                    </button>
+                                }
+                                else if (Percentage >= 100.00M)
+                                {
+                                    <button style="background: #b6b6b6;">
+                                        满标
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button>立即投资</button>
+                                }
+                            }
+                            else if (dt.Rows[0]["tender_state"].ToString() == "3")
+                            {
+                                <button style="background: #b6b6b6;">
+                                    满标
+                                </button>
+                            }
+
+                            else if (dt.Rows[0]["tender_state"].ToString() == "4")
+                            {
+                                <button style="background: #b6b6b6;">
+                                    还款中
+                                </button>
+                            }
+                            else if (dt.Rows[0]["tender_state"].ToString() == "5")
+                            {
+                                <button style="background: #b6b6b6;">
+                                    已还清
+                                </button>
+                            }
+                        }
+                    </div>*@
+            </a>
+        }
+    }
+    <input type="hidden" id="tidc" value="@(ViewBag.targetid)" />
+</section>
+
+
+<section class="index_recom_project" id="projectItems"></section>
+
+<section class="project_more"><a href="javascript:void(0);" id="a_loading">点击加载更多</a></section>
+<section class="hezuo_box clearfix">
+    <h2 class="hezuo_tit">合作伙伴</h2>
+    <div class="hezuo_list">
+        <ul>
+            @Html.Raw(Extensions.GetLinks(1, 10))
+        </ul>
+    </div>
+</section>
+
+<div style="width:25px; height:25px; background-color:#01a9eb; text-align:center; line-height:23px; position:fixed; top:80%; left:90%;">
+    <a href="#"><img src="../images/haha.png" width="20" height="10" /></a>
+</div>
+
+
+<script type="text/javascript">
+    var page = 1;
+    var totalpage = 1;
+    $(function () {
+        getProjectItem();
+        new Swipe(document.getElementById('focus_pic'), {
+            speed: 500,
+            auto: 3000,
+            callback: function () {
+                var lis = $(this.element).next("ol").children();
+                lis.removeClass("on").eq(this.index).addClass("on");
+            }
+        });
+        $("#a_loading").bind("click", function () {
+            getProjectItem();
+        });
+    });
+
+    function getProjectItem() {
+        var tidc = $("#tidc").val();
+        if (page > totalpage) {
+            $("#a_loading").hide();
+            return;
+        }
+        $.post("/home/IndexProject", { "tid": tidc, "page": page },
+           function (data) {
+               totalpage = data.totalpage;
+               page += 1;
+               $("#projectItems").append(data.html);
+               if (page > totalpage) {
+                   $("#a_loading").hide();
+               }
+               addJiaoBiao();
+           }, "json");
+    }
+    function getIosDate(strDate) {
+        var arr = strDate.split(/[- :]/);
+        return new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
+    }
+    function addJiaoBiao() {
+        var items = $("#projectItems div.pitem_title_main");
+        @*var sTime = getIosDate('@ViewBag.FanXianSTime');
+        var eTime = getIosDate('@ViewBag.FanXianETime');*@
+        items.each(function () {
+            //var sysTime = getIosDate($(this).attr("sysTime"));
+            var isShowJiaoBiao = $(this).attr("isShowJiaoBiao");
+            var lifeloan = $($(this).children("a").children("p").children("span").children("small")[0]).text();
+            var htmlBefore = "";
+            if (isShowJiaoBiao == "") {
+                if (lifeloan == "6个月") {
+                    htmlBefore = "<small class=\"jiaobiao\">2% 返现</small>";
+                }
+                else if (lifeloan == "3个月") {
+                    htmlBefore = "<small class=\"jiaobiao\">1% 返现</small>";
+                }
+            }
+            //"2" :(lifeloan == "3个月"? "1":"");
+            $(this).html(htmlBefore + $(this).html());
+            if (lifeloan == "45") {
+                $($(this).children("a").children("p").children("span").children("small")[0]).text("45 天");
+            }
+        });
+    }
+</script>
+
+
+<script type="text/javascript">
+    var userid = 0;
+    $(function () {
+        userid = $("#userid").val();
+        if (userid > 0) {
+            $(".w_xianjin_tan").show();
+            $(".shade_1").show();
+        }
+    });
+    $(".shade_1 span").on("click", function () {
+        $(".w_xianjin_tan").hide();
+        $(".shade_1").hide();
+        return false;
+    });
+</script>
+

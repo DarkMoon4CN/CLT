@@ -1,0 +1,146 @@
+﻿@using ChuanglitouP2P.Common;
+@{
+    ViewBag.Title = "双十二幸运大转盘抽奖，回馈老用户投资返现-创利投";
+
+    ViewBag.keywords = "投资返现，创利投";
+
+    ViewBag.desc = "双十二期间每投资1000元以上（含1000元）即可获得1次抽奖机会，投资越多，机会越多！";
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Areas/Topic/Sources/20161212/Content/css.css">
+<link rel="stylesheet" type="text/css" href="~/Areas/Topic/Sources/20161212/Content/animate.css">
+<center>
+    <input type="hidden" id="startTime" value="@ViewBag.StartTime" />
+    <input type="hidden" id="endTime" value="@ViewBag.EndTime" />
+    <input type="hidden" id="nowTime" value="@ViewBag.NowTime" />
+    <input type="hidden" id="LoginState" value="@Utils.GetUsrLoginModel()" />
+    <div class="duoshou">
+        <div class="duoshou_1">
+            <img src="~/Areas/Topic/Sources/20161212/images/duoshou_1bg.jpg" class="duoshou_1_bg">
+            <div class="duoshou_1_main">
+                <img src="~/Areas/Topic/Sources/20161212/images/duoshou_toptu.png">
+            </div>
+        </div>
+        <div class="duoshou_2">
+            <img src="~/Areas/Topic/Sources/20161212/images/duoshou_2bg.jpg" class="duoshou_2_bg">
+            <div class="duoshou_2_main">
+                <div class="duo_2_main_top">
+                    <h2>活动介绍</h2>
+                    <p>活动期间，投资每满1000元（以实际投资金额计算，奖券金额除外）即可获得大转盘抽奖一次！<br>（多投多得，上不封顶！不限标的！）</p>
+                </div>
+                <div class="duo_2_main_content">
+                    <div class="duo_2_main_content_1">
+                        <div class="daojishi_top">距离<span></span>活动结束仅有</div>
+                        <div class="daojishi_content">
+                            <div class="daojishi_1">
+                                <div class="daojishi_1_shuzi">
+                                    <p id="t_r"></p>
+                                    <span class="shuzi_bg"></span>
+                                    <span class="shuzi_bg"></span>
+                                    <a href="#" class="xian"></a>
+                                </div>
+                                <small>天</small>
+                            </div>
+                            <div class="daojishi_1">
+                                <div class="daojishi_1_shuzi">
+                                    <p id="t_h"></p>
+                                    <span class="shuzi_bg"></span>
+                                    <span class="shuzi_bg"></span>
+                                    <a href="#" class="xian"></a>
+                                </div>
+                                <small>时</small>
+                            </div>
+                            <div class="daojishi_1">
+                                <div class="daojishi_1_shuzi">
+                                    <p id="t_m"></p>
+                                    <span class="shuzi_bg"></span>
+                                    <span class="shuzi_bg"></span>
+                                    <a href="#" class="xian"></a>
+                                </div>
+                                <small>分</small>
+                            </div>
+                            <div class="daojishi_1">
+                                <div class="daojishi_1_shuzi">
+                                    <p id="t_s"></p>
+                                    <span class="shuzi_bg"></span>
+                                    <span class="shuzi_bg"></span>
+                                    <a href="#" class="xian"></a>
+                                </div>
+                                <small>秒</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="duo_2_main_content_2">
+                        <div class="zhuanpan">
+                            <div class="zhuanpan_jiang"></div>
+                            <div id="div_1" class="zhuanpan_go zp_rotate" ></div>
+                            <div class="zhuanpan_deng">
+                                <div class="dengUp">
+                                    <img src="~/Areas/Topic/Sources/20161212/images/duoshou_zhuanpandeng1.png">
+                                </div>
+                                <div class="dengDode">
+                                    <img src="~/Areas/Topic/Sources/20161212/images/duoshou_zhuanpandeng2.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="duo_2_main_content_3">
+                        <p><c id="showBig" style="display:none">您有<i id="count">@ViewBag.ltrCanUseTimes</i>次抽奖机会</c></p>
+                        <a id="Btn1" class="Btn1" style="display:none">活动已结束</a>
+                        <a id="Btn2" href="~/investlist.html" target="_blank" class="Btn2">继续投资</a>
+                        <a id="Btn3" href="~/login.html" target="_blank" class="Btn2" style="display:none">立即登录</a>
+                        <small><a id="loockA" href="~/Reward/index" target="_blank" style="display:none">查看奖品</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="duoshou_3">
+            <img src="~/Areas/Topic/Sources/20161212/images/duoshou_3bg.jpg" class="duoshou_3_bg" height="1">
+            <div class="duoshou_3_main">
+                <div class="duoshou_3_main_jilu">
+                    <div>
+                        <h2>抽奖记录</h2>
+                        @Html.Raw(ViewBag.ltrLuckMan)
+                    </div>
+                </div>
+                <div class="duoshou_3_main_bottom">
+                    <h2>活动规则</h2>
+                    <dl>
+                        <dd>1、活动时间：2016年12月12日至2016年12月14日；</dd>
+                        <dd>2、大转盘活动获得的抵扣券、加息券自领取之日起有效期为10天；</dd>
+                        <dd>3、加息券只可投资3个月以上产品使用，抵扣券使用比例为100：1，不限产品期限；</dd>
+                        <dd>4、所获奖励请到“我的账户 > 奖励管理中查看；</dd>
+                        <dd>5、现金奖励直接发送到账户余额；实物奖品将于活动结束7日内寄出；</dd>
+                        <dd>6、渠道用户不享受此次活动；</dd>
+                        <dd class="dd_last">7、活动最终解释权在法律范围内归北京创利投网络科技有限公司所有。</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="tanchuang">
+            <div class="tanchuang_main">
+                <img src="~/Areas/Topic/Sources/20161212/images/tanchuangbg.png">
+                <p class="Prize">小米手环(2代)</p>
+                <span class="tanchuang_main_guan"></span>
+            </div>
+        </div>
+        <div class="tanchuang2">
+            <div class="tanchuang2_main">
+                <img src="~/Areas/Topic/Sources/20161212/images/dd2.png">
+                <span class="tanchuang2_main_guan"></span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(".duoshou_1_main").animate({ opacity: 1 }, 200, function () {
+                $(".duoshou_1_main").addClass('animated bounceInDown');
+            });
+        })
+    </script>
+</center>
+<script src="~/Areas/Topic/Sources/20161212/Scripts/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="~/Areas/Topic/Sources/20161212/Scripts/index.js"></script>
+<script type="text/javascript" src="~/Areas/Topic/Sources/20161212/Scripts/awardRotate.js"></script>
+<script src="~/Areas/Topic/Sources/20161212/Scripts/scroll_js.js?v=2"></script>

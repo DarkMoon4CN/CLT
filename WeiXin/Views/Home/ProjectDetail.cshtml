@@ -1,0 +1,384 @@
+﻿
+@using System.Data
+@using ChuanglitouP2P.Common
+@{
+    ViewBag.Title = "项目详情";
+    Layout = "~/Views/Shared/Body_Layout.cshtml";
+    var targetid = ViewBag.targetid == null ? 0 : (int)ViewBag.targetid;
+    var Difference = 0M;
+    var fundraising_amount = 0M;
+    var minimum = "0";
+    var maxmum = "0";
+    var notstart = 0;
+    var tender_state = 0;
+    var Endtime = DateTime.Now;
+    var etimeState = 0;
+}
+
+<script src="~/js/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#touzi_btn").click(function () {
+            $(".recharge_pop_wrap").show();
+        });
+        $(".recharge_mask_bg,#recharge_close").click(function () {
+            $(".recharge_pop_wrap").hide();
+        });
+    });
+</script>
+<script src="~/js/countdown.js"></script>
+<header class="header" onclick="javascript:history.go(-1);">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">项目详情</h2>
+    <style type="text/css">
+        .xubox_layer {
+            margin-left: -92.5px !important;
+        }
+    </style>
+</header>
+@if (ViewBag.Project_Dt != null)
+{
+    var Project_Dt = ViewBag.Project_Dt as DataTable;
+
+    if (Project_Dt != null && Project_Dt.Rows.Count > 0)
+    {
+        var dt = Project_Dt;
+        tender_state = int.Parse(dt.Rows[0]["tender_state"].ToString());
+        var Stime = DateTime.Parse(dt.Rows[0]["start_time"].ToString());
+        var online = DateTime.Parse(dt.Rows[0]["sys_time"].ToString());
+        Endtime = DateTime.Parse(dt.Rows[0]["end_time"].ToString());
+        var borrowing_balance = decimal.Parse(dt.Rows[0]["borrowing_balance"].ToString());
+        fundraising_amount = decimal.Parse(dt.Rows[0]["fundraising_amount"].ToString());
+        var Percentage = fundraising_amount / borrowing_balance * 100;
+        if (Percentage > 100) { Percentage = 100M; }
+        Difference = borrowing_balance - fundraising_amount;
+        if (Difference < 0) { Difference = 0M; }
+        var pagetitle = dt.Rows[0]["borrowing_title"].ToString() + "--创利投P2B网络借贷金融平台";
+        minimum = decimal.Parse(dt.Rows[0]["minimum"].ToString()).ToString("0");
+        maxmum = decimal.Parse(dt.Rows[0]["maxmum"].ToString()).ToString("0");
+        var rpdt = DateTime.Parse(dt.Rows[0]["repayment_date"].ToString());
+        var rest = DateTime.Parse(dt.Rows[0]["release_date"].ToString());
+        var diffdays = Utils.DateDiff("Day", DateTime.Parse(rest.ToString("yyyy-MM-dd")), DateTime.Parse(rpdt.ToString("yyyy-MM-dd")));
+        if (Endtime > DateTime.Now)
+        {
+            etimeState = 1;
+        }
+
+        <section class="detail_profit_box clearfix">
+            <div class="detail_head">
+                <h1 class="detail_title">@(dt.Rows[0]["borrowing_title"].ToString())</h1>
+                @if (Stime < online && online > DateTime.Now)
+                {
+                    notstart = 1;
+                    <div class="bid_time"><span class="time_icon"></span>离项目竞标结束还有：<span id="t_d">0天</span><span id="t_h">0时</span><span id="t_m">0分</span><span id="t_s">0秒</span></div>
+                    <script language='javascript'>
+
+                        StartRtime('@(online.ToString("MMM dd,yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US")))');
+
+                    </script>
+                }
+            </div>
+            <div class="total_money_box"><div class="profit_tag">项目金额</div><div class="total_money">@(RMB.GetWebConvertdisp(decimal.Parse(dt.Rows[0]["borrowing_balance"].ToString()), 2, true))</div></div>
+            <div class="total_money_box detail_profit">@*<div class="profit_tag">预期年化</div>*@<div class="total_money color_orange">@(decimal.Parse(dt.Rows[0]["annual_interest_rate"].ToString()).ToString("0.0"))<span>%</span></div></div>
+            <div class="total_money_box time_limit">
+                <div class="profit_tag">项目期限</div>
+                @if (diffdays < 60)
+                {
+                    int daysr = int.Parse(diffdays.ToString());
+                    if (daysr == 30 || daysr == 31)
+                    {
+                        <div class="total_money">@(dt.Rows[0]["life_of_loan"].ToString())<span>@(Utils.getLifeUnit(dt.Rows[0]["unit_day"].ToString()))</span></div>
+                    }
+                    else
+                    {
+                        <div class="total_money">@(daysr.ToString())<span>天</span></div>
+                    }
+                }
+                else
+                {
+                    <div class="total_money">@(dt.Rows[0]["life_of_loan"].ToString())<span>@(Utils.getLifeUnit(dt.Rows[0]["unit_day"].ToString()))</span></div>
+                }
+
+            </div>
+            <div style="margin:0 8px;">
+                <div class="speed_box">
+                    <div class="speed_bg"><span class="speed_t" style="width:@(Percentage.ToString("0.00"))%;"></span></div>
+                    <div class="speed_dig">@(RMB.GetWebConvertdisp(Percentage, 0, true))%</div>
+                </div>
+            </div>
+        </section>
+        <section class="detail_column">
+            <h2 class="column_title">项目信息</h2>
+            <div class="project_info">
+                <dl>
+                    @if (dt.Rows[0]["IsUse"].ToString() == "0")
+                    {
+                        <dt> 担保措施：</dt>
+                        <dd> 个人连带 </dd>
+                    }
+                    else
+                    {
+                        <dt>担保机构：</dt>
+                        <dd>@(dt.Rows[0]["company_name"].ToString())</dd>
+                    }
+                </dl>
+                <dl>
+                    <dt>付息日：</dt>
+                    <dd>每月@(dt.Rows[0]["month_payment_date"].ToString())日</dd>
+                </dl>
+                <dl>
+                    <dt>还款方式：</dt>
+                    <dd>@(Utils.Getpayment_options(int.Parse(dt.Rows[0]["payment_options"].ToString())))</dd>
+                </dl>
+                <dl>
+                    <dt>还款日期：</dt>
+                    <dd>@(DateTime.Parse(dt.Rows[0]["repayment_date"].ToString()).ToString("yyyy-MM-dd"))</dd>
+                </dl>
+                @*<dl>
+                    <dt>保障类型：</dt>
+                    <dd>@(dt.Rows[0]["guarantee_way_name"].ToString())</dd>
+                </dl>*@
+                <dl>
+                    <dt>起投金额：</dt>
+                    <dd>@(decimal.Parse(dt.Rows[0]["minimum"].ToString()).ToString("0")) 元</dd>
+                </dl>
+                <dl>
+                    <dt>已投金额：</dt>
+                    <dd>@(fundraising_amount.ToString("0.00")) 元</dd>
+                </dl>
+                <dl>
+                    <dt>剩余可投：</dt>
+                    <dd><b class="color_orange">@(Difference.ToString("0.00"))</b>元</dd>
+                </dl>
+                <dl>
+                    <dt><a href="/home/ProjectDetails?tid=@(targetid)">查看项目详情>></a></dt>
+                </dl>
+            </div>
+        </section>
+    }
+}
+<section class="detail_column">
+    <h2 class="column_title">投资记录</h2>
+    <div class="invest_record clearfix">
+        <ul>
+            <li>手机号</li>
+            <li>投资金额</li>
+            <li>投资时间</li>
+        </ul>
+        @if (ViewBag.Top5 != null)
+        {
+            var Top5 = ViewBag.Top5 as DataTable;
+            if (Top5 != null && Top5.Rows.Count > 0)
+            {
+                foreach (DataRow item in Top5.Rows)
+                {
+                    <ul>
+                        <li>@(Utils.hidemobile(item["mobile"].ToString()))</li>
+                        <li>@(decimal.Parse(item["investment_amount"].ToString()).ToString("0.00"))</li>
+                        <li>@(DateTime.Parse(item["invest_time"].ToString()).ToString("yyyy-MM-dd HH:mm:ss"))</li>
+                    </ul>
+                }
+            }
+        }
+    </div>
+    <div class="invest_record_jilu"><a href="/home/InvestmentRecord?tid=@(targetid)&state=@(tender_state)&dif=@(Difference)&nrt=@(notstart)&etime=@(etimeState)">查看该项目更多投资记录</a></div>
+</section>
+<div class="bot_height"></div>
+
+@if (tender_state == 2)
+{
+    if (Endtime > DateTime.Now)
+    {
+        if (Difference <= 0)
+        {
+            <div class="touzi_btn"><a href="javascript:void(0);" >满标</a></div>
+        }
+        else
+        {
+            if (notstart == 0)
+            {
+                <div class="touzi_btn"><a href="javascript:void(0);" id="touzi_btn">立即投资</a></div>
+            }
+            else
+            {
+                <div class="touzi_btn"><a href="javascript:void(0);" >未开始</a></div>
+            }
+        }
+    }
+    else
+    {
+        <div class="touzi_btn"><a href="javascript:void(0);">项目已结束</a></div>
+    }
+}
+else if (tender_state == 3)
+{
+    <div class="touzi_btn"><a href="javascript:void(0);">满标</a></div>
+}
+else if (tender_state == 4)
+{
+    <div class="touzi_btn"><a href="javascript:void(0);" >还款中</a></div>
+}
+else if (tender_state == 5)
+{
+    <div class="touzi_btn"><a href="javascript:void(0);" >已还清</a></div>
+}
+<script type="text/javascript">
+    var minimum =@minimum;
+    var maxmum  =@maxmum;
+    var _minTrans=1;
+    var _perTrans=@minimum;
+    $(function () {
+        var Difference = $("#Diff").val();
+        $("#touzi_btn").click(function () {
+            $(".recharge_pop_wrap").show();
+            var obj=$("#investmentamount").val();
+            var num=parseInt(obj);
+            showEarnByAmt(num);
+        });
+        $(".recharge_mask_bg,#recharge_close").click(function () {
+            $(".recharge_pop_wrap").hide();
+        });
+
+
+        $("#submit1").click(function()
+        {
+
+           // $("#form1").attr("action","/home/InvestConfirm?id="+@targetid);
+            $("#form1").submit();
+        });
+    });
+
+
+
+    //投资金额改变
+    function investAmtChange(){
+        var obj=$("#investmentamount").get(0);
+        var enme=parseInt($("#Diff").val());
+
+
+        var num=parseInt(obj.value);
+        if(num>enme)
+        {
+            layer.msg("投资金额已超出可投金额", 1, 5);
+
+            if(enme>=maxmum)
+            {
+                if(maxmum<=0)
+                {
+                    $("#investmentamount").val(minimum);
+                    var obj=$("#investmentamount").val();
+                    var num=parseInt(obj);
+                    showEarnByAmt(num);
+                }
+                else
+                {
+                    $("#investmentamount").val(maxmum);
+                    var obj=$("#investmentamount").val();
+                    var num=parseInt(obj);
+                    showEarnByAmt(num);
+                }
+            }
+            else
+            {
+
+
+                $("#investmentamount").val(maxmum-enme);
+                // $("#investmentamount").val(minimum);
+
+                var obj=$("#investmentamount").val();
+                var num=parseInt(obj);
+                showEarnByAmt(num);
+
+            }
+
+        }
+        else
+        {
+
+            if(num>maxmum && maxmum>0)
+            {
+                layer.msg("投资金额不能超过最高限额"+maxmum+"元！", 1, 5);
+
+                if(enme>maxmum)
+                {
+                    $("#investmentamount").val(maxmum);
+                }
+                else
+                {
+
+                    $("#investmentamount").val(enme);
+                }
+                var obj=$("#investmentamount").val();
+                var num=parseInt(obj);
+                showEarnByAmt(num);
+            }
+            else
+            {
+                if(isNaN(num)||num<_minTrans*_perTrans){
+                    layer.msg("最低投资金额为"+_minTrans*_perTrans+"元！",1, 5);
+                    num=_minTrans*_perTrans;
+
+                }else{
+                    if(parseInt(num%_perTrans)>0){
+                        layer.msg("投资金额为"+_perTrans+"元整数倍！", 1, 5);
+                    }
+                    num=parseInt(num/_perTrans)*_perTrans;
+                }
+            }
+            $("#investmentamount").val(num);
+            var obj=$("#investmentamount").val();
+            var num=parseInt(obj);
+            showEarnByAmt(num);
+        }
+    }
+
+    //通过投资金额    显示收益
+    function showEarnByAmt(obj){
+        var targetid=@(targetid);
+        if(isNaN(obj)||obj<1) return false;
+        num=parseInt(obj/_perTrans)*_perTrans;
+        $.post("/home/InvestCalculator", { "data": num ,"id":targetid}, function (msg) {
+            // var obj1 = JSON.parse(msg);
+            var obj1=msg;
+            $("#investdisp").html(obj1.amount);
+            $("#Span1").html(obj1.principal);
+
+        });
+
+    }
+</script>
+
+<div class="recharge_pop_wrap">
+    <div class="recharge_mask_bg"></div>
+    <form id="form1" method="post" action="/home/InvestConfirm">
+        <div class="recharge_pop_box">
+            <h2 class="payment_tit">我要投资</h2>
+            <div class="payment_box" style="margin-top:15px; margin-bottom:25px;">
+                <div class="payment_money">
+                    <input type="hidden" id="Diff" name="Diff" value="@(Difference.ToString("0.00"))" />
+
+                    <input type="hidden" id="id" name="id" value="@ViewBag.targetid" />
+                    <dl>
+                        <dt>可投金额</dt>
+                        <dd><span class="color_orange">@(Difference)</span>元</dd>
+                    </dl>
+                    <dl>
+                        <dt>已投金额</dt>
+                        <dd>@(fundraising_amount)元</dd>
+                    </dl>
+                </div>
+                <div class="recharge_item recharge_item_bg" style="margin-top:20px;">
+                    <div class="recharge_txt">
+                        <input type="tel" value="@(minimum)" placeholder="100.00" class="money_group_text" name="investmentamount" id="investmentamount" onblur="investAmtChange();" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
+                    </div>
+                    <div>元</div>
+                </div>
+                <div class="group_shouyi">投资<b class="color_orange" id="investdisp">0.0</b>元，收益<b class="color_orange" id="Span1">0.0</b>元</div>
+            </div>
+            <div class="recharge_pop_btn"><a href="javascript:;" id="recharge_close">取消</a><a href="javascript:void(0);" id="submit1">确认</a></div>
+        </div>
+    </form>
+</div>
+
+

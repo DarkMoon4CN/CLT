@@ -1,0 +1,54 @@
+﻿@charset "utf-8";.gud_main{background:#fff}
+.gud_banner{height:560px;background:url(../images/guide_banner.jpg) no-repeat center top}
+.gud_icons{width:960px;margin:0 auto;padding-top:288px}
+.gud_btn{width:352px;float:right}
+.gud_btn li{height:81px;width:81px;float:left;list-style:none;margin-right:7px;position:relative}
+.gud_btn a{display:block;width:81px;text-align:center;border-radius:40px}
+.gud_a01{height:81px;background:#10d560;line-height:81px;color:#fff;font-size:20px}
+.gud_btn a.gud_a02{background:#fcff00;color:#10d560;line-height:20px;border-radius:40px;padding-top:20px;height:61px;position:absolute;top:0;z-index:9;font-size:16px;display:none}
+.gud_c01{height:576px;background:#fff;width:1000px;margin:0 auto}
+.gud_h2{font-size:48px;font-weight:400;text-align:center}
+.gud_h5{height:20px;line-height:20px;font-size:14px;font-weight:400;text-align:center}
+.gud_h5 span{padding:0 10px}
+.gud_c01 h2{color:#333;padding-top:85px;height:94px;line-height:94px}
+.gud_c01 h5{color:#666;background:url(../images/gud_h5_01.jpg) no-repeat center}
+.gud_cont1{height:335px;width:1000px;margin:0 auto;background:url(../images/gud_img01.jpg) no-repeat right top}
+.gud_cont1 p{width:450px;line-height:40px;font-size:18px;color:#666;padding-top:45px;padding-left:155px}
+.gud_c02{height:853px;background:#4fa8ff}
+.gud_c02 h2{color:#fff;padding-top:55px;height:84px;line-height:84px}
+.gud_c02 h5 span{background:#4fa8ff}
+.gud_c02 h5{color:#fff;background:url(../images/gud_h5_02.jpg) no-repeat center}
+.gud_cont2{height:606px;padding-top:30px;text-align:center}
+.gud_c03{height:1066px;width:1000px;margin:0 auto;background:#fff}
+.gud_c03 h2{color:#333;padding-top:100px;height:94px;line-height:94px}
+.gud_c03 h5{color:#666;background:url(../images/gud_h5_01.jpg) no-repeat center}
+.gud_c03 h5 span{background:#fff}
+.gud_cont3{width:974px;height:620px;margin:0 auto;position:relative}
+.gud_cont3 dl{width:830px;height:50px;margin:0 auto;padding:38px 0 30px;display:block}
+.gud_cont3 dt.gud_tab_hover{color:#fff;background:url(../images/gud_tab05.jpg) no-repeat}
+.gud_cont3 dl dt{width:166px;float:left;height:50px;cursor:pointer;background:url(../images/gud_tab02.jpg) no-repeat;font-size:24px;text-align:center;line-height:47px;color:#51a7ff}
+.gud_cont3 dl dt.gud_tab_first{background:url(../images/gud_tab01.jpg) no-repeat}
+.gud_cont3 dl dt.gud_tab_first.gud_tab_hover{background:url(../images/gud_tab04.jpg) no-repeat}
+.gud_cont3 dl dt.gud_tab_last.gud_tab_hover{background:url(../images/gud_tab06.jpg) no-repeat}
+.gud_cont3 dl dt.gud_tab_last{background:url(../images/gud_tab03.jpg) no-repeat}
+.gud_c03 i{width:60px;height:60px;display:block;cursor:pointer;position:absolute;top:320px}
+.gud_prev{background:url(../images/gud_tab1.jpg) no-repeat;left:15px}
+.gud_next{background:url(../images/gud_tab2.jpg) no-repeat;right:15px}
+.gud_tabCont{width:820px;height:500px;margin:0 auto;overflow:hidden}
+.gud_tabCont div{width:820px;height:500px;display:none}
+.gud_p_Top{width:820px;height:460px;margin:0 auto;overflow:hidden}
+.gud_p_Bot{padding-top:21px;height:12px;margin:0 auto}
+.gud_p_Bot span{display:block;width:36px;height:12px;margin-right:3px;float:left;background:url(../images/gud_c02.jpg) no-repeat center top}
+.gud_p_Bot span.gud_hover{background:url(../images/gud_c01.jpg) no-repeat center top}
+.gud_c04{height:823px;background:#4fa8ff}
+.gud_c04 h2{color:#fff;padding-top:62px;height:94px;line-height:94px}
+.gud_c04 h5{color:#fff;background:url(../images/gud_h5_02.jpg) no-repeat center}
+.gud_c04 h5 span{background:#4fa8ff}
+.gud_cont4 p{line-height:40px;text-align:center;color:#fff;font-size:24px}
+.gud_cont4{padding-top:40px}
+.gud4_dl{width:944px;height:415px;margin:0 auto;display:block;text-align:center;padding-top:48px}
+.gud4_dl dd{margin-top:58px}
+.gud4_dl a{display:block;width:240px;height:65px;margin:0 auto;line-height:60px;color:#fff;font-size:24px;background:url(../images/gud_img16.jpg) no-repeat}
+.gud_c05{height:787px;background:#fff}
+.gud_c05 dl{padding-top:106px;width:600px;height:570px;overflow:hidden;margin:0 auto;display:block}
+.gud_c05 dt{height:106px;line-height:106px;font-size:33px;color:#333}

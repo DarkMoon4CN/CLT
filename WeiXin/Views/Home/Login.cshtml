@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "登录";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+
+<script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript">
+    var editwindow;
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4,
+            ajaxPost: true,
+            callback: function (data) {
+                if (data.rs == "y") {
+                    layer.msg("登录成功，欢迎回来..", 3, 1);
+                    location.href = data.url;
+                }
+                else {
+                    layer.msg("登录失败：" + data.error + "", 2, 5);
+                }
+
+            }
+        });
+
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "n": /^\d+$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+        $(document).keyup(function (event) {
+            if (event.keyCode == 13) {
+                $("#loginbtn").trigger("click");
+            }
+        });
+
+    });
+function changeImg() {
+
+    $("#image1").attr("src", "/home/GetValidateCode?a=" + Math.random());
+}
+</script>
+
+<section class="user_head_tabs">
+    <div><a href="/home/Register">注册</a></div>
+    <div><a href="javascript:void(0);" class="ptabs_curr">登录</a></div>
+</section>
+<div><img src="images/banner2.jpg" width="100%"></div>
+
+<form class="DoLogin" method="post" id="form1" class="registerform" >
+    <div class="form_box">
+        <ul>
+            <li><input name="mobile" id="mobile" class="form_text" type="tel" placeholder="请输入手机号" datatype="mobile" nullmsg="请填写手机号！" errormsg="手机号格式不对！"><span class="reg_icon phone_icon"></span></li>
+            <li><input name="userpassword" type="password" id="userpassword" class="form_text" placeholder="请输入密码" datatype="*6-16" nullmsg="请设置密码！" errormsg="密码范围在6~16位之间！"><span class="reg_icon password_icon"></span></li>
+            <li class="code_box"><div class="code_text"><input name="vcodec" id="vcodec" class="form_text" type="tel" placeholder="请输入验证码" datatype="*" nullmsg="请填写验证码！" placeholder="请填写验证码"></div><div><img id="image1" src="/home/GetValidateCode?a=@ViewBag.rndstr" onclick="javascript:changeImg();" height="50"></div><span class="reg_icon plane_icon"></span></li>
+        </ul>
+    </div>
+    <div class="confirm_btn_box">
+        <input name="loginbtn" id="loginbtn" value="登录" type="submit" class="invest_btn">
+        <div class="pass_txt"><a href="#">忘记密码？</a></div>
+    </div>
+</form>
+<div class="bot_height"></div>

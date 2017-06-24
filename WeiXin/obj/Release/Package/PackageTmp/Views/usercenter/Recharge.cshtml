@@ -1,0 +1,281 @@
+﻿
+@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuangLitouP2P.Models;
+@model ChuangLitouP2P.Models.hx_member_table
+@{
+    ViewBag.Title = "充值";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+    List<hx_td_Bank> listBank = ViewBag.listBank == null ? null : ViewBag.listBank as List<hx_td_Bank>;
+}
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script src="/js/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script charset="utf-8" src="/js/index.js"></script>
+<script type="text/javascript">
+    var _minTrans = 1;
+    var _perTrans = 100;
+    $(function () {
+        $("#Button1").click(function () {
+            investAmtChange();
+        });
+        $("#bank_pop").hide();
+        $(".layer_pop_bg").hide();
+        $('#bank_holder').click(function () {
+            $("body,html").css({ overflow: "hidden" });
+            $(".layer_pop_bg").show();
+            $('#mintbar').slideUp('slow');
+            anim(200);
+        });
+        $('.layer_pop_bg').click(function () {
+            $("body,html").css({ overflow: "auto" });
+            $(".layer_pop_bg").hide();
+            $("#bank_pop").slideDown();
+            anim(0);
+        });
+
+        $("tbody>tr").on('click', function () {
+            var bcode = $(this).find("#bcode").val();
+            var bname1 = $(this).find("#bname").val();
+            var bcard_no = $(this).find("#bcard_no").val();
+            var banksingleTransQuotas = $(this).find("#SingleTransQuotas").val();
+            var bankcardDailyTransQuotas = $(this).find("#CardDailyTransQuotas").val();
+
+            $("#SingleTransQuotass").val(banksingleTransQuotas);
+            $("CardDailyTransQuotass").val(bankcardDailyTransQuotas);
+
+            $(".TransQuota").show();
+            $(".TransQuota i:nth-child(1)").html(banksingleTransQuotas);
+            $(".TransQuota i:nth-child(2)").html(bankcardDailyTransQuotas);
+
+            $('#cardid').val(bcard_no);
+            $('#bank_holder').val(bname1);
+            $('#bankcode').val(bcode);
+            $(".layer_pop_bg").hide();
+            $("#bank_pop").slideDown();
+            anim(0);
+        });
+    }
+    );
+
+    //投资金额改变
+    function investAmtChange() {
+        var obj = $("#amt").get(0);
+        var num = parseInt(obj.value);
+        if (isNaN(num) || num < _perTrans) {
+            layer.msg("最低充值金额为" + _perTrans + "元！", 1, 5);
+            num = _perTrans;
+            $("#amt").val(num);
+            return false;
+        }
+    }
+    function clearNoNum(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+        obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+    }
+    //选择银行
+    function anim(duration) {
+        $('#bank_pop').animate(
+            { height: 'toggle' },
+            { duration: duration }
+        );
+    }
+    function checkFrom() {
+
+        var SingleTransQuota = '@ViewBag.SingleTransQuota';//用户绑定的银行卡单笔充值限额
+
+        if (SingleTransQuota == "") {
+            SingleTransQuota = $("#SingleTransQuotass").val();
+
+        }
+
+        var obj = $("#amt").get(0);
+
+        var rechargemoney = parseFloat(obj.value);//用户手动输入的充值限额
+
+        if (rechargemoney > SingleTransQuota) {
+            layer.alert("充值金额超出该银行单笔限额" + SingleTransQuota + "元！");
+            return false;
+        }
+
+        var isEnable = $("#isEnable").val();
+        if (isEnable == "false")//有普通卡在提现中，不允许绑定快捷卡
+        {
+            //var openAcctIds = $("#openAcctIds").val();
+            layer.alert("提现审核中，暂不能进行其他操作！");
+            return false;
+        }
+    }
+</script>
+<style type="text/css">
+    .pop_wrap {
+        width: 100%;
+        background: #fff;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .pop_table tr td {
+        border-bottom: 1px dotted #ddd;
+    }
+
+    .even {
+        background-color: #f5f5f5;
+    }
+    /*奇数行样式*/
+    .odd {
+        background-color: white;
+    }
+    /*偶数行样式*/
+    .selected {
+        background-color: #f8b8b6;
+    }
+    /*.xubox_layer {
+        margin-left: -110.5px !important;
+    }*/
+
+    .xubox_layer {
+        margin-left: -150px !important;
+    }
+
+    .xubox_layer {
+        margin-left: -176px !important;
+    }
+</style>
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">我要充值</h2>
+</header>
+<section class="user_head_tabs">
+    <div><a href="/usercenter/Recharge" class="ptabs_curr">汇付充值</a></div>
+    <div><a href="/usercenter/RechargeRecord">汇付记录</a></div>
+    <div><a href="/usercenter/LLRechargeRecord">连连记录</a></div>
+</section>
+@using (Html.BeginForm("bankingRecharge", "usercenter", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1", @id = "Form1" }))
+{
+    @Html.AntiForgeryToken()
+    <section>
+        <div class="group_item">
+            <div class="group_tit">创利投账户：</div>
+            <div class="group_txt">
+                @Model.username
+                <input id="bankcode" type="hidden" name="bankcode" />
+
+            </div>
+        </div>
+    </section>
+    <section class="invest_box">
+        @{ hx_td_Bank tb = ViewBag.qm == null ? null : ViewBag.qm as hx_td_Bank;}
+        @if (tb.BankName == null || tb.BankName.ToString() == "")
+        {
+            <div class="group_item">
+                <div class="group_tit">开户银行：</div>
+                <div class="group_txt">
+                    <input type="tel" placeholder="请选择银行" id="bank_holder" readonly class="group_text" name="bank_holder" />
+                </div>
+                <div class="group_chevron"></div>
+            </div>
+            <div class="group_item">
+                <div class="group_tit">银行代码：</div>
+                <div class="group_txt"><input type="tel" value="" placeholder="" id="cardid" class="group_text" name="cardid" readonly /></div>
+            </div>
+        }
+        else
+        {
+            <div class="group_item">
+                <div class="group_tit">开户银行：</div>
+                <div class="group_txt">
+                    <input type="tel" placeholder="请选择银行" value="@tb.BankName" readonly class="group_text" name="bank_holder" />
+                </div>
+                <div class="group_chevron"></div>
+            </div>
+            <div class="group_item">
+                <div class="group_tit">银行代码：</div>
+                <div class="group_txt"><input type="tel" value="@tb.OpenBankId" placeholder="" id="cardid" class="group_text" name="cardid" readonly /></div>
+            </div>
+        }
+        <div class="group_item">
+            <div class="group_tit">充值金额：</div>
+            <div class="group_txt"><input type="tel" value="1000" placeholder="100" class="group_text" name="amt" id="amt" onKeyPress="if ((event.keyCode < 48 || event.keyCode > 57) && event.keyCode != 46 || /\.\d\d$/.test(value)) event.returnValue = false" onchange="javascript: return investAmtChange();" /></div>
+        </div>
+        @if (tb != null && tb.BankName != null && tb.BankName.ToString() != "")
+        {
+            <p class="TransQuotas" style="font-size: 0.9em;margin-left: 40px;color: #888;">
+                该行单笔限额
+                <i>@tb.SingleTransQuota</i>元/
+                单日限额
+                <i>@tb.CardDailyTransQuota</i>元
+            </p>
+        }
+        
+        <p class="TransQuota" style="display:none;font-size: 0.9em;margin-left: 40px;color: #888;">
+            该行单笔限额
+            <i></i>元/
+            单日限额
+            <i></i>元
+        </p>
+        <a style="font-size:12px;color: #059fe7;text-decoration:underline;border:none;text-align: right;display: block;margin-right: 10px;margin-top: 10px;" id="rechargexian" href="/BigData/RechargeTips">充值限额提示</a>
+        <input type="hidden" id="SingleTransQuotass" />
+        <input type="hidden" id="CardDailyTransQuotass" />
+    </section>
+
+    <div class="confirm_btn_box">
+        <input name="btnpay" id="btnpay" value="充值" type="submit" class="invest_btn" onclick="javascript: return checkFrom();">
+        <input type="hidden" id="isEnable" value="@ViewBag.isEnable" />
+        <input type="hidden" id="openAcctIds" value="@ViewBag.OpenAcctIds" />
+    </div>
+            }
+<section class="tips_txt" style="margin-top:20px;">
+    充值说明<br>
+    &nbsp;1. 创利投目前通过第三方平台汇付天下进行用户资金充值，投资用户充值手续费用由创利投垫付；<br>
+    &nbsp;2. 创利投充值金额最低为100元；<br>
+    &nbsp;3. 为防止恶意转账、套现等行为，禁止使用信用卡充值，且充值银行卡一旦绑定不可更改，如需更改请联系客服 010-53732056。
+</section>
+<div class="bot_height"></div>
+
+<script type="text/javascript">
+    var system = {};
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    if (system.win || system.mac || system.xll) {//如果是电脑
+        // window.location.href = "http://www.chuanglitou.com/";
+    } else {  //如果是手机
+        //window.location.href = "http://m.chuanglitou.com/";
+    }
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        //$("#rechargexian").on("click", function () {
+        //    var index = layer.open({
+        //        type: 2,
+        //        content: ['http://test.chuanglitou.com/Areas/Topic/Sources/20161122/RechargeTips.html', 'yes'],
+        //        shadeClose: true,
+        //        anim: 1,
+        //        area: ['100%', '80%'],
+        //        btn: '我知道了',
+        //        title:'银行限额',
+        //        scrollbar: true
+        //    });
+        //});
+
+    })
+</script>
+<div class="layer_pop_bg"></div>
+
+<div class="bank_pop" id="bank_pop">
+    <div class="bank_title">请选择银行</div>
+    <div class="bank_list">
+        <table width="100%" id="list_tb">
+            <tbody id="datalist">
+                @foreach (var item in listBank)
+                {
+                    <tr><td height="60"><img src="@Utils.GetImage_url(item.CardImage) ">  @item.BankName   <input id="bcode" name="bcode" value="@item.OpenBankId" type="hidden"> <input id="bcard_no" name="bcard_no" value="@item.OpenBankId" type="hidden"> <input id="bname" name="bname" value="@item.BankName" type="hidden">  <input id="SingleTransQuotas" name="SingleTransQuotas" value="@item.SingleTransQuota" type="hidden"> <input id="CardDailyTransQuotas" name="CardDailyTransQuotas" value="@item.CardDailyTransQuota" type="hidden"> </td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

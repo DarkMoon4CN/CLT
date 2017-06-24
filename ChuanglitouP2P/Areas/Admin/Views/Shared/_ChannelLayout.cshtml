@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>创利投-后台管理</title>
+    <link rel="stylesheet" href="~/Areas/Admin/style/menuStyle.css" />
+    <script src="~/Areas/Admin/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Areas/Admin/js/leftNav.js"></script>
+
+    @RenderSection("styles", required: false)
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+
+<script type="text/javascript">
+    function iframe() {
+        var w_right = $(window).width() - $('.v_left').width();
+        var h_cont = $(window).height() - $('.location').height();
+        $('.v_right').width(w_right);
+        $('.v_left').height($(window).height());
+        $('.r_cont').height(h_cont);
+    }
+    $(function () {
+        iframe();
+    });
+
+    $(window).resize(function () {
+        iframe();
+    });
+
+    /* 按下F5时仅刷新iframe页面 */
+    function inactiveF5(e) {
+        return;
+        e = window.event || e;
+        var key = e.keyCode;
+        if (key == 116) {
+            parent.menuFrame.location.reload();
+            if (document.all) {
+                e.keyCode = 0;
+                e.returnValue = false;
+            } else {
+                e.cancelBubble = true;
+                e.preventDefault();
+            }
+        }
+    }
+    function nof5() {
+        return;
+        if (window.frames && window.frames[0]) {
+            window.frames[0].focus();
+            for (var i_tem = 0; i_tem < window.frames.length; i_tem++) {
+                if (document.all) {
+                    window.frames[i_tem].document.onkeydown = new Function("var e=window.frames[" + i_tem + "].event; if(e.keyCode==116){parent.menuFrame.location.reload();e.keyCode = 0;e.returnValue = false;};");
+                } else {
+                    window.frames[i_tem].onkeypress = new Function("e", "if(e.keyCode==116){parent.menuFrame.location.reload();e.cancelBubble = true;e.preventDefault();}");
+                }
+            } //END for()
+        } //END if()
+    }
+
+
+    function refresh() {
+
+        parent.menuFrame.location.reload();
+    }
+    document.onkeydown = inactiveF5;
+    </script> 
+<style type="text/css">
+body{ overflow:hidden; width:100%; height:100%;}
+::-webkit-scrollbar-track {background-color:#F5F5F5;}
+::-webkit-scrollbar {width:6px; background-color:#F5F5F5;}
+::-webkit-scrollbar-thumb {background-color:#999;}
+</style>
+</head>
+<body>
+    <div class="v_body">
+        <div class="v_left" style="height: 235px;">
+            <p><a href="javascript:void(0)"><img src="/Areas/admin/images/img_logo.jpg" /></a></p>
+            <div class="left_nav">
+
+
+                <h2 class="home_01"><a href="javascript:void(0)" target="menuFrame">渠道管理</a></h2>
+                <div class="left_nav1 show_01 show">
+                    <ul class="show">
+                        <li><a class="hover a_checked" href="/admin/Channel/AdminUserList" target="menuFrame" class="hover">用户列表</a></li>
+                        <li><a href="/admin/Channel/UserList" target="menuFrame" class="hover">投资列表</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+          <div class="v_right">
+            <div class="location">
+                <span></span>
+                <div>
+                    <a href="/"  class="ac_qucikmenu" target="_blank">查看前台</a>
+                    <a href="javascript:void(0);"  class="ac_qucikmenu"  onClick="refresh();" style="width:40px;" >刷新</a>
+                    <a href="/admin/Channel/LoginOut" target="_self">[退出]</a>
+                </div>
+            </div>
+            <div class="r_cont">
+                <iframe id="menuFrame" name="menuFrame" width="100%" height="100%" src="/Admin/Channel/AdminUserList" frameborder="0" seamless=seamless></iframe>
+                @RenderBody()
+            </div>
+        </div>
+        <div style="clear:both; overflow:hidden;"></div>
+    </div>
+
+</body>
+</html>
+
+

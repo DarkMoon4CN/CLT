@@ -1,0 +1,272 @@
+﻿    <!--底部------------------------>
+@using ChuanglitouP2P.Common;
+@{
+    int uid = Utils.checkloginsessiontop();
+}
+<div class="w_bottom">
+    <div class="w_bottom1">
+        <div class="w_ft_01">
+            <div class="b_intro">
+                客服热线（服务时间：9:00~18:00）<br />
+                <em>
+                    010-53732056
+                </em><br />
+                <a href="javascript:void(0);" id="BizQQWPA">
+                    <span>联系在线客服 ></span>
+                </a><br />
+                <i>
+                    市场有风险&nbsp;&nbsp;投资需谨慎
+                </i>
+            </div>
+            <div class=" b_intro1">
+                <div>
+                    <i>关于我们</i>
+                    <a href="/about.html#001" rel="nofollow">公司介绍</a>
+                    <a href="/about.html#002">媒体报道</a>
+                    <a href="/about.html#003" rel="nofollow">联系我们</a>
+                </div>
+                <div class="b_intro1_div1">
+                    <i>安全保障</i>
+                    <a href="/securityIndex.html" rel="nofollow">四方六项</a>
+                    <a href="/securityIndex.html" rel="nofollow">技术保障</a>
+                    <a href="/securityIndex.html" rel="nofollow">法律保障</a>
+                </div>
+                <div class="b_intro1_div2">
+                    <i>帮助中心</i>
+                    <a href="/clt_Login_register.html" rel="nofollow">注册登录</a>
+                    <a href="/clt_Certification.html" rel="nofollow">认证安全</a>
+                    <a href="/clt_Prepaid.html" rel="nofollow">充值提现</a>
+                </div>
+            </div>
+
+            <div class="b_intro2">
+                <span>移动投资&nbsp;想投就投</span>
+                <p>
+                    扫描关注订阅号
+                </p>
+            </div>
+            <div class="b_intro2 b_intro3">
+                <span>终端在手&nbsp;方便快捷</span>
+                <p>
+                    扫描下载客户端
+                </p>
+            </div>
+        </div>
+
+        <div class="b_intro4">
+            <a class="b_a1" href="http://www.anquan.org/authenticate/cert/?site=www.chuanglitou.com&at=business">
+            </a>
+            @*<a class="b_a2" href="http://si.trustutn.org/info?sn=756150724000233411076">
+            </a>
+            <a class="b_a3" href="https://credit.szfw.org/CX20150721010801010189.html">
+            </a>*@
+	    <a class="b_a2" href="http://webapi.chuanglitou.com/Jump.html?type=2&v=1.1">
+            </a>
+            <a class="b_a3" href="http://webapi.chuanglitou.com/Jump.html?type=3&v=1.1">
+            </a>
+        </div>
+        <p class="b_intro5">
+            Copyright&copy;2015 创利投chuanglitou.cn All Rights Reserved 北京创利投网络科技有限公司 京ICP备14060741号 京ICP证160693号
+        </p>
+        <div class="b_intro6">
+            友情链接：
+
+            <div style="display: inline-block;vertical-align: text-top;height:30px;max-width:840px;overflow:hidden;">
+                @*<a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a>
+                    <a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a>
+                    <a href="http://www.trhome.cc" target="_blank">网上投资理财</a>
+                    <a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a><a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a>
+                    <a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a><a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a>
+                    <a href="http://www.trhome.cc" target="_blank">网上投资理财</a><a href="http://www.trhome.cc" target="_blank">网上投资理财</a>
+                    <a href="http://daikuan.anxin.com/" target="_blank">个人贷款</a>
+                    <a href="http://www.p2pchina.com/" target="_blank">网贷中国</a>
+
+                    <a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a>
+                    <a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a>
+                    <a href="http://www.trhome.cc" target="_blank">网上投资理财</a>
+                    <a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a><a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a>
+                    <a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a><a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a>
+                    <a href="http://www.trhome.cc" target="_blank">网上投资理财</a><a href="http://www.trhome.cc" target="_blank">网上投资理财</a>
+                    <a href="http://daikuan.anxin.com/" target="_blank">个人贷款</a>
+                    <a href="http://www.p2pchina.com/" target="_blank">网贷中国</a>*@
+
+                @Html.Raw(ChuanglitouP2P.Common.Utils.GetLinks(0, 33))
+
+            </div>
+            <span class="bottom_lianjie" tel="top"><label>展开</label><img src="/images/bottom_jiantou.png"></span>
+        </div>
+    </div>
+</div>
+<div class="go_top" id="go_top" style="right: 55px;top: 65%;">
+    <a class="go_top_shouji" href="javascript:void(0);">
+        <img src="/images/go_topshouji.png" alt="" />
+    </a>
+    <a class="go_top_a1" href="javascript:void(0);">
+        <img src="/images/go_topa1.png" alt="" />
+    </a>
+    <a class="go_top_a2" href="javascript:void(0);" id="BizQQWPA1">
+        <div class="go_topa2">
+            在线客服<br />
+            9:00~18:00
+        </div>
+    </a>
+    <a class="go_top_a3" href="javascript:AddFavorite()">
+        <div class="go_topa2 go_topa3">
+            收藏本站
+        </div>
+    </a>
+    <a class="go_top_a4" href="#">
+        <div class="go_topa2 go_topa3">
+            返回顶部
+        </div>
+    </a>
+</div>
+<script>
+    $(function () {
+        //当点击跳转链接后，回到页面顶部位置
+        $("#go_top .go_top_a4").click(function () {
+            $('body,html').animate({ scrollTop: 0 }, 500);
+            return false;
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    function ScrollImgLeft() {
+        var speed = 20;
+        var scroll_begin = document.getElementById("scroll_begin");
+        var scroll_end = document.getElementById("scroll_end");
+        var scroll_div = document.getElementById("scroll_div");
+        //scroll_begin.innerHTML += scroll_begin.innerHTML
+        scroll_end.innerHTML = scroll_begin.innerHTML;
+        function Marquee() {
+            if (scroll_end.offsetWidth - scroll_div.scrollLeft <= 0)
+                scroll_div.scrollLeft -= scroll_begin.offsetWidth;
+            else
+                scroll_div.scrollLeft++;
+        }
+        var MyMar = setInterval(Marquee, speed);
+        scroll_div.onmouseover = function () { clearInterval(MyMar); }
+        scroll_div.onmouseout = function () { MyMar = setInterval(Marquee, speed); }
+    }
+    function AddFavorite() {
+        var url = document.URL;
+        var title = "创利投"
+        try {
+            window.external.addFavorite(url, title);
+        } catch (e) {
+            try {
+                window.sidebar.addPanel(title, url, "");
+            } catch (e) {
+                alert("加入收藏失败，请使用Ctrl+D进行添加,或手动在浏览器里进行设置.");
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+    $(".bottom_lianjie").on("click", function () {
+        var zhi = $(this).attr("tel");
+        if (zhi == "top") {
+            $(".bottom_lianjie img").css({
+                "transform": "rotate(180deg)",
+                "-ms-transform": "rotate(180deg)",
+                "-moz-transform": "rotate(180deg)",
+                "-webkit-transform": "rotate(180deg)",
+                "-o-transform": "rotate(180deg)",
+                "margin": "6px 0 0 5px"
+            });
+            $(this).attr("tel", "bottom");
+            $(".b_intro6>div").css({ "height": "auto" });
+            $(".bottom_lianjie label").html("收起");
+        } else {
+            $(".bottom_lianjie img").css({
+                "transform": "rotate(0deg)",
+                "-ms-transform": "rotate(0deg)",
+                "-moz-transform": "rotate(0deg)",
+                "-webkit-transform": "rotate(0deg)",
+                "-o-transform": "rotate(0deg)",
+                "margin": "5px 0 0 5px"
+            });
+            $(this).attr("tel", "top");
+            $(".b_intro6>div").css({ "height": "30px" });
+            $(".bottom_lianjie label").html("展开");
+        }
+    })
+</script>
+<div class="content">
+    @*@if (uid > 0)
+    {
+        <a class="xiaohongbao" href="/20161122.html" target="_blank">
+            <img src="~/images/xiaohongbao.gif"> 
+        </a>
+    }
+    else
+    {
+        <a class="xiaohongbao" href="/20161122.html" target="_blank">
+            <img src="~/images/xiaohongbao.gif">
+        </a>
+    }*@
+</div>
+<div style="float: left;">
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1254620195'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254620195%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<style type="text/css">
+    .xiaohongbao {
+        position: fixed;
+        right: 20px;
+        top: 62%;
+        margin-top: -135px;
+        z-index: 99999;
+        cursor: pointer;
+    }
+
+        .xiaohongbao img {
+            /*width: 112px;
+            height: 150px;*/
+            display: block;
+        }
+
+    a {
+        text-decoration: none;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .content {
+        width: 100%;
+        background: #2A3143;
+    }
+
+    .b_intro6 {
+        color: #8e8e8e;
+        margin-left: 10px;
+        margin-top: 43px;
+        vertical-align: -webkit-baseline-middle;
+        text-align: center;
+    }
+
+        .b_intro6 a {
+            color: #8e8e8e;
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 84px;
+            float: left;
+        }
+
+    .bottom_lianjie {
+        display: inline-block;
+    }
+
+        .bottom_lianjie img {
+            display: inline-block;
+            /*width: 18px;*/
+            height: 9px;
+            background: url(/images/bottom_jiantou.png) no-repeat;
+            background-size: 100%;
+            float: right;
+            margin: 5px 0 0 5px;
+        }
+</style>

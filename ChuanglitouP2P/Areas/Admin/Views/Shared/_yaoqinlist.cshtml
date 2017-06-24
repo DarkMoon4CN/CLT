@@ -1,0 +1,53 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@model PagedList<V_YaoQinList>
+
+<table class="hy_cash_tab" cellpadding="0" cellspacing="0">
+    <tr class="hy_cash_tab_tr tz_tr">
+        <td width="205">被邀请好友</td>
+        <td width="187">注册时间</td>
+        <td width="232">受邀好友动态</td>
+        <td width="195">
+            我的奖励
+        </td>
+        <td>
+            邀请平台
+        </td>
+    </tr>
+
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.username</td>
+                <td>@DateTime.Parse(item.Createtime.ToString())</td>
+                <td>@item.award_description</td>
+                <td>@item.income</td>
+                <td>
+                    <img src="img/tz_qq.gif" alt="" />
+                </td>
+            </tr>
+
+        }
+    }
+
+
+</table>
+<div class="hsw_ht_fy">
+    <div class="page_box">
+        <div class="page_left">
+            @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", PageIndexParameterName = "Cashpageindex", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBoxjiang", GoToButtonId = "goToBtnjiang" }, new MvcAjaxOptions
+       { UpdateTargetId = "jiangli", HttpMethod = "Post", DataFormId = "searchFormjiang", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "jiangli")).AjaxOptions(a => a.SetUpdateTargetId("jiangli"))
+        </div>
+        <div class="page_right">
+            <div class="input-group" style="margin:20px 0">
+                <span class="input-group-addon">转到第</span>
+                <input type="text" id="pageIndexBoxjiang" class="form-control input-sm" />
+                <span class="input-group-addon">页</span>
+                <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtnjiang">跳转</button></span>
+            </div>
+        </div>
+    </div>
+</div>

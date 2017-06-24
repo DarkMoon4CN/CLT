@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "双11理财节，投资大返现";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<link href="~/Areas/Topic/Sources/20161111/css/css.css" rel="stylesheet" />
+<script src="~/Areas/Topic/Sources/20161111/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Areas/Topic/Sources/20161111/Scripts/jquery.flexslider.js"></script>
+<script src="~/Areas/Topic/Sources/20161111/Scripts/index.js"></script>
+<script src="~/Areas/Topic/Sources/20161111/Scripts/clock_time.js"></script>
+
+
+<div class="double11">
+    <img src="~/Areas/Topic/Sources/20161111/images/double11bg.jpg" class="double11_bg" />
+    <div class="double11_daojishi">
+        <div class="daojishi_biaoti">
+            <p>离<span>11.11活动开始</span>还有</p>
+        </div>
+        <div class="daojishi">
+
+            <div class="daojishi_1">
+                <div class="daojishi_1_shuzi">
+                    <p id="t_h"></p>
+                    <span class="shuzi_bg"></span>
+                    <span class="shuzi_bg"></span>
+                    <a href="#" class="xian"></a>
+                </div>
+                <small>时</small>
+            </div>
+            <div class="daojishi_2">
+                <div class="daojishi_2_shuzi">
+                    <p id="t_m"></p>
+                    <span class="shuzi_bg"></span>
+                    <span class="shuzi_bg"></span>
+                    <a href="#" class="xian"></a>
+                </div>
+                <small>分</small>
+            </div>
+            <div class="daojishi_3">
+                <div class="daojishi_3_shuzi">
+                    <p id="t_s"></p>
+                    <span class="shuzi_bg"></span>
+                    <span class="shuzi_bg"></span>
+                    <a href="#" class="xian"></a>
+                </div>
+                <small>秒</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="double11_main">
+        <img src="~/Areas/Topic/Sources/20161111/images/double11_biaoti.png" class="double11_main_top">
+        <div class="double11_main_content">
+            <img src="~/Areas/Topic/Sources/20161111/images/double11_tu1.png">
+            <img src="~/Areas/Topic/Sources/20161111/images/double11_tu2.png">
+            <img src="~/Areas/Topic/Sources/20161111/images/double11_tu3.png">
+            <a href="/Investlist.html"></a>
+        </div>
+        <div class="double11_main_huo">
+            <!-- <img src="images/double11_huo1.png">
+            <img src="images/double11_huo2.png"> -->
+            <dl>
+                <dt style="color:#fff;font-size:28px;line-height:80px;text-shadow: 1px 0 2px rgba(215,105,188,.75), 0 1px 2px rgba(215,105,188,.75), 0 -1px 2px rgba(215,105,188,.75), -1px 0 2px rgba(215,105,188,.75);font-family: '微软雅黑'; font-weight: normal;">活动规则：</dt>
+                <dd style="color:#fff;font-size:20px;line-height:40px;text-shadow: 1px 0 2px rgba(215,105,188,.75), 0 1px 2px rgba(215,105,188,.75), 0 -1px 2px rgba(215,105,188,.75), -1px 0 2px rgba(215,105,188,.75);font-family: '微软雅黑'; font-weight: normal;">1、活动时间：2016年11月11日（1天）；</dd>
+                <dd style="color:#fff;font-size:20px;line-height:40px;text-shadow: 1px 0 2px rgba(215,105,188,.75), 0 1px 2px rgba(215,105,188,.75), 0 -1px 2px rgba(215,105,188,.75), -1px 0 2px rgba(215,105,188,.75);font-family: '微软雅黑'; font-weight: normal;margin-left: 26pt;text-indent: -26pt;">2、该返现奖励会在投资成功后直接返现到个人账户中，可用于投资，也可直接提现；</dd>
+                <dd style="color:#fff;font-size:20px;line-height:40px;text-shadow: 1px 0 2px rgba(215,105,188,.75), 0 1px 2px rgba(215,105,188,.75), 0 -1px 2px rgba(215,105,188,.75), -1px 0 2px rgba(215,105,188,.75);font-family: '微软雅黑'; font-weight: normal;">3、该活动奖励可与加息券或抵扣券奖励同时享受；</dd>
+                <dd style="color:#fff;font-size:20px;line-height:40px;text-shadow: 1px 0 2px rgba(215,105,188,.75), 0 1px 2px rgba(215,105,188,.75), 0 -1px 2px rgba(215,105,188,.75), -1px 0 2px rgba(215,105,188,.75);font-family: '微软雅黑'; font-weight: normal;">4、渠道用户不参与此活动奖励 。</dd>
+                <dd style="color:#fff;font-size:18px;line-height:40px;text-align:right;margin-top:50px;text-shadow: 1px 0 2px rgba(215,105,188,.75), 0 1px 2px rgba(215,105,188,.75), 0 -1px 2px rgba(215,105,188,.75), -1px 0 2px rgba(215,105,188,.75);font-family: '微软雅黑'; font-weight: normal;">活动最终解释权在法律范围内归北京创利投网络科技有限公司所有</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function GetRTime(){
+       var EndTime= new Date('2016/11/11 00:00:00');
+       var NowTime = new Date();
+       var t =EndTime.getTime() - NowTime.getTime();
+       var h=Math.floor(t/1000/60/60);
+       var m=Math.floor(t/1000/60%60);
+       var s=Math.floor(t/1000%60);
+
+       document.getElementById("t_h").innerHTML = h;
+       document.getElementById("t_m").innerHTML = m;
+       document.getElementById("t_s").innerHTML = s;
+       if(document.getElementById("t_h").innerHTML<10){
+            document.getElementById("t_h").innerHTML="0"+document.getElementById("t_h").innerHTML;
+       }
+       if(document.getElementById("t_m").innerHTML<10){
+            document.getElementById("t_m").innerHTML="0"+document.getElementById("t_m").innerHTML;
+       }
+       if(document.getElementById("t_s").innerHTML<10){
+            document.getElementById("t_s").innerHTML="0"+document.getElementById("t_s").innerHTML;
+       }
+       if(document.getElementById("t_h").innerHTML<0){
+            document.getElementById("t_h").innerHTML==0;
+       }else if(document.getElementById("t_m").innerHTML<0){
+            document.getElementById("t_m").innerHTML==0;
+       }else if(document.getElementById("t_s").innerHTML<0){
+            document.getElementById("t_s").innerHTML==0;
+       }
+       if(t<0){
+        $(".daojishi").hide();
+        $(".daojishi_biaoti").hide();
+        $(".double11_daojishi").hide();
+        }
+   }
+   setInterval(GetRTime,0);
+</script>

@@ -1,0 +1,127 @@
+﻿@using ChuangLitouP2P.Models;
+@model hx_bonding_company
+@{
+    ViewBag.Title = "保障机构-" + @Model.company_name;
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="/Content/common.css">
+<link rel="stylesheet" href="/Content/style.css">
+<style type="text/css">
+    .hea_p4 {
+        float: right;
+    }
+
+    .header1 {
+        overflow: hidden;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.flexslider').flexslider({
+            //animation: "slide",
+            slideshowSpeed: 8000,
+            animationSpeed: 600,
+            directionNav: true,
+            pauseOnAction: false,
+            pauseOnHover: true
+        });
+        function addClass() { $(this).addClass("hover"); } function removeClass() { $(this).removeClass("hover"); }
+        $(".nav ul li").hover(addClass, removeClass);
+        $(".flexslider").hover(addClass, removeClass);
+        //news
+        jQuery.jqtab = function (tabtit, tab_conbox, shijian) {
+            $(tab_conbox).find(".news_item").hide();
+            $(tabtit).find("li:first").addClass("news_tabs_curr").show();
+            $(tab_conbox).find(".news_item:first").show();
+
+            $(tabtit).find("li").bind(shijian, function () {
+                $(this).addClass("news_tabs_curr").siblings("li").removeClass("news_tabs_curr");
+                var activeindex = $(tabtit).find("li").index(this);
+                $(tab_conbox).children().eq(activeindex).show().siblings().hide();
+                return false;
+            });
+        };
+        $.jqtab("#index_news_tabs", "#news_list_box", "mouseenter");
+    });
+    function AutoScroll(obj) {
+        $(obj).find("ul:first").animate({
+            marginTop: "-32px"
+        }, 500, function () {
+            $(this).css({ marginTop: "0px" }).find("li:first").appendTo(this);
+        });
+    }
+    $(document).ready(function () {
+        setInterval('AutoScroll("#ranking_scroll")', 2000);
+    });
+
+</script>
+<script type="text/javascript">
+    function ScrollImgLeft() {
+        var speed = 20;
+        var scroll_begin = document.getElementById("scroll_begin");
+        var scroll_end = document.getElementById("scroll_end");
+        var scroll_div = document.getElementById("scroll_div");
+        //scroll_begin.innerHTML += scroll_begin.innerHTML
+        scroll_end.innerHTML = scroll_begin.innerHTML;
+        function Marquee() {
+            if (scroll_end.offsetWidth - scroll_div.scrollLeft <= 0)
+                scroll_div.scrollLeft -= scroll_begin.offsetWidth;
+            else
+                scroll_div.scrollLeft++;
+        }
+        var MyMar = setInterval(Marquee, speed);
+        scroll_div.onmouseover = function () { clearInterval(MyMar); }
+        scroll_div.onmouseout = function () { MyMar = setInterval(Marquee, speed); }
+    }
+</script>
+
+<div class="content">
+
+    <h1 class="security_title" style="white-space:normal;">
+        @Model.company_name
+    </h1>
+    <div class="security_basic_new" style="white-space:normal;">
+        <dl>
+            <dt>
+                基本信息
+            </dt>
+            <dd>
+                注册资金：@Model.registered_capital  人民币
+            </dd>
+            <dd>
+                公司成立时间：@DateTime.Parse(Model.Date_incorporation.ToString()).ToString("yyyy-MM-dd")
+            </dd>
+            <dd>
+                开始合作时间：2015-01-01
+            </dd>
+            <dd>
+                公司网址：@Model.company_Url
+            </dd>
+            <dd style="width:403.796875px;">
+                公司地址: @Model.company_address
+            </dd>
+        </dl>
+    </div>
+    <div class="security_profile_new" style="white-space:normal;">
+        <h2>
+            公司简介
+        </h2>
+        <div class="profile_info_new">
+
+            @Html.Raw(Model.company_profile.Substring(Model.company_profile.LastIndexOf("公司简介") + 4))
+
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        var href = window.location.href;
+        if (href.indexOf("/Guarantee/Agency/4") > 0) {
+            $("#security_pic_new_big a img").css("height", "259px");
+        }
+    });
+</script>

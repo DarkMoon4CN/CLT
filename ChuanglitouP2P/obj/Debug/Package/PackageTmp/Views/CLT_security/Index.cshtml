@@ -1,0 +1,215 @@
+﻿@using ChuanglitouP2P.Common
+
+@{
+
+    // ViewBag.Title = "安全保障_风险控制_第三方资金托管_资金保障 - 创利投";
+
+    //ViewBag.keywords = "创利投,安全保障,风险控制,第三方资金托管,资金保障,隐私保障";
+
+    //ViewBag.desc = "创利投为投资理财用户和借款用户提供安全靠谱的交易方案，在资金保障、技术保障、法律保障、八道风险控制、第三方资金托管等四方六项保障体系，全方位保障您的资金安全，励志成为客户最值得信赖的互联网投融资理财平台。";
+    Layout = null;
+    int uid = Utils.checkloginsessiontop();
+
+    string isjump = ViewBag.isJump;
+}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>安全保障_风险控制_第三方资金托管_资金保障 - 创利投</title>
+    <meta name="keywords" content="创利投,安全保障,风险控制,第三方资金托管,资金保障,隐私保障" />
+    <meta name="description" content="创利投为投资理财用户和借款用户提供安全靠谱的交易方案，在资金保障、技术保障、法律保障、八道风险控制、第三方资金托管等四方六项保障体系，全方位保障您的资金安全，励志成为客户最值得信赖的互联网投融资理财平台。 " />
+    @Url.File("Content/css.css").ToHtml()
+    @Url.File("Content/reg_common.css").ToHtml()
+    @Url.File("Scripts/jquery-1.9.1.min.js").ToHtml()
+    @Url.File("Scripts/index.js").ToHtml()
+
+    <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwNDg0Nl8yNjQ2OTVfNDAwODkwMjIyNl8"></script>
+    <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+    <script type="text/javascript">
+        $(function () {
+            var paramVal = getUrlParam("isJump");
+            if(paramVal=="1")//是跳转页面
+            {
+                $(".num_box").css("bottom","3800px");
+                $(".fixed_r ul li").eq(4).addClass("on").siblings().removeClass("on");
+            }
+
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA1' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA2' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA3' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA4' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA5' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA6' });
+        });
+
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return decodeURI(r[2]); return null; //返回参数值
+        }
+
+        function ScrollImgLeft() {
+            var speed = 20;
+            var scroll_begin = document.getElementById("scroll_begin");
+            var scroll_end = document.getElementById("scroll_end");
+            var scroll_div = document.getElementById("scroll_div");
+            //scroll_begin.innerHTML += scroll_begin.innerHTML
+            scroll_end.innerHTML = scroll_begin.innerHTML;
+            function Marquee() {
+                if (scroll_end.offsetWidth - scroll_div.scrollLeft <= 0)
+                    scroll_div.scrollLeft -= scroll_begin.offsetWidth;
+                else
+                    scroll_div.scrollLeft++;
+            }
+            var MyMar = setInterval(Marquee, speed);
+            scroll_div.onmouseover = function () { clearInterval(MyMar); }
+            scroll_div.onmouseout = function () { MyMar = setInterval(Marquee, speed); }
+        }
+    </script>
+</head>
+<body class="safe_body">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function addClass() { $(this).addClass("hover"); } function removeClass() { $(this).removeClass("hover"); }
+            $(".nav ul li").hover(addClass, removeClass);
+
+        });
+    </script>
+
+    <div class="safe_fixed">
+        <div class="w_header">
+
+            <div class="header1">
+                <div class="hea_dw">
+
+                    服务号
+                </div>
+                <div class="hea_qq">
+                    <a id="BizQQWPA3" target="_blank">
+                        点击联系在线客服<br>
+                        QQ: 4008902226
+                    </a>
+                </div>
+                <div class="hea_p">
+                    客服电话：010-53732056（工作时间：9:00~18:00）
+                </div>
+                <div id="hea_p2" class=" hea_p2">
+                    <em>
+                        <img title="扫描关注微信" src="@Url.Image("hea_wx.png")" alt="关注创利投微信服务号">
+                        <img title="扫描关注微信" src="@Url.Image("hea_wx1.png")" alt="关注创利投微信服务号">
+                    </em>
+                </div>
+                <div id="hea_p3" class="hea_p2 hea_p3">
+                    <em>
+                        <img title="在线客服" src="@Url.Image("hea_qq.png")" alt="">
+                        <a id="BizQQWPA2"><img title="在线客服" src="@Url.Image("hea_qq1.png")" alt="创利投在线客服"></a>
+                    </em>
+                </div>
+                <div id="hea_p5" class="hea_p5">
+                    <em>
+                        <img title="扫描关注微信" src="/images/hea_shouji.png" alt="">
+                        <img title="扫描关注微信" src="/images/hea_shouji1.png" alt="">
+                    </em>
+                </div>
+                <div class="hea_p5_tu">
+
+                </div>
+                <div class="hea_p4">
+                    @if (uid > 0)
+                    {
+                        <a class="hea_em4 hea_a" href="/usercenter/index">欢迎您，@Utils.GetUsrNameSex() </a><a class="hea_a hea_altho" href="/logout.html">[退出]</a>
+                    }
+                    else
+                    {
+                        <a class="hea_em4 hea_a" style="color:#339DDA;" href="/Signin/Index">登录</a> <a class="hea_a hea_altho" style="color:#F88433;" href="/Register/Index">注册</a>
+                    }
+                    <a class="commona">
+                        |
+                    </a>
+                    <a class="commona commona-else" href="/clt_Login_register.html">
+                        帮助中心
+                    </a>
+                    <a class="commona commona-else" style="margin-right:14px;" href="/about.html">
+                        关于我们
+                    </a>
+                    <a class="commona commona-else" style="margin-right:0" href="/bigdata.html">
+                        平台数据
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <!--logo-->
+        <div class="w_logo">
+            <div class="w_logo1">
+                <a id="w_logo1_index" href="/"></a>
+                <a href="/">
+                    首页
+                </a>
+                <a href="/Investlist.html">
+                    我要投资
+                </a>
+                <a href="/Borrow.html">
+                    我要借款
+                </a>
+                <a href="/securityIndex.html">
+                    安全保障
+                </a>
+                <a href="/guide.html">
+                    新手指引
+                </a>
+                <a class="logoA" href="/usercenter/index" rel="nofollow">
+                    <img src="/images/logo_man.jpg" align="absmiddle" style="margin-right: 6px;" alt="创利投金服" title=创利投金服LOGO>我的账户
+                </a>
+            </div>
+        </div>
+        </div>
+
+    <div class="fixed_r">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="num_box">
+        <div class="num" id="num_0">
+            <span class="guide_part1">
+
+            </span>
+        </div>
+        <div class="num" id="num_1">
+            <span class="guide_part2">
+
+            </span>
+        </div>
+        <div class="num" id="num_2">
+            <span class="guide_part3">
+
+            </span>
+        </div>
+        <div class="num" id="num_3" name="num_3" >
+            <span class="guide_part4">
+
+            </span>
+        </div>
+        <div class="num" id="num_4">
+            <span class="guide_part5">
+
+            </span>
+        </div>
+
+    </div>
+
+    <input type="hidden" value="0" class="ddw" />
+    <input type="hidden" value="0" class="ddw2" />
+    <script type="text/javascript" src="/Scripts/scroll.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.mousewheel.js"></script>
+    <script src="~/Scripts/o_code.js"></script>
+</body>
+</html>

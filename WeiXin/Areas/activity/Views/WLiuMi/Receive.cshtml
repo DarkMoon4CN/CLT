@@ -1,0 +1,149 @@
+﻿
+@{
+    //ViewBag.Title = "任性领流量，注册即送200M，你投资我再送";
+
+    //ViewBag.keywords = "任性领流量，注册即送200M，你投资我再送";
+
+    //ViewBag.desc = "任性领流量，注册即送200M，你投资我再送";
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<html>
+<head>
+    <title>任性领流量，注册即送200M，你投资我再送</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="~/Areas/activity/Sources/liumi/css/css.css" rel="stylesheet" />
+    <script src="~/Areas/activity/Sources/liumi/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Areas/activity/Sources/liumi/js/Validform_v5.3.2.js"></script>
+    <script src="~/Areas/activity/Sources/liumi/js/layer/layer.min.js"></script>
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            if (phoneWidth > 640) {
+                document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+
+    </script>
+
+
+</head>
+<body style="height:100%; background:none; margin:0 auto">
+
+    <div class="wzhuce10liuliang_content">
+        <div class="wzhuce10liuliang_content_1">
+            <img src="~/Areas/activity/Sources/liumi/images/w_zhuce10_1.jpg">
+        </div>
+        <div class="wzhuce10liuliang_content_2">
+            <img src="~/Areas/activity/Sources/liumi/images/w_zhuce10_2.jpg">
+            <a href="javascript:;" name="zccodebtn" id="zccodebtn" onclick="zccodebtn()" class="wzhuce10liuliang_content_2_btn"></a>
+        </div>
+        <div class="wzhuce10liuliang_content_3">
+            <img src="~/Areas/activity/Sources/liumi/images/w_zhuce10_3.jpg">
+            <div class="wzhuce10liuliang_content_3_neirong">
+                <a href="javascript:;" name="st500m" id="st500m" onclick="czcodebtn(500)">
+                    <img src="~/Areas/activity/Sources/liumi/images/w_zhuce10_6.png">
+                </a>
+                <a href="javascript:;" name="st1G" id="st1G" onclick="czcodebtn(1024)">
+                    <img src="~/Areas/activity/Sources/liumi/images/w_zhuce10_7.png">
+                </a>
+                <a href="javascript:;" name="st2G" id="st2G" onclick="czcodebtn(2048)">
+                    <img src="~/Areas/activity/Sources/liumi/images/w_zhuce10_8.png">
+                </a>
+            </div>
+        </div>
+        <div class="wzhuce10liuliang_content_4">
+            <img src="~/Areas/activity/Sources/liumi/images/w_zhuce10_4.jpg">
+            <div class="wzhuce10liuliang_content_4_neirong">
+                <dl>
+                    <dt>活动规则</dt>
+                    <dd>1、此活动适用于联通、移动和电信用户；</dd>
+                    <dd>2、按照上方官方链接完成注册才可赢取流量；</dd>
+                    <dd>3、完成注册实名认证或首投，在指定页面领取流量；</dd>
+                    <dd>本活动最终解释权在法律允许范围内归创利投网络科技有限公司</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed_Bar">
+        <div class="BarCentert">
+            <a href="http://m.chuanglitou.cn/register.html">马上注册</a>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function zccodebtn() {
+
+            layer.msg("活动已结束，敬请关注其他活动", 4, 5);
+            //    $.post("/WLiuMi/IsLogon", { "param": "" }, function (date) {
+            //        var datas = JSON.parse(date);
+            //        if (datas.rs == "y") {
+
+            //            $.post("/usercenter/registerReceive", { "param": "" }, function (date) {
+            //                var datainfo = JSON.parse(date);
+            //                if (datainfo.rs == "y") {
+            //                    layer.msg("" + datainfo.info + "", 5, 1);
+            //                }
+            //                else {
+            //                    if (datainfo.info == "您尚未登录") {
+            //                        layer.msg("" + datainfo.info + "", 4, 5);
+            //                        location.href = "/register/Index";
+            //                    } else if (datainfo.info == "您已经领取过注册奖励") {
+            //                        layer.msg("" + datainfo.info + "", 4, 5);
+            //                        $('#zccodebtn').val("已领取");
+            //                    }
+            //                    layer.msg("" + datainfo.info + "", 4, 5);
+            //                }
+            //            });
+            //        } else {
+            //            if (datas.info == "您尚未登录") {
+            //                layer.msg("" + datas.info + "", 4, 5);
+            //                location.href = "/Login/Index";
+            //            }
+            //        }
+            //    });
+            
+        }
+        zccodebtn();
+        function czcodebtn(sl) {
+            layer.msg("活动已结束，敬请关注其他活动", 4, 5);
+            //$.post("/WLiuMi/IsLogon", { "param": "" }, function (date) {
+            //    var datas = JSON.parse(date);
+            //    if (datas.rs == "y") {
+
+            //        $.post("/usercenter/getJinE", { "param": sl }, function (date) {
+            //            var datainfo = JSON.parse(date);
+            //            if (datainfo.rs == "y") {
+            //                layer.msg("" + datainfo.info + "", 5, 1);
+            //            }
+            //            else {
+            //                if (datainfo.info == "您尚未登录") {
+            //                    layer.msg("" + datainfo.info + "", 4, 5);
+            //                    location.href = "/register/Index";
+            //                } else if (datainfo.info == "您已经领取过投资奖励") {
+            //                    layer.msg("" + datainfo.info + "", 4, 5);
+            //                    $('#zccodebtn').val("已领取");
+            //                }
+            //                layer.msg("" + datainfo.info + "", 4, 5);
+            //            }
+            //        });
+            //    } else {
+            //        if (datas.info == "您尚未登录") {
+            //            layer.msg("" + datas.info + "", 4, 5);
+            //            location.href = "/Login/Index";
+            //        }
+            //    }
+            //});
+        }
+
+    </script>
+</body>
+</html>

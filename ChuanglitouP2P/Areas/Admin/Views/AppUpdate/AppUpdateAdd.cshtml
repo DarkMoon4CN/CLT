@@ -1,0 +1,128 @@
+﻿@using ChuanglitouP2P.Areas.Admin.Controllers;
+@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@{
+    ViewBag.Title = "APP更新包添加";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnCancel").bind("click", function () {
+            window.history.go(-1);
+        });
+    });
+    function ck() {
+        var vl = $("#platform").val().trim();
+        if (vl == "" || vl == "请选择") {
+            alert("请选择平台类型");
+            return false;
+        }
+        vl = $("#version").val().trim();
+        if (vl == "") {
+            alert("版本号不能为空");
+            return false;
+        }
+        vl = $("#updateLevel").val().trim();
+        if (vl == "" || vl == "请选择") {
+            alert("请选择更新类型");
+            return false;
+        }
+        if ($("#platform").val().trim() == "Android") {
+            vl = $("#channel").val().trim();
+            if (vl == "") {
+                alert("渠道不能为空");
+                return false;
+            }
+            vl = $("#virtualPath").val().trim();
+            if (vl == "") {
+                alert("更新包文件路径不能为空");
+                return false;
+            }
+        }
+        vl = $("#description").val().trim();
+        if (vl == "") {
+            alert("更新说明不能为空");
+            return false;
+        }
+        if (vl.length >= 500) {
+            alert("更新说明不能超过500字");
+            return false;
+        }
+
+        var item = $('#enableTrue');
+        for (i = 0; i < item.length; i++) {
+            if (item[i].checked) {
+                $('#canUse').val(item[i].value);
+                break;
+            }
+        }
+        $("#Form1").submit();
+    }
+</script>
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">APP更新包管理</a>><a href="javascript:void(0)"> APP更新包新建</a></h2>
+<div class="z_body">
+    <p class="tP3">
+        APP更新包新建
+    </p>
+    @using (Html.BeginForm("AppUpdateAdd", "AppUpdate", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1", @id = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p><label for="realname">平台：</label>@Html.DropDownList("platform", ViewBag.PlatformList as List<SelectListItem>, (string)ViewBag.Platform, new { @id = "platform" }))</p><br />
+        <p><label for="realname">版本号：</label><input type="text" class="txt1" id="version" name="version" value="@((string)ViewBag.Version)" style="width:100px;" /></p><br />
+        <p><label for="realname">更新类型：</label>@Html.DropDownList("updateLevel", ViewBag.UpdateLevelList as List<SelectListItem>, (string)ViewBag.UpdateLevel)</p><br />
+        <p><label for="realname">依赖版本号：</label><input type="text" class="txt1" id="dependVersion" name="dependVersion" value="@((string)ViewBag.DependVersion)" style="width:100px;" /></p><br />
+        <div id="div_channel" name="div_channel"><p><label for="realname">渠道：</label><input type="text" class="txt1" id="channel" name="channel" value="@((string)ViewBag.Channel)" style="width:100px;" /></p><br /></div>
+        <div id="div_file" name="div_file"><p><label for="realname">更新包文件路径：</label><input type="file" class="txt1" id="virtualPath" name="virtualPath" value="@(ViewBag.VirtualPath)" style="width:100px;" /></p><br /></div>
+        <p>
+            <label for="realname">是否可用：</label>
+            <input type="radio" id="enableTrue" name="enableTrue" value="是" checked="checked" />可用
+            <input type="radio" id="enableTrue" name="enableTrue" value="否" />不可用
+        </p><br />
+        <p><label for="realname">更新说明：</label><textarea id="description" name="description" style="width:600px;height:400px;"></textarea></p><br />
+        <p></p><br />
+        <p><input type="button" id="btnOK" class="btn2" value="发&nbsp;&nbsp;&nbsp;布" onclick="ck()" /></p><br />
+            <p><input type="button" id="btnCancel" class="btn2" value="取&nbsp;&nbsp;&nbsp;消" /></p><br />
+            <input type="hidden" id="canUse" name="canUse" value="否" />
+    }
+</div>
+<script type="text/javascript">
+
+
+
+    //$(function () {
+    //    alert('123');
+    //    $("#platform").bind("change", function () {
+    //        alert('1111');
+    //        var vl = $("#platform").val().trim();
+    //        if (vl = "IOS") {
+    //            $("#channel").val('Apple Store');
+    //            $("#virtualPath").val('');
+    //            $("#div_channel").hide();
+    //            $("#div_file").hide();
+    //        }
+    //        else {
+    //            $("#div_channel").show();
+    //            $("#div_file").show();
+    //        }
+    //    });
+    //});
+</script>

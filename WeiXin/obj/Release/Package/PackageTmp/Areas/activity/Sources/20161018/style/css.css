@@ -1,0 +1,174 @@
+﻿@charset "utf-8";
+/* CSS Document */
+div,p,a,ul,li,span,em,i,dl,dt,dd,body,h2,h3,h5{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+em,i{
+	font-style:normal;	
+}
+images{
+	border:none;
+}
+li{
+	list-style-type:none;	
+}
+body{
+	background:#F5F5F5;
+	font-family:"微软雅黑";	
+	min-width: 320px;
+	max-width: 640px;
+    margin:0 auto;
+}
+
+/*---------------media-----------------------*/
+
+@media screen and (max-device-width: 320px) {
+    
+}
+@media screen and (min-width: 321px) and (max-width: 375px) {
+    
+}
+@media screen and (min-width: 376px) and (max-width: 414px) {
+    
+
+}
+@media screen and (min-width: 415px) and (max-width: 768px) {
+    
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 2900px) {
+    
+
+}
+
+/*----part1 -------------------------------------*/
+.w_yin10_content{
+	width:100%;
+	height: 100%;
+}
+.w_yin10_content_1{
+	width: 100%;
+	height:auto;
+}
+.w_yin10_content_1 img{
+	width: 100%;
+	height:auto;
+	display: block;
+}
+.w_yin10_content_2{
+	width: 100%;
+	height:auto;
+	position: relative;
+}
+.w_yin10_content_2 img{
+	width: 100%;
+	height:auto;
+	display: block;
+}
+.w_yin10_content_2_main{
+	position:absolute;
+	width: 90%;
+	bottom:12%;
+	left: 5%;
+}
+.w_yin10_content_2_main span{
+	width: 49%;
+	display: inline-block;
+	text-align: center;
+}
+.w_yin10_content_2_main span a{
+	display: inline-block;
+	width:5rem;
+	height: 1.1rem;
+	background: url(../images/yin10_btn1.png) no-repeat;
+	background-size: 100%;
+	color: #fff;
+	font-size: 1em;
+	line-height: 1.1rem;
+}
+.w_yin10_content_3{
+	width: 100%;
+	height:auto;
+}
+.w_yin10_content_3 img{
+	width: 100%;
+	height:auto;
+	display: block;
+}
+.w_yin10_content_4{
+	width: 100%;
+	height:auto;
+	position: relative;
+	background:#ff4f69;
+	min-height: 16rem;
+}
+.w_yin10_content_4 img{
+	width: 100%;
+	height:auto;
+	display: block;
+}
+.w_yin10_content_4_main{
+	position: absolute;
+	width: 85%;
+	left: 7.5%;
+	top: 0%;
+}
+.w_yin10_content_4_main dl{
+	color: #fff;
+	font-family: "微软雅黑";
+}
+.w_yin10_content_4_main dl dt{
+	font-size: 1.5em;
+	line-height: 2.5rem;
+}
+.w_yin10_content_4_main dl dd{
+	font-size: 0.99em;
+	margin-left:17pt;
+	text-indent:-17pt;
+}
+
+
+
+
+/*----底部广告-----------------------*/
+
+.fixed_Bar{
+	height:2.325rem;
+	width:100%;
+	background:#541e0d;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+	position:fixed;
+	bottom:0;
+	left:0;
+	z-index:2;
+	overflow:hidden;	
+}
+.BarCentert{
+	height:2.575rem;
+	width:14.55rem;
+
+	position:relative;
+	top:-0.3rem;
+	background:url(../images/User_img07.png) no-repeat center top;	
+	background-size:12.575rem 2.575rem;
+}
+
+.BarCentert a{
+	width:4.6rem;
+	height:1.076rem;
+	line-height:1.076rem;
+	background:url(../images/User_img06.png) no-repeat;
+	background-size:4.6rem 1.076rem;
+	position:absolute;
+	top:0.9rem;
+	right:-0.5rem;
+	color:#fff;
+	font-size:0.5rem;
+	text-align:center;
+}

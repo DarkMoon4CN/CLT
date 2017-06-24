@@ -1,0 +1,165 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models
+@using PagedList.Mvc
+@using PagedList
+@{
+    ViewBag.Title = "抽奖列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+<link href="~/Areas/Admin/css/validstyle.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+<style type="text/css">
+    .icon-sprite {
+        HEIGHT: 16px;
+        BACKGROUND-IMAGE: url(/admin/images/icons.png);
+        BACKGROUND-REPEAT: no-repeat;
+        POSITION: absolute;
+        LEFT: 10px;
+        MARGIN-TOP: -8px;
+        DISPLAY: inline-block;
+        TOP: 50%;
+        WIDTH: 16px;
+    }
+
+    .icon-edit {
+        BACKGROUND-POSITION: -63px -1px;
+    }
+
+    .icon-delete {
+        BACKGROUND-POSITION: -83px -2px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<style type="text/css">
+    #pagebar a, #pagebar span {
+        margin: 0 3px;
+    }
+</style>
+<script type="text/javascript">
+    function page() {
+        var page1 = document.getElementById("page1").value;
+        var arr = window.location.search.substr(1).split('&');
+        var isexit = false;
+        var str = "";
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].indexOf("page=") > -1) {
+                arr[i] = "page=" + page1;
+                isexit = true;
+            }
+        }
+        str = arr.join("&");
+        if (!isexit) {
+            if (str == "") {
+                str += "page=" + page1;
+            }
+            else {
+                str += "&page=" + page1;
+            }
+        }
+        location.href = "@Url.Content("/Admin/ActivityManager/LuckDrawData?")" + str;
+    }
+    $(function () {
+
+        //方法二：
+        (function ($) {
+            $.getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return decodeURI(r[2]); return null;
+            }
+        })(jQuery);
+
+        var xx = $.getUrlParam('awardType');
+        $("#sltRewardType option[value='" + xx + "']").prop("selected", "selected");
+
+        var actName = $.getUrlParam('ActivityName');
+        $("#sltActivityName option[value='" + actName + "']").prop("selected", "selected");
+    });
+    $(function () {
+        function LuckDrawAwardCallBack(msg) {
+            var res = $.parseJSON(msg);
+            if (res.code != "0") {
+                alert(res.data);
+            }
+            else {
+                alert("发放成功");
+                window.location.reload();
+            }
+        }
+        $("a.opt[actiondata]").click(function () {
+            if (confirm("确定要给该用户发放现金奖励吗？")) {
+                var luckDrawID = $(this).attr("actionData");
+                //allFun.shortAjax("/admin/Activity_LuckDraw.aspx/CheckCashAward", "{ luckDrawID: '" + luckDrawID + "' }", LuckDrawAwardCallBack);
+                $.post("/Admin/ActivityManager/LuckDrawData", { luckDrawID: luckDrawID }, function (result) { LuckDrawAwardCallBack(result); });
+            }
+        });
+        $("#btnSearch").click(function () {
+            var reward = $("#sltRewardType").val();
+            var actname = $("#sltActivityName").val();
+            var strUrl = "/Admin/ActivityManager/LuckDrawData?awardType=" + reward + "&ActivityName=" + actname + "";
+            //window.location.href = "@Url.Content("/Admin/ActivityManager/LuckDrawData?awardType=")" + reward;
+            window.location.href = strUrl;
+        });
+    })
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">活动管理</a>><a href="javascript:void(0)"> 活动计划管理</a></h2>
+
+<div class="z_body">
+    <p class="tP3">
+        快速搜索
+    </p>
+    @using (Html.BeginForm("Borrowingpresident", "Statistics", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:50px; ">
+            <label class="first txt-green">奖励类型：</label>
+            <select id="sltRewardType" style="padding-left:10px; line-height:20px;">
+                <option value="-1">--全部--</option>
+                <option value="0" selected="selected">现金</option>
+                <option value="1">代金券</option>
+                <option value="2">加息券</option>
+                <option value="-4">实体物品</option>
+                <option value="3">谢谢参与</option>
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label class="first txt-green">活动名称：</label>
+            <select id="sltActivityName" style="padding-left:10px; line-height:20px;">
+                <option value="-1" selected="selected">--全部--</option>
+                @Html.Raw(ViewBag.ActivityNameData)
+            </select>
+            <label>
+                <input type="button" class="btn1" value="查询" id="btnSearch" style="cursor:pointer" />
+            </label>
+        </p>
+    }
+
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        产品列表
+    </h3>
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <thead>
+            <tr class="tz_tr">
+                <th scope="col">奖品名称</th>
+                <th scope="col">获奖会员</th>
+                <th scope="col">中奖时间</th>
+                <th scope="col">活动名称</th>
+                <th scope="col">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @Html.Raw(ViewBag.TBData)
+        </tbody>
+    </table>
+    <div id="pagebar" style="margin-top:10px" align="center">
+        @Html.Raw(ViewBag.PageData)
+    </div>
+</div>

@@ -1,0 +1,332 @@
+﻿@using ChuanglitouP2P.Common
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<link rel="shortcut icon" href="/images/favicon.ico" />
+@Url.File("Content/reg_common.css").ToHtml()
+@Url.File("Scripts/Validform_v5.3.2_min.js").ToHtml()
+@Url.File("Scripts/layer.min.js").ToHtml()
+<script type="text/javascript">
+    var editwindow;
+    $(function () {
+        function addClass() { $(this).addClass("hover"); } function removeClass() { $(this).removeClass("hover"); }
+        $(".nav ul li").hover(addClass, removeClass);
+
+        $(".registerform").Validform({
+            tiptype: 4,
+            ajaxPost: true,
+
+            callback: function (data) {
+                if (data.rs == "y") {
+                    layer.msg(data.info, 5, 1);
+                    //location.href = data.url;
+                    window.setTimeout('jump("' + data.url +'")', 5 * 1000);
+                }
+                else {
+                    layer.msg("登录失败：" + data.error + "", 2, 5);
+                }
+            }
+        });
+
+
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|14[57]|17[0678])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/
+
+        });
+
+        $("#submitBut").click(function () {
+
+            $("#action").val("getmobile");
+
+
+
+            $("#form1").submit();
+
+        });
+
+        $("#submitButemail").click(function () {
+
+          //  $("#action").val("getemail");
+
+            $("#form2").submit();
+        })
+
+
+        $("#smscode").click(function () {
+            var mobile = $("#mobile").val();
+            var userid = $("#userid").val();
+            var username = $("#username").val();
+
+            if (username.length <= 0) {
+                layer.msg("请输入要找回密码的用户名", 1, 5);
+                return false;
+            }
+
+
+            if (mobile.length <= 0)
+            {
+                layer.msg("请输入要找回密码的手机号", 1, 5);
+                return false;
+            }
+		$('.xubox_shade').css('display','block');
+		$('#xubox_layer2').css('display','block');
+
+
+        });
+
+		$('#pagebtn').click(function(){
+			$('.xubox_shade').css('display','none');
+			$('#xubox_layer2').css('display','none');
+		 })
+
+
+
+
+    });
+    function changeImg() {
+        $("#image1").attr("src", "Validate.html?a=" + Math.random());
+    }
+
+    var countdown = 60;
+    function settime() {
+        if (countdown == 1) {
+            $("#smscode").removeAttr("disabled");
+            $("#smscode").val("发送验证码");
+            countdown = 60;
+
+        } else {
+            $("#smscode").attr("disabled", true);
+
+            $("#smscode").val("" + countdown + "秒后可重发");
+            countdown--;
+
+
+            if (countdown > 0) {
+                setTimeout(function () {
+                    settime()
+                }, 1000)
+            }
+        }
+    }
+
+    function jump(url) {
+        location.href = url;
+    }
+
+    function addEvent(elem, type, fn) {
+        if (elem.nodeName === "A" && type === "click") { elem.setAttribute("href", "javascript:void(0)") }; if (elem.addEventListener) { elem.addEventListener(type, fn, false); return true; } else if (elem.attachEvent) {
+            elem['e' + type + fn] = fn; elem[type + fn] = function () { elem['e' + type + fn](window.event); }
+            elem.attachEvent("on" + type, elem[type + fn]); return true;
+        }
+        return false;
+    }; function slide(o) {
+        var handle = o.handle, content = o.content, mode = o.mode || "moseover", myClass = o.current, speed = o.speed, fn = o.fn, flag = 0, past, timer; for (var i = 0; i < handle.length; i++) { (function (i) { addEvent(handle[i], mode, function () { clearTimeout(timer); show(i); }); })(i); if (handle[i].className === myClass) past = i; }
+        function show(flag) { var i = flag; handle[past].className = ""; content[past].style.display = "none"; past = flag; handle[i].className = myClass; content[i].style.display = "block"; if (handle[i].nodeName === "A") handle[i].blur(); (flag + 1) == handle.length ? flag = 0 : flag++; if (speed) { timer = setTimeout(function () { show(flag) }, speed); addEvent(content[i], "mouseover", function () { clearTimeout(timer) }); addEvent(content[i], "mouseout", function () { clearTimeout(timer); timer = setTimeout(function () { show(flag) }, speed) }); }; if (fn) fn(); }
+        if (speed) show(flag);
+    }
+    function df(sms, username) {
+        var pageii = $.layer({
+            type: 1,
+            title: false,
+            area: ['700px', '460px'],
+            border: [0],
+            closeBtn: [0, false],
+            shift: 'top',
+            bgcolor: '',
+            page: {
+                html: '<div class="reg_pop_wrap"  id="vcodet" >    <div class="reg_pop_box" style=" width:480px; height:220px; background:#fff; position:fixed; left:50%; top:50%; z-index:99; margin:-160px 0 0 -290px; padding:50px;">    	<div style="font-size:14px; font-weight:bold;">填写验证码完成短信发送</div>        <div style="width:100%; float:left; margin:30px 0 0 0;"><span style="float:left; margin:0 20px 0 0;">验证码：<input  id="Validatecode"  name="" type="text" style="width:160px; height:42px; line-height:42px; border:1px solid #d6d6d6; color:#333; text-indent:5px;" /></span><span><img id="image1" src="Validate.html?a=0793210738" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();" /></span></div>        <div><input  id="codebtn" name="" value="发送短信" type="button" style="width:162px; height:45px; line-height:45px; font-size:18px; color:#fff; text-align:center; background:#f76b1e; border:none; cursor:pointer; margin:25px 0 0 48px;font-family:microsoft YaHei;" />    <input id = "pagebtn"  name="" value="关闭窗口" type="button" style="width:162px; height:45px; line-height:45px; font-size:18px; color:#fff; text-align:center; background:#00af96; border:none; cursor:pointer; margin:25px 0 0 48px;font-family:microsoft YaHei;" /></div>    </div></div>'
+
+             }
+         });
+    $('#pagebtn').on('click', function () {
+        layer.close(pageii);
+    });
+    $('#codebtn').on('click', function () {
+        var validvcode = $('#Validatecode').val()
+
+        var mobile = $("#mobile").val();       
+
+        if (validvcode == null || validvcode.length <= 0) {
+            layer.alert("验证码不能为空");
+            return false;
+        }
+        if (mobile == null || mobile.length <= 0) {
+            layer.alert("手机号不能为空");
+            return false;
+        }
+        else {
+            var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+            if (re.test(mobile) == false) {
+                layer.alert("手机号格式不对!");
+                $("#mobile").val("");
+                return false;
+            }
+        }
+
+       
+
+    });
+
+
+    changeImg();
+}
+
+function changeImg() {
+    $("#image1").attr("src", "Validate.html?a=" + Math.random());
+}
+</script>
+<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+<script type="text/javascript">
+    BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA' });
+    BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA1' });
+</script>
+
+<div class="login_content ">
+    <div class="login_wrap login_bg clearfix" style="background-image:none;">
+        <div class="login_tit" style="border:none;"><h2>找回密码</h2></div>
+        <div class="pw_tab">
+            <ul>
+                <li class="pw_tab_cur">手机找回</li>
+                @*<li style="border-right:none;">邮箱找回</li>*@
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="pw_form_box">
+            <div class="login_info_box">
+                <form id="form1" class="registerform" action="/usercenter/usercenter.html" method="post">
+                    @*<ul>
+                            <input type="hidden" id="action" name="action" value="getmobile" />
+
+                            <li class="login_left">用户名</li>
+                            <li><input name="username" id="username" type="text" class="login_txt" datatype="*3-30" nullmsg="请填写用户名！" errormsg="用户名为3-30个字符！" /><span class="user_forget">忘记了？</span></li>
+                        </ul>*@
+                    <ul>
+                        <li class="login_left">手机号</li>
+                        <li><input name="mobile" id="mobile" type="text" class="login_txt" datatype="mobile" nullmsg="请填写手机号！" errormsg="手机号格式不对！" /></li>
+                    </ul>
+                    <ul>
+                        <li class="login_left">短信验证码</li>
+                        <li><input name="ver_code" id="ver_code" type="text" class="login_txt yzm_txt" /><span><input id="smscode" name="smscode" value="获取验证码" class="yzm_btn" type="button" /></span></li>
+                    </ul>
+                    <div class="clear"></div>
+                    <div><input name="submitBut" id="submitBut" value="找回密码" type="button" class="login_btn" /></div>
+                    <script type="text/javascript">
+
+                    </script>
+                </form>
+
+            </div>
+
+            <div class="login_info_box" style="display:none;">
+                <form id="form2" class="registerform" action="/usercenter/usercenter.html" method="post">
+                    <input type="hidden" id="getemail" name="action" value="getemail" />
+                    <ul>
+                        <li class="login_left">用户名</li>
+                        <li><input name="username1" id="username1" type="text" class="login_txt" datatype="regex1" nullmsg="请填写用户名！" errormsg="字母数字下划线组成长度6-25个字符！" /><span class="user_forget">忘记了？</span></li>
+                    </ul>
+                    <ul>
+                        <li class="login_left">邮箱</li>
+                        <li><input name="email" id="email" type="text" class="login_txt" datatype="e" nullmsg="请填写邮箱！" errormsg="邮箱格式不对！" /></li>
+                    </ul>
+                    <div class="clear"></div>
+                    <div><input name="submitButemail" id="submitButemail" value="找回密码" type="button" class="login_btn" /></div>
+
+                </form>
+            </div>
+
+            <div class="user_forgetshow">
+                <p>忘记用户名请联系创利投客服：010-53732056（工作时间 9:00-18:00）</p>
+                <b>关闭</b>
+            </div>
+
+        </div>
+    </div>
+    <div class="login_kefu"><span class="login_kefu_icon">创利投客服热线（工作时间 9:00-18:00）010-53732056</span><span class="login_qq_icon"><a href="#">在线客服</a></span></div>
+    <div class="clear"></div>
+</div>
+
+<div times="2" id="xubox_shade2" class="xubox_shade" style="z-index:19891016; background-color:#000; opacity:0.3; filter:alpha(opacity=30); display:none"></div>
+<div times="2" showtime="0" style="z-index: 19891017; width: 700px; height: 460px; margin-left: -350px;display:none; top: 75px;" id="xubox_layer2" class="xubox_layer" type="page"><div style="background-color:; z-index:19891016" class="xubox_main"><div class="xubox_page"><div class="xuboxPageHtml"><div class="reg_pop_wrap" id="vcodet">    <div class="reg_pop_box" style=" width:480px; height:220px; background:#fff; position:fixed; left:50%; top:50%; z-index:99; margin:-160px 0 0 -290px; padding:50px;">    	<div style="font-size:14px; font-weight:bold;">填写验证码完成短信发送</div>        <div style="width:100%; float:left; margin:30px 0 0 0;"><span style="float:left; margin:0 20px 0 0;">验证码：<input id="Validatecode" name="" type="text" style="width:160px; height:42px; line-height:42px; border:1px solid #d6d6d6; color:#333; text-indent:5px;"></span><span><img id="image1" src="Validate.html?a=0.5894628502428532" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();"></span></div>        <div><input id="codebtn" name="" value="发送短信" type="button" style="width:162px; height:45px; line-height:45px; font-size:18px; color:#fff; text-align:center; background:#f76b1e; border:none; cursor:pointer; margin:25px 0 0 48px;font-family:microsoft YaHei;">    <input id="pagebtn" name="" value="关闭窗口" type="button" style="width:162px; height:45px; line-height:45px; font-size:18px; color:#fff; text-align:center; background:#00af96; border:none; cursor:pointer; margin:25px 0 0 48px;font-family:microsoft YaHei;"></div>    </div></div></div></div><span class="xubox_setwin"></span><span class="xubox_botton"></span></div></div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#close_im').bind('click', function () {
+            $('#main-im').css("height", "0");
+            $('#im_main').hide();
+            $('#open_im').show();
+        });
+        $('#open_im').bind('click', function (e) {
+            $('#main-im').css("height", "272");
+            $('#im_main').show();
+            $(this).hide();
+        });
+    });
+</script>
+
+<div class="go_top" id="go_top">
+    <a class="go_top_a1" href="javascript:void(0);">
+        <img src="/images/go_topa1.png" alt="" />
+    </a>
+    <a class="go_top_a2" href="javascript:void(0);" id="BizQQWPA1">
+        <div class="go_topa2">
+            在线客服<br />9:00~19:00
+        </div>
+    </a>
+    <a class="go_top_a3" href="javascript:AddFavorite()">
+        <div class="go_topa2 go_topa3">
+            收藏本站
+        </div>
+    </a>
+    <a class="go_top_a4" href="#">
+        <div class="go_topa2 go_topa3">
+            返回顶部
+        </div>
+    </a>
+</div>
+<!-- WPA Button Begin -->
+<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwNDg0Nl8yNjQ2OTVfNDAwODkwMjIyNl8"></script>
+<!-- WPA Button END -->
+
+<script type="text/javascript" language="javascript">
+    function AddFavorite() {
+        var url = document.URL;
+        var title = "创利投"
+        try {
+            window.external.addFavorite(url, title);
+        } catch (e) {
+            try {
+                window.sidebar.addPanel(title, url, "");
+            } catch (e) {
+                alert("加入收藏失败，请使用Ctrl+D进行添加,或手动在浏览器里进行设置.");
+            }
+        }
+    }
+</script>
+<script>
+    window.onload = window.onscroll = window.onresize = function () {
+        var oDiv = document.getElementById('go_top');
+        var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+        var clientheight = document.documentElement.clientHeight;
+        var t = parseInt(scrolltop + (clientheight - oDiv.offsetHeight) / 3);
+        oDiv.style.right = 30 + 'px'
+        oDiv.style.top = 500 + 'px'
+
+        //alert(scrolltop)
+    }
+</script>
+
+<div class="reg_pop_wrap" id="vcodet" style="display:none">
+    <div class="reg_pop_bglayer"></div>
+    <div class="reg_pop_box">
+        <div class="reg_pop_tit">填写验证码完成短信发送</div>
+        <div class="reg_pop_item"><span style="float:left; margin:0 20px 0 0;">验证码：<input name="" type="text" class="yzm_txt" /></span><span><img src="http://www.chuanglitou.cn/Validate.html?a=5260713079" /></span></div>
+        <div><input name="" value="发送短信" type="button" class="yz_btn" /></div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@model  List<ChuangLitouP2P.Models.hx_td_web_type>
+<div class="about_left">
+    @{
+        if (Model != null)
+        {
+            <ul>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <li><a href="@string.Format("clt_{0}.html", item.path1)">@item.menu_name</a></li>
+                    }
+                }
+            </ul>
+         }
+    }
+</div>

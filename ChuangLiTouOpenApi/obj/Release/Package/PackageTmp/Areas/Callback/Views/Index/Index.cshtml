@@ -1,0 +1,67 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuangLiTou.Core.Entities.ChinaPnr.UserEntity
+
+@{
+    ViewBag.Title = "实名注册";
+    Layout = null;
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<form id="form" action="@Settings.Instance.ChinapnrUrl" method="post">
+    @Html.ValidationSummary(true)
+    <div class="create_form">
+        <div>
+            @Html.HiddenFor(m => m.Version)
+            @Html.HiddenFor(m => m.CmdId)
+            @Html.HiddenFor(m => m.MerCustId)
+            @Html.HiddenFor(m => m.BgRetUrl)
+            @Html.HiddenFor(m => m.RetUrl)
+            @Html.HiddenFor(m => m.UsrMp)
+            @Html.HiddenFor(m => m.UsrEmail)
+            @Html.HiddenFor(m => m.UsrId)
+            @Html.HiddenFor(m => m.ChkValue)
+            @Html.HiddenFor(m => m.IdType)
+        </div>
+
+        <div>
+            真实姓名：@Html.TextBoxFor(m => m.UsrName)
+        </div>
+        <div>
+            身份证号:@Html.TextBoxFor(m => m.IdNo)
+        </div>
+        <input type="button" onclick="btnSubmit();" value="开通托管账户" />
+        <input type="submit" id="submitBtn" style="display: none;" />
+    </div>
+</form>
+<script>
+    btnSubmit = function () {
+        var url = "/ChinaPnr/GetChkValue";
+        var params = {};
+        params.Version = $("#Version").val();
+        params.CmdId = $("#CmdId").val();
+        params.MerCustId = $("#MerCustId").val();
+        params.BgRetUrl = $("#BgRetUrl").val();
+        params.RetUrl = $("#RetUrl").val();
+        params.UsrMp = $("#UsrMp").val();
+        params.UsrEmail = $("#UsrEmail").val();
+        params.UsrId = $("#UsrId").val();
+        params.UsrName = $("#UsrName").val();
+        params.IdType = $("#IdType").val();
+        params.IdNo = $("#IdNo").val();
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: JSON.stringify(params),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (res) {
+                debugger;
+                if (res.code == "1") { 
+                    $("#ChkValue").val(res.body.ChkValue);
+                    $("#UsrName").val(res.body.UsrName);
+                    $("#submitBtn").click();
+                }
+            }
+        });
+    }
+</script>

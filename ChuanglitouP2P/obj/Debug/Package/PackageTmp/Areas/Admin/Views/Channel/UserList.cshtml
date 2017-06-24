@@ -1,0 +1,117 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@using ChuangLitouP2P.Models;
+@model PagedList<V_Channel_Invite>
+@{
+    ViewBag.Title = "渠道邀请管理";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script src="~/Areas/Admin/js/Channel.js"></script>
+<script type="text/javascript">
+    $(function () {
+        Channel.userListInit();
+    });
+</script>
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">渠道管理</a>><a href="javascript:void(0)">渠道邀请管理</a></h2>
+<h3 class="listtitle">
+     <b>渠道推广用户：@ViewBag.AdminUserName </b> 您好！
+</h3>
+<div class="z_body">
+    <p class="tP3">
+        获取渠道链接
+    </p>
+    @using (Html.BeginForm("UserList", "Channel", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:60px; padding-bottom:15px; ">
+            <label for="label">类型：</label>
+            <select id="sel_channelType" style="width:120px;">
+              <option value="-1">请选择</option>
+                <option value="1" selected="selected">PC端</option>
+                <option value="2">移动端</option>
+            </select>&nbsp;
+            <input type="text" class="txt1" id="invitedcodeURL"  name="invitedcodeURL" value="http://www.chuanglitou.cn/register/index?channel=@ViewBag.Invitedcode&type=1" readonly="readonly" style="width:400px;" />
+            <input type="hidden" id="invitedcode" name="invitedcode" value="@ViewBag.Invitedcode" />
+            <input type="button" id="get_Invitedcode" class="btn2" value="复制渠道链接" />
+            <br /><br />
+
+            <label for="ordId">订单号：</label><input type="text" class="txt1" id="ordId" name="ordId" value="@ViewBag.OrdId" style="width:100px;" />&nbsp;
+            <label for="realname">真实姓名：</label><input type="text" class="txt1" id="realname" name="realname" value="@ViewBag.Realname" style="width:100px;" />&nbsp;
+            <label for="btitle">投标信息：</label><input type="text" class="txt1" id="btitle" name="btitle" value="@ViewBag.BTitle" style="width:100px;" />&nbsp;
+            <label for="invest_time">首投时间：</label>
+            <input class="jcDate" name="startTime" id="startTime" value="@ViewBag.StartTime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" />
+            <i class="oI" style="margin-right: 10px;">至</i>
+            <input class="jcDate" name="endTime" id="endTime" value="@ViewBag.EndTime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" />
+  
+            <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+            <input type="button" class="btn2" value="导&nbsp;&nbsp;&nbsp;出" id="toExcel" />
+            <br /><br />
+        </p>
+    }
+    <span class="icon-sprite icon-list"></span>
+
+
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th>渠道名称</th>
+                <th>被邀请账号</th>
+                <th>被邀请真实姓名</th>
+                <th>注册时间</th>
+                <th>首投订单号</th>
+                <th>首投时间</th>
+                <th>首投金额</th>
+                <th>投标信息</th>
+                <th>投标期限</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ChannelName</td>
+                        <td>@Utils.ReplaceWithSpecialChar(item.username, 3, 4, '*') </td>
+                        <td>@item.realname</td>
+                        <td>@item.registration_time</td>
+                        <td>@item.OrdId</td>
+                        <td>@item.invest_time</td>
+                        <td>@item.investment_amount</td>
+                        <td>@item.borrowing_title</td>
+                        <td>@item.DeadLine</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="pagination ue-clear">
+        <div class="pagination-container">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("UserList", new
+       {
+           page,
+           realname = @ViewBag.Realname,
+           ordId = @ViewBag.OrdId,
+           btitle = @ViewBag.BTitle,
+           startTime = @ViewBag.StartTime,
+           endTime = @ViewBag.EndTime,
+       }))<div style="padding:10px;font-weight:600">当前第 @Model.PageNumber 页,共 @Model.PageCount 页，共 @Model.TotalItemCount 条记录</div>
+        </div>
+    </div>
+</div>

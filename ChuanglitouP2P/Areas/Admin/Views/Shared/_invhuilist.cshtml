@@ -1,0 +1,61 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@model PagedList<V_borrowing_Bid_records_income_statement>
+                 
+
+<table cellpadding="0" cellspacing="0">
+    <tr class="xq_cz_tr">
+        <td width="202">回款项目</td>
+        <td width="194">投资金额</td>
+        <td width="180">预计本息</td>
+        <td width="129">预计回款时间</td>
+        <td width="133">回款时间</td>
+        <td width="107">
+            状态
+        </td>
+    </tr>
+
+        @if (Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.borrowing_title</td>
+                    <td>@item.investment_amount 元</td>
+                    <td>@item.repayment_amount 元</td>
+                    <td>@(DateTime.Parse(item.interest_payment_date.ToString()).ToString("yyyy-MM-dd"))</td>
+                    <td>@(item.repayment_period == null ? "--" : DateTime.Parse(item.repayment_period.ToString()).ToString("yyyy-MM-dd"))</td>
+                    <td>
+                        @*<a href="">查看</a>
+                        |
+                        <a href="">下载</a>*@
+                        @if (item.payment_status == 0)
+                        {
+                            @:未回款
+                       }
+                        else
+                        {
+                            @:已回款
+                       }
+                    </td>
+                </tr>
+
+            }
+        }
+
+    
+</table>
+<div class="page_box">
+    <div class="page_left">
+        @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", PageIndexParameterName = "huipageindex", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBoxhui1", GoToButtonId = "goToBtnhui1" }, new MvcAjaxOptions
+   { UpdateTargetId = "invhuilist", HttpMethod = "Post", DataFormId = "searchFormH", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "invhuilist")).AjaxOptions(a => a.SetUpdateTargetId("invhuilist"))
+    </div>
+    <div class="page_right">
+        <div class="input-group" style="margin:20px 0">
+            <span class="input-group-addon">转到第</span>
+            <input type="text" id="pageIndexBoxhui1" class="form-control input-sm" />
+            <span class="input-group-addon">页</span>
+            <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtnhui1">跳转</button></span>
+        </div>
+    </div>
+</div>

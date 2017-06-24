@@ -1,0 +1,183 @@
+body {text-align:left;  -webkit-touch-callout: none;  -webkit-user-select: none;  -khtml-user-select: none;  -moz-user-select: none;  -ms-user-select: none;  user-select: none;  -webkit-tap-highlight-color:rgba(0,0,0,0);}
+body,button,input,select,textarea{font: 400 14px/1.25 "Microsoft YaHei",Arial,Helvetica,STHeiti,"Droid Sans Fallback",sans-serif;}
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{font-weight:normal;margin:0; padding:0;}
+table,td,th{border-collapse:collapse;}
+li{list-style:none;}
+fieldset, img, a img.iframe, input{border:0;}
+q:before,q:after{content:'';}
+input,textarea{outline-style:none;}
+input[type="text"],input[type="password"],textarea{outline-style:none;-webkit-appearance:none;}
+textarea{resize:none}
+address,caption,cite,code,dfn,em,i,th,var{font-style:normal;font-weight:normal;}
+input[type="button"],input[type="submit"],select,button{cursor:pointer;}
+input, textarea, lable, select{ vertical-align:middle;user-select: text;}
+legend{color:#000;}
+abbr,acronym{border:0;font-variant:normal;}
+a{text-decoration:none; cursor:pointer;-webkit-tap-highlight-color:none;}
+a:hover{text-decoration:none;}
+label{ cursor:pointer;}
+
+img{vertical-align: middle; display:inline-block}
+li{
+	list-style-type:none;	
+}
+i{
+	font-weight:normal;	
+}
+.t_center{
+	text-align:center;
+}
+.t_left{
+	text-align:left;	
+}
+
+
+.v_body{
+	background:#f7f7f7;	
+	font-family:"Microsoft Yahei";
+}
+
+.v_01{
+	height:12.4rem;
+	background:#fff;
+	margin-bottom:6px;
+}
+.v_01 dl{
+	padding-top:1.5rem;	
+	text-align:center;
+}
+.v_01 dt{
+	height:1.55rem;
+	padding-bottom:1rem;	
+}
+
+/*充值失败*/
+.icon_wrong{
+	width:1.6rem;
+	height:1.55rem;
+}
+/*充值成功*/
+.icon_right{
+	height:1.5rem;
+	width:2rem;	
+}
+.v_01 dd{
+	font-size:0.95rem;
+	color:#333;
+	height:0.95rem;
+	line-height:0.95rem;
+	padding-bottom:1.5rem;	
+}
+.v_01 p{
+	width:78%;
+	margin:0 auto;
+	/*color:#999;*/
+	font-size:0.75rem;	
+	line-height:1rem;
+}
+.v_02{
+	background:#fff;
+	height:2rem;
+}
+.v_02 p{
+	padding-left:0.85rem;
+	font-size:0.6rem;
+	/*color:#666;*/	
+	line-height:2rem;
+}
+.v_02 p span{
+	font-size:0.7rem;
+	color:#333;	
+}
+
+/*-------提现------------------------------------------------*/
+
+.v_body1{
+	background:#fff;
+	font-family:"Microsoft Yahei";
+}
+.t_01{
+	height:7.2rem;	
+}
+.t1_center{
+	padding-top:2.7rem;
+	width:9.5rem;
+	margin:0 auto;
+	font-size:0.8rem;
+	color:#333;
+	line-height:1.925rem;
+}
+.t1_center span{
+	float:left;	
+}
+.t1_center span img{
+	width:1.925rem;
+	height:1.925rem;
+	padding-right:0.35rem;
+}
+.t_02{
+	height:8rem;
+	background:#f7f7f7;	
+}
+.t_02 ul{
+	width:92%;
+	height:3.35rem;
+	padding-top:0.5rem;
+	border:1px solid #d9edc9;
+	background:#edffcd;
+	margin:0 auto;
+	border-radius:0.4rem;
+	-moz-border-radius:0.4rem;
+	-webkit-border-radius:0.4rem;
+	-o-border-radius:0.4rem;
+	-ms-border-radius:0.4rem;
+}
+.t2_top li{
+	font-size:0.6rem;
+	color:#333;
+	line-height:1rem;
+	padding-left:0.65rem;	
+}
+.t2_top p{
+	width:92%;
+	margin:0 auto;
+	font-size:0.6rem;
+	/*color:#666;*/
+	line-height:1rem;
+	padding-top:1rem;
+	padding-left:0.65rem;
+}
+
+
+/*--------签约协议    06-28------------------------*/
+.ag_body{
+	padding:0 .3rem;	
+}
+.ag_h2{
+	font-size:0.7rem;
+	text-align:center;
+	line-height:1rem;
+	font-weight:bold;
+	margin-top:0.5rem;	
+	color:#333;
+}
+.ag_art{
+	font-size:0.55rem;
+	color:#333;
+	line-height:1rem;
+	text-indent:0.7rem;
+}
+.ag_art b{
+	font-weight:normal;	
+}
+.ag_h3{
+	font-size:0.55rem;	
+	line-height:1rem;
+	font-weight:bold;
+}
+.ag_p{
+	color:#999;
+	text-align:center;
+	line-height:1rem;
+	font-size:10px;	
+}

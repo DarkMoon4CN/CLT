@@ -1,0 +1,78 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@model PagedList<V_hx_Bid_records_borrowing_target>
+
+<div class="bTab" id="dTable1">
+
+    <table cellpadding="0" cellspacing="0" border="1">
+        <thead>
+            <tr class="bElse">
+                <td width="156">项目名称</td>
+                <td width="104">收益率</td>
+                <td width="87">投资期限</td>
+                <td width="92">投资区间</td>
+                <td width="104">投资金额</td>
+                <td width="170">应收回款</td>
+                <td width="92">合同</td>
+            </tr>
+        </thead>
+        @if (Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+
+                <tr height="85">
+                    <td><a href="/invest_borrow_@(item.targetid).html" target="_blank">   @item.borrowing_title  </a></td>
+                    <td style="line-height: 20px;">@(item.annual_interest_rate)%<br />+<br />@(item.JiaxiNum)%</td>
+                    <td>3个月</td>
+                    <td style="line-height: 20px;">@DateTime.Parse(item.value_date.ToString()).ToString("yyyy-MM-dd")<br />至<br />@DateTime.Parse(item.investment_maturity.ToString()).ToString("yyyy-MM-dd")</td>
+                    <td>@item.investment_amount 元</td>
+
+                    @{ decimal souyi = decimal.Parse(item.haveinterest.ToString()) + decimal.Parse(item.withoutinterest.ToString());
+                    decimal totals = decimal.Parse(item.investment_amount.ToString()) + souyi + decimal.Parse(item.BonusAmt.ToString());
+                    }
+                    <td style="line-height: 16px;text-align: left;width:122px;padding-left: 28px;">
+                        本金：@(item.investment_amount)元<br />
+                        利息：@(souyi.ToString("0.00"))元<br />
+                        奖励：@(item.BonusAmt)元<br />
+                        <i style="font-size:12px">
+                            总计：@(totals)元
+                        </i>
+                    </td>
+                    <td>
+                        <a href="@item.contractpath" target="_blank">查看</a>
+                        |
+                        <a href="@item.contractpath">下载</a>
+                    </td>
+                </tr>
+
+                            }
+                        }
+
+
+
+
+
+
+    </table>
+
+
+
+</div>
+
+
+<div class="page_box">
+    <div class="page_left">
+        @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox21", GoToButtonId = "goToBtn21" }, new MvcAjaxOptions
+   { UpdateTargetId = "dTable1", HttpMethod = "Post", DataFormId = "searchForm1", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "dTable1")).AjaxOptions(a => a.SetUpdateTargetId("dTable1"))
+    </div>
+    <div class="page_right">
+        <div class="input-group" style="margin:20px 0">
+            <span class="input-group-addon">转到第</span>
+            <input type="text" id="pageIndexBox21" class="form-control input-sm" />
+            <span class="input-group-addon">页</span>
+            <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn21">跳转</button></span>
+        </div>
+    </div>
+</div>
+

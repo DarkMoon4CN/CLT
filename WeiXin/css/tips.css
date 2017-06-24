@@ -1,0 +1,11 @@
+﻿
+.showBox{background:#333;opacity:0.8;filter:alpha(opacity=80);	height:100%;width:100%;position:fixed;top:0;left:0;z-index:99;display:none;}
+.showCont{height:17rem;width:14rem;position:absolute;left:50%;top:50%;margin-top:-8.5rem;margin-left:-7rem;z-index:999;display:none;}
+.showCont dl{height:13.15rem;width:14rem;position:relative;	}
+.showCont dt{margin-bottom:1.6rem;}
+.showCont dt img{height:13.15rem;width:14rem;		}
+.showCont dd{margin:0 auto;	}
+.showCont dd,.showCont dd img{width:8rem;height:2rem;	}
+.showCont span,.showCont span img{width:1.775rem;height:1.775rem;	}
+.showCont span{display:block;position:absolute;top:-0.7rem;right:-0.7rem;}body {
+}

@@ -1,0 +1,65 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuanglitouP2P.Model.ResponsePage
+
+@{
+    ViewBag.Title = "新闻列表";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}@section css{
+    @Url.File("/Content/common.css").ToHtml()
+}
+
+<div class="content">
+    <div class="about_pic">
+
+
+
+        <a href="http://www.chuanglitou.cn/CLT_company.html"> <img src="/AdImg/201556155337450.jpg" width="980" height="203"> </a>
+
+    </div>
+
+    <div class="about_left_box">
+         
+            @{Html.RenderAction("LeftNav");} 
+
+    </div>
+    <div id="context1" class="about_right">
+        <div class="about_nav">
+            <a href="/">首页</a><span>&gt;</span><a href="/CLT_company.html">关于我们</a><span>&gt;</span>网站公告
+        </div>
+        <div style="width: 100%; color: #cb0302; font-size: 24px;">网站公告</div>
+        @{
+            if (Model != null)
+            {
+                for (int i = 0; i < Model.dataBody.Rows.Count; i++)
+                {
+                    var item = Model.dataBody.Rows[i];
+
+                    <div class="help_list">
+                        <dl>
+                            <dt> <a href="@string.Format("/clt_notice_{0}.html", item["newid"])">@item["News_title"]</a></dt>
+                            <dd>
+                                <p style="padding: 10px 0 0 0;">
+
+
+                                    @Utils.GetSubString(Utils.RemoveHtml(item["context"].ToString()), 150, ".....").ToHtml() <a href="@string.Format("/clt_notice_{0}.html", item["newid"])"> 详情 </a>
+                                </p>
+                            </dd>
+                            <dd class="help_list_time">@DateTime.Parse(item["createtime"].ToString()).ToString("yyyy-MM-dd HH:mm:ss")</dd>
+                        </dl>
+                    </div>
+                }
+                <div class="clear"></div>
+                <div class="pagebox">
+
+                    @{
+                var pager = Ajax.DivPaging(Model.pageSize, Model.recordCount, Model.currentCount, Model.pageCount, "/clt_notice.html");
+                @Html.Raw(pager)
+                    }
+                </div>
+            }
+        }
+
+
+
+    </div>
+</div>

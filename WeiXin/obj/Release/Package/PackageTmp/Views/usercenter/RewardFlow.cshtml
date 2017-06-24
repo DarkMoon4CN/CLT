@@ -1,0 +1,93 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using Webdiyer.WebControls.Mvc;
+@using ChuangLitouP2P.Models;
+@model PagedList<hx_UserAct>
+@{
+    ViewBag.Title = "奖励账户流水";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+    int pageIndex = ViewBag.pageIndex;
+    int pageCount = ViewBag.pageCount;
+}
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">资金流水</h2>
+</header>
+<section class="user_head_tabs">
+    <div><a href="/usercenter/CapitalFlow" >资金账户流水</a></div>
+    <div><a href="/usercenter/RewardFlow"  class="ptabs_curr">奖励账户流水</a></div>
+</section>
+<section class="user_form_record">
+    <div>
+
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <dl>
+            <dt>@item.hx_RewardType.RewTypeName</dt>
+            <dd><div>收入：
+                
+                <b class="color_orange">
+
+                    @if (item.RewTypeID == 1)
+                    {
+                        @item.Amt  @:元
+
+                    }
+                    else if (item.RewTypeID == 2)
+                    {
+                         @item.Amt @:元
+                    }
+                    else if (item.RewTypeID == 3)
+                    {
+                        @item.Amt @:%
+                    }
+
+
+
+                </b>
+                
+                </div>
+            
+            <div>支出：
+                <b class="color_green">
+
+                    @if (item.UseState > 0)
+                    {
+                        if (item.RewTypeID == 1)
+                        {
+                            @item.Amt @:元
+                        }
+                        else if (item.RewTypeID == 2)
+                        {
+                             @item.Amt @:元
+                        }
+                        else if (item.RewTypeID == 3)
+                        {
+                            @item.Amt @:%
+                        }
+                    }
+                    else
+                    {
+                        @:--
+                    }
+
+                </b>
+                
+                </div></dd>
+            <dd><div>状态：@Utils.GetRewardState(item.UseState.ToString())</div></dd>
+            <dd><div>时间：@DateTime.Parse(item.Createtime.ToString()).ToString("yyyy-MM-dd HH:mm:ss")</div></dd>
+        </dl>
+    }
+}
+
+    </div>
+</section>
+<section class="page_box">
+    <div class="page_prev"><a href="/usercenter/RewardFlow?pageIndex=@(pageIndex<=1?1:(pageIndex-1))">上一页</a></div>
+    <div class="page_number">@(pageIndex <= 1 ? 1 : pageIndex)/@(pageCount <= 1 ? 1 : pageCount)</div>
+    <div class="page_next"><a href="/usercenter/RewardFlow?pageIndex=@(pageIndex<=1?2:(pageIndex+1))">下一页</a></div>
+</section>
+<div class="bot_height"></div>

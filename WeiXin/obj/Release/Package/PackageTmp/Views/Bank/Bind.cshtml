@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "银行卡管理";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+<script src="~/Scripts/layer.min.js"></script>
+<script type="text/javascript">
+         $(function () {
+             layer.msg("数据处理中....！请不要关闭", 60, 1);
+         });
+
+</script>
+
+<form id="form1" action="@ViewBag.url" method="post">
+    <div>
+        <input id="Version" name="Version" type="hidden" value="@ViewBag.Version" />
+        <input id="CmdId" name="CmdId" value="@ViewBag.CmdId" type="hidden" />
+        <input id="MerCustId" name="MerCustId" value="@ViewBag.MerCustId" type="hidden" />
+        <input id="UsrCustId" name="UsrCustId" value="@ViewBag.UsrCustId" type="hidden" />
+        <input id="BgRetUrl" name="BgRetUrl" value="@ViewBag.BgRetUrl" type="hidden" />
+        <input id="MerPriv" name="MerPriv" value="@ViewBag.MerPriv" type="hidden" />
+        <input id="ChkValue" name="ChkValue" value="@ViewBag.ChkValue" type="hidden" />
+
+    </div>
+</form>
+
+<script type="text/javascript">$("#form1").submit();</script>
+<div class="bot_height"></div>

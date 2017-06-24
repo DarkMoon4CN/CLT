@@ -1,0 +1,51 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+@using Webdiyer.WebControls.Mvc;
+
+@model PagedList<hx_Capital_account_water>
+
+<table cellpadding="0" cellspacing="0">
+    <tr class="xq_cz_tr">
+        <td width="100">账户流水id</td>
+        <td width="100">用户注册ID</td>
+        <td width="100">收入</td>
+        <td width="100">支出</td>
+        <td width="100">账户余额</td>
+        <td width="100">资金类型</td>
+        <td width="150">发生时间</td>
+        <td class="xq_cz_td" width="130">备注</td>
+    </tr>
+
+@if (Model != null)
+{
+
+    foreach (var item in Model)
+    {
+        <tr>
+            <td style="height:30px;">@(item.account_water_id)</td>
+            <td style="height:30px;">@(item.membertable_registerid)</td>
+            <td style="height:30px;">@(item.income)</td>
+            <td style="height:30px;">@(item.expenditure) </td>
+            <td style="height:30px;">@(item.account_balance)</td>
+            <td style="height:30px;">@(Utils.GetEnumTypesFinanceName(Convert.ToInt32(item.types_Finance))) </td>
+            <td style="height:30px;">@(item.time_of_occurrence != null ? ((DateTime)item.time_of_occurrence).ToString("yyyy-MM-dd HH:mm:ss") : "") </td>
+            <td style="height:30px;">@(item.remarks) </td>
+        </tr>
+    }
+
+}   
+</table>
+<div class="page_box">
+    <div class="page_left">
+        @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", PageIndexParameterName = "capitalindex", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox1", GoToButtonId = "goToBtn1" }, new MvcAjaxOptions
+   { UpdateTargetId = "llrechargelist", HttpMethod = "Post", DataFormId = "searchFormCapital", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "capitallist")).AjaxOptions(a => a.SetUpdateTargetId("capitallist"))
+    </div>
+    <div class="page_right">
+        <div class="input-group" style="margin:20px 0">
+            <span class="input-group-addon">转到第</span>
+            <input type="text" id="pageIndexBox1" class="form-control input-sm" />
+            <span class="input-group-addon">页</span>
+            <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn1">跳转</button></span>
+        </div>
+    </div>
+</div>

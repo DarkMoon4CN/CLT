@@ -1,0 +1,125 @@
+﻿
+@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model IEnumerable<ChuangLitouP2P.Models.V_hx_Bid_records_borrowing_target>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>投资记录</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Areas/Admin/js/common.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+
+    <script type="text/javascript">
+
+        function SetLoans(bid, tid) {
+            var url = "/admin/Examine/SetLoans?bid=" + bid + "&tid=" + tid;
+            editwindow = $.layer({
+                type: 2,
+                shadeClose: false,
+                title: '放款',
+                shade: [0.7, '#999'],
+                offset: ['', ''],
+                area: ['750px', "450px"],
+                iframe: { src: url, scrolling: false }
+            });
+
+        }
+  </script>
+
+</head>
+<body>
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">投资记录</a></h2>
+    <div class="z_body">
+       
+            <span class="icon-sprite icon-list"></span>
+            <h3 class="listtitle">
+                投资列表
+            </h3>
+
+            <table cellspacing="0" cellpadding="0" class="listtable">
+                <tbody>
+                    <tr class="tz_tr">
+                        <th scope="col">投资人</th>
+                        <th scope="col">投资金额 </th>
+                        <th scope="col">应收利息 </th>
+                        <th scope="col">已收利息 </th>
+                        <th scope="col">投资时间</th>
+                        <th scope="col">投资起息日</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            var tender_state = item.tender_state;
+                            <tr>
+                                @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                                {
+
+                                    if (item.username.Length == 11 && !String.IsNullOrEmpty(item.username))
+                                    {
+                                        item.username = item.username.Substring(0, 3) + "****" + item.username.Substring(7, 4);
+                                    }
+                                    if (item.username.Length != 11 && !String.IsNullOrEmpty(item.username) && item.username.Length > 1)
+                                    {
+                                        item.username = item.username.Substring(0, 1) + "**";
+                                    }
+
+                                }
+                                <td>@(item.username)</td>
+                                <td>@( RMB.GetWebConvertdisp(decimal.Parse(item.investment_amount.ToString()), 2, true))元 </td>
+                                <td>@(RMB.GetWebConvertdisp(decimal.Parse(item.withoutinterest.ToString()), 2, true))元 </td>
+                                <td>@(RMB.GetWebConvertdisp(decimal.Parse(item.haveinterest.ToString()), 2, true))元 </td>
+                                <td>@( DateTime.Parse(item.invest_time.ToString()).ToString("yyyy-MM-dd"))</td>
+                                <td>@(DateTime.Parse(item.value_date.ToString()).ToString("yyyy-MM-dd"))</td>
+                                <td>
+                                    @if (tender_state == 4)
+                                    {
+                                        if (item.IsLoans == 0)
+                                        {
+                                            <a href="#" style="color:red" onclick="javascript:SetLoans(@item.bid_records_id,@item.targetid)"> 未放款</a>
+                                        }
+                                        else
+                                        {
+                                            <span> 已放款 </span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span> -- </span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+
+
+    </div>
+
+</body>
+</html>

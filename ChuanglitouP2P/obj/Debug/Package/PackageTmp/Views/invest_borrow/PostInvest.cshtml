@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "业务数据处理中.....";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+
+    //Response.Buffer = true;
+   // Response.ExpiresAbsolute = DateTime.Now.AddDays(-1);
+   // Response.Expires = 0;
+   // Response.CacheControl = "no-cache ";
+}
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    layer.msg("业务数据处理中.....", 20, 1);
+
+
+
+    function backspace() {
+
+        if (event.keyCode == 8 && event.srcElement.tagName != "INPUT" && event.srcElement.type != "text")
+
+            event.returnValue = false;
+
+    }
+
+    if (navigator.appName == "Microsoft Internet Explorer") {
+
+        window.history.forward(1);
+
+    }
+
+    else // if it is Mozilla than  
+
+    {
+
+        window.history.forward(-1);
+
+    }
+
+    backspace();
+</script>
+
+@Html.Raw(ViewBag.strz);

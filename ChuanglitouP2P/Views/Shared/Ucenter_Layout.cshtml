@@ -1,0 +1,91 @@
+﻿@using ChuanglitouP2P.Common;
+@{
+    int uid = Utils.checkloginsessiontop(); }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>@ViewBag.Title @*创利投用户个人账户管理中心*@</title>
+    <meta name="keywords" content="@ViewBag.keywords" />
+    <meta name="description" content="@ViewBag.desc" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    @Url.File("/Content/style.css").ToHtml()
+    @Url.File("/Content/common.css").ToHtml()
+    @Url.File("/Content/jcDate.css").ToHtml()
+    @Url.File("/Content/css.css").ToHtml()
+    @RenderSection("css", false)
+    <script src="/Scripts/jquery-1.7.1.js"></script>
+    <script src="/Scripts/jQuery-jcDate.js"></script>
+    @Url.File("/Scripts/common.js").ToHtml()
+    @Url.File("/Scripts/mPage.js").ToHtml()
+    @RenderSection("js", false)
+    <!--[if IE]>
+        <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <script type="text/javascript">
+        function jsCopy() {
+            var e = document.getElementById("content");//对象是content
+            e.select(); //选择对象
+            document.execCommand("Copy"); //执行浏览器复制命令
+        }
+    </script>
+    <!--公共的头部分-->
+    <div class="miniNav">
+        <div class="navcon">
+            @if (uid > 0)
+            {
+                <a class="hea_em4 hea_a" href="/usercenter/index" rel="nofollow">欢迎您，@Utils.GetUsrNameSex() </a><a class="hea_a hea_altho" href="/logout.html" rel="nofollow">[退出]</a>
+            }
+            else
+            {
+                <a class="hea_em4 hea_a" href="/Signin/Index" rel="nofollow">登录</a> <a class="hea_a hea_altho" href="/Register/Index" rel="nofollow">注册</a>
+            }
+            <a class="commona" style="height:35px;">|</a>
+            <a href="/clt_Login_register.html" rel="nofollow">帮助中心</a>
+            <a href="/about.html" style="margin-right:48px;" rel="nofollow">关于我们</a>
+        </div>
+    </div>
+    <div class="hwrap">
+        <div class="navwrap" >
+            <a href="/" class="logo"></a>
+            <!-- <div class="navs"> -->
+            <a href="/">首页</a>
+            <a href="/investlist.html">我要投资</a>
+            <a href="/Borrow.html">我要借款</a>
+
+            <a href="/securityIndex.html" name="Ms_">安全保障</a>
+
+            <a href="/guide.html" name="Ms_">新手指引</a>
+
+            <a href="/usercenter/index" rel="nofollow">我的账户</a>
+            @*<img src="/images/toptel.png" alt="" class="phimg">*@
+            <!-- </div> -->
+        </div>
+    </div>
+    <!--内容区域-->
+    <div class="bContent">
+        @RenderBody()
+    </div>
+
+    @{Html.RenderPartial("_Footer");}
+    @RenderSection("scripts", required: false)
+
+
+
+
+    <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwNDg0Nl8yNjQ2OTVfNDAwODkwMjIyNl8"></script>
+    <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+    <script type="text/javascript">
+        BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA' });
+        BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA1' });
+        BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA2' });
+        BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA3' });
+    </script>
+</body>
+</html>
+

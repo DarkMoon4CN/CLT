@@ -1,0 +1,82 @@
+﻿
+@using ChuanglitouP2P.Common
+@{
+    ViewBag.Title = "登录";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+<script src="~/Scripts/layer.min.js"></script>
+<script src="~/js/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript">
+    var editwindow;
+    $(function () {
+        function addClass() { $(this).addClass("hover"); } function removeClass() { $(this).removeClass("hover"); }
+        $(".nav ul li").hover(addClass, removeClass);
+
+        $(".registerform").Validform({
+            tiptype: 4,
+            ajaxPost: true,
+            callback: function (data) {
+                if (data.rs == "y") {
+                    layer.msg("登录成功，欢迎回来..", 3, 1);
+                    location.href = data.url;
+                }
+                else {
+                    layer.msg("登录失败：" + data.error + "", 2, 5);
+                }
+            }
+        });
+        $(document).keyup(function (event) {
+            if (event.keyCode == 13) {
+                $("#loginbtn").trigger("click");
+            }
+        });
+
+    });
+
+    function changeImg() {
+        $("#image1").attr("src", "/login/GetValidateCode?a=" + Math.random());
+    }
+
+</script>
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">用户登录</h2>
+</header>
+
+<div>@Html.Raw(ChuanglitouP2P.Common.Utils.GetWebAD(13, 1))</div>
+<form class="registerform" action="/login/signin" method="post">
+    <div class="form_box">
+        <ul>
+            <li><input name="username" id="username" class="form_text" type="tel" placeholder="请输入手机号" datatype="s6-18" nullmsg="请填写手机号！" errormsg="手机号格式不对！"><span class="reg_icon phone_icon"></span></li>
+            <li><input name="userpassword" type="password" id="userpassword" class="form_text" placeholder="请输入密码" datatype="*6-16" nullmsg="请设置密码！" errormsg="密码范围在6~16位之间！"><span class="reg_icon password_icon"></span></li>
+            <li class="code_box"><div class="code_text"><input name="Validatecode" id="Validatecode" class="text" type="tel" ajaxurl="/login/Validate" placeholder="请输入验证码" datatype="*" nullmsg="请填写验证码！" placeholder="请填写验证码"></div><div><img id="image1" src="/login/GetValidateCode?a=@ViewBag.rndstr" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();" /></div><span class="reg_icon plane_icon"></span></li>
+        </ul>
+    </div>
+    <div class="confirm_btn_box">
+        <input name="loginbtn" id="loginbtn" value="登录" type="submit" class="invest_btn">
+        <div class="pass_txt"><a href="/login/Forgot" style="float:left; padding-left:10px;">忘记密码？</a><a href="/register/Index" style="float:right; padding-right:10px;">立即注册</a></div>
+        @*<input name="" value="注 册" class="invest_btn reg_btn" onclick="location.href = '/register/Index'" type="button">*@
+        <input type="hidden" id="jmpUrl" name="jmpUrl" value="@ViewBag.jmpUrl" />
+    </div>
+</form>
+<div class="bot_height"></div>
+<nav class="susnav">
+    <ul>
+        <li><a href="首页.htm" class="menu_index"><i></i><strong>我要投资</strong></a></li>
+        <li><a href="我的账户.htm" class="menu_user"><i></i><strong>我的账户</strong></a></li>
+        <li><a href="#" class="menu_inves"><i></i><strong>活动专享</strong></a></li>
+        <li><a href="安全保障.htm" class="menu_security"><i></i><strong>安全保障</strong></a></li>
+    </ul>
+</nav>
+<style type="text/css">
+    .text {
+        width: 95%;
+        height: 20px;
+        line-height: 20px;
+        border: 1px solid #eee;
+        background: #fff;
+        padding: 14px 0 14px 0;
+        text-indent: 40px;
+        border-radius: 0;
+    }
+</style>

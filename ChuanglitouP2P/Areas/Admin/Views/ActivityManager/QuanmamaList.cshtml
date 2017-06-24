@@ -1,0 +1,235 @@
+﻿@using ChuangLitouP2P.Models
+@using PagedList.Mvc
+@using PagedList
+
+@{
+    ViewBag.Title = "券妈妈返现";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSendGiftAll").click(function () {
+            $(this).unbind("click");
+            sendGiftAll();
+            $(this).bind("click", sendGiftAll);
+        });
+        function sendGiftAll() {
+            if (confirm("确定要给所有符合条件的人发放现金奖励吗？该操作需要时间较长")) {
+                postData("-1");
+            }
+        }
+        $("#btnSendGiftSelect").click(function () {
+            $(this).unbind("click");
+            sendGiftSelect();
+            $(this).bind("click", sendGiftSelect);
+        });
+        function sendGiftSelect() {
+            var checkInputs = "";
+            $("input[type='checkbox'][name='cbx_item']").each(function () {
+                if ($(this).prop("checked")) {
+                    checkInputs += $(this).val();
+                    checkInputs += ",";
+                }
+            })
+            postData(checkInputs);
+        }
+        function postData(checkInputs) {
+            $.post("/Admin/ActivityManager/SendGiftMoney", { ids: checkInputs }, function (result) {
+                if (result == '操作完成') {
+                    window.location.reload();
+                }
+            });
+        }
+        $("#btnSearch").click(function () {
+            var mobile = $("#txtRegisterMobile").val();
+            var usrCustID = $("#txtUsrCustID").val();
+            var investMoneyStart = $("#txtInvestMoneyStart").val();
+            var investMoneyEnd = $("#txtInvestMoneyEnd").val();
+            var giftMoneyStart = $("#txtGiftMoneyStart").val();
+            var giftMoneyEnd = $("#txtGiftMoneyEnd").val();
+            var investTimeStart = $("#txtInvestTimeStart").val();
+            var investTimeEnd = $("#txtInvestTimeEnd").val();
+            var sendTimeStart = $("#txtSendTimeStart").val();
+            var sendTimeEnd = $("#txtSendTimeEnd").val();
+            var sltState = $("#sltState").val();
+            var url = "/Admin/ActivityManager/QuanmamaList?page=1";
+            url += "&mobile=" + mobile;
+            url += "&usrCustID=" + usrCustID;
+            url += "&investMoneyStart=" + investMoneyStart;
+            url += "&investMoneyEnd=" + investMoneyEnd;
+            url += "&giftMoneyStart=" + giftMoneyStart;
+            url += "&giftMoneyEnd=" + giftMoneyEnd;
+            url += "&investTimeStart=" + investTimeStart;
+            url += "&investTimeEnd=" + investTimeEnd;
+            url += "&sendTimeStart=" + sendTimeStart;
+            url += "&sendTimeEnd=" + sendTimeEnd;
+            url += "&sltState=" + sltState;
+            window.location.href = url;
+        });
+
+        $("#cbx_All").click(function () {
+            $("input[type='checkbox'][name='cbx_item']").prop("checked", $(this).prop("checked"));
+        });
+    });
+</script>
+<style type="text/css">
+    .uploadform {
+        display: inline;
+        float: left;
+    }
+</style>
+<div class="z_body">
+    <p class="tP3">
+        快速搜索
+    </p>
+    <div class="tP4 tx_tp4" style="padding-bottom:15px; ">
+        <div>
+            <label for="username">注册手机号：</label><input id="txtRegisterMobile" type="text" class="txt1" style="width:100px;" value="@ViewBag.mobile" />&nbsp;
+            <label for="realname">客户号：</label><input id="txtUsrCustID" type="text" class="txt1" style="width:100px;" value="@ViewBag.usrCustID" />&nbsp;
+            <label for="username">首投金额：</label><input id="txtInvestMoneyStart" type="text" class="txt1" style="width:100px;" value="@ViewBag.investMoneyStart" />—<input id="txtInvestMoneyEnd" type="text" class="txt1" style="width:100px;" value="@ViewBag.investMoneyEnd" />&nbsp;
+            <label for="username">返客户金额：</label><input id="txtGiftMoneyStart" type="text" class="txt1" style="width:100px;" value="@ViewBag.giftMoneyStart" />—<input id="txtGiftMoneyEnd" type="text" class="txt1" style="width:100px;" value="@ViewBag.giftMoneyEnd" />
+        </div>
+        <div style="margin-top:1em;">
+            <label for="mobile">投资时间：</label><input id="txtInvestTimeStart" class="jcDate jcDateIco" type="text" style="width:100px;padding-left:40px; line-height:20px;" value="@ViewBag.investTimeStart" autocomplete="off" />—<input class="jcDate jcDateIco" id="txtInvestTimeEnd" type="text" style="width:100px;padding-left:40px; line-height:20px;" value="@ViewBag.investTimeEnd" autocomplete="off" />&nbsp;
+            <label for="mobile">返现时间：</label><input id="txtSendTimeStart" class="jcDate jcDateIco" type="text" style="width:100px;padding-left:40px; line-height:20px;" value="@ViewBag.sendTimeStart" autocomplete="off" />—<input class="jcDate jcDateIco" id="txtSendTimeEnd" type="text" style="width:100px;padding-left:40px; line-height:20px;" value="@ViewBag.sendTimeEnd" autocomplete="off" />&nbsp;
+            <label>状态：</label><select id="sltState"><option value="0">未返现</option><option value="1">已返现</option></select>
+        </div>
+        <div style="margin-top:1em;">
+            <div class="uploadform">
+
+                <input id="btnSearch" type="button" class="btn2" value="查询" />
+                <input id="btnSendGiftAll" type="button" class="btn2" value="发放奖励（全部）" />
+            </div>
+            @using (Html.BeginForm("UploadExcelData", "ActivityManager", FormMethod.Post, new { enctype = "multipart/form-data", @class = "uploadform" }))
+            {
+                <input type="file" id="file" name="file" />
+                <input type="submit" class="btn2" value="导入" />
+            }
+            <div class="uploadform" style="margin-left:5px;">
+                <input id="btnSendGiftSelect" type="button" class="btn2" value="发放奖励（勾选）" />
+            </div>
+        </div>
+    </div>
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        用户列表
+    </h3>
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th>选中</th>
+                <th>注册手机号</th>
+                <th>客户号</th>
+                <th>注册时间</th>
+                <th>投资时间</th>
+                <th>首投金额</th>
+                <th>总投资金额</th>
+                <th>投资期限</th>
+                <th>返客户金额</th>
+                <th>操作</th>
+            </tr>
+            @{
+                foreach (hx_QuanmamaRecord item in ViewBag.ListData)
+                {
+                    string showOrHide = item.SendState == 0 ? "" : "style=display:none";
+                    <tr>
+                        <td><input type="checkbox" name="cbx_item" @showOrHide value="@item.ID" /> </td>
+                        <td>@item.RegisterMobile</td>
+                        <td>@item.UsrCustID</td>
+                        <td>@item.RegisterTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td>@item.InvestTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td>@item.InvestMoney.ToString("0.00")</td>
+                        <td>@item.TotalInvestMoney.ToString("0.00")</td>
+                        <td>@item.InvestPeriod</td>
+                        <td>@item.GiftMoney.ToString("0.00")</td>
+                        <td><a @showOrHide href="/Admin/ActivityManager/SendGiftMoney?ids=@item.ID">发奖</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="9">
+                    <input type="checkbox" id="cbx_All" /> 全选
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <style type="text/css">
+        .PagedList-goToPage {
+            display: inline-block;
+            width: 20%;
+        }
+
+            .PagedList-goToPage fieldset {
+                border: none;
+            }
+
+        .pagination-container {
+            display: inline-block;
+            width: 55%;
+            vertical-align: bottom !important;
+            margin-top: 0px !important;
+        }
+
+        .pagination ul li {
+            margin-top: 0px !important;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $(".PagedList-goToPage label").text("页码");
+            $(".PagedList-goToPage input[type='submit']").val("跳转");
+            $(".PagedList-goToPage input").css("height", "26px");
+        })
+    </script>
+    <div class="pagination ue-clear">
+        <div>
+            @*class="pagination-container">*@
+            <div style="overflow:hidden">
+                @Html.PagedListPager((IPagedList)ViewBag.ListData, page => Url.Action("QuanmamaList", new
+           {
+               page,
+               mobile = @ViewBag.mobile,
+               usrCustID = @ViewBag.usrCustID,
+               investMoneyStart = @ViewBag.investMoneyStart,
+               investMoneyEnd = @ViewBag.investMoneyEnd,
+               giftMoneyStart = @ViewBag.giftMoneyStart,
+               giftMoneyEnd = @ViewBag.giftMoneyEnd,
+               investTimeStart = @ViewBag.investTimeStart,
+               investTimeEnd = @ViewBag.investTimeEnd
+           }))
+                @Html.PagedListGoToPageForm((IPagedList)ViewBag.ListData, Url.Action("QuanmamaList", new
+           {
+               mobile = @ViewBag.mobile,
+               usrCustID = @ViewBag.usrCustID,
+               investMoneyStart = @ViewBag.investMoneyStart,
+               investMoneyEnd = @ViewBag.investMoneyEnd,
+               giftMoneyStart = @ViewBag.giftMoneyStart,
+               giftMoneyEnd = @ViewBag.giftMoneyEnd,
+               investTimeStart = @ViewBag.investTimeStart,
+               investTimeEnd = @ViewBag.investTimeEnd
+           }))
+            </div>
+            <div style="padding:10px;font-weight:600">共 @ViewBag.TotalItemCount 条， @ViewBag.TotalPageCount 页数据</div>
+        </div>
+    </div>
+    @*</div>*@
+</div>

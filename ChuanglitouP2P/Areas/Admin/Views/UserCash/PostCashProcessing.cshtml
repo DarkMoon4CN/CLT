@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "PostCashProcessing";
+    Layout =null;
+}
+
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+    @if(ViewBag.state as string =="1")
+    {
+        @:layer.msg("业务数据处理中.....", 10, 1);
+        }
+    else
+    {
+        @:layer.msg("业务复核处理", 10, 5);
+    }
+    
+
+</script>
+
+
+@Html.Raw(ViewBag.strz)
+

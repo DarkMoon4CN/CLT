@@ -1,0 +1,164 @@
+﻿@model ChuangLitouP2P.Models.V_LL_Cash_User
+@{
+    ViewBag.Title = "LLCashProcessing";
+    // Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>提现审核</title>
+    <base target="_self" />
+    <link rel="stylesheet" href="/css/validstyle.css" type="text/css" media="all" />
+    <link href="/admin/css/admin.content.css" rel="stylesheet" type="text/css" />
+    <link href="/admin/css/admin.global.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>eee
+
+    <script src="/js/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" defer="defer" src="/admin/js/My97DatePicker/WdatePicker.js" charset="utf-8"></script>
+
+    <style type="text/css">
+        .auto-style1 {
+            width: 105px;
+        }
+
+        .auto-style5 {
+            width: 256px;
+        }
+
+        .auto-style6 {
+            width: 25px;
+        }
+
+        .auto-style7 {
+            width: 537px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+
+
+        <form name="dd" action="/admin/LLManage/LLCashPay">
+
+            <div class="search block" id="submit_sk">
+                <div class="h">
+                    <span class="icon-sprite icon-list"></span>
+                    <h3>提现复审</h3>
+                </div>
+                <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+                <div class="cnt-wp">
+                    <div class="cnt">
+
+
+                        <table width="100%" style="table-layout:fixed;margin-top:10px;">
+
+                            <tr>
+                                <td class="auto-style6">&nbsp;</td>
+                                <td class="auto-style1">交易订单号：</td>
+                                <td class="auto-style7">
+
+
+                                    @Html.EditorFor(model => model.no_order, new { htmlAttributes = new { @readonly = "readonly", @class = "inputxt", @style = "width:230px;height:25px;" } })
+                                    @Html.HiddenFor(model => model.LLcashid)
+
+
+                                </td>
+                                <td><span class="Validform_checktip"></span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="auto-style6">&nbsp;</td>
+                                <td class="auto-style1">开户行：</td>
+                                <td class="auto-style7">
+
+                                    @Html.EditorFor(model => model.BankName, new { htmlAttributes = new { @readonly = "readonly", @class = "inputxt", @style = "width:230px;height:25px;" } })
+
+
+                                </td>
+                                <td><span class="Validform_checktip"></span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="auto-style6">&nbsp;</td>
+                                <td class="auto-style1">银行卡号：</td>
+                                <td class="auto-style7">
+                                    @Html.EditorFor(model => model.card_no, new { htmlAttributes = new { @readonly = "readonly", @class = "inputxt", @style = "width:230px;height:25px;" } })
+                                </td>
+                                <td><span class="Validform_checktip"></span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="auto-style6">&nbsp;</td>
+                                <td class="auto-style1">开户名:</td>
+                                <td class="auto-style7">
+                                    @Html.EditorFor(model => model.acct_name, new { htmlAttributes = new { @readonly = "readonly", @class = "inputxt", @style = "width:230px;height:25px;" } })
+                                </td>
+                                <td><span class="Validform_checktip"></span></td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="auto-style6">&nbsp;</td>
+                                <td class="auto-style1">处理结果:</td>
+                                <td class="auto-style7">
+                                    @Html.DropDownList("OrdIdState", ViewBag.ddlList as IEnumerable<SelectListItem>, new { @style = "height:25px;width:229px;" })
+                                </td>
+                                <td><span class="Validform_checktip"></span></td>
+                            </tr>
+
+
+
+
+
+
+
+
+
+
+
+                            <tr>
+                                <td class="auto-style6"></td>
+                                <td class="auto-style1"></td>
+                                <td class="auto-style7">
+
+                                    <input type="submit" value="付款" name="sub" id="sub" Class="button white medium" />
+
+                                    &nbsp;<input type="button" value="关闭" Class="button white medium" onclick="javascript: closewindows();" />
+                                </td>
+                                <td></td>
+                            </tr>
+
+                        </table>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+
+
+
+
+
+
+    </div>
+    <script>
+
+        $("#OrdIdState").val(@Model.paystate);
+
+
+    </script>
+</body>
+</html>

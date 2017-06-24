@@ -1,0 +1,133 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<ActMode>
+
+<div class="z_table02" id="dTable">
+    <table cellpadding="0" cellspacing="0" border="0" id="tab_01">
+        <tr class="z_tabEle">
+            <td width="31"></td>
+            <td width="31">ID</td>
+            <td width="57">姓名</td>
+            <td width="75">手机</td>
+            <td width="55" class="z_tdShow">
+                等级
+                <div style="width:53px;">
+                    <h2>等级</h2>
+
+                </div>
+
+            </td>
+            <td width="76" class="z_tdShow">
+                获得奖励
+                <div>
+                    <h2 style="width:75px;">获得奖励</h2>
+
+                </div>
+
+            </td>
+            <td width="74">额度</td>
+            <td width="88">来源</td>
+            <td width="64">获得时间</td>
+            <td width="58">使用状态</td>
+            <td width="66">使用时间</td>
+            <td width="68">过期时间</td>
+            <td width="72" class="z_tdShow">
+                短信提醒
+                <div style="width:72px;">
+                    <h2>短信提醒</h2>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">是</a>
+                            <a href="javascript:void(0)">否</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </td>
+            <td width="89" class="z_tdShow">
+                投资金额
+                <div style="width:87px">
+                    <h2>投资金额</h2>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">默认时间</a>
+                            <a href="javascript:void(0)">从高到低</a>
+                            <a href="javascript:void(0)">从低到高</a>
+                        </li>
+                    </ul>
+
+            </td>
+            <td width="63">注册时间</td>
+        </tr>
+      
+        @if (Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td><input type="checkbox"></td>
+
+                    @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                    {
+                        item.mobile = item.mobile.Substring(0, 3) + "****" + item.mobile.Substring(7, 4);
+                        if (item.realname != null && item.realname.Length > 1)
+                        {
+                            item.realname = item.realname.Substring(0, 1) + "**";
+                        }
+
+                    }
+                    <td>@item.UserAct</td>
+                    <td><a href="huiyuanxq.html">@item.realname</a></td>
+                    <td><a href="huiyuanxq.html">@item.mobile</a></td>
+                    <td>@Utils.RetUseridentity(@item.useridentity.ToString())</td>
+                    
+                    @{ int RewTypeID = int.Parse(@item.RewTypeID.ToString());}
+                    <td>@Utils.GetRewType(RewTypeID)</td>
+                    <td>
+                       @if (RewTypeID == 3)
+                       {
+                        @item.Amt @:%
+                       }
+                       else
+                       {
+                        @item.Amt @:元
+                       }
+                       </td>
+                    <td style="line-height:14px;padding:10px 7px 0;">@item.ActName</td>
+                    <td>@item.Createtime</td>
+                    <td>@Utils.GetRewardState(item.UseState.ToString())</td>
+                    <td>@item.UseTime</td>
+                    <td>@item.AmtEndtime</td>
+                    <td>@(item.ISSmsOne==0?"否":"是")</td>
+                    <td>@(item.investment_amount==null?"0":item.investment_amount.ToString()) 元</td>
+                    <td>@item.registration_time</td>
+                </tr>
+
+            }
+        }
+
+
+        
+
+
+
+
+    </table>
+
+    <div class="page_box">
+        <div class="page_left">
+            @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox2", GoToButtonId = "goToBtn2" }, new MvcAjaxOptions
+           { UpdateTargetId = "dTable", HttpMethod = "Post", DataFormId = "searchForm", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "dTable")).AjaxOptions(a => a.SetUpdateTargetId("dTable"))
+        </div>
+        <div class="page_right">
+            <div class="input-group" style="margin:20px 0">
+                <span class="input-group-addon">转到第</span>
+                <input type="text" id="pageIndexBox2" class="form-control input-sm" />
+                <span class="input-group-addon">页</span>
+                <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn2">跳转</button></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewBag.Title = "新增广告";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+    List<ChuangLitouP2P.Models.hx_td_web_Ad_type> list_Adtype = ViewBag.Adtypes == null || (List<ChuangLitouP2P.Models.hx_td_web_Ad_type>)ViewBag.Adtypes == null ? null : (List<ChuangLitouP2P.Models.hx_td_web_Ad_type>)ViewBag.Adtypes;
+}
+
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="/Areas/Admin/styleCont/jcDate.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/Admin/styleCont/nav_style.css" rel="stylesheet" type="text/css">
+<script src="/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+<script src="/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        //图片
+        $("#btnUpload").bind("click", function () {
+            if ($("#fileImg").val().length > 0) {
+                ajaxFileUpload();
+            }
+            else {
+                alert("请选择图片");
+            }
+        });
+
+
+
+    });
+    //上次图片
+    function ajaxFileUpload() {
+        $.ajaxFileUpload
+        (
+            {
+                url: '/admin/UploadFile/LinkPicture', //用于文件上传的服务器端请求地址
+                secureuri: false, //一般设置为false
+                fileElementId: 'fileImg', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                dataType: 'json', //返回值类型 一般设置为json
+                success: function (data, status)  //服务器成功响应处理函数
+                {
+                    if (data.ret == 1) {
+                        $("#AdPath").val(data.path);
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (data, status, e)//服务器响应失败处理函数
+                {
+                    alert("操作失败，请重新操作！");
+                }
+            }
+        )
+        return false;
+    }
+
+
+
+    function checkForm()
+    {
+        if ($("#ActName").val() == "")
+        {
+            alert("广告名称不能为空!");
+            $("#Adname").focus();
+            return false;
+        }
+    }
+
+    function afterAdd(data)
+    {
+        alert(data.info);
+
+    }
+
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="/Admin/Ad/Index" class="z_mg5">广告管理</a>><a href="javascript:void(0)"> 新增广告</a></h2>
+<div class="z_body">
+    <h3 class="z_h3">新增广告</h3>
+    <div class="z_02 z_main">
+        @using (Html.BeginForm("AddAdpost", "Ad", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="z_cont2">
+
+                <ul class="zTab_ul">
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label>广告名称：</label>
+                        <input type="text" id="AdName" name="AdName" class="" style="width:240px" datatype="*2-60" nullmsg="广告名称不能空！" errormsg="广告名称至少2个字符,最多60个字符！" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="money">广告类别：</label>
+                        <select id="AdTypeId" name="AdTypeId" datatype="int" nullmsg="请选择广告类别！" errormsg="请选择广告类别！">
+                            <option value="0">广告类别</option>
+                            @if (list_Adtype != null && list_Adtype.Count > 0)
+                            {
+                                foreach (var item in list_Adtype)
+                                {
+                                    <option value="@(item.AdTypeId)">@(item.AdtypeName)</option>
+                                }
+                            }
+                        </select>
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    
+                    <li style="margin-bottom:24px;" class="z_li_01" >
+                        <label for="money">广告路径：</label>
+                        <input type="text" id="AdPath" name="AdPath" class="" style="width:240px;" datatype="*6-60" nullmsg="广告路径不能空！" errormsg="广告路径至少6个字符,最多60个字符！" />
+                        <label class="Validform_checktip Validform_wrong" style="">
+                           
+
+                        </label>
+                        <br />
+                        <input type="file" id="fileImg" name="fileImg" /><input type="button" id="btnUpload" value="上传图片" />
+
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="money">广告链接：</label>
+                        <input type="text" id="AdLink" name="AdLink" class="" style="width:240px" datatype="*1-60" nullmsg="广告链接不能空！" errormsg="广告链接至少1个字符,最多60个字符！" value="http://" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="money">广告状态：</label>
+                        <select name="AdState" id="AdState">
+                            <option selected="selected" value="0">上架</option>
+                            <option value="1">下架</option>
+                        </select>
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <div class="submin_box">
+                            <input type="submit" class="z_btn_01" value="保存">
+                            <input type="button" class="z_btn_02" value="返回" onclick="javascript:history.back()">
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+
+
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4
+
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+
+    });
+
+</script>
+
+

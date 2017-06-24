@@ -1,0 +1,5 @@
+E:\新版网站\LLYTPay\bin\Release\LLYTPay.dll
+E:\新版网站\LLYTPay\bin\Release\LLYTPay.pdb
+E:\新版网站\LLYTPay\obj\Release\LLYTPay.csprojResolveAssemblyReference.cache
+E:\新版网站\LLYTPay\obj\Release\LLYTPay.dll
+E:\新版网站\LLYTPay\obj\Release\LLYTPay.pdb

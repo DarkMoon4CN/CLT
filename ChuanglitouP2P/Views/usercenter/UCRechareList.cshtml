@@ -1,0 +1,19 @@
+﻿@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+    <tr>
+        <td>@Utils.GetDateFormat((DateTime)item.recharge_time)</td>
+        <td>@item.recharge_amount 元</td>
+        <td>@item.recharge_bank</td>
+        <td class="dTchange1">
+           @item.order_No
+        </td>
+        <td class="dTchange2"> @Utils.GetRecharge_condition(item.recharge_condition.ToString())</td>
+    </tr>
+    }
+}

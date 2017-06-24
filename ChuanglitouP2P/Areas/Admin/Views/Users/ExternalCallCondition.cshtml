@@ -1,0 +1,515 @@
+﻿
+@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.ViewUserCenter>
+@{
+    ViewBag.Title = "会员列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+    var isinvest = ViewBag.IsInvestment;
+    var projecttermss = ViewBag.ProjectTerms;
+
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        loadPage();
+
+        $("#downloadExcel").bind("click", function () {
+            outputExcel();
+        });
+    });
+
+    function isinvestment() {
+        var investmentis = $("#IsInvestment").val();
+
+        if (investmentis == 1)//已投资
+        {
+            $("#InvestDateStart").show();
+            $("#investStartTime").show();
+            $("#InvestDateEnd").show();
+            $("#investEndTime").show();
+
+        } else if (investmentis == 0)//未投资
+        {
+            $("#InvestDateStart").hide();
+            $("#investStartTime").hide();
+            $("#InvestDateEnd").hide();
+            $("#investEndTime").hide();
+        } else {
+
+            $("#InvestDateStart").hide();
+            $("#investStartTime").hide();
+            $("#InvestDateEnd").hide();
+            $("#investEndTime").hide();
+        }
+    };
+
+    function outputExcel() {
+
+        var starttime = $("#startTime").val();
+        var endTime = $("#endTime").val();
+        var useridentity = $("#useridentity").val();
+        if (useridentity == null || useridentity == -1) {
+            useridentity = -1;
+        }
+        var istruename = $("#IsTrueName").val();
+        if (istruename == null || istruename == -1) {
+            istruename = -1;
+        }
+        var iscps = $("#IsCPS").val();
+        if (iscps == null || iscps == -1) {
+            iscps = -1;
+        }
+        var beginbalance = $("#BeginBalance").val();
+        var endbalance = $("#EndBalance").val();
+        var investStartTime=$("#investStartTime").val();
+        var investEndTime=$("#investEndTime").val();
+        var InvestmentExpireStartDate = $("#InvestmentExpireStartDate").val();
+        var InvestmentExpireEndDate = $("#InvestmentExpireEndDate").val();
+        var investCount = $("#InvestmentCount").val();
+        if (investCount == null || investCount == "") {
+            investCount = -1;
+        }
+        var pro=$("#projectterms").val();
+        var isinvestment=@isinvest;
+        var url = "/admin/Users/ExternalImportData?starttime=" + starttime + "&endtime=" + endTime +"&IsInvestment="+isinvestment+"&investStartTime="+investStartTime+"&investEndTime="+investEndTime+ "&useridentity=" + useridentity + "&istruename=" + istruename + "&iscps=" + iscps + "&beginBalance=" + beginbalance + "&endBalance=" + endbalance + "&InvestmentExpireStartDate=" + InvestmentExpireStartDate +"&InvestmentExpireEndDate="+InvestmentExpireEndDate+ "&InvestmentCount=" + investCount+"&projectterms="+pro;
+
+        var exportwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '数据导出',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['850px', "600px"],
+            iframe: { src: url, scrolling: false }
+        });
+    };
+
+    function downloadExcel(url) {
+        alert(url);
+        var obj = $("#downloadExcelBtn");
+        obj.attr("href", url);
+        document.getElementById("downloadExcelBtn").click();
+    };
+
+    function loadPage() {
+
+        $("#InvestDateStart").hide();
+        $("#investStartTime").hide();
+        $("#InvestDateEnd").hide();
+        $("#investEndTime").hide();
+
+        var radio = document.getElementsByName("IsInvestment");
+
+        var radioLength = radio.length;
+
+        if(@isinvest==1)
+        {
+            $("#InvestDateStart").show();
+            $("#investStartTime").show();
+            $("#InvestDateEnd").show();
+            $("#investEndTime").show();
+
+            for (var i = 0; i < radioLength; i++) {
+
+                if (radio[i].value=="1") {
+
+                    radio[i].checked=true;
+                }
+                else
+                {
+                    radio[i].checked=false;
+                }
+            }
+        }else if(@isinvest==0)
+        {
+            $("#InvestDateStart").hide();
+            $("#investStartTime").hide();
+            $("#InvestDateEnd").hide();
+            $("#investEndTime").hide();
+
+            for (var i = 0; i < radioLength; i++) {
+                if (radio[i].value=="0") {
+
+                    radio[i].checked=true;
+                }
+                else
+                {
+                    radio[i].checked=false;
+                }
+            }
+        }
+
+        var pro=$("#projectterms").val();
+
+        obj = document.getElementsByName("projectterm");
+
+        if(pro.indexOf('1')>=0)
+        {
+            for(k in obj){
+                if(obj[k].value=="1")
+                    obj[k].checked=true;
+            }
+        }
+        if(pro.indexOf('3')>=0)
+        {
+            for(k in obj){
+                if(obj[k].value=="3")
+                    obj[k].checked=true;
+            }
+        }
+        if(pro.indexOf('6')>=0)
+        {
+            for(k in obj){
+                if(obj[k].value=="6")
+                    obj[k].checked=true;
+            }
+        }
+
+        var useridentity = $("#hid_useridentity").val();
+        $("#useridentity").val(useridentity);
+        var istruename = $("#hid_IsTrueName").val();
+        $("#IsTrueName").val(istruename);
+        var iscps = $("#hid_IsCPS").val();
+        $("#IsCPS").val(iscps);
+    }
+
+    function getprojectterm()
+    {
+
+        var radiovalue;
+        var radio = document.getElementsByName("IsInvestment");
+
+        var radioLength = radio.length;
+        for (var i = 0; i < radioLength; i++) {
+            if (radio[i].checked) {
+                radiovalue = radio[i].value;
+            }
+        }
+
+        var investCount = $("#InvestmentCount").val();
+        
+        if(radiovalue==1 && investCount<=0 && investCount!="")
+        {
+            alert("投资次数与是否投资条件相悖！请重新选择是否投资或投资次数的查询条件")
+        }
+
+        obj = document.getElementsByName("projectterm");
+        check_val = [];
+        for(k in obj){
+            if(obj[k].checked)
+                check_val.push(obj[k].value);
+        }
+        $("#projectterms").val(check_val);
+    }
+
+    function closewindows() {
+        layer.close(exportwindow);
+    }
+
+    $(function () {
+        $("#btnAsyncMoney").click(function () {
+            if (confirm("该操作执行时间较长，执行期间请不要重复点击，确定执行该操作吗？")) {
+                $.post("/admin/Users/AsyncAllUserMoney", "", function (result) {
+                    alert(result);
+                });
+            }
+        });
+    });
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>><a href="javascript:void(0)"> 客服数据</a></h2>
+<div class="z_body">
+    <p class="tP3">
+        快速搜索
+    </p>
+    @using (Html.BeginForm("ExternalCallCondition", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="tP4 tx_tp4" style="height:130px; padding-bottom:15px; ">
+            <div style="height:27px;">
+                <label for="startTime">注册时间（开始）：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;width:100px;" id="startTime" name="startTime" value="@(ViewBag.startTime)" autocomplete="off" />&nbsp;&nbsp;
+                -&nbsp;&nbsp;
+                <label for="endTime">注册时间（结束）：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;width:100px;" id="endTime" name="endTime" value="@(ViewBag.EndTime)" autocomplete="off" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>是否投资：</label>
+                @*<input value="1" type="radio" name="IsInvestment" onchange = "isinvestment();" checked><i class="w_i">是</i>
+    <input value="0" type="radio" name="IsInvestment" onchange = "isinvestment();" ><i class="w_i">否</i>*@
+
+                <select name="IsInvestment" id="IsInvestment" onchange="isinvestment();" style="padding-left: 10px;height: 24px;">
+                    <option value="-1">请选择</option>
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select>&nbsp;&nbsp;
+
+                <label for="investStartTime" id="InvestDateStart">投资时间（开始）：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;width:100px;" id="investStartTime" name="investStartTime" value="@(ViewBag.InvestStartTime)" autocomplete="off" />
+
+                <label for="investEndTime" id="InvestDateEnd">&nbsp;&nbsp;-&nbsp;&nbsp;投资时间（结束）：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;width:100px;" id="investEndTime" name="investEndTime" value="@(ViewBag.InvestEndTime)" autocomplete="off" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+            </div>
+
+            <div style="margin-top:2em;">
+                @*@UserControl.HX_SelectActUser(1)*@
+                <label for="useridentity">等级：</label>
+                <select style="height: 24px;line-height:24px" name="useridentity" id="useridentity">
+                    <option value="-1">请选择</option>
+                    <option value="0">普通会员</option>
+                    <option value="1">vip会员(含普通会员)</option>
+                </select>
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="IsTrueName">是否实名认证：</label>
+                <select name="IsTrueName" id="IsTrueName" style="padding-left: 10px;height: 24px;">
+                    <option value="-1">请选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="IsCPS">是否CPS用户：</label>
+                <select name="IsCPS" id="IsCPS" style="padding-left: 10px;height: 24px;">
+                    <option value="-1">请选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>账户余额：</label>
+                <input type="text" class="txt1" id="BeginBalance" name="BeginBalance" value="@(ViewBag.BeginBalance)" style="width:100px;" />&nbsp;
+                -
+                <input type="text" class="txt1" id="EndBalance" name="EndBalance" value="@(ViewBag.EndBalance)" style="width:100px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+
+            <div style="margin-top:2em;">
+                <label for="InvestmentExpireStartDate">理财到期时间：</label>
+                <input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;width:100px;" id="InvestmentExpireStartDate" name="InvestmentExpireStartDate" value="@(ViewBag.InvestmentExpireStartDate)" autocomplete="off" />
+                &nbsp;&nbsp;-&nbsp;&nbsp;<input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;width:100px;" id="InvestmentExpireEndDate" name="InvestmentExpireEndDate" value="@(ViewBag.InvestmentExpireEndDate)" autocomplete="off" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="InvestmentCount">投资次数：</label>
+                <input type="text" class="txt1" id="InvestmentCount" name="InvestmentCount" value="@(ViewBag.InvestmentCount)" style="width:80px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>产品期限：</label>
+                <input type="checkbox" name="projectterm" value="1" /><i style="margin-left:10px;">一个月</i>
+                <input type="checkbox" name="projectterm" value="3" /><i style="margin-left:10px;">三个月</i>
+                <input type="checkbox" name="projectterm" value="6" /><i style="margin-left:10px;">六个月</i>
+                <input type="hidden" id="projectterms" name="projectterms" value="@(ViewBag.ProjectTerms)" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" class="btn2" style="width:100px;" value="查&nbsp;&nbsp;&nbsp;询" onclick="getprojectterm()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" class="btn2" id="downloadExcel" value="导&nbsp;&nbsp;&nbsp;入&nbsp;&nbsp;&nbsp;数&nbsp;&nbsp;&nbsp;据" />
+                <input type="hidden" id="hid_useridentity" value="@ViewBag.useridentity" />
+                <input type="hidden" id="hid_IsTrueName" value="@ViewBag.IsTrueName" />
+                <input type="hidden" id="hid_IsCPS" value="@ViewBag.IsCPS" />
+                
+</div>
+        </div>
+    }
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        会员列表
+    </h3>
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th>用户Id</th>
+                <th>手机号</th>
+                <th>姓名</th>
+                <th>登录名</th>
+                <th>注册时间</th>
+                <th>投资状态</th>
+                <th>投资金额</th>
+                <th>投资笔数</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                        {
+
+                            if (item.username.Length == 11 && !String.IsNullOrEmpty(item.username))
+                            {
+                                item.username = item.username.Substring(0, 3) + "****" + item.username.Substring(7, 4);
+                            }
+                            if (item.username.Length != 11 && !String.IsNullOrEmpty(item.username) && item.username.Length > 1)
+                            {
+                                item.username = item.username.Substring(0, 1) + "**";
+                            }
+                            if (item.realname != null && item.realname.Length > 1)
+                            {
+                                item.realname = item.realname.Substring(0, 1) + "**";
+                            }
+                            item.mobile = item.mobile.Substring(0, 3) + "****" + item.mobile.Substring(7, 4);
+
+                        }
+                        <td>@item.registerid</td>
+                        <td>@item.mobile</td>
+                        <td>@item.realname</td>
+                        <td>@item.username</td>
+                        <td>@item.registration_time</td>
+                        <td>@item.InvestState</td>
+                        <td>@item.allInvestMoney</td>
+                        <td>@item.investcounts</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <style type="text/css">
+        .PagedList-goToPage {
+            display: inline-block;
+            width: 20%;
+        }
+
+            .PagedList-goToPage fieldset {
+                border: none;
+            }
+
+        .pagination-container {
+            display: inline-block;
+            width: 55%;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $(".PagedList-goToPage label").text("页码");
+            $(".PagedList-goToPage input[type='submit']").val("跳转");
+        })
+    </script>
+    <div class="pagination ue-clear">
+        <div>
+            <div style="overflow:hidden">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("ExternalCallCondition", new
+           {
+               page,
+               starttime = @ViewBag.startTime,
+               endTime = @ViewBag.EndTime,
+               useridentity = @ViewBag.useridentity,
+               istruename = @ViewBag.IsTrueName,
+               iscps = @ViewBag.IsCPS,
+               beginbalance = @ViewBag.BeginBalance,
+               endbalance = @ViewBag.EndBalance,
+               InvestmentExpireStartDate = @ViewBag.InvestmentExpireStartDate,
+               InvestmentExpireEndDate = @ViewBag.InvestmentExpireEndDate,
+               investCount = @ViewBag.InvestmentCount,
+               investStartTime = @ViewBag.InvestStartTime,
+               investEndTime = @ViewBag.InvestEndTime,
+               IsInvestment = @ViewBag.IsInvestment,
+               projectterms = @ViewBag.ProjectTerms
+           }))
+                @Html.PagedListGoToPageForm((IPagedList)Model, Url.Action("ExternalCallCondition", new
+           {
+               starttime = @ViewBag.startTime,
+               endTime = @ViewBag.EndTime,
+               useridentity = @ViewBag.useridentity,
+               istruename = @ViewBag.IsTrueName,
+               iscps = @ViewBag.IsCPS,
+               beginbalance = @ViewBag.BeginBalance,
+               endbalance = @ViewBag.EndBalance,
+               InvestmentExpireStartDate = @ViewBag.InvestmentExpireStartDate,
+               InvestmentExpireEndDate = @ViewBag.InvestmentExpireEndDate,
+               investCount = @ViewBag.InvestmentCount,
+               investStartTime = @ViewBag.InvestStartTime,
+               investEndTime = @ViewBag.InvestEndTime,
+               IsInvestment = @ViewBag.IsInvestment,
+               projectterms = @ViewBag.ProjectTerms
+           }))
+            </div>
+            <div style="padding:10px;font-weight:600">共 @ViewBag.TotalItemCount 条， @ViewBag.TotalPageCount 页数据</div>
+        </div>
+    </div>
+    @*</div>*@
+</div>
+
+<a href="" id="downloadExcelBtn" style="display:;"></a>
+
+
+
+<script>
+    $(function () {
+        $('.cnt-wp table tr').css('background', '#f7f7f7');
+        $('.ffjl').click(function () {
+            $('#xubox_shade1').css('display', 'block');
+            $('.xubox_layer').css('display', 'block');
+            var strIds = "";
+            $("input[name='cbx_item']").each(function () {
+                if ($(this).attr("checked")) {
+                    if (strIds.length > 0) {
+                        strIds = strIds + ",";
+                    }
+                    strIds = strIds + $(this).val();
+                }
+            });
+
+            $("#registerid").val(strIds);
+
+
+
+        })
+
+    })
+    function closeTck() {
+        $('#xubox_shade1').css('display', 'none');
+        $('.xubox_layer').css('display', 'none');
+
+    }
+    function ck() {
+
+
+        var vl = $("#txtTitle").val().trim();
+        if (vl == "") {
+            alert("标题不能为空");
+            return false
+        }
+        vl = $("#bonus_start_time").val().trim();
+        if (vl == "") {
+            alert("开始时间不能为空");
+            return false
+        }
+
+        vl = $("#bonus_end_time").val().trim();
+        if (vl == "") {
+            alert("结束时间不能为空");
+            return false
+        }
+
+        vl = $("#bonus_k").val().trim();
+        if (vl == "") {
+            alert("数量不能为空");
+            return false
+        }
+        if ($("tr[atr=\"rates\"]").css("display") != "none") {
+            vl = $("#ddlRateList").val();
+            if (vl == "0") {
+                alert("请选择加息券");
+                return false
+            }
+        }
+
+        if ($("#registerid").val() == "") {
+            alert("请选择用户");
+            return false
+        }
+
+        return true;
+
+    }
+    function choose(i) {
+        if (i == 0) {
+            $("tr[atr=\"rates\"]").hide();
+            $("tr[atr=\"bonus\"]").show();
+        } if (i == 1) {
+            $("tr[atr=\"rates\"]").show();
+            $("tr[atr=\"bonus\"]").hide();
+        }
+    }
+
+</script>

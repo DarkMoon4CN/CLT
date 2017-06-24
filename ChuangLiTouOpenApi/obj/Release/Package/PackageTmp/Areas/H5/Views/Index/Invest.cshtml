@@ -1,0 +1,108 @@
+﻿@using ChuanglitouP2P.Common
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>投资还款</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("about.css").ToHtml()
+    @Url.ApiFile("jquery-1.11.1.min.js").ToHtml()
+    <script>
+	(function(doc,win){var docEl=doc.documentElement,resizeEvt="orientationchange"in window?"orientationchange":"resize",recalc=function(){var clientWidth=docEl.clientWidth;if(!clientWidth)return;docEl.style.fontSize=20*(clientWidth/320)+"px"};if(!doc.addEventListener)return;win.addEventListener(resizeEvt,recalc,false);doc.addEventListener("DOMContentLoaded",recalc,false)})(document,window)
+    </script>
+</head>
+<body>
+    <article>
+        <ul class="helpList">
+            <li>
+                <a href="javascript:;">收款之后可以马上再投资么？<span class="icon-up"></span></a>
+                <p class="txtBox" style="display:block">
+                    可以。 我们鼓励投资人在收到还款后及时进行再次投资，确保收益的最大化。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">借款利息从什么时候开始计算？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    计息时间从投资人成功投资项目的当天起算。 投资人从投标日就能开始享受项目的年化收益。投标越早，收益越多。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">如何收回借出去的投资资金？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    投资人无须任何操作，借款企业须在规定的时间内付息还本。创利投会根据各位投资人的投资金额，自动将还款转入投资人的汇付天下账户，数据将被同步到创利投。您可以利用还款资金循环投资，循环投资部分创利投会有额外钱帮币赠送，也可以通过提现功能将还款提取到您的银行卡中。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">没有在固定时间募集满的项目会如何处理？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    创利投在选择和公布项目时，会进行投资能力的预测评估，以保证在期限内募集成功。请投资人放心投资！ 投资人投资成功后，即表示已向借款人提供融资，并签署了借款与担保合同，投资人的债权已经得到了充分的保障，与该项目是否募集成功无关。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">投资后是否可以取消？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    投资后不能取消，也不能要求借款企业提前还款。 为了投资人的长期稳定收益，目前约定借款人正常运营情况下不得提前还款。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">如何查看投资借款合同？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    投资成功后，可登录“我的账户”的“投资记录”页面，查看每次投资对应的投资借款合同。 <br>
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">能否提前赎回投资？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    目前无法随时赎回投资，必须在借款到期后方能赎回。<br>
+                    创利投没有资金池，不存在期限错配，只有在借款到期后赎回。为了投资人的长期稳定收益，目前约定借款人正常运营情况下不得提前还款。 <br>
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">如何获得投资收益？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    投资到期时，本金和利息收入将会自动记入投资人的汇付天下账户，创利投账户同步更新数据，可以随时再投资或者提现。
+                    请留意系统消息、电子邮件和短信提醒。<br>
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">为什么会投资失败？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    投资失败可能由于以下原因：<br>
+                    1.投资人账户内资金不足，需要充值；<br>
+                    2.有别的投资人先于您投资，从而使此投资项目的进度达到了100%；<br>
+                    3.投资人投资金额超过项目剩余融资金额。为了避免此情况，在投资时，可设置“智能投资”模式。<br>
+                    “智能投资”即设定在投资金额大于剩余融资金额的情况下，系统默认投资额为剩余融资金额。<br>
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">投资金额有限制吗？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    目前，创利投的多数项目投资起点金额是100元，递增单位金额为100元。<br>
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">投资之前应该注意什么？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    投资前，请务必做到：<br>
+                    1.对创利投的业务模式、运作原理有所了解；<br>
+                    2.仔细阅读产品说明书，包括项目融资金额、年化收益率、投资期限等信息，以确定该产品符合您的风险承受能力、投资回报率和流动性等方面的要求；<br>
+                    3.核实投资金额。<br>
+                </p>
+            </li>
+
+        </ul>
+    </article>
+    @Url.ApiFile("helpCenter.js").ToHtml()
+</body>
+</html>

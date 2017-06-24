@@ -1,0 +1,69 @@
+﻿@using ChuanglitouP2P.Common
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("about.css").ToHtml()
+    @Url.ApiFile("jquery-1.11.1.min.js").ToHtml()
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, resizeEvt = "orientationchange" in window ? "orientationchange" : "resize", recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; docEl.style.fontSize = 20 * (clientWidth / 320) + "px" }; if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false) })(document, window)
+    </script>
+</head>
+<body>
+    <article>
+        <ul class="helpList">
+            <li>
+                <a href="javascript:;">忘记了创利投登录密码怎么办？ <span class="icon-up"></span></a>
+                <p class="txtBox" style="display:block">
+                    如果您遗忘了登录密码，可以按照如下步骤找回密码：<br>
+                    1.点击首页“登录”按钮进入用户登录页面，点击“忘记密码”；<br>
+                    2.填写注册时使用的手机号码，输入手机收到的验证码；或填写注册时使用的电子邮箱地址，接收验证邮件；<br>
+                    3.重置密码；<br>
+                    4.使用新密码重新登录创利投。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">如何更安全的设置密码？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    1.密码包含数字和英文字母（区分大小写）；<br>
+                    2.密码要求至少6位字符，不超过16位字符；在此范围内，使用尽量多的字符；<br>
+                    3.使用复杂的字母数字组合以提高密码强度，不要用生日等容易被别人猜中的密码；<br>
+                    4.创利投登录密码、汇付天下登录密码、汇付天下交易密码保持独此独立；<br>
+                    5.如果使用了密码找回功能，及时删除我们发送给您的找回密码邮件；<br>
+                    6.不要与任何人共享您的密码； <br>
+                    7.定期修改密码；<br>
+                    8.安装和使用杀毒软件。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">如何在创利投进行注册投资？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    1.注册：点击网页，按照页面提示注册创利投账户；<br>
+                    2.手机验证并开户：进行手机验证，同在第三方资金托管平台“汇付天下”开立对应创利投的专属资金账户；<br>
+                    3.充值：在账户中充入资金；<br>
+                    4.投资：选择项目点击“投资”，等待收益。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">如何成为创利投的投资人？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    18周岁，具有完全民事行为能力，通过提交注册即可成为创利投投资人。<br>
+
+                </p>
+            </li>
+        </ul>
+    </article>
+    @Url.ApiFile("helpCenter.js").ToHtml()
+</body>
+</html>

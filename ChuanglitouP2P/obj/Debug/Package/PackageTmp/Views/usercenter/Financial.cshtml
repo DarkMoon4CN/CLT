@@ -1,0 +1,146 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuangLitouP2P.Models;
+@model ChuangLitouP2P.Models.hx_member_table
+
+@{
+    ViewBag.Title = "资金管理-资金明细-创利投";
+    ViewBag.keywords = "资金管理-资金明细-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+    B_usercenter o = new B_usercenter();
+}
+<div class="content">
+    <!--公共的左侧-->
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+    <div>
+
+        <!--                                                                     资金明细-->
+        <div class="fund choose">
+            <h2>资金明细</h2>
+            <table class="zTab" cellpadding="0" cellspacing="0">
+               
+                @{
+                    decimal available_balance = 0.0M; //余额
+                    decimal sy = Math.Round(o.Getcollecttotalamountinterest(Model.registerid), 2); //收益
+                    decimal benji = o.GetPrincipal(Model.registerid);  //待收本金
+                    decimal jianli = Math.Round(o.GetBonuses(Model.registerid), 2);//奖励
+                    decimal dongjie = 0.00M;
+                    decimal.TryParse(Model.available_balance.ToString(), out available_balance);
+
+                    decimal.TryParse(Model.frozen_sum.ToString(), out dongjie);
+
+                    decimal TotalCapital = 0.00M; //总资产
+
+                    TotalCapital = available_balance + sy + benji + jianli + dongjie;
+
+                }
+                 <tr>
+                    <td style="background: #F85151;color:#fff;font-size:14px;width:162px;font-weight: bold;">资产总计</td>
+                    <td style="background: #F85151;color:#fff;font-size:14px;font-weight: bold;">@TotalCapital.ToString()元</td>
+                </tr>
+
+                
+
+                <tr>
+                    <td>账户余额</td>
+                    <td>@available_balance 元</td>
+                </tr>
+                <tr>
+                    <td>待收本金</td>
+                    <td>@benji.ToString()元</td>
+                </tr>
+                <tr>
+                    <td>待收收益</td>
+                    <td>@sy.ToString()元</td>
+                </tr>
+                <tr>
+                    <td>冻结金额</td>
+                    <td>@dongjie 元</td>
+                </tr>
+                <tr>
+                    <td>奖励金额</td>
+                    <td>@jianli.ToString()元</td>
+                </tr>
+            </table>
+            <table class="zTab zTab2" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="background: #FFC045;color:#fff;font-size:14px;font-weight: bold;">累计投资</td>
+                    <td style="background: #FFC045;color:#fff;font-size:14px;font-weight: bold;">@Math.Round(o.GetTotalinvestment(Model.registerid),2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>创业贷</td>
+                    <td>@Math.Round(o.GetTotalinvestment(Model.registerid,2), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>投房贷</td>
+                    <td>@Math.Round(o.GetTotalinvestment(Model.registerid,4), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>利车贷</td>
+                    <td>@Math.Round(o.GetTotalinvestment(Model.registerid,3), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>稳健理财</td>
+                    <td>@Math.Round(o.GetTotalinvestment(Model.registerid, 5), 2).ToString()元</td>
+                </tr>
+
+                <tr>
+                    <td>新手标</td>
+                    <td>@Math.Round(o.GetTotalinvestment(Model.registerid, 6), 2).ToString()元</td>
+                </tr>
+
+            </table>
+            <table class="zTab zTab2" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="background: #46D38C;color:#fff;font-size:14px;font-weight: bold;">待收收益</td>
+                    <td style="background: #46D38C;color:#fff;font-size:14px;width:200px;font-weight: bold;">@Math.Round(o.Getcollecttotalamountinterest(Model.registerid), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>创业贷</td>
+                    <td>@Math.Round(o.Getcollecttotalamountinterest(Model.registerid,2), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>投房贷</td>
+                    <td>@Math.Round(o.Getcollecttotalamountinterest(Model.registerid, 4), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>利车贷</td>
+                    <td>@Math.Round(o.Getcollecttotalamountinterest(Model.registerid, 3), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>稳健理财</td>
+                    <td>@Math.Round(o.Getcollecttotalamountinterest(Model.registerid, 5), 2).ToString()元</td>
+                </tr>
+            </table>
+            <table class="zTab zTab2" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="background: #0F91DD;color:#fff;font-size:14px;font-weight: bold;">已收收益</td>
+                    <td style="background: #0F91DD;color:#fff;font-size:14px;font-weight: bold;">@Math.Round(o.GetInterest(Model.registerid), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>创业贷</td>
+                    <td>@Math.Round(o.GetInterest(Model.registerid,2), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>投房贷</td>
+                    <td>@Math.Round(o.GetInterest(Model.registerid,4), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>利车贷</td>
+                    <td>@Math.Round(o.GetInterest(Model.registerid,3), 2).ToString()元</td>
+                </tr>
+                <tr>
+                    <td>稳健理财</td>
+                    <td>@Math.Round(o.GetInterest(Model.registerid,5), 2).ToString()元</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+
+
+</div>

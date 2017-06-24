@@ -1,0 +1,187 @@
+h1,h2,h3,img,p,div,ul,li,dl,dt{
+	padding:0px;
+	margin:0px;	
+}
+img{
+	border:none;	
+}
+a{
+	text-decoration:none;	
+}
+
+/*结构样式*/
+
+body{
+	background:#fff;		
+}
+
+.v_body{
+	width:1352px;
+	margin:71px 0 0 62px;
+	background:#003663;
+	overflow:hidden;
+	padding-bottom:150px;
+}
+
+/*left  导航样式*/
+
+.v_left{
+	width:199px;
+	float:left;
+}
+.v_left a{
+	color:#fff;	
+}
+.v_left p{
+	height:86px;
+	padding-left:1px;
+	background:#3165a1;
+	margin-bottom:27px;
+}
+
+.v_left h2{
+	
+	background-color:#01477e ;
+	background-repeat:no-repeat;
+	background-image:url(../images/img_icon.png);
+}
+.v_left h2 a{
+	font-size:14px;
+	line-height:40px;
+	height:40px;
+	display:block;
+	text-align:left;
+	padding-left:54px;
+	background:url(../images/img_icon.png) no-repeat 128px -360px;	
+}
+
+.v_left h2.home{
+	background-position:20px 0;
+}
+.v_left h2.home1{
+	background-position:20px -40px;
+}
+.v_left h2.home2{
+	background-position:20px -80px;
+}
+.v_left h2.home3{
+	background-position:20px -120px;
+}
+.v_left h2.home4{
+	background-position:20px -160px;
+}
+.v_left h2.home5{
+	background-position:20px -200px;
+}
+.v_left h2.home6{
+	background-position:20px -240px;
+}
+.v_left h2.home7{
+	background-position:20px -280px;
+}
+
+
+
+.left_nav1,.left_nav2{
+	background:#0061a6;
+	padding:15px 0;	
+	
+}
+.left_nav1 h3,.left_nav2 h3{
+	height:30px;
+	line-height:30px;
+	padding-left:75px;
+	background:url(../images/nav_dot.png) no-repeat 62px center;
+}
+.left_nav1 h3 a{
+	padding-right:26px;
+	font-size:14px;
+	height:30px;
+	font-weight:normal;	
+	background:url(../images/h3_show.png) no-repeat right -4px;
+	display:inline-block;
+}
+
+div.left_nav2 h3 a{
+	background:none;	
+}
+.left_nav a{
+	text-decoration:none;	
+	font-style:normal;
+}
+.left_nav1 ul{
+	
+}
+.left_nav1 li{
+	height:30px;
+	line-height:30px;	
+}
+.left_nav1 li a{
+	font-size:12px;
+	text-align:center;
+	margin-left:93px;
+	padding-right:12px;
+}
+.left_nav1 li a.a_checked,.left_nav1 li a:hover{
+	color:#f96633;
+	font-weight:bold;	
+	font-style:normal;
+	background:url(../images/left_hover.png) no-repeat right center;
+}
+
+.left_nav2 h3 a{
+    padding-right: 26px;
+	font-size:14px;
+	line-height:30px;
+	height:30px;
+	background:none;
+    display: inline-block;
+	font-weight:normal;	
+}
+.left_nav2 h3 a.a_checked,.left_nav2 h3 a:hover{
+	color:#f96633;
+	font-weight:bold;	
+	background:url(../images/left_hover.png) no-repeat right center;
+}
+
+.hide{
+	display:none;	
+	
+}
+.show{
+	display:block;	
+		
+}
+
+div.v_left h2 a.hover{
+	background:url(../images/img_icon.png) no-repeat 128px -318px;		
+}
+div.v_left .h2 a.leave{
+	background:url(../images/img_icon.png) no-repeat 128px -340px;	
+}
+
+div.v_left h3 a.hover{
+	background:url(../images/h3_hover.png) no-repeat right -5px;		
+}
+div.v_left h3 a.leave{
+	background:url(../images/h3_show.png) no-repeat right -4px;	
+}
+
+/*right  结构样式*/
+
+.v_right{
+	width:1153px;
+	float:left;
+	background:#fff;	
+	  /*此高度只为测试使用*/
+}
+.location{
+	height:34px;
+	background:#3165a1;	
+}
+.location span{
+	color:#fff;
+	font-size:12px;
+	line-height:34px;
+	padding-left:19px;		
+}

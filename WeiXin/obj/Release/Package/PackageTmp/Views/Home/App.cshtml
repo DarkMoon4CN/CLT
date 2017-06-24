@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "创利投-安全的阳光P2B网络借贷金融平台";
+    ViewBag.keywords = "P2B借贷,P2P理财,P2B理财,互联网金融,网络理财,投资理财,个人借贷平台,企业融资,创利投";
+    Layout = "~/Views/Shared/Activity_Layout.cshtml";
+}
+<link href="~/css/app.land.css" rel="stylesheet" />
+<link href="~/css/common.css" rel="stylesheet" />
+<script src="~/js/jquery-1.9.1.min.js"></script>
+<script src="~/js/browser.js"></script>
+<script src="~/js/appScript.js?v=1.0.0.1"></script>
+<script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+</script>
+<script type="text/javascript">
+var _oztime = (new Date()).getTime();
+</script>
+
+    <div class="w_apptui" style="position:relative">
+        <div class="w_apptui_1">
+            <img src="~/images/w_app_01.jpg">
+            <div class="w_apptui_1_main">
+                <a href="" class="w_apptui_1_main_a">点击下载</a>
+            </div>
+        </div>
+        <div class="w_apptui_2">
+            <img src="~/images/w_app_02.jpg">
+        </div>
+        <div class="w_apptui_3">
+            <img src="~/images/w_app_03.jpg">
+        </div>
+        <div class="w_apptui_4">
+            <img src="~/images/w_app_04.jpg">
+        </div>
+
+    
+     </div>
+    
+    <div class="shade" style="z-index:9999">
+        <img src="~/Areas/activity/Sources/20161014/images/weixintuiguang.png">
+    </div>
+    <div class="fixed_Bar">
+        <div class="BarCentert">
+            <img src="~/Areas/activity/Sources/20161014/images/User_img07.png">
+            <a href="/DownLoad.html">立刻下载</a>
+            <span class="fixed_Bar_Close"></span>
+        </div>
+    </div>
+    <script type="text/javascript">
+	       var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1254620195'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254620195%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <span id="cnzz_stat_icon_1254620195">
+        <a href="http://www.cnzz.com/stat/website.php?web_id=1254620195" target="_blank" title="站长统计"> </a>
+    </span>
+
+<script>
+    $(function () {
+
+
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端    
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端    
+        //alert('是否是Android：' + isAndroid);
+        //alert('是否是iOS：' + isiOS);
+
+
+
+        if (browser.versions.weixin) {
+            //$(".shade").show();
+            //$(".fixed_Bar").hide();
+        } else {
+
+            if (isiOS)//判断那个手机端过来
+            {
+                $(".w_apptui_1_main_a").attr("href", "https://itunes.apple.com/cn/app/chuang-li-tou/id1152272905?mt=8");
+            }
+            if (isAndroid) {
+
+                $(".w_apptui_1_main_a").attr("href", "/Home/GetAndroidAPP");
+            }
+        }
+
+
+        $(".w_apptui_1_main_a").on("click", function () {
+            if (browser.versions.weixin) {
+                $(".w_apptui_1_main_a").attr("href", "javascript:void(0)");
+                    $(".shade").show();
+                    $(".fixed_Bar").hide();
+                } else
+                {
+                    if (isiOS)//判断那个手机端过来
+                    {
+                        window.location.href = "https://itunes.apple.com/cn/app/chuang-li-tou/id1152272905?mt=8";
+                    }
+                    if (isAndroid) {
+
+                        window.location.href = "/Home/GetAndroidAPP";
+                    }
+                }
+        });
+        $(".shade").on("click", function () {
+            $(".fixed_Bar").show();
+            $(".shade").hide();
+        });
+
+    });
+
+        //$(".clickAndorid").on("click", function ()
+        //{
+        //    if (browser.versions.weixin) {
+        //        $(".shade").show();
+        //        $(".fixed_Bar").hide();
+        //    } else
+        //    {
+        //        window.location.href = "/Home/GetAndroidAPP";
+        //    }
+        //});
+        //$(".clickIos").on("click", function ()
+        //{
+        //    if (browser.versions.weixin)
+        //    {
+        //        $(".shade").show();
+        //        $(".fixed_Bar").hide();
+        //    }
+        //    else
+        //    {
+        //        window.location.href = "https://itunes.apple.com/cn/app/chuang-li-tou/id1152272905?mt=8";
+        //    }
+    //});
+
+
+</script>

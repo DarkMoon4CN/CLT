@@ -1,0 +1,30 @@
+/****** Object:  ForeignKey [FK_BONUS_AC_REFERENCE_HX_ACTIV]    Script Date: 09/27/2016 11:16:18 ******/
+ALTER TABLE [dbo].[bonus_account]  WITH CHECK ADD  CONSTRAINT [FK_BONUS_AC_REFERENCE_HX_ACTIV] FOREIGN KEY([activity_schedule_id])
+REFERENCES [dbo].[hx_Activity_schedule] ([activity_schedule_id])
+GO
+ALTER TABLE [dbo].[bonus_account] CHECK CONSTRAINT [FK_BONUS_AC_REFERENCE_HX_ACTIV]
+GO
+/****** Object:  ForeignKey [FK_CONTRACT_REFERENCE_HX_BORRO]    Script Date: 09/27/2016 11:16:18 ******/
+ALTER TABLE [dbo].[Contract_management]  WITH NOCHECK ADD  CONSTRAINT [FK_CONTRACT_REFERENCE_HX_BORRO] FOREIGN KEY([targetid])
+REFERENCES [dbo].[hx_borrowing_target] ([targetid])
+GO
+ALTER TABLE [dbo].[Contract_management] NOCHECK CONSTRAINT [FK_CONTRACT_REFERENCE_HX_BORRO]
+GO
+/****** Object:  ForeignKey [FK_HX_BORRO_REFERENCE_HX_BORRO]    Script Date: 09/27/2016 11:16:18 ******/
+ALTER TABLE [dbo].[hx_borrowing_target_detailed]  WITH CHECK ADD  CONSTRAINT [FK_HX_BORRO_REFERENCE_HX_BORRO] FOREIGN KEY([targetid])
+REFERENCES [dbo].[hx_borrowing_target] ([targetid])
+GO
+ALTER TABLE [dbo].[hx_borrowing_target_detailed] CHECK CONSTRAINT [FK_HX_BORRO_REFERENCE_HX_BORRO]
+GO
+/****** Object:  ForeignKey [FK_HX_CAPIT_REFERENCE_HX_MEMBE]    Script Date: 09/27/2016 11:16:18 ******/
+ALTER TABLE [dbo].[hx_Capital_account_water]  WITH CHECK ADD  CONSTRAINT [FK_HX_CAPIT_REFERENCE_HX_MEMBE] FOREIGN KEY([membertable_registerid])
+REFERENCES [dbo].[hx_member_table] ([registerid])
+GO
+ALTER TABLE [dbo].[hx_Capital_account_water] CHECK CONSTRAINT [FK_HX_CAPIT_REFERENCE_HX_MEMBE]
+GO
+/****** Object:  ForeignKey [FK_HX_INCOM_REFERENCE_HX_BID_R]    Script Date: 09/27/2016 11:16:18 ******/
+ALTER TABLE [dbo].[hx_income_statement]  WITH CHECK ADD  CONSTRAINT [FK_HX_INCOM_REFERENCE_HX_BID_R] FOREIGN KEY([bid_records_id])
+REFERENCES [dbo].[hx_Bid_records] ([bid_records_id])
+GO
+ALTER TABLE [dbo].[hx_income_statement] CHECK CONSTRAINT [FK_HX_INCOM_REFERENCE_HX_BID_R]
+GO

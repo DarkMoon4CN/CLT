@@ -1,0 +1,95 @@
+﻿@model ChuangLitouP2P.Models.hx_Project_type
+@{
+    ViewBag.Title = "编辑项目类型";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="/Scripts/Validform_v5.3.2_min.js"></script>
+<script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+
+<style type="text/css">
+    .tdleft {
+        width: 20%;
+        text-align: right;
+    }
+
+    .tdright {
+        width: 80%;
+        text-align: left;
+    }
+
+    tr {
+        background: rgb(255, 255, 255);
+    }
+</style>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="/Admin/ProjectType/Index" class="z_mg5">项目类型管理</a>><a href="javascript:void(0)"> 编辑</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        项目类型管理
+    </h3>
+    <div class="tz_box cz_box">
+        @using (Html.BeginForm("EditPost", "ProjectType", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+            {
+            <div class="z_cont2">
+                <br />
+                @Html.AntiForgeryToken()
+                <input type="hidden" id="project_type_id" name="project_type_id" value="@(Model.project_type_id)" />
+                <table width="100%" style="table-layout:fixed;padding-left:10px;margin-top:10px;">
+                    <tr>
+                        <td class="tdleft"><label for="contract_type_id">类型名称：</label></td>
+                        <td class="tdright">
+                            <input type="text" id="project_type_name" name="project_type_name" class="" style="width:240px; height:24px;" datatype="*2-30" nullmsg="类型名称不能为空！" errormsg="类型名称在2~30位之间！" value="@(Model.project_type_name)" />
+                            <span class="Validform_checktip"></span>
+                        </td>
+                    </tr>
+
+
+                </table>
+            </div>
+            <br />
+
+            <div  class="submin_box">
+                <input type="submit" class="z_btn_01" value="确 定" style="width:90px; height:25px;" />
+
+                <a href="/admin/ProjectType/Index" class="z_btn_01" style="width:90px; height:25px; line-height:25px">返 回</a>
+            </div>
+
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "n": /^\d+$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+
+
+    });
+
+
+
+</script>
+

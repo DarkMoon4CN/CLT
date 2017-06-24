@@ -1,0 +1,104 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+@model ChuangLitouP2P.Models.V_UsrBindCardBank
+
+@{
+    ViewBag.Title = "我的账户-银行卡信息-创利投";
+    ViewBag.keywords = "我的账户-银行卡信息-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+
+    List<V_UsrBindCardBank> listcard = ViewBag.listcard == null ? null : ViewBag.listcard as List<V_UsrBindCardBank>;
+}
+
+<style>
+tbody {width: 100%;}
+table tr {background:none!important;}
+table tr td {text-align: center;width: 25%;height: 100px;display: inline-block;float:left;}
+.fYhk img{margin-left:0px!important;}
+.fYhk a {display: inline-block;text-align: center;overflow: hidden;margin-left: 0.5%;height: 100px;}
+</style>
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<div class="content">
+    <!--公共的左侧-->
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+
+
+    <div class="fCard choose">
+        <h2>
+            银行账户
+        </h2>
+        <div class="fYhk">
+
+
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        @if (Model != null)
+                        {
+                            if (listcard.Count > 0)
+                            {
+                                foreach (var item in listcard)
+                                {
+                                    <td>
+                                        <a>
+                                            <img style="display: block;margin: 0 auto;" src="@item.CardImage" alt="@item.BankName">
+                                            <span style="display:block;">@Utils.ReplaceWithSpecialChar(item.OpenAcctId, 3, 4, '*')</span>
+                                        </a>
+                                    </td>
+                                }
+
+                            }
+                        }
+                        <td>
+                            <a href="/BindCard/thirdparty_bindbank" target="_blank">
+                                <img src="/images/fGh.jpg" alt="" style="width:100%">
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            @if (Model != null)
+            {
+                <h3>
+                    银行卡信息
+                </h3>
+                <p class="fName">
+                    账户实名：<i>@Model.realname</i>
+                </p>
+                <p class="fP2 fName">
+                    付款银行：<i>@Model.BankName</i>
+                </p>
+
+                <p class="fP2 fName">
+                    银行卡号：<i> @StringUtils.MaskStr(Model.OpenAcctId, 3, 4) </i>
+                    <span style="display:block;color:#179AD8;padding-left:100px;">(此处显示汇付默认银行卡)</span>
+                </p>
+
+                    <input type="button" value="更改银行卡" onclick="javascript: window.location.href = '/usercenter/thirdpartylogin'" />
+
+            }
+            <div class="fJx"></div>
+            <h2 class="fCz">
+                温馨提示
+            </h2>
+            <div class="fIntro">
+                1、银行卡开户人必须与您的实名认证姓名一致，只支持绑定借记卡，不支持信用卡；
+            </div>
+            <div class="fIntro">
+                2、请认真填写支分行信息，信息不正确可能会造成您的提现无法及时到账。如果您无法确定，建议指点开户银行询问；
+            </div>
+            <div class="fIntro">
+                3、如您申请的银行卡变更未完成或审核未通过，提现银行卡默认为您原绑定银行卡；
+            </div>
+            <div class="fIntro">
+                4、如果您在操作过程中遇到任何问题，请拨打创利投客服电话: 010-53732056。
+            </div>
+        </div>
+
+
+    </div>

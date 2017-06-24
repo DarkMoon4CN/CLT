@@ -1,0 +1,32 @@
+﻿@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<hx_UserAct>
+<div id="dTable">
+
+    @if (Model != null)
+    {
+        <table cellpadding="0" cellspacing="0">
+            <thead>
+                <tr class="xTr">
+                    <td>奖励时间</td>
+                    <td>奖励事由</td>
+                    <td>现金类型</td>
+                    <td>奖励金额</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            @foreach (hx_UserAct item in Model)
+            {
+                <tr>
+                    <td> @item.Createtime</td>
+                    <td>@item.hx_ActivityType.ActName</td>
+                    <td>@item.hx_RewardType.RewTypeName</td>
+                    <td> @item.Amt 元</td>
+                    <td><a href="/investlist.html">马上投资 >></a></td>
+                </tr>
+            }
+        </table>
+    }
+   
+</div>

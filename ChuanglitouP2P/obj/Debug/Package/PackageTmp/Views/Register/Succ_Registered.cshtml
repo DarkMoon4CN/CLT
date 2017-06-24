@@ -1,0 +1,47 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuanglitouP2P.Model.chinapnr.UserRegister.ReUserRegister
+@{
+    ViewBag.Title = "开户注册成功";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}@Url.File("Content/reg_common.css").ToHtml()
+@Url.File("Scripts/Validform_v5.3.2_min.js").ToHtml()
+@Url.File("Scripts/layer.min.js").ToHtml()
+@if (Model != null)
+{
+
+    if (Model.RespCode == "000")
+    {
+        <script>_ozprm = "userid=@ViewBag.registerid"</script>
+
+      <div class="tips_box success_tips clearfix">
+        <div class="tips_icon">
+            <img src="/images/ok_icon.png" width="60" height="60" alt="第三方托管账户开户成功" />
+        </div>
+        <div class="tips_txt">
+            <strong class="tips_txt_tit">恭喜您，第三方资金托管账户开通成功！</strong>
+            <div class="tips_txt_info"></div> <div class="tips_txt_return">
+                您可以:
+                <a href="/usercenter/recharge">充值</a><a href="/">返回首页</a>
+                <a href="/usercenter/Index">去个人中心</a>
+            </div>
+            <div class="tips_txt_return" style="margin-top:15px;">如有任何问题请咨询创利投客服010-53732056（工作时间 9:00-18:00）</div>
+        </div>
+    </div>
+    }
+    else
+    {
+        if (Model.RespCode != "" || Model.RespCode != null)
+        {
+            <div class="tips_box failure_tips clearfix">	<div class="tips_icon"><img src="/images/failure_icon.png" width="60" height="60" alt="开户失败" /></div><div class="tips_txt"><strong class="tips_txt_tit">抱歉，第三方资金托管账户验签失败！</strong><div class="tips_txt_info"> @Utils.GetReturnCode(Int32.Parse(Model.RespCode)) </div><div class="tips_txt_return">您可以:<a href="/">返回首页</a></div><div class="tips_txt_return" style="margin-top:15px;">如有任何问题请咨询创利投客服010-53732056（工作时间 9:00-18:00）</div></div> </div>
+        }
+        else
+        {
+            <div class="tips_box failure_tips clearfix">	<div class="tips_icon"><img src="/images/failure_icon.png" width="60" height="60" alt="开户失败" /></div><div class="tips_txt"><strong class="tips_txt_tit">抱歉，第三方资金托管账户验签失败！</strong><div class="tips_txt_info">未知错误 </div><div class="tips_txt_return">您可以:<a href="/">返回首页</a></div><div class="tips_txt_return" style="margin-top:15px;">如有任何问题请咨询创利投客服010-53732056（工作时间 9:00-18:00）</div></div> </div>
+        }
+
+    }
+
+
+
+}
+

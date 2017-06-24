@@ -1,0 +1,596 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<V_Recharge_user_bank>
+@{
+    ViewBag.Title = "资金管理-我要充值-创利投";
+    ViewBag.keywords = "资金管理-我要充值-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+    List<hx_td_Bank> listBank = ViewBag.listBank == null ? null : ViewBag.listBank as List<hx_td_Bank>;
+    List<hx_td_Bank> listQuickBank = ViewBag.listQuickBank == null ? null : ViewBag.listQuickBank as List<hx_td_Bank>;
+
+
+}
+@*<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>*@
+<script src="~/Scripts/layer-v3.0.1/layer.js"></script>
+@Url.File("/Content/pagecss.css").ToHtml()
+<script type="text/javascript">
+    var dff;
+    function AjaxStart() {
+        dff = layer.msg("正在获取数据，请稍候...",{time:300,icon:1});
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+</script>
+<script type="text/javascript">
+    function checkFrom() {
+        var isCheck = true;
+        var SingleTransQuota = '@ViewBag.SingleTransQuota';//用户绑定的银行卡单笔充值限额
+
+        if (SingleTransQuota == "")
+        {
+            SingleTransQuota=$("#SingleTransQuotas").val();
+
+            //$("#CardDailyTransQuotas").val()
+        }
+
+        var d = $("#Form2").find("input[id='Reprice']").attr("value");
+
+        var rechargemoney = parseFloat(d);//用户手动输入的充值限额
+
+        if (rechargemoney > SingleTransQuota)
+        {
+            layer.alert("充值金额超出该银行单笔限额" + SingleTransQuota + "元！",{icon: 5});
+            //return false;
+            isCheck = false;
+        }
+        var isEnable = $("#isEnable").val();
+        if (isEnable == "false")//有普通卡在提现中，不允许绑定快捷卡
+        {
+            //var openAcctIds = $("#openAcctIds").val();
+            layer.alert("提现审核中，暂不能进行其他操作！", { icon: 5 });
+            //return false;
+            isCheck = false;
+        }
+
+        if ($('#blankName2').val() == "" || $('#blankName2').val() == null) {
+            layer.alert("请选择充值银行!");
+            //return false;
+            isCheck = false;
+        }
+
+        if (d == "" || d == null) {
+            layer.alert("请输入充值的金额!");
+            //return false;
+            isCheck = false;
+        }
+        else {
+            var price = parseFloat(d);
+            if (price < 100.00) {
+                layer.alert("充值金额，请大于100.00元!", { icon: 5 });
+                //return false;
+                isCheck = false;
+            }
+        }
+        if (!isCheck) return false;
+        $("#layui-layer4").focus();
+        //充值提示页
+        investAlter();
+    }
+    function checkFrom1() {
+        var isCheck = true;
+        if ($('#blankName1').val() == "" || $('#blankName1').val() == null) {
+            layer.alert("请选择充值银行!");
+            isCheck = false;
+        }
+        if ($('#Reprice').val() == "" || $('#Reprice').val() == null) {
+            layer.alert("请输入充值的金额!");
+            isCheck = false;
+        }
+        else {
+            var price = parseFloat($('#Reprice').val());
+            if (price < 100.00) {
+                layer.alert("充值金额，请大于100.00元!", { icon: 5 });
+                isCheck = false;
+            }
+        }
+
+        var ieu = IsExistUser();//UCLeft.cshtml
+        if (ieu == "n") {
+            layer.msg("登录超时,请重新登录..", {time:2000, icon:5}, function () {
+                window.location.href = "/login.html";
+            });
+            isCheck = false;
+        }
+        if (!isCheck) return false;
+        $("#layui-layer4").focus();
+        //充值提示页
+        investAlter();
+    }
+    //投资金额改变
+    function investAmtChange(obj) {
+        //  var obj = $(dd).get(0);
+        var _perTrans = 100;
+        var num = parseFloat(obj.value);
+        if (isNaN(num) || num < _perTrans) {
+            layer.msg("充值金额，请大于" + _perTrans + "元！", {time:1000, icon:5});
+            num = _perTrans;
+        }
+        $(obj).val(num);
+        $("#OneOBtn").removeAttr("disabled"); $("#TwoOBtn").removeAttr("disabled");
+        return false;
+    }
+
+    function clearNoNum(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+        obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+
+    }
+    function moneyKeyPress(obj, event) {
+        var keycode = event.keyCode ? event.keyCode : event.which;
+        var returnValue = true;
+        if (!(keycode == 46 || keycode == 8 || keycode == 39 || keycode == 37 || (keycode >= 48 && keycode <= 57)))
+            returnValue = false;
+        event.returnValue = returnValue;
+        return returnValue;
+    }
+
+</script>
+
+<style type="text/css">
+    #recharge h2 {
+        font-size: 20px;
+        font-family: "微软雅黑";
+        font-weight: normal;
+        padding: 0 5%;
+        line-height: 50px;
+    }
+
+    #recharge thead tr {
+        font-family: "微软雅黑";
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    #recharge thead tr {
+        width: 100%;
+        line-height: 40px;
+        background: rgba(249,249,249,1);
+    }
+
+        #recharge thead tr th {
+            font-weight: normal;
+        }
+
+    #recharge table {
+        font-size: 12px;
+        line-height: 24px;
+        width: 90%;
+        border: 1px solid #f0f0f0;
+        margin: 0% 5% 3% 5%;
+    }
+
+    #recharge thead tr th {
+        border-right: 1px solid #f0f0f0;
+    }
+
+        #recharge thead tr th:last-child {
+            border-right: none;
+        }
+
+    #recharge tbody tr:nth-child(2n) {
+        background: rgba(249,249,249,1);
+    }
+
+    #recharge tbody tr td {
+        text-align: center;
+        line-height: 40px;
+        border-right: 1px solid #f0f0f0;
+        font-family: "微软雅黑";
+        font-size: 14px;
+    }
+
+    .layui-layer-btn- {
+        text-align: center !important;
+    }
+    /*.layui-layer{
+                width:34%!important;
+                left:33%!important;
+            }
+    .layui-layer-title{
+        font-size:20px;
+    }*/
+</style>
+<!--内容区域-->
+<div class="bContent">
+    <div class="content">
+        <!--公共的左侧-->
+        @UCLeft.HX_UCLeft()
+        <!--右侧不同的地方-->
+        <div class="oCz">
+            <h2>
+                我要充值
+            </h2>
+            <div class="oTab">
+                <p class="oAdd">网银充值</p>
+                <p>快捷充值</p>
+                <p>充值记录</p>
+            </div>
+            <div class="oChange" style="clear:both;">
+
+
+                <div class="online">
+                    <!--网银充值-->
+                    @using (Html.BeginForm("bankingRecharge", "usercenter", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1", @id = "Form1", @target = "_blank" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="on_news">
+                            <div class="recOther recOther1" style="display:none;">
+                                <ul id="moreSelect">
+                                    @foreach (var item in listBank)
+                                    {
+                                        <li><a href="javascript:void(0);"><img src="@Url.Content(item.CardImage)" name="@item.OpenBankId" alt="@item.OpenBankId"></a></li>
+                                    }
+                                </ul>
+                            </div>
+                            @{
+                                hx_td_Bank htb = ViewBag.bank == null ? null : ViewBag.bank as hx_td_Bank;
+                            }
+                            <p class="oP1 oP_inner">
+                                付款银行：
+                                <a href="javascript:void(0)" class="ad_oP1" style="display: inline-block;">请选择充值银行</a>
+                                <span class="ad_span ad_span1" id="in_show" style="display:none; padding-left: 20px;">
+                                    <input type="hidden" name="blankName1" id="blankName1">
+                                    <img class="dImg1 dImg11" src="/images/shlsyh1.jpg" align="absmiddle" alt="">
+                                    <img src="/images/dGh.jpg" align="absmiddle" alt="" class="bankBtn_img bankBtn_img1" style="display: inline-block;">
+                                </span>
+                            </p>
+                            <p class="oP2">
+                                账户余额：
+                                <em>@ViewBag.amt</em>元
+                            </p>
+                            <p class="oP1 oP3">
+                                充值金额：
+                                @*<input type="text" id="Reprice" name="Reprice" value="2000.00" onblur="investAmtChange(this);" />*@
+                                <input type="text" id="Reprice" name="Reprice" value="2000.00" onblur="investAmtChange(this);" onkeyup="Change(this,1)" />
+                                @*onkeyup="clearNoNum(this)" onafterpaste="clearNoNum(this)" onkeypress="return moneyKeyPress(this,event)"/>*@
+                                元
+                                <img id="lj_qus" src="../images/qus.jpg" alt="" style="margin-bottom: 7px;margin-left: 7px;display: inline-block;">
+                                <span id="lj_qus_span" style="display: inline-block;width: 40%;vertical-align: middle;font-size: 12px;">请注意您银行卡充值的支付金额限制，具体请参阅各银行的网上银行支付限额</span>
+                            </p>
+                            <p class="ochange ochange2" style="display: none;">
+                                充值后账户总余额为
+                                <i></i>元
+                            </p>
+                            <p class="ochange ochange1" style="display: none;">
+                                充值金额小于100元
+                            </p>
+                            <input id="OneOBtn" class="oBtn" type="submit" onclick="javascript: return checkFrom1();" value="我要充值" />
+                            <p class="oJx"></p>
+                            <h2 class="oH2">充值说明</h2>
+                            <p class="oP5">
+                                1.&nbsp;创利投平台目前通过第三方平台汇付天下进行资金充值，用户充值免费，充值手续费暂由创利投垫付；
+                            </p>
+                            <p class="oP5">
+                                2.&nbsp;创利投充值金额最低为100元；
+                            </p>
+                            <p class="oP5">
+                                3.&nbsp;创利投作为投资人与贷款人中间桥梁，不经手用户账户资金，只记录账户变动信息， 投资用户账户资金相关操作由第三方
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;支付公司执行；
+                            </p>
+                            <p class="oP5">
+                                4.&nbsp;网银充值须开通网上银行功能，配合银行U盾更为安全，请注意您银行卡充值的支付金额 限制，具体请参阅各银行的网
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;上银行支付限额；
+                            </p>
+                            <p class="oP5">
+                                5.&nbsp;为防止恶意转账、套现等行为，禁止使用信用卡充值；
+                            </p>
+                            <p class="oP5">
+                                6.&nbsp;如果充值金额没有及时到账，请拨打创利投客服电话: 010-53732056。
+                            </p>
+                        </div>
+                                }
+                </div>
+                <div class="online" style="display: none;">
+                    <!--快捷充值-->
+                    @using (Html.BeginForm("postrecharge", "usercenter", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form2", @id = "Form2", @target = "_blank" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="on_news">
+                            @{ hx_td_Bank tb = ViewBag.qm == null ? null : ViewBag.qm as hx_td_Bank;}
+                            @{ hx_UsrBindCardC usrBindCard = ViewBag.htb == null ? null : ViewBag.htb as hx_UsrBindCardC; }
+                            <div class="recOther recOther2" style="display:none;">
+                                <ul id="moreSelect">
+                                    @foreach (var item in listQuickBank)
+                                    {
+                                        <li><a href="javascript:void(0);"><img src="@Url.Content(item.CardImage)" name="@item.OpenBankId" alt="@item.OpenBankId" SingleTransQuota="@item.SingleTransQuota" CardDailyTransQuota="@item.CardDailyTransQuota"></a></li>
+                                    }
+                                </ul>
+
+                            </div>
+                            <p class="oP1 oP_inner">
+                                付款银行：
+                                @if (tb == null || tb.CardImage == null || usrBindCard == null || usrBindCard.BindCardType != 1)
+                                {
+                                    <a href="javascript:void(0)" class="ad_oP2" style="display: inline-block;">请选择充值银行</a>
+                                    <span class="ad_span ad_span2" style="display:none; padding-left: 20px;">
+                                        <input type="hidden" name="blankName2" id="blankName2">
+                                        <img class="dImg1 dImg12" src="/images/shlsyh1.jpg" align="absmiddle" alt="">
+                                        <img src="/images/dGh.jpg" align="absmiddle" alt="" class="bankBtn_img bankBtn_img2" style="display: inline-block;">
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="ad_span ad_span2" style="padding-left: 20px;">
+                                        <input type="hidden" name="blankName2" id="blankName2" value="@tb.OpenBankId">
+                                        <img class="dImg1 dImg12" src="@Url.Content(tb.CardImage)" align="absmiddle" alt="">
+                                        @* <img src="/images/dGh.jpg" align="absmiddle" alt="" class="bankBtn_img bankBtn_img2" style="display: inline-block;">*@
+                                    </span>
+                                }
+                            </p>
+                            <p class="oP2">
+                                账户余额：
+                                <em>@ViewBag.amt</em>元
+                            </p>
+                            <p class="oP1 oP3">
+                                充值金额：
+                                <input type="text" id="Reprice" name="Reprice" value="2000.00" onblur="investAmtChange(this);" onkeyup="Change(this,2)" />
+                                @*onkeyup="clearNoNum(this)" onafterpaste="clearNoNum(this)"  onkeypress="return moneyKeyPress(this,event)" />*@
+                                元
+                                <a href="javaScript:void(0)" id="rechargexian" style="font-size:12px;color: #059fe7;text-decoration:underline;margin-left: -35px;border:none;">充值限额提示</a>
+                            </p>
+                            <p class="ochange ochange2" style="display: none;">
+                                充值后账户总余额为
+                                <i></i>元
+                            </p>
+                            @if (tb != null && usrBindCard != null)
+                            {
+                                <p class="TransQuota" style="margin-top: 4px;margin-left: 150px;font-size: 12px;">
+                                    该行单笔限额
+                                    <i>@tb.SingleTransQuota</i>元/
+                                    单日限额
+                                    <i>@tb.CardDailyTransQuota</i>元
+                                </p>
+                            }
+
+                            <p class="TransQuotas" style="margin-top: 4px;margin-left: 150px;font-size: 12px;display:none;">
+                                该行单笔限额
+                                <i></i>元/
+                                单日限额
+                                <i></i>元
+                            </p>
+
+                            <p class="ochange ochange1" style="display: none;">
+                                充值金额小于100元
+                            </p>
+                            <input id="TwoOBtn" class="oBtn" type="submit" value="我要充值" onclick="javascript: return checkFrom();" />
+                            <input type="hidden" id="isEnable" value="@ViewBag.isEnable" />
+                            <input type="hidden" id="openAcctIds" value="@ViewBag.OpenAcctIds" />
+                            <p class="oJx"></p>
+                            <h2 class="oH2">充值说明</h2>
+                            <p class="oP5">
+                                1.&nbsp;创利投平台目前通过第三方平台汇付天下进行资金充值，用户充值免费，充值手续费暂由创利投垫付；
+                            </p>
+                            <p class="oP5">
+                                2.&nbsp;创利投充值金额最低为100元；
+                            </p>
+                            <p class="oP5">
+                                3.&nbsp;创利投作为投资人与贷款人中间桥梁，不经手用户账户资金，只记录账户变动信息， 投资用户账户资金相关操作由第三方
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;支付公司执行；
+                            </p>
+                            <p class="oP5">
+                                4.&nbsp;网银充值须开通网上银行功能，配合银行U盾更为安全，请注意您银行卡充值的支付金额 限制，具体请参阅各银行的网
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;上银行支付限额；
+                            </p>
+                            <p class="oP5">
+                                5.&nbsp;为防止恶意转账、套现等行为，禁止使用信用卡充值；
+                            </p>
+                            <p class="oP5">
+                                6.&nbsp;如果充值金额没有及时到账，请拨打创利投客服电话: 010-53732056。
+                            </p>
+                        </div>
+                                }
+                </div>
+                <div class="oRecord" style="display: none;">
+                    <!--充值记录-->
+                    <div class="dJl" style="position: relative;z-index: 1;">
+                        <p>
+                            您累计充值成功<strong>@ViewBag.succCount  </strong>笔，累计充值金额为<em> @ViewBag.succTotal </em> 元
+                        </p>
+                        <div class="dRl">
+                            @using (Html.BeginForm("recharge", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm", @class = "form-inline well well-sm" }))
+                            {
+                                <input type="hidden" name="timeday" id="timeday" value="@ViewBag.timeday" />
+                                <em class="dEmr">今天</em>
+                                <em>近一个月</em>
+                                <em>近三个月</em>
+                                <em class="dEmAdd">全部</em>
+                                <!--日历部分-->
+                                <input class="jcDate" type="text" autocomplete="off" id="startdatetime" name="startdatetime" value="@ViewBag.startdatetime" style="width:95px; height:28px; line-height:28px; padding-left:40px;" />
+                                <i class="oI">至</i>
+                                <input class="jcDate" type="text" autocomplete="off" id="enddatetime" name="enddatetime" value="@ViewBag.enddatetime" style="width:95px; height:28px; line-height:28px; padding-left:40px;" />
+                                <input class="dBtn1" type="submit" value="查询" />
+                            }
+                            @Html.Partial("_UCRechareList", Model)
+                        </div>
+                    </div>
+                </div>
+                @section Scripts{@{Html.RegisterMvcPagerScriptResource();}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layer_pop_bg"></div>
+<input type="hidden" id="SingleTransQuotas" />
+<input type="hidden" id="CardDailyTransQuotas" />
+<script>
+    /*----网上银行获取银行------------------------------*/
+    $('.ad_oP1').click(function () {
+        $('.recOther1').css('display', 'block');
+        isBolck();
+    });
+    $('.recOther1 ul li a').click(function () {
+        $('.ad_span1').css('display', 'inline-block');
+        $('.ad_oP1').css('display', 'none')
+        $('.dImg11').attr('src', ($(this).children('img').eq(0).attr('src')));
+        $('#blankName1').val($(this).children('img').eq(0).attr('name'));
+        //alert($(this).children('img').eq(0).attr('name'));
+        $('#OpenBankId').val($(this).children('img').eq(0).attr('name'));
+        $('#UsrBindCardID').val($(this).children('img').eq(0).attr('id'));
+        $('.recOther1').css('display', 'none');
+        isBolck();
+    });
+    $('.bankBtn_img1').click(function () {
+        $('.recOther1').css('display', 'block');
+        isBolck();
+    });
+    function isBolck() {
+        if ($('.recOther1').css('display') == 'block') {
+            $('.bankBtn_img1').css('display', 'none')
+        } else {
+            $('.bankBtn_img1').css('display', 'inline-block')
+        }
+    }
+
+    /*----快捷银行获取银行------------------------------*/
+    $('.ad_oP2').click(function () {
+        $('.recOther2').css('display', 'block');
+        isBolck();
+    });
+    $('.recOther2 ul li a').click(function () {
+
+        $('.ad_span2').css('display', 'inline-block');
+        $('.ad_oP2').css('display', 'none')
+        $('.dImg12').attr('src', ($(this).children('img').eq(0).attr('src')));
+        $('#blankName2').val($(this).children('img').eq(0).attr('name'));
+        //alert($(this).children('img').eq(0).attr('name'));
+        $('#OpenBankId').val($(this).children('img').eq(0).attr('name'));
+        $('#UsrBindCardID').val($(this).children('img').eq(0).attr('id'));
+        $('.recOther2').css('display', 'none');
+        isBolck2();
+
+        var bankSingleTransQuota = $(this).find("img").attr("SingleTransQuota");//选中银行的单笔限额
+
+        var bankCardDailyTransQuota = $(this).find("img").attr("CardDailyTransQuota");//选中银行的单日限额
+
+        $("#SingleTransQuotas").val(bankSingleTransQuota);
+
+        $("#CardDailyTransQuotas").val(bankCardDailyTransQuota) ;
+
+        $(".TransQuotas").show();
+
+        $(".TransQuotas i:nth-child(1)").html(bankSingleTransQuota);
+        $(".TransQuotas i:nth-child(2)").html(bankCardDailyTransQuota);
+
+
+    });
+    $('.bankBtn_img2').click(function () {
+        $('.recOther2').css('display', 'block');
+        isBolck2();
+    });
+    function isBolck2() {
+        if ($('.recOther2').css('display') == 'block') {
+            $('.bankBtn_img2').css('display', 'none')
+        } else {
+            $('.bankBtn_img2').css('display', 'inline-block')
+        }
+    }
+    $(function () {
+        $("#rechargexian").on("click", function() {
+            var index = layer.open({
+                type: 2,
+                content: ['/usercenter/RechargeTips', 'yes'],
+                shadeClose: true,
+                anim: 1,
+                area: ['34%', '70%'],
+                btn: '我知道了',
+                title: '银行限额说明',
+                scrollbar: true
+            });
+
+
+        });
+
+    })
+
+    function Change(v,i)
+    {
+        switch (i){
+            case 1:
+                $("#OneOBtn").removeAttr("disabled");
+                if (parseInt(v.value) <= 99)
+                {
+                    $("#OneOBtn").attr('disabled', "true");
+                }
+                break;
+            case 2:
+                $("#TwoOBtn").removeAttr("disabled");
+                if (parseInt(v.value) <= 99) {
+                    $("#TwoOBtn").attr('disabled', "true");
+                }
+                break;
+        }
+    }
+</script>
+
+<style type="text/css">
+    .tanchu_hongbao_zhezhao {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.5;
+        z-index: 10;
+    }
+
+    .tanchu_hongbao_content {
+        width: 450px;
+        height: 322px;
+        position: absolute;
+        top: 50%;
+        margin-top: -151px;
+        left: 50%;
+        margin-left: -275px;
+    }
+
+    .tanchu_hongbao {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.5);
+        z-index: 999999;
+        display: none;
+        filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000,endColorstr=#88000000);
+    }
+</style>
+
+<div class="tanchu_hongbao">
+    <div class="tanchu_hongbao_content">
+
+        <div style="padding: 17px; line-height: 25px; background-color: #fff; color: #555; border-top:1px solid #ccc">
+            <span style="font-size:18px;">
+                跳转充值页面……
+            </span><div style="float:right; font-size:180%;cursor: pointer;" onclick="closeAlter();">×</div><hr />
+            <span style="color:#222">请在新开页面充值后选择</span><br><br><img src="../Images/right.png" style="vertical-align: middle;"><span style="vertical-align: middle;">充值成功</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; <a href="" style="color:#0066FF">查看充值记录</a><br><img src="../Images/error.png" style="vertical-align: middle;"><span style="vertical-align: middle;">充值失败</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 建议您 &nbsp;&nbsp;&nbsp;&nbsp;<a href="" style="color:#0066FF">重新进行充值</a> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;  <a href="" style="color:#0066FF">使用其它支付方式</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+
+    function investAlter(){
+        $(".tanchu_hongbao").show();
+    }
+    function closeAlter(){
+        $(".tanchu_hongbao").hide();
+    }
+</script>

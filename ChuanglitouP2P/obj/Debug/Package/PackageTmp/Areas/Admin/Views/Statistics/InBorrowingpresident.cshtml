@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "借入总统计";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    .icon-sprite {
+        HEIGHT: 16px;
+        BACKGROUND-IMAGE: url(/admin/images/icons.png);
+        BACKGROUND-REPEAT: no-repeat;
+        POSITION: absolute;
+        LEFT: 10px;
+        MARGIN-TOP: -8px;
+        DISPLAY: inline-block;
+        TOP: 50%;
+        WIDTH: 16px;
+    }
+
+    .icon-edit {
+        BACKGROUND-POSITION: -63px -1px;
+    }
+
+    .icon-delete {
+        BACKGROUND-POSITION: -83px -2px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">统计管理</a>><a href="javascript:void(0)"> 借入统计</a>><a href="javascript:void(0)"> 借入总统计</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+    <p class="tP3">
+        快速搜索
+    </p>
+    @using (Html.BeginForm("InBorrowingpresident", "Statistics", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:50px; ">
+            <label for="start">开始：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="start" name="start" value="@(ViewBag.start)" autocomplete="off" />--
+            <label for="end">结束：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="end" name="end" value="@(ViewBag.end)" autocomplete="off" />
+            &nbsp;&nbsp;
+
+            <input type="submit" class="btn1" value="查&nbsp;&nbsp;&nbsp;询" />
+
+        </p>
+    }
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        借入总统计列表
+    </h3>
+
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th scope="col">成功借入金额</th>
+                <th scope="col">总支出奖励</th>
+                <th scope="col">待还利息总额</th>
+                <th scope="col">待还本金总额</th>
+                <th scope="col">待还手续费总额</th>
+                <th scope="col">已还利息总额</th>
+                <th scope="col">已还本金总额</th>
+                <th scope="col">已还手续费总额</th>
+            </tr>
+            <tr>
+                <td>@(ViewBag.inregcount)</td>
+                <td>@(ViewBag.bonusAmt)</td>
+                <td>@(ViewBag.daisAmt)</td>
+                <td>@(ViewBag.daibeiAmt)</td>
+                <td>@(ViewBag.daishuAmt)</td>
+                <td>@(ViewBag.HaveAmt)</td>
+                <td>@(ViewBag.ysbeijAmt)</td>
+                <td>@(ViewBag.yslxAmt)</td>
+            </tr>
+        </tbody>
+    </table>
+    @*</div>*@
+</div>

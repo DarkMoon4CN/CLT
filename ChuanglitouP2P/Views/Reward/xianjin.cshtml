@@ -1,0 +1,118 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuanglitouP2P.Model;
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model  xianjinModelList
+@{
+    ViewBag.Title = "奖励管理-我的抵扣券-创利投";
+    ViewBag.keywords = "奖励管理-我的抵扣券-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+
+    //List<hx_UserAct> IsUse = ViewBag.IsUse == null ? null : ViewBag.IsUse;
+    //List<hx_UserAct> overdue = ViewBag.overdue == null ? null : ViewBag.overdue;
+}
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+@Url.File("/Content/pagecss.css").ToHtml()
+
+<script type="text/javascript">
+    var dff;
+    function AjaxStart() {
+        dff = layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+    function mOver(obj) {
+        $(obj).children('em').css("display", "block");
+    }
+    function mOut(obj) {
+        $(obj).children('em').css("display", "none");
+    }
+</script>
+<div class="content">
+    <!--公共的左侧-->
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+    <div>
+
+        <div class="cash jxc">
+            <h2>
+                我的抵扣券
+                <a href="javascript:;" class="jx_tc01">怎样获得抵扣券？</a>
+            </h2>
+            <div class="cTab">
+                <p class="cPE">未使用</p>
+                <p>已使用</p>
+                <p>已过期</p>
+            </div>
+            <div class="cTXs clearfix">
+              
+                <div id="dTable" class="dfs">
+                    @Html.Partial("_xianjinList", Model.xianjilist)
+                </div>
+                <div class="dfs" id="xianUse" style="display:none">
+                    @Html.Partial("_xianUse", Model.xianjiuses)
+                </div>
+                <div class="dfs" id="xianjinlost" style="display:none">
+                    @Html.Partial("_xianjilost", Model.xianjilost)
+                </div>
+               
+            </div>
+
+            <p class="cJx"></p>
+            <h2 class="cH2">抵扣券使用说明</h2>
+            <p class="cCommon">
+                1.
+                抵扣券仅用于用户创利投投资，若未成功使用，系统将自动返还抵扣券；
+            </p>
+            <p class="cCommon">
+                2.
+                投资金额需达到一定数额方可使用抵扣券，具体金额要求详见券面说明；
+            </p>
+            <p class="cCommon">
+                3.
+                使用抵扣券后的投资金额为投资用户实投本金与抵扣券面额总和；
+
+            </p>
+            <p class="cCommon">
+                4.
+                根据抵扣券规则设置，用户单笔投资可使用一张抵扣券，也可同时使用多张，若多张同时使用时，所需投资金额为各个<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;投资金额要求的起投金额相累加；
+            </p>
+            <p class="cCommon">
+                5.
+                投资到期后，抵扣券自动转化为可用余额，可随投资本金一起提现，也可用于下次投资；
+            </p>
+            <p class="cCommon">
+                6.
+                抵扣券过期无效，有效期详见券面说明；
+            </p>
+            <p class="cCommon">
+                7.
+                抵扣券使用规则最终解释权归创利投所有；
+            </p>
+            <p class="cCommon">
+                8.
+                如果您在使用过程中，遇到任何问题，请拨打创利投客服电话: 010-53732056。
+            </p>
+        </div>
+
+    </div>
+</div>
+<!--遮罩层-->
+<div class="zhezhaoceng" style="display: none;"></div>
+<!--抵扣券使用说明弹出框-->
+<div class="jx_tCont" id="use_rules" style="display: none;">
+
+    <p>
+        <b style="font-size:16px;">温馨提示：</b><br />
+        平台会不定期的发放抵扣券到用户平台账户中，请持续关注创利投平台动态。
+    </p>
+    <button type="button" class="close">关闭</button>
+</div>
+
+<!--End抵扣券使用说明弹出框-->
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}

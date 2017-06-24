@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "修改交易密码";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">修改交易密码</h2>
+</header>
+<form id="form1" action="@ViewBag.url" method="post">
+    <div>
+        <input id="Version" name="Version" value="@ViewBag.Version" type="hidden" />
+        <input id="CmdId" name="CmdId" value="@ViewBag.CmdId" type="hidden" />
+        <input id="MerCustId" name="MerCustId" value="@ViewBag.MerCustId" type="hidden" />
+        <input id="UsrCustId" name="UsrCustId" value="@ViewBag.UsrCustId" type="hidden" />
+    </div>
+</form>
+<script type="text/javascript">$("#form1").submit();</script>
+<div class="bot_height"></div>
+

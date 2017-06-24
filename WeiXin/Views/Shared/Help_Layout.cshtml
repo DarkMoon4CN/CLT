@@ -1,0 +1,24 @@
+﻿@using ChuanglitouP2P.Common;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.keywords" />
+    <meta name="description" content="@ViewBag.desc " />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    @RenderSection("css", false)
+    @Url.File("/css/common.css").ToHtml()
+    @Url.File("/js/jquery.min.js").ToHtml()
+    @Url.File("/js/swipe.js").ToHtml()
+    @Url.File("/js/menu.js").ToHtml()
+</head>
+<body>
+    @RenderBody()
+    @{Html.RenderPartial("_FooterPartial");}
+    @RenderSection("js", required: false)
+</body>
+</html>

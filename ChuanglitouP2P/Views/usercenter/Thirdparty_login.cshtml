@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "请不要关闭页面,跳转中.....";
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+
+}
+<script type="text/javascript" src="/Scripts/jquery-1.9.1.min.js"></script>
+<script src="/Scripts/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+         $(function () {
+             layer.msg("数据处理中....！请不要关闭", 60, 1);
+         });
+
+</script>
+
+<form id="form1" action="@ViewBag.url" method="post">
+    <div>
+
+        <input id="Version" type="hidden" value="@ViewBag.Version"/>
+        <input id="CmdId" type="hidden"  value="@ViewBag.CmdId" />
+        <input id="MerCustId" type="hidden" value="@ViewBag.MerCustId" />
+        <input id="UsrCustId" type="hidden" value="@ViewBag.UsrCustId"/>
+    </div>
+</form>
+<script type="text/javascript">$("#form1").submit();</script>

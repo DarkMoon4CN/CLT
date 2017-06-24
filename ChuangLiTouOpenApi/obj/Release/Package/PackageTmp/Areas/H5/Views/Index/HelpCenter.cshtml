@@ -1,0 +1,34 @@
+﻿@using ChuanglitouP2P.Common
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>帮助中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("about.css").ToHtml()
+    <script>
+	(function(doc,win){var docEl=doc.documentElement,resizeEvt="orientationchange"in window?"orientationchange":"resize",recalc=function(){var clientWidth=docEl.clientWidth;if(!clientWidth)return;docEl.style.fontSize=20*(clientWidth/320)+"px"};if(!doc.addEventListener)return;win.addEventListener(resizeEvt,recalc,false);doc.addEventListener("DOMContentLoaded",recalc,false)})(document,window)
+    </script>
+</head>
+<body>
+    <article>
+        <ul class="helpList">
+            <li>
+                <a href="@Url.Action("LoginOrRegist")">注册登录 <span class="icon-right"></span></a>
+            </li>
+            <li>
+                <a href="@Url.Action("AuthSafe")">认证安全 <span class="icon-right"></span></a>
+            </li>
+            <li>
+                <a href="@Url.Action("Recharge")">充值提现 <span class="icon-right"></span></a>
+            </li>
+            <li>
+                <a href="@Url.Action("Invest")">投资还款 <span class="icon-right"></span></a>
+            </li>
+        </ul>
+    </article>
+</body>
+</html>

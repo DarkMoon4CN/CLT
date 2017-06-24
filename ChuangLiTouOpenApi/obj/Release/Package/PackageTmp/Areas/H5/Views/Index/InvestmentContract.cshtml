@@ -1,0 +1,31 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuanglitouP2P.Model.M_Contract_management
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>投资合同</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("about.css").ToHtml()
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, resizeEvt = "orientationchange" in window ? "orientationchange" : "resize", recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; docEl.style.fontSize = 20 * (clientWidth / 320) + "px" }; if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false) })(document, window)
+    </script>
+</head>
+<body>
+    @*<header>
+        <a class="return" href="javascript:history.go(-1);"></a>
+        <h2>投资合同范本</h2>
+    </header>*@
+
+    <article class="txtCon">
+        <h3>
+            借款协议合同范本 <br>
+        </h3>
+       @Html.Raw(Model.contract_money)        
+    </article>
+</body>
+</html>

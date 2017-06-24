@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("PushAllTarget", "XiCaiChannel"))
+{
+    <input type="submit" value="推送数据到希财网" />
+
+}
+@using (Html.BeginForm("PushTarget", "XiCaiChannel"))
+{
+    <input type="text" name="pids" />
+    <input type="submit" value="推送指定数据" />
+}

@@ -1,0 +1,127 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc;
+@using ChuangLitouP2P.Models;
+@using PagedList
+@model PagedList.IPagedList<V_type_news>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+
+    function SetCommtate(id, state, commtype) {
+        $.getJSON("/admin/Help/SetCommtate", { id: id, state: state, commtype: commtype }, function (data) {
+            if (data.ret == 1) {
+                layer.msg("操作成功!", 1, 1)
+                location.reload(true);
+            } else {
+                alert(data.msg);
+            }
+        });
+    }
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">
+    
+    当前位置：</a><a href="javascript:void(0)" class="z_mg5">内容列表</a></h2>
+<div class="z_body">
+    
+        <p class="tP3">
+            快速搜索
+        </p>
+        @using (Html.BeginForm("Index", "Help", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <p class="tP4 tx_tp4" style="height:50px; ">
+                <label for="username">标题：</label><input type="text" class="txt1" id="news_title" name="news_title" value="@(ViewBag.news_title)" style="width:250px;" /> &nbsp;
+                <input type="hidden" id="rootid" name="rootid" value="@( ViewBag.rootid)" />
+                <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+
+            </p>
+        }
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            内容列表
+        </h3>
+
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th scope="col">编号 </th>
+                    <th scope="col">类别</th>
+                    <th scope="col">标题</th>
+                    <th scope="col">发布日期</th>
+                    <th scope="col">推荐</th>
+                    <th scope="col">栏目</th>
+                    <th scope="col">操作</th>
+                </tr>
+                @if (Model != null)
+                {
+                    foreach (V_type_news item in Model)
+                    {
+
+                        <tr>
+                            <td>@(item.newid)</td>
+                            <td>@(item.menu_name)</td>
+                            <td>@(item.News_title)</td>
+                            <td>@(((DateTime)item.createtime).ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                            <td >
+                                @if (item.comm == 1)
+                                {
+                                    <a href="javascript:void(0)" onclick="javascript: SetCommtate(@(item.newid),0,1)"> 取消推荐</a>
+                                }
+                                else
+                                {
+                                    <a href="javascript:void(0)" onclick="javascript: SetCommtate(@(item.newid),1,1)"> 推荐首页</a>
+                                }
+                             
+                            
+                             </td>
+                            <td>
+                            
+                                @if (item.listcomm == 1)
+                                {
+                                    <a href="javascript:void(0)" onclick="javascript: SetCommtate(@(item.newid),0,2)"> 取消推荐</a>
+                                }
+                                else
+                                {
+                                    <a href="javascript:void(0)" onclick="javascript: SetCommtate(@(item.newid),1,2)"> 列表推荐</a>
+                                }
+                            
+                            </td>
+                            
+                            <td>
+                                <a class="opt" title="编辑" href="/admin/Help/Edit?id=@item.newid&rootid=@item.rootid&page=@ViewBag.page">编辑</a> &nbsp;
+                                <a class="opt" title="删除" href="/admin/Help/DelById?id=@item.newid&rootid=@item.rootid&page=@ViewBag.page&news_title=@ViewBag.news_title" >  删除</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="pagination ue-clear">
+            <div class="pagination-container">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, news_title = @ViewBag.news_title, rootid = ViewBag.rootid }))
+            </div>
+        </div>
+</div>
+
+

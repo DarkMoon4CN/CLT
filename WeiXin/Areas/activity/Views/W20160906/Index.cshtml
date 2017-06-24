@@ -1,0 +1,384 @@
+﻿<html>
+@{
+    //ViewBag.Title = "一元抢iPhone";
+
+    //ViewBag.keywords = "投资返现，创利投";
+
+    //ViewBag.desc = "新用户注册一元抢iPhone！";
+
+    Layout = null;
+}
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="~/Areas/activity/Sources/20160906/style/css.css" rel="stylesheet" />
+
+    <script src="~/Areas/activity/Sources/20160906/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Areas/activity/Sources/20160906/js/Validform_v5.3.2.js"></script>
+    <script src="~/Areas/activity/Sources/20160906/js/layer/layer.min.js"></script>
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            if (phoneWidth > 640) {
+                document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+
+    </script>
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+    </script>
+    <style type="text/css">
+        .Validform_checktip, .Validform_wrong {
+            color:#ffe538;
+        }
+    </style>
+</head>
+<body style="height:100%">
+
+    <form id="form1" class="registerform" action="/register/Add" method="post">
+
+        <input type="hidden" id="register" name="action" value="register" />
+        <div class="zc_n_body">
+            <div class="zc_n_01">
+            </div>
+
+            <div class="zc_n_02">
+                <div class="zc_n_form">
+                    <ul>
+                        <li class="zc_form zc_form_01">
+                            <div class="tticon_left">
+                                <i></i>
+                            </div>
+                            <input name="mobile" id="mobile" class="form_input" type="tel" placeholder="请输入您的手机号" ajaxurl="/register/checkmobile?action=mobile" datatype="mobile" nullmsg="请填写手机号！" errormsg="手机号格式不对！" />
+
+                        </li>
+                        <li class="zc_form zc_form_02">
+                            <div class="tticon_left">
+                                <i></i>
+                            </div>
+                            <input name="vcodec" id="vcodec" class="form_input" type="text" ajaxurl="/checkregister.html?action=vcodec" datatype="*" nullmsg="请填写验证码！" class="form_text" placeholder="请填写验证码" /><input name="smscode" id="smscode" class="zc_button" type="button" value="发送验证码" />
+
+                        </li>
+                        <li class="zc_form zc_form_03">
+                            <div class="tticon_left">
+                                <i></i>
+                            </div>
+                            <input name="userpassword" id="userpassword" runat="server" class="form_input" type="password" placeholder="请设置密码" datatype="*6-16" nullmsg="请设置密码！" errormsg="密码范围在6~16位之间！" />
+
+                        </li>
+                        <li class="zc_form zc_form_04">
+                            <div class="tticon_left">
+                                <i></i>
+                            </div>
+                            <input name="reuserpassword" id="reuserpassword" runat="server" class="form_input" type="password" placeholder="请重复密码" datatype="*" recheck="userpassword" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！" />
+
+                        </li>
+
+                        <li class="zc_form_07">
+
+                            <span>已有账号？<a href="/login">马上登录</a></span>
+                        </li>
+                        <li class="zc_form_btn">
+                            <input type="submit" name="butreg" id="butreg" value="" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @Html.Raw(ViewBag.BorrowingTargetData)
+            <div class="zc_n_04">
+                <a href="#" class="zc_n_04_btn"></a>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        var editwindow;
+        $(function () {
+            $(".registerform").Validform({
+                tiptype: 4,
+                ajaxPost: true,
+                callback: function (data) {
+                    if (data.rs == "y") {
+                        tprm = "userid=" + data.uid.toString();
+                        __ozfac2(tprm, "#regSuccess");
+
+                        layer.msg("注册成功，页面正在转向...", 3, 1);
+                        location.href = data.url;
+                    }
+                    else {
+                        layer.msg("" + data.error + "", 1, 5);
+                    }
+                }
+            });
+
+            $.extend($.Datatype, {
+                "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+                "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+                "day1": /^[1-2]\d{0,1}$|^28$/,
+                "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+                "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+                "regex1": /^[0-9A-Za-z]{6,25}$/
+
+            });
+
+            $(document).keyup(function (event) {
+                if (event.keyCode == 13) {
+                    $("#butreg").trigger("click");
+                }
+            });
+
+
+            $("#vsmscode").click(function () {
+
+                var mobile = $("#mobile").val();
+
+                if (mobile == null || mobile.length <= 0) {
+                    layer.alert("手机号不能为空");
+                    return false;
+                }
+                else {
+                    var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+                    if (re.test(mobile) == false) {
+                        layer.alert("手机号格式不对!");
+                        $("#mobile").val("");
+                        return false;
+                    }
+
+                }
+                $.post("checkregister.html?action=mobile&method=post", { "param": mobile }, function (msg) {
+
+                    if (msg == "手机号已被注册!") {
+
+                        layer.alert(msg);
+                    }
+                    else {
+
+                        $.post("/usercenter/usercenter.html?action=vsmscode&method=post", { "mobile": mobile }, function (msg) {
+                            var data = JSON.parse(msg);
+                            if (data.rs == "y") {
+                                settime1();
+                                layer.msg("" + data.info + "", 5, 1);
+
+                            }
+                            else {
+
+                                if (data.info == "v") {
+                                    df("ad");
+                                } else {
+                                    layer.msg("" + data.info + "", 2, 5);
+                                    $("#mobile").val("");
+                                }
+                            }
+
+                        });
+
+                    }
+
+                });
+
+            });
+
+            $("#vcodec").click(function () {
+                var mobilec = $("#mobile").val();
+                var urlc = "/register/vcodec?mobile=" + mobilec;
+                $("#vcodec").attr("ajaxurl", urlc);
+            });
+
+
+            $("#smscode").click(function () {
+                var mobile = $("#mobile").val();
+
+                if (mobile == null || mobile.length <= 0) {
+                    layer.alert("手机号不能为空");
+                    return false;
+                }
+                else {
+                    var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+                    if (re.test(mobile) == false) {
+                        layer.alert("手机号格式不对!");
+                        $("#mobile").val("");
+                        return false;
+                    }
+                }
+                $.post("/register/checkmobile", { "param": mobile }, function (msg) {
+
+                    if (msg == "手机号已被注册!") {
+
+                        layer.alert(msg);
+                    }
+                    else {
+
+                        df("sms");
+
+                    }
+                }
+                );
+            });
+
+        });
+
+        function changeImg() {
+            $("#image1").attr("src", "Validate.html?a=" + Math.random());
+        }
+
+        function validatetip(n) {
+            if (n == "1") {
+                layer.alert("验证码过期！", 0, "系统提示");
+            } else if (n == "2") {
+                layer.alert("验证码不对！", 0, "系统提示");
+            } else if (n == "3") {
+                layer.alert("注册失败！", 0, "系统提示");
+            }
+        }
+
+        var countdown = 60;
+        function settime() {
+            if (countdown == 1) {
+                $("#smscode").removeAttr("disabled");
+                $("#smscode").val("发送验证码");
+                $("#yuyin_code").slideDown();
+                countdown = 60;
+            } else {
+                $("#smscode").attr("disabled", true);
+                $("#smscode").val("" + countdown + "秒后可重发");
+                countdown--;
+                if (countdown > 0) {
+                    setTimeout(function () {
+                        settime()
+                    }, 1000)
+                }
+            }
+        }
+        var countdown1 = 60;
+        function settime1() {
+            if (countdown1 == 1) {
+                $("#vsmscode").removeAttr("disabled");
+                $("#vsmscode").text("获取语音验证码");
+                $("#yuyin_code").slideUp();
+                countdown1 = 60;
+
+            } else {
+                $("#vsmscode").attr("disabled", true);
+                $("#vsmscode").text("" + countdown1 + "秒后可重获取语音验证码");
+                countdown1--;
+
+                if (countdown1 > 0) {
+                    setTimeout(function () {
+                        settime1();
+                    }, 1000)
+                }
+            }
+        }
+        function df(sms) {
+            var pageii = $.layer({
+                type: 1,
+                title: false,
+                area: ['700px', '460px'],
+                border: [0],
+                closeBtn: [0, false],
+                shift: 'top',
+                bgcolor: '',
+                page: {
+                    html: '<div class="reg_pop_wrap"  id="vcodet" >    <div class="reg_pop_box" style=" height:165px; background:#fff; position:fixed; left:69%; top:50%; z-index:99; margin:-160px 0 0 0; padding:15px;">    	<div style="font-size:14px; font-weight:bold;">填写验证码完成短信发送</div>        <div style="width:100%; float:left; margin:30px 0 0 0;"><span style="float:left; margin:0 20px 0 0;">验证码：<input  id="Validatecode"  name="" type="text" style="width:160px; height:42px; line-height:42px; border:1px solid #d6d6d6; color:#333; text-indent:5px;" /></span><span><img id="image1" src="Validate.html?a=<%=rndstr%>" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();" /></span></div><div style="text-align:center;"><input  id="codebtn" name="" value="发送短信" type="button" style="width:100px; height:45px; line-height:45px; font-size:18px; color:#fff; text-align:center; background:#f76b1e; border:none; cursor:pointer;font-family:microsoft YaHei;" />    <input id = "pagebtn"  name="" value="关闭窗口" type="button" style="width:100px; height:45px; line-height:45px; font-size:18px; color:#fff; text-align:center; background:#00af96; border:none; cursor:pointer; margin:25px 0 0 48px;font-family:microsoft YaHei;" /></div>    </div></div>'
+
+                }
+            });
+            (function resizeLayerSize() {
+                $("div.reg_pop_box").css("width", $("body").width() + "px");
+                var mLeft = ($(window).width() - $("div.reg_pop_box").width()) / 2;
+                $("div.reg_pop_box").css("left", mLeft + "px");
+                $("#Validatecode").width($("div.reg_pop_box").width()/4);
+                window.onresize = function () {
+                    var mLeft1 = ($(window).width() - $("div.reg_pop_box").width()) / 2;
+                    $("div.reg_pop_box").css("left", mLeft1 + "px");
+                    $("#Validatecode").width($("div.reg_pop_box").width() / 4);
+                };
+            })();
+            $('#pagebtn').on('click', function () {
+                layer.close(pageii);
+            });
+            $('#codebtn').on('click', function () {
+                var validvcode = $('#Validatecode').val()
+
+                var mobile = $("#mobile").val();
+
+                if (validvcode == null || validvcode.length <= 0) {
+                    layer.alert("验证码不能为空");
+                    return false;
+                }
+                if (mobile == null || mobile.length <= 0) {
+                    layer.alert("手机号不能为空");
+                    return false;
+                }
+                else {
+                    var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+                    if (re.test(mobile) == false) {
+                        layer.alert("手机号格式不对!");
+                        $("#mobile").val("");
+                        return false;
+                    }
+                }
+                $.post("/Register/checkmobile", { "param": mobile, }, function (msg) {
+
+                    if (msg == "手机号已被注册!") {
+                        layer.alert(msg);
+                    }
+                    else {
+                        if (sms == "ad") {
+                            $.post("/Register/vsmscode", { "mobile": mobile, "vcode": validvcode }, function (msg) {
+                                var data = JSON.parse(msg);
+                                if (data.rs == "y") {
+                                    settime1();
+                                    layer.close(pageii);
+                                    layer.msg("" + data.info + "", 5, 1);
+                                }
+                                else {
+                                    layer.msg("" + data.info + "", 2, 5);
+                                }
+
+                            });
+
+                        }
+                        else {
+                            $.post("/register/Regsmscode", { "mobile": mobile, "vcode": validvcode }, function (msg) {
+                                var data = JSON.parse(msg);
+                                if (data.rs == "y") {
+                                    settime();
+                                    layer.close(pageii);
+                                    layer.msg("" + data.info + "", 2, 1);
+                                }
+                                else {
+                                    if (data.info == "v") {
+                                        layer.close(pageii);
+                                        df("sms");
+                                    } else {
+                                        layer.msg("" + data.info + "", 2, 5);
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+
+                }
+                );
+            });
+
+            changeImg();
+        }
+        function changeImg() {
+            $("#image1").attr("src", "/register/GetValidateCode?a=" + Math.random());
+        }
+
+    </script>
+    <script src="~/Areas/activity/Sources/20160906/js/o_code.js"></script>
+</body>
+</html>

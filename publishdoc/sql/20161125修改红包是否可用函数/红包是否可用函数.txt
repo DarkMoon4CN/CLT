@@ -1,0 +1,35 @@
+USE [onchuangtou]
+GO
+/****** Object:  UserDefinedFunction [dbo].[IsBonusUseable]    Script Date: 2016/11/25 20:20:45 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER FUNCTION [dbo].[IsBonusUseable](@targetMonth [int], @useLifeLoan [nvarchar](50))
+RETURNS [int] WITH EXECUTE AS CALLER
+AS 
+BEGIN
+	declare @length int;
+	declare @position int;
+	declare @lessMonth int;
+	declare @mostMonth int;
+	if(@useLifeLoan is null or @useLifeLoan='0') return 1;
+	set @length=len(@useLifeLoan);
+	if(@length=0)
+		return 1;
+	if(@length>0)
+	begin
+		set @position=charindex('-',@useLifeLoan);
+		set @lessMonth=convert(int,substring(@useLifeLoan,1,@position-1));
+		set @mostMonth=convert(int,substring(@useLifeLoan,@position+1,1));
+		if(@lessMonth=0 and @mostMonth=0)
+			return 1;
+		if(@lessMonth=0 and @mostMonth>0 and @targetMonth<=@mostMonth)
+			return 1;
+		if(@lessMonth>0 and @mostMonth=0 and @targetMonth>=@lessMonth)
+			return 1;
+		if(@lessMonth>0 and @mostMonth>0 and @targetMonth>=@lessMonth and @targetMonth<=@mostMonth)
+			return 1;
+	end
+	RETURN 0;
+END

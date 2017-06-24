@@ -1,0 +1,600 @@
+﻿@charset "utf-8";
+/* CSS Document */
+div, p, a, ul, li, span, em, i, dl, dt, dd, body, h2, h3, h5 {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 100px;
+}
+
+body {
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+em, i {
+    font-style: normal;
+}
+
+images {
+    border: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+body {
+    background: #ed642d;
+    font-family: "微软雅黑";
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/*---------------media-----------------------*/
+
+
+/*---------------media-----------------------*/
+
+@media screen and (max-device-width: 320px) {
+    #t_r, #t_h, #t_m, #t_s {
+        left: -3px !important;
+        font-size: 2em !important;
+        line-height: 1.7rem !important;
+        letter-spacing: 9px !important;
+    }
+
+    .shuzi_bg {
+        width: 1rem !important;
+        height: 1.55rem !important;
+    }
+
+    .daojishi_content {
+        padding: 5% 0 !important;
+    }
+
+    .daojishi_1 small {
+        font-size: 1em !important;
+    }
+
+    .w_duoshou_3_main_jilu {
+        height: 9.5rem !important;
+    }
+
+        .w_duoshou_3_main_jilu ul {
+            height: 7.5rem !important;
+        }
+}
+
+@media screen and (min-width: 321px) and (max-width: 375px) {
+    #t_r, #t_h, #t_m, #t_s {
+        left: 5px !important;
+        font-size: 2em !important;
+        line-height: 1.8rem !important;
+        letter-spacing: 15px !important;
+    }
+
+    .shuzi_bg {
+        width: 1.1rem !important;
+        height: 1.75rem !important;
+    }
+
+    .daojishi_content {
+        padding: 0.8rem 0 !important;
+    }
+
+    .daojishi_1 small {
+        font-size: 1.2em !important;
+    }
+
+    .w_duoshou_3_main_jilu {
+        height: 11.1rem !important;
+    }
+
+        .w_duoshou_3_main_jilu ul {
+            height: 9rem !important;
+        }
+}
+
+@media screen and (min-width: 376px) and (max-width: 414px) {
+    #t_r, #t_h, #t_m, #t_s {
+        left: 6px !important;
+        font-size: 3em !important;
+        line-height: 2.2rem !important;
+        letter-spacing: 15px !important;
+    }
+
+    .shuzi_bg {
+        width: 1.33rem !important;
+        height: 2.16rem !important;
+    }
+
+    .daojishi_1 small {
+        font-size: 1.3em !important;
+    }
+}
+
+@media screen and (min-width: 415px) and (max-width: 768px) {
+}
+
+@media screen and (min-width: 768px) and (max-width: 2900px) {
+}
+
+.w_duoshou {
+    width: 100%;
+    height: auto;
+}
+
+.w_duoshou_1 {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.w_duoshou_1_bg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.w_duoshou_2 {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.w_duoshou_2_bg {
+    width: 100%;
+    height: auto;
+    display: block;
+    min-height: 35rem;
+}
+
+.w_duoshou_2_main {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 98%;
+    height: auto;
+    padding: 0 1%;
+}
+
+.duo_2_main_top {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+    .duo_2_main_top h2 {
+        display: block;
+        width: 6.94rem;
+        height: 1.73rem;
+        background: url(../images/w_duoshou_biaotibg.png) no-repeat;
+        background-size: 100%;
+        margin: 0 auto;
+        line-height: 1.5rem;
+        color: #fff;
+        font-family: "微软雅黑";
+        font-size: 1.6em;
+        font-weight: normal;
+        text-align: center;
+        margin-top: 0.6rem;
+    }
+
+    .duo_2_main_top p {
+        display: block;
+        line-height: 0.8rem;
+        color: #fff;
+        font-family: "微软雅黑";
+        font-size: 1em;
+        font-weight: normal;
+        margin: 0.4rem 0;
+    }
+
+.duo_2_main_content {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 7%;
+}
+
+.duo_2_main_content_1 {
+    width: 100%;
+    height: auto;
+}
+
+.daojishi_top {
+    display: block;
+    font-family: "微软雅黑";
+    font-size: 1.2em;
+    color: #e3befd;
+    text-shadow: 0px 2px 2px rgba(0,0,0,0.6);
+}
+
+    .daojishi_top span {
+        display: inline-block;
+        width: 3.6rem;
+        height: 1.2rem;
+        background: url(../images/w_duoshou_12tu.png) no-repeat;
+        background-size: 100%;
+        vertical-align: bottom;
+        margin: 0 2px;
+    }
+
+.daojishi_content {
+    display: block;
+    width: 100%;
+    height: 3.8rem;
+    background: url(../images/w_duoshou_shibg.png) no-repeat;
+    background-size: 100%;
+    margin: 2% auto;
+    padding: 18px 0;
+}
+
+.daojishi_1 {
+    display: inline-block;
+}
+
+.daojishi_1_shuzi {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+
+.shuzi_bg {
+    display: inline-block;
+    width: 1.33rem;
+    height: 2.16rem;
+    background: url(../images/w_duoshou_shijianbg.png) no-repeat;
+    background-size: 100%;
+}
+
+.daojishi_1 small {
+    color: #fff;
+    font-family: "微软雅黑";
+    font-size: 1.3em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#t_r, #t_h, #t_m, #t_s {
+    position: absolute;
+    left: 4px;
+    top: 0%;
+    width: 60px;
+    color: #000;
+    font-size: 3em;
+    line-height: 2.2rem;
+    letter-spacing: 12px;
+    z-index: 1;
+}
+
+.duo_2_main_content_2 {
+    width: 100%;
+    height: auto;
+}
+
+.zhuanpan {
+    width: 13.7rem;
+    height: 14.5rem;
+    background: url(../images/w_duoshou_zhuanpanbg.png) no-repeat;
+    background-size: 100%;
+    margin: 0 auto;
+    padding: 1rem 0 0 0;
+    position: relative;
+}
+
+.zhuanpan_jiang {
+    width: 11.55rem;
+    height: 11.55rem;
+    background: url(../images/w_duoshou_zhuanpanjiang.png) no-repeat;
+    background-size: 100%;
+    margin: 0 auto;
+}
+
+.zhuanpan_go {
+    width: 5rem;
+    height: 6.125rem;
+    background: url(../images/w_duoshou_zhuanpango.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 21%;
+    left: 50%;
+    margin-left: -2.5rem;
+    z-index: 9;
+}
+
+.zhuanpan_deng {
+    width: 13rem;
+    height: 13rem;
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    margin-left: -6.5rem;
+}
+
+.dengUp, .dengDode {
+    width: 13rem;
+    height: 13rem;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    margin-left: -6.5rem;
+}
+
+.zhuanpan_deng img {
+    width: 13rem;
+    height: 13rem;
+    display: block;
+}
+
+.duo_2_main_content_3 p {
+    font-size: 1.3em;
+    color: #dfbcff;
+    font-family: "微软雅黑";
+}
+
+    .duo_2_main_content_3 p span {
+        color: #fff600;
+        margin: 0 5px;
+    }
+
+.duo_2_main_content_3 .Btn1 {
+    display: block;
+    width: 8.325rem;
+    height: 2.175rem;
+    background: url(../images/w_duoshou_btn3.png) no-repeat;
+    background-size: 100%;
+    margin: 20px auto 0px auto;
+    line-height: 1.8rem;
+    color: #373737;
+    font-size: 1.5em;
+    font-family: "微软雅黑";
+}
+
+.duo_2_main_content_3 .Btn2 {
+    display: none;
+    width: 8.325rem;
+    height: 2.175rem;
+    background: url(../images/w_duoshou_btn1.png) no-repeat;
+    background-size: 100%;
+    margin: 20px auto 0px auto;
+    line-height: 1.8rem;
+    color: #4f2100;
+    font-size: 1.5em;
+    font-family: "微软雅黑";
+}
+
+.duo_2_main_content_3 small {
+    display: block;
+    font-size: 1.2em;
+    color: #ffe557;
+    font-family: "微软雅黑";
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.w_duoshou_3 {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.w_duoshou_3_bg {
+    width: 100%;
+    height: auto;
+    display: block;
+    min-height: 740px;
+}
+
+.w_duoshou_3_main {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 96%;
+    height: auto;
+    padding: 0 2%;
+}
+
+.w_duoshou_3_main_jilu {
+    width: 100%;
+    height: 12.375rem;
+    margin: 0 auto;
+}
+
+.w_duoshou_3_main_jilu_div {
+    border: 15px solid transparent;
+    border-image: url(../images/w_duoshou_guizetu.png) 30 30 round;
+}
+
+.w_duoshou_3_main_jilu h2 {
+    display: block;
+    line-height: 1.65rem;
+    background-color: #6500ab;
+    text-align: center;
+    color: #fffb93;
+    font-size: 1.2em;
+    font-family: "微软雅黑";
+    font-weight: normal;
+    border-bottom: 1px solid #3d006c;
+}
+
+.w_duoshou_3_main_jilu ul {
+    display: block;
+    width: 100%;
+    height: 9.5rem;
+    border-top: 1px solid #8a41c2;
+    overflow: hidden;
+    background-color: #6500ab;
+}
+
+    .w_duoshou_3_main_jilu ul li {
+        display: block;
+        width: 100%;
+        line-height: 1.5rem;
+        color: #f4e5ff;
+        font-size: 1em;
+        font-family: "微软雅黑";
+        font-weight: normal;
+        background-color: #6500ab;
+    }
+
+        .w_duoshou_3_main_jilu ul li:nth-child(2n) {
+            background-color: #8a00e9;
+        }
+
+        .w_duoshou_3_main_jilu ul li span {
+            display: inline-block;
+            width: 50%;
+            text-align: center;
+        }
+
+.w_duoshou_3_main_bottom {
+    width: 100%;
+    height: auto;
+    margin: 30px 0;
+    text-align: left;
+}
+
+    .w_duoshou_3_main_bottom h2 {
+        display: block;
+        width: 6.94rem;
+        height: 1.73rem;
+        background: url(../images/w_duoshou_biaotibg.png) no-repeat;
+        background-size: 100%;
+        margin: 0 auto;
+        line-height: 1.5rem;
+        color: #fff;
+        font-family: "微软雅黑";
+        font-size: 1.6em;
+        font-weight: normal;
+        text-align: center;
+        margin-top: 0.6rem;
+    }
+
+    .w_duoshou_3_main_bottom dl {
+        width: 92%;
+        height: auto;
+        margin: 0.66rem auto;
+        color: #f4e5ff;
+    }
+
+        .w_duoshou_3_main_bottom dl dd {
+            font-family: "微软雅黑";
+            font-size: 1em;
+            line-height: 1rem;
+            margin-left: 17pt;
+            text-indent: -17pt;
+        }
+
+
+.tanchuang {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+}
+
+.tanchuang_main1 {
+    width: 9.25rem;
+    height: 6.25rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -4.625rem;
+    margin-top: -3.125rem;
+}
+
+.tanchuang2 {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+}
+
+.tanchuang2_main1 {
+    width: 9.25rem;
+    height: 6.25rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -4.625rem;
+    margin-top: -3.125rem;
+}
+
+.tanchuang2_main {
+    width: 12rem;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -6rem;
+    margin-top: -5rem;
+}
+
+    .tanchuang2_main > img {
+        width: 100%;
+    }
+
+.tanchuang_main1 > img, .tanchuang_main2 > img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.tanchuang_main2 {
+    display: none;
+    width: 9.25rem;
+    height: 6.25rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -4.625rem;
+    margin-top: -3.125rem;
+}
+
+.tanchuang_main_guan {
+    position: absolute;
+    width: 0.775rem;
+    height: 0.775rem;
+    background: url(../images/w_tanchuang_guanbi.png) no-repeat;
+    background-size: 100%;
+    top: -6%;
+    right: -8%;
+}
+
+.tanchuang2_main_guan {
+    position: absolute;
+    width: 0.775rem;
+    height: 0.775rem;
+    background: url(../images/w_tanchuang_guanbi.png) no-repeat;
+    background-size: 100%;
+    top: -6%;
+    right: -8%;
+}
+
+.Prize {
+    position: absolute;
+    width: 6.25rem;
+    left: 50%;
+    margin-left: -3.125rem;
+    color: #ffeb00;
+    font-family: "微软雅黑";
+    font-size: 1.5em;
+    top: 50%;
+    text-align: center;
+}

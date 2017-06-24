@@ -1,0 +1,154 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@model PagedList<ActMode>
+@{
+    ViewBag.Title = "常规投资红包统计";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+
+<link rel="stylesheet" href="/Areas/Admin/style/style.css" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/nav_style.css" rel="stylesheet" type="text/css">
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/huodong_js.js"></script>
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<link href="~/Content/pagecss.css" rel="stylesheet" type="text/css" />
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        function downloadExcel(url) {
+            alert(url);
+            var obj = $("#downloadExcelBtn");
+            obj.attr("href", url);
+            document.getElementById("downloadExcelBtn").click();
+            //$("#downloadExcelBtn").click();
+        };
+        $("#downloadExcel").click(function () {
+            var useridentity = $("#useridentity").val();
+            var realname = $("#realname").val();
+            var mobile = $("#mobile").val();
+            var RewTypeID = $("#RewTypeID").val();
+            var UseState = $("#UseState").val();
+            var SDate = $("#SDate").val();
+            var EDate = $("#EDate").val();
+            var ActDateTime = $("#ActDateTime").val();
+            var actid = GetQueryString("actid");
+
+            $.ajax({
+                type: 'Get',
+                url: "/admin/Activity/GeneralCountToExcel",
+                data: {
+                    realname: realname, mobile: mobile,
+                    RewTypeID: RewTypeID, UseState: UseState,
+                    ActDateTime: ActDateTime, useridentity: useridentity,
+                    SDate: SDate, EDate: EDate, actid: actid
+                },
+                //dataType: dataType,
+                success: function (data) {
+                    if (data == "您没有操作权限") {
+                        alert("您没有操作权限");
+                    } else {
+                        downloadExcel(data);
+                    }
+                },
+                error: function () {
+                    //view("异常！");
+                    alert("异常！");
+                }
+            });
+        });
+    });
+    var dff;
+    function AjaxStart() {
+        //dff = layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        //  var index = parent.layer.close(dff); //获取窗口索引
+        // parent.layer.close(index);
+    }
+    //推荐
+    function SetACTState(id, state) {
+        $.getJSON("/admin/Activity/SetACTState", { id: id, state: state }, function (data) {
+            if (data.ret == 1) {
+                layer.msg("操作成功!", 1, 1)
+                location.reload(true);
+            } else {
+                alert(data.msg);
+            }
+        });
+    }
+
+</script>
+<div class="v_right">
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">活动管理</a>><a href="javascript:void(0)"> 红包统计</a></h2>
+    <div class="z_body">
+
+        <div class="z_03 z_main">
+            <h2 class="z_t_h2"><span class="z_span1">活动1效果统计：</span><span class="z_span2"></span></h2>
+            <div class="z_cont3">
+                <dl class="z_dl">
+                    <dt>从本活动开始到现在：</dt>
+                    <dd>1. 参与人数共 @ViewBag.totalc 人，其中，新增加注册人数 @ViewBag.NewReg 人，老用户 @ViewBag.olduser 人，共投资人数 @ViewBag.totinv 人</dd>
+                    <dd>2. 共发放 @ViewBag.text。</dd>
+                </dl>
+
+                @using (Html.BeginForm("GeneralCount", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm" }))
+                {
+
+                    <div class="z_table01">
+                        <ul>
+                            <form action="" method="">
+                                <li class="z_fo_01">
+                                    <span class="z_f_li01">姓名：<input type="text" name="realname" id="realname"></span>
+                                    <span class="z_f_li01">手机号：<input type="text" name="mobile" id="mobile"></span>
+                                    <span>
+                                        奖励类型：
+                                        @Html.DropDownList("RewTypeID", ViewBag.GetScheduleDropDownList as IEnumerable<SelectListItem>)
+
+                                    </span>
+                                </li>
+                                <li class="z_fo_02">
+                                    <span>
+
+                                        @UserControl.HX_SelectActUser(1)
+                                    </span>
+                                    <span>
+                                        使用状态：@UserControl.ACT_UseState()
+                                    </span>
+                                    <span class="z_f_li04">
+                                        @UserControl.Act_DateTime()
+                                        <input type="text" class="jcDate jcDateIco" name="SDate" id="SDate"><i>至</i>
+                                        <input type="text" class="jcDate jcDateIco" name="EDate" id="EDate">
+                                    </span>
+                                    <span class="z_f_li05"><input type="submit" value="查询"></span>
+                                    <input type="button" class="btn2" id="downloadExcel" value="数据导出" />
+                                </li>
+                            </form>
+                        </ul>
+                    </div>
+
+                }
+
+                @Html.Partial("_GeneralCountList", Model)
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<a href="" id="downloadExcelBtn" style="display:none;"></a>
+
+
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}

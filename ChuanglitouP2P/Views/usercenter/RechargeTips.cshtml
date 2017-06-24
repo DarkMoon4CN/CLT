@@ -1,0 +1,178 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@{
+    List<hx_td_Bank> listBank = ViewBag.listBank == null ? null : ViewBag.listBank as List<hx_td_Bank>;
+    Layout = null;
+}
+
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+</script>
+<!--内容区域-->
+<style type="text/css">
+    #recharge h2 {
+        font-size: 20px;
+        font-family: "微软雅黑";
+        font-weight: normal;
+        padding: 0 5%;
+    }
+
+    #recharge thead tr {
+        font-family: "微软雅黑";
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    #recharge thead tr {
+        width: 100%;
+        line-height: 40px;
+    }
+
+        #recharge thead tr th {
+            font-weight: normal;
+            font-size: 16px;
+            font-family: "微软雅黑";
+            color: #333;
+        }
+
+    #recharge table {
+        font-size: 12px;
+        line-height: 24px;
+        width: 580px;
+        border: 1px solid #f0f0f0;
+        margin: 0 auto;
+        background: #fff;
+    }
+
+    #recharge tbody tr td {
+        text-align: center;
+        line-height: 40px;
+        font-family: "微软雅黑";
+        font-size: 14px;
+        vertical-align: middle;
+        color: #444;
+    }
+
+        #recharge tbody tr td:nth-child(1) {
+            width: 38%;
+            vertical-align: middle;
+            text-align:left;
+        }
+
+        #recharge tbody tr td:nth-child(2) {
+            width: 28%;
+        }
+
+        #recharge tbody tr td:nth-child(3) {
+            width: 34%;
+        }
+
+        #recharge tbody tr td img {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            margin-right: 10px;
+            margin-left: 38px;
+        }
+        
+</style>
+<div id="recharge">
+    <table style="" cellpadding="0" cellspacing="0" border="0">
+        <thead>
+            <tr>
+                <th>银行名称</th>
+                <th>单笔限额</th>
+                <th>单卡单日累计限额</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (listBank != null)
+            {
+                foreach (var item in listBank)
+                {
+                    <tr>
+                        <td><img src="@item.CardImageNew" />@item.BankName</td>
+                        <td>@(item.SingleTransQuota)元/笔</td>
+                        <td>@(item.CardDailyTransQuota)元/日</td>
+                    </tr>
+                }
+            }
+            <!--
+            <tr>
+                <td><img src="bank_01.png">工商银行</td>
+                <td>5万元</td>
+                <td>5万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_02.png">光大银行</td>
+                <td>5万元</td>
+                <td>10万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_03.png">建设银行</td>
+                <td>5万元</td>
+                <td>10万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_04.png">农业银行</td>
+                <td>5万元</td>
+                <td>5万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_05.png">平安银行</td>
+                <td>5万元</td>
+                <td>10万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_06.png">深发银行</td>
+                <td>5万元</td>
+                <td>10万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_07.png">浦发银行</td>
+                <td>0.5万元</td>
+                <td>5万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_08.png">上海银行</td>
+                <td>0.5万元</td>
+                <td>5万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_09.png">兴业银行</td>
+                <td>5万元</td>
+                <td>5万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_10.png">邮蓄银行</td>
+                <td>0.5万元</td>
+                <td>0.5万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_11.png">中信银行</td>
+                <td>5万元</td>
+                <td>10万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_12.png">中国银行</td>
+                <td>5万元</td>
+                <td>10万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_13.png">渤海银行</td>
+                <td>5万元</td>
+                <td>10万元</td>
+            </tr>
+            <tr>
+                <td><img src="bank_14.png">招商银行</td>
+                <td>5万元</td>
+                <td>10万元</td>
+            </tr>
+                -->
+        </tbody>
+    </table>
+
+</div>
+

@@ -1,0 +1,84 @@
+﻿@using ChuanglitouP2P.Common;
+@model ChuanglitouP2P.Model.chinapnr.Cash.ReCash
+@{
+    ViewBag.Title = "用户取现-创利投-安全的阳光P2B网络借贷金融平台";
+    ViewBag.keywords = "P2B借贷,P2P理财,P2B理财,互联网金融,网络理财,投资理财,个人借贷平台,企业融资,创利投";
+    ViewBag.desc = "创利投是中国最安全阳光的互联网金融理财服务平台，五大安全系统保证您的理财账户安全，最安全的第三方充值支付托管平台，丰厚的邀请奖励金额，是您最放心安全的理财投资平台。你的账户在创利投决定安全.";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script src="/js/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript"> layer.msg("页面转跳中", 3, 1, function () { window.location.href = '/usercenter/Index' });</script>
+
+<style type="text/css">
+    .xubox_layer {
+        margin-left: -73px;
+    }
+</style>
+<div class="user_right_box">
+    <div class="user_right_frame" style="margin-top:30px;">
+
+        @if (Model.RespCode != null && Model.RespCode != "")
+        {
+            if (Model.RespCode == "000")
+            {
+                <div class="success_box clearfix">
+                    <div class="success_title">
+                        <img src="/images/ok_icon.png" />
+                        @if (ViewBag.cashChl == "yes")
+                        {
+                            <div class="success_txt"><strong>提现成功...</strong></div>
+                        }
+                        else
+                        {
+                            <div class="success_txt"><strong>提现申请成功,正在审核中...</strong></div>
+                        }
+                    </div>
+                    <div class="clear"></div>
+                    <div class="success_prompt">
+                        <ul>
+                            <li>提现时间：@Utils.GetDateFormat(DateTime.Now)</li>
+                            <li>提现金额：<b class="color_red">@Model.TransAmt</b>元</li>
+                            @if (ViewBag.cashChl == "yes")
+                            {
+                                <li>状态：已通过审核</li>
+                            }
+                            else
+                            {
+                                <li>状态：审核中</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+            }
+            else
+            {
+
+                <div class="success_box clearfix">
+                    <div class="success_title">
+                        <img src="/images/failure_icon.png" />
+                        <div class="success_txt">
+                            <strong style="color:#ff0000;">提现失败 @Model.RespDesc @*@Utils.GetReturnCode(Int32.Parse(Model.RespCode))*@ </strong><p>如有疑问，请拨打创利投客服热线：010-53732056</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+        else
+        {
+
+            <div class="success_box clearfix">
+                <div class="success_title">
+                    <img src="/images/failure_icon.png" />
+                    <div class="success_txt">
+                        <strong style="color:#ff0000;">提现失败  </strong><p>如有疑问，请拨打创利投客服热线：010-53732056</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

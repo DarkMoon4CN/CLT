@@ -1,0 +1,33 @@
+﻿@using ChuanglitouP2P.Common;
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>关于我们</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("about.css").ToHtml()
+    <script>
+	(function(doc,win){var docEl=doc.documentElement,resizeEvt="orientationchange"in window?"orientationchange":"resize",recalc=function(){var clientWidth=docEl.clientWidth;if(!clientWidth)return;docEl.style.fontSize=20*(clientWidth/320)+"px"};if(!doc.addEventListener)return;win.addEventListener(resizeEvt,recalc,false);doc.addEventListener("DOMContentLoaded",recalc,false)})(document,window)
+    </script>
+</head>
+<body>
+    <article class="txtCon">
+        <p>创利投金服（www.chuanglitou.cn）是北京创利投网络科技有限公司旗下的阳光可信赖互联网+供应链垂直立体式金融服务平台。平台依托庞大的供应链体系与互联网金融完美结合的创新型商业模式，严苛健全的风控体系，致力于为投资者及中小企业搭建一个安全、专业、高效的互联网金融服务平台。</p>
+        <p>平台自创立以来，秉承“智创财富，惠利中华”的企业使命，始终坚持“诚信为先、合规为本、互利共赢、永续发展”的经营理念，在扶持中小企业，服务实体经济发展方面发挥了重要作用。平台现已获得国家ICP经营许可证，同时与中国权威第三方支付平台汇付天下签订资金托管协议，并有业内知名融资性担保机构提供担保，全方位保障投资者的资金安全。与此同时，平台凭借诚信经营先后荣获网贷俱乐部副会长单位及新金融家俱乐部副会长单位等荣誉称号，并拥有企业信用评价AA级信用资质及亚太地区安全联盟行业认证，是值得信赖和托付的优质互联网金融服务平台。</p>
+        <p>创利投金服在行业内稳扎稳打，品牌影响力日益突显，已于2015年11月12日正式挂牌上市北京股权交易中心，成功迈入资本市场发展之路。平台将继续通过合规稳健的运营，帮助更多投资用户实现财富增值，解决更多中小企业的融资难题，在推动行业健康发展的同时，为社会经济发展创造更大的价值。</p>
+        <p>“创 利 投” 理 念 ：项目优质，风控严格，收益稳健，服务专业</p>
+        <p>“创 利 投”价值观  ： 通过“创利投”让投资用户实现财富增长，让企业合作伙伴实现融资需求，为社会经济发展创造价值。</p>
+        <p>“创 利 投” 使 命 ：为个人和企业搭建一个安全、高效的桥梁，提供优质的“一站式”金融对接服务。</p>
+        <p>“创 利 投” 愿 景 ：用户值得信赖的互联网投融资理财平台。</p>
+    </article>
+</body>
+</html>
+
+
+

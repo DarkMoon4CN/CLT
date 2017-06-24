@@ -1,0 +1,94 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@using ChuangLitouP2P.Models;
+@model PagedList<V_Channel_UserList>
+@{
+    ViewBag.Title = "渠道用户列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script src="~/Areas/Admin/js/Channel.js"></script>
+<script type="text/javascript">
+    $(function () {
+        Channel.adminUserListInit();
+    });
+</script>
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">渠道管理</a>><a href="javascript:void(0)">渠道用户列表</a></h2>
+<h3 class="listtitle">
+    <b>渠道推广用户：@ViewBag.AdminUserName </b> 您好！
+</h3>
+<div class="z_body">
+    <p class="tP3">
+        快速搜索
+    </p>
+    @using (Html.BeginForm("AdminUserList", "Channel", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:60px; padding-bottom:15px; ">
+            <label for="">被邀请账号：</label><input type="text" class="txt1" id="userName" name="userName" value="@ViewBag.UserName" style="width:100px;" />&nbsp;
+            <label for="">真实姓名：</label><input type="text" class="txt1" id="realName" name="realName" value="@ViewBag.RealName" style="width:100px;" />&nbsp;
+            <label for="channelName">注册时间：</label>
+            <input class="jcDate" name="startTime" id="startTime" value="@ViewBag.StartTime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" />
+            <i class="oI" style="margin-right: 10px;">至</i>
+            <input class="jcDate" name="endTime" id="endTime" value="@ViewBag.EndTime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" />
+            <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+            <input type="button" class="btn2" value="导&nbsp;&nbsp;&nbsp;出" id="toExcel" />
+        </p>
+    }
+    <span class="icon-sprite icon-list"></span>
+
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th>编号</th>
+                <th>渠道使用者</th>
+                <th>被邀请账号</th>
+                <th>被邀请真实姓名</th>
+                <th>注册时间</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.AdminUserName</td>
+                        <td>@Utils.ReplaceWithSpecialChar(item.username, 3, 4, '*')</td>
+                        <td>@item.realname</td>
+                        <td>@item.registration_time</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="pagination ue-clear">
+       
+        <div class="pagination-container">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("AdminUserList", new
+       {
+           page,
+           userName = @ViewBag.UserName,
+           realname = @ViewBag.RealName,
+           startTime = @ViewBag.StartTime,
+           endTime = @ViewBag.EndTime,
+       }))<div style="padding:10px;font-weight:600">当前第 @Model.PageNumber 页,共 @Model.PageCount 页，共 @Model.TotalItemCount 条记录</div>
+        </div>
+    </div>
+</div>

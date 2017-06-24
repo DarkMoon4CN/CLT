@@ -1,0 +1,221 @@
+BODY {
+	FONT-SIZE: 12px; FONT-FAMILY: "??????","????","Arial"; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+FORM {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+H1 {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+H2 {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+H3 {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+H4 {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+H5 {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+P {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+DIV {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+UL {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+LI {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px
+}
+INPUT {
+	OUTLINE-STYLE: none; resize: none
+}
+BUTTON {
+	OUTLINE-STYLE: none; resize: none
+}
+TEXTAREA {
+	OUTLINE-STYLE: none; resize: none
+}
+SELECT {
+	OUTLINE-STYLE: none; resize: none
+}
+A:hover {
+	OUTLINE-STYLE: none; resize: none
+}
+IMG {
+	BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px
+}
+A SPAN {
+	VERTICAL-ALIGN: baseline
+}
+LABEL {
+	VERTICAL-ALIGN: middle
+}
+INPUT {
+	VERTICAL-ALIGN: middle
+}
+BUTTON {
+	VERTICAL-ALIGN: middle
+}
+TEXTAREA {
+	VERTICAL-ALIGN: middle
+}
+SELECT {
+	VERTICAL-ALIGN: middle
+}
+INPUT[type=checkbox] {
+	BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; VERTICAL-ALIGN: middle; BORDER-BOTTOM-STYLE: none; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; BORDER-RIGHT-STYLE: none; PADDING-LEFT: 2px; PADDING-RIGHT: 2px
+}
+.hide {
+	DISPLAY: none
+}
+.clear {
+	OVERFLOW: hidden; FONT-SIZE: 0px; HEIGHT: 0px; CLEAR: both; LINE-HEIGHT: 0px
+}
+.middle {
+	VERTICAL-ALIGN: middle
+}
+A {
+	COLOR: #395a7b; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+A.btn-lit {
+	TEXT-DECORATION: none
+}
+LABEL.error {
+	COLOR: red; MARGIN-LEFT: 10px
+}
+LABEL.readme {
+	COLOR: #5b5959; MARGIN-LEFT: 10px
+}
+.btn {
+	BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 28px; BACKGROUND-IMAGE: url(/admin/images/button-green.png); BACKGROUND-REPEAT: no-repeat; BORDER-BOTTOM-STYLE: none; BACKGROUND-POSITION: 0px 0px; FONT-WEIGHT: bold; COLOR: #ffffff; PADDING-BOTTOM: 0px; TEXT-ALIGN: center; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; PADDING-LEFT: 12px; TEXT-DECORATION: none; DISPLAY: inline-block; LINE-HEIGHT: 28px; PADDING-RIGHT: 0px
+}
+.btn SPAN {
+	FONT-SIZE: 14px; BACKGROUND-IMAGE: url(/admin/images/button-green.png); BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: right 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; DISPLAY: block; PADDING-RIGHT: 12px
+}
+.btn-hover {
+	BACKGROUND-POSITION: 0px -30px
+}
+.btn-hover SPAN {
+	BACKGROUND-POSITION: right -30px
+}
+.btn-active {
+	BACKGROUND-POSITION: 0px -60px
+}
+.btn-active SPAN {
+	BACKGROUND-POSITION: right -60px
+}
+.btn-lit {
+	BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 23px; BACKGROUND-IMAGE:url(/admin/images/button-green-lit.png); BACKGROUND-REPEAT: no-repeat; BORDER-BOTTOM-STYLE: none; BACKGROUND-POSITION: 0px 0px; FONT-WEIGHT: bold; COLOR: #ffffff; PADDING-BOTTOM: 0px; TEXT-ALIGN: center; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; PADDING-LEFT: 12px; TEXT-DECORATION: none; DISPLAY: inline-block; LINE-HEIGHT: 23px; PADDING-RIGHT: 0px
+}
+.btn-lit SPAN {
+	FONT-SIZE: 12px; BACKGROUND-IMAGE: url(/admin/images/button-green-lit.png); BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: right 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; DISPLAY: block; PADDING-RIGHT: 12px
+}
+.btn-lit-hover {
+	BACKGROUND-POSITION: 0px -25px
+}
+.btn-lit-hover SPAN {
+	BACKGROUND-POSITION: right -25px
+}
+.btn-lit-active {
+	BACKGROUND-POSITION: 0px -50px
+}
+.btn-lit-active SPAN {
+	BACKGROUND-POSITION: right -50px
+}
+.txt-white {
+	FONT-WEIGHT: normal; COLOR: #ffffff
+}
+.txt-white-b {
+	FONT-WEIGHT: bold; COLOR: #ffffff
+}
+.txt-green {
+	FONT-WEIGHT: normal; COLOR: #456b0a
+}
+.txt-green-b {
+	FONT-WEIGHT: bold; COLOR: #456b0a
+}
+.txt-gray {
+	FONT-WEIGHT: normal; COLOR: #666666
+}
+.txt-gray-b {
+	FONT-WEIGHT: bold; COLOR: #666666
+}
+.txt-red {
+	FONT-WEIGHT: normal; COLOR: #ff0000
+}
+.txt-red-b {
+	FONT-WEIGHT: bold; COLOR: #ff0000
+}
+.txt-orange {
+	FONT-WEIGHT: normal; COLOR: #ff6600
+}
+.txt-orange-b {
+	FONT-WEIGHT: bold; COLOR: #ff6600
+}
+.txt-blue {
+	FONT-WEIGHT: normal; COLOR: #003366
+}
+.txt-blue-b {
+	FONT-WEIGHT: bold; COLOR: #003366
+}
+SELECT {
+	HEIGHT: 24px; LINE-HEIGHT: 24px
+}
+INPUT {
+	border: 1px solid #a4a4a4;
+    FONT-SIZE: 12px; FONT-FAMILY: Tahoma, "Times New Roman", Times, ????; 
+    COLOR: #4a4a4a;
+}
+TEXTAREA {
+	border: 1px solid #a4a4a4;
+    FONT-SIZE: 12px; FONT-FAMILY: Tahoma, "Times New Roman", Times, ????; 
+    COLOR: #4a4a4a;
+}
+.input-code {
+	HEIGHT: 18px; LINE-HEIGHT: 18px
+}
+.input-small {
+	HEIGHT: 18px; LINE-HEIGHT: 18px
+}
+.input-normal {
+	HEIGHT: 18px; LINE-HEIGHT: 18px
+}
+.input-big {
+	HEIGHT: 18px; LINE-HEIGHT: 18px
+}
+.input-xbig {
+	HEIGHT: 18px; LINE-HEIGHT: 18px
+}
+.input-xxbig {
+	HEIGHT: 18px; LINE-HEIGHT: 18px
+}
+.input-code {
+	WIDTH: 35px
+}
+.input-small {
+	WIDTH: 100px
+}
+.input-normal {
+	WIDTH: 180px
+}
+.input-big {
+	WIDTH: 250px
+}
+.input-xbig {
+	WIDTH: 350px
+}
+.input-xxbig {
+	WIDTH: 450px
+}
+.change_hover{ background:#f5f5f5;}
+.date-list{ text-align:left;}
+.date-list h3{ width:100%; FONT-SIZE: 12px; HEIGHT: 31px; BACKGROUND: url(/admin/images/data-table-th.gif) repeat-x; FONT-WEIGHT: bold; COLOR: #456b0a; LINE-HEIGHT: 31px; text-indent:15px;}
+.date-list ul li{ line-height:24px; padding:5px 15px; border-bottom:1px dotted #eeeeee;}

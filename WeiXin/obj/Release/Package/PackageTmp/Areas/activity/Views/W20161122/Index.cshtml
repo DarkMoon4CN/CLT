@@ -1,0 +1,275 @@
+﻿
+@{
+    ViewBag.Title = "下载 APP 送1260元大礼包啦";
+    Layout = "~/Views/Shared/Activity_Layout.cshtml";
+    int userid = ViewBag.UserID;
+}
+<link href="~/Areas/activity/Sources/20161122/style/common.css" rel="stylesheet" />
+<link href="~/Areas/activity/Sources/20161122/style/css.css?v=20161123" rel="stylesheet" />
+<script src="~/Areas/activity/Sources/20161122/js/jquery-1.9.1.min.js"></script>
+<script src="~/js/appScript.js?v=20161122333"></script>
+<script>
+    (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+</script>
+<script type="text/javascript">
+    var _oztime = (new Date()).getTime();
+</script>
+<style>
+    body {
+        min-width: 320px;
+        max-width: 640px;
+    }
+
+    .fixed_Bar {
+        height: auto;
+        width: 100%;
+        background: rgba(0,0,0,0.5);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        overflow: hidden;
+        padding: 5px 0;
+    }
+
+    .BarCentert {
+        height: auto;
+        width: 14.55rem;
+        margin: 0 auto;
+        position: relative;
+    }
+
+        .BarCentert img {
+            width: 7.675rem;
+            height: auto;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+
+    .fixed_Bar a {
+        padding: 3px 20px;
+        height: auto;
+        position: absolute;
+        top: 0.6rem;
+        left: 8.8rem;
+        color: #fff;
+        font-size: 0.55rem;
+        text-align: center;
+        background: #276fe6;
+        border-bottom: 1px solid #10498f;
+        font-family: "微软雅黑";
+        font-weight: normal;
+    }
+
+    .fixed_Bar_Close {
+        position: absolute;
+        right: 0.3rem;
+        top: 0.7rem;
+        width: 0.9rem;
+        height: 0.9rem;
+        display: inline-block;
+        background: url('/Areas/activity/Sources/20161014/images/fixed_Bar_Close.png') no-repeat;
+        background-size: 100%;
+    }
+
+    .shade {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 45%;
+        background: rgba(0,0,0,0.5);
+    }
+
+        .shade img {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin-top: 20%;
+            margin-left: 20%;
+        }
+</style>
+<div class="w_xianjin_1260">
+    <div class="w_xianjin_1260_main">
+        <div class="w_xianjin_1260_main_1">
+            <img src="~/Areas/activity/Sources/20161122/images/w_xianjin_1260_01bg.png">
+            <div class="w_xianjin_1260_main_1_main">
+                <div class="w_xianjin_1260_main_1_main_1">
+                    <div class="w_xianjin_1260_main_1_main_1_top">
+                        <h3>活动一：下载创利投APP</h3>
+                        @*<h3>下载创利投APP</h3>*@
+                        <h2>登录即可获得<span style="color:#ffe762">1260</span>元现金券</h2>
+                    </div>
+                    <div class="w_xianjin_1260_main_1_main_1_bottom">
+                        <p>
+                            <span></span>
+                            <a style="display: inline-block;vertical-align: middle;color: #fff0a3;">
+                                活动期间，下载APP并登录的
+                                <br>用户可获得1260元现金券
+                            </a>
+                            <span></span>
+                        </p>
+                        <dl>
+                            <dt>
+                                <img src="~/Areas/activity/Sources/20161122/images/w_xianjin_1260_01.png">
+                                <p>10<small>元</small></p>
+                                <span>6张<br>现金券</span>
+                            </dt>
+                            <dd>
+                                投资1个月标<br>
+                                每满500元可使用一张
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="~/Areas/activity/Sources/20161122/images/w_xianjin_1260_01.png">
+                                <p>50<small>元</small></p>
+                                <span>4张<br>现金券</span>
+                            </dt>
+                            <dd>
+                                投资3个月以上标（含3个月）<br>
+                                每满5000元可使用一张
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="~/Areas/activity/Sources/20161122/images/w_xianjin_1260_01.png">
+                                <p>100<small>元</small></p>
+                                <span>5张<br>现金券</span>
+                            </dt>
+                            <dd>
+                                投资3个月以上标（含3个月）<br>
+                                每满10000元可使用一张
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="~/Areas/activity/Sources/20161122/images/w_xianjin_1260_01.png">
+                                <p>500<small>元</small></p>
+                                <span>1张<br>现金券</span>
+                            </dt>
+                            <dd>
+                                投资6个月标以上（含6个月）<br>
+                                满50000元可使用一张
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="userid" value="@ViewBag.UserID">
+            @Html.Raw(ViewBag.af)
+        </div>
+    </div>
+    <div class="w_xianjin_1260_main_2">
+        <img src="~/Areas/activity/Sources/20161122/images/w_xianjin_1260_02bg.png">
+        <div class="w_xianjin_1260_main_2_main">
+            <div class="w_xianjin_1260_main_2_main_top">
+                <h3>活动二：投资立得返现奖励</h3>
+                @*<h2>本次返现仅限<span style="color:#ffe762">3</span>天</h2>*@
+            </div>
+            <div class="w_xianjin_1260_main_2_main_bottom">
+                <p><span></span>活动期间，投资立得返现奖励<span></span></p>
+
+                <dl>
+                    <dt>
+                        <img src="~/Areas/activity/Sources/20161122/images/w_xianjin_1260_02.png">@*<sub id="yijieshu"></sub>*@
+                        <h2>投资3个月标</h2>
+                        <h3>1.0<small>%</small></h3>
+                        <p>额外获得投资金额1%的返现奖励</p>
+                    </dt>
+                    <dd>
+                        <a href="@ViewBag.ms">马上投资</a>
+                        @*<a href="javascript:void(0);">马上投资</a>*@
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <img src="~/Areas/activity/Sources/20161122/images/w_xianjin_1260_02.png">@*<sub id="yijieshu"></sub>*@
+                        <h2>投资6个月标</h2>
+                        <h3>2.0<small>%</small></h3>
+                        <p>额外获得投资金额2%的返现奖励</p>
+                    </dt>
+                    <dd>
+                        <a href="@ViewBag.ms">马上投资</a>
+                        @*<a href="javascript:void(0);">马上投资</a>*@
+                    </dd>
+                </dl>
+</div>
+                </div>
+            </div>
+<div class="w_xianjin_1260_main_3">
+    <dl>
+        <dt>活动规则：</dt>
+        @*<dd>1、活动一：2016年11月23日00:00至2016年12月15日24:00<br>活动二：2016年11月23日00:00至2016年11月25日24:00*@
+        <dd>1、活动时间：2016年11月23日00:00至2016年12月15日24:00；</dd>
+        <dd>2、1260元现金券自领取之日起有效期为30天；<br>（现金券需投资金额达到一定数额方可使用，具体金额要求详见券面说明）</dd>
+        <dd>3、返现金额将在投资成功后直接返到平台账户余额，您可以直接用于提现或者投资创利投其他项目；</dd>
+        <dd>4、所获现金券奖励请到“我的账户 > 资金流水 > 奖励账户流水”查看；</dd>
+        <dd>5、以上活动仅限APP端，渠道用户不享受；</dd>
+        <dd>6、活动最终解释权在法律范围内归北京创利投网络科技有限公司所有。</dd>
+        
+        @*<dd>3、活动二中返现金额将在投资成功后直接返到平台账户余额，您可以直接用于提现或者投资创利投其他项目；</dd>
+        <dd>4、所获现金券奖励请到“我的账户 > 资金流水 > 奖励账户流水”查看；</dd>
+        <dd>5、以上活动仅限APP端，渠道用户不享受；</dd>
+        <dd>6、活动最终解释权在法律范围内归北京创利投网络科技有限公司所有。</dd>*@
+    </dl>
+</div>
+
+@if (ViewBag.isApp == 0)
+{
+    <div class="shade" style="z-index:9999">
+        <img src="~/Areas/activity/Sources/20161014/images/weixintuiguang.png">
+    </div>
+    <div class="fixed_Bar">
+        <div class="BarCentert">
+            <img src="~/Areas/activity/Sources/20161014/images/User_img07.png">
+            <a href="/DownLoad.html">立刻下载</a>
+            <span class="fixed_Bar_Close"></span>
+        </div>
+    </div>
+}
+        </div>
+<div class="w_xianjin_tan" style="position:fixed;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,.5);z-index:9999;display:none;">
+    <a href="/register/Index">
+        <div class="shade_1">
+            <span>X</span>
+        </div>
+    </a>
+    <div class="shade_2">
+        <span>X</span>
+    </div>
+</div>
+<script type="text/javascript">
+    var userid = 0;
+    $(function () {
+        userid = $("#userid").val();
+    });
+    $("#w_xianjin_zhuce").on("click", function () {
+        $(".w_xianjin_tan").show();
+        if (userid == 0) {
+            $(".shade_1").show();
+        }
+        else {
+            $(".shade_2").show();
+        }
+    });
+    $(".shade_1 span").on("click", function () {
+        $(".w_xianjin_tan").hide();
+        $(".shade_1").hide();
+        return false;
+    });
+    $(".shade_2").on("click", function () {
+        $(".w_xianjin_tan").hide();
+        $(".shade_1").hide();
+    });
+    $(".BarCentert").on("click", "a", function () {
+        $(".shade").show();
+    })
+    $(".shade").on("click", function () {
+        $(".shade").hide();
+    })
+    $(".fixed_Bar_Close").on("click", function () {
+        $(".fixed_Bar").hide();
+    })
+</script>

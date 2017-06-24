@@ -1,0 +1,94 @@
+﻿@using ChuanglitouP2P.Common;
+@model ChuangLitouP2P.Models.hx_member_table
+@{
+    ViewBag.Title = "个人资料";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+<script src="~/Scripts/layer.min.js"></script>
+<script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript">
+    var editwindow;
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4,
+            ajaxPost: true,
+            callback: function (data) {
+                if (data== 1) {
+                    layer.msg("修改成功.", 3, 1);
+                    //location.href = data.url;
+                }
+                else {
+                    layer.msg("修改失败", 2, 5);
+                }
+
+            }
+        });
+    });
+    function checkForm()
+    {
+        var email = $("#email").val();
+        var homephone = $("#homephone").val();
+        if (email == null || email == "") {
+            layer.msg("请完善您的邮箱信息", 2, 5);
+            return false;
+        } else if (email.indexOf('@@') == -1) {
+            layer.msg("请填写适合的邮箱信息", 2, 5);
+            return false;
+        }
+        else
+        {
+            return true
+        }
+    }
+</script>
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">个人资料</h2>
+</header>
+<form id="form1" action="/usercenter/SaveUserInfo" method="post" class="registerform" >
+    <section class="invest_box user_form">
+        <div class="group_item">
+            <div class="group_tit">用户名：</div>
+            <div class="group_txt">@(Model.username)</div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">手机号：</div>
+            <div class="group_txt">@Utils.ReplaceWithSpecialChar(Model.mobile, 3, 4, '*')</div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">邮箱：</div>
+            <div class="group_txt"><input type="email" value="@(Model.email)" class="group_text" name="email" id="email" /></div>
+            <div class="group_chevron"></div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">家庭电话：</div>
+            <div class="group_txt"><input type="tel" value="@(Model.homephone)" class="group_text" name="homephone" id="homephone" onkeyup="value = value.replace(/[^\-\0-9]/g, '').substring(0,14)" /></div>
+            <div class="group_chevron"></div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">联系地址：</div>
+            <div class="group_txt"><input type="text" value="@(Model.contactaddress)" class="group_text" name="contactaddress" id="contactaddress" onkeyup="value=value.substring(0,15)"/></div>
+            <div class="group_chevron"></div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">邮编：</div>
+            <div class="group_txt"><input type="text" value="@(Model.zipcode)" class="group_text" name="zipcode" id="zipcode" onkeyup="value = value.replace(/[^\0-9]/g, '').substring(0,30)" /></div>
+            <div class="group_chevron"></div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">QQ：</div>
+            <div class="group_txt"><input type="text" value="@(Model.qq)" class="group_text" name="qq" id="qq" onkeyup="value = value.replace(/[^\0-9]/g, '').substring(0,30)" /></div>
+            <div class="group_chevron"></div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">MSN：</div>
+            <div class="group_txt"><input type="text" value="@(Model.msn)" class="group_text" name="msn" id="msn"  onkeyup="value = value.replace(/[^\0-9]/g, '').substring(0,30)"  /></div>
+            <div class="group_chevron"></div>
+        </div>
+    </section>
+    <div class="confirm_btn_box">
+        <input name="" value="确认提交" type="submit" onclick="return checkForm()" class="invest_btn">
+    </div>
+</form>
+<div class="bot_height"></div>
+

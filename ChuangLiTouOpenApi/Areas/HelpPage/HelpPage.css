@@ -1,0 +1,160 @@
+.help-page h1,
+.help-page .h1,
+.help-page h2,
+.help-page .h2,
+.help-page h3,
+.help-page .h3,
+#body.help-page,
+.help-page-table th,
+.help-page-table pre,
+.help-page-table p {
+    font-family: "Carrois Gothic", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+
+ h1 {
+	margin: 1em 0 0.75em;
+	padding: 0 0 5px 0;
+	color: #6B5344;
+	font-weight: normal;
+	font-size:25px;
+	line-height: 40px; 
+}
+  h2 {
+	margin: 1em 0 0.75em;
+	padding: 0 0 5px 0;
+	color: #6B5344;
+	font-weight: normal; 
+	font-size: 22px;
+	line-height: 40px;
+}
+
+ h3 {
+	margin: 1em 0 0.75em;
+	padding: 0 0 5px 0;
+	color: #6B5344;
+	font-weight: normal; 
+	font-size: 18px;
+	line-height: 40px;
+}
+
+  h4 {
+	margin: 1em 0 0.75em;
+	padding: 0 0 5px 0;
+	color: #6B5344;
+	font-weight: normal; 
+	font-size: 15px;
+	line-height: 20px;
+}
+
+
+
+.help-page pre.wrapped {
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    white-space: pre-wrap;
+}
+
+.help-page .warning-message-container {
+    margin-top: 20px;
+    padding: 0 10px;
+    color: #525252;
+    background: #EFDCA9; 
+    border: 1px solid #CCCCCC;
+}
+
+.help-page-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 0px 0px 20px 0px;
+    border-top: 1px solid #D4D4D4;
+}
+
+.help-page-table th {
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 1px solid #D4D4D4;
+    padding: 5px 6px 5px 6px;
+}
+
+.help-page-table td {
+    border-bottom: 1px solid #D4D4D4;
+    padding: 10px 8px 10px 8px;
+    vertical-align: top;
+}
+
+.help-page-table pre,
+.help-page-table p {
+    margin: 0px;
+    padding: 0px;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+.help-page-table tbody tr:hover td {
+    background-color: #F3F3F3;
+}
+
+.help-page a:hover {
+    background-color: transparent;
+}
+
+.help-page .sample-header {
+    border: 2px solid #D4D4D4;
+    background: #00497E;
+    color: #FFFFFF;
+    padding: 8px 15px;
+    border-bottom: none;
+    display: inline-block;
+    margin: 10px 0px 0px 0px;
+}
+
+.help-page .sample-content {
+    display: block;
+    border-width: 0;
+    padding: 15px 20px;
+    background: #FFFFFF;
+    border: 2px solid #D4D4D4;
+    margin: 0px 0px 10px 0px;
+}
+.help-page .api-type {
+    width: 30%;
+}
+
+.help-page .api-name {
+    width: 30%;
+}
+
+.help-page .api-documentation {
+    width: 40%;
+}
+
+.help-page .parameter-name {
+    width: 20%;
+}
+
+.help-page .parameter-documentation {
+    width: 40%;
+}
+
+.help-page .parameter-type {
+    width: 20%;
+}
+
+.help-page .parameter-annotations {
+    width: 20%;
+}
+
+  
+#body.help-page {
+    font-size: 14px;
+    line-height: 143%;
+    color: #333;
+}
+
+.help-page a {
+    color: #0000EE;
+    text-decoration: none;
+}

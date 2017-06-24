@@ -1,0 +1,67 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuanglitouP2P.Model.ResponsePage
+
+@{
+    ViewBag.Title = "帮助中心_"+@ViewBag.srtitle+"-创利投";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}@section css{
+    @Url.File("/Content/common.css").ToHtml()
+}
+
+<div class="content">
+    <div class="about_pic">
+
+
+
+        @Html.Raw(ChuanglitouP2P.Common.Utils.GetWebAD(5, 1))
+
+    </div>
+
+    <div class="about_left_box">
+
+        @{Html.RenderAction("LeftNav");}
+
+    </div>
+    <div id="context1" class="about_right">
+        <div class="about_nav">
+            @*<a href="/">首页</a><span>&gt;</span>*@<a href="/clt_Login_register.html">帮助中心</a><span>&gt;</span>@ViewBag.srtitle
+        </div>
+        
+        @{
+            if (Model != null)
+            {
+                for (int i = 0; i < Model.dataBody.Rows.Count; i++)
+                {
+                    var item = Model.dataBody.Rows[i];
+
+                    <div class="help_list">
+                        <dl>
+                            <dt> <a href="@string.Format("/clt_Detail_{0}_{1}.html",item["path1"], item["newid"])">@item["News_title"]</a></dt>
+                            <dd>
+                                <p style="padding: 10px 0 0 0;">
+
+
+                                    @Utils.GetSubString(Utils.RemoveHtml(item["context"].ToString()), 150, ".....").ToHtml() <a href="@string.Format("/clt_Detail_{0}_{1}.html",item["path1"], item["newid"])"> 详情 </a>
+                                </p>
+                            </dd>
+                            <dd class="help_list_time">@DateTime.Parse(item["createtime"].ToString()).ToString("yyyy-MM-dd HH:mm:ss")</dd>
+                        </dl>
+                    </div>
+                }
+                <div class="clear"></div>
+                <div class="pagebox">
+
+                    @{
+                        string urllink = "/clt_" + ViewBag.path1 + ".html";
+                       
+                        var pager = Ajax.DivPaging(Model.pageSize, Model.recordCount, Model.currentCount, Model.pageCount, urllink);
+                        @Html.Raw(pager)
+                    }
+                </div>
+                        }
+        }
+
+
+
+    </div>
+</div>

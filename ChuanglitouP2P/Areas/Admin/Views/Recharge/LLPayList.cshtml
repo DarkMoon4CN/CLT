@@ -1,0 +1,145 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.V_LLPay_Re>
+@{
+    ViewBag.Title = "连连充值列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">资金管理</a>><a href="javascript:void(0)"> 充值管理</a>><a href="javascript:void(0)"> 连连充值列表</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+        <p class="tP3">
+            快速搜索
+        </p>
+        @using (Html.BeginForm("LLPayList", "Recharge", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <p class="tP4 tx_tp4" style="height:50px; ">
+                <label for="orderNO">充值单号：</label><input type="text" class="txt1" id="orderNO" name="orderNO" value="@(ViewBag.orderNO)" style="width:150px;" />
+                @ZiJinControl.HX_dropdownlistByCapital(2)
+                <input type="hidden" id="hid_type" value="@ViewBag.paystate" />
+                充值时间：
+                <input class="jcDate jcDateIco" id="txtStart" name="txtStart" style="width:120px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" value="@(ViewBag.txtStart)" autocomplete="off" />
+                <i class="oI" style="margin-right: 10px;">至</i>
+                <input class="jcDate jcDateIco" id="txtEnd" name="txtEnd" style="width:120px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" value="@(ViewBag.txtEnd)" autocomplete="off" />
+
+                <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+            </p>
+        }
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            投资列表
+        </h3>
+
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th scope="col">编号 </th>
+                    <th scope="col">充值订单号</th>
+                    <th scope="col">连连订单号</th>
+                    <th scope="col">客户姓名</th>
+
+                    <th scope="col">充值金额</th>
+                    <th scope="col">充值时间</th>
+                    <th scope="col">充值状态</th>
+                    <th scope="col">汇付转账状态</th>
+                </tr>
+                @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                        <tr>
+                            <td>@(item.Rechargeid)</td>
+                            <td>@(item.no_order)</td>
+                            <td>@(item.oid_paybill)</td>
+                            @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                            {
+                                if (item.realname != null && item.realname.Length > 1)
+                                {
+                                    item.realname = item.realname.Substring(0, 1) + "**";
+                                }
+
+                            }
+                            <td>@(item.realname)</td>
+                            <td>@RMB.GetWebConvertdisp((decimal)item.money_order, 2, true)</td>
+                            <td>@DateTime.Parse((item.ordertime)).ToString("yyyy-MM-dd HH:mm:ss")</td>
+                            <td>@Utils.GetLLPayReState((int)item.ReState)</td>
+                            @if (@item.h_state == 1 && @item.ReState == 1)
+                            {
+                                <td>@Utils.Huizhuanzhong((int)item.h_state)</td>
+                            }
+                            else if (@item.h_state == 0 && @item.ReState == 1)
+                            {
+                                <td> 支付成功，转账未成功   <a class="opt" href="javascript:void(0)" onclick=" return GetCashProcessing(@item.OrdId.ToString(),@item.no_order.ToString());">    重新转账 </a>    </td>
+                            }
+                            else
+                            {
+                                <td>Utils.Huizhuanzhong(@item.h_state)</td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="pagination ue-clear">
+            <div class="pagination-container">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("LLPayList", new { page, orderNO = @ViewBag.orderNO, paystate = @ViewBag.paystate, txtStart = @ViewBag.txtStart, txtEnd = @ViewBag.txtEnd }))
+            </div>
+        </div>
+    @*</div>*@
+</div>
+<script type="text/javascript">
+        $(function () {
+            setDefaultddlType();
+
+            $(".registerform").Validform({
+                tiptype: 4
+
+            });
+            $.extend($.Datatype, {
+                "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+                "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+                "day1": /^[1-2]\d{0,1}$|^28$/,
+                "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+                "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+                "regex1": /^[0-9A-Za-z]{6,25}$/,
+                "float": /([0-9]+.[0-9]{2})[0-9]*/,
+                "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/
+
+            });
+        });
+        function setDefaultddlType() {
+            var _type = $("#hid_type").val();
+            $("#paystate").val(_type);
+        }
+
+    ///重新转账
+        function GetCashProcessing(OrdId, no_order) {
+
+            alert("重新转账 功能待完善");
+            /*
+             var url = "/admin/Re_re.aspx?OrdId=" + OrdId + "&no_order=" + no_order + "&bu=1";
+            editwindow = $.layer({
+                type: 2,
+                shadeClose: false,
+                title: '取现审核处理',
+                shade: [0.7, '#999'],
+                offset: ['', ''],
+                area: ['989px', "500px"],
+                iframe: { src: url, scrolling: false }
+            });
+            */
+        }
+</script>

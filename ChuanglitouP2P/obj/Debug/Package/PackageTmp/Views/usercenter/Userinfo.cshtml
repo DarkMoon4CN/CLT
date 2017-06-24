@@ -1,0 +1,504 @@
+﻿@using ChuanglitouP2P.Common;
+@model ChuangLitouP2P.Models.hx_member_table
+@{
+    ViewBag.Title = "我的账户-个人资料-创利投";
+    ViewBag.keywords = "我的账户-个人资料-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+}
+<script src="~/Scripts/highcharts.js"></script>
+<script src="~/Scripts/exporting.js"></script>
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        //图片
+        var prePath = $('#upfile').val();
+
+        $("#upfile").bind("change", function () {
+            var curPath = $('#upfile').val();
+            if (prePath == curPath) {
+                return false;
+            }
+            prePath = curPath;
+            if ($("#upfile").val().length > 0) {
+                ajaxFileUpload();
+            }
+            else {
+                alert("请选择图片");
+            }
+        });
+    });
+    //上次图片
+    function ajaxFileUpload() {
+        $.ajaxFileUpload
+        (
+            {
+                url: '/admin/UploadFile/UploadAvatar', //用于文件上传的服务器端请求地址
+                secureuri: false, //一般设置为false
+                fileElementId: 'upfile', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                dataType: 'json', //返回值类型 一般设置为json
+                success: function (data, status)  //服务器成功响应处理函数
+                {
+                    if (data.ret == 1) {
+                        $("#ppc").attr('src', data.path.replace("//", "/"));
+                        $("#pp1").attr('src', data.path.replace("//", "/"));
+                        $("#pp2").attr('src', data.path.replace("//", "/"));
+                        alert("头像上传成功!");
+                    } else
+                    {
+                        alert(data.msg);
+                    }
+                    $("#upload").bind("change", function () {
+                        $.ajaxFileUpload(config);
+                        $("#upload").replaceWith($("#upload").clone(true));
+                    });
+                },
+                error: function (data, status, e)//服务器响应失败处理函数
+                {
+                    alert("操作失败，请重新操作！");
+                }
+            }
+        )
+        return false;
+    }
+
+
+    function UpdateAddress() {
+        var addr = $("#contactaddress").val();
+        $.post("/usercenter/UpdateAddress?method=post", { "addr": addr }, function (data) {
+            if (data.rs == "y") {
+                layer.msg("" + data.info + "", 2, 1);
+                $("#contactaddress").val(addr);
+            }
+            else {
+                if (data.url == null || data.url == "") {
+                    layer.msg("" + data.info + "", 2, 5, function () { window.location.href = '/Signin/Index' });
+
+                }
+                else {
+                    layer.msg("" + data.info + "", 2, 5);
+                }
+
+            }
+        });
+    }
+
+    function UpdateQQ() {
+        var qq = $("#qq").val();
+        $.post("/usercenter/UpdateQQ?method=post", { "qq": qq }, function (data) {
+            if (data.rs == "y") {
+                layer.msg("" + data.info + "", 2, 1);
+                $("#qq").val(qq);
+            }
+            else {
+                if (data.url != null || data.url != "") {
+                    layer.msg("" + data.info + "", 1, 5, function () { window.location.href = '/Signin/Index' });
+
+                }
+                else {
+                    layer.msg("" + data.info + "", 1, 5);
+                }
+            }
+        });
+    }
+
+    function email() {
+        var emailec = $("#email").val();
+        var getran = GetRandomNum(1, 100);
+        var u = '@Model.registerid';
+        $.post("/usercenter/EmailVerify?method=post", { "email": emailec, "u": u }, function (data) {
+            if (data.rs == "y") {
+                layer.msg("" + data.info + "", 2, 1);
+            }
+            else {
+                if (data.url != null || data.url != "") {
+                    layer.msg("" + data.info + "", 1, 5, function () { //window.location.href = '/Signin/Index'
+                    });
+
+                }
+                else {
+                    layer.msg("" + data.info + "", 1, 5);
+                }
+            }
+        });
+    }
+
+    function GetRandomNum(Min, Max) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        return (Min + Math.round(Rand * Range));
+    }
+
+</script>
+
+
+
+
+
+<div class="bContent">
+    <div class="content">
+        <!--公共的左侧-->
+        @UCLeft.HX_UCLeft()
+        <!--右侧不同的地方-->
+
+        <div class="people">
+            <h2>
+                基本资料
+            </h2>
+            <div class="pCom" style="margin-bottom: 20px;">
+                <p>头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像：</p>
+                @if (Model.avatar != null && !string.IsNullOrEmpty(Model.avatar) && Model.avatar.Length > 1)
+                {
+                    <img src="@Model.avatar" id="ppc" alt="" height="83" width="83" />
+                }
+                else
+                {
+                    <img src="/Avatar/ulogo.jpg" id="ppc" alt="" height="83" width="83" />
+                }
+
+
+
+                <i style="margin-top: 41.5px;"><a id="pCha" style="font-family: '微软雅黑';" class="pCha">更改头像</a></i>
+            </div>
+            <div class="pAdd" style="display: none;">
+                <img src="@Model.avatar" align="middle" class="pBig" id="pp1"  alt="" height="83"  onerror="this.src='/images/pPeop.jpg'" width="83" />
+                <img src="@Model.avatar" align="middle" class="pSma" id="pp2" alt="" height="83" onerror="this.src = '/images/pPeo.jpg'" width="83" />
+                @*<img align="middle" class="pBig" id="pp1" src="/images/pPeop.jpg" height="83" width="83" alt="" />
+                <img align="middle" class="pSma" id="pp2" src="/images/pPeo.jpg" height="83" width="83" alt="" />*@
+                <span style="width:138px;height:39px;display:inline-block;position:relative;overflow:hidden;">
+                    <input class="pAddIn" type="button" value="点击上传头像">
+                    <input type="file" class="fileBtn" id="upfile" accept="image/gif,image/jpeg,image/png"  name="upfile" style="position:absolute;left:0;top:0;width:138px;height:39px;opacity:0;z-index:2;">
+                </span>
+                <br />
+                <p>
+                    支持jpg、jpeg、gif、<br />png格式，文件小于2M
+                </p>
+                <img class="pImg" src="/images/pError.gif" alt="" />
+
+            </div>
+            <div class="pCom1" style="margin-bottom: 20px;margin-left:96px;">
+                <p>账&nbsp;户&nbsp;&nbsp;名：</p>
+                <strong><input class="pC" type="text" value="@Model.username" disabled="true" /></strong>
+                <i>
+                    <a class="pA" style="font-family: '微软雅黑';"></a>
+                    <span></span>
+                </i>
+            </div>
+            <div class="pHide" style="margin-bottom: 20px;">
+                4-30个字符，支持英文、数字、"-"或减号
+            </div>
+            <div class="pCom1 pCom2" style="margin-bottom: 20px;margin-left:96px;">
+                <p>身份证号：</p>
+                @if (string.IsNullOrEmpty(Model.iD_number))
+                {
+                    <strong></strong>                    <i>
+                        <a href="/opening_account/Index/@Model.registerid" target="_blank" style="font-family: '微软雅黑';">未认证</a>
+                    </i>
+                }
+                else
+                {
+                    <strong>@Utils.ReplaceWithSpecialChar(Model.iD_number, 3, 4, '*')</strong>
+                    <i>
+                        <a href="javascript:void(0);" style="font-family: '微软雅黑';">已认证</a>
+                    </i>
+                }
+
+            </div>
+            <div class="pCom1" style="margin-bottom: 20px;margin-left:96px;">
+                <p>注册时间：</p>
+                <strong>@Utils.GetDateFormat((DateTime)Model.registration_time)</strong>
+            </div>
+            <div class="pCom1 pCom3" style="margin-bottom: 20px;margin-left:96px;">
+                <p>会员级别：</p>
+                <strong>@Utils.RetUseridentity(Model.useridentity.ToString())</strong>
+            </div>
+            <div class="pCom1 pCom3" style="margin-bottom: 20px;margin-left:96px;">
+                <p>常用地址：</p>
+                <input class="pTxt" type="text" name="contactaddress" id="contactaddress" value="@Model.contactaddress" placeholder="提示：方便接收活动礼物" />
+                <i>
+                    <a class="pAdd1" style="font-family: '微软雅黑';" onclick="return UpdateAddress()">添加</a>
+                </i>
+            </div>
+            <div class="pCom1 pCom3" style="margin-bottom: 20px;margin-left:96px;">
+                <p>绑定QQ：</p>
+                <input class="pTxt2" type="text" name="qq" id="qq" value="@Model.qq" placeholder="绑定的QQ号" />
+                <i>
+                    <a class="pAdd2" style="font-family: '微软雅黑';" onclick="javascript: return UpdateQQ();">修改</a>
+                </i>
+            </div>
+            <div class="pQQ">
+                您输入的号码不符合标准 请重新输入
+            </div>@*
+            <p class="pJx"></p>
+
+    <h2 class="pH2">安全验证</h2>
+    <p class="pSafe">
+        账户安全等级：
+        <b>
+            <img align="middle" src="/images/pJd.png" alt="" />
+        </b>
+        <i>60%</i>
+        <span>
+            （建议提高安全等级）
+        </span>
+    </p>
+    <div class="pSelect pSelect1">
+        <img class="pSI1" src="/images/pTel.png" alt="" />
+        <p>
+            &nbsp;手机验证<br />
+            <span>
+                157****0510
+            </span>
+        </p>
+        <img class="pSI2 pSI2_else" src="/images/pXg1.jpg" alt="" />
+        <strong>
+            修改
+        </strong>
+    </div>
+    <div class="pSelect pSelect3">
+        <img class="pSI1" src="/images/pName.png" alt="" />
+        <p>
+            实名认证<br />
+            <span>
+                &nbsp;&nbsp;已认证
+            </span>
+        </p>
+        <img class="pSI2" src="/images/pXg1.jpg" alt="" />
+        <strong>
+            王**
+        </strong>
+    </div>
+    <div class="pSelect pSelect4">
+        <img class="pSI1" src="/images/pYhk.jpg" alt="" />
+        <p>
+            银行卡绑定<br />
+            <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;已设置
+            </span>
+        </p>
+        <img class="pSI2" src="/images/pXg1.jpg" alt="" />
+        <strong>
+            修改
+        </strong>
+    </div>
+    <div class="pSelect pSelect2 pSelect4 pSelect5">
+        <img class="pSI1" src="/images/pEmail.png" alt="" />
+        <p>
+            <br />
+            &nbsp;&nbsp; 邮箱绑定<br />
+            <span>
+                &nbsp;&nbsp;1********2<br />&nbsp;&nbsp;@@qq.com
+            </span>
+        </p>
+        <img align="middle" class="pSI2" src="/images/pXg1.jpg" alt="" />
+        <strong>
+            修改
+        </strong>
+    </div>
+    <!--验证内容-->
+    <div class="pYz" style="display: none;">
+        <!--手机验证内容-->
+        <div class="pTel" style="display: none;">
+            <div class="pFir" style="display: none;">
+                <img class="goTop" src="/images/pTop.jpg" alt="" />
+                <p class="PT1">
+                    <img src="/images/pTelS.jpg" alt="" />
+                    手机验证
+                    <i>157****0510</i>
+                    <a href="">取消修改</a>
+                </p>
+                <img class="pState" src="/images/pState.jpg" alt="" />
+                <p class="pT2">
+                    原手机号码：<input class="pTxt3 pTxt4" type="text" placeholder="15711412345" />
+                    <input class="pBtn" type="button" value="获取短信验证码" />
+                </p>
+                <p id="pTelyz">
+                    您输入的手机号不符合标准，请重新输入
+                </p>
+                <p class="pT2">
+                    短信验证码：<input class="pTxt3 pTxt5" type="text" placeholder="460513" />
+                </p>
+                <p id="pTelyz1">
+                    您输入的验证码不符合标准，请重新输入
+                </p>
+                <input class="pBtn1 pBtn3" type="button" value="下一步" />
+                <div class="pCommon">
+                    <p>温馨提示：</p>
+                    <p>
+                        1.
+                        请填写真实有效的手机号，手机号将作为验证用户身份的重要手段。
+                    </p>
+                    <p>
+                        2.
+                        创利投会对用户的所有资料进行严格保密。
+                    </p>
+                    <p>
+                        3.
+                        手机验证过程中，遇到任何问题，请拨打创利投客服电话: 010-53732056。
+                    </p>
+                </div>
+            </div>
+            <div class="pSec" style="display: none;">
+                <img class="goTop" src="/images/pTop.jpg" alt="" />
+                <p class="PT1">
+                    <img src="/images/pTelS.jpg" alt="" />
+                    手机验证
+                    <i>157****0510</i>
+                    <a href="">取消修改</a>
+                </p>
+                <img class="pState" src="/images/pSec.jpg" alt="" />
+                <p class="pT2">
+                    新手机号码：<input class="pTxt3 pTxt4" type="text" value="15711412345" />
+                    <input class="pBtn" type="button" value="获取短信验证码" />
+                </p>
+                <p id="pTelyz">
+                    您输入的手机号不符合标准，请重新输入
+                </p>
+                <p class="pT2">
+                    短信验证码：<input class="pTxt3" type="text" value="460513" />
+                </p>
+                <p id="pTelyz1">
+                    您输入的验证码不符合标准，请重新输入
+                </p>
+                <input class="pBtn1 pBtn4" type="button" value="下一步" />
+                <div class="pCommon">
+                    <p>温馨提示：</p>
+                    <p>
+                        1.
+                        请填写真实有效的手机号，手机号将作为验证用户身份的重要手段。
+                    </p>
+                    <p>
+                        2.
+                        创利投会对用户的所有资料进行严格保密。
+                    </p>
+                    <p>
+                        3.
+                        手机验证过程中，遇到任何问题，请拨打创利投客服电话: 010-53732056。
+                    </p>
+                </div>
+            </div>
+            <div class="pThr" style="display: none;">
+                <img class="goTop" src="/images/pTop.jpg" alt="" />
+                <p class="PT1">
+                    <img src="/images/pTelS.jpg" alt="" />
+                    手机验证
+                    <i>157****0510</i>
+                </p>
+                <img class="pState" src="/images/pThr.jpg" alt="" />
+                <p class="pThr1">
+                    恭喜，您的手机修改验证成功！
+                </p>
+                <p class="pThr2">
+                    新手机号为：15711460513
+                </p>
+                <input class="pBtn2" type="button" value="确定" />
+                <div class="pCommon">
+                    <p>温馨提示：</p>
+                    <p>
+                        1.
+                        请填写真实有效的手机号，手机号将作为验证用户身份的重要手段。
+                    </p>
+                    <p>
+                        2.
+                        创利投会对用户的所有资料进行严格保密。
+                    </p>
+                    <p>
+                        3.
+                        手机验证过程中，遇到任何问题，请拨打创利投客服电话: 010-53732056。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!--邮箱验证内容-->
+        <div class="pEmail" style="display: none;">
+            <div class="pEFir pEFir1" style="display: none;">
+                <img class="pETop" src="/images/pTop.jpg" alt="" />
+                <div class="pEtop">
+                    <p class="pE1">
+                        邮箱绑定&nbsp; @Model.email
+                    </p>
+                    <a href="###">取消修改</a>
+                </div>
+                <p class="pOld">
+                    原邮箱地址：
+                    <input type="text"  value="@Model.email" />
+                </p>
+                <p class="pOld">
+                    新邮箱地址：
+                    <input type="text" name="email" id="email" value="" />
+                </p>
+                <div class="pEBack">
+                    <input type="button" onclick="return email()"  class="pEBtn" value="发送验证邮件" />
+                </div>
+                <div class="pEintro">
+                    <p>温馨提示：</p>
+                    <p>
+                        1.
+                        创利投会对用户的所有资料进行严格保密；
+                    </p>
+                    <p>
+                        2.
+                        邮箱绑定过程中，遇到任何问题，请拨打创利投客服电话：010-53732056.
+                    </p>
+                </div>
+            </div>
+            <div class="pEFir" style="display: none;">
+                <img class="pETop" src="/images/pTop.jpg" alt="" />
+                <div class="pEtop">
+                    <p class="pE1">
+                        邮箱绑定&nbsp;1*******2@qq.com
+                    </p>
+                </div>
+                <p class="pOld">
+                    <strong>
+                        <img src="/images/pSu.jpg" alt="" />
+                        恭喜，您的邮箱绑定修改成功！
+                    </strong>
+                    <br />新邮箱为：9********m
+                </p>
+                <div class="pEBack">
+                    <input type="button" class="pEBtn" value="确定" />
+                </div>
+                <div class="pEintro">
+                    <p>温馨提示：</p>
+                    <p>
+                        1.
+                        创利投会对用户的所有资料进行严格保密；
+                    </p>
+                    <p>
+                        2.
+                        邮箱绑定过程中，遇到任何问题，请拨打创利投客服电话：010-53732056.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+            *@
+            <p class="pJx"></p>
+            <h2 class="pPsw">
+                密码管理
+            </h2>
+            <div class="pBot pBot1">
+                <i style="float:none;">登录密码</i>
+                <strong>登录个人中心等需要输入的密码</strong>
+                <p>已设置</p>
+                <a href="/usercenter/Changepassword" style="font-family: '微软雅黑';float: right;margin-right: 90px;width: 60px;text-align: center;display: inline-block;">更改</a>
+            </div>
+            <div class="pBot pBot2">
+                <i style="float:none;">交易密码</i>
+                <strong>从平台账户提现时需要输入的密码</strong>
+                <p>已设置</p>
+                <a href="/usercenter/thirdpartylogin" style="font-family: '微软雅黑';float: right;margin-right: 90px;width: 60px;text-align: center;display: inline-block;" target="_blank">更改</a>
+
+
+            </div>
+        </div>
+
+        <div>
+
+        </div>

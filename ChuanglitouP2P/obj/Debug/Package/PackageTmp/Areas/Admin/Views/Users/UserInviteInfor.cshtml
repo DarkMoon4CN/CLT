@@ -1,0 +1,236 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.Models;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<UserInviteInforViewModel>
+@{
+    ViewBag.Title = "邀请记录";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link href="/Areas/Admin/styleCont/style.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("input.jcDate").jcDate({
+            IcoClass: "jcDateIco",
+            Event: "click",
+            Speed: 100,
+            Left: 0,
+            Top: 28,
+            format: "-",
+            Timeout: 100
+        });
+    });
+    function downloadExcel(url) {
+        alert(url);
+        var obj = $("#downloadExcelBtn");
+        obj.attr("href", url);
+        document.getElementById("downloadExcelBtn").click();
+        //$("#downloadExcelBtn").click();
+    }
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>><a href="javascript:void(0)"> 邀请记录</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+    <p class="tP3">
+        快速搜索
+    </p>
+    @using (Html.BeginForm("UserInviteInfor", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:60px; padding-bottom:15px; ">
+            <label for="username">邀请人帐号：</label><input type="text" class="txt1" id="inviterAccount" name="inviterAccount" value="@(ViewBag.inviterAccount)" style="width:100px;" />&nbsp;
+            <label for="realname">被邀请人帐号：</label><input type="text" class="txt1" id="invitedAccount" name="invitedAccount" value="@(ViewBag.invitedAccount)" style="width:100px;" />&nbsp;
+            <label for="time1">注册时间：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="registeTimeFrom" name="registeTimeFrom" value="@(ViewBag.registeTimeFrom)" autocomplete="off" onblur="CheckDateTime('#registeTimeFrom', '#registeTimeTo');" />-<input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="registeTimeTo" name="registeTimeTo" value="@(ViewBag.registeTimeTo)" autocomplete="off" onblur="CheckDateTime('#registeTimeFrom', '#registeTimeTo');" />
+            &nbsp;
+            <label for="time1">投资时间：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="investTimeFrom" name="investTimeFrom" value="@(ViewBag.investTimeFrom)" autocomplete="off" onblur="CheckDateTime('#investTimeFrom', '#investTimeTo');" />-<input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="investTimeTo" name="investTimeTo" value="@(ViewBag.investTimeTo)" autocomplete="off" onblur="CheckDateTime('#investTimeFrom', '#investTimeTo');" />
+            <br /><br />
+            标期限：@Html.DropDownList("investTerm", ViewBag.InvestTermList as List<SelectListItem>, "请选择")
+            &nbsp;
+            投资状态：@Html.DropDownList("investState", ViewBag.InvestStatusList as List<SelectListItem>, "请选择")
+            &nbsp;
+            是否绑卡：@Html.DropDownList("isBindedCard", ViewBag.BindCardStatusList as List<SelectListItem>, "请选择")
+            &nbsp;
+            <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn2" id="btnToday" value="今天" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn2" id="btnYesteday" value="昨天" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn2" id="downloadExcel" value="数据导出" />
+        </p>
+        <input type="hidden" id="investTerm" />
+        <input type="hidden" id="investState" />
+        <input type="hidden" id="isBindedCard" />
+    }
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        邀请记录列表
+    </h3>
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th>邀请人ID</th>
+                <th>邀请人帐号</th>
+                <th>被邀请人ID</th>
+                <th>被邀请人帐号</th>
+                <th>注册时间</th>
+                <th>投资状态</th>
+                <th>投标时间</th>
+                <th>投标金额</th>
+                <th>投标总金额</th>
+                <th>投标订单号</th>
+                <th>投标信息</th>
+                <th>投标期限</th>
+                <th>是否绑卡</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.InviterId</td>
+                        @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                        {
+
+                            if (item.InviterAccount.Length == 11 && !String.IsNullOrEmpty(item.InviterAccount))
+                            {
+                                item.InviterAccount = item.InviterAccount.Substring(0, 3) + "****" + item.InviterAccount.Substring(7, 4);
+                            }
+                            if (item.InviterAccount.Length != 11 && !String.IsNullOrEmpty(item.InviterAccount) && item.InviterAccount.Length > 1)
+                            {
+                                item.InviterAccount = item.InviterAccount.Substring(0, 1) + "**";
+                            }
+
+
+
+                            if (item.BeInvitedAccount.Length == 11 && !String.IsNullOrEmpty(item.BeInvitedAccount))
+                            {
+                                item.BeInvitedAccount = item.BeInvitedAccount.Substring(0, 3) + "****" + item.BeInvitedAccount.Substring(7, 4);
+                            }
+                            if (!String.IsNullOrEmpty(item.BeInvitedAccount) && item.BeInvitedAccount.Length > 11)
+                            {
+                                item.BeInvitedAccount = item.BeInvitedAccount.Substring(0, 3) + "****" + item.BeInvitedAccount.Substring(7,5)+item.BeInvitedAccount.Substring(13,1)+"**";
+                            }
+
+
+
+                        }
+                        <td>@item.InviterAccount</td>
+                        <td>@item.BeInvitedId</td>
+                        <td>@item.BeInvitedAccount</td>
+                        <td>@item.RegistedDateTime</td>
+                        <td>@item.InvestState</td>
+                        <td>@item.InvestDateTime</td>
+                        <td>@item.InvestAmount</td>
+                        <td>@item.InvestTotalAmount</td>
+                        <td>@item.InvestOrderNo</td>
+                        <td>@item.InvestInformation </td>
+                        <td>@item.InvestTerm</td>
+                        <td>@item.IsBindedCard </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="pagination ue-clear">
+        <div class="pagination-container">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("UserInviteInfor", new
+       {
+           page,
+           inviterAccount = @ViewBag.inviterAccount,
+           invitedAccount = @ViewBag.invitedAccount,
+           registeTimeFrom = @ViewBag.registeTimeFrom,
+           registeTimeTo = @ViewBag.registeTimeTo,
+           investTimeFrom = @ViewBag.investTimeFrom,
+           investTimeTo = @ViewBag.investTimeTo,
+           investTerm = @ViewBag.investTerm,
+           investState = @ViewBag.investState,
+           isBindedCard = @ViewBag.isBindedCard
+       })) <div style="padding:10px;font-weight:600">共 @ViewBag.TotalItemCount 条数据</div>
+        </div>
+    </div>
+    @*</div>*@
+</div>
+<a href="" id="downloadExcelBtn" style="display:;"></a>
+<script>
+    $('#btnToday').click(function () {
+        var today = getDateForDay(0);
+        $('#registeTimeFrom').val(today.format("yyyy-MM-dd"))
+        $('#registeTimeTo').val(today.format("yyyy-MM-dd"))
+
+        $('#investTimeFrom').val(today.format("yyyy-MM-dd"))
+        $('#investTimeTo').val(today.format("yyyy-MM-dd"))
+    });
+    $('#btnYesteday').click(function () {
+        var today = getDateForDay(-1);
+        $('#registeTimeFrom').val(today.format("yyyy-MM-dd"))
+        $('#registeTimeTo').val(today.format("yyyy-MM-dd"))
+
+        $('#investTimeFrom').val(today.format("yyyy-MM-dd"))
+        $('#investTimeTo').val(today.format("yyyy-MM-dd"))
+    });
+
+    function CheckDateTime(from, to) {
+        var $startTime = $(from).val();
+        var $endTime = $(to).val();
+        if ($startTime == undefined)
+            return;
+        if ($endTime == undefined)
+            return;
+        var time = (Date.parse($endTime) - Date.parse($startTime)) / 3600 / 1000; //小时差
+        if (time < 25) {
+            alert('结束时间必须大于或等于开始时间!');
+            $(to).val('');
+        }
+    }
+
+    $("#downloadExcel").click(function () {
+        var inviterAccount1 = $('#inviterAccount').val();
+        var invitedAccount1 = $('#invitedAccount').val();
+        var registeTimeFrom1 = $('#registeTimeFrom').val();
+        var registeTimeTo1 = $('#registeTimeTo').val();
+        var investTimeFrom1 = $('#investTimeFrom').val();
+        var investTimeTo1 = $('#investTimeTo').val();
+        var investTerm1 = $('#investTerm').val();
+        var investState1 = $('#investState').val();
+        var isBindedCard1 = $('#isBindedCard').val();
+
+        $.ajax({
+            type: 'Get',
+            url: "/admin/Users/UserInviteInforToExcel",
+            data: {
+                inviterAccount: inviterAccount1, invitedAccount: invitedAccount1,
+                registeTimeFrom: registeTimeFrom1, registeTimeTo: registeTimeTo1,
+                investTimeFrom: investTimeFrom1, investTimeTo: investTimeTo1,
+                investTerm: investTerm1, investState: investState1,
+                isBindedCard: isBindedCard1
+            },
+            //dataType: dataType,
+            success: function (data) {
+                if (data == "您没有操作权限") {
+                    alert("您没有操作权限");
+                } else {
+                    downloadExcel(data);
+                }
+            },
+            error: function () {
+                //view("异常！");
+                alert("异常！");
+            }
+        });
+    });
+</script>

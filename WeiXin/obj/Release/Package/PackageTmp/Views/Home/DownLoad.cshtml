@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "创利投-安全的阳光P2B网络借贷金融平台";
+    ViewBag.keywords = "P2B借贷,P2P理财,P2B理财,互联网金融,网络理财,投资理财,个人借贷平台,企业融资,创利投";
+    Layout = "~/Views/Shared/Activity_Layout.cshtml";
+}
+<link href="~/css/common.css" rel="stylesheet" />
+<script src="~/js/jquery-1.9.1.min.js"></script>
+<script src="~/js/browser.js"></script>
+<script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+</script>
+<script type="text/javascript">
+var _oztime = (new Date()).getTime();
+</script>
+<script>
+    $(function () {
+       
+        if (browser.versions.weixin)
+        {
+            $(".shade").show();
+        }
+        else if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+            //IOS
+            window.location.href = "https://itunes.apple.com/cn/app/chuang-li-tou/id1152272905?mt=8";
+        }
+        else if (browser.versions.android) {
+            //Android
+            window.location.href = "/Home/GetAndroidAPP";
+        }
+        else {
+            //IOS
+            window.location.href = "https://itunes.apple.com/cn/app/chuang-li-tou/id1152272905?mt=8";
+        }
+        $(".shade").on("click", function () {
+            $(".shade").hide();
+        });
+    });
+   
+</script>
+<div class="tips_box success_tips clearfix">
+<div class="tips_txt">
+        <img style="display:inline-block;width:48%;margin-left:1%;"  src="~/images/550.jpg" />
+        <img  style="display:inline-block;width:48%;" src="~/images/551.jpg" />
+        <div class="tips_txt_return" style="margin-top:15px;">如有任何问题请咨询创利投客服010-53732056（工作时间 9:00-18:00）</div>
+    </div>
+<div class="shade" style="display: none;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background:rgba(0,0,0,0.5);z-index:9999;">
+    <img src="~/images/weixintuiguang.png" style="width: 70%;height: auto;display: block;margin-top: 1%;margin-left: 20%;">
+</div>
+</div>

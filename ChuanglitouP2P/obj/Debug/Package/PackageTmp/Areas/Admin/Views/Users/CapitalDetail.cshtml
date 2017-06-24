@@ -1,0 +1,88 @@
+﻿
+@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.hx_Capital_account_water>
+@{
+    ViewBag.Title = "会员资金明细列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>><a href="javascript:void(0)"> 会员资金明细</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        会员资金明细 <a href="javascript:void();" onclick="javascript:history.back();"><span style="float:right">返回</span></a>
+    </h3> 
+    @*select account_water_id as 帐户流水id, membertable_registerid as 用户注册ID ,income as 收入,expenditure as 支出,time_of_occurrence as 发生时间,account_balance as 帐户余额, createtime as 创建时间 , (CASE WHEN types_Finance = 3 THEN '充值' WHEN types_Finance = 9 THEN '借款人还款'  WHEN types_Finance = 26 THEN '提现卡不存在' WHEN types_Finance = 27 THEN '提现审核中' WHEN types_Finance = 28 THEN '提现审核未通过' WHEN types_Finance = 29 THEN '提现成功' WHEN types_Finance = 37 THEN '项目投资' WHEN types_Finance = 38 THEN '还款' WHEN types_Finance = 39 THEN '服务费' WHEN types_Finance = 40 THEN '手续费' WHEN types_Finance = 41 THEN '借款转入' WHEN types_Finance = 4 THEN '连连充值' WHEN types_Finance = 5 THEN '连连取现' WHEN types_Finance = 42 THEN '邀请奖励' WHEN types_Finance = 43 THEN '现金奖励'  ELSE convert(varchar,types_Finance) END) as 资金类型,remarks as 备注 from hx_Capital_account_water where membertable_registerid=24941 order by account_water_id desc  --获取用户资金流水*@ 
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th>帐户流水id</th>
+                <th>用户注册ID</th>
+                <th>收入</th>
+                <th>支出</th>
+                <th>帐户余额</th>
+                @*<th>创建时间</th>*@
+                <th>资金类型</th>
+                <th>发生时间</th>
+                <th>备注</th>
+              
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                   
+                        <td style="height:30px;">@(item.account_water_id)</td>
+                        <td style="height:30px;">@(item.membertable_registerid)</td>
+                        <td style="height:30px;">@(item.income)</td>
+                        <td style="height:30px;">@(item.expenditure) </td>
+                        <td style="height:30px;">@(item.account_balance)</td>
+                        @*<td style="height:30px;">@(item.createtime != null ? ((DateTime)item.createtime).ToString("yyyy-MM-dd HH:mm:ss") : "") </td>*@
+                        <td style="height:30px;">@(Utils.GetEnumTypesFinanceName(Convert.ToInt32(item.types_Finance))) </td>
+                        <td style="height:30px;">@(item.time_of_occurrence != null ? ((DateTime)item.time_of_occurrence).ToString("yyyy-MM-dd HH:mm:ss") : "") </td>
+                        <td style="height:30px;">@(item.remarks) </td>
+                       
+                    </tr>
+                }
+            }
+        </tbody>
+        
+    </table>
+    <div class="pagination ue-clear">
+        <div class="pagination-container">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("CapitalDetail", new
+       {
+           page,
+           membertable_registerid = @ViewBag.MembertableRegisterid
+
+       }))<div style="padding:10px;font-weight:600">共 @ViewBag.TotalItemCount 条数据</div>
+        </div>
+    </div>
+    @*</div>*@
+</div>
+
+
+

@@ -1,0 +1,242 @@
+﻿
+@using ChuanglitouP2P.Model
+@using System.Data
+@using ChuanglitouP2P.Common
+@{
+    ViewBag.Title = "项目介绍";
+    Layout = "~/Views/Shared/Body_Layout.cshtml";
+
+    var p = ViewBag.p != null ? ViewBag.p as M_borrowing_target_detailed : null;
+    var targetid = ViewBag.tid == null ? 0 : (int)ViewBag.tid;
+}
+@section css{<style>
+    .details_info.tupian ul {
+    height:437px;margin-left: 6%;
+    }
+    .details_info.tupian ul li {
+        width: 28%;
+        height: 148px;
+        float: left;
+        text-align: center;
+        margin: 10px 0 0 7px;
+    }   .details_info.tupian ul li img{width:100%;height:100px;border :1px solid #ccc;overflow:hidden;}
+</style>
+    }
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">项目介绍</h2>
+</header>
+
+    <div class="details_infoitem">
+        <h3 class="details_infotit">项目详情</h3>
+        @if (p != null && p.item_details.Length > 0)
+        {
+        <div class="details_info">@Html.Raw(p.item_details)</div>
+        }
+    </div>
+
+
+    <div class="details_infoitem">
+        <h3 class="details_infotit">借款人情况</h3>
+        @if (p.borrower_circumstances.Length > 0)
+        {
+        <div class="details_info">@Html.Raw(p.borrower_circumstances)</div>
+        }
+    </div>
+
+
+    <div class="details_infoitem">
+        <h3 class="details_infotit">资金用途</h3>
+        @if (p.use_funds.Length > 0)
+        {
+        <div class="details_info">@Html.Raw(p.use_funds)</div>
+        }
+    </div>
+
+
+    <div class="details_infoitem">
+        <h3 class="details_infotit">担保机构意见</h3>
+        @if (p.guarantee_agency_views.Length > 0)
+        {
+        <div class="details_info">@Html.Raw(p.guarantee_agency_views)</div>
+        }
+    </div>
+
+
+    <div class="details_infoitem">
+        <h3 class="details_infotit">风险控制措施</h3>
+        @if (p.risk_control_measures.Length > 0)
+        {
+        <div class="details_info">@Html.Raw(p.risk_control_measures)</div>
+        }
+    </div>
+
+
+        <div class="details_infoitem">
+            <h3 class="details_infotit">担保材料</h3>
+            @if (ViewBag.Dt_DBCL != null)
+            {
+                var Dt_DBCL = ViewBag.Dt_DBCL as DataTable;
+                if (Dt_DBCL != null && Dt_DBCL.Rows.Count > 0)
+                {
+                    <div class="details_info tupian">
+                        <ul>
+                            @foreach (DataRow dr in Dt_DBCL.Rows)
+                            {
+                                <li><a class="fancybox-thumbs" data-fancybox-group="thumb" href="@(Utils.GetAppSetting("image_url")+("" + dr["picture_path"].ToString() + ""))"><img src="@(Utils.GetAppSetting("image_url")+("" + dr["picture_path"].ToString() + ""))" alt="" /><p>@(dr["picture_name"].ToString())</p></a></li>
+                            }
+
+                        </ul>
+                    </div>
+                }
+            } 
+        </div>
+ 
+
+@if (p.independent_advice.Length > 0)
+{
+<div class="details_infoitem">
+    <h3 class="details_infotit">创利投独立意见</h3>
+    <div class="details_info">@Html.Raw(p.independent_advice)</div>
+</div>
+}
+<div class="bot_height"></div>
+@Html.Raw(ViewBag.StrTouZi)
+
+<script type="text/javascript">
+    var minimum =@ViewBag.minimum;
+    var maxmum  =@ViewBag.maxmum;
+    var _minTrans=1;
+    var _perTrans=@ViewBag.minimum;
+    $(document).ready(function () {
+
+        var Difference = $("#Diff").val();
+        $("#touzi_btn").click(function () {
+            $(".recharge_pop_wrap").show();
+            var obj=$("#investmentamount").val();
+            var num=parseInt(obj);
+            showEarnByAmt(num);
+        });
+        $(".recharge_mask_bg,#recharge_close").click(function () {
+            $(".recharge_pop_wrap").hide();
+        });
+
+        $("#submit1").click(function()
+        {
+
+            $("#form1").attr("action","/home/InvestConfirm?id="+@targetid);
+                $("#form1").submit();
+            });
+
+        $('.fancybox-thumbs').fancybox({
+            prevEffect: 'none',
+            nextEffect: 'none',
+
+            arrows: false,
+            nextClick: true,
+
+            helpers: {
+                thumbs: {
+                    width: 50,
+                    height: 50
+                }
+            }
+        });
+    });
+
+    //投资金额改变
+    function investAmtChange(){
+        var obj=$("#investmentamount").get(0);
+        var enme=parseInt($("#Diff").val());
+
+        var num=parseInt(obj.value);
+        if(num>enme)
+        {
+            layer.msg("投资金额已超出可投金额", 1, 5);
+
+            if(enme>=maxmum)
+            {
+                if(maxmum<=0)
+                {
+                    $("#investmentamount").val(minimum);
+                    var obj=$("#investmentamount").val();
+                    var num=parseInt(obj);
+                    showEarnByAmt(num);
+                }
+                else
+                {
+                    $("#investmentamount").val(maxmum);
+                    var obj=$("#investmentamount").val();
+                    var num=parseInt(obj);
+                    showEarnByAmt(num);
+                }
+            }
+            else
+            {
+
+
+                $("#investmentamount").val(maxmum-enme);
+                // $("#investmentamount").val(minimum);
+
+                var obj=$("#investmentamount").val();
+                var num=parseInt(obj);
+                showEarnByAmt(num);
+
+            }
+
+        }
+        else
+        {
+
+            if(num>maxmum && maxmum>0)
+            {
+                layer.msg("投资金额不能超过最高限额"+maxmum+"元！", 1, 5);
+
+                if(enme>maxmum)
+                {
+                    $("#investmentamount").val(maxmum);
+                }
+                else
+                {
+
+                    $("#investmentamount").val(enme);
+                }
+                var obj=$("#investmentamount").val();
+                var num=parseInt(obj);
+                showEarnByAmt(num);
+            }
+            else
+            {
+                if(isNaN(num)||num<_minTrans*_perTrans){
+                    layer.msg("最低投资金额为"+_minTrans*_perTrans+"元！",1, 5);
+                    num=_minTrans*_perTrans;
+
+                }else{
+                    if(parseInt(num%_perTrans)>0){
+                        layer.msg("投资金额为"+_perTrans+"元整数倍！", 1, 5);
+                    }
+                    num=parseInt(num/_perTrans)*_perTrans;
+                }
+            }
+            $("#investmentamount").val(num);
+            var obj=$("#investmentamount").val();
+            var num=parseInt(obj);
+            showEarnByAmt(num);
+        }
+    }
+
+    //通过投资金额    显示收益
+    function showEarnByAmt(obj){
+        var targetid=@(targetid);
+        if(isNaN(obj)||obj<1) return false;
+        num=parseInt(obj/_perTrans)*_perTrans;
+        $.post("/home/InvestCalculator", { "data": num ,"id":targetid}, function (msg) {
+            var obj1 = JSON.parse(msg);
+            $("#investdisp").html(obj1.amount);
+            $("#Span1").html(obj1.principal);
+
+        });
+    }
+</script>
+

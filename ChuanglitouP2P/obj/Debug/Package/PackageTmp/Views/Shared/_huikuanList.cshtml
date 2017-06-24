@@ -1,0 +1,62 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@model PagedList<V_borrowing_Bid_records_income_statement_uc>
+
+<div class="bTab1 bTab"  id="dTable">
+    <table cellpadding="0" cellspacing="0" border="1" style="margin-left:15px;">
+        <thead>
+            <tr class="bElse">
+                <td width="200">回款项目</td>
+                <td width="163">投资金额</td>
+                <td width="170">预计本息</td>
+                <td width="106">预计回款时间</td>
+                <td width="106">回款时间</td>
+                <td width="116">状态</td>
+            </tr>
+        </thead>
+        @if (Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.borrowing_title</td>
+                    <td>@item.investment_amount 元</td>
+                    <td>@item.repayment_amount 元</td>
+                    <td>@(DateTime.Parse(item.interest_payment_date.ToString()).ToString("yyyy-MM-dd"))</td>
+
+                    <td>@(item.repayment_period == null ? "--" : DateTime.Parse(item.repayment_period.ToString()).ToString("yyyy-MM-dd"))</td>
+                    <td>
+                        @if (item.payment_status == 0)
+                        {
+                            @:未回款
+                       }
+                        else
+                        {
+                            @:已回款
+                       }
+                    </td>
+                </tr>
+
+            }
+        }
+    </table>
+    <div class="page_box">
+        <div class="page_left">
+            @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox2", GoToButtonId = "goToBtn2" }, new MvcAjaxOptions
+   { UpdateTargetId = "dTable", HttpMethod = "Post", DataFormId = "searchForm", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "dTable")).AjaxOptions(a => a.SetUpdateTargetId("dTable"))
+        </div>
+        <div class="page_right">
+            <div class="input-group" style="margin:20px 0">
+                <span class="input-group-addon">转到第</span>
+                <input type="text" id="pageIndexBox2" class="form-control input-sm" />
+                <span class="input-group-addon">页</span>
+                <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn2">跳转</button></span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,132 @@
+﻿
+
+@model ChuangLitouP2P.Models.hx_Contract_template
+@{
+    ViewBag.Title = "合同模板信息";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<link href="~/Content/kindeditor/themes/default/default.css" rel="stylesheet" />
+<link href="~/Content/kindeditor/plugins/code/prettify.css" rel="stylesheet" />
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+<script src="~/Content/kindeditor/kindeditor.js"></script>
+<script src="~/Content/kindeditor/lang/zh_CN.js"></script>
+<script src="~/Content/kindeditor/plugins/code/prettify.js"></script>
+
+<style type="text/css">
+    .tdleft{
+        width:20%;
+        text-align:right;
+
+    }
+    .tdright{
+        width:80%;
+        text-align:left;
+    }
+    tr{
+        background: rgb(255, 255, 255);
+    }
+</style>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">合同模板</a>><a href="javascript:void(0)"> 模板信息</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        合同模板信息
+    </h3>
+    <div class="tz_box cz_box">
+        @using (Html.BeginForm("TemplateEdit", "ContractTemp", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+            {
+            <div class="z_cont2">
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(model => model.contract_template_id)
+                <table width="100%" style="table-layout:fixed;padding-left:10px;margin-top:10px;">
+                    <tr>
+                        <td class="tdleft"><label for="contract_type_id">合同类别id：</label></td>
+                        <td class="tdright">
+                            @Html.DropDownList("contract_type_id", ViewBag.list_ConType as IEnumerable<SelectListItem>, new { @style = "height:24px;width:202px;LINE-HEIGHT: 24px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft"><label for="contract_template_name">合同模版名称：</label></td>
+                        <td class="tdright">
+                           @Html.EditorFor(model => model.contract_template_name, new { htmlAttributes = new { @class = "inputxt Validform_error", @datatype = " * 2-40", @nullmsg = "请输入合同模版名称", @errormsg = "合同模版名称为2-30个字符！", @placeholder = "合同模板名称", @ajaxurl = "/admin/ContractTemp/CheckTemplateName", @style = "height:24px;width:202px;LINE-HEIGHT: 24px;" } })
+                        <span class="Validform_checktip"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft"><label for="contract_template_name">合同模版名称：</label></td>
+                        <td class="tdright">
+                            <textarea id="content1" name="content1" cols="100" rows="8" style="width:700px;height:300px;visibility:hidden;">@(Model.contract_template_context)</textarea>
+                            <span class="Validform_checktip"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="submin_box">
+                <input type="submit" class="z_btn_01" value="确 定" style="width:90px; height:25px;" />
+
+                <a href="/admin/ContractTemp/Index" class="z_btn_01" style="width:90px; height:25px; line-height:25px">返 回</a>
+            </div>
+            
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#contract_template_name").attr("ajaxurl", "/admin/ContractTemp/CheckTemplateName?key=@Html.DisplayFor(model=>model.contract_template_id)");
+        $(".registerform").Validform({
+            tiptype: 4
+
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "n": /^\d+$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+
+    });
+
+    ///TODO 待完善
+    var editor1;
+    KindEditor.ready(function (K) {
+        editor1 = K.create('#content1', {
+            cssPath: '~/Content/kindeditor/plugins/code/prettify.css',
+            uploadJson: 'common/upload_json.ashx',
+            fileManagerJson: 'common/file_manager_json.ashx',
+            allowFileManager: true,
+            filterMode: false,//是否开启过滤模式
+            afterCreate: function () {
+                var self = this;
+                K.ctrl(document, 13, function () {
+                    self.sync();
+                    K('form[name=example]')[0].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function () {
+                    self.sync();
+                    K('form[name=example]')[0].submit();
+                });
+            }
+        });
+        prettyPrint();
+    });
+</script>

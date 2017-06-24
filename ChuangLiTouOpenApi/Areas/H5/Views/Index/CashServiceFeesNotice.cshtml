@@ -1,0 +1,33 @@
+﻿@using ChuanglitouP2P.Common;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>提现手续费说明</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("about.css").ToHtml()
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, resizeEvt = "orientationchange" in window ? "orientationchange" : "resize", recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; docEl.style.fontSize = 20 * (clientWidth / 320) + "px" }; if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false) })(document, window)
+    </script>
+</head>
+<body>
+    <article class="txtCon">
+        <p>提现手续费规则</p>
+        <p>1、为了您的资金安全，请确保提现银行账号的姓名和您进行实名验证的姓名一致。</p>
+        <p>2、提现过程遇到问题，请联系客服，@Settings.Instance.GetCustomerServiceNumber。</p>
+        <p>3、请确保您输入的是正确的储蓄卡账号，而非信用卡账号。</p>
+        <p>4、实际到账时间以第三方支付平台及提现银行实际操作为准。</p>
+        <p>5、创利投平台目前通过第三方平台汇付天下进行资金提现。</p>
+        <p>6、普通提现费用为每笔2元（暂由创利投平台垫付）。</p>
+        <p>7、普通提现到账时间：工作日（周一至周五）当日申请的提现，T+1工作日到账；周六日和法定节假日提现，到账时间顺延。</p>
+        <p>8、即时提现费用按照每笔取现金额的0.5‰+2元/笔收取;如遇节假日，则按照提现金额的0.5‰×（间隔的节假日天数+1）+2元/笔收取。（由客户支付）</p>
+        <p>9、即时提现到账时间为2小时内到账。（注：提现金额20万以上需要平台人工审核，到账时间以实际操作为准）</p>
+    </article>
+</body>
+</html>

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "开通托管账户";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+
+<script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>
+<script src="/js/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script>_ozprm = "userid=@ViewBag.userid"</script>
+<style type="text/css">
+    .xubox_layer {
+        margin-left: -134.5px !important;
+    }
+</style>
+<script language="javascript" type="text/javascript">
+    $(function () {
+        $("#form1").Validform({
+            btnSubmit: "#submit1",
+        });
+    });
+
+    function thrtips() {
+        layer.msg("正在链接第三方托管账户平台......", 10, 1);
+    }
+
+</script>
+
+
+
+<form id="form1" action="@ViewBag.url" method="post">
+
+
+    <div class="tuanguo_prompt">还差一步，请开通托管账户，完成注册，领取50元抵扣券奖励！</div>
+    <div class="tuoguan_btn" style="font-size: 16px;font-weight: bold;">开通托管账户</div>
+    <div class="tuoguan_remarks">
+        1. 创利投使用了汇付天下的第三方资金托管系统，全方位监管保证您的资金安全<br>
+        2. 系统将自动为您分配用户名（格式为clt_您的用户名）<br>
+        3. 您的账户将被对应到创利投账户，以标示在创利投的投资<br>
+        4. 账户所有权归属于您，汇付天下根据您的指令进行资金调拨<br>
+        5. 您的登录密码和交易密码都独立于创利投的密码体系
+    </div>
+    <div class="bot_height"></div>
+
+
+
+    <input id="Version" name="Version" type="hidden" value="@Model.Version" />
+    <input id="CmdId" name="CmdId" type="hidden" value="@Model.CmdId" />
+    <input id="MerCustId" name="MerCustId" type="hidden" value="@Model.MerCustId" />
+    <input id="RetUrl" name="RetUrl" type="hidden" value="@Model.RetUrl" />
+
+    <input name="BgRetUrl" type="hidden" id="BgRetUrl" value="@Model.BgRetUrl" />
+    <input id="UsrMp" name="UsrMp" type="hidden" value="@Model.UsrMp" />
+
+    <input id="ChkValue" name="ChkValue" type="hidden" value="@Model.ChkValue" />
+
+
+    <input id="UsrId" name="UsrId" type="hidden" value="@Model.UsrId" />
+
+    <div class="reg_kaitong_btn" style="text-align: center;margin-bottom: 20px;">
+        <a href="javascript:void();" id="submit1" onclick="javascript:thrtips();" style="color: #fff;background-color: #01A9EB;border: 1px solid #01A9EB;padding: 5px 10px;border-radius: 5px;">开通托管账户</a>
+    </div>
+
+
+</form>
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+﻿
+@using Webdiyer.WebControls.Mvc;
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<V_type_news>
+@{
+    ViewBag.Title = ViewBag.title1;
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">@(ViewBag.title1)</h2>
+</header>
+@Html.Partial("_aboutList", Model);
+
+<div class="clear"  style="margin-bottom:10px;"></div>
+

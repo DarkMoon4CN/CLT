@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+<link href="~/Areas/Admin/css/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    .quxiantu {
+        margin-top: 30px;
+    }
+
+    .qleft {
+        float: left;
+        width: 50%;
+        text-align: left;
+    }
+
+    .qright {
+        float: right;
+        width: 50%;
+        text-align: right;
+    }
+
+    .ssx a {
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .lf {
+        float: left;
+        width: 48.5%;
+        border: 1px solid #c7d8ea;
+        margin-bottom: 20px;
+    }
+
+        .lf h6 {
+            border-bottom: 1px solid #c7d8ea;
+            color: #3a6ea5;
+            height: 26px;
+            line-height: 28px;
+            padding: 0 10px;
+            font-size: 13px;
+        }
+
+        .lf .content {
+            padding: 9px 10px;
+            line-height: 22px;
+        }
+
+            .lf .content a {
+                color: red;
+            }
+</style>
+
+<div class="so_main">
+    <!--列表模块-->
+    <div class="Toolbar_inbox">
+        <div class="page right">
+            当前时间<span id="clock"></span>
+        </div>
+        <a href="javascript:;" class="btn_a"><span>欢迎登陆</span></a>
+    </div>
+    <script>
+    function changeClock() {
+        var d = new Date();
+        document.getElementById("clock").innerHTML = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    }
+    window.setInterval(changeClock, 1000);
+    </script>
+    <div class="lf" style="margin-right:20px;">
+        <h6>个人信息</h6>
+        <div id="usrinfo" class="content"> @Html.Raw(ViewBag.infos)  </div>
+    </div>
+
+ 
+    <div class="lf">
+        <h6>系统信息</h6>
+        <div class="content">
+            <div style="float: left; width:250px;">
+                程序版本:V2.0
+            </div>
+            <div style="float: left;">
+                操作系统：Windows NT
+            </div>
+            <br />
+            <div style="float: left; width:250px;">
+                服务器软件：Microsoft-IIS/7.5
+            </div>
+            <div style="float: left;">
+                SQL 版本：sql2014
+            </div>
+            <br />
+            <div style="float: left; width:250px;">
+                服务器协议：HTTP/1.1
+            </div>
+            <div style="float: left;">
+                服务器名称：www.chuanglitou.cn
+            </div>
+            <br />
+            <div style="float: left; width:250px;">
+                ASP.NET运行方式：ISAPI
+            </div>
+            <div style="float: left;">
+                C#版本：ASP.NET  Framework 4.5
+            </div>
+            <br />
+        </div>
+    </div>
+    <div class="lf" style="margin-right:20px;">
+        <h6>待审核工作</h6>
+        
+        <div id="infolist" class="content">
+        
+            @Html.Raw(ViewBag.infolist)
+        
+        </div>
+    </div>
+    <div class="lf">
+       
+        <h6>开发团队</h6>
+        <div class="content">
+            北京创利投网络科技有限公司
+            <br />
+            总 策 划：张长江
+            <br />
+            开发与支持团队：张长江、周培江、董浩赋、赵辉
+            <br />
+            UI 设计：李嘉飞、董浩赋、李慧、张朝建、张芯慈
+            <br />
+            软件测试：张长江、董浩赋
+            <br />
+            官方网站：<a href="http://www.chuanglitou.cn/" target="_blank">http://www.chuanglitou.cn/</a>
+            <br />
+            在线技术支持：QQ:154388959  email:zcj200818@126.com
+        </div>
+    </div>
+</div>
+

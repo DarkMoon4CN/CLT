@@ -1,0 +1,230 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+@model IEnumerable<ChuangLitouP2P.Models.V_borrowing_target_review>
+@{
+    Layout = null;
+    var targetid = ViewBag.targetid as string;
+    var borrowing_balance = ViewBag.borrowing_balance as string;
+    var consultingAMT = ViewBag.consultingAMT as string;
+    var guaranteeAMT = ViewBag.guaranteeAMT as string;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>满标放款</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+
+
+    <style type="text/css">
+        .auto-style1 {
+            width: 105px;
+        }
+
+        .auto-style5 {
+            width: 256px;
+        }
+
+        .auto-style6 {
+            width: 25px;
+        }
+
+        .auto-style7 {
+            width: 537px;
+        }
+
+        .Validform_error {
+            background-color: #ffe7e7;
+        }
+    </style>
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Areas/Admin/js/common.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSave").on("click", function () {
+               save();
+            });
+            $(".reviewremarks").live("blur", function () {
+                if ($(this).val() != "") {
+                    $(this).removeClass("reviewremarks");
+                }
+            });
+        });
+        function save() {
+            $("#btnSave").attr('disabled', true);
+            var tender_state = $('input[name="tender_state"]:checked ').val();
+            var reviewremarks = $("#reviewremarks").val();
+            var id = $("#hid_id").val();
+            if (reviewremarks == "") {
+                $("#reviewremarks").addClass("Validform_error");
+                alert("请输入初审处理意见！");
+                return;
+            } else {
+                $("#reviewremarks").removeClass("Validform_error");
+            }
+            var index = layer.msg("正在处理中，请稍后...", 2, 1);
+            var url = "/admin/Examine/NewDolending";
+            data={ targetid: id, tender_state: tender_state, reviewremarks: escape(reviewremarks) };
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                async: false,
+                error: function () {
+                    layer.alert("服务器连接异常", 2, "复审结果");
+                },
+                success: function (d) {
+                    layer.close(index);
+                    var ds = $.parseJSON(d);
+                    if (ds.ret == 1)
+                    {
+                        $("#reviewremarks").attr('disabled', true);
+                        $("#btnSave").val('已禁用');
+                        layer.alert(ds.msg, 1, "复审结果");
+                    } else
+                    {
+                        $("#btnSave").attr('disabled', false);
+                        layer.alert(ds.msg, 2, "复审结果");
+                    }
+                    
+                }
+            });
+           //closewindows();
+           
+        }
+
+        function closewindows() {
+            window.parent.closewindows();
+
+        }
+    </script>
+
+</head>
+<body>
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">满标放款</a></h2>
+    <div class="z_body">
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            满标放款
+        </h3>
+@using (Html.BeginForm("Dolending", "Examine", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+{
+    @Html.AntiForgeryToken()
+   
+
+        <table width="100%" style="table-layout:fixed;margin-top:10px;">
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">借款金额：</td>
+                <td class="auto-style7">
+                    @Html.TextBox("borrowing_balance", @borrowing_balance, new { ReadOnly = true, style = "width:230px;height:25px;", @class = "inputxt" })
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">筹款金额：</td>
+                <td class="auto-style7">
+                    @Html.TextBox("consultingAMT", @consultingAMT, new { ReadOnly = true, style = "width:230px;height:25px;", @class = "inputxt" })
+                    <span>默认为按后台设置计算出来</span>
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">还需金额:</td>
+                <td class="auto-style7">
+                    @Html.TextBox("guaranteeAMT", @guaranteeAMT, new { ReadOnly = true, style = "width:230px;height:25px;", @class = "inputxt" })
+                    <span>默认为按后台设置计算出来</span>
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1"><span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">是否通过</span>：</td>
+                <td class="auto-style7">
+                    <input id="radio2" name="tender_state" type="radio" value="4" checked="checked" />  放款
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1"><span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">复审处理意见</span>：</td>
+                <td class="auto-style5" colspan="2">
+                    <textarea id="reviewremarks" name="reviewremarks" style="width:75%; height: 98px;" datatype="*" nullmsg="请设置初审处理意见！" errormsg="请设置初审处理意见！"></textarea>
+                    <span class="Validform_checktip">请设置初审处理意见！</span>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style6"></td>
+                <td class="auto-style1"></td>
+                <td class="auto-style7">
+                    @if (ViewBag.action != "look")
+                    {
+                        <input  type="button" class="button white medium" id="btnSave" value="确定" />
+                    }
+                    &nbsp;<input type="button" value="关闭" Class="button white medium" onclick="javascript:closewindows();" />
+
+
+                    <input type="hidden" name="hid_id" id="hid_id" value="@ViewBag.targetid"/>
+                    <input type="hidden" name="targetid" id="targetid" value="@ViewBag.targetid" />
+                    
+                </td>
+                <td></td>
+            </tr>
+
+        </table>
+
+
+}
+
+
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            审核处理列表
+        </h3>
+
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th scope="col">贷款名称</th>
+                    <th scope="col">状态 </th>
+                    <th scope="col">处理意见</th>
+                    <th scope="col">处理时间</th>
+                    <th scope="col">处理人员</th>
+                </tr>
+                @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                        <tr>
+                            <td>@(item.borrowing_title)</td>
+                            <td>@Utils.GetTender_state(item.tender_state.ToString()) </td>
+                            <td>@(item.reviewremarks)</td>
+                            <td>@DateTime.Parse(item.reviewtime.ToString()).ToString("yyyy-MM-dd HH:mm:ss")</td>
+                            <td>@(item.trueName)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+
+</body>
+</html>
+

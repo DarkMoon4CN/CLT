@@ -1,0 +1,20 @@
+﻿@using ChuangLiTou.Core.Helpers
+@using ChuangLiTou.Core.Entities.Request;
+@using ChuangLiTou.Core.Entities.Request.Member;
+
+@model RequestParam<RequestValidate>
+@{
+    ViewBag.Title = "实名注册";
+    Layout = null;
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+@using (Html.BeginForm("RealNameAuth", "Index", new { area = "UserAuthentication" }, FormMethod.Post, new { id = "ModifyForm" }))
+{
+    <div>
+        UserId:@Html.TextBoxFor(m => m.body.userId)
+    </div>    <div>
+        身份证号:@Html.TextBoxFor(m => m.body.userIdNo)
+    </div>
+    <input id="btnSubmit" type="submit" value="开通托管账户" />
+}

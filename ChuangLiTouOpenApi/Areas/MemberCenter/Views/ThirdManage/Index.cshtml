@@ -1,0 +1,28 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuangLiTou.Core.Entities.ChinaPnr.UserEntity
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登陆托管账户</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("jquery-1.11.1.min.js").ToHtml()
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+    </script>
+</head>
+<body>
+    <form id="form1" action="@Settings.Instance.ChinapnrUrl" method="post">
+        <input id="Version" name="Version" type="hidden" value="@Model.Version" />
+        <input id="CmdId" name="CmdId" value="@Model.CmdId" type="hidden" />
+        <input id="MerCustId" name="MerCustId" value="@Model.MerCustId" type="hidden" />
+        <input id="UsrCustId" name="UsrCustId" value="@Model.UsrCustId" type="hidden" />
+    </form>
+    <script type="text/javascript">$("#form1").submit();</script>
+</body>
+</html>

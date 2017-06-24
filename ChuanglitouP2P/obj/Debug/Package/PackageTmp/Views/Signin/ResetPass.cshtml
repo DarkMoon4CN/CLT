@@ -1,0 +1,78 @@
+﻿@using ChuanglitouP2P.Common
+@{
+    ViewBag.Title = "重置密码";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+@Url.File("Content/reg_common.css").ToHtml()
+@Url.File("Scripts/Validform_v5.3.2_min.js").ToHtml()
+@Url.File("Scripts/layer.min.js").ToHtml()
+
+<script type="text/javascript">
+        var editwindow;
+        $(function () {
+            $(".registerform").Validform({
+                tiptype: 4,
+                ajaxPost: true,
+
+                callback: function (data) {
+                    if (data.rs == "y") {
+                        layer.msg(data.info, 5, 1);
+                        // location.href = data.url;
+                        window.setTimeout('jump("/")', 5 * 1000);
+
+                    }
+                    else {
+                        layer.msg("登录失败：" + data.info + "", 3, 5);
+                    }
+                }
+            });
+        });
+
+
+        function jump(url)
+        {
+            location.href = url;
+        }
+
+</script>
+<div class="login_content ">
+    <div class="login_wrap login_bg clearfix" style="background-image:none;">
+        <div class="login_tit" style="border:none;"><h2>重置密码</h2></div>
+
+        <div class="clear"></div>
+        <div class="pw_form_box">
+
+            <div class="login_info_box">
+                <form id="form1" class="registerform" action="/Signin/Changepass" method="post">
+
+                    <input type="hidden" id="t" name="t" value="@ViewBag.tel1 " />
+                    <input type="hidden" id="key" name="key" value="@ViewBag.rid1" />
+                    <input type="hidden" id="c" name="c" value="@ViewBag.vcode1" />
+
+                    <input type="hidden" id="p" name="p" value="@ViewBag.type1" />
+                    <ul>
+                        <li class="login_left">新密码</li>
+                        <li><input name="userpassword" type="password" id="userpassword" class="login_txt" datatype="*6-16" nullmsg="请设置新密码！" errormsg="密码范围在6~16位之间！"></li>
+                    </ul>
+                    <ul>
+                        <li class="login_left">确认密码</li>
+                        <li><input name="reuserpassword" type="password" id="reuserpassword" class="login_txt" datatype="*" recheck="userpassword" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！" ></li>
+                    </ul>
+                    
+                    <div class="clear"></div>
+                    <div><input name="submitBut" id="submitBut" value="修改密码"  type="submit" class="login_btn" /></div>
+                </form>
+
+            </div>
+
+
+            <div class="user_forgetshow">
+                <p>忘记用户名请联系创利投客服：010-53732056（工作时间 9:00-18:00）</p>
+                <b>关闭</b>
+            </div>
+        </div>
+    </div>
+    <div class="login_kefu"><span class="login_kefu_icon">创利投客服热线（工作时间 9:00-18:00）010-53732056</span><span class="login_qq_icon"><a href="#">在线客服</a></span></div>
+    <div class="clear"></div>
+</div>
+

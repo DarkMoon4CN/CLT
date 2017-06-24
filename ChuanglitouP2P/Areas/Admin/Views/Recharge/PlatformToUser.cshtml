@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "向用户划账";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="/Areas/Admin/styleCont/jcDate.css" rel="stylesheet" type="text/css" />
+<script src="/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">资金管理</a>><a href="javascript:void(0)"> 充值管理</a>><a href="javascript:void(0)"> 平台向用户划账</a></h2>
+<div class="z_body">
+    <h3 class="z_h3">平台向用户划账</h3>
+    <div class="z_02 z_main">
+        @using (Html.BeginForm("PlatformToUserMoney", "Recharge", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="z_cont2">
+
+                <ul class="zTab_ul">
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="UsrCustId">&nbsp;客&nbsp;户&nbsp;号：</label>&nbsp;
+                        <input type="text" id="UsrCustId" name="UsrCustId" class="" datatype="n" nullmsg="请输入用户客户号！" errormsg="用户客户号必须是纯数字组成！" />
+                        <label class="Validform_checktip Validform_wrong"></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="money">转账金额：</label>
+                        <input type="text" id="money" name="money" class="" datatype="money" nullmsg="请输入转账金额！" errormsg="请输入正确的转账金额！"/>
+                        <label class="Validform_checktip Validform_wrong"></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="pssword">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                        <input type="text" onfocus="this.type='password'" id="pssword" name="pssword" class="" datatype="" nullmsg="密码不能为空！" errormsg="请输入正确的密码！" AUTOCOMPLETE="off"/>
+                        <label class="Validform_checktip Validform_wrong"></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <div class="z_btn">
+                            <input type="submit" class="z_btn_01" value="转 账">
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".registerform").Validform({
+            tiptype: 4
+
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "n": /^\d+$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/,
+            "notnull": '/S'
+        });
+
+    });
+</script>

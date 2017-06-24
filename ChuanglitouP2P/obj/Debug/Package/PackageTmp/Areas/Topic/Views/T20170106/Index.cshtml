@@ -1,0 +1,262 @@
+﻿@{
+    ViewBag.Title = "老友季邀友活动";
+    Layout = "~/Views/Shared/Index_LayoutStatic.cshtml";
+}
+<link href="~/Areas/Topic/Sources/20170106/css/css.css" rel="stylesheet" />
+
+@{//string yqUrl = ViewBag.UserUrl == string.Empty ? "/usercenter/yaoqing" : ViewBag.UserUrl;
+    string yqUrl = "/usercenter/yaoqing";
+} 
+
+
+<div class="yaoyou">
+    <div class="yaoyou_main">
+        <div class="yaoyou_main_1">
+            <img src="~/Areas/Topic/Sources/20170106/images/yaoyou_01.jpg" alt="">
+            <img src="~/Areas/Topic/Sources/20170106/images/yaoyou_02.jpg" alt="">
+            <img src="~/Areas/Topic/Sources/20170106/images/yaoyou_03.jpg" alt="">
+        </div>
+        <div class="yaoyou_main_centent">
+            <div class="yaoyou_main_centent_1">
+                <div class="biaoti"><span></span><h2>一重礼&nbsp&nbsp&nbsp送送送</h2><span></span></div>
+                <img src="~/Areas/Topic/Sources/20170106/images/centent_1_main_bg.jpg">
+                <div class="centent_1_main">
+                    <div class="centent_1_main_top">
+                        <div class="centent_1_main_top_left">
+                            <h2><span>邀请人</span>奖励</h2>
+                            <p></p>
+                        </div>
+                        <div class="centent_1_main_top_right">
+                            <dl>
+                                <dt><img src="~/Areas/Topic/Sources/20170106/images/centent_1_main_top_right_1.png"></dt>
+                                <dd>每邀请1位好友注册（需实名），<br />即奖励邀请人10元抵扣券；</dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="~/Areas/Topic/Sources/20170106/images/centent_1_main_top_right_2.png" style="width:64%;"></dt>
+                                <dd>每邀请1位好友注册（需实名）且<br />在活动期内单笔首次投资满2000<br />元（新手标除外）奖励10元现金；</dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="~/Areas/Topic/Sources/20170106/images/centent_1_main_top_right_3.png"></dt>
+                                <dd>活动期间每邀请5位好友实名注<br />册，邀请人即获得2%加息券【需<br />投资3个月以上标（含3个月标）<br />才能使用】一张</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="centent_1_main_bottom">
+                        <div class="centent_1_main_bottom_left">
+                            <h2><span>被邀请人</span>奖励</h2>
+                            <p></p>
+                        </div>
+                        <div class="centent_1_main_bottom_right">
+                            <p><span>（需实名注册）</span><i></i></p>
+                            <dl>
+                                <dt><img src="~/Areas/Topic/Sources/20170106/images/centent_1_main_top_right_3.png"></dt>
+                                <dd>奖励2%加息券一张（需投资3月标及以上使用）</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="yaoyou_main_centent_2">
+                <div class="biaoti"><span></span><h2>二重礼&nbsp&nbsp&nbsp奖奖奖</h2><span></span></div>
+                <img src="~/Areas/Topic/Sources/20170106/images/centent_2_main_bg.jpg">
+                <div class="centent_2_main">
+                    <h3>邀请好友投资，双方都有奖励</h3>
+                    <p></p>
+                    <div class="centent_2_main_div">
+                        <p>
+                            <span><a href="@yqUrl">立即邀请</a></span>
+                            <span><a href="@yqUrl">立即邀请</a></span>
+                            <span><a href="@yqUrl">立即邀请</a></span>
+                            <span><a href="@yqUrl">立即邀请</a></span>
+                        </p>
+                    </div>
+                    <ul class="centent_2_main_ul">
+                        <li style="background-color:#692ce4;">
+                            <span>投 1 个月:</span>
+                            <a>双方各返<small>50</small>元</a>
+                            <a>双方各返<small>150</small>元</a>
+                            <a>双方各返<small>2000</small>元</a>
+                            <a>双方各返<small>12500</small>元</a>
+                        </li>
+                        <li>
+                            <span>投 3 个月:</span>
+                            <a>双方各返<small>75</small>元</a>
+                            <a>双方各返<small>200</small>元</a>
+                            <a>双方各返<small>2500</small>元</a>
+                            <a>双方各返<small>15000</small>元</a>
+                        </li>
+                        <li style="background-color:#692ce4;">
+                            <span>投 6 个月:</span>
+                            <a>双方各返<small>100</small>元</a>
+                            <a>双方各返<small>250</small>元</a>
+                            <a>双方各返<small>3000</small>元</a>
+                            <a>双方各返<small>17500</small>元</a>
+                        </li>
+                    </ul>
+                    <sub>*以上数据仅供参考，具体收益将依据好友实际投资金额为准</sub>
+                </div>
+            </div>
+            <div class="yaoyou_main_centent_3">
+                <div class="biaoti"><span></span><h2>三重礼&nbsp&nbsp&nbsp拿拿拿</h2><span></span></div>
+                <img src="~/Areas/Topic/Sources/20170106/images/centent_3_main_bg.png">
+                <div class="centent_3_main">
+                    <div class="centent_3_main_top">
+                        <div class="centent_3_main_top_left">
+                            <img src="~/Areas/Topic/Sources/20170106/images/centent_3_main_top_left_img.png">
+                            <p><b>活动期间：</b>邀请的好友（被邀请人）投资（可以<br />是邀请的多个好友累加的投资额）≥200万，即奖<br />励邀请人iPhone7 plus 128G玫瑰金 标配一部；</p>
+                        </div>
+                        <div class="centent_3_main_top_right">
+                            <img src="~/Areas/Topic/Sources/20170106/images/centent_3_main_top_right_img.png">
+                            <p><b>活动期间：</b>邀请的好友（被邀请人）单笔投资<br />额≥50万即赠送被邀请人2000元现金奖励；</p>
+                        </div>
+                    </div>
+                    <div class="centent_3_main_bottom">
+                        <ul class="centent_3_main_bottom_ul_left">
+                            <li class="ul_left_tou">邀请奖励排行榜</li>
+                            <li style="margin-top:-22px;"><a></a><span style="font-weight:bold">邀请人</span><span style="font-weight:bold">累计获得返现奖励</span></li>
+                            @{
+
+                                System.Data.DataTable JinE = ViewBag.JinE as System.Data.DataTable;
+                                string mobile = "";
+                                double amt = 0;
+                                if (JinE != null)
+                                {
+                                    if (JinE.Rows.Count > 0)
+                                    {
+                                        for (int i = 0; i < JinE.Rows.Count; i++)
+                                        {
+                                            mobile = JinE.Rows[i]["mobile"].ToString();
+                                            if (mobile.Length == 11)
+                                            {
+                                                mobile = mobile.Substring(0, 3) + "****" + mobile.Substring(7, 4);
+                                            }
+                                            amt = Convert.ToDouble(JinE.Rows[i]["amt"].ToString());
+
+                                            if (i == 0)
+                                            {
+                                                <li style="background-color:#692ce4;"><a class="li_yi"></a><span style="margin-right:10px;">@mobile </span><span style="text-align: left;width:125px;margin-left:25px">￥ @amt</span></li>
+                                            }
+                                            else if (i == 1)
+                                            {
+                                                <li><a class="li_er"></a><span style="margin-right:10px;">@mobile </span><span style="text-align: left;width:125px;margin-left:25px">￥ @amt</span></li>
+                                            }
+                                            else if (i == 2)
+                                            {
+                                                <li style="background-color:#692ce4;"><a class="li_san"></a><span style="margin-right:10px;">@mobile </span><span style="text-align: left;width:125px;margin-left:25px">￥ @amt</span></li>
+                                            }
+                                            else if (i == 3)
+                                            {
+                                                <li><a>4</a><span style="margin-right:10px;">@mobile </span><span style="text-align: left;width:125px;margin-left:25px">￥ @amt</span></li>
+
+                                            }
+                                            else if (i == 4)
+                                            {
+                                                <li style="background-color:#692ce4;"><a>5</a><span style="margin-right:10px;">@mobile </span><span style="text-align: left;width:125px;margin-left:25px">￥ @amt</span></li>
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+
+                                    <li style="background-color:#692ce4;"><a></a><span style="margin-right:20px;">暂无数据！</span><span style="text-align: left;"></span></li>
+                                }
+                            }
+
+                        </ul>
+                        <ul class="centent_3_main_bottom_ul_right">
+                            <li class="ul_right_tou">邀请人气排行榜</li>
+                            <li style="margin-top:-22px;"><a></a><span style="font-weight:bold">邀请人</span><span style="font-weight:bold">累计邀请人数</span></li>
+
+                            @{
+
+                                System.Data.DataTable dtcode = ViewBag.RenShu as System.Data.DataTable;
+                                string mobile2 = "";
+                                int count = 0;
+                                if (dtcode != null)
+                                {
+                                    if (dtcode.Rows.Count > 0)
+                                    {
+                                        for (int i = 0; i < dtcode.Rows.Count; i++)
+                                        {
+                                            mobile = dtcode.Rows[i]["mobile"].ToString();
+                                            if (mobile.Length == 11)
+                                            {
+                                                mobile2 = mobile.Substring(0, 3) + "****" + mobile.Substring(7, 4);
+                                            }
+                                            count = int.Parse(dtcode.Rows[i]["invcode"].ToString());
+
+                                            if (i == 0)
+                                            {
+                                                <li style="background-color:#692ce4;"><a class="li_yi"></a><span>@mobile2 </span><span style="text-align:right;width:100px;margin-right:45px;">@count 人</span></li>
+                                            }
+                                            else if (i == 1)
+                                            {
+                                                <li><a class="li_er"></a><span>@mobile2 </span><span style="text-align:right;width:100px;margin-right:45px;">@count 人</span></li>
+                                            }
+                                            else if (i == 2)
+                                            {
+                                                <li style="background-color:#692ce4;"><a class="li_san"></a><span>@mobile2 </span><span style="text-align:right;width:100px;margin-right:45px;">@count 人</span></li>
+                                            }
+                                            else if (i == 3)
+                                            {
+                                                <li><a>4</a><span>@mobile2 </span><span style="text-align:right;width:100px;margin-right:45px;">@count 人</span></li>
+
+                                            }
+                                            if (i == 4)
+                                            {
+                                                <li style="background-color:#692ce4;"><a>5</a><span>@mobile2 </span><span style="text-align:right;width:100px;margin-right:45px;">@count 人</span></li>
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+
+                                    <li style="background-color:#692ce4;"><a></a><span style="text-align:center">暂无数据！</span><span style="text-align:right;width:100px;margin-right:45px;"></span></li>
+                                }
+                            }
+
+
+
+
+
+                        </ul>
+                    </div>
+                </div>
+                <a href="/Investlist.html" class="yaoyou_Btn">立即投资</a>
+            </div>
+            <div class="yaoyou_main_centent_4">
+
+                <img src="~/Areas/Topic/Sources/20170106/images/centent_4_main_bg.png">
+                <div class="centent_4_main">
+                    <ul class="centent_4_main_ul">
+                        <li>1、活动时间：2017年1月6日00:00:00至2017年3月31日23:59:59；</li>
+                        <li>2、活动期间每投资一笔（不分首投和复投），当即进行返现，具体奖励细节参照下表：</li>
+                        <ul class="centent_4_main_ul_biao">
+                            <li style="text-align:center;font-weight:bold;" class="ul_biao_tou">邀请人/被邀请人奖励</li>
+                            <li style="color:#f8c195;margin-top:-5px;"><span style="width:200px;margin-left:30px;">单笔投资额N（单位/元）</span><span>1月标</span><span>3月标</span><span>6月标</span></li>
+                            <li style="background-color:#6126d7;"><span>100≤N＜5000</span><span>0.5%</span><span>1.0%</span><span>1.5%</span></li>
+                            <li><span>5000≤N＜1万</span><span>1.0%</span><span>1.5%</span><span>2.0%</span></li>
+                            <li style="background-color:#6126d7;"><span>1万≤N＜10万</span><span>1.5%</span><span>2.0%</span><span>2.5%</span></li>
+                            <li><span>10万≤N＜50万</span><span>2.0%</span><span>2.5%</span><span>3.0%</span></li>
+                            <li style="background-color:#6126d7;"><span>50万+</span><span>2.5%</span><span>3.0%</span><span>3.5%</span></li>
+                        </ul>
+                        <li>3、活动实物奖励将在活动结束后的10个工作日进行信息核对及奖品发放；</li>
+                        <li>4、活动最终解释权在法律范围内归北京创利投网络科技有限公司所有。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

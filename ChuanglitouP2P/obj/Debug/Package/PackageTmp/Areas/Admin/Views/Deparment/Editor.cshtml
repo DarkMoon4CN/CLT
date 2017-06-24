@@ -1,0 +1,113 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>部门信息编辑</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+    <style type="text/css">
+        .Validform_error {
+            background-color: #ffe7e7;
+        }
+    </style>
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            initPage();
+            $("#btnClose").bind("click", function () {
+                closewindows();
+            });
+
+            $("#btnSave").bind("click", function () {
+                savedepartment();
+            });
+
+        });
+
+        function initPage() {
+            var pid = $("#hid_parentid").val();
+            $("#ddlparentid").val(pid);
+        }
+
+        function savedepartment() {
+            var ddlparentid = $("#ddlparentid").val();
+            var key = $("#hid_id").val();
+            var name = $("#name").val();
+            if ($.trim(name).length<1) {
+                layer.alert("请输入部门名称");
+                $("#Validform_error").addClass("Validform_error");
+                return;
+            } else {
+                $("#Validform_error").removeClass("Validform_error");
+            }
+
+            $.getJSON("/admin/Deparment/SaveEditor", { key: key, parendid: ddlparentid, name: escape(name) }, function (data) {
+                if (data.ret==1) {
+                    layer.alert("保存成功！");
+                    closewindows();
+                } else {
+                    layer.alert(data.msg);
+                }
+            });
+        }
+
+        function closewindows() {
+            window.parent.closewindows();
+        }
+    </script>
+</head>
+<body><h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">部门管理</a>><a href="javascript:void(0)"> 添加部门信息</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        添加部门信息
+    </h3>
+    <table width="100%" style="table-layout:fixed;padding-left:15%;margin-top:10px;">
+        <tr>
+            <td class="need" style="width:10px;">*</td>
+            <td class="auto-style1">上级名称：</td>
+            <td style="width:205px;">
+                @Html.DropDownList("ddlparentid", ViewBag.dropdown as IEnumerable<SelectListItem>, new { @style = "width:200px; height:25px;" })
+                <input type="hidden" id="hid_parentid" value="@(ViewBag.parentid)" />
+            </td>
+            <td><div class="Validform_checktip"></div></td>
+        </tr>
+        <tr>
+            <td class="need">* </td>
+            <td class="auto-style1">部门名称：</td>
+            <td>
+                <input type="text" id="name" name="name" class="inputxt" style="width:200px; height:25px;" value="@(ViewBag.name)" />
+            </td>
+            <td><span class="Validform_checktip"></span></td>
+        </tr>
+        <tr>
+            <td class="need"></td>
+            <td class="auto-style1"></td>
+            <td>
+                <input type="button" id="btnSave" class="btn1" value="保存" />&nbsp;&nbsp;
+                <input type="button" id="btnClose" class="btn1" value="关闭" />
+                <input type="hidden" id="hid_id" value="@(ViewBag.id)" />
+            </td>
+            <td></td>
+        </tr>
+
+    </table>
+
+</div>
+</body>
+</html>

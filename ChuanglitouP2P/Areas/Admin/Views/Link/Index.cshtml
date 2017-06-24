@@ -1,0 +1,96 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.hx_td_Links>
+@{
+    ViewBag.Title = "友情链接管理";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">友情链接管理</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+        <p class="tP3">
+            快速搜索
+        </p>
+        @using (Html.BeginForm("Index", "Link", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <p class="tP4 tx_tp4" style="height:50px; ">
+                <label for="username">链接名称：</label><input type="text" class="txt1" id="linkname" name="linkname" value="@(ViewBag.linkname)"  style="width:240px; height:21px;" /> &nbsp;
+
+                <input type="hidden" id="linktype" name="linktype" value="@(ViewBag.linktype)" />
+
+                <input type="hidden" id="linkstate" name="linkstate" value="@(ViewBag.linkstate)" />
+
+                <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+                
+            </p>
+        }
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            友情链接列表
+        </h3>
+
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th scope="col">编号 </th>
+                    <th scope="col">链接名称</th>
+                    <th scope="col">网址</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">状态</th>
+                    <th scope="col">操作</th>
+                </tr>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(item.Linkid)</td>
+                            <td>@(item.Linkname)</td>
+                            <td>@(item.LinkUrl)</td>
+                            @if (item.LinkType == 0)
+                            {
+                                <td>文字</td>
+                            }
+                            else if(item.LinkType==1)
+                            {
+                                <td>图片</td>
+                            }
+                            @if (item.Linkstate == 0)
+                            {
+                                <td>有效</td>
+                            }
+                            else if (item.Linkstate == 1)
+                            {
+                                <td>无效</td>
+                            }
+                            <td><a class="opt" title="编辑" href="/admin/Link/Edit/@item.Linkid/@ViewBag.page" >  编辑</a> &nbsp; 
+                                <a class="opt" title="删除" href="/admin/Link/DelById/@item.Linkid/@ViewBag.page?linkname=@ViewBag.Linkname"  >  删除</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="pagination ue-clear">
+            <div class="pagination-container">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, username = @ViewBag.username, OrdIdState = @ViewBag.OrdIdState, ddlType = @ViewBag.ddlType, OrdIdState1 = ViewBag.OrdIdState1 }))
+            </div>
+        </div>
+    @*</div>*@
+</div>
+ 

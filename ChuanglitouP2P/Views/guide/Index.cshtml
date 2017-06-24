@@ -1,0 +1,237 @@
+﻿@using ChuanglitouP2P.Common
+
+
+@{
+    ViewBag.Title = "新手理财_新手投资_新手注册福利_网贷新手首选创利投";
+
+    ViewBag.keywords = "新手理财,新手投资,新手注册福利,新手投资理财";
+
+    ViewBag.desc = "创利投新手指引为初次了解P2P网贷创利投的用户，提供从新手注册、新手投资流程、创利投平台原理、新手注册福利等帮助新手快速赚钱。";
+    Layout = "~/Views/Shared/Index_LayoutStaticForGuide.cshtml";
+    //Layout = null;
+
+    int uid = Utils.checkloginsessiontop();
+}
+<link href="~/Scripts/guide/guide.css" rel="stylesheet" />
+<link href="~/Scripts/guide/common.css" rel="stylesheet" />
+<link href="~/Content/css.css" rel="stylesheet" />
+<script src="~/Scripts/guide/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        function addClass() { $(this).addClass("hover"); } function removeClass() { $(this).removeClass("hover"); }
+        $(".nav ul li").hover(addClass, removeClass);
+
+    });
+</script>
+
+<script type="text/javascript">
+      $(function () {
+          $('header').css({
+              "position": "fixed",
+              "top": "0px",
+              "width": "100%",
+              "z-index": "8888"
+          });
+          $('header').css({
+              "position": "fixed",
+              "top": "0px",
+              "width": "100%",
+              "z-index": "8888"
+          });
+      })
+</script>
+
+<style type="text/css">
+span.m2-help-animate {
+    display: block;
+    width: 980px;
+    position: absolute;
+    -moz-animation-duration: 2s;
+    top: 50%;
+}
+
+.num {
+    color: #fff;
+    font-size: 50px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+.guide_part1 {
+    background: url(/Scripts/guide/images/guide_partimg01.png) no-repeat;
+}
+.guide_part2 {
+    background: url('/Scripts/guide/images/guide_partimg02.png') no-repeat;
+    width: 980px;
+    height: 404px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -490px;
+    margin-top: -142px;
+}
+.guide_part3 {
+    background: url(/Scripts/guide/images/guide_partimg03.png) no-repeat;
+    width: 980px;
+    height: 404px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -490px;
+    margin-top: -142px;
+}
+.guide_part4 {
+    background: url(/Scripts/guide/images/guide_partimg04.png) no-repeat;
+    width: 980px;
+    height: 404px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -490px;
+    margin-top: -142px;
+}
+
+.guide_part5 {
+    background: url(/Scripts/guide/images/guide_partimg05.png) no-repeat;
+    width: 980px;
+    height: 404px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -490px;
+    margin-top: -142px;
+}
+.guide_part7 {
+    background: url(/Scripts/guide/images/guide_partimg06.png) no-repeat;
+    width: 980px;
+    height: 404px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -490px;
+    margin-top: -142px;
+}
+.guide_part8 {
+    background: url(/Scripts/guide/images/guide_partimg07.png) no-repeat;
+    width: 980px;
+    height: 404px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -490px;
+    margin-top: -142px;
+}
+.fixed_r {position: absolute;right: 20px;top: 300px;z-index: 99999999;}
+</style>
+
+<div class="fixed_r">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+       <!-- <li></li>-->
+    </ul>
+</div>
+<div class="num_box">
+    <div class="num" id="num_0">
+        <span class="guide_part1">
+
+        </span>
+    </div>
+    <div class="num" id="num_1">
+        <span class="guide_part2">
+
+        </span>
+    </div>
+    <!-- <div class="num" id="num_2">
+        <span class="guide_part3">
+
+        </span>
+    </div>-->
+    <div class="num" id="num_3">
+        <span class="guide_part4">
+
+        </span>
+    </div>
+    <div class="num" id="num_4">
+        <span class="guide_part5">
+
+        </span>
+    </div>
+    <div class="num" id="num_5">
+        <span class="m2-help-img">
+            <script>
+			    $(function () {
+			        var curr = 0;
+			        $(".m2-help-stepTit dl dt").each(function (i) {
+			            $(this).click(function () {
+			                curr = i;
+			                $(".m2-help-step img").eq(i).fadeIn().siblings("img").hide();
+			                $(this).addClass("m2-step-hover").siblings().removeClass("m2-step-hover");
+			            });
+			        });
+
+			        $(".m2-help-next").click(function () {
+			            if (curr == 4) {
+			                var go = 0;
+			            } else {
+			                var go = (curr + 1) % 5;
+			            }
+			            $(".m2-help-stepTit dl dt").eq(go).click();
+			        });
+			        $(".m2-help-prev").click(function () {
+			            if (curr == 0) {
+			                var go = 4;
+			            } else {
+			                var go = (curr - 1) % 5;
+			            }
+			            $(".m2-help-stepTit dl dt").eq(go).click();
+			        });
+			    });
+            </script>
+            <div class="m2-help-img05">
+                <div class="m2-help-stepTit">
+                    <dl>
+                        <dt class="m2-step-hover">1.注册</dt>
+                        <dt>2.实名</dt>
+                        <dt>3.充值</dt>
+                        <dt>4.投资</dt>
+                        <dt>5.收益</dt>
+                    </dl>
+                </div>
+                <div class="m2-help-step">
+                 
+                    <img src="~/Scripts/guide/images/guide_step01.png" />
+                    <img src="~/Scripts/guide/images/guide_step02.png" />
+                    <img src="~/Scripts/guide/images/guide_step03.png" />
+                    <img src="~/Scripts/guide/images/guide_step04.png" />
+                    <img src="~/Scripts/guide/images/guide_step05.png" />
+                </div>
+                <i class="m2-help-prev"></i>
+                <i class="m2-help-next"></i>
+            </div>
+        </span>
+    </div>
+    <div class="num" id="num_6">
+        <span class="guide_part7">
+            <div style="font-size:45px; line-height:80px; width:600px; float:right;">注册送好礼
+            <p style="font-size:35px;">100元起投</p><p style="font-size:25px;">新手专享项目</p><a href="/register.html" class="guide_part7_btn">立即注册</a></div>
+        </span>
+    </div>
+    <div class="num" id="num_7">
+        <span class="guide_part8">
+
+        </span>
+    </div>
+</div>
+<input type="hidden" value="0" class="ddw" />
+<input type="hidden" value="0" class="ddw2" />
+<script src="~/Scripts/guide/scroll.js"></script>
+<script src="~/Scripts/guide/jquery.mousewheel.js"></script>
+<script src="~/Scripts/o_code.js"></script>
+
+

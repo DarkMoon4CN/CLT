@@ -1,0 +1,284 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.Model;
+@using ChuanglitouP2P.BLL;
+@using Webdiyer.WebControls.Mvc;
+@using System.Collections;
+@{
+    ViewBag.Title = "一元抢iPhone";
+
+    ViewBag.keywords = "投资返现，创利投";
+
+    ViewBag.desc = "新用户注册一元抢iPhone！";
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+@section css{
+
+    <link href="~/Areas/Topic/Sources/20160910/Content/css.css" rel="stylesheet" type="text/css" />
+    <script src="~/Areas/Topic/Sources/20160910/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Areas/Topic/Sources/20160910/Scripts/jquery.flexslider.js"></script>
+    <script src="~/Areas/Topic/Sources/20160910/Scripts/index.js"></script>
+    <script src="~/Areas/Topic/Sources/20160910/Scripts/clock_time.js"></script>
+    <script type="text/javascript" src="~/Areas/Topic/Sources/20160910/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Areas/Topic/Sources/20160910/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            //滚动效果
+
+            var scrollingBox = document.getElementById("xstCont");
+
+            var reachedBottom = false;
+            var bottom;
+            //var timer = null;
+            function scrolling() {
+                var origin = scrollingBox.scrollTop++;
+                if (origin == scrollingBox.scrollTop && scrollingBox.scrollTop != 0) {
+                    if (!reachedBottom) {
+                        scrollingBox.innerHTML += scrollingBox.innerHTML;
+                        reachedBottom = true;
+                        bottom = origin;
+                    } else {
+                        scrollingBox.scrollTop = bottom;
+                    }
+                }
+
+                scrollingBox.style.overflow = "hidden";
+            }
+            var timer = setInterval(scrolling, 120);
+            scrollingBox.onmouseover = function () { clearInterval(timer); }
+            scrollingBox.onmouseout = function () { timer = setInterval(scrolling, 120) }
+        });
+    </script>
+}
+<center>
+    <div class="qiang_content">
+        <div class="qiang_c01">
+            <img src="~/Areas/Topic/Sources/20160910/images/qiang_01.jpg" class="qiang_c01_bg">
+        </div>
+        <div class="qiang_c02">
+            <img src="~/Areas/Topic/Sources/20160910/images/qiang_02.jpg" class="qiang_c02_bg">
+            <!-- <div class="qiang_c02_main"> -->
+            <div class="qiang_c02_main_1">
+                <div class="qiang_c02_main_1_jindubg">
+
+                    <div class="qiang_c02_main_1_jingdu" style="width: @ViewBag.getLDCount%"></div>
+
+                    <div class="qiang_c02_main_1_jindubg_zi">
+                        <p>活动已加入</p>
+                        <span>@ViewBag.ltrCurrentCount </span><small>位</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="qiang_c02_main_2">
+                <div class="qiang_c02_main_2_jilu">
+                    <h2>累计加入<span>@ViewBag.getLJJRCount</span>人</h2>
+                    <div class="scroll_cont">
+                        <ul class="gd_cont" id="xstCont" style="overflow: hidden;">
+                            @{
+                            B_member_table bmt = new B_member_table();
+
+                            List<M_GrabIphone> GILists = ViewBag.getCYLIst == null ? null : ViewBag.getCYLIst as List<M_GrabIphone>;
+                            foreach (M_GrabIphone item in GILists)
+                            {
+                                M_member_table mt = bmt.GetModel(item.RegrsterID);
+                                if (mt != null)
+                                {
+
+
+                                    string name = mt.username.Substring(0, 1) + "***" + mt.username.Substring(mt.username.Length - 1, 1);
+
+
+                        <li style="font-size:1.2em;">
+                            <p><span>@name </span><label style="float:left;">投资</label><span>@item.InvestmentAmount 元</span></p>
+                        </li>
+
+
+                                }
+                            }
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="qiang_c02_main_3">
+                <h2><span>幸运大奖</span>花落谁家</h2>
+                <div class="qiang_c02_main_3_main">
+
+                    @{
+                    List<M_GrabIphone> zjLists = ViewBag.getZJLIst == null ? null : ViewBag.getZJLIst as List<M_GrabIphone>;
+                    if (zjLists != null)
+                    {
+
+                        int indexer = 1;
+                        foreach (M_GrabIphone item in zjLists)
+                        {
+                            M_member_table mt = bmt.GetModel(item.RegrsterID);
+                            if (mt != null)
+                            {
+
+                                Hashtable hashtable = Utils.GetHashtable();
+                                string mobile = mt.username;
+                                string iD_number = mt.iD_number;
+                                string name = "*";
+                                string Province = "";
+                                if (mt.realname.Length > 0)
+                                {
+                                    name = mt.realname.Substring(0, 1);
+
+
+                                    if (iD_number.Length == 18)
+                                    {
+                                        if (int.Parse(iD_number.Substring(16, 1)) % 2 == 0)
+                                        { name += "女士"; }
+                                        else { name += "先生"; }
+
+                                    }
+                                    else if (iD_number.Length == 15)
+                                    {
+                                        if (int.Parse(iD_number.Substring(14, 1)) % 2 == 0)
+                                        { name += "女士"; }
+                                        else { name += "先生"; }
+
+                                    }
+                                    else
+                                    {
+                                        name += "";
+                                    }
+                                    if (iD_number.Length > 0)
+                                    {
+                                        Province = (string)hashtable[iD_number.Substring(0, 2)];
+                                    }
+
+
+                <div class="qiang_c02_main_3_main_1">
+                    <i>@indexer</i>
+                    <p><span>@Province </span><span>@name</span><span>获新一代iPhone7</span><span>32G</span></p>
+                </div>
+
+                                }
+                            }
+                            indexer++;
+                        }
+                    }
+                    }
+
+                </div>
+
+            </div>
+            <!-- </div> -->
+        </div>
+        <div class="qiang_c03">
+            <img src="~/Areas/Topic/Sources/20160910/images/qiang_03.jpg" class="qiang_c03_bg">
+            <div class="qiang_c03_main">
+                <a href="/investlist.html"></a>
+            </div>
+        </div>
+        <div class="qiang_c04">
+            <img src="~/Areas/Topic/Sources/20160910/images/qiang_04.jpg" class="qiang_c04_bg">
+            <div class="qiang_c04_main">
+                <div>
+                    <dl>
+                        <dt>活动规则</dt>
+                        <dd>1、本活动仅限新注册的用户，每个用户仅限有一次参与机会。</dd>
+                        <dd>2、本活动仅限投资6个月标。</dd>
+                        <dd>3、同一用户多次投资只计算一次抽奖机会。</dd>
+                        <dd>4、满5388人可进行一次抽奖，参与人数满5388后，开始进行随机抽奖，上轮抽奖结束后开始累计新一轮计算。</dd>
+                        <dd>5、iPhone7新品于2016年9月7日发布，我平台将根据新品起售时间进行奖品发放， 发放详情会在苹果官网发售后与获奖者沟通发放，活动奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp品将于单轮抽奖结束后的3个工作日内由创利投平台客服核对中奖信息，中奖商品不开具相应的发票，不可折现；如无质量问题，不支持退<br>&nbsp&nbsp&nbsp&nbsp&nbsp换货。</dd>
+                        <dd>6、如平台工作人员连续七个工作日未能联系到您，视为自动放弃奖品。</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <style>
+        /*导航我要投资下拉菜单--放在css.css里面的样式*/
+        .w_logo1 li {
+            display: inline-block;
+            float: left;
+        }
+
+            .w_logo1 li.subnav-tz {
+                position: relative;
+            }
+
+            .w_logo1 li a {
+                float: none;
+                border-bottom: 3px solid transparent;
+            }
+
+        .menuBox {
+            position: absolute;
+            z-index: 1000;
+            border: 1px solid #e6e6e6;
+            top: 10px;
+            left: 0px;
+            width: 91px;
+            background-color: #fff;
+            display: inline-block;
+            padding: 5px 0;
+            top: 70px;
+            left: 0px;
+            display: none;
+        }
+
+        .w_logo1 li.subnav-tz a:hover {
+            border-bottom: 3px solid transparent;
+        }
+
+        .menuBox .sanjiao {
+            height: 0;
+            width: 0;
+            position: absolute;
+            border: 15px solid transparent;
+            border-bottom-color: #e6e6e6;
+            top: -31px;
+            left: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menuBox .sanjiao2 {
+            height: 0;
+            width: 0;
+            position: absolute;
+            border: 15px solid transparent;
+            border-bottom-color: #fff;
+            top: -30px;
+            left: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menuBox ul li {
+            display: block;
+            padding-left: 16px;
+            line-height: 30px;
+            height: 30px;
+            float: none;
+            overflow: hidden;
+            width: 60px;
+        }
+
+            .menuBox ul li a {
+                display: inline-block;
+                width: 60px;
+                height: 30px;
+                overflow: hidden;
+                color: #666;
+                line-height: 30px;
+                text-align: left;
+                float: none;
+                margin-right: 0;
+                font-size: 14px;
+            }
+
+                .menuBox ul li a:hover {
+                    border-bottom: none;
+                }
+    </style>
+</center>

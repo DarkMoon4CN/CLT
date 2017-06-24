@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "注册";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+
+<script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".registerform").Validform({
+		tiptype:4
+	});
+});
+</script>
+
+
+<section class="user_head_tabs">
+    <div><a href="javascript:void(0);" class="ptabs_curr">注册</a></div>
+    <div><a href="/home/Login">登录</a></div>
+</section>
+<div><img src="images/banner2.jpg" width="100%"></div>
+<form class="registerform" method="post">
+    <div class="form_box">
+        <ul>
+            <li><input name="mobile" id="mobile" class="form_text" type="tel" placeholder="请输入手机号" datatype="s6-18" nullmsg="请填写手机号！" errormsg="手机号格式不对！"><span class="reg_icon phone_icon"></span></li>
+            <li class="code_box"><div class="code_text"><input name="vcodec" id="vcodec" class="form_text" type="tel" datatype="*" nullmsg="请填写验证码！" placeholder="请填写验证码"></div><div><input name="" value="获取验证码" type="button" class="code_btn"></div><span class="reg_icon plane_icon"></span></li>
+            <li><input name="userpassword" type="password" id="userpassword" class="form_text" placeholder="请设置密码" datatype="*6-16" nullmsg="请设置密码！" errormsg="密码范围在6~16位之间！"><span class="reg_icon password_icon"></span></li>
+            <li><input name="reuserpassword" type="password" id="reuserpassword" class="form_text" placeholder="请重复密码" datatype="*" recheck="userpassword" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！"><span class="reg_icon passwordc_icon"></span></li>
+        </ul>
+    </div>
+    <div class="confirm_btn_box">
+        <input name="" value="下一步" type="button" class="invest_btn" onClick="location.href='注册-开通托管账户.htm'">
+    </div>
+</form>
+<div class="bot_height"></div>

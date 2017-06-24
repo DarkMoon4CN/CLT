@@ -1,0 +1,24 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>用户绑卡 </title>
+    <script src="/Scripts/jquery-1.7.1.js"></script>
+</head>
+<body>
+    <form id="form1" action="@ViewBag.url" method="post">
+        <div>
+            <input id="Version" name="Version" type="hidden" value="@ViewBag.Version" />
+            <input id="CmdId" name="CmdId" value="@ViewBag.CmdId" type="hidden" />
+            <input id="MerCustId" name="MerCustId" value="@ViewBag.MerCustId" type="hidden" />
+            <input id="UsrCustId" name="UsrCustId" value="@ViewBag.UsrCustId" type="hidden" />
+            <input id="BgRetUrl" name="BgRetUrl" value="@ViewBag.BgRetUrl" type="hidden" />
+            <input id="MerPriv" name="MerPriv" value="@ViewBag.MerPriv" type="hidden" />
+            <input id="ChkValue" name="ChkValue" value="@ViewBag.ChkValue" type="hidden" />
+
+        </div>
+    </form>
+    <script>$("#form1").submit()</script>
+</body>
+</html>

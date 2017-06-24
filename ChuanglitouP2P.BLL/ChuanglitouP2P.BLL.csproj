@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F985F667-D4EB-4B5F-9E7F-AE7F222A5635}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChuanglitouP2P.BLL</RootNamespace>
+    <AssemblyName>ChuanglitouP2P.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MiniProfiler, Version=3.2.0.157, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.3.2.0.157\lib\net40\MiniProfiler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MiniProfiler.EntityFramework6, Version=3.0.11.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.EF6.3.0.11\lib\net40\MiniProfiler.EntityFramework6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActCount.cs" />
+    <Compile Include="Activity_LuckBll\TActivity_Luck.cs" />
+    <Compile Include="Api\AdNewsLogic.cs" />
+    <Compile Include="Api\BonusLogic.cs" />
+    <Compile Include="Api\BorrowLogic.cs" />
+    <Compile Include="Api\B_UserAct.cs" />
+    <Compile Include="Api\CapitalLogic.cs" />
+    <Compile Include="Api\ContractLogic.cs" />
+    <Compile Include="Api\GlobalLogic.cs" />
+    <Compile Include="Api\GlobelLogic.cs" />
+    <Compile Include="Api\InvestLogic.cs" />
+    <Compile Include="Api\InvitationLogic.cs" />
+    <Compile Include="Api\MemberLogic.cs" />
+    <Compile Include="Api\OpenApiAuthorizationLogic.cs" />
+    <Compile Include="Api\P2PeyeLogic.cs" />
+    <Compile Include="Api\RechargeHistoryLogic.cs" />
+    <Compile Include="Api\RecordLogic.cs" />
+    <Compile Include="Api\RegionLogic.cs" />
+    <Compile Include="Api\SmsRecordLogic.cs" />
+    <Compile Include="Api\WdzgLogic.cs" />
+    <Compile Include="Api\ServiceFeesLogic.cs" />
+    <Compile Include="BusinessLogicHelper.cs" />
+    <Compile Include="B_Activity_schedule.cs" />
+    <Compile Include="B_AppUpdatePackage.cs" />
+    <Compile Include="B_area.cs" />
+    <Compile Include="B_Bid_records.cs" />
+    <Compile Include="B_bonding_company.cs" />
+    <Compile Include="B_bonus_account.cs" />
+    <Compile Include="B_bonus_account_water.cs" />
+    <Compile Include="B_borrower_guarantor_picture.cs" />
+    <Compile Include="B_borrowing_target.cs" />
+    <Compile Include="B_borrowing_target_detailed.cs" />
+    <Compile Include="B_Capital_account_water.cs" />
+    <Compile Include="B_CashAwards.cs" />
+    <Compile Include="EF\ChannelAct.cs" />
+    <Compile Include="B_city.cs" />
+    <Compile Include="B_Contract_management.cs" />
+    <Compile Include="B_Contract_template.cs" />
+    <Compile Include="B_contract_type.cs" />
+    <Compile Include="B_GrabIphone.cs" />
+    <Compile Include="B_guarantee_way.cs" />
+    <Compile Include="B_income_statement.cs" />
+    <Compile Include="B_LuckDraw.cs" />
+    <Compile Include="B_member_table.cs" />
+    <Compile Include="B_Mention_charges.cs" />
+    <Compile Include="B_Overdue_repayment.cs" />
+    <Compile Include="B_Project_type.cs" />
+    <Compile Include="B_province.cs" />
+    <Compile Include="B_PublicPageList.cs" />
+    <Compile Include="B_Recharge_history.cs" />
+    <Compile Include="B_repayment_plan.cs" />
+    <Compile Include="B_reviewremarks.cs" />
+    <Compile Include="B_td_about_news.cs" />
+    <Compile Include="B_td_Ad.cs" />
+    <Compile Include="B_td_adminuser.cs" />
+    <Compile Include="B_td_department.cs" />
+    <Compile Include="B_td_frozen.cs" />
+    <Compile Include="B_td_Links.cs" />
+    <Compile Include="B_td_Loan_records.cs" />
+    <Compile Include="B_td_LoginInfo.cs" />
+    <Compile Include="B_td_menu.cs" />
+    <Compile Include="B_td_Myborrow.cs" />
+    <Compile Include="B_td_Phone_records.cs" />
+    <Compile Include="B_td_SMS_record.cs" />
+    <Compile Include="B_td_System_message.cs" />
+    <Compile Include="B_td_UserCash.cs" />
+    <Compile Include="B_td_Userinvitation.cs" />
+    <Compile Include="B_td_web_Ad_type.cs" />
+    <Compile Include="B_td_web_type.cs" />
+    <Compile Include="B_usercenter.cs" />
+    <Compile Include="B_UsrBindCard.cs" />
+    <Compile Include="Calculator\InvestCalculatorB.cs" />
+    <Compile Include="EF\ActBase.cs" />
+    <Compile Include="EF\ActInvest.cs" />
+    <Compile Include="EF\ActInvite.cs" />
+    <Compile Include="EF\ActRegister.cs" />
+    <Compile Include="EF\ActFacade.cs" />
+    <Compile Include="EF\CateCacheList.cs" />
+    <Compile Include="EF\CheckEXISTS.cs" />
+    <Compile Include="EF\GetCacheNesList.cs" />
+    <Compile Include="EF\InvestCalc.cs" />
+    <Compile Include="EF\InvestSearch.cs" />
+    <Compile Include="EF\LLpay.cs" />
+    <Compile Include="EF\SelectListByEF.cs" />
+    <Compile Include="EF\Transfer.cs" />
+    <Compile Include="EF\TransStat.cs" />
+    <Compile Include="EF\UserInfoData.cs" />
+    <Compile Include="EF\UserLimitByEF.cs" />
+    <Compile Include="Plan\WebActivityPlan.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="VeryCodes\NetCreditAssistant\BLL\InvestCalculator.cs" />
+    <Compile Include="WangDaiHelper.cs" />
+    <Compile Include="XiCaiHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChuangLiTou.Core.Entities\ChuangLiTou.Core.Entities.csproj">
+      <Project>{4c6d9f08-b5c7-4e15-816c-9bac836f7067}</Project>
+      <Name>ChuangLiTou.Core.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuanglitouP2P.Common\ChuanglitouP2P.Common.csproj">
+      <Project>{081cecf4-0b14-4971-84a0-d95d7d30da14}</Project>
+      <Name>ChuanglitouP2P.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuanglitouP2P.DAL\ChuanglitouP2P.DAL.csproj">
+      <Project>{9b5238d7-0136-42c6-be5e-d8ac2668c200}</Project>
+      <Name>ChuanglitouP2P.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuanglitouP2P.DBUtility\ChuanglitouP2P.DBUtility.csproj">
+      <Project>{0778b4c9-9309-4995-b7ad-a75a59a2f2b1}</Project>
+      <Name>ChuanglitouP2P.DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuangLitouP2P.Models\ChuangLitouP2P.Models.csproj">
+      <Project>{5fefb89d-38b7-4984-9b29-2aafdf4d231e}</Project>
+      <Name>ChuangLitouP2P.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuanglitouP2P.Model\ChuanglitouP2P.Model.csproj">
+      <Project>{6df73cee-f1d7-4ea7-93c4-20ec96f62fc0}</Project>
+      <Name>ChuanglitouP2P.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\itextsharp-5.0.6\itextsharp.csproj">
+      <Project>{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}</Project>
+      <Name>itextsharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LLYTPay\LLYTPay.csproj">
+      <Project>{e88da6da-1deb-4a1e-a647-2e90a7d57d3b}</Project>
+      <Name>LLYTPay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcPager\MvcPager.csproj">
+      <Project>{eb54aa5a-1f91-4fdd-8e36-75ea8be6ce7d}</Project>
+      <Name>MvcPager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

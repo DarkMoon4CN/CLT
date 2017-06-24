@@ -1,0 +1,50 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@model PagedList<V_YaoQinList>
+<div id="aTable" class="aTable">
+    <table class="rTab" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr class="tr_else">
+                <td>被邀请好友</td>
+                <td>操作时间</td>
+                <td>受邀好友动态</td>
+                <td>我的奖励</td>
+            </tr>
+        </thead>
+        @if (Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.username</td>
+                    <td>@DateTime.Parse(item.Createtime.ToString())</td>
+                    <td>@item.award_description</td>
+                    <td>@item.income</td>
+                </tr>
+            }
+        }
+
+       
+       
+    </table>
+
+    <div class="page_box">
+        <div class="page_left">
+            @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox2", GoToButtonId = "goToBtn2" }, new MvcAjaxOptions
+   { UpdateTargetId = "aTable", HttpMethod = "Post", DataFormId = "searchForm", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "aTable")).AjaxOptions(a => a.SetUpdateTargetId("aTable"))
+        </div>
+        <div class="page_right">
+            <div class="input-group" style="margin:20px 0">
+                <span class="input-group-addon">转到第</span>
+                <input type="text" id="pageIndexBox2" class="form-control input-sm" />
+                <span class="input-group-addon">页</span>
+                <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn2">跳转</button></span>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+

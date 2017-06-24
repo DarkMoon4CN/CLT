@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "新增网站分类";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+    List<ChuangLitouP2P.Models.hx_td_web_type> list_web_type = ViewBag.web_types == null || (List<ChuangLitouP2P.Models.hx_td_web_type>)ViewBag.web_types == null ? null : (List<ChuangLitouP2P.Models.hx_td_web_type>)ViewBag.web_types;
+}
+
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="/Areas/Admin/styleCont/jcDate.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/Admin/styleCont/nav_style.css" rel="stylesheet" type="text/css">
+<script src="/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+
+<script type="text/javascript">
+    function checkForm()
+    {
+        if ($("#ActName").val() == "")
+        {
+            alert("类别名称不能为空!");
+            $("#Adname").focus();
+            return false;
+        }
+    }
+
+    function afterAdd(data)
+    {
+        alert(data.info);
+
+    }
+
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">网站分类列表</a>><a href="javascript:void(0)"> 新增网站分类</a></h2>
+<div class="z_body">
+    <h3 class="z_h3">新增网站分类</h3>
+    <div class="z_02 z_main">
+        @using (Html.BeginForm("Addpost", "WebType", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="rootid" id="rootid" value="@(ViewBag.rootid)" />
+            
+            <div class="z_cont2">
+
+                <ul class="zTab_ul">
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="money">上级分类：</label>
+                        <select id="parentid" name="parentid" style="height:28px; width:180px;">
+                            <option value="0">&nbsp;&nbsp;添加为根栏目&nbsp;&nbsp;</option>
+                            @if (list_web_type != null && list_web_type.Count > 0)
+                            {
+                                foreach (var item in list_web_type)
+                                {
+                                    if (ViewBag.parentid == item.menu_id)
+                                    {
+                                        if (ViewBag.parentid == 0)
+                                        {
+                                            <option value="@(item.menu_id)" selected="selected">@(HttpUtility.HtmlDecode("&nbsp;")+item.menu_name)</option>
+                                        }
+                                        else
+                                        {
+                                            string Nbsp = ""; //加空格的变量；
+                                            for (int m = 0; m < item.depath; m++)
+                                            {
+                                                //每一层加4个空格；
+                                                Nbsp += HttpUtility.HtmlDecode("&nbsp;&nbsp;");
+
+
+
+                                            }
+                                            <option value="@(item.menu_id)" selected="selected">@Nbsp├@(item.menu_name)</option>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        if (ViewBag.parentid == 0)
+                                        {
+                                            <option value="@(item.menu_id)">@(HttpUtility.HtmlDecode("&nbsp;") + item.menu_name)</option>
+                                        }
+                                        else
+                                        {
+                                            string Nbsp = null; //加空格的变量；
+                                            for (int m = 0; m < item.depath; m++)
+                                            {
+                                                //每一层加4个空格；
+                                                Nbsp += HttpUtility.HtmlDecode("&nbsp;&nbsp;");
+
+                                            }
+                                            <option value="@(item.menu_id)" >@Nbsp├@(item.menu_name)</option>
+                                        }
+                                    }
+
+
+                                }
+                            }
+                        </select>
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label>分类名称：</label>
+                        <input type="text" id="menu_name" name="menu_name" class="" style="width:240px" datatype="*2-30" nullmsg="分类名称不能为空！" errormsg="请输入分类名称在2~30位之间！" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                   
+
+                    <li style="margin-bottom:24px;" class="z_li_01" id="logodisp">
+                        <label for="money">英文名称：</label>
+                        <input type="text" id="path1" name="path1" class="" style="width:240px;" datatype="*2-30" nullmsg="英文名称不能为空！" errormsg="请输入英文名称在2~30位之间！" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="money"> &nbsp;  &nbsp;  &nbsp;  &nbsp;排序：</label>
+                        <input type="text" id="orderid" name="orderid" class="" style="width:60px" datatype="n" errormsg="排序必须为数字！"  nullmsg="排序不能为空！" value="1" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                  
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <div class="submin_box">
+                            <input type="submit" class="z_btn_01" value="保存">
+                            <input type="button" class="z_btn_02" value="返回" onclick="javascript:history.back()">
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+
+
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4
+
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+
+    });
+
+</script>

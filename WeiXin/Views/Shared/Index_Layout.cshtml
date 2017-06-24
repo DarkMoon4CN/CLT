@@ -1,0 +1,83 @@
+﻿@using ChuanglitouP2P.Common;
+@{
+    int uid = 0;
+    string app = DNTRequest.GetString("app");
+    if (app.ToLower() == "clt")
+    {
+        string userID = DNTRequest.GetString("userid");
+        uid = int.Parse(string.IsNullOrWhiteSpace(userID) ? "0" : userID);
+
+    }
+    else
+    {
+        uid = Settings.Instance.CurrentUserId;//获取登录用户编号
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.keywords" />
+    <meta name="description" content="@ViewBag.desc " />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    @Url.File("/css/common.css").ToHtml()
+    @RenderSection("css", false)
+    @Url.File("/js/jquery-1.9.1.min.js").ToHtml()
+    @Url.File("/js/swipe.js").ToHtml()
+    @Url.File("/js/menu.js").ToHtml()
+    @Url.File("/js/countdown.js").ToHtml()
+    @Url.File("/js/clock_time.js").ToHtml()
+
+    @*-- 99click统计时间戳 --*@
+    <script type="text/javascript">
+        var _oztime = (new Date()).getTime();
+    </script>
+    <script src="~/js/appScript.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><a href="/"><img src="/images/wx_logo.png" alt=""></a></div>
+        @if (uid > 0)
+        {
+            <div class="divheader">
+                @if (Utils.GetWXUsrNameSex(uid).Length > 5)
+                {
+                    <a href="/usercenter/index" style="font-size:12px;">
+                        欢迎您，@Utils.GetWXUsrNameSex(uid).Substring(0, 5)...
+                    </a>
+                }
+                else
+                {
+                    <a href="/usercenter/index" style="font-size:12px;">
+                        欢迎您，@Utils.GetWXUsrNameSex(uid)
+                    </a>
+                }
+                <a href="/login/SignOut">退出</a>
+            </div>
+        }
+        else
+        {
+            <div class="header_link"><a href="/login/Index">登录</a><a href="/register/Index">注册</a></div>
+        }
+    </header>
+    @RenderBody()
+    @{Html.RenderPartial("_FooterPartial");}
+    @RenderSection("js", required: false)
+
+    @Url.File("/js/om_code.js").ToHtml()
+</body>
+</html>
+<style type="text/css">
+    .divheader {
+        float: right;
+        line-height: 50px;
+        color: #fff;
+        font-size: 15px;
+        margin: 0 5px 0 0;
+    }
+</style>

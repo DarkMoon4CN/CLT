@@ -1,0 +1,168 @@
+﻿@using ChuanglitouP2P.Common;
+@model IEnumerable<ChuangLitouP2P.Models.v_adminuser_department>
+@{
+    ViewBag.Title = "后台用户列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    .icon-sprite {
+        HEIGHT: 16px;
+        BACKGROUND-IMAGE: url(/Areas/admin/images/icons.png);
+        BACKGROUND-REPEAT: no-repeat;
+        POSITION: absolute;
+        LEFT: 10px;
+        MARGIN-TOP: -8px;
+        DISPLAY: inline-block;
+        TOP: 50%;
+        WIDTH: 16px;
+    }
+
+    .icon-edit {
+        BACKGROUND-POSITION: -63px -1px;
+    }
+
+    .icon-delete {
+        BACKGROUND-POSITION: -83px -2px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnAdd").bind("click",function(){
+            addadmin();
+        });
+    });
+
+    //编辑
+    function addadmin() {
+        var url = "/admin/AdminUser/add";
+        window.location.href = url;
+
+        return;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '添加管理员信息',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['989px', "600px"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+    //编辑
+    function editor(userid) {
+        var url = "/admin/AdminUser/Editor?id=" + userid;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '编辑管理员信息',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['989px', "600px"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+    //设置权限
+    function SetLimit(userid) {
+        var url = "/admin/Limit/UserLimit?userid=" + userid;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '设置用户权限',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['90%', "96%"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+
+    function closewindows() {
+        layer.close(editwindow);
+        window.location.href = location.href;
+    }
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">用户管理</a>><a href="javascript:void(0)"> 用户列表</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+        <p class="tP3">
+            快速搜索
+        </p>
+        @using (Html.BeginForm("Index", "AdminUser", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <p class="tP4 tx_tp4" style="height:50px; ">
+                <label for="username">用户名：</label><input type="text" class="txt1" id="username" name="username" value="@(ViewBag.username)" style="width:150px;" />&nbsp;&nbsp;
+               
+                <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button"  id="btnAdd" class="btn1" value="添加管理员" />
+            </p>
+        }
+        <span class=""></span>
+        <h3 class="listtitle">
+            用户列表
+        </h3>
+
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th scope="col">ID</th>
+                    <th scope="col">部门</th>
+                    <th scope="col">姓名</th>
+                    <th scope="col">用户名</th>
+                    <th scope="col">性别</th>
+                    <th scope="col">手机</th>
+                    <th scope="col">座机</th>
+                    <th scope="col">上次登陆IP</th>
+                    <th scope="col">上次登陆日期</th>
+                    <th scope="col">状态</th>
+                    <th scope="col">权限</th>
+                    <th scope="col">修改</th>
+                    <th scope="col">删除</th>
+                </tr>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(item.adminuserid) </td>
+                            <td>@(item.department_name)</td>
+                            <td>@(item.trueName)</td>
+                            <td>@(item.adminuser)</td>
+                            <td>@(item.sex)</td>
+                            <td>@(item.phone_number)</td>
+                            <td>@(item.tel)</td>
+                            <td>@(item.lastLoginIP)</td>
+                            <td>@(((DateTime)item.lastLoginTime).ToString("yyyy-MM-dd"))</td>
+                            <td>@(item.state==1?"开启":item.state==0?"禁用":"")</td>
+                            <td>
+                                <a href="#" onclick="SetLimit(@(item.adminuserid));" title="设置权限">
+                                    <img src="/areas/admin/images/edit.gif" width="16" />
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/admin/AdminUser/Editor?id=@(item.adminuserid)" title="修改">
+                                    <img src="/areas/admin/images/edit.gif" width="16" />
+                                </a>
+                            </td>
+                            <td>
+                                <a class="opt" title="删除" href="/admin/AdminUser/remove?id=@(item.adminuserid)" onclick="javascript:return confirm( '确认要删除此管理员吗？[删除后将无法恢复]' );"><img src="/areas/admin/images/no.gif" width="16"></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    @*</div>*@
+</div>

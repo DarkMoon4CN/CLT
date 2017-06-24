@@ -1,0 +1,109 @@
+﻿
+@using ChuanglitouP2P.Common
+@model  IEnumerable<ChuangLitouP2P.Models.V_borrow_repayment_plan>
+@{
+    ViewBag.Title = "还款明细";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+<script type="text/javascript">
+
+    //还款链接
+    function Repayment(repayment_plan_id, targetid) {
+        var url = "/admin/Replay/Repayment?planid=" + repayment_plan_id + "&targetid=" + targetid;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+           
+            title: '还款',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['989px', "530px"],
+            iframe: { src: url, scrolling: false },
+            end: function () {
+                window.location.reload();
+            }
+        });
+    }
+    function closewindows() {
+        layer.close(editwindow);
+        window.location.href = location.href;
+    }
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">贷款管理</a>><a href="javascript:void(0)">还款列表</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        明细列表
+    </h3>
+    <input type="button" class="btn1" onclick="javascript: history.back()" style="margin-left:900px;" value="返回" />
+
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th scope="col">借款人 </th>
+                <th scope="col">借款金额</th>
+                <th scope="col">还款期数</th>
+                <th scope="col">预计还款日期</th>
+                <th scope="col">应还本息</th>
+                <th scope="col">管理费</th>
+                <th scope="col">逾期罚息</th>
+                <th scope="col">应还总额</th>
+                <th scope="col">还款状态</th>
+                <th scope="col">操作</th>
+                <th scope="col">明细</th>
+            </tr>
+            @if (Model != null)
+            {
+                var pre = true;
+                foreach (var item in Model)
+                {
+                    var repayment_state = item.repayment_state;
+                    var fees = Calculator.C_fees(decimal.Parse(item.loan_management_fee.ToString()), decimal.Parse(item.repayment_amount.ToString()));
+                    var O_penalty = decimal.Parse(item.O_penalty.ToString()); //这里逾期需要计算上期的逾期金额，
+                    O_penalty = Calculator.O_penalty(item.targetid.ToString(), item.repayment_plan_id.ToString());
+                    var count_AMT = fees + O_penalty + decimal.Parse(item.repayment_amount.ToString());
+                    <tr>
+                        <td>@(item.realname) </td>
+                        <td>@(Math.Round(decimal.Parse(item.borrowing_balance.ToString()), 2))</td>
+                        <td>@("(第 " + item.current_period + " 期)")</td>
+                        <td>@(DateTime.Parse(item.repayment_period.ToString()).ToString("yyyy-MM-dd"))</td>
+                        <td>@(Math.Round(decimal.Parse(item.repayment_amount.ToString()), 2))</td>
+                        <td>@(Math.Round(fees, 2))</td>
+                        <td>@(Math.Round(O_penalty, 2))</td>
+                        <td>@(Math.Round(count_AMT, 2))</td>
+                        <td>@(Utils.GetRepayment_State(item.repayment_state.ToString()))</td>
+                        @if (repayment_state == 0 && pre)
+                        {
+                            pre = false;
+                            <td style="background-color:#66CC66;">
+                                <a href="javascript:void(0);" onclick="Repayment(@(item.repayment_plan_id),@(item.targetid))"> 还款</a>
+                            </td>
+                        }
+                        else
+                        {
+                        <td>@(item.repayment_state == 0 ? "还款" : item.repayment_state == 1 ? "已还款" : item.repayment_state == 2 ? "罚息管理" : item.repayment_state == 3 ? "罚息管理" : "")</td>
+                        }
+                        <td>
+                            <a href="/admin/Replay/Investmentdetails?id=@item.targetid&date1=@DateTime.Parse(item.repayment_period.ToString()).ToString("yyyy-MM-dd")" > 投资明细 </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>

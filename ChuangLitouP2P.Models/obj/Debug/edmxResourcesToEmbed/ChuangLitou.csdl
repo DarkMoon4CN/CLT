@@ -1,0 +1,3007 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="chuangtouModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="area">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="areaID" Type="Int32" Nullable="false" />
+    <Property Name="area1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fatherID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bonus_account">
+    <Key>
+      <PropertyRef Name="bonus_account_id" />
+    </Key>
+    <Property Name="bonus_account_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="activity_schedule_id" Type="Int32" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="activity_schedule_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="amount_of_reward" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="use_lower_limit" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="reward" Type="Int32" />
+    <Property Name="start_date" Type="DateTime" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="reward_state" Type="Int32" />
+    <Property Name="reward_remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="entry_time" Type="DateTime" Precision="3" />
+    <Property Name="act_state" Type="Int32" />
+    <Property Name="proid" Type="Int32" />
+    <NavigationProperty Name="hx_Activity_schedule" Relationship="Self.FK_BONUS_AC_REFERENCE_HX_ACTIV" FromRole="bonus_account" ToRole="hx_Activity_schedule" />
+  </EntityType>
+  <EntityType Name="bonus_account_water">
+    <Key>
+      <PropertyRef Name="account_water_id" />
+    </Key>
+    <Property Name="account_water_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bonus_account_id" Type="Int32" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="income" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="expenditure" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="time_of_occurrence" Type="DateTime" Precision="3" />
+    <Property Name="reward_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="award_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="water_type" Type="Int32" />
+    <Property Name="Createtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cityID" Type="Int32" Nullable="false" />
+    <Property Name="city1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fatherID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contract_management">
+    <Key>
+      <PropertyRef Name="contract" />
+    </Key>
+    <Property Name="contract" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="targetid" Type="Int32" Nullable="false" />
+    <Property Name="lender_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lender_username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lender_registerid" Type="Int32" />
+    <Property Name="lender_id_card" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lenders_account_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lender_bank_account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lender_bank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lender_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="lenders_telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lenders_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lendres_date_contract" Type="DateTime" Precision="3" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="borrower_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_id_card" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_account_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_bank_account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_date_contract" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_bank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="witness_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="witness_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="witness_telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="witness_agent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="witness_admid" Type="Int32" />
+    <Property Name="witness_username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="witness_id_card" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="witness_date_contract" Type="DateTime" Precision="3" />
+    <Property Name="surety_company_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="guarantee_business_icense" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ensure_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="guarantee_legal_representative" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="guarantor_agent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="guarantor_companyid" Type="Int32" />
+    <Property Name="guarantor_agent_usernqme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="guarantor_agent_id_card" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="guarantor_agent_idate_contract" Type="DateTime" Precision="3" />
+    <Property Name="contract_money" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="counselling_service" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="contract_amount" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="suretyship_contract" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="mode_payment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="contract_type" Type="Int32" />
+    <Property Name="contractpath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="bid_records_id" Type="Int32" />
+    <NavigationProperty Name="hx_borrowing_target" Relationship="Self.FK_CONTRACT_REFERENCE_HX_BORRO" FromRole="Contract_management" ToRole="hx_borrowing_target" />
+  </EntityType>
+  <EntityType Name="guarantee_way">
+    <Key>
+      <PropertyRef Name="guarantee_way_id" />
+    </Key>
+    <Property Name="guarantee_way_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="guarantee_way_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="amount_guaranteed" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="hx_Activity_schedule">
+    <Key>
+      <PropertyRef Name="activity_schedule_id" />
+    </Key>
+    <Property Name="activity_schedule_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="activity_schedule_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="amount_of_reward" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="use_lower_limit" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="reward" Type="Int32" />
+    <Property Name="start_date" Type="DateTime" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="entry_time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="bonus_account" Relationship="Self.FK_BONUS_AC_REFERENCE_HX_ACTIV" FromRole="hx_Activity_schedule" ToRole="bonus_account" />
+  </EntityType>
+  <EntityType Name="hx_ActivityTable">
+    <Key>
+      <PropertyRef Name="ActID" />
+    </Key>
+    <Property Name="ActID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ActTypeId" Type="Int32" />
+    <Property Name="RewTypeID" Type="Int32" />
+    <Property Name="ActName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ActUser" Type="Int32" />
+    <Property Name="ActStarttime" Type="DateTime" Precision="3" />
+    <Property Name="ActEndtime" Type="DateTime" Precision="3" />
+    <Property Name="ActRule" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ActState" Type="Int32" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="hx_ActivityType" Relationship="Self.FK_HX_ACTIV_REFERENCE_HX_ACTIV" FromRole="hx_ActivityTable" ToRole="hx_ActivityType" />
+    <NavigationProperty Name="hx_RewardType" Relationship="Self.FK_HX_ACTIV_REFERENCE_HX_REWAR" FromRole="hx_ActivityTable" ToRole="hx_RewardType" />
+    <NavigationProperty Name="hx_SMSContext" Relationship="chuangtouModel.FK_HX_SMSCO_REFERENCE_HX_ACTIV" FromRole="hx_ActivityTable" ToRole="hx_SMSContext" />
+    <NavigationProperty Name="hx_UserAct" Relationship="chuangtouModel.FK_HX_USERA_REFERENCE_HX_ACTIV2" FromRole="hx_ActivityTable" ToRole="hx_UserAct" />
+    <Property Name="ActTargetPlatform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="hx_ActivityType">
+    <Key>
+      <PropertyRef Name="ActTypeId" />
+    </Key>
+    <Property Name="ActTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ActName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="hx_ActivityTable" Relationship="Self.FK_HX_ACTIV_REFERENCE_HX_ACTIV" FromRole="hx_ActivityType" ToRole="hx_ActivityTable" />
+    <NavigationProperty Name="hx_UserAct" Relationship="chuangtouModel.FK_HX_USERA_REFERENCE_HX_ACTIV" FromRole="hx_ActivityType" ToRole="hx_UserAct" />
+  </EntityType>
+  <EntityType Name="hx_Bid_records">
+    <Key>
+      <PropertyRef Name="bid_records_id" />
+    </Key>
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="current_period" Type="Int32" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="investment_maturity" Type="DateTime" Precision="3" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="invest_state" Type="Int32" />
+    <Property Name="flow_return" Type="Int32" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="payment_status" Type="Int32" />
+    <Property Name="withoutinterest" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="haveinterest" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="contractid" Type="Int32" />
+    <Property Name="contractpath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="invitationcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrdId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="ordstate" Type="Int32" />
+    <Property Name="IsLoans" Type="Int32" />
+    <NavigationProperty Name="hx_income_statement" Relationship="Self.FK_HX_INCOM_REFERENCE_HX_BID_R" FromRole="hx_Bid_records" ToRole="hx_income_statement" />
+    <Property Name="JiaxiNum" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="BonusAmt" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="hx_bonding_company">
+    <Key>
+      <PropertyRef Name="companyid" />
+    </Key>
+    <Property Name="companyid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="company_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="registered_capital" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="Date_incorporation" Type="DateTime" Precision="3" />
+    <Property Name="company_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="company_profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="business_licence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="business_certificate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contract_covers" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="contract_bottom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="legal_representative" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agent_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agent_id_card" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="Tax_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GuarType" Type="Int32" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AuditStat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TrxId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OpenBandkId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CardId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UsrId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_Url" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="company_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_borrower_guarantor_picture">
+    <Key>
+      <PropertyRef Name="borrower_guarantor_picture_id" />
+    </Key>
+    <Property Name="borrower_guarantor_picture_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="type_picture" Type="Int32" />
+    <Property Name="picture_path" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="picture_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="uploadtime" Type="DateTime" Precision="3" />
+    <Property Name="picture_index" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_borrowing_target">
+    <Key>
+      <PropertyRef Name="targetid" />
+    </Key>
+    <Property Name="targetid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="borrowing_thumbnail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="project_type_id" Type="Int32" Nullable="false" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="life_of_loan" Type="Int32" />
+    <Property Name="unit_day" Type="Int32" />
+    <Property Name="release_date" Type="DateTime" Precision="3" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="month_payment_date" Type="Int32" />
+    <Property Name="repayment_date" Type="DateTime" Precision="3" />
+    <Property Name="minimum" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="maxmum" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="companyid" Type="Int32" />
+    <Property Name="guarantee_way_id" Type="Int32" Nullable="false" />
+    <Property Name="payment_options" Type="Int32" />
+    <Property Name="start_time" Type="DateTime" Precision="3" />
+    <Property Name="end_time" Type="DateTime" Precision="3" />
+    <Property Name="service_charge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="loan_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="investors_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ordinary_overdue_management_fees" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seriously_overdue_management_fees" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ordinary_overdue_penalty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seriously_overdue_penalty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="transfer_Expenses" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="fundraising_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="tender_state" Type="Int32" />
+    <Property Name="full_scale_loan" Type="Int32" />
+    <Property Name="flow_return" Type="Int32" />
+    <Property Name="recommend" Type="Int32" />
+    <Property Name="sys_time" Type="DateTime" Precision="3" />
+    <Property Name="repaymentperiods" Type="Int32" />
+    <Property Name="reviewremarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="recheckremarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="guarantee_fee" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="consultingAMT" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="guaranteeAMT" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="B_Rates" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="H_Repayment_Amt" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Repay_Time" Type="DateTime" Precision="3" />
+    <Property Name="G_contract_Path" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="IsUse" Type="Int32" />
+    <Property Name="indexorder" Type="Int32" />
+    <NavigationProperty Name="Contract_management" Relationship="Self.FK_CONTRACT_REFERENCE_HX_BORRO" FromRole="hx_borrowing_target" ToRole="Contract_management" />
+    <NavigationProperty Name="hx_borrowing_target_detailed" Relationship="Self.FK_HX_BORRO_REFERENCE_HX_BORRO" FromRole="hx_borrowing_target" ToRole="hx_borrowing_target_detailed" />
+    <Property Name="isDel" Type="Int32" />
+    <Property Name="IsIRC" Type="Int32" />
+    <Property Name="Purpose" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PaySource" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Collateral" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Isinterest" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_borrowing_target_detailed">
+    <Key>
+      <PropertyRef Name="target_detailed_id" />
+    </Key>
+    <Property Name="target_detailed_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="item_details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_circumstances" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_base_material" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="use_funds" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="independent_advice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="guarantee_agency_views" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="risk_control_measures" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="hx_borrowing_target" Relationship="Self.FK_HX_BORRO_REFERENCE_HX_BORRO" FromRole="hx_borrowing_target_detailed" ToRole="hx_borrowing_target" />
+  </EntityType>
+  <EntityType Name="hx_Capital_account_water">
+    <Key>
+      <PropertyRef Name="account_water_id" />
+    </Key>
+    <Property Name="account_water_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="income" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="expenditure" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="time_of_occurrence" Type="DateTime" Precision="3" />
+    <Property Name="account_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="types_Finance" Type="Int32" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="keyid" Type="Int32" />
+    <Property Name="remarks" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="hx_member_table" Relationship="Self.FK_HX_CAPIT_REFERENCE_HX_MEMBE" FromRole="hx_Capital_account_water" ToRole="hx_member_table" />
+  </EntityType>
+  <EntityType Name="hx_CashAwards">
+    <Key>
+      <PropertyRef Name="CashAwardsid" />
+    </Key>
+    <Property Name="CashAwardsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="proid" Type="Int32" />
+    <Property Name="Amounts" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="AwardsTime" Type="DateTime" Precision="3" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="OrdId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="OrdIdstate" Type="Int32" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_Contract_template">
+    <Key>
+      <PropertyRef Name="contract_template_id" />
+    </Key>
+    <Property Name="contract_template_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contract_type_id" Type="Int32" Nullable="false" />
+    <Property Name="contract_template_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contract_template_context" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="usestate" Type="Int32" />
+    <Property Name="cretatetime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="hx_contract_type">
+    <Key>
+      <PropertyRef Name="contract_type_id" />
+    </Key>
+    <Property Name="contract_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contract_type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="hx_income_statement">
+    <Key>
+      <PropertyRef Name="income_statement_id" />
+    </Key>
+    <Property Name="income_statement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="OutCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="annual_revenue" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="current_investment_period" Type="Int32" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="interest_payment_date" Type="DateTime" Precision="3" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="InCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="payment_status" Type="Int32" />
+    <Property Name="Principal" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="interestpayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="orderid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BidOrderid" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="interestDay" Type="Int32" />
+    <Property Name="TotalInstallments" Type="Int32" />
+    <Property Name="BorrFees" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="InveFess" Type="Decimal" Precision="38" Scale="2" />
+    <NavigationProperty Name="hx_Bid_records" Relationship="Self.FK_HX_INCOM_REFERENCE_HX_BID_R" FromRole="hx_income_statement" ToRole="hx_Bid_records" />
+  </EntityType>
+  <EntityType Name="hx_investsearch">
+    <Key>
+      <PropertyRef Name="investsearchid" />
+    </Key>
+    <Property Name="investsearchid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="investtype" Type="Int32" />
+    <Property Name="investname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="splitname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_member_table">
+    <Key>
+      <PropertyRef Name="registerid" />
+    </Key>
+    <Property Name="registerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="iD_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="transactionpassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="istransactionpassword" Type="Int32" />
+    <Property Name="ismobile" Type="Int32" />
+    <Property Name="isrealname" Type="Int32" />
+    <Property Name="isbankcard" Type="Int32" />
+    <Property Name="isemail" Type="Int32" />
+    <Property Name="userstate" Type="Int32" />
+    <Property Name="account_total_assets" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+    <Property Name="available_balance" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+    <Property Name="collect_total_amount" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+    <Property Name="frozen_sum" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+    <Property Name="open_tonto_account" Type="Int32" />
+    <Property Name="tonto_account_user" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="usertypes" Type="Int32" />
+    <Property Name="registration_time" Type="DateTime" Precision="3" />
+    <Property Name="lastlogintime" Type="DateTime" Precision="3" />
+    <Property Name="lastloginIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customserviceid" Type="Int32" />
+    <Property Name="homephone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="contactaddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="zipcode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="qq" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="msn" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="invitedcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UsrId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="useridentity" Type="Int32" />
+    <Property Name="CopName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Channelsource" Type="Int32" />
+    <Property Name="Tid" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="WXAppId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="hx_borrowing_target" Relationship="Self.FK_HX_BORRO_REFERENCE_HX_MEMBE" FromRole="hx_member_table" ToRole="hx_borrowing_target" />
+    <NavigationProperty Name="hx_Capital_account_water" Relationship="Self.FK_HX_CAPIT_REFERENCE_HX_MEMBE" FromRole="hx_member_table" ToRole="hx_Capital_account_water" />
+    <Property Name="CommNum" Type="Int32" />
+    <Property Name="RechargeNum" Type="Int32" />
+    <Property Name="CashNum" Type="Int32" />
+    <Property Name="InvestNum" Type="Int32" />
+    <Property Name="avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="LostInvitation" Type="Int32" />
+    <NavigationProperty Name="hx_td_usrlogininfo" Relationship="chuangtouModel.FK_HX_TD_US_REFERENCE_HX_MEMBE" FromRole="hx_member_table" ToRole="hx_td_usrlogininfo" />
+    <Property Name="LoginNum" Type="Int32" />
+    <Property Name="calltime" Type="DateTime" Precision="3" />
+    <Property Name="ExtendCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="channel_invitedcode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="hx_UserAct" Relationship="chuangtouModel.FK_HX_USERA_REFERENCE_HX_MEMBE" FromRole="hx_member_table" ToRole="hx_UserAct" />
+  </EntityType>
+  <EntityType Name="hx_Mention_charges">
+    <Key>
+      <PropertyRef Name="mention_charges_id" />
+    </Key>
+    <Property Name="mention_charges_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mention_charges_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="minimum_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="maximum_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="fees" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="fees_unit" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_Project_type">
+    <Key>
+      <PropertyRef Name="project_type_id" />
+    </Key>
+    <Property Name="project_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="project_type_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_Recharge_history">
+    <Key>
+      <PropertyRef Name="recharge_history_id" />
+    </Key>
+    <Property Name="recharge_history_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="recharge_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="recharge_time" Type="DateTime" Precision="3" />
+    <Property Name="account_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="order_No" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="recharge_condition" Type="Int32" />
+    <Property Name="recharge_bank" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_repayment_plan">
+    <Key>
+      <PropertyRef Name="repayment_plan_id" />
+    </Key>
+    <Property Name="repayment_plan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="BorrUsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="current_period" Type="Int32" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="repayment_type" Type="Int32" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="actual_amount_repayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="repayment_state" Type="Int32" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="interestpayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="fees" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="O_penalty" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="shall_repayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="pla_amt_generation" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Interest_spreads" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Rep_Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_RewardType">
+    <Key>
+      <PropertyRef Name="RewTypeID" />
+    </Key>
+    <Property Name="RewTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RewTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="hx_ActivityTable" Relationship="Self.FK_HX_ACTIV_REFERENCE_HX_REWAR" FromRole="hx_RewardType" ToRole="hx_ActivityTable" />
+    <NavigationProperty Name="hx_UserAct" Relationship="chuangtouModel.FK_HX_USERA_REFERENCE_HX_REWAR" FromRole="hx_RewardType" ToRole="hx_UserAct" />
+  </EntityType>
+  <EntityType Name="hx_td_Ad">
+    <Key>
+      <PropertyRef Name="Adid" />
+    </Key>
+    <Property Name="Adid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adcreatetime" Type="DateTime" Precision="3" />
+    <Property Name="AdState" Type="Int32" />
+    <Property Name="AdTypeId" Type="Int32" />
+    <Property Name="AdPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AdLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_td_adminuser">
+    <Key>
+      <PropertyRef Name="adminuserid" />
+    </Key>
+    <Property Name="adminuserid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adminuser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userpass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="datetime" Type="DateTime" Precision="3" />
+    <Property Name="trueName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="province" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="lastLoginTime" Type="DateTime" Precision="3" />
+    <Property Name="lastLoginIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="loginTimes" Type="Int32" />
+    <Property Name="worknum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="department_id" Type="Int32" />
+    <Property Name="area_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_Bank">
+    <Key>
+      <PropertyRef Name="Bankid" />
+    </Key>
+    <Property Name="Bankid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OpenBankId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CardImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Isquick" Type="Int32" />
+    <Property Name="Isordinary" Type="Int32" />
+    <Property Name="isGren" Type="Int32" />
+    <Property Name="SingleTransQuota" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="CardDailyTransQuota" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="CardImageNew" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_td_department">
+    <Key>
+      <PropertyRef Name="department_id" />
+    </Key>
+    <Property Name="department_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="department_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="parentid" Type="Int32" />
+    <Property Name="parentpath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="depath" Type="Int32" />
+    <Property Name="rootid" Type="Int32" />
+    <Property Name="child" Type="Int32" />
+    <Property Name="previd" Type="Int32" />
+    <Property Name="nextid" Type="Int32" />
+    <Property Name="orderid" Type="Int32" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="hx_td_department_child">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="department_id" Type="Int32" />
+    <Property Name="menu_id" Type="Int32" />
+    <Property Name="isread" Type="Int32" />
+    <Property Name="isadd" Type="Int32" />
+    <Property Name="isedit" Type="Int32" />
+    <Property Name="isdelete" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_frozen">
+    <Key>
+      <PropertyRef Name="Frozenid" />
+    </Key>
+    <Property Name="Frozenid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MBT_Registerid" Type="Int32" />
+    <Property Name="FrozenidAmount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="FrozenidNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FrozenState" Type="Int32" />
+    <Property Name="FrozenDate" Type="DateTime" Precision="3" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FreezeTrxId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bid_records_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_LL_cash">
+    <Key>
+      <PropertyRef Name="LLcashid" />
+    </Key>
+    <Property Name="LLcashid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="no_order" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="dt_order" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="money_order" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="acct_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bank_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="province_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="city_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="brabank_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ordertime" Type="DateTime" Precision="3" />
+    <Property Name="card_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="paystate" Type="Int32" />
+    <Property Name="Usrid" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_td_LLBack">
+    <Key>
+      <PropertyRef Name="LLbankid" />
+    </Key>
+    <Property Name="LLbankid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BankCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cardType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CardImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_td_LLPay_bindCard">
+    <Key>
+      <PropertyRef Name="bindCardid" />
+    </Key>
+    <Property Name="bindCardid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usrid" Type="Int32" />
+    <Property Name="BankCard" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BankCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Bindtime" Type="DateTime" Precision="3" />
+    <Property Name="Re_Amt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Quota" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Citycode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="no_agree" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="cardstate" Type="Int32" />
+    <Property Name="province_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_td_LLpay_city">
+    <Key>
+      <PropertyRef Name="cityid" />
+    </Key>
+    <Property Name="cityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cityname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Citycode" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_LLpay_re_cash">
+    <Key>
+      <PropertyRef Name="re_cashid" />
+    </Key>
+    <Property Name="re_cashid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrdId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="no_order" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="OutAcctId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InAcctId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="h_state" Type="Int32" />
+    <Property Name="htype" Type="Int32" />
+    <Property Name="OrdTime" Type="DateTime" Precision="3" />
+    <Property Name="Usrid" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_td_LLpay_Recharge">
+    <Key>
+      <PropertyRef Name="Rechargeid" />
+    </Key>
+    <Property Name="Rechargeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsrId" Type="Int32" />
+    <Property Name="no_order" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ordertime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="info_order" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="money_order" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BankCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="card_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ReState" Type="Int32" />
+    <Property Name="oid_paybill" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_td_Loan_records">
+    <Key>
+      <PropertyRef Name="Loan_records_id" />
+    </Key>
+    <Property Name="Loan_records_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="bid_records_id" Type="Int32" />
+    <Property Name="InCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OutCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LoanAMT" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="LoanOrdId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LoanDate" Type="DateTime" Precision="3" />
+    <Property Name="Free" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="DivDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SubOrdid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SubOrdDate" Type="DateTime" Precision="3" />
+    <Property Name="unFreezeOrdId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FreezeTrxId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bid_orderid" Type="Decimal" Precision="20" Scale="0" />
+  </EntityType>
+  <EntityType Name="hx_td_LoginInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LoginTime" Type="DateTime" Precision="3" />
+    <Property Name="LoginIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LoginSuccess" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_menu">
+    <Key>
+      <PropertyRef Name="menu_id" />
+    </Key>
+    <Property Name="menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parentid" Type="Int32" />
+    <Property Name="parentpath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="depath" Type="Int32" />
+    <Property Name="rootid" Type="Int32" />
+    <Property Name="child" Type="Int32" />
+    <Property Name="previd" Type="Int32" />
+    <Property Name="nextid" Type="Int32" />
+    <Property Name="orderid" Type="Int32" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="path1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="path2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="path3" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="path4" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_td_Myborrow">
+    <Key>
+      <PropertyRef Name="Myborrowid" />
+    </Key>
+    <Property Name="Myborrowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="userTel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BorrAMT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BorrPurposes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Area" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CompName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Industry" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RegCapital" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TimeLimit" Type="Int32" />
+    <Property Name="FoundingTime" Type="DateTime" Precision="3" />
+    <Property Name="Mortgage" Type="Int32" />
+    <Property Name="EntryTime" Type="DateTime" Precision="3" />
+    <Property Name="BorrType" Type="Int32" />
+    <Property Name="BorrState" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_Phone_records">
+    <Key>
+      <PropertyRef Name="recordsid" />
+    </Key>
+    <Property Name="recordsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="recordcontext" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="recordtime" Type="DateTime" Precision="3" />
+    <Property Name="registerid" Type="Int32" />
+    <Property Name="adminid" Type="Int32" />
+    <Property Name="gtType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="problemType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_td_reviewremarks">
+    <Key>
+      <PropertyRef Name="reviewid" />
+    </Key>
+    <Property Name="reviewid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="tender_state" Type="Int32" />
+    <Property Name="reviewremarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="reviewtime" Type="DateTime" Precision="3" />
+    <Property Name="admin_operator" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_SMS_record">
+    <Key>
+      <PropertyRef Name="sms_record_id" />
+    </Key>
+    <Property Name="sms_record_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="senduserid" Type="Int32" />
+    <Property Name="phone_number" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="smscontext" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="smstype" Type="Int32" />
+    <Property Name="sendtime" Type="DateTime" Precision="3" />
+    <Property Name="orderid" Type="Decimal" Precision="28" Scale="0" />
+    <Property Name="vcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hits" Type="Int32" />
+    <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_td_SMSEmail">
+    <Key>
+      <PropertyRef Name="SmsEmailId" />
+    </Key>
+    <Property Name="SmsEmailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SmsEname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SEContext" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SEtype" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_System_message">
+    <Key>
+      <PropertyRef Name="Messageid" />
+    </Key>
+    <Property Name="Messageid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PubTime" Type="DateTime" Precision="3" />
+    <Property Name="MContext" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+    <Property Name="Mstate" Type="Int32" />
+    <Property Name="MUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="MReg" Type="Int32" />
+    <Property Name="Mtype" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_UserCash">
+    <Key>
+      <PropertyRef Name="UserCashId" />
+    </Key>
+    <Property Name="UserCashId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="registerid" Type="Int32" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransAmt" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="FeeAmt" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="OrdId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrdIdTime" Type="DateTime" Precision="3" />
+    <Property Name="OrdIdState" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <Property Name="Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TransState" Type="Int32" />
+    <Property Name="OpenAcctId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OpenBankId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FeeObjFlag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PayAmt" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="CashChl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="hx_td_Userinvitation">
+    <Key>
+      <PropertyRef Name="invitationid" />
+    </Key>
+    <Property Name="invitationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="invcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="invtime" Type="DateTime" Precision="3" />
+    <Property Name="invpersonid" Type="Int32" />
+    <Property Name="Invpeopleid" Type="Int32" />
+    <Property Name="InvitesStates" Type="Int32" />
+    <Property Name="Invitereward" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="UserAct" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_web_Ad_type">
+    <Key>
+      <PropertyRef Name="AdTypeId" />
+    </Key>
+    <Property Name="AdTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdtypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="hx_td_web_type">
+    <Key>
+      <PropertyRef Name="menu_id" />
+    </Key>
+    <Property Name="menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parentid" Type="Int32" />
+    <Property Name="parentpath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="depath" Type="Int32" />
+    <Property Name="rootid" Type="Int32" />
+    <Property Name="child" Type="Int32" />
+    <Property Name="previd" Type="Int32" />
+    <Property Name="nextid" Type="Int32" />
+    <Property Name="orderid" Type="Int32" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="path1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="path2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="path3" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="path4" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="hx_Test_records">
+    <Key>
+      <PropertyRef Name="TrecordsID" />
+    </Key>
+    <Property Name="TrecordsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="amt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="datetime" Type="DateTime" Precision="3" />
+    <Property Name="targetid" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_UsrBindCardC">
+    <Key>
+      <PropertyRef Name="UsrBindCardID" />
+    </Key>
+    <Property Name="UsrBindCardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OpenAcctId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OpenBankId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="defCard" Type="Int32" />
+    <Property Name="BindCardType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Overdue_repayment">
+    <Key>
+      <PropertyRef Name="overdue_repayment_id" />
+    </Key>
+    <Property Name="overdue_repayment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="repayment_plan_id" Type="Int32" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="loan_management_fee" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="ordinary_overdue_management_fees" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="seriously_overdue_management_fees" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="ordinary_overdue_penalty" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="seriously_overdue_penalty" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="actual_repayment_time" Type="DateTime" Precision="3" />
+    <Property Name="overdue_days" Type="Int32" />
+    <Property Name="interest_state" Type="Int32" />
+  </EntityType>
+  <EntityType Name="province">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="provinceID" Type="Int32" Nullable="false" />
+    <Property Name="province1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="hx_td_admin_role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="department_id" Type="Int32" />
+    <Property Name="menu_id" Type="Int32" />
+    <Property Name="isread" Type="Int32" />
+    <Property Name="isadd" Type="Int32" />
+    <Property Name="isedit" Type="Int32" />
+    <Property Name="isdelete" Type="Int32" />
+    <Property Name="adminuserid" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_AD_type">
+    <Key>
+      <PropertyRef Name="Adid" />
+    </Key>
+    <Property Name="Adid" Type="Int32" Nullable="false" />
+    <Property Name="AdName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adcreatetime" Type="DateTime" Precision="3" />
+    <Property Name="AdState" Type="Int32" />
+    <Property Name="AdTypeId" Type="Int32" />
+    <Property Name="AdLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AdPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AdtypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="v_admin_role_menu">
+    <Key>
+      <PropertyRef Name="menu_id" />
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="menu_id" Type="Int32" Nullable="false" />
+    <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parentid" Type="Int32" />
+    <Property Name="rootid" Type="Int32" />
+    <Property Name="depath" Type="Int32" />
+    <Property Name="department_id" Type="Int32" />
+    <Property Name="Expr1" Type="Int32" />
+    <Property Name="isread" Type="Int32" />
+    <Property Name="isadd" Type="Int32" />
+    <Property Name="isedit" Type="Int32" />
+    <Property Name="isdelete" Type="Int32" />
+    <Property Name="adminuserid" Type="Int32" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="path1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="path2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="path3" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="path4" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="v_adminuser_department">
+    <Key>
+      <PropertyRef Name="adminuserid" />
+    </Key>
+    <Property Name="adminuserid" Type="Int32" Nullable="false" />
+    <Property Name="adminuser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userpass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="datetime" Type="DateTime" Precision="3" />
+    <Property Name="trueName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="province" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="lastLoginTime" Type="DateTime" Precision="3" />
+    <Property Name="lastLoginIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="loginTimes" Type="Int32" />
+    <Property Name="worknum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="department_id" Type="Int32" />
+    <Property Name="area_id" Type="Int32" />
+    <Property Name="parentid" Type="Int32" />
+    <Property Name="rootid" Type="Int32" />
+    <Property Name="department_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_Bid_Frozen">
+    <Key>
+      <PropertyRef Name="bid_records_id" />
+      <PropertyRef Name="Frozenid" />
+    </Key>
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="OrdId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="ordstate" Type="Int32" />
+    <Property Name="Frozenid" Type="Int32" Nullable="false" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FreezeTrxId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FrozenState" Type="Int32" />
+    <Property Name="FrozenidNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="targetid" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_Bid_income_statement">
+    <Key>
+      <PropertyRef Name="income_statement_id" />
+      <PropertyRef Name="bid_records_id" />
+    </Key>
+    <Property Name="income_statement_id" Type="Int32" Nullable="false" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="OutCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="annual_revenue" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="current_investment_period" Type="Int32" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="interest_payment_date" Type="DateTime" Precision="3" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="InCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="payment_status" Type="Int32" />
+    <Property Name="interestpayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="orderid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BidOrderid" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="ordstate" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_bid_records_bonus_account">
+    <Key>
+      <PropertyRef Name="bid_records_id" />
+      <PropertyRef Name="bonus_account_id" />
+    </Key>
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="current_period" Type="Int32" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="OrdId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="proid" Type="Int32" />
+    <Property Name="bonus_account_id" Type="Int32" Nullable="false" />
+    <Property Name="activity_schedule_id" Type="Int32" />
+    <Property Name="activity_schedule_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="amount_of_reward" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="use_lower_limit" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="reward" Type="Int32" />
+    <Property Name="start_date" Type="DateTime" Precision="3" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="reward_state" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_bonus_account">
+    <Key>
+      <PropertyRef Name="bonus_account_id" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="bonus_account_id" Type="Int32" Nullable="false" />
+    <Property Name="activity_schedule_id" Type="Int32" />
+    <Property Name="activity_schedule_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="amount_of_reward" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="use_lower_limit" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="reward" Type="Int32" />
+    <Property Name="start_date" Type="DateTime" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="reward_state" Type="Int32" />
+    <Property Name="reward_remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="entry_time" Type="DateTime" Precision="3" />
+    <Property Name="act_state" Type="Int32" />
+    <Property Name="proid" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iD_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_bonus_account_water">
+    <Key>
+      <PropertyRef Name="account_water_id" />
+    </Key>
+    <Property Name="account_water_id" Type="Int32" Nullable="false" />
+    <Property Name="bonus_account_id" Type="Int32" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="income" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="expenditure" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="time_of_occurrence" Type="DateTime" Precision="3" />
+    <Property Name="reward_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="award_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="water_type" Type="Int32" />
+    <Property Name="start_date" Type="DateTime" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="act_state" Type="Int32" />
+    <Property Name="activity_schedule_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reward_state" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_borrow_repayment_plan">
+    <Key>
+      <PropertyRef Name="targetid" />
+      <PropertyRef Name="loan_number" />
+      <PropertyRef Name="project_type_id" />
+      <PropertyRef Name="guarantee_way_id" />
+      <PropertyRef Name="repayment_plan_id" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="targetid" Type="Int32" Nullable="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="project_type_id" Type="Int32" Nullable="false" />
+    <Property Name="borrowing_thumbnail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="life_of_loan" Type="Int32" />
+    <Property Name="unit_day" Type="Int32" />
+    <Property Name="release_date" Type="DateTime" Precision="3" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="month_payment_date" Type="Int32" />
+    <Property Name="repayment_date" Type="DateTime" Precision="3" />
+    <Property Name="minimum" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="maxmum" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="companyid" Type="Int32" />
+    <Property Name="guarantee_way_id" Type="Int32" Nullable="false" />
+    <Property Name="payment_options" Type="Int32" />
+    <Property Name="end_time" Type="DateTime" Precision="3" />
+    <Property Name="service_charge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="loan_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="investors_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ordinary_overdue_management_fees" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seriously_overdue_management_fees" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ordinary_overdue_penalty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seriously_overdue_penalty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="transfer_Expenses" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="fundraising_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="tender_state" Type="Int32" />
+    <Property Name="full_scale_loan" Type="Int32" />
+    <Property Name="flow_return" Type="Int32" />
+    <Property Name="recommend" Type="Int32" />
+    <Property Name="sys_time" Type="DateTime" Precision="3" />
+    <Property Name="repaymentperiods" Type="Int32" />
+    <Property Name="reviewremarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="recheckremarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="guarantee_fee" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="consultingAMT" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="guaranteeAMT" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="B_Rates" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="H_Repayment_Amt" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Repay_Time" Type="DateTime" Precision="3" />
+    <Property Name="repayment_plan_id" Type="Int32" Nullable="false" />
+    <Property Name="current_period" Type="Int32" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="repayment_type" Type="Int32" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="actual_amount_repayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="repayment_state" Type="Int32" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="interestpayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="fees" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="O_penalty" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="shall_repayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="available_balance" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_borrowing_Bid_records_income_statement">
+    <Key>
+      <PropertyRef Name="targetid" />
+      <PropertyRef Name="loan_number" />
+      <PropertyRef Name="income_statement_id" />
+      <PropertyRef Name="bid_records_id" />
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="targetid" Type="Int32" Nullable="false" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="income_statement_id" Type="Int32" Nullable="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="annual_revenue" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="current_investment_period" Type="Int32" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="interest_payment_date" Type="DateTime" Precision="3" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="payment_status" Type="Int32" />
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="available_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="payment_options" Type="Int32" />
+    <Property Name="BorrUsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OutCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bid_orderid" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="SubOrdid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SubOrdDate" Type="DateTime" Precision="3" />
+    <Property Name="loan_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Principal" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="interestpayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="contractpath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="orderid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="current_period" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_borrowing_Bid_records_income_statement_uc">
+    <Key>
+      <PropertyRef Name="targetid" />
+      <PropertyRef Name="loan_number" />
+      <PropertyRef Name="income_statement_id" />
+      <PropertyRef Name="bid_records_id" />
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="targetid" Type="Int32" Nullable="false" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="income_statement_id" Type="Int32" Nullable="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="annual_revenue" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="current_investment_period" Type="Int32" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="interest_payment_date" Type="DateTime" Precision="3" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="payment_status" Type="Int32" />
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="available_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="payment_options" Type="Int32" />
+    <Property Name="OutCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="loan_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Principal" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="interestDay" Type="Int32" />
+    <Property Name="TotalInstallments" Type="Int32" />
+    <Property Name="ordstate" Type="Int32" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="orderid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="JiaxiNum" Type="Decimal" Precision="6" Scale="2" />
+  </EntityType>
+  <EntityType Name="V_borrowing_target_addlist">
+    <Key>
+      <PropertyRef Name="targetid" />
+      <PropertyRef Name="loan_number" />
+      <PropertyRef Name="project_type_id" />
+      <PropertyRef Name="guarantee_way_id" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="target_detailed_id" />
+    </Key>
+    <Property Name="targetid" Type="Int32" Nullable="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="borrowing_thumbnail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="project_type_id" Type="Int32" Nullable="false" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="life_of_loan" Type="Int32" />
+    <Property Name="unit_day" Type="Int32" />
+    <Property Name="release_date" Type="DateTime" Precision="3" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="month_payment_date" Type="Int32" />
+    <Property Name="repayment_date" Type="DateTime" Precision="3" />
+    <Property Name="minimum" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="maxmum" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="companyid" Type="Int32" />
+    <Property Name="guarantee_way_id" Type="Int32" Nullable="false" />
+    <Property Name="payment_options" Type="Int32" />
+    <Property Name="end_time" Type="DateTime" Precision="3" />
+    <Property Name="service_charge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="loan_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="investors_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ordinary_overdue_management_fees" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seriously_overdue_management_fees" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ordinary_overdue_penalty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seriously_overdue_penalty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="transfer_Expenses" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="fundraising_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="tender_state" Type="Int32" />
+    <Property Name="full_scale_loan" Type="Int32" />
+    <Property Name="flow_return" Type="Int32" />
+    <Property Name="recommend" Type="Int32" />
+    <Property Name="sys_time" Type="DateTime" Precision="3" />
+    <Property Name="repaymentperiods" Type="Int32" />
+    <Property Name="company_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="guarantee_way_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="target_detailed_id" Type="Int32" Nullable="false" />
+    <Property Name="reviewremarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="recheckremarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="guarantee_fee" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="consultingAMT" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="guaranteeAMT" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="B_Rates" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="H_Repayment_Amt" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Repay_Time" Type="DateTime" Precision="3" />
+    <Property Name="start_time" Type="DateTime" Precision="3" />
+    <Property Name="G_contract_Path" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="BorrUsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GuarType" Type="Int32" />
+    <Property Name="GuarCompUsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_circumstances" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="item_details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_base_material" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="use_funds" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="independent_advice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="guarantee_agency_views" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="risk_control_measures" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsUse" Type="Int32" />
+    <Property Name="indexorder" Type="Int32" />
+    <Property Name="IsIRC" Type="Int32" />
+    <Property Name="Purpose" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PaySource" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Collateral" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Isinterest" Type="Int32" />
+    <Property Name="project_type_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_borrowing_target_review">
+    <Key>
+      <PropertyRef Name="targetid" />
+      <PropertyRef Name="loan_number" />
+      <PropertyRef Name="project_type_id" />
+      <PropertyRef Name="guarantee_way_id" />
+      <PropertyRef Name="reviewid" />
+      <PropertyRef Name="adminuserid" />
+    </Key>
+    <Property Name="targetid" Type="Int32" Nullable="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="borrowing_thumbnail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="project_type_id" Type="Int32" Nullable="false" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="life_of_loan" Type="Int32" />
+    <Property Name="unit_day" Type="Int32" />
+    <Property Name="release_date" Type="DateTime" Precision="3" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="month_payment_date" Type="Int32" />
+    <Property Name="repayment_date" Type="DateTime" Precision="3" />
+    <Property Name="minimum" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="maxmum" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="companyid" Type="Int32" />
+    <Property Name="guarantee_way_id" Type="Int32" Nullable="false" />
+    <Property Name="payment_options" Type="Int32" />
+    <Property Name="end_time" Type="DateTime" Precision="3" />
+    <Property Name="service_charge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="loan_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="investors_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ordinary_overdue_management_fees" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seriously_overdue_management_fees" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ordinary_overdue_penalty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seriously_overdue_penalty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="transfer_Expenses" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="fundraising_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="full_scale_loan" Type="Int32" />
+    <Property Name="flow_return" Type="Int32" />
+    <Property Name="recommend" Type="Int32" />
+    <Property Name="sys_time" Type="DateTime" Precision="3" />
+    <Property Name="repaymentperiods" Type="Int32" />
+    <Property Name="reviewid" Type="Int32" Nullable="false" />
+    <Property Name="reviewremarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="reviewtime" Type="DateTime" Precision="3" />
+    <Property Name="admin_operator" Type="Int32" />
+    <Property Name="adminuserid" Type="Int32" Nullable="false" />
+    <Property Name="trueName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tender_state" Type="Int32" />
+    <Property Name="isDel" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_contract_type_template">
+    <Key>
+      <PropertyRef Name="contract_template_id" />
+      <PropertyRef Name="contract_type_id" />
+    </Key>
+    <Property Name="contract_template_id" Type="Int32" Nullable="false" />
+    <Property Name="contract_template_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contract_template_context" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="usestate" Type="Int32" />
+    <Property Name="cretatetime" Type="DateTime" Precision="3" />
+    <Property Name="contract_type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contract_type_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_hx_Bid_records_borrowing_target_uc">
+    <Key>
+      <PropertyRef Name="bid_records_id" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="borusername" />
+    </Key>
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="current_period" Type="Int32" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="investment_maturity" Type="DateTime" Precision="3" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="invest_state" Type="Int32" />
+    <Property Name="flow_return" Type="Int32" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="payment_status" Type="Int32" />
+    <Property Name="withoutinterest" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="haveinterest" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="payment_options" Type="Int32" />
+    <Property Name="contractid" Type="Int32" />
+    <Property Name="contractpath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="life_of_loan" Type="Int32" />
+    <Property Name="unit_day" Type="Int32" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FrozenidAmount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="FrozenidNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FrozenState" Type="Int32" />
+    <Property Name="FreezeTrxId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrUsrCustid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="available_balance" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+    <Property Name="tender_state" Type="Int32" />
+    <Property Name="invitationcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrealname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="borusername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrdId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="ordstate" Type="Int32" />
+    <Property Name="frozen_sum" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_incomeborr_count">
+    <Key>
+      <PropertyRef Name="income_statement_id" />
+      <PropertyRef Name="bid_records_id" />
+    </Key>
+    <Property Name="income_statement_id" Type="Int32" Nullable="false" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="OutCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="annual_revenue" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="current_investment_period" Type="Int32" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="interest_payment_date" Type="DateTime" Precision="3" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="InCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="payment_status" Type="Int32" />
+    <Property Name="Principal" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="interestpayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="orderid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BidOrderid" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="interestDay" Type="Int32" />
+    <Property Name="TotalInstallments" Type="Int32" />
+    <Property Name="BorrFees" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="InveFess" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="loan_management_fee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="service_charge" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="V_LL_Cash_User">
+    <Key>
+      <PropertyRef Name="LLcashid" />
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="LLcashid" Type="Int32" Nullable="false" />
+    <Property Name="no_order" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="dt_order" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="money_order" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="acct_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="province_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="city_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="brabank_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ordertime" Type="DateTime" Precision="3" />
+    <Property Name="card_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="paystate" Type="Int32" />
+    <Property Name="Usrid" Type="Int32" />
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bank_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <Property Name="h_state" Type="Int32" />
+    <Property Name="htype" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_LLBack_Card_List">
+    <Key>
+      <PropertyRef Name="bindCardid" />
+      <PropertyRef Name="registerid" />
+    </Key>
+    <Property Name="BankCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bindCardid" Type="Int32" Nullable="false" />
+    <Property Name="Usrid" Type="Int32" />
+    <Property Name="BankCard" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Bindtime" Type="DateTime" Precision="3" />
+    <Property Name="Re_Amt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Quota" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Citycode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="no_agree" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="cardstate" Type="Int32" />
+    <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CardImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="province_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_LLPay_Re">
+    <Key>
+      <PropertyRef Name="Rechargeid" />
+      <PropertyRef Name="re_cashid" />
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="Rechargeid" Type="Int32" Nullable="false" />
+    <Property Name="UsrId" Type="Int32" />
+    <Property Name="no_order" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ordertime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="info_order" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="money_order" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BankCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="card_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ReState" Type="Int32" />
+    <Property Name="oid_paybill" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="re_cashid" Type="Int32" Nullable="false" />
+    <Property Name="OrdId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TransAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="h_state" Type="Int32" />
+    <Property Name="htype" Type="Int32" />
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="OrdTime" Type="DateTime" Precision="3" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_Phone_records">
+    <Key>
+      <PropertyRef Name="recordsid" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="recordsid" Type="Int32" Nullable="false" />
+    <Property Name="recordcontext" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="recordtime" Type="DateTime" Precision="3" />
+    <Property Name="registerid" Type="Int32" />
+    <Property Name="adminid" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="adminuser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gtType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="problemType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_Recharge_user_bank">
+    <Key>
+      <PropertyRef Name="recharge_history_id" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="recharge_history_id" Type="Int32" Nullable="false" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="recharge_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="recharge_time" Type="DateTime" Precision="3" />
+    <Property Name="account_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="order_No" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="recharge_condition" Type="Int32" />
+    <Property Name="recharge_bank" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="useridentity" Type="Int32" />
+    <Property Name="usertypes1" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_Repayment_plan_loan_records">
+    <Key>
+      <PropertyRef Name="repayment_plan_id" />
+      <PropertyRef Name="Loan_records_id" />
+    </Key>
+    <Property Name="repayment_plan_id" Type="Int32" Nullable="false" />
+    <Property Name="BorrUsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="current_period" Type="Int32" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="repayment_type" Type="Int32" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="actual_amount_repayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="repayment_state" Type="Int32" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="interestpayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="fees" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="O_penalty" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="shall_repayment" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="pla_amt_generation" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Interest_spreads" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Rep_Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Expr1" Type="Int32" />
+    <Property Name="Loan_records_id" Type="Int32" Nullable="false" />
+    <Property Name="bid_records_id" Type="Int32" />
+    <Property Name="InCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OutCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LoanAMT" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="LoanOrdId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LoanDate" Type="DateTime" Precision="3" />
+    <Property Name="SubOrdid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SubOrdDate" Type="DateTime" Precision="3" />
+    <Property Name="unFreezeOrdId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FreezeTrxId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="available_balance" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_SMS_Record">
+    <Key>
+      <PropertyRef Name="sms_record_id" />
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="sms_record_id" Type="Int32" Nullable="false" />
+    <Property Name="senduserid" Type="Int32" />
+    <Property Name="smscontext" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="phone_number" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="smstype" Type="Int32" />
+    <Property Name="orderid" Type="Decimal" Precision="28" Scale="0" />
+    <Property Name="sendtime" Type="DateTime" Precision="3" />
+    <Property Name="vcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_td_LLpay_bank">
+    <Key>
+      <PropertyRef Name="Rechargeid" />
+    </Key>
+    <Property Name="Rechargeid" Type="Int32" Nullable="false" />
+    <Property Name="UsrId" Type="Int32" />
+    <Property Name="no_order" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ordertime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="info_order" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="money_order" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BankCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="card_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ReState" Type="Int32" />
+    <Property Name="oid_paybill" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="Expr1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_type_news">
+    <Key>
+      <PropertyRef Name="newid" />
+    </Key>
+    <Property Name="newid" Type="Int32" Nullable="false" />
+    <Property Name="web_Type_menu_id" Type="Int32" />
+    <Property Name="News_title" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="News_Key" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="news_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="context" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="adminuserid" Type="Int32" />
+    <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parentid" Type="Int32" />
+    <Property Name="rootid" Type="Int32" />
+    <Property Name="path1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="orderid" Type="Int32" />
+    <Property Name="topmenuname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="comm" Type="Int32" />
+    <Property Name="listcomm" Type="Int32" />
+    <Property Name="newimg" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="ClickCount" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_UserCash_Bank">
+    <Key>
+      <PropertyRef Name="UserCashId" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="UserCashId" Type="Int32" Nullable="false" />
+    <Property Name="registerid" Type="Int32" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransAmt" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="FeeAmt" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="OrdId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrdIdTime" Type="DateTime" Precision="3" />
+    <Property Name="OrdIdState" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <Property Name="Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TransState" Type="Int32" />
+    <Property Name="OpenAcctId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OpenBankId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="available_balance" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+    <Property Name="usertypes" Type="Int32" />
+    <Property Name="FeeObjFlag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="useridentity" Type="Int32" />
+    <Property Name="CashChl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_UserInvitation">
+    <Key>
+      <PropertyRef Name="username" />
+      <PropertyRef Name="invitationid" />
+    </Key>
+    <Property Name="invpersonid" Type="Int32" />
+    <Property Name="username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="invitationid" Nullable="false" Type="Int32" />
+    <Property Name="invcode" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="invtime" Precision="3" Type="DateTime" />
+    <Property Name="Invpeopleid" Type="Int32" />
+    <Property Name="InvitesStates" Type="Int32" />
+    <Property Name="Invitereward" Precision="8" Scale="2" Type="Decimal" />
+    <Property Name="userstate" Type="Int32" />
+    <Property Name="registration_time" Precision="3" Type="DateTime" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+  </EntityType>
+  <EntityType Name="V_UsrBindCardBank">
+    <Key>
+      <PropertyRef Name="UsrBindCardID" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="registerid" />
+    </Key>
+    <Property Name="UsrBindCardID" Type="Int32" Nullable="false" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OpenAcctId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OpenBankId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="defCard" Type="Int32" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Expr1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="CardImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Isquick" Type="Int32" />
+    <Property Name="Isordinary" Type="Int32" />
+    <Property Name="CardImageNew" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BindCardType" Type="Int32" />
+    <Property Name="isGren" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_yaoqin_count">
+    <Key>
+      <PropertyRef Name="bid_records_id" />
+      <PropertyRef Name="yaousername" />
+      <PropertyRef Name="yaouid" />
+      <PropertyRef Name="invuid" />
+      <PropertyRef Name="invusername" />
+    </Key>
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="OrdId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="ordstate" Type="Int32" />
+    <Property Name="invitationcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="yaousername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="yaouid" Type="Int32" Nullable="false" />
+    <Property Name="invuid" Type="Int32" Nullable="false" />
+    <Property Name="invusername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="yaorealname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_BONUS_AC_REFERENCE_HX_ACTIV">
+    <End Role="hx_Activity_schedule" Type="Self.hx_Activity_schedule" Multiplicity="0..1" />
+    <End Role="bonus_account" Type="Self.bonus_account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_Activity_schedule">
+        <PropertyRef Name="activity_schedule_id" />
+      </Principal>
+      <Dependent Role="bonus_account">
+        <PropertyRef Name="activity_schedule_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTRACT_REFERENCE_HX_BORRO">
+    <End Role="hx_borrowing_target" Type="Self.hx_borrowing_target" Multiplicity="1" />
+    <End Role="Contract_management" Type="Self.Contract_management" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_borrowing_target">
+        <PropertyRef Name="targetid" />
+      </Principal>
+      <Dependent Role="Contract_management">
+        <PropertyRef Name="targetid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HX_ACTIV_REFERENCE_HX_ACTIV">
+    <End Role="hx_ActivityType" Type="Self.hx_ActivityType" Multiplicity="0..1" />
+    <End Role="hx_ActivityTable" Type="Self.hx_ActivityTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_ActivityType">
+        <PropertyRef Name="ActTypeId" />
+      </Principal>
+      <Dependent Role="hx_ActivityTable">
+        <PropertyRef Name="ActTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HX_ACTIV_REFERENCE_HX_REWAR">
+    <End Role="hx_RewardType" Type="Self.hx_RewardType" Multiplicity="0..1" />
+    <End Role="hx_ActivityTable" Type="Self.hx_ActivityTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_RewardType">
+        <PropertyRef Name="RewTypeID" />
+      </Principal>
+      <Dependent Role="hx_ActivityTable">
+        <PropertyRef Name="RewTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HX_INCOM_REFERENCE_HX_BID_R">
+    <End Role="hx_Bid_records" Type="Self.hx_Bid_records" Multiplicity="1" />
+    <End Role="hx_income_statement" Type="Self.hx_income_statement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_Bid_records">
+        <PropertyRef Name="bid_records_id" />
+      </Principal>
+      <Dependent Role="hx_income_statement">
+        <PropertyRef Name="bid_records_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HX_BORRO_REFERENCE_HX_BORRO">
+    <End Role="hx_borrowing_target" Type="Self.hx_borrowing_target" Multiplicity="0..1" />
+    <End Role="hx_borrowing_target_detailed" Type="Self.hx_borrowing_target_detailed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_borrowing_target">
+        <PropertyRef Name="targetid" />
+      </Principal>
+      <Dependent Role="hx_borrowing_target_detailed">
+        <PropertyRef Name="targetid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HX_BORRO_REFERENCE_HX_MEMBE">
+    <End Role="hx_member_table" Type="Self.hx_member_table" Multiplicity="0..1" />
+    <End Role="hx_borrowing_target" Type="Self.hx_borrowing_target" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_member_table">
+        <PropertyRef Name="registerid" />
+      </Principal>
+      <Dependent Role="hx_borrowing_target">
+        <PropertyRef Name="borrower_registerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HX_CAPIT_REFERENCE_HX_MEMBE">
+    <End Role="hx_member_table" Type="Self.hx_member_table" Multiplicity="0..1" />
+    <End Role="hx_Capital_account_water" Type="Self.hx_Capital_account_water" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_member_table">
+        <PropertyRef Name="registerid" />
+      </Principal>
+      <Dependent Role="hx_Capital_account_water">
+        <PropertyRef Name="membertable_registerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="chuangtouEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="areas" EntityType="Self.area" />
+    <EntitySet Name="bonus_account" EntityType="Self.bonus_account" />
+    <EntitySet Name="bonus_account_water" EntityType="Self.bonus_account_water" />
+    <EntitySet Name="cities" EntityType="Self.city" />
+    <EntitySet Name="Contract_management" EntityType="Self.Contract_management" />
+    <EntitySet Name="guarantee_way" EntityType="Self.guarantee_way" />
+    <EntitySet Name="hx_Activity_schedule" EntityType="Self.hx_Activity_schedule" />
+    <EntitySet Name="hx_ActivityTable" EntityType="Self.hx_ActivityTable" />
+    <EntitySet Name="hx_ActivityType" EntityType="Self.hx_ActivityType" />
+    <EntitySet Name="hx_Bid_records" EntityType="Self.hx_Bid_records" />
+    <EntitySet Name="hx_bonding_company" EntityType="Self.hx_bonding_company" />
+    <EntitySet Name="hx_borrower_guarantor_picture" EntityType="Self.hx_borrower_guarantor_picture" />
+    <EntitySet Name="hx_borrowing_target" EntityType="Self.hx_borrowing_target" />
+    <EntitySet Name="hx_borrowing_target_detailed" EntityType="Self.hx_borrowing_target_detailed" />
+    <EntitySet Name="hx_Capital_account_water" EntityType="Self.hx_Capital_account_water" />
+    <EntitySet Name="hx_CashAwards" EntityType="Self.hx_CashAwards" />
+    <EntitySet Name="hx_Contract_template" EntityType="Self.hx_Contract_template" />
+    <EntitySet Name="hx_contract_type" EntityType="Self.hx_contract_type" />
+    <EntitySet Name="hx_income_statement" EntityType="Self.hx_income_statement" />
+    <EntitySet Name="hx_investsearch" EntityType="Self.hx_investsearch" />
+    <EntitySet Name="hx_member_table" EntityType="Self.hx_member_table" />
+    <EntitySet Name="hx_Mention_charges" EntityType="Self.hx_Mention_charges" />
+    <EntitySet Name="hx_Project_type" EntityType="Self.hx_Project_type" />
+    <EntitySet Name="hx_Recharge_history" EntityType="Self.hx_Recharge_history" />
+    <EntitySet Name="hx_repayment_plan" EntityType="Self.hx_repayment_plan" />
+    <EntitySet Name="hx_RewardType" EntityType="Self.hx_RewardType" />
+    <EntitySet Name="hx_td_Ad" EntityType="Self.hx_td_Ad" />
+    <EntitySet Name="hx_td_adminuser" EntityType="Self.hx_td_adminuser" />
+    <EntitySet Name="hx_td_Bank" EntityType="Self.hx_td_Bank" />
+    <EntitySet Name="hx_td_department" EntityType="Self.hx_td_department" />
+    <EntitySet Name="hx_td_department_child" EntityType="Self.hx_td_department_child" />
+    <EntitySet Name="hx_td_frozen" EntityType="Self.hx_td_frozen" />
+    <EntitySet Name="hx_td_LL_cash" EntityType="Self.hx_td_LL_cash" />
+    <EntitySet Name="hx_td_LLBack" EntityType="Self.hx_td_LLBack" />
+    <EntitySet Name="hx_td_LLPay_bindCard" EntityType="Self.hx_td_LLPay_bindCard" />
+    <EntitySet Name="hx_td_LLpay_city" EntityType="Self.hx_td_LLpay_city" />
+    <EntitySet Name="hx_td_LLpay_re_cash" EntityType="Self.hx_td_LLpay_re_cash" />
+    <EntitySet Name="hx_td_LLpay_Recharge" EntityType="Self.hx_td_LLpay_Recharge" />
+    <EntitySet Name="hx_td_Loan_records" EntityType="Self.hx_td_Loan_records" />
+    <EntitySet Name="hx_td_LoginInfo" EntityType="Self.hx_td_LoginInfo" />
+    <EntitySet Name="hx_td_menu" EntityType="Self.hx_td_menu" />
+    <EntitySet Name="hx_td_Myborrow" EntityType="Self.hx_td_Myborrow" />
+    <EntitySet Name="hx_td_Phone_records" EntityType="Self.hx_td_Phone_records" />
+    <EntitySet Name="hx_td_reviewremarks" EntityType="Self.hx_td_reviewremarks" />
+    <EntitySet Name="hx_td_SMS_record" EntityType="Self.hx_td_SMS_record" />
+    <EntitySet Name="hx_td_SMSEmail" EntityType="Self.hx_td_SMSEmail" />
+    <EntitySet Name="hx_td_System_message" EntityType="Self.hx_td_System_message" />
+    <EntitySet Name="hx_td_UserCash" EntityType="Self.hx_td_UserCash" />
+    <EntitySet Name="hx_td_Userinvitation" EntityType="Self.hx_td_Userinvitation" />
+    <EntitySet Name="hx_td_web_Ad_type" EntityType="Self.hx_td_web_Ad_type" />
+    <EntitySet Name="hx_td_web_type" EntityType="Self.hx_td_web_type" />
+    <EntitySet Name="hx_Test_records" EntityType="Self.hx_Test_records" />
+    <EntitySet Name="hx_UsrBindCardC" EntityType="Self.hx_UsrBindCardC" />
+    <EntitySet Name="Overdue_repayment" EntityType="Self.Overdue_repayment" />
+    <EntitySet Name="provinces" EntityType="Self.province" />
+    <EntitySet Name="hx_td_admin_role" EntityType="Self.hx_td_admin_role" />
+    <EntitySet Name="V_AD_type" EntityType="Self.V_AD_type" />
+    <EntitySet Name="v_admin_role_menu" EntityType="Self.v_admin_role_menu" />
+    <EntitySet Name="v_adminuser_department" EntityType="Self.v_adminuser_department" />
+    <EntitySet Name="V_Bid_Frozen" EntityType="Self.V_Bid_Frozen" />
+    <EntitySet Name="V_Bid_income_statement" EntityType="Self.V_Bid_income_statement" />
+    <EntitySet Name="V_bid_records_bonus_account" EntityType="Self.V_bid_records_bonus_account" />
+    <EntitySet Name="V_bonus_account" EntityType="Self.V_bonus_account" />
+    <EntitySet Name="V_bonus_account_water" EntityType="Self.V_bonus_account_water" />
+    <EntitySet Name="V_borrow_repayment_plan" EntityType="Self.V_borrow_repayment_plan" />
+    <EntitySet Name="V_borrowing_Bid_records_income_statement" EntityType="Self.V_borrowing_Bid_records_income_statement" />
+    <EntitySet Name="V_borrowing_Bid_records_income_statement_uc" EntityType="Self.V_borrowing_Bid_records_income_statement_uc" />
+    <EntitySet Name="V_borrowing_target_addlist" EntityType="Self.V_borrowing_target_addlist" />
+    <EntitySet Name="V_borrowing_target_review" EntityType="Self.V_borrowing_target_review" />
+    <EntitySet Name="V_contract_type_template" EntityType="Self.V_contract_type_template" />
+    <EntitySet Name="V_hx_Bid_records_borrowing_target_uc" EntityType="Self.V_hx_Bid_records_borrowing_target_uc" />
+    <EntitySet Name="V_incomeborr_count" EntityType="Self.V_incomeborr_count" />
+    <EntitySet Name="V_LL_Cash_User" EntityType="Self.V_LL_Cash_User" />
+    <EntitySet Name="V_LLBack_Card_List" EntityType="Self.V_LLBack_Card_List" />
+    <EntitySet Name="V_LLPay_Re" EntityType="Self.V_LLPay_Re" />
+    <EntitySet Name="V_Phone_records" EntityType="Self.V_Phone_records" />
+    <EntitySet Name="V_Recharge_user_bank" EntityType="Self.V_Recharge_user_bank" />
+    <EntitySet Name="V_Repayment_plan_loan_records" EntityType="Self.V_Repayment_plan_loan_records" />
+    <EntitySet Name="V_SMS_Record" EntityType="Self.V_SMS_Record" />
+    <EntitySet Name="V_td_LLpay_bank" EntityType="Self.V_td_LLpay_bank" />
+    <EntitySet Name="V_type_news" EntityType="Self.V_type_news" />
+    <EntitySet Name="V_UserCash_Bank" EntityType="Self.V_UserCash_Bank" />
+    <EntitySet Name="V_UserInvitation" EntityType="Self.V_UserInvitation" />
+    <EntitySet Name="V_UsrBindCardBank" EntityType="Self.V_UsrBindCardBank" />
+    <EntitySet Name="V_yaoqin_count" EntityType="Self.V_yaoqin_count" />
+    <AssociationSet Name="FK_BONUS_AC_REFERENCE_HX_ACTIV" Association="Self.FK_BONUS_AC_REFERENCE_HX_ACTIV">
+      <End Role="hx_Activity_schedule" EntitySet="hx_Activity_schedule" />
+      <End Role="bonus_account" EntitySet="bonus_account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTRACT_REFERENCE_HX_BORRO" Association="Self.FK_CONTRACT_REFERENCE_HX_BORRO">
+      <End Role="hx_borrowing_target" EntitySet="hx_borrowing_target" />
+      <End Role="Contract_management" EntitySet="Contract_management" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HX_ACTIV_REFERENCE_HX_ACTIV" Association="Self.FK_HX_ACTIV_REFERENCE_HX_ACTIV">
+      <End Role="hx_ActivityType" EntitySet="hx_ActivityType" />
+      <End Role="hx_ActivityTable" EntitySet="hx_ActivityTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HX_ACTIV_REFERENCE_HX_REWAR" Association="Self.FK_HX_ACTIV_REFERENCE_HX_REWAR">
+      <End Role="hx_RewardType" EntitySet="hx_RewardType" />
+      <End Role="hx_ActivityTable" EntitySet="hx_ActivityTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HX_INCOM_REFERENCE_HX_BID_R" Association="Self.FK_HX_INCOM_REFERENCE_HX_BID_R">
+      <End Role="hx_Bid_records" EntitySet="hx_Bid_records" />
+      <End Role="hx_income_statement" EntitySet="hx_income_statement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HX_BORRO_REFERENCE_HX_BORRO" Association="Self.FK_HX_BORRO_REFERENCE_HX_BORRO">
+      <End Role="hx_borrowing_target" EntitySet="hx_borrowing_target" />
+      <End Role="hx_borrowing_target_detailed" EntitySet="hx_borrowing_target_detailed" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HX_BORRO_REFERENCE_HX_MEMBE" Association="Self.FK_HX_BORRO_REFERENCE_HX_MEMBE">
+      <End Role="hx_member_table" EntitySet="hx_member_table" />
+      <End Role="hx_borrowing_target" EntitySet="hx_borrowing_target" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HX_CAPIT_REFERENCE_HX_MEMBE" Association="Self.FK_HX_CAPIT_REFERENCE_HX_MEMBE">
+      <End Role="hx_member_table" EntitySet="hx_member_table" />
+      <End Role="hx_Capital_account_water" EntitySet="hx_Capital_account_water" />
+    </AssociationSet>
+    <EntitySet Name="hx_DepUserLimit1" EntityType="chuangtouModel.hx_DepUserLimit1" />
+    <EntitySet Name="hx_AdminLimitInfo" EntityType="chuangtouModel.hx_AdminLimitInfo" />
+    <EntitySet Name="V_DepUserLimitInfo" EntityType="chuangtouModel.V_DepUserLimitInfo" />
+    <EntitySet Name="V_invitation_record" EntityType="chuangtouModel.V_invitation_record" />
+    <EntitySet Name="hx_td_usrlogininfo" EntityType="chuangtouModel.hx_td_usrlogininfo" />
+    <AssociationSet Name="FK_HX_TD_US_REFERENCE_HX_MEMBE" Association="chuangtouModel.FK_HX_TD_US_REFERENCE_HX_MEMBE">
+      <End Role="hx_member_table" EntitySet="hx_member_table" />
+      <End Role="hx_td_usrlogininfo" EntitySet="hx_td_usrlogininfo" />
+    </AssociationSet>
+    <EntitySet Name="V_ACT" EntityType="chuangtouModel.V_ACT" />
+    <EntitySet Name="View_BId_userAct" EntityType="chuangtouModel.View_BId_userAct" />
+    <EntitySet Name="hx_SMSContext" EntityType="chuangtouModel.hx_SMSContext" />
+    <AssociationSet Name="FK_HX_SMSCO_REFERENCE_HX_ACTIV" Association="chuangtouModel.FK_HX_SMSCO_REFERENCE_HX_ACTIV">
+      <End Role="hx_ActivityTable" EntitySet="hx_ActivityTable" />
+      <End Role="hx_SMSContext" EntitySet="hx_SMSContext" />
+    </AssociationSet>
+    <EntitySet Name="V_borrowing_target_bonding" EntityType="chuangtouModel.V_borrowing_target_bonding" />
+    <EntitySet Name="V_Bid_records_Lost" EntityType="chuangtouModel.V_Bid_records_Lost" />
+    <EntitySet Name="V_Usr_Phone_adminUsr" EntityType="chuangtouModel.V_Usr_Phone_adminUsr" />
+    <EntitySet Name="ApplicationAuthorizations" EntityType="chuangtouModel.ApplicationAuthorization" />
+    <EntitySet Name="Statistics_Member" EntityType="chuangtouModel.Statistics_Member" />
+    <EntitySet Name="ViewInvestDetails" EntityType="chuangtouModel.ViewInvestDetail" />
+    <EntitySet Name="ViewInvestLists" EntityType="chuangtouModel.ViewInvestList" />
+    <EntitySet Name="ViewInvestRecords" EntityType="chuangtouModel.ViewInvestRecord" />
+    <EntitySet Name="ViewTargetWithRecords" EntityType="chuangtouModel.ViewTargetWithRecord" />
+    <EntitySet Name="ViewThirdWangDaiZhongGuos" EntityType="chuangtouModel.ViewThirdWangDaiZhongGuo" />
+    <FunctionImport Name="GetPageIndex">
+      <Parameter Name="tblName" Mode="In" Type="String" />
+      <Parameter Name="strGetFields" Mode="In" Type="String" />
+      <Parameter Name="fldName" Mode="In" Type="String" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="strWhere" Mode="In" Type="String" />
+      <Parameter Name="Sort" Mode="In" Type="String" />
+      <Parameter Name="RecordCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetPageRecord">
+      <Parameter Name="tblName" Mode="In" Type="String" />
+      <Parameter Name="strGetFields" Mode="In" Type="String" />
+      <Parameter Name="fldName" Mode="In" Type="String" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="strWhere" Mode="In" Type="String" />
+      <Parameter Name="RecordCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="pagination">
+      <Parameter Name="TableName" Mode="In" Type="String" />
+      <Parameter Name="PrimaryKey" Mode="In" Type="String" />
+      <Parameter Name="StrWhere" Mode="In" Type="String" />
+      <Parameter Name="OrderField" Mode="In" Type="String" />
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="OrderType" Mode="In" Type="Boolean" />
+      <Parameter Name="StrGetFields" Mode="In" Type="String" />
+      <Parameter Name="RecordCount" Mode="InOut" Type="Int32" />
+      <Parameter Name="PageCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prStatisticsMember" />
+    <FunctionImport Name="upPhone" ReturnType="Collection(String)">
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="oldph" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_PagingLarge">
+      <Parameter Name="TableNames" Mode="In" Type="String" />
+      <Parameter Name="PrimaryKey" Mode="In" Type="String" />
+      <Parameter Name="Fields" Mode="In" Type="String" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="CurrentPage" Mode="In" Type="Int32" />
+      <Parameter Name="Filter" Mode="In" Type="String" />
+      <Parameter Name="Group" Mode="In" Type="String" />
+      <Parameter Name="Order" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="hx_td_about_news" EntityType="chuangtouModel.hx_td_about_news" />
+    <EntitySet Name="hx_td_Links" EntityType="chuangtouModel.hx_td_Links" />
+    <EntitySet Name="V_YaoQinList" EntityType="chuangtouModel.V_YaoQinList" />
+    <EntitySet Name="GrabIphone" EntityType="chuangtouModel.GrabIphone" />
+    <EntitySet Name="Statistics_ActiveSepteberCashback" EntityType="chuangtouModel.Statistics_ActiveSepteberCashback" />
+    <EntitySet Name="ViewUserInviteInfors" EntityType="chuangtouModel.ViewUserInviteInfor" />
+    <EntitySet Name="hx_Channel" EntityType="chuangtouModel.hx_Channel" />
+    <EntitySet Name="hx_Channel_AdminUser" EntityType="chuangtouModel.hx_Channel_AdminUser" />
+    <AssociationSet Name="hx_Channel_AdminUser_Rel" Association="chuangtouModel.hx_Channel_AdminUser_Rel">
+      <End Role="hx_Channel" EntitySet="hx_Channel" />
+      <End Role="hx_Channel_AdminUser" EntitySet="hx_Channel_AdminUser" />
+    </AssociationSet>
+    <EntitySet Name="V_Channel_Invite" EntityType="chuangtouModel.V_Channel_Invite" />
+    <EntitySet Name="V_Channel_UserList" EntityType="chuangtouModel.V_Channel_UserList" />
+    <EntitySet Name="ViewUserCenters" EntityType="chuangtouModel.ViewUserCenter" />
+    <EntitySet Name="hx_QuanmamaRecord" EntityType="chuangtouModel.hx_QuanmamaRecord" />
+    <EntitySet Name="hx_AppUpdatePackage" EntityType="chuangtouModel.hx_AppUpdatePackage" />
+    <EntitySet Name="XiCaiUsers" EntityType="chuangtouModel.XiCaiUser" />
+    <FunctionImport Name="ViewDetailsReports">
+      <Parameter Name="startDate" Mode="In" Type="String" />
+      <Parameter Name="endDate" Mode="In" Type="String" />
+      <Parameter Name="mobile" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="hx_UserAct" EntityType="chuangtouModel.hx_UserAct" />
+    <AssociationSet Name="FK_HX_USERA_REFERENCE_HX_ACTIV2" Association="chuangtouModel.FK_HX_USERA_REFERENCE_HX_ACTIV2">
+      <End Role="hx_ActivityTable" EntitySet="hx_ActivityTable" />
+      <End Role="hx_UserAct" EntitySet="hx_UserAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HX_USERA_REFERENCE_HX_ACTIV" Association="chuangtouModel.FK_HX_USERA_REFERENCE_HX_ACTIV">
+      <End Role="hx_ActivityType" EntitySet="hx_ActivityType" />
+      <End Role="hx_UserAct" EntitySet="hx_UserAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HX_USERA_REFERENCE_HX_MEMBE" Association="chuangtouModel.FK_HX_USERA_REFERENCE_HX_MEMBE">
+      <End Role="hx_member_table" EntitySet="hx_member_table" />
+      <End Role="hx_UserAct" EntitySet="hx_UserAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HX_USERA_REFERENCE_HX_REWAR" Association="chuangtouModel.FK_HX_USERA_REFERENCE_HX_REWAR">
+      <End Role="hx_RewardType" EntitySet="hx_RewardType" />
+      <End Role="hx_UserAct" EntitySet="hx_UserAct" />
+    </AssociationSet>
+    <EntitySet Name="ViewDetailsReports1" EntityType="chuangtouModel.ViewDetailsReport" />
+    <EntitySet Name="V_hx_Bid_records_borrowing_target" EntityType="chuangtouModel.V_hx_Bid_records_borrowing_target" />
+    <EntitySet Name="Holidays" EntityType="chuangtouModel.Holiday" />
+  </EntityContainer>
+  <EntityType Name="hx_DepUserLimit1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="limitType" Type="Int32" />
+    <Property Name="departmentId" Type="Int32" />
+    <Property Name="adminUserId" Type="Int32" />
+    <Property Name="limitId" Type="Int32" />
+    <Property Name="createTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="hx_AdminLimitInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ControllerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ActionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="level" Type="Int32" />
+    <Property Name="SortId" Type="Int32" />
+    <Property Name="isDel" Type="Int32" />
+    <Property Name="lastOper" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatTime" Type="DateTime" Precision="3" />
+    <Property Name="UrlPara" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_DepUserLimitInfo">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="ParentId" />
+      <PropertyRef Name="ControllerName" />
+      <PropertyRef Name="ActionName" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+    <Property Name="ControllerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ActionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="level" Type="Int32" />
+    <Property Name="SortId" Type="Int32" />
+    <Property Name="isDel" Type="Int32" />
+    <Property Name="lastOper" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatTime" Type="DateTime" Precision="3" />
+    <Property Name="limitType" Type="Int32" />
+    <Property Name="departmentId" Type="Int32" />
+    <Property Name="adminUserId" Type="Int32" />
+    <Property Name="relationId" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_invitation_record">
+    <Key>
+      <PropertyRef Name="invitationid" />
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="invitationid" Type="Int32" Nullable="false" />
+    <Property Name="invcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="invtime" Type="DateTime" Precision="3" />
+    <Property Name="invpersonid" Type="Int32" />
+    <Property Name="Invpeopleid" Type="Int32" />
+    <Property Name="income" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="award_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="water_type" Type="Int32" />
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ActTypeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_usrlogininfo">
+    <Key>
+      <PropertyRef Name="loginid" />
+    </Key>
+    <Property Name="loginid" Type="Int32" Nullable="false" />
+    <Property Name="registerid" Type="Int32" />
+    <Property Name="logintime" Type="DateTime" Precision="3" />
+    <Property Name="Loginusrname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="loginusrpass" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="loginstate" Type="Int32" />
+    <Property Name="loginIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="logincity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="loginsource" Type="Int32" />
+    <NavigationProperty Name="hx_member_table" Relationship="chuangtouModel.FK_HX_TD_US_REFERENCE_HX_MEMBE" FromRole="hx_td_usrlogininfo" ToRole="hx_member_table" />
+  </EntityType>
+  <Association Name="FK_HX_TD_US_REFERENCE_HX_MEMBE">
+    <End Type="chuangtouModel.hx_member_table" Role="hx_member_table" Multiplicity="0..1" />
+    <End Type="chuangtouModel.hx_td_usrlogininfo" Role="hx_td_usrlogininfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_member_table">
+        <PropertyRef Name="registerid" />
+      </Principal>
+      <Dependent Role="hx_td_usrlogininfo">
+        <PropertyRef Name="registerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="V_ACT">
+    <Key>
+      <PropertyRef Name="UserAct" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="ActTypeId" />
+      <PropertyRef Name="ActID" />
+    </Key>
+    <Property Name="UserAct" Type="Int32" Nullable="false" />
+    <Property Name="RewTypeID" Type="Int32" />
+    <Property Name="Amt" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="Uselower" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="Usehight" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="AmtEndtime" Type="DateTime" Precision="3" />
+    <Property Name="UseState" Type="Int32" />
+    <Property Name="AmtProid" Type="Int32" />
+    <Property Name="UseTime" Type="DateTime" Precision="3" />
+    <Property Name="ISSmsOne" Type="Int32" />
+    <Property Name="IsSmsThree" Type="Int32" />
+    <Property Name="IsSmsSeven" Type="Int32" />
+    <Property Name="isSmsFifteen" Type="Int32" />
+    <Property Name="isSmsSixteen" Type="Int32" />
+    <Property Name="OrderID" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="Createtime" Type="DateTime" Precision="3" />
+    <Property Name="ActStarttime" Type="DateTime" Precision="3" />
+    <Property Name="ActEndtime" Type="DateTime" Precision="3" />
+    <Property Name="ActState" Type="Int32" />
+    <Property Name="ActName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="useridentity" Type="Int32" />
+    <Property Name="Channelsource" Type="Int32" />
+    <Property Name="ActTypeId" Type="Int32" Nullable="false" />
+    <Property Name="ActID" Type="Int32" Nullable="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="registration_time" Type="DateTime" Precision="3" />
+    <Property Name="registerid" Type="Int32" />
+  </EntityType>
+  <EntityType Name="View_BId_userAct">
+    <Key>
+      <PropertyRef Name="bid_records_id" />
+      <PropertyRef Name="UserAct" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="current_period" Type="Int32" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="OrdId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="BonusAmt" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="JiaxiNum" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="UserAct" Type="Int32" Nullable="false" />
+    <Property Name="registerid" Type="Int32" />
+    <Property Name="ActID" Type="Int32" />
+    <Property Name="RewTypeID" Type="Int32" />
+    <Property Name="ActTypeId" Type="Int32" />
+    <Property Name="Amt" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="Uselower" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="Usehight" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="AmtEndtime" Type="DateTime" Precision="3" />
+    <Property Name="AmtUses" Type="Int32" />
+    <Property Name="UseState" Type="Int32" />
+    <Property Name="AmtProid" Type="Int32" />
+    <Property Name="UseTime" Type="DateTime" Precision="3" />
+    <Property Name="ISSmsOne" Type="Int32" />
+    <Property Name="IsSmsThree" Type="Int32" />
+    <Property Name="IsSmsSeven" Type="Int32" />
+    <Property Name="isSmsFifteen" Type="Int32" />
+    <Property Name="isSmsSixteen" Type="Int32" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="useridentity" Type="Int32" />
+    <Property Name="Channelsource" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_SMSContext">
+    <Key>
+      <PropertyRef Name="SmsID" />
+    </Key>
+    <Property Name="SmsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ActID" Type="Int32" />
+    <Property Name="SmsOne" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="SmsThree" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="SmsSeven" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="SmsFifteen" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="SmsSixteen" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="hx_ActivityTable" Relationship="chuangtouModel.FK_HX_SMSCO_REFERENCE_HX_ACTIV" FromRole="hx_SMSContext" ToRole="hx_ActivityTable" />
+  </EntityType>
+  <Association Name="FK_HX_SMSCO_REFERENCE_HX_ACTIV">
+    <End Type="chuangtouModel.hx_ActivityTable" Role="hx_ActivityTable" Multiplicity="0..1" />
+    <End Type="chuangtouModel.hx_SMSContext" Role="hx_SMSContext" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_ActivityTable">
+        <PropertyRef Name="ActID" />
+      </Principal>
+      <Dependent Role="hx_SMSContext">
+        <PropertyRef Name="ActID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="V_borrowing_target_bonding">
+    <Key>
+      <PropertyRef Name="targetid" />
+      <PropertyRef Name="loan_number" />
+      <PropertyRef Name="companyid" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="targetid" Type="Int32" Nullable="false" />
+    <Property Name="loan_number" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="life_of_loan" Type="Int32" />
+    <Property Name="unit_day" Type="Int32" />
+    <Property Name="release_date" Type="DateTime" Precision="3" />
+    <Property Name="month_payment_date" Type="Int32" />
+    <Property Name="repayment_date" Type="DateTime" Precision="3" />
+    <Property Name="end_time" Type="DateTime" Precision="3" />
+    <Property Name="companyid" Type="Int32" Nullable="false" />
+    <Property Name="company_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="agent_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agent_id_card" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="iD_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="payment_options" Type="Int32" />
+    <Property Name="legal_representative" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usertypes" Type="Int32" />
+    <Property Name="CopName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="registered_capital" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="Date_incorporation" Type="DateTime" Precision="3" />
+    <Property Name="company_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="company_profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="business_licence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="business_certificate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tax_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CardId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UsrId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_Bid_records_Lost">
+    <Key>
+      <PropertyRef Name="bid_records_id" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="OrdId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ordstate" Type="Int32" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FrozenidNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FreezeTrxId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_Usr_Phone_adminUsr">
+    <Key>
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="recordsid" />
+    </Key>
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="account_total_assets" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="available_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="registration_time" Type="DateTime" Precision="3" />
+    <Property Name="lastlogintime" Type="DateTime" Precision="3" />
+    <Property Name="useridentity" Type="Int32" />
+    <Property Name="CommNum" Type="Int32" />
+    <Property Name="RechargeNum" Type="Int32" />
+    <Property Name="CashNum" Type="Int32" />
+    <Property Name="InvestNum" Type="Int32" />
+    <Property Name="LoginNum" Type="Int32" />
+    <Property Name="calltime" Type="DateTime" Precision="3" />
+    <Property Name="recordsid" Type="Int32" Nullable="false" />
+    <Property Name="recordcontext" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="recordtime" Type="DateTime" Precision="3" />
+    <Property Name="gtType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="problemType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="adminuser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ApplicationAuthorization">
+    <Key>
+      <PropertyRef Name="AppId" />
+    </Key>
+    <Property Name="AppId" Type="Int32" Nullable="false" />
+    <Property Name="AppName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="AppSecret" Type="String" MaxLength="68" FixedLength="false" Unicode="true" />
+    <Property Name="AppSafeCode" Type="String" MaxLength="68" FixedLength="false" Unicode="true" />
+    <Property Name="AppServerIps" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Int32" />
+    <Property Name="AppStatus" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Statistics_Member">
+    <Key>
+      <PropertyRef Name="StatisticsId" />
+    </Key>
+    <Property Name="StatisticsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatisticsDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="RegistCount" Type="Int32" Nullable="false" />
+    <Property Name="RealNameCount" Type="Int32" Nullable="false" />
+    <Property Name="InvestCount" Type="Int32" Nullable="false" />
+    <Property Name="IsFinish" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ViewInvestDetail">
+    <Key>
+      <PropertyRef Name="recordId" />
+    </Key>
+    <Property Name="recordId" Type="Int32" Nullable="false" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="targetTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="investMemberId" Type="Int32" />
+    <Property Name="investMemberName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deadLine" Type="Int32" />
+    <Property Name="unitDay" Type="Int32" />
+    <Property Name="rate" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="borrowTotalAmount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="fundTotalAmount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="investAmount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="paymentOption" Type="Int32" />
+    <Property Name="paymentStatus" Type="Int32" />
+    <Property Name="rateBeginOn" Type="DateTime" Precision="3" />
+    <Property Name="investMaturity" Type="DateTime" Precision="3" />
+    <Property Name="paymentDate" Type="DateTime" Precision="3" />
+    <Property Name="createdOn" Type="DateTime" Precision="3" />
+    <Property Name="investNumber" Type="Int32" />
+    <Property Name="guarantee_way_id" Type="Int32" />
+    <Property Name="month_payment_date" Type="Int32" />
+    <Property Name="jiaxiNum" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="BonusAmt" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="ViewInvestList">
+    <Key>
+      <PropertyRef Name="recordId" />
+    </Key>
+    <Property Name="recordId" Type="Int32" Nullable="false" />
+    <Property Name="targetId" Type="Int32" />
+    <Property Name="targetTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="investMemberId" Type="Int32" />
+    <Property Name="investMemberName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deadLine" Type="Int32" />
+    <Property Name="unitDay" Type="Int32" />
+    <Property Name="rate" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="investAmount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="paymentStatus" Type="Int32" />
+    <Property Name="rateBeginOn" Type="DateTime" Precision="3" />
+    <Property Name="investMaturity" Type="DateTime" Precision="3" />
+    <Property Name="createdOn" Type="DateTime" Precision="3" />
+    <Property Name="month_payment_date" Type="Int32" />
+    <Property Name="receivableInterest" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="ordstate" Type="Int32" />
+    <Property Name="jiaxiNum" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="BonusAmt" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="ViewInvestRecord">
+    <Key>
+      <PropertyRef Name="bid_records_id" />
+    </Key>
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="invest_state" Type="Int32" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="ordstate" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ViewTargetWithRecord">
+    <Key>
+      <PropertyRef Name="targetid" />
+      <PropertyRef Name="project_type_id" />
+    </Key>
+    <Property Name="targetid" Type="Int32" Nullable="false" />
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tender_state" Type="Int32" />
+    <Property Name="repayment_date" Type="DateTime" Precision="3" />
+    <Property Name="month_payment_date" Type="Int32" />
+    <Property Name="project_type_id" Type="Int32" Nullable="false" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="life_of_loan" Type="Int32" />
+    <Property Name="start_time" Type="DateTime" Precision="3" />
+    <Property Name="release_date" Type="DateTime" Precision="3" />
+    <Property Name="unit_day" Type="Int32" />
+    <Property Name="payment_options" Type="Int32" />
+    <Property Name="H_Repayment_Amt" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="end_time" Type="DateTime" Precision="3" />
+    <Property Name="invest_num" Type="Int32" />
+    <Property Name="fundraising_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="indexorder" Type="Int32" />
+    <Property Name="minimum" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="maxmum" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="sys_time" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ViewThirdWangDaiZhongGuo">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="type" />
+      <PropertyRef Name="reward" />
+      <PropertyRef Name="is_diya" />
+      <PropertyRef Name="is_danbao" />
+      <PropertyRef Name="is_mima" />
+      <PropertyRef Name="is_miao" />
+      <PropertyRef Name="is_zhuan" />
+    </Key>
+    <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="account" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="apr" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="limit" Type="Int32" />
+    <Property Name="limit_type" Type="Int32" />
+    <Property Name="way" Type="Int32" />
+    <Property Name="account_yes" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="account_min" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="account_max" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="add_time" Type="Int32" />
+    <Property Name="verify_time" Type="Int32" />
+    <Property Name="success_time" Type="Int32" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="reward" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="is_diya" Type="Int32" Nullable="false" />
+    <Property Name="is_danbao" Type="Int32" Nullable="false" />
+    <Property Name="is_mima" Type="Int32" Nullable="false" />
+    <Property Name="is_miao" Type="Int32" Nullable="false" />
+    <Property Name="is_zhuan" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="hx_td_about_news">
+    <Key>
+      <PropertyRef Name="newid" />
+    </Key>
+    <Property Name="newid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="web_Type_menu_id" Type="Int32" />
+    <Property Name="News_title" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="News_Key" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="news_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="context" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="adminuserid" Type="Int32" />
+    <Property Name="comm" Type="Int32" />
+    <Property Name="listcomm" Type="Int32" />
+    <Property Name="newimg" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="ClickCount" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hx_td_Links">
+    <Key>
+      <PropertyRef Name="Linkid" />
+    </Key>
+    <Property Name="Linkid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Linkname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LinkUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LinkType" Type="Int32" />
+    <Property Name="LinkLogo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="createtime" Type="DateTime" Precision="3" />
+    <Property Name="Linkstate" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_YaoQinList">
+    <Key>
+      <PropertyRef Name="account_water_id" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="account_water_id" Type="Int32" Nullable="false" />
+    <Property Name="bonus_account_id" Type="Int32" />
+    <Property Name="membertable_registerid" Type="Int32" />
+    <Property Name="income" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="expenditure" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="time_of_occurrence" Type="DateTime" Precision="3" />
+    <Property Name="reward_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="award_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="water_type" Type="Int32" />
+    <Property Name="Createtime" Type="DateTime" Precision="3" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GrabIphone">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegrsterID" Type="Int32" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Addtime" Type="DateTime" Precision="3" />
+    <Property Name="LuckDrawState" Type="Int32" />
+    <Property Name="WinningState" Type="Int32" />
+    <Property Name="WinningTime" Type="DateTime" Precision="3" />
+    <Property Name="TargetID" Type="Int32" />
+    <Property Name="BidRecordsID" Type="Int32" />
+    <Property Name="InvestmentAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Statistics_ActiveSepteberCashback">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InvestTerm" Type="Int32" Nullable="false" />
+    <Property Name="InvestTimes" Type="Int32" Nullable="false" />
+    <Property Name="InvestTotalAmount" Type="Decimal" Nullable="false" Precision="38" Scale="2" />
+    <Property Name="CashbackAmount" Type="Decimal" Nullable="false" Precision="38" Scale="2" />
+    <Property Name="HasCashback" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewUserInviteInfor">
+    <Key>
+      <PropertyRef Name="invitationid" />
+      <PropertyRef Name="InviteName" />
+      <PropertyRef Name="IsBindedCard" />
+    </Key>
+    <Property Name="invitationid" Type="Int32" Nullable="false" />
+    <Property Name="InviteId" Type="Int32" />
+    <Property Name="InviteName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InviteRealName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="InvitedId" Type="Int32" />
+    <Property Name="InvitedName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InvitedRealName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="InviteCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="InvestedOn" Type="DateTime" Precision="3" />
+    <Property Name="InvestAmount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="OrderId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="BorrowTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DeadLine" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Name="DeadLineNumber" Type="Int32" />
+    <Property Name="IsBindedCard" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="hx_Channel">
+    <Key>
+      <PropertyRef Name="ChannelID" />
+    </Key>
+    <Property Name="ChannelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChannelName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Invitedcode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="hx_Channel_AdminUser" Relationship="chuangtouModel.hx_Channel_AdminUser_Rel" FromRole="hx_Channel" ToRole="hx_Channel_AdminUser" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="hx_Channel_AdminUser">
+    <Key>
+      <PropertyRef Name="AdminUserID" />
+    </Key>
+    <Property Name="AdminUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminUserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AdminUserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TrueName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="hx_Channel" Relationship="chuangtouModel.hx_Channel_AdminUser_Rel" FromRole="hx_Channel_AdminUser" ToRole="hx_Channel" />
+  </EntityType>
+  <Association Name="hx_Channel_AdminUser_Rel">
+    <End Type="chuangtouModel.hx_Channel" Role="hx_Channel" Multiplicity="*" />
+    <End Type="chuangtouModel.hx_Channel_AdminUser" Role="hx_Channel_AdminUser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="V_Channel_Invite">
+    <Key>
+      <PropertyRef Name="ChannelID" />
+      <PropertyRef Name="CreateTime" />
+      <PropertyRef Name="UpdateTime" />
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="OrdId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="registerid" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ChannelID" Type="Int32" Nullable="false" />
+    <Property Name="ChannelName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Byte" Nullable="false" />
+    <Property Name="AdminUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="registration_time" Type="DateTime" Precision="3" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="ordstate" Type="Int32" />
+    <Property Name="channel_invitedcode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="invest_state" Type="Int32" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DeadLine" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Name="DeadLineNumber" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_Channel_UserList">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="registration_time" Type="DateTime" Precision="3" />
+    <Property Name="AdminUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ViewUserCenter">
+    <Key>
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="available_balance" />
+      <PropertyRef Name="IsCPS" />
+    </Key>
+    <Property Name="registerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="isrealname" Type="Int32" />
+    <Property Name="registration_time" Type="DateTime" Precision="3" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="available_balance" Type="Decimal" Nullable="false" Precision="38" Scale="2" />
+    <Property Name="usertypes" Type="Int32" />
+    <Property Name="investCount" Type="Int32" />
+    <Property Name="IsCPS" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="hx_QuanmamaRecord">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegisterMobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UsrCustID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RegisterTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="InvestTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="InvestMoney" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="TotalInvestMoney" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="InvestPeriod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GiftMoney" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="SendState" Type="Int32" Nullable="false" />
+    <Property Name="Creater" Type="Int32" Nullable="false" />
+    <Property Name="CraeteTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sender" Type="Int32" />
+    <Property Name="SendTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="hx_AppUpdatePackage">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Platform" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Version" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateLevel" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DependCode" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Channel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ValideCode" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="VirtualPath" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Ways" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsEnable" Type="Int32" Nullable="false" />
+    <Property Name="DownloadCount" Type="Int64" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="XiCaiUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Mobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="XiCaiUserID" Type="Int32" Nullable="false" />
+    <Property Name="RegisterUserID" Type="Int32" Nullable="false" />
+    <Property Name="Display" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="hx_UserAct">
+    <Key>
+      <PropertyRef Name="UserAct" />
+    </Key>
+    <Property Name="UserAct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="registerid" Type="Int32" />
+    <Property Name="ActID" Type="Int32" />
+    <Property Name="RewTypeID" Type="Int32" />
+    <Property Name="ActTypeId" Type="Int32" />
+    <Property Name="Amt" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="Uselower" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="Usehight" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="AmtEndtime" Type="DateTime" Precision="3" />
+    <Property Name="AmtUses" Type="Int32" />
+    <Property Name="UseState" Type="Int32" />
+    <Property Name="AmtProid" Type="Int32" />
+    <Property Name="UseTime" Type="DateTime" Precision="3" />
+    <Property Name="ISSmsOne" Type="Int32" />
+    <Property Name="IsSmsThree" Type="Int32" />
+    <Property Name="IsSmsSeven" Type="Int32" />
+    <Property Name="isSmsFifteen" Type="Int32" />
+    <Property Name="isSmsSixteen" Type="Int32" />
+    <Property Name="OrderID" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="Createtime" Type="DateTime" Precision="3" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UseLifeLoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="hx_ActivityTable" Relationship="chuangtouModel.FK_HX_USERA_REFERENCE_HX_ACTIV2" FromRole="hx_UserAct" ToRole="hx_ActivityTable" />
+    <NavigationProperty Name="hx_ActivityType" Relationship="chuangtouModel.FK_HX_USERA_REFERENCE_HX_ACTIV" FromRole="hx_UserAct" ToRole="hx_ActivityType" />
+    <NavigationProperty Name="hx_member_table" Relationship="chuangtouModel.FK_HX_USERA_REFERENCE_HX_MEMBE" FromRole="hx_UserAct" ToRole="hx_member_table" />
+    <NavigationProperty Name="hx_RewardType" Relationship="chuangtouModel.FK_HX_USERA_REFERENCE_HX_REWAR" FromRole="hx_UserAct" ToRole="hx_RewardType" />
+  </EntityType>
+  <Association Name="FK_HX_USERA_REFERENCE_HX_ACTIV2">
+    <End Type="chuangtouModel.hx_ActivityTable" Role="hx_ActivityTable" Multiplicity="0..1" />
+    <End Type="chuangtouModel.hx_UserAct" Role="hx_UserAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_ActivityTable">
+        <PropertyRef Name="ActID" />
+      </Principal>
+      <Dependent Role="hx_UserAct">
+        <PropertyRef Name="ActID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HX_USERA_REFERENCE_HX_ACTIV">
+    <End Type="chuangtouModel.hx_ActivityType" Role="hx_ActivityType" Multiplicity="0..1" />
+    <End Type="chuangtouModel.hx_UserAct" Role="hx_UserAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_ActivityType">
+        <PropertyRef Name="ActTypeId" />
+      </Principal>
+      <Dependent Role="hx_UserAct">
+        <PropertyRef Name="ActTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HX_USERA_REFERENCE_HX_MEMBE">
+    <End Type="chuangtouModel.hx_member_table" Role="hx_member_table" Multiplicity="0..1" />
+    <End Type="chuangtouModel.hx_UserAct" Role="hx_UserAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_member_table">
+        <PropertyRef Name="registerid" />
+      </Principal>
+      <Dependent Role="hx_UserAct">
+        <PropertyRef Name="registerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HX_USERA_REFERENCE_HX_REWAR">
+    <End Type="chuangtouModel.hx_RewardType" Role="hx_RewardType" Multiplicity="0..1" />
+    <End Type="chuangtouModel.hx_UserAct" Role="hx_UserAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hx_RewardType">
+        <PropertyRef Name="RewTypeID" />
+      </Principal>
+      <Dependent Role="hx_UserAct">
+        <PropertyRef Name="RewTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ViewDetailsReport">
+    <Key>
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="InvestAllMoney" />
+      <PropertyRef Name="FoldAllMoney" />
+      <PropertyRef Name="IsFirstInvest" />
+      <PropertyRef Name="JanMoney" />
+      <PropertyRef Name="MarMoney" />
+      <PropertyRef Name="JunMoney" />
+    </Key>
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="registration_time" Type="DateTime" Precision="3" />
+    <Property Name="useridentity" Type="Int32" />
+    <Property Name="InvestAllMoney" Type="Decimal" Nullable="false" Precision="38" Scale="2" />
+    <Property Name="FoldAllMoney" Type="Decimal" Nullable="false" Precision="38" Scale="6" />
+    <Property Name="RechargeAllMoney" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="IsFirstInvest" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="JanMoney" Type="Decimal" Nullable="false" Precision="38" Scale="2" />
+    <Property Name="MarMoney" Type="Decimal" Nullable="false" Precision="38" Scale="2" />
+    <Property Name="JunMoney" Type="Decimal" Nullable="false" Precision="38" Scale="2" />
+  </EntityType>
+  <EntityType Name="V_hx_Bid_records_borrowing_target">
+    <Key>
+      <PropertyRef Name="bid_records_id" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="registerid" />
+      <PropertyRef Name="available_balance" />
+      <PropertyRef Name="borusername" />
+      <PropertyRef Name="project_type_id" />
+      <PropertyRef Name="JiaxiNum" />
+      <PropertyRef Name="BonusAmt" />
+    </Key>
+    <Property Name="borrowing_title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="bid_records_id" Type="Int32" Nullable="false" />
+    <Property Name="borrower_registerid" Type="Int32" />
+    <Property Name="targetid" Type="Int32" />
+    <Property Name="loan_number" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="annual_interest_rate" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="current_period" Type="Int32" />
+    <Property Name="investment_amount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="value_date" Type="DateTime" Precision="3" />
+    <Property Name="investment_maturity" Type="DateTime" Precision="3" />
+    <Property Name="invest_time" Type="DateTime" Precision="3" />
+    <Property Name="invest_state" Type="Int32" />
+    <Property Name="flow_return" Type="Int32" />
+    <Property Name="repayment_amount" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="repayment_period" Type="DateTime" Precision="3" />
+    <Property Name="investor_registerid" Type="Int32" />
+    <Property Name="payment_status" Type="Int32" />
+    <Property Name="withoutinterest" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="haveinterest" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="realname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="registerid" Type="Int32" Nullable="false" />
+    <Property Name="payment_options" Type="Int32" />
+    <Property Name="contractid" Type="Int32" />
+    <Property Name="contractpath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="life_of_loan" Type="Int32" />
+    <Property Name="unit_day" Type="Int32" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UsrCustId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FrozenidAmount" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="FrozenidNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FrozenState" Type="Int32" />
+    <Property Name="FreezeTrxId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrUsrCustid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="available_balance" Type="Decimal" Nullable="false" Precision="38" Scale="2" />
+    <Property Name="tender_state" Type="Int32" />
+    <Property Name="invitationcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="borrealname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="borusername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrdId" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="borrowing_balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="ordstate" Type="Int32" />
+    <Property Name="IsLoans" Type="Int32" />
+    <Property Name="project_type_id" Type="Int32" Nullable="false" />
+    <Property Name="JiaxiNum" Type="Decimal" Nullable="false" Precision="6" Scale="2" />
+    <Property Name="BonusAmt" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="release_date" Type="DateTime" Precision="3" />
+    <Property Name="repayment_date" Type="DateTime" Precision="3" />
+    <Property Name="registration_time" Type="DateTime" Precision="3" />
+    <Property Name="Channelsource" Type="Int32" />
+    <Property Name="Tid" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="service_charge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="useridentity" Type="Int32" />
+    <Property Name="usertypes" Type="Int32" />
+    <Property Name="iD_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Holiday">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Starttime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Endtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DuringDays" Type="Int32" Nullable="false" />
+    <Property Name="Comments" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsEnable" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

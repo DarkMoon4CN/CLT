@@ -1,0 +1,110 @@
+﻿
+@using System.Data
+@using ChuanglitouP2P.Common
+@{
+    ViewBag.Title = "项目投资记录";
+    Layout = "~/Views/Shared/Body_Layout.cshtml";
+
+    var pageid = ViewBag.pageid == null ? 1 : (int)ViewBag.pageid;
+    var pagecount = ViewBag.pagecount == null ? 1 : (int)ViewBag.pagecount;
+    var tid = ViewBag.tid == null ? 0 : (int)ViewBag.tid;
+    var state = ViewBag.state == null ? 0 : (int)ViewBag.state;
+    var dif = ViewBag.dif == null ? 0 : (decimal)ViewBag.dif;
+    var nrt = ViewBag.nrt == null ? 0 : (int)ViewBag.nrt;
+    var etime = ViewBag.etime == null ? 0 : (int)ViewBag.etime;
+}
+
+<header class="header">
+    <div class="return"><a href="#"></a></div>
+    <h2 class="head_title">项目投资记录</h2>
+</header>
+<section class="detail_column">
+    <div class="invest_record clearfix">
+        <ul>
+            <li>手机号</li>
+            <li>投资金额</li>
+            <li>投资时间</li>
+        </ul>
+        @if (ViewBag.Record_Dt != null)
+        {
+            var Record_Dt = ViewBag.Record_Dt as DataTable;
+            if (Record_Dt != null && Record_Dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in Record_Dt.Rows)
+                {
+                    <ul>
+                        <li>@(Utils.hidemobile(dr["mobile"].ToString()))</li>
+                        <li>@(decimal.Parse(dr["investment_amount"].ToString()).ToString("0.00"))</li>
+                        <li>@(DateTime.Parse(dr["invest_time"].ToString()).ToString("yyyy-MM-dd HH:mm:ss"))</li>
+                    </ul>
+                }
+            }
+        }
+    </div>
+</section>
+<section class="page_box">
+    <div class="page_prev">
+        @if (pageid > 1)
+        {
+            <a href="/home/InvestmentRecord?tid=@(tid)&pageid=@(pageid-1)&state=@(state)&dif=@(dif)&nrt=@(nrt)&etime=@(etime)">上一页</a>
+        }
+        else
+        {
+            <a href="javascript:void(0);">上一页</a>
+        }
+    </div>
+    <div class="page_number">@(pageid)/@(pagecount)</div>
+    <div class="page_next">
+        @if (pageid < pagecount)
+        {
+            <a href="/home/InvestmentRecord?tid=@(tid)&pageid=@(pageid+1)&state=@(state)&dif=@(dif)&nrt=@(nrt)&etime=@(etime)">下一页</a>
+        }
+        else
+        {
+            <a href="javascript:void(0);">下一页</a>
+        }
+    </div>
+</section>
+<div class="bot_height"></div>
+<div class="touzi_btn">
+
+
+    @if (state == 2)
+    {
+        if (etime > 0)
+        {
+            if (dif <= 0)
+            {
+                <a href="#">满标 </a>
+            }
+            else
+            {
+                if (nrt == 0)
+                {
+                    <a href="/home/InvestConfirm?id=@(tid)">立即投资 </a>
+                }
+                else
+                {
+                    <a href="#">未开始 </a>
+                }
+            }
+        }
+        else
+        {
+            <a href="#">项目已结束</a>
+        }
+    }
+    else if (state == 3)
+    {
+        <a href="#">满标</a>
+    }
+    else if (state == 4)
+    {
+        <a href="#">还款中</a>
+    }
+    else if (state == 5)
+    {
+        <a href="#">已还清</a>
+    }
+
+</div>

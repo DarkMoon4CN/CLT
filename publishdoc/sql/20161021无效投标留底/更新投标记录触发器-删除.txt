@@ -1,0 +1,29 @@
+GO
+/****** Object:  Trigger [dbo].[hx_Bid_records_targetdelete]    Script Date: 2016/10/21 12:54:42 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[hx_Bid_records_targetdelete]
+ON [dbo].[hx_Bid_records]
+INSTEAD OF DELETE
+AS
+BEGIN
+	SET NOCOUNT ON;
+	declare @bid_records_id int,@investment_amount numeric(38,6),@targetid int,@investor_registerid int ;  --定义一个变量id
+
+	select @bid_records_id=bid_records_id,@investment_amount=investment_amount,@targetid=targetid,@investor_registerid=investor_registerid from deleted;
+	update hx_borrowing_target  set fundraising_amount=fundraising_amount-@investment_amount where targetid=@targetid;
+    update hx_member_table set InvestNum=InvestNum-1 where registerid=@investor_registerid;
+	--delete hx_td_frozen where bid_records_id=@bid_records_id  --先删除该项目下的投资冻结 这个位置得手动处理
+	delete hx_income_statement where bid_records_id=@bid_records_id  --先删除该项目下的投资记录
+	delete hx_Bid_records where bid_records_id=@bid_records_id  --然后再删除 该项目
+	--update hx_member_table  set available_balance=available_balance+@investment_amount where registerid=@investor_registerid; --删除时同时还原金额
+	insert into hx_Bid_records_deleted 
+([bid_records_id],[borrower_registerid],[targetid] ,[loan_number],[annual_interest_rate],[current_period]
+,[investment_amount],[value_date],[investment_maturity],[invest_time],[invest_state],[flow_return],[repayment_amount],[repayment_period],[investor_registerid],[payment_status],[withoutinterest],[haveinterest],[contractid],[contractpath],[invitationcode],[OrdId],[ordstate],[IsLoans],[JiaxiNum],[BonusAmt],[deletedTime])
+     select *,GETDATE() from deleted;
+
+    ----新库不再使用activitylog表
+	-- update ActivityLogs set usedRecordID=0,usedtargetId=0,useStatus=0 where Logid in(select Logid from dbo.ActivityLogs where usedrecordid>0 and usedrecordid not in (select bid_records_id from hx_Bid_records)) 
+END

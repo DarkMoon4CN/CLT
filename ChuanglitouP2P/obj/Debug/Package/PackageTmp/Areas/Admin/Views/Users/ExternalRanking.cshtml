@@ -1,0 +1,351 @@
+﻿
+@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.hx_Bid_records>
+    @{
+        ViewBag.Title = "会员列表";
+        Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+        var isinvest = ViewBag.IsInvestment;
+        var projecttermss = ViewBag.ProjectTerms;
+
+    }
+
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Areas/Admin/js/common.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+    <script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+    <script>
+        $(function () {
+            load();
+            $("#btnAsyncMoney").click(function () {
+                if (confirm("该操作执行时间较长，执行期间请不要重复点击，确定执行该操作吗？")) {
+                    $.post("/admin/Users/AsyncAllUserMoney", "", function (result) {
+                        alert(result);
+                    });
+                }
+            });
+
+            $("#downloadExcel").bind("click", function () {
+                outputExcel();
+            });
+
+        });
+
+        function load() {
+            $("#InvestDateStart").hide();
+            $("#investStartTime").hide();
+            $("#InvestDateEnd").hide();
+            $("#investEndTime").hide();
+
+            var pro = $("#projectterms").val();
+
+            obj = document.getElementsByName("projectterm");
+
+            if (pro.indexOf('1') >= 0) {
+                for (k in obj) {
+                    if (obj[k].value == "1")
+                        obj[k].checked = true;
+                }
+            }
+            if (pro.indexOf('3') >= 0) {
+                for (k in obj) {
+                    if (obj[k].value == "3")
+                        obj[k].checked = true;
+                }
+            }
+            if (pro.indexOf('6') >= 0) {
+                for (k in obj) {
+                    if (obj[k].value == "6")
+                        obj[k].checked = true;
+                }
+            }
+
+            var useridentity = $("#hid_useridentity").val();
+            $("#useridentity").val(useridentity);
+            var istruename = $("#hid_IsTrueName").val();
+            $("#IsTrueName").val(istruename);
+            var iscps = $("#hid_IsCPS").val();
+            $("#IsCPS").val(iscps);
+        }
+
+        function downloadExcel(url) {
+            alert(url);
+            var obj = $("#downloadExcelBtn");
+            obj.attr("href", url);
+            document.getElementById("downloadExcelBtn").click();
+        };
+
+        function isinvestment() {
+
+            var investmentis = $("#IsInvestment").val();
+
+            if (investmentis == 1)//已投资
+            {
+                $("#InvestDateStart").show();
+                $("#investStartTime").show();
+                $("#InvestDateEnd").show();
+                $("#investEndTime").show();
+
+            } else if (investmentis == 0)//未投资
+            {
+                $("#InvestDateStart").hide();
+                $("#investStartTime").hide();
+                $("#InvestDateEnd").hide();
+                $("#investEndTime").hide();
+            } else {
+
+                $("#InvestDateStart").hide();
+                $("#investStartTime").hide();
+                $("#InvestDateEnd").hide();
+                $("#investEndTime").hide();
+            }
+        };
+
+        function getprojectterm() {
+
+            var radiovalue;
+            var radio = document.getElementsByName("IsInvestment");
+
+            var radioLength = radio.length;
+            for (var i = 0; i < radioLength; i++) {
+                if (radio[i].checked) {
+                    radiovalue = radio[i].value;
+                }
+            }
+
+            var investCount = $("#InvestmentCount").val();
+
+            if (radiovalue == 1 && investCount <= 0 && investCount != "") {
+                alert("投资次数与是否投资条件相悖！请重新选择是否投资或投资次数的查询条件")
+            }
+
+            obj = document.getElementsByName("projectterm");
+            check_val = [];
+            for (k in obj) {
+                if (obj[k].checked)
+                    check_val.push(obj[k].value);
+            }
+            $("#projectterms").val(check_val);
+        }
+
+        function closewindows() {
+            layer.close(exportwindow);
+        }
+    </script>
+
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>><a href="javascript:void(0)"> 客服数据用户投资排名</a></h2>
+    <div class="z_body">
+        <p class="tP3">
+            快速搜索
+        </p>
+        @using (Html.BeginForm("ExternalRanking", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="tP4 tx_tp4" style="height:30px; padding-bottom:15px; ">
+                <div style="height:27px;">
+
+                    <label>排列前几名：</label>
+                    <input type="text" class="txt1" id="RankingHow" name="RankingHow" value="@(ViewBag.RankingHow)" style="width:100px;" />&nbsp;&nbsp;
+
+                    <label>排列方法：</label>
+
+                    <select name="IsInvestment" id="IsInvestment" onchange="isinvestment();" style="padding-left: 10px;height: 24px;">
+                        <option value="-1">请选择</option>
+                        <option value="1">正序</option>
+                        <option value="0">倒序</option>
+                    </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <input type="submit" class="btn2" style="width:100px;" value="查&nbsp;&nbsp;&nbsp;询" onclick="getprojectterm()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="btn2" id="downloadExcel" value="导&nbsp;&nbsp;&nbsp;入&nbsp;&nbsp;&nbsp;数&nbsp;&nbsp;&nbsp;据" />
+
+                </div>
+
+            </div>
+        }
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            会员列表
+        </h3>
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>登录名</th>
+                    <th>注册时间</th>
+                    <th>投资总金额</th>
+                    <th>投资笔数</th>
+                </tr>
+                @if (Model != null)
+                {
+                    int i = 0;
+                    foreach (var item in Model)
+                    {
+                        i = i + 1;
+                        <tr>
+                            <td>@i</td>
+                            <td>@item.registerid</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <style type="text/css">
+            .PagedList-goToPage {
+                display: inline-block;
+                width: 20%;
+            }
+
+                .PagedList-goToPage fieldset {
+                    border: none;
+                }
+
+            .pagination-container {
+                display: inline-block;
+                width: 55%;
+            }
+        </style>
+        <script type="text/javascript">
+            $(function () {
+                $(".PagedList-goToPage label").text("页码");
+                $(".PagedList-goToPage input[type='submit']").val("跳转");
+            })
+        </script>
+        <div class="pagination ue-clear">
+            <div>
+                <div style="overflow:hidden">
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("ExternalRanking", new
+           {
+               page,
+               starttime = @ViewBag.startTime,
+               endTime = @ViewBag.EndTime,
+               useridentity = @ViewBag.useridentity,
+               istruename = @ViewBag.IsTrueName,
+               iscps = @ViewBag.IsCPS,
+               beginbalance = @ViewBag.BeginBalance,
+               endbalance = @ViewBag.EndBalance,
+               InvestmentExpireStartDate = @ViewBag.InvestmentExpireStartDate,
+               InvestmentExpireEndDate = @ViewBag.InvestmentExpireEndDate,
+               investCount = @ViewBag.InvestmentCount,
+               investStartTime = @ViewBag.InvestStartTime,
+               investEndTime = @ViewBag.InvestEndTime,
+               IsInvestment = @ViewBag.IsInvestment,
+               projectterms = @ViewBag.ProjectTerms
+           }))
+                    @Html.PagedListGoToPageForm((IPagedList)Model, Url.Action("ExternalRanking", new
+           {
+               starttime = @ViewBag.startTime,
+               endTime = @ViewBag.EndTime,
+               useridentity = @ViewBag.useridentity,
+               istruename = @ViewBag.IsTrueName,
+               iscps = @ViewBag.IsCPS,
+               beginbalance = @ViewBag.BeginBalance,
+               endbalance = @ViewBag.EndBalance,
+               InvestmentExpireStartDate = @ViewBag.InvestmentExpireStartDate,
+               InvestmentExpireEndDate = @ViewBag.InvestmentExpireEndDate,
+               investCount = @ViewBag.InvestmentCount,
+               investStartTime = @ViewBag.InvestStartTime,
+               investEndTime = @ViewBag.InvestEndTime,
+               IsInvestment = @ViewBag.IsInvestment,
+               projectterms = @ViewBag.ProjectTerms
+           }))
+                </div>
+                <div style="padding:10px;font-weight:600">共 @ViewBag.TotalItemCount 条， @ViewBag.TotalPageCount 页数据</div>
+            </div>
+        </div>
+    </div>
+
+    <a href="" id="downloadExcelBtn" style="display:;"></a>
+
+
+
+    <script>
+        $(function () {
+            $('.cnt-wp table tr').css('background', '#f7f7f7');
+            $('.ffjl').click(function () {
+                $('#xubox_shade1').css('display', 'block');
+                $('.xubox_layer').css('display', 'block');
+                var strIds = "";
+                $("input[name='cbx_item']").each(function () {
+                    if ($(this).attr("checked")) {
+                        if (strIds.length > 0) {
+                            strIds = strIds + ",";
+                        }
+                        strIds = strIds + $(this).val();
+                    }
+                });
+
+                $("#registerid").val(strIds);
+
+
+
+            })
+
+        })
+        function closeTck() {
+            $('#xubox_shade1').css('display', 'none');
+            $('.xubox_layer').css('display', 'none');
+
+        }
+        function ck() {
+
+
+            var vl = $("#txtTitle").val().trim();
+            if (vl == "") {
+                alert("标题不能为空");
+                return false
+            }
+            vl = $("#bonus_start_time").val().trim();
+            if (vl == "") {
+                alert("开始时间不能为空");
+                return false
+            }
+
+            vl = $("#bonus_end_time").val().trim();
+            if (vl == "") {
+                alert("结束时间不能为空");
+                return false
+            }
+
+            vl = $("#bonus_k").val().trim();
+            if (vl == "") {
+                alert("数量不能为空");
+                return false
+            }
+            if ($("tr[atr=\"rates\"]").css("display") != "none") {
+                vl = $("#ddlRateList").val();
+                if (vl == "0") {
+                    alert("请选择加息券");
+                    return false
+                }
+            }
+
+            if ($("#registerid").val() == "") {
+                alert("请选择用户");
+                return false
+            }
+
+            return true;
+
+        }
+        function choose(i) {
+            if (i == 0) {
+                $("tr[atr=\"rates\"]").hide();
+                $("tr[atr=\"bonus\"]").show();
+            } if (i == 1) {
+                $("tr[atr=\"rates\"]").show();
+                $("tr[atr=\"bonus\"]").hide();
+            }
+        }
+
+    </script>

@@ -1,0 +1,414 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuangLitouP2P.Models;
+@model ChuangLitouP2P.Models.hx_member_table
+@{
+    ViewBag.Title = "提现";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+
+    List<V_UsrBindCardBank> listBank = ViewBag.listBank == null ? null : ViewBag.listBank as List<V_UsrBindCardBank>;
+}
+
+@section css{
+    <style type="text/css">
+        .pop_wrap {
+            width: 100%;
+            background: #fff;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .pop_table tr td {
+            border-bottom: 1px dotted #ddd;
+        }
+
+        .even {
+            background-color: #f5f5f5;
+        }
+        /*奇数行样式*/
+        .odd {
+            background-color: white;
+        }
+        /*偶数行样式*/
+        .selected {
+            background-color: #f8b8b6;
+        }
+
+        .xubox_layer {
+            margin-left: -98.5px !important;
+        }
+
+        .bg_Gray {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            color: #fff;
+            display: block;
+            text-align: center;
+            font-size: 18px;
+            margin: 12px auto;
+            float: left;
+            border-radius: 2px;
+            background-color: #9ba4a8;
+            cursor: text;
+        }
+
+        #tipsFee {
+            color: red;
+        }
+
+        .confirm_btn_box {
+            margin: 0px 10px;
+        }
+    </style>
+}
+@section js{
+    @Url.File("/js/jquery-1.9.1.min.js").ToHtml()
+    @Url.File("/js/layer.min.js").ToHtml()
+    @Url.File("/js/index.js").ToHtml()
+    <script type="text/javascript">
+
+        var _minTrans = 1;
+        var _perTrans = 1;
+        $(function () {
+
+            $("#bank_holder label").text('@ViewBag.blankname');
+            $("#cardid label").text('@ViewBag.OpenBankId').attr("isgren", '@ViewBag.isGren');
+
+            $("#Button1").click(function () {
+                investAmtChange();
+            });
+
+            $("#bank_pop").hide();
+            $(".layer_pop_bg").hide();
+            $('#bank_holder').click(function () {
+                $("body,html").css({ overflow: "hidden" });
+                $(".layer_pop_bg").show();
+                $('#mintbar').slideUp('slow');
+                anim(200);
+            });
+            $('.layer_pop_bg').click(function () {
+                $("body,html").css({ overflow: "auto" });
+                $(".layer_pop_bg").hide();
+                $("#bank_pop").slideDown();
+                anim(0);
+
+
+            });
+
+
+            $("tbody>tr").on('click', function () {
+                var bcode = $(this).find("#bcode").val();
+                var bname1 = $(this).find("#bname").val();
+                var bcard_no = $(this).find("#bcard_no").val();
+                $('#cardid label').text(bcard_no).attr("isgren", $(this).attr("isgren"));
+                $("#UsrBindCardID").val($(this).attr("usrBindCardID"));
+                $('#bank_holder label').text(bname1);
+                $('#bankcode').val(bcode);
+                $(".layer_pop_bg").hide();
+                $("#bank_pop").slideDown();
+                anim(0);
+                checkGren();
+                calcFeeAmt();
+            });
+
+            $("input[type='radio'][name='cashType']").click(function () {
+                $("#UsrCashType").val($(this).attr("cashtype"));
+                investAmtChange();
+                checkGren();
+                calcFeeAmt();
+            });
+            $("#UsrCashType").val($("input[type='radio'][name='cashType']:checked").attr("cashtype"));
+
+            calcFeeAmt();
+
+            $("#rdoImmediate").click(function () {
+                $("#tipsFee").text("（手续费由用户支付，节假日汇付天下会加收手续费，具体金额以汇付收取为准。）");
+            });
+            $("#rdoFash").click(function () {
+                $("#tipsFee").text("（已由创利投为您垫付）");
+            });
+            //var fee = calcFeeAmt();
+            //if (fee > 0) {
+            //    var cashType = $("input[type='radio'][name='cashType']:checked").attr("cashtype");
+            //    if (cashType == 2) {
+            //        $("#feeMoney").text(fee.toFixed(2) + "元");
+            //        $("#tipsFee").text("手续费由用户支付，节假日汇付天下会加收手续费，具体金额以汇付收取为准。");
+            //    }
+            //    else {
+            //        $("#feeMoney").text(fee.toFixed(2) + "元");
+            //        $("#tipsFee").text("手续费由创利投为您垫付");
+            //    }
+            //}
+
+            function checkGren() {
+                var cardGren = $('#cardid label').attr("isgren");
+                var cashType = $("input[type='radio'][name='cashType']:checked").attr("cashtype");
+                if (cardGren == "0" && cashType == "2") {
+                    //$("#rdoImmediate").prop("checked", false).prop("disabled", true);
+                    $("#divTips").show().css("display", "block");
+                    $("#casel").prop("disabled", true).addClass("bg_Gray").removeClass("invest_btn");
+                    $("#feeMoney").text("");
+                    $("#tipsFee").text("").parent("div").hide();;
+                }
+                else {
+                    //$("#rdoImmediate").removeProp("disabled");
+                    $("#divTips").hide();
+                    $("#casel").prop("disabled", false).removeClass("bg_Gray").addClass("invest_btn");
+                    $("#tipsFee").parent("div").show();
+                }
+            }
+            checkGren();
+            function checkMoneyOver(money) {
+                if ($.trim(money).length <= 0 || isNaN(money)) {
+                    $("#casel").unbind("click").prop("type", "button").click(function () { alert("提现金额不正确，请重新填写"); });
+                    //$("#casel").prop("disabled", true).addClass("bg_Gray").removeClass("invest_btn");
+                }
+                else if (parseFloat(money) > parseFloat('@Model.available_balance')) {
+                    $("#casel").unbind("click").prop("type", "button").click(function () { alert("提现金额不能大于可用余额"); });
+                    //$("#casel").prop("disabled", true).addClass("bg_Gray").removeClass("invest_btn");
+                }
+                else {
+                    $("#casel").unbind("click").prop("type", "submit");
+                    //$("#casel").prop("disabled", false).removeClass("bg_Gray").addClass("invest_btn");
+                }
+            }
+            $("#amt").blur(function () {
+                var money = $(this).val();
+                checkMoneyOver(money);
+            });
+            checkMoneyOver($("#amt").val());
+            $("#amt").change(function () {
+                investAmtChange();
+            }).keyup(function () {
+                //if ((event.keyCode < 48 || event.keyCode > 57) && event.keyCode != 46 || /\.\d\d$/.test(value)) return false;
+                var delayFlag;
+                clearTimeout(delayFlag);
+                var delayFlag = setTimeout(function () { investAmtChange(); }, 500);
+            });
+        });
+        //返回true表示传入参数不是有效数字
+        function checkMoney(moneyObj) {
+            return $.trim(moneyObj).length <= 0 || isNaN(moneyObj) || parseFloat(moneyObj) <= 0;
+        }
+        //function calcFeeAmt() {
+        //    var feeAmt = 0;
+        //    var money = $("#amt").val();
+        //    var cashType = $("input[type='radio'][name='cashType']:checked").attr("cashtype");
+        //    if (checkMoney(money) || cashType.length <= 0) { return 0; }
+        //    if (cashType == 0) { feeAmt = 2; }
+        //    if (cashType == 1 || cashType == 2) { feeAmt = parseFloat(money) * 5 / 10000 + 2; }
+        //    return feeAmt;
+        //}
+        function setFeeAmt(cashType, fee) {
+            //var feeAmt = 0;
+            //var money = $(".li_04_input").val();
+            //var cashType = $("input[type='radio'][name='tixuan']:checked").attr("cashtype");
+            //if (checkMoney(money) || cashType.length <= 0) { return 0; }
+            //if (cashType == 0) { feeAmt = 2; }
+            //if (cashType == 1 || cashType == 2) { feeAmt = parseFloat(money) * 5 / 10000 + 2; }
+            //return feeAmt;
+            $("#feeMoney").text(fee + "元");
+            if (cashType == 2) {
+                $("#tipsFee").text("（手续费由用户支付，节假日汇付天下会加收手续费，具体金额以汇付收取为准。）");
+                if (fee == 0) {
+                    $("#feeMoney").text("提现金额*0.5‰*（间隔天数+1）+2元");
+                }
+            }
+            else {
+                $("#tipsFee").text("（已由创利投为您垫付）");
+                if (fee == 0) {
+                    $("#feeMoney").text("2元/笔");
+                }
+            }
+        }
+        function calcFeeAmt() {
+            var money = $("#amt").val();
+            var cashType = $("input[type='radio'][name='cashType']:checked").attr("cashtype");
+            if (checkMoney(money) || cashType.length <= 0) { setFeeAmt(cashType, 0); return; }
+            $.post("/usercenter/CalcFeeAmt", { cashType: cashType, transAmt: money }, function (result) {
+                setFeeAmt(cashType, result);
+            });
+        }
+
+        //投资金额改变
+        function investAmtChange() {
+            //var obj = $("#amt").get(0);
+            //var num = parseInt(obj.value);
+            //if (isNaN(num) || num < _perTrans) {
+            //    layer.msg("提现金额为" + _perTrans + "元！", 1, 5);
+            //    num = _perTrans;
+            //    $("#amt").val(num);
+            //    return false;
+            //}
+            var cashType = $("input[type='radio'][name='cashType']:checked").attr("cashtype");
+            if (checkMoney($("#amt").val())) { return false; }
+            //var fee = calcFeeAmt();
+            //if (cashType == 2) {
+            //    $("#feeMoney").text(fee.toFixed(2) + "元");
+            //    $("#tipsFee").text("手续费由用户支付，节假日汇付天下会加收手续费，具体金额以汇付收取为准。");
+            //}
+            //else {
+            //    $("#feeMoney").text(fee.toFixed(2) + "元");
+            //    $("#tipsFee").text("手续费由创利投为您垫付");
+            //}
+            calcFeeAmt();
+        }
+
+        function clearNoNum(obj) {
+            obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+            obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+            obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+            obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+        }
+        //选择银行
+        function anim(duration) {
+            $('#bank_pop').animate(
+                { height: 'toggle' },
+                { duration: duration }
+            );
+        }
+        function checkfrom() {
+            var bank_name1 = $("#bank_holder label").text();
+            if (bank_name1 == "") {
+                alert('请选择银行');
+                return false;
+            }
+            var m = parseInt($("#amt").val());
+            if (m == 0) {
+                alert('提现金额不能为0');
+                return false;
+            }
+        }
+    </script>
+}
+
+<div id="kuandu"></div>
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">提现</h2>
+</header>
+<section class="user_head_tabs">
+    <div><a href="/usercenter/Cash" class="ptabs_curr">我要提现</a></div>
+    <div><a href="/Cash/CashLLRecord">连连记录</a></div>
+    <div><a href="/Cash/CashRecord">汇付记录</a></div>
+</section>
+
+@using (Html.BeginForm("CashGENERAL", "Cash", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1", @id = "Form1" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section>
+        <div class="group_item">
+            <div class="group_tit">可用余额：</div>
+            <div class="group_txt" style="padding-left: 15px;">@Model.available_balance 元</div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">可提现金额：</div>
+            <div class="group_txt" style="padding-left: 15px;">@Model.available_balance  元</div>
+        </div>
+    </section>
+    <section class="invest_box">
+        <div class="group_item">
+            <div class="group_tit">选择银行卡：</div>
+            <div class="group_txt" id="bank_holder">
+                <label type="tel" readonly class="group_text" name="bank_holder">请选择银行</label>
+            </div>
+            @*<div class="group_chevron"></div>*@
+        </div>
+    </section>
+    <section class="invest_box">
+        <div class="group_item">
+            <div class="group_tit">银行代码：</div>
+            <div class="group_txt" id="cardid"><label type="tel" readonly="readonly" placeholder="" class="group_text" name="cardid"></label></div>
+            @*<div class="group_chevron"></div>*@
+        </div>
+    </section>
+
+    <input type="hidden" id="UsrBindCardID" name="UsrBindCardID" value="@ViewBag.UsrBindCardID" />
+    <input type="hidden" id="UsrCashType" name="UsrCashType" />
+
+    <section class="invest_box">
+        <div class="group_item">
+            <div class="group_tit">提现金额：</div>
+            <div class="group_txt"><input type="tel" value="" placeholder="请填写提现金额" class="group_text" name="amt" id="amt" /></div>
+            @*<div class="group_chevron"></div>*@
+        </div>
+        <div class="group_item">
+            <div class="group_tit">手续费：</div>
+            <div class="group_txt" style="color:#666;padding-left: 15px;"><label id="feeMoney">2元/笔+提现金额0.05%</label></div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">提现方式：</div>
+            <div class="group_txt">
+                <input type="radio" name="cashType" id="rdoFash" checked="checked" cashtype="1" style="margin-left:15px;" /><label for="rdoFash">普通提现</label>
+                <input type="radio" name="cashType" id="rdoImmediate" cashtype="2" style="margin-left:1em;" /><label for="rdoImmediate">即时提现</label>
+            </div>
+        </div>
+
+    </section>
+    <div class="group_item" style="color:red;padding-left:2.5em;margin: 10px auto 0px auto;min-height: 0px">
+        <div style="line-height:1.5em;" id="tipsFee"></div>
+    </div>
+    <div class="group_item" id="divTips" style="color:red;padding: 0 2.5em;margin: 10px auto 0px auto;min-height: 0px;display:none;">
+        <div style="line-height:1.5em;">
+            此银行卡不支持即时提现服务，请选择其他提现方式。
+        </div>
+    </div>
+    <div class="confirm_btn_box">
+        <input name="casel" id="casel" value="申请提现" type="submit" class="invest_btn" onclick="return checkfrom();">
+    </div>
+}
+
+<section class="tips_txt" style="margin-top:30px;">
+    尊敬的用户，所有银行都支持快速提现服务。<br />
+    即时提现服务只支持以下银行：工商、农业、招商、北京、中行、民生、渤海、光大、兴业、浙商、广发、华夏、平安、上海农商<br /><br />
+    温馨提示<br />
+    1、为了您的资金安全，请确保提现银行账号的姓名和您进行实名验证的姓名一致。<br />
+    2、提现过程遇到问题，请联系客服，010-53732056<br />
+    3、请确保您输入的是正确的储蓄卡账号，而非信用卡账号。<br />
+    4、实际到账时间以第三方支付平台及提现银行实际操作为准。<br />
+    5、创利投平台目前通过第三方平台汇付天下进行资金提现。<br />
+    6、普通提现费用为每笔2元（暂由创利投平台颠覆）。<br />
+    7、普通提现到账时间：工作日（周一至周五）当日申请的提现，T+1工作日到账；周六日和法定节假日提现，到账时间顺延。<br />
+    8、即时提现费用按照每笔取现金额的0.5‰+2元/笔收取;如遇节假日，则按照提现金额的0.5‰×（间隔的节假日天数+1）+2元/笔收取。（由客户支付）<br />
+    9、即时提现到账时间为2小时内到账。（注：提现金额20万以上需要平台人工审核，到账时间以实际操作为准）
+</section>
+
+
+<div class="bot_height"></div>
+<script type="text/javascript">
+    var system = {};
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    if (system.win || system.mac || system.xll) {//如果是电脑
+        // window.location.href = "http://www.chuanglitou.com/";
+    } else {  //如果是手机
+        //window.location.href = "http://m.chuanglitou.com/";
+    }
+
+</script>
+
+<script type="text/javascript">
+    // BankcardList();
+    // GetLLTopCity();
+</script>
+<div class="layer_pop_bg"></div>
+
+<div class="bank_pop" id="bank_pop">
+    <div class="bank_title">请选择银行</div>
+    <div class="bank_list">
+        <table width="100%" id="list_tb">
+            <tbody id="datalist">
+                @foreach (var item in listBank)
+                {
+                    <tr isgren="@item.isGren" usrBindCardID="@item.UsrBindCardID"><td height="60"><img src="@Utils.GetImage_url(item.CardImage) ">  @item.BankName  尾号 @item.OpenAcctId.Substring(item.OpenAcctId.Length - 4)  <input id="bcode" name="bcode" value="@item.OpenBankId" type="hidden"> <input id="bcard_no" name="bcard_no" value="@item.OpenBankId" type="hidden"> <input id="bname" name="bname" value="@item.BankName  尾号 @item.OpenAcctId.Substring(item.OpenAcctId.Length-4) " type="hidden">  </td></tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

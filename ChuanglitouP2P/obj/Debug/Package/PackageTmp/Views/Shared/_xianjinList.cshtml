@@ -1,0 +1,83 @@
+﻿@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<hx_UserAct>
+
+
+    <p class="xs changeP wsh_changeP">
+        
+
+        @if (Model.Count > 0)
+        {
+            ChuanglitouP2P.BLL.EF.ActBase aBase = new ChuanglitouP2P.BLL.EF.ActBase();
+            string limitStr = "";
+            foreach (hx_UserAct item in Model)
+            {
+                aBase.GetCanUseLimit(item.UseLifeLoan, out limitStr);
+                limitStr = limitStr == "投资使用无限制" ? "" : limitStr;
+                <em class="emP emP1" onmousemove="mOver(this)" onmouseout="mOut(this)">
+                    <small style="margin:5px 10px;position:absolute;font-size:12px;">@limitStr</small>
+                    <i>
+                        @item.Amt
+                        <strong>元</strong>
+                    </i>
+                    <b>
+                        来&nbsp;&nbsp;&nbsp;源：
+                        @if (item.hx_ActivityTable != null && item.hx_ActivityTable.ActName != string.Empty)
+                        {
+                            @Html.Raw(item.hx_ActivityTable.ActName);
+                        }
+                        else if (item.Title == null || item.Title == string.Empty)
+                        {
+                            @Html.Raw(item.hx_ActivityType.ActName);
+                        }
+                        else
+                        {
+                            @Html.Raw(item.Title);
+                        }
+                    </b><br />
+                    <b>有效期：@Utils.GetStandardDateTime(item.Createtime.ToString(), "yyyy-MM-dd")至 @Utils.GetStandardDateTime(item.AmtEndtime.ToString(), "yyyy-MM-dd")</b>
+                    <em class="cBak cCom wsh_cCom" >
+                        <span>
+                            单笔投资 @(item.Uselower) 元可使用
+                        </span>
+                        <a class="cBak_a" href="/investlist.html">立即使用抵扣券>></a>
+                    </em>
+                </em>
+            }
+
+
+
+
+        <!--分页效果-->
+            <div class="page_box">
+                <div class="page_left">
+                    @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox2", GoToButtonId = "goToBtn2" }, new MvcAjaxOptions
+           { UpdateTargetId = "dTable", HttpMethod = "Post", DataFormId = "searchForm", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "dTable")).AjaxOptions(a => a.SetUpdateTargetId("dTable"))
+                </div>
+                <div class="page_right">
+                    <div class="input-group" style="margin:20px 0">
+                        <span class="input-group-addon">转到第</span>
+                        <input type="text" id="pageIndexBox2" class="form-control input-sm" />
+                        <span class="input-group-addon">页</span>
+                        <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn2">跳转</button></span>
+                    </div>
+                </div>
+            </div>
+
+        }
+        else
+        {
+
+
+            @*<em class="cEmE">
+                <a href=""><img src="/images/cBak4.jpg" alt="" /></a>
+                <span>免费获得抵扣券</span>
+            </em>*@
+            <span style="" class="meiyou">暂无记录</span>
+        }
+
+
+
+
+    </p>

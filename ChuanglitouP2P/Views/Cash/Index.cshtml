@@ -1,0 +1,658 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuanglitouP2P.Model;
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<hx_td_UserCash>
+@{
+    ViewBag.Title = "资金管理-我要提现-创利投";
+    ViewBag.keywords = "资金管理-我要提现-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+
+    M_member_table mmt = (M_member_table)ViewBag.users;
+
+    List<V_UsrBindCardBank> list = ViewBag.UsrBindCard as List<V_UsrBindCardBank>;
+
+    string OpenBankId = "", CardImage = "", UsrBindCardID = "", OpenAcctId = "";
+
+
+    @*
+        dynamic p = ViewBag.o as dynamic;
+        dynamic o = new ExpandoObject();
+        o.Id = "111";
+        o.name = "zcjgkr";
+        ViewBag.o = o;*@
+}
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<link href="~/Content/pagecss.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    var dff;
+    function AjaxStart() {dff= layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+    $(function(){
+        $(".dAdd").click();
+
+    });
+</script>
+<div class="content">
+    <!--公共的左侧-->
+
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+    <!--                                                                     我要提现-->
+    <div class="deposit choose">
+        <div class="dHeader">
+            我要提现
+        </div>
+        <div class="dTab">
+            <p class="dAdd">普通提现</p>
+            <p>快速提现</p>
+            <p>提现记录</p>
+        </div>
+        <div class="dContent" style="clear:both;">
+            <!--普通提现内容-->
+
+            <div class="dTx" style="padding-top:0;">
+                @using (Html.BeginForm("CashGENERAL", "Cash", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1", @id = "Form1", @target = "_blank" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="recOther recOther1" style="display:none;">
+                        <ul id="moreSelect">
+
+                            @if (list != null)
+                            {
+                                if (list.Count() > 0)
+                                {
+                                    foreach (V_UsrBindCardBank item in list)
+                                    {
+
+                                        if (item.defCard == 1)
+                                        {
+
+                                            OpenBankId = item.OpenBankId;
+                                            CardImage = item.CardImage ?? "";
+                                            UsrBindCardID = item.UsrBindCardID.ToString();
+                                            OpenAcctId = item.OpenAcctId;
+                                        }
+                                        <li>
+                                            <a href="javascript:void(0);" tag="@Utils.ReplaceWithSpecialChar(item.OpenAcctId, 3, 4, '*')">
+                                                <img src="@Url.Content(item.CardImage)" name="@item.OpenBankId" alt="gsyh" id="@item.UsrBindCardID">
+                                            </a>
+                                            <span style="margin-left:10px;"> @Utils.ReplaceWithSpecialChar(item.OpenAcctId, 3, 4, '*')</span>
+                                        </li>
+                                    }
+                                }
+
+                            }
+
+                        </ul>
+
+                    </div>
+
+                    <p class="oP1 oP_inner" style="margin-left: 26px;">
+                        <em>提现银行账户：</em>
+
+                        @if (CardImage != "")
+                        {
+                            <a style="display: inline-block;vertical-align: middle;text-align: center;margin-right: 10px;">
+                                <img class="dImg1" src="@Url.Content(CardImage)" align="absmiddle" alt="" />
+                                <span style="display: block;" id="showOpenAcctId"> @Utils.ReplaceWithSpecialChar(OpenAcctId, 3, 4, '*')</span>
+                            </a>
+                            <a href="javascript:void(0);" class="ad_oP ad_oP1" style="display: inline-block;border:none;width:auto;margin-left:0;">
+                                <img src="../images/dGh.jpg" align="absmiddle" alt="" class="bankBtn_img">
+                            </a>
+
+
+                        }
+                        else
+                        {
+                            <a href="javascript:void(0);" onclick="isUserLink('/BindCard/thirdparty_bindbank')" class="ad_oP ad_oP1" style="display: inline-block;">绑定银行卡</a>
+
+                        }
+
+                        <input type="hidden" name="OpenBankId" id="OpenBankId" value="@OpenBankId" />
+                        <input type="hidden" name="UsrBindCardID" id="UsrBindCardID" value="@UsrBindCardID" />
+                        <span class="ad_span ad_span1" id="in_show" style="display:none; padding-left: 20px;">
+
+                            <img src="/images/dGh.jpg" align="absmiddle" alt="" class="bankBtn_img bankBtn_img1" style="display: inline-block;">
+
+
+                        </span>
+                    </p>
+
+
+
+
+                    <p class="dP2">
+                        <em>收款人：</em>
+                        <em>@mmt.realname</em>
+                    </p>
+                    <p class="dP2 dP3">
+                        <em>可提现金额：</em>
+                        <em class="dEm1">@mmt.available_balance</em>
+                        元
+                    </p>
+                    <p class="dP4 dP3">
+                        <em>提现金额：</em>
+                        <input class="dInput" value="@mmt.available_balance" name="TransAmt" id="TransAmt" type="text" placeholder="请输入提现金额" onblur="investAmtChange(this);" />
+                        @*onkeyup="clearNoNum(this)" onafterpaste="clearNoNum(this)" />*@
+                        元
+                        <em class="dEm">您输入的金额有误，请重新输入</em>
+                    </p>
+                    <p class="dP3">
+                        提现手续费：<b id="shouxufei">0</b> 元（由创利投支付）
+                    </p>
+
+                    <p class="dP5">
+                        到账时间：预计<em>@ViewBag.GENERAL</em>（如遇法定节假日，则顺延；具体时间以银行操作为准）
+                    </p>
+                    <p class="dP6">
+                        验证码：
+                        <input type="text" id="vcode" name="vcode" placeholder="请输入验证码" />
+
+                        <img id="image1" src="/Cash/CashValidateCode?a=@ViewBag.rndstr" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();" />
+                        <em class="dEm5"></em>
+                    </p>
+                    <input class="dBtn" type="submit" value="我要提现" onclick="javascript:return CheckForm1('Form1');" />
+
+
+
+                        <p style="height: 9px;background: #f0f0f0;margin:0;margin-top: 70px;"></p>
+                        <div class="introduce">
+                            <h3>普通提现说明</h3>
+                            <p class="dJp1">
+                                1.创利投平台目前通过第三方平台汇付天下进行资金提现，普通提现每笔费用为3元（暂由创利投平台垫付）；
+                            </p>
+                            <p class="dJp2">
+                                2.普通提现到账时间（T+1），工作日（周一至周五）当日申请的提现，T+1工作日到账（周六/周日/法定节假日提现到账<br />&nbsp;&nbsp;&nbsp;&nbsp;时间顺延）；
+                            </p>
+                            <p>3.实际到账时间依据账户托管方（第三方支付平台）及提现银行而有所差异；</p>
+                            <p>4.第三方支付公司严禁信用卡充值、套现等行为，一经发现将予以处罚，并影响银行征信记录。</p>
+
+                        </div>
+
+                }
+            </div>
+            <!--快捷提现内容-->
+
+
+            <div class="dTx" style="display: none;padding-top:0;">
+                @using (Html.BeginForm("CashQm", "Cash", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form2", @id = "Form2", @target = "_blank" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="recOther recOther2" style="display: none;">
+
+                        <ul id="moreSelect">
+
+
+                            @if (list != null)
+                            {
+                                if (list.Count() > 0)
+                                {
+                                    foreach (V_UsrBindCardBank item in list)
+                                    {
+
+                                        if (item.defCard == 1)
+                                        {
+                                            OpenBankId = item.OpenBankId;
+                                            CardImage = item.CardImage ?? "";
+                                            UsrBindCardID = item.UsrBindCardID.ToString();
+                                        }
+                                        <li>
+                                            <a href="javascript:void(0);" style="display: inline-block;text-align: center; overflow: hidden;margin-left:0.5%;" tag="@Utils.ReplaceWithSpecialChar(item.OpenAcctId, 3, 4, '*')">
+                                                <img src="@Url.Content(item.CardImage)" name="@item.OpenBankId" alt="@item.OpenBankId" id="@item.UsrBindCardID">
+                                            </a>
+                                            <span style="margin-left:10px;"> @Utils.ReplaceWithSpecialChar(item.OpenAcctId, 3, 4, '*')</span>
+                                        </li>
+
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <li><a href="javascript:void(0);" onclick="isUserLink('/BindCard/thirdparty_bindbank')" class="ad_oP ad_oP1" style="display: inline-block;">绑定银行卡</a></li>
+
+                            }
+
+                        </ul>
+
+                    </div>
+
+                    <p class="oP1 oP_inner" style="margin-left: 26px;">
+                        提现银行账户：
+                        @*if (CardImage != "")
+                            {
+                                <img class="dImg1" src="@Url.Content(CardImage)" align="absmiddle" alt="" />
+                            }
+                        *@
+
+                        <span class="ad_span ad_span2" padding-left 20px;">
+
+                            @if (list != null && CardImage != "")
+                            {
+                                if (list.Count > 0)
+                                {
+                                    <input type="hidden" name="OpenBankId" id="OpenBankId" value="@OpenBankId" />
+                                    <input type="hidden" name="UsrBindCardID" id="UsrBindCardID" value="@UsrBindCardID" />
+                                    <a style="display: inline-block;vertical-align: middle;text-align: center;margin-right: 10px;">
+                                        <img class="dImg1 dImg12" id="dImg1zcj" src="@Url.Content(CardImage)" align="absmiddle" alt="" style="cursor:pointer;">
+                                        <span style="display: block;" id="kj_showOpenAcctId"> @Utils.ReplaceWithSpecialChar(OpenAcctId, 3, 4, '*')</span>
+                                    </a>
+
+                                    <img src="/images/dGh.jpg" align="absmiddle" alt="" class="bankBtn_img bankBtn_img2" style="display: inline-block;">
+                                }
+                            }
+                            else
+                            {
+                                <a href="javascript:void(0);" onclick="isUserLink('/BindCard/thirdparty_bindbank')" class="ad_oP ad_oP1" style="display: inline-block;">绑定银行卡</a>
+                            }
+                        </span>
+                    </p>
+                    <p class="dP2">
+                        <em>收款人：</em>
+                        <em>@mmt.realname</em>
+                    </p>
+                    <p class="dP2 dP3">
+                        <em>可提现金额：</em>
+                        <em class="dEm1">@mmt.available_balance</em>
+                        元
+                    </p>
+                    <p class="dP4 dP3">
+                        <em>提现金额：</em>
+                        <input class="dInput" name="TransAmt" id="TransAmt" tag="tixian" type="text" onblur="investAmtChange(this);" placeholder="请输入提现金额" value="@mmt.available_balance" onkeyup="clearNoNum(this)" onafterpaste="clearNoNum(this)" />
+                        元
+                        <em class="dEm">您输入的金额有误，请重新输入</em>
+                    </p>
+                    <p class="dP3">
+                        提现手续费：<b id="shouxufei2">0</b> 元（由创利投支付）
+                    </p>
+                    <p class="dP5">
+                        到账时间：预计<em>@ViewBag.QM</em>（如遇法定节假日，则顺延；具体时间以银行操作为准）
+                    </p>
+                    <p class="dP6">
+                        验证码：
+                        <input type="text" id="vcode" name="vcode" placeholder="请输入验证码" />
+                        <em class="dEm6">
+                            <img id="image2" src="/Cash/CashValidateCode?a=@ViewBag.rndstr" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg1();" />
+                        </em>
+                        <em class="dEm5"></em>
+                    </p>
+
+
+                    <input class="dBtn" type="submit" value="我要提现" onclick="javascript:return CheckForm1('Form2');" />
+
+
+
+
+                            <p style="height: 9px;background: #f0f0f0;margin:0;margin-top: 70px;"></p>
+                            <div class="introduce">
+                                <h3>快速提现说明</h3>
+                                <p class="dJp1">1.&nbsp;创利投平台目前通过第三方平台汇付天下进行资金提现，快速提现每笔费用为10元（暂由创利投平台垫付）；</p>
+                                <p class="dJp2">
+                                    2.&nbsp;快速提现到账时间（T + 0），工作日（周一至周五）14：30之前申请的提现，当日到账；当日14: 30之后的提现，T + 1<br />&nbsp;&nbsp;&nbsp;工作日到账（周六 / 周日 / 法定节假日提现到账时间顺延）；
+                                </p>
+                                <p>3.&nbsp;实际到账时间依据账户托管方（第三方支付平台）及提现银行而有所差异；</p>
+                                <p>4.&nbsp;第三方支付公司严禁信用卡充值、套现等行为，一经发现将予以处罚，并影响银行征信记录。</p>
+                            </div>
+
+                }
+            </div>
+
+
+
+            <!--提现记录内容-->
+            @*<p>
+                    您累计成功取现<strong>@ViewBag.succCount </strong> 笔，累计取现金额为<em> @ViewBag.succTotal </em>元
+                </p>*@
+
+
+
+
+            <div class="dTx dRl dRl_wsh" style="padding-top:0;">
+                <p class="dEmr" style="margin-top: 18px;">
+                    您累计成功取现<strong style="color: rgb(15, 145, 227);"> @ViewBag.succCount </strong>笔，累计取现金额为<em style="margin-right:0px;"> @ViewBag.succTotal </em>元
+                </p>
+                @using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm1", @class = "form-inline well well-sm" }))
+                {
+                    <input type="hidden" name="timeday" id="timeday" value="@ViewBag.timeday" />
+                    <em class="dEmr">今天</em>
+                    <em>近一个月</em>
+                    <em>近三个月</em>
+                    <em class="dEmAdd">全部</em>
+                    <!--日历部分-->
+
+                    <input type="hidden" id="OrdIdState" name="OrdIdState" value="@ViewBag.OrdIdState" />
+                    <input class="jcDate" autocomplete="off" id="startdatetime" name="startdatetime" value="@ViewBag.startdatetime" style="width:95px; height:28px; line-height:20px; padding-left:40px;border:1px solid #f0f0f0;" />
+                    <i class="dRl_i">至</i>
+                    <input class="jcDate" autocomplete="off" id="enddatetime" name="enddatetime" value="@ViewBag.enddatetime" style="width:95px; height:28px; line-height:20px; padding-left:40px;border:1px solid #f0f0f0;" />
+                            <input class="dBtn1" type="submit" value="查询" id="cashlist" onclick="sumsecr1(0)" />
+
+                }
+
+                <div class="dTable dTable_wsh" id="dTable">
+
+
+
+
+
+                    @Html.Partial("_Cashlist", Model)
+
+
+                </div>
+
+            </div>
+
+
+
+
+            @section Scripts{@{Html.RegisterMvcPagerScriptResource();}}
+
+        </div>
+
+    </div>
+</div>
+
+@*<script src="~/Scripts/layer-v3.0.1/layer.js"></script>会影响充值记录翻页效果*@
+<script type="text/javascript">
+
+    var _perTrans=@mmt.available_balance;
+    function changeImg() {
+        $("#image1").attr("src", "/Cash/CashValidateCode?a=" + Math.random());
+    }
+
+    function changeImg1() {
+        $("#image2").attr("src", "/Cash/CashValidateCode?a=" + Math.random());
+    }
+
+    function CheckForm1(Form) {
+
+        if ($('#'+Form+' input[id="OpenBankId"]').val() == "") {
+            layer.msg("请选择取现的银行！", 1, 5);
+            return false;
+        }
+
+        var TransAmt1=$('#'+Form+' input[id="TransAmt"]').val();
+
+        if ( TransAmt1== "") {
+            layer.msg("请输入取现金额！", 1, 5);
+
+            return false;
+        }
+
+        var amt = parseFloat(_perTrans);
+        var abl = parseFloat(TransAmt1);
+        if (isNaN(abl) ||abl <= 0.0) {
+            layer.msg("请输入取现金额！", 1, 5);
+            return false;
+        }
+        else {
+            if (amt <= 0) {
+                layer.msg("请输入取现金额！", 1, 5);
+                return false;
+            }
+            else {
+                if (amt < abl) {
+                    layer.msg("取现金额超出范围！", 1, 5);
+                    return false;
+                }
+            }
+        }
+        if ($('#'+Form+' input[id="vcode"]').val() == "") {
+            layer.msg("请输入验证码！", 1, 5);
+            return false;
+        }
+        var ieu = IsExistUser();//UCLeft.cshtml
+        if (ieu == "n")
+        {
+            layer.msg("登录超时,请重新登录..", 2, 5, function () {
+                window.location.href = "/login.html";
+            });
+            return false;
+        }
+        //提现提示页
+        investAlter();
+    }
+
+    //投资金额改变
+    function investAmtChange(obj) {
+        //  var obj = $(dd).get(0);
+
+        var num = parseFloat(obj.value);
+        if (isNaN(num) || num > _perTrans) {
+            if($.trim(obj.value).length>0&&!isNaN(num))
+                layer.msg("最高提现金额为" + _perTrans + "元！", 1, 5);
+            num = _perTrans;
+        }
+        $(obj).val(num);
+        calcShouxufei();
+        clearNoNum(obj);
+        return false;
+    }
+    function calcShouxufei(){
+        var amount=$("#TransAmt").val();
+        var shouxufei;
+        if(amount=="" || amount==0)
+        {
+            shouxufei=0;
+        }
+        else
+        {
+            shouxufei=3;
+        }
+        $("#shouxufei").html(shouxufei.toFixed(2));
+    }
+    $("#TransAmt").keyup(function(){calcShouxufei();});
+    calcShouxufei();
+
+    function clearNoNum(obj) {
+        //obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+        //obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+        //obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+        //obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+
+        var shouxufei;
+        if(obj.value=="" || obj.value==0)
+        {
+            shouxufei=0;
+        }
+        else
+        {
+            shouxufei=10;
+        }
+        $("#shouxufei2").html(shouxufei.toFixed(2));
+    }
+    function sumsecr(cc){
+        $("#OrdIdState").val(cc);
+        $("#searchForm").submit();
+    }
+
+    function sumsecr1(cc){
+        $("#OrdIdState").val(cc);
+
+    }
+
+</script>
+
+<script>
+
+    var isquick = '@ViewBag.Isquick';
+    if(isquick=="True"){
+        $('.bankBtn_img1,.bankBtn_img,bankBtn_img2').remove();
+    }
+
+    /*----网上银行获取银行------------------------------*/
+
+    //$('.ad_oP1').click(function(){
+    //    $('.recOther1').css('display','block');
+    //    isBolck();
+    //});
+    $('.recOther1 ul li a').click(function(){
+        $('.ad_span1').css('display','inline-block');
+        $('.ad_oP1').css('display','none')
+        $('.dImg1').attr('src', ($(this).children('img').eq(0).attr('src')));
+        $('#blankName1').val($(this).children('img').eq(0).attr('name'));
+        //alert($(this).children('img').eq(0).attr('src'));
+
+        $("#showOpenAcctId").text($(this).attr("tag"));
+
+
+        $('#Form1 input[id="OpenBankId"]').val($(this).children('img').eq(0).attr('name'));
+        $('#Form1 input[id="UsrBindCardID"]').val($(this).children('img').eq(0).attr('id'));
+
+        //alert($('#Form1 input[id="UsrBindCardID"]').val());
+
+        //$('#OpenBankId').val($(this).children('img').eq(0).attr('name'));
+
+        //$('#UsrBindCardID').val($(this).children('img').eq(0).attr('id'));
+
+        $('.recOther1').css('display','none');
+        isBolck();
+    });
+    $(function(){
+        $('.bankBtn_img1,.bankBtn_img,bankBtn_img2').click(function(){
+            window.open("/BindCard/thirdparty_bindbank");
+        });
+    });
+    $('.dImg1').click(function(){
+        $('.recOther1').css('display','block');
+        isBolck();
+    });
+    //$(".bankBtn_img1").click(function(){
+    //    $('.recOther1').css('display','block');
+    //    isBolck();
+    //});
+    function isBolck(){
+        //if($('.recOther1').css('display')=='block'){
+        //    $('.bankBtn_img1').css('display','none')
+        //}else{
+        //    $('.bankBtn_img1').css('display','inline-block')
+        //}
+    }
+
+
+    /*----快捷银行获取银行------------------------------*/
+    //$('.ad_oP2').click(function(){
+    //    $('.recOther2').css('display','block');
+    //    isBolck();
+    //});
+    $('.recOther2 ul li a').click(function(){
+        $('.ad_span2').css('display','inline-block');
+        $('.ad_oP2').css('display','none')
+        $('.dImg12').attr('src', ($(this).children('img').eq(0).attr('src')));
+        $('#blankName2').val($(this).children('img').eq(0).attr('name'));
+        //	alert($(this).children('img').eq(0).attr('name'));
+        //$('#OpenBankId').val($(this).children('img').eq(0).attr('name'));
+
+        //$('#UsrBindCardID').val($(this).children('img').eq(0).attr('id'));
+
+
+        $("#kj_showOpenAcctId").text($(this).attr("tag"));
+        $('#Form2 input[id="OpenBankId"]').val($(this).children('img').eq(0).attr('name'));
+        $('#Form2 input[id="UsrBindCardID"]').val($(this).children('img').eq(0).attr('id'));
+
+        //alert($('#Form1 input[id="UsrBindCardID"]').val());
+
+
+        $('.recOther2').css('display','none');
+        isBolck2();
+    });
+    //$('.bankBtn_img2').click(function(){
+    //    $('.recOther2').css('display','block');
+    //    isBolck2();
+    //});
+
+    $("#dImg1zcj").click(function(){
+        $('.recOther2').css('display','block');
+        isBolck();
+    });
+    function isBolck2(){
+        //if($('.recOther2').css('display')=='block'){
+        //    $('.bankBtn_img2').css('display','none')
+        //}else{
+        //    $('.bankBtn_img2').css('display','inline-block')
+        //}
+    }
+
+    function isUserLink(url)
+    {
+        var ieu = IsExistUser();//UCLeft.cshtml
+        if (ieu == "n")
+        {
+            layer.msg("登录超时,请重新登录..", 2, 5, function () {
+                window.location.href = "/login.html";
+            });
+            return;
+        }else
+        {
+            window.open(url);
+        }
+    }
+</script>
+
+
+
+<style type="text/css">
+    .tanchu_hongbao_zhezhao {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.5;
+        z-index: 10;
+    }
+
+    .tanchu_hongbao_content {
+        width: 410px;
+        height: 322px;
+        position: absolute;
+        top: 50%;
+        margin-top: -151px;
+        left: 50%;
+        margin-left: -275px;
+    }
+
+    .tanchu_hongbao {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.5);
+        z-index: 999999;
+        display: none;
+    }
+</style>
+@*提现提示窗*@
+<div class="tanchu_hongbao">
+    <div class="tanchu_hongbao_content">
+
+        <div style="padding: 17px; line-height: 25px; background-color: #fff; color: #555; font-weight: 300; border-top:1px solid #ccc">
+            <span style="font-size:18px;">
+                跳转提现页面……
+            </span><div style="float:right; font-size:180%;cursor: pointer;" onclick="closeAlter();">×</div><hr />
+            <span style="color:#222">请在新开页面提现后选择</span><br><br><img src="../Images/right.png" style="vertical-align: middle;"><span style="vertical-align: middle;">提现成功</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; <a href="" style="color:#0066FF">查看提现记录</a><br><img src="../Images/error.png" style="vertical-align: middle;"><span style="vertical-align: middle;">提现失败</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 建议您 &nbsp;&nbsp;&nbsp;&nbsp;<a href="" style="color:#0066FF">重新进行提现</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    function investAlter(){
+        $(".tanchu_hongbao").show();
+    }
+    function closeAlter(){
+        $(".tanchu_hongbao").hide();
+    }
+</script>

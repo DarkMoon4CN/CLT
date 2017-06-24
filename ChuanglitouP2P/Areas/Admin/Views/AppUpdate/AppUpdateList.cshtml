@@ -1,0 +1,108 @@
+﻿@using ChuanglitouP2P.Areas.Admin.Controllers;
+@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.hx_AppUpdatePackage>
+@{
+    ViewBag.Title = "APP更新包列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSearch").bind("click", function () {
+            $("#Form1").submit()
+        });
+        $("#btnAdd").bind("click", function () {
+            window.location.href = "/Admin/AppUpdate/AppUpdateAdd";
+        });
+    });
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">APP更新包管理</a>><a href="javascript:void(0)"> APP更新包列表</a></h2>
+<div class="z_body">
+    <p class="tP3">
+        快速搜索
+    </p>
+    @using (Html.BeginForm("AppUpdateList", "AppUpdate", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1", @id = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:60px; padding-bottom:15px; ">
+            <label for="companyid">平台：</label>
+            @Html.DropDownList("platform", ViewBag.PlatformList as List<SelectListItem>)&nbsp;
+            <label for="realname">版本号：</label><input type="text" class="txt1" id="realname" name="realname" value="@(ViewBag.Version)" style="width:100px;" />&nbsp;
+            <label for="mobile">发布时间：</label>
+            <input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="time1" name="time1" value="@(ViewBag.CreateTimeFrom)" autocomplete="off" />-<input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="time2" name="time2" value="@(ViewBag.CreateTimeTo)" autocomplete="off" />&nbsp;
+            <label for="mobile">渠道：</label><input type="text" class="txt1" id="mobile" name="mobile" value="@(ViewBag.Channel)" style="width:100px;" />&nbsp;
+            <input type="button" id="btnSearch" name="btnSearch" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+            <input type="button" id="btnAdd" name="btnAdd" class="btn2" value="新&nbsp;&nbsp;&nbsp;建" />
+        </p>
+    }
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        APP更新包列表
+    </h3>
+
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th>发布时间</th>
+                <th>更新类型</th>
+                <th>版本号</th>
+                <th>发布渠道</th>
+                <th>是否可用</th>
+                <th>MD5校验码</th>
+                <th>更新方式</th>
+                <th>下载数量</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@(item.CreateTime)</td>
+                        <td>@(item.UpdateLevel)</td>
+                        <td>@(item.Version)</td>
+                        <td>@(item.Channel)</td>
+                        <td>@(item.IsEnable == 1 ? "是" : "否")</td>
+                        <td>@(item.ValideCode)</td>
+                        <td>@(item.Ways)</td>
+                        <td>@(item.DownloadCount)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="pagination ue-clear">
+        <div class="pagination-container">
+            @Html.PagedListPager(Model, page => Url.Action("AppUpdateList", new
+                   {
+                       page,
+                       platform = @ViewBag.platform,
+                       version = @ViewBag.Version,
+                       createTimeFrom = @ViewBag.CreateTimeFrom,
+                       createTimeTo = @ViewBag.CreateTimeTo,
+                       channel = @ViewBag.Channel
+                   }))
+        </div>
+    </div>
+</div>

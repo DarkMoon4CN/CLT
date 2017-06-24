@@ -1,0 +1,73 @@
+﻿@using WeiXin.Controllers
+@using ChuanglitouP2P.Common;
+@{
+    ViewBag.Title = "活动专享";
+    Layout = "~/Views/Shared/Help_Layout.cshtml";
+    var ii = 1;
+}
+
+@Url.File("/css/style.css").ToHtml()
+
+
+<div class="header_box">
+    @*<a href="/"><img src="/images/header.jpg" alt="" /></a>*@
+    <div class="return">
+        <a href="javascript:history.go(-1)"></a>
+    </div>
+    <h2 class="head_title">活动专区</h2>
+</div>
+
+@(Html.Raw(ViewBag.Blist));
+
+@*<div class="common">
+
+        <p>
+            <i>01</i>
+            <a href="http://m.chuanglitou.cn/wpingguo/w_pingguo.html">投资就送苹果豪礼三件套！</a>
+        </p>
+        <span><a href="http://m.chuanglitou.cn/wpingguo/w_pingguo.html">活动时间：2016年12月12日至12月14日</a></span>
+        <a href="http://m.chuanglitou.cn/wpingguo/w_pingguo.html"><img class="link" src="http://www.chuanglitou.cn//Linkpicture/20161291536968248.jpg" alt="" />
+    </div>
+    <div class="common">
+        <p>
+            <i>02</i>
+            <a href="http://m.chuanglitou.cn/20160901.html">创利投双十二,拯救剁手族 ！</a>
+        </p>
+        <span><a href="http://m.chuanglitou.cn/20160901.html">活动时间：2016年12月12日至12月14日</a></span>
+        <a href="http://m.chuanglitou.cn/20160901.html"><img class="link" src="http://www.chuanglitou.cn//Linkpicture/20161291017132373.jpg" alt="" />
+    </div>
+    <div class="common">
+        <p>
+            <i>03</i>
+            <a href="http://m.chuanglitou.cn/20161122.html">下载创利投APP,1260元抵扣券任性送！</a>
+        </p>
+        <span><a href="http://m.chuanglitou.cn/20161122.html">活动时间：2016年11月23日至12月15日</a></span>
+        <a href="http://m.chuanglitou.cn/20161122.html"><img class="link" src="http://www.chuanglitou.cn/Linkpicture/201611222148544284.jpg" alt="" />
+    </div>
+
+    <div class="common" id="common_2">
+        <p>
+            <i>04</i>
+            <a href="http://m.chuanglitou.cn/activity/W20161110/Index">邀请好友来投资,双方都有奖励奖励无上限！送3重豪礼不限量 iPhone7 plus等你拿！！</a>
+        </p>
+        <span><a href="http://m.chuanglitou.cn/activity/W20161110/Index">活动时间：2016年11月10日至12月15日</a></span>
+        <a href="http://m.chuanglitou.cn/activity/W20161110/Index"><img class="link" src="http://www.chuanglitou.cn//Linkpicture/20161123412225660.jpg" alt="" /></a>
+    </div>
+
+    <div class="common" id="common_3">
+        <p>
+            <i>05</i>
+            <a href="http://m.chuanglitou.cn/activity/W20161014/Index">新手注册送大礼，注册即送50元，首投再送50元</a>
+        </p>
+        <span><a href="http://m.chuanglitou.cn/activity/W20161014/Index">活动时间：2016年11月01日至11月30日</a></span>
+        <a href="http://m.chuanglitou.cn/activity/W20161014/Index"><img class="link" src="http://www.chuanglitou.cn/Linkpicture/20169301920407470.jpg" alt="" /></a>
+    </div>*@
+
+<style>
+    .header_box {
+        width: 100%;
+        height: 50px;
+        background: #fff;
+        position: relative;
+    }
+</style>

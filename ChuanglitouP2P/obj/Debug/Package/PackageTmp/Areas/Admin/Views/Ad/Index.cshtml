@@ -1,0 +1,92 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc;
+@using ChuangLitouP2P.Models;
+@using PagedList
+@model PagedList.IPagedList<V_AD_type>
+@{
+    ViewBag.Title = "广告管理";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">广告管理</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+        <p class="tP3">
+            快速搜索
+        </p>
+        @using (Html.BeginForm("Index", "Ad", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <p class="tP4 tx_tp4" style="height:50px; ">
+                <label for="username">广告标题：</label><input type="text" class="txt1" id="adname" name="adname" value="@(ViewBag.adname)" style="width:240px; height:21px;" /> &nbsp; 
+               
+                 @ZiJinControl.HX_dropdownlistByCapital((int)ViewBag.ddlType, (int)ViewBag.AdTypeState)
+       
+                <input type="hidden" id="ddlType" name="ddlType" value="@(ViewBag.ddlType)" />
+                <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+
+            </p>
+        }
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            广告列表
+        </h3>
+
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th scope="col">编号 </th>
+                    <th scope="col">类别</th>
+                    <th scope="col">广告标题</th>
+                    <th scope="col">上传日期</th>
+                    <th scope="col">状态</th>
+                    <th scope="col">操作</th>
+                </tr>
+                @if (Model != null)
+                {
+                    foreach (V_AD_type item in Model)
+                    {
+
+                        <tr>
+                            <td>@(item.Adid)</td>
+                            <td>@(item.AdtypeName)</td>
+                            <td>@(item.AdName)</td>
+                            <td>@(((DateTime)item.Adcreatetime).ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                            @if (item.AdState == 0)
+                            {
+                                <td>上架</td>
+                            }
+                            else if (item.AdState == 1)
+                            {
+                                <td>下架</td>
+                            }
+                            <td>
+                                <a class="opt" title="编辑" href="/admin/Ad/EditAd/@item.Adid/@ViewBag.page">  编辑</a> &nbsp;
+                                <a class="opt" title="删除" href="/admin/Ad/DelById/@item.Adid/@ViewBag.page?adname=@ViewBag.adname" >  删除</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="pagination ue-clear">
+            <div class="pagination-container">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, username = @ViewBag.username, AdTypeState=@ViewBag.AdTypeState, ddlType = @ViewBag.ddlType}))
+            </div>
+        </div>
+    @*</div>*@
+</div>
+
+

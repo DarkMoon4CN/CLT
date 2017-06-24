@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "邀请列表";
+    Layout = "~/Views/Shared/Body_Layout.cshtml";
+}
+<link href="~/css/wxyao.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>
+<script src="/js/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+$(function(){
+	$("#yaoqing_btn").click(function(){
+		$("#layer_box").fadeIn();
+  		$("#layer_icon").fadeIn();
+	});
+	$("#layer_box").click(function(){
+		$("#layer_box").hide();
+  		$("#layer_icon").hide();
+	});
+});
+</script>
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">邀请列表</h2>
+</header>
+@*<section class="user_head_tabs">
+    <div><a href="/Invitation/Index" class="ptabs_curr">邀请奖励</a></div>
+    <div><a href="/Invitation/List">邀请列表</a></div>
+</section>*@
+<div class="yaoqing viewport">
+    <div class="yaoqing_pic"><img src="/images/wx_reward_pic1.jpg" width="100%"></div>
+    <div class="yaoqing_pic"><img src="/images/wx_reward_pic2.jpg" width="100%"></div>
+    <div class="yaoqing_pic2"><img src="/images/wx_reward_pic3.jpg" width="100%">
+    <a href="/register/Index"><span style="font-size:2em;">立即注册</span></a></div>
+    <div class="yaoqing_btn" id="yaoqing_btn"><a href="javascript:void(0);"><span></span>分享给好友，赚奖励</a></div>
+</div>
+<div id="layer_box" style="display:none;"></div>
+<div id="layer_icon" style="display:none;"></div>
+

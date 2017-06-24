@@ -1,0 +1,133 @@
+﻿@using System.Web
+@using ChuanglitouP2P.BLL;
+@using ChuanglitouP2P.Common;
+@helper HX_UCLeft(int i = 1)
+{
+    <style type="text/css">
+        .dian::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: -10px;
+            margin-right: 4px;
+        }
+    </style>
+    <div class="conLeft" id="menu">
+        <a href="/usercenter/Index" class="wsh_zhzx">账户中心</a>
+        <h3 class="content1">资金管理</h3>
+        @*<a href="/usercenter/Financial">资金明细</a>*@
+        <a href="/usercenter/Detailsfunds">资金流水</a>
+        <a href="/usercenter/recharge">我要充值</a>
+        <a href="javascript:void();" id="CashIndex">我要提现</a>
+        <h3 class="content1 content2">投资管理</h3>
+        <a href="/usercenter/touzi">投资记录</a>
+        <a href="/usercenter/huikuan">回款计划</a>
+
+        <h3 class="content1 content3">奖励管理</h3>
+        @{
+            int userid = Utils.checkloginsession();
+            if (ActCount.GetRewardTime("RewardTimeXianJin" + userid, 1, userid) == true)//现金
+            {
+                <a href="/Reward/index" class="dian">现金奖励</a>
+            }
+            else
+            {
+                <a href="/Reward/index">现金奖励</a>
+            }
+            if (ActCount.GetRewardTime("RewardTimeXianJinQuan" + userid, 2, userid) == true)//抵扣券
+            {
+                <a href="/Reward/xianjin" class="dian">我的抵扣券</a>
+            }
+            else
+            {
+                <a href="/Reward/xianjin">我的抵扣券</a>
+            }
+            if (ActCount.GetRewardTime("RewardTimeJiaXi" + userid, 3, userid) == true)//加息券
+            {
+                <a href="/Reward/jiaxi" class="dian">我的加息券</a>
+            }
+            else
+            {
+                <a href="/Reward/jiaxi">我的加息券</a>
+            }
+        }
+        <a href="/usercenter/yaoqing">邀请奖励</a>
+        <h3 class="content1 content4">我的账户</h3>
+        <a href="/usercenter/Userinfo">个人资料</a>
+        <a href="javascript:void();" id="BindCardIndex">银行卡信息</a>
+        <a href="/usercenter/message">站内消息</a>
+    </div>
+    <script type="text/javascript">
+        var urlstr = location.href;
+        var urlstatus = false;
+        $("#menu a").each(function () {
+            if ((urlstr).indexOf($(this).attr('href')) > -1 && $(this).attr('href') != '') {
+                $(this).addClass('add');
+                urlstatus = true;
+            }
+            else {
+                $(this).removeClass('add');
+            }
+        });
+        if (!urlstatus) { $("#menu a").eq(0).addClass('add'); }
+
+        $(function () {
+            $("#CashIndex").click(function () {
+                var rd = "/Cash/Index";
+                isOpenAccount(rd);
+            });
+            $("#BindCardIndex").click(function () {
+                var rd = "/BindCard/Index";
+                isOpenAccount(rd);
+            });
+        });
+
+        function isOpenAccount(rd) {
+            var url = "/Cash/IsOpenAccount";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {},
+                async: false,
+                error: function () {
+                    window.location.href = "/login.html";
+                },
+                success: function (d) {
+                    if (d.rs == "y") {
+
+                        window.location.href = rd;
+                    }
+                    else if (d.rs == "n") {
+                        window.open(d.info);
+                    }
+                    else {
+                        window.location.href = "/login.html";
+                    }
+                },
+            });
+        }
+
+        function IsExistUser() {
+            var url = "/Signin/IsExistUser";
+            var result = "n";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {},
+                async: false,
+                error: function () {
+                    result = "n";
+                },
+                success: function (d) {
+                    result = d.rs.toString();
+                }
+            });
+            return result;
+        }
+    </script>
+
+}

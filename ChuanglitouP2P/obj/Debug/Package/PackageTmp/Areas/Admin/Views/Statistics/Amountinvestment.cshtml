@@ -1,0 +1,174 @@
+﻿@using System.Data
+@model System.Data.DataTable
+@{
+    ViewBag.Title = "投资金额";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    .icon-sprite {
+        HEIGHT: 16px;
+        BACKGROUND-IMAGE: url(/admin/images/icons.png);
+        BACKGROUND-REPEAT: no-repeat;
+        POSITION: absolute;
+        LEFT: 10px;
+        MARGIN-TOP: -8px;
+        DISPLAY: inline-block;
+        TOP: 50%;
+        WIDTH: 16px;
+    }
+
+    .icon-edit {
+        BACKGROUND-POSITION: -63px -1px;
+    }
+
+    .icon-delete {
+        BACKGROUND-POSITION: -83px -2px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btntoday").bind("click", function () {
+            settime(0, 0);
+            $("#btnFind").click();
+        });
+        $("#btnyestoday").bind("click", function () {
+            settime(-1, -1);
+            $("#btnFind").click();
+        });
+        $("#btnweek").bind("click", function () {
+            settime(-7, 0);
+            $("#btnFind").click();
+        });
+        $("#btnmonth").bind("click", function () {
+            settime(-30,0);
+            $("#btnFind").click();
+        });
+    });
+
+    function validateFrm() {
+        var d1 = $("#start").val()
+        var d2 = $("#end").val();
+        var days = GetDateForDay(d1, d2);
+        if (days>90) {
+            alert("查询天数不能超过90天");
+            return false;
+        } else {
+            $("form").submit();
+        }
+
+
+
+    }
+
+    function settime(day1, day2) {
+        var d1 = getDateForDay(day1);
+        var d2 = getDateForDay(day2);
+        $("#start").val(d1.format("yyyy-MM-dd"));
+        $("#end").val(d2.format("yyyy-MM-dd"));
+
+    }
+    function getDate(str) {
+        str = str.replace(/-/g, "/");
+        var date = new Date(str);
+        return date;
+    }
+    function GetDateForDay(d1, d2) {
+        var date1 = getDate(d1);  //开始时间
+        var date2 = getDate(d2);    //结束时间
+        var date3 = date2.getTime() - date1.getTime()  //时间差的毫秒数
+
+
+        //计算出相差天数
+        var days = Math.floor(date3 / (24 * 3600 * 1000))
+        return days;
+    }
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">统计管理</a>><a href="javascript:void(0)"> 借出统计</a>><a href="javascript:void(0)"> 投资金额</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+    <p class="tP3">
+        快速搜索
+    </p>
+    @using (Html.BeginForm("Amountinvestment", "Statistics", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:50px; ">
+            <label for="start">开始：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="start" name="start" value="@(ViewBag.start)" autocomplete="off" />--
+            <label for="end">结束：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="end" name="end" value="@(ViewBag.end)" autocomplete="off" />
+            &nbsp;&nbsp;
+            <input type="button" class="btn1" id="btnFind" onclick="javascript:validateFrm();" value="查&nbsp;&nbsp;&nbsp;询" />&nbsp;
+            <input type="button" class="btn1" id="btntoday" value="今天" />&nbsp;
+            <input type="button" class="btn1" id="btnyestoday" value="昨天" />&nbsp;
+            <input type="button" class="btn1" id="btnweek" value="近七天" />&nbsp;
+            <input type="button" class="btn1" id="btnmonth" value="近一月" />
+
+        </p>
+    }
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        投资金额列表
+    </h3>
+
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+    <tr class="tz_tr">
+        <th scope="col">投资日期</th>
+        <th scope="col">投资人数</th>
+        <th scope="col">投资金额</th>
+        <th scope="col">冻结金额</th>
+        <th scope="col">现金奖励</th>
+        <th scope="col">抵扣券</th>
+        <th scope="col">加息券</th>
+    </tr>
+         @if (Model != null)
+         {
+             int regcou = 0;
+             decimal amt = 0.00M,dj=0.00M,xj=0.00M,xjq=0.00M,yhq=0.00M;
+
+             foreach (DataRow dr in Model.Rows)
+             {
+                 regcou = regcou + int.Parse(dr["regcount"].ToString());
+                 amt = amt + decimal.Parse(dr["countAmt"].ToString());
+                 dj = dj + decimal.Parse(dr["冻结金额"].ToString());
+                 xj = xj + decimal.Parse(dr["现金奖励"].ToString());
+                 xjq = xjq + decimal.Parse(dr["抵扣券"].ToString());
+                 yhq = yhq + decimal.Parse(dr["优惠券"].ToString());
+                <tr>
+                    <td>@(dr["invest_time"].ToString())</td>
+                    <td>@(dr["regcount"].ToString())</td>
+                    <td>￥@(dr["countAmt"].ToString())</td>
+                    <td>￥@(dr["冻结金额"].ToString())</td>
+                    <td>￥@(dr["现金奖励"].ToString())</td>
+                    <th>￥@(dr["抵扣券"].ToString())</th>
+                    <th>@(dr["优惠券"].ToString()) % </th>
+                </tr>
+        }
+
+        <tr>
+            <td>总计</td>
+            <td>@(regcou)</td>
+            <td>￥@(amt)</td>
+            <td>￥@(dj)</td>
+            <td>￥@(xj)</td>
+            <th>￥@(xjq)</th>
+            <th>￥@(yhq)</th>
+        </tr>
+    }
+        </tbody>
+    </table>
+    @*</div>*@
+</div>

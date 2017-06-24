@@ -1,0 +1,66 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@using ChuanglitouP2P.Models;
+
+@model PagedList.IPagedList<RecommendedListViewModel>
+@{
+    ViewBag.Title = "推荐人列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>><a href="javascript:void(0)"> 推荐人列表</a></h2>
+<div class="z_body">
+    <h3 class="listtitle">
+        推荐人列表
+    </h3>
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th>推荐人</th>
+                <th>邀请人数</th>
+                <th>投资次数</th>
+                <th>投资金额</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Referee</td>
+                        <td>@item.RecommendCount.ToString()</td>
+                        <td>@item.InvestedTimes.ToString()</td>
+                        <td>@item.InvestTotalAmount</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="pagination ue-clear">
+        <div class="pagination-container">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("RecommendedList", new
+       {
+           page
+       }))
+        </div>
+    </div>
+    @*</div>*@
+</div>

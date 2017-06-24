@@ -1,0 +1,194 @@
+﻿
+@model ChuangLitouP2P.Models.V_UserCash_Bank
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>提现审核</title>
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css"  rel="stylesheet" />
+
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+ 
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".registerform").Validform({
+                tiptype: 4
+
+            });
+            $.extend($.Datatype, {
+                "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+                "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+                "day1": /^[1-2]\d{0,1}$|^28$/,
+                "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+                "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+                "regex1": /^[0-9A-Za-z]{6,25}$/,
+                "float": /([0-9]+.[0-9]{2})[0-9]*/,
+                "int": /[1-9]*/,
+                "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/
+
+            });
+
+            $("#OrdIdState").change(function () {
+                var vstate = $("#OrdIdState").val();
+                if (vstate == 4 || vstate == 5) {
+                    $("#Reason").removeAttr("disabled");
+
+                }
+                else {
+                    if (vstate == 1) {
+                        $("#btnSubmit").val("付款");
+                    }
+                    else { $("#btnSubmit").val("确认"); }
+                    $("#Reason").attr("disabled", "disabled");
+
+
+                }
+
+                // alert($("#OrdIdState").val());
+            });
+            $("#btnSubmit").bind("click", function () {
+                btnClick();
+            });
+            setFrm();
+        });
+
+        function btnClick() {
+            var fn = parseInt($("#OrdIdState").val());
+            if (fn == 3) {                
+                    return false;
+                }
+
+            $("form").submit();
+        }
+
+        function setFrm() {
+            var state = $("#hid_OrdIdState").val();
+            if (parseInt(state)<3) {
+                $("#OrdIdState").attr("disabled", false);
+                $("#Reason").attr("disabled", false);
+            } else {
+                $("#OrdIdState").attr("disabled", true);
+                $("#Reason").attr("disabled", true);
+            }
+        }
+
+        function closewindows() {
+            window.parent.closewindows();
+
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="search block">
+            <div class="h">
+                <span class="icon-sprite icon-list"></span>
+                <h3>提现复审</h3>
+            </div>
+            @using (Html.BeginForm("PostCashProcessing", "UserCash", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="cnt-wp">
+                    <div class="cnt">
+                        <table width="100%" style="table-layout:fixed;margin-top:10px;">
+                            <tbody>
+                                <tr>
+                                    <td class="auto-style6">&nbsp;</td>
+                                    <td class="auto-style1">交易订单号：</td>
+                                    <td class="auto-style7">
+                                        @Html.EditorFor(model => model.OrdId, new { htmlAttributes = new { @readonly = "readonly", @class = "inputxt", @style = "width:230px;height:25px;" } })
+                                        @Html.HiddenFor(model => model.UserCashId)
+                                    </td>
+                                    <td><span class="Validform_checktip"></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style6">&nbsp;</td>
+                                    <td class="auto-style1">开户行：</td>
+                                    <td class="auto-style7">
+                                        @Html.EditorFor(model => model.BankName, new { htmlAttributes = new { @readonly = "readonly", @class = "inputxt", @style = "width:230px;height:25px;" } })
+
+                                    </td>
+                                    <td><span class="Validform_checktip"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="auto-style6">&nbsp;</td>
+                                    <td class="auto-style1">银行卡号：</td>
+                                    <td class="auto-style7">
+                                        @Html.EditorFor(model => model.OpenAcctId, new { htmlAttributes = new { @readonly = "readonly", @class = "inputxt", @style = "width:230px;height:25px;" } })
+
+                                    </td>
+                                    <td><span class="Validform_checktip"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="auto-style6">&nbsp;</td>
+                                    <td class="auto-style1">开户名:</td>
+                                    <td class="auto-style7">
+                                        @Html.EditorFor(model => model.realname, new { htmlAttributes = new { @readonly = "readonly", @class = "inputxt", @style = "width:230px;height:25px;" } })
+
+                                    </td>
+                                    <td><span class="Validform_checktip"></span></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td class="auto-style6">&nbsp;</td>
+                                    <td class="auto-style1">处理结果:</td>
+                                    <td class="auto-style7">
+                                        @Html.DropDownList("OrdIdState", ViewBag.ddlList as IEnumerable<SelectListItem>,new { @style="height:25px;width:229px;" } )
+                                        @Html.Hidden("hid_OrdIdState",Model.OrdIdState)
+                                 
+                                    </td>
+                                    <td><span class="Validform_checktip"></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style6">&nbsp;</td>
+                                    <td class="auto-style1">原因：</td>
+                                    <td class="auto-style5" colspan="2">
+                                        @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @style = "width:75%; height:25px;" } })<span class="Validform_checktip"></span>
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+                                    <td class="auto-style6">&nbsp;</td>
+                                    <td class="auto-style1">操作备注：</td>
+                                    <td class="auto-style5" colspan="2">
+                                        @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @style = "width:75%; height:25px;", @datatype = "*", @nullmsg = "请填写操作备注！", @errormsg = "请填写操作备注！", @autocomplete = "off" } })<span class="Validform_checktip"></span>
+                                    </td>
+                                </tr>
+                                <tr style="height:80px"></tr>
+                                <tr>
+                                    <td class="auto-style6"></td>
+                                    <td class="auto-style1"></td>
+                                    <td class="auto-style7">
+                                        @if (Model.OrdIdState < 3)
+                                        {
+                                            <input type="button" value="确定" class="confirm button white medium" id="btnSubmit"  />
+                                        }                                       
+                                        &nbsp;<input type="button" value="关闭" Class="button white medium" onclick="javascript: closewindows();" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>渠道登录</title>
+    <STYLE type=text/css>
+        TD {
+            FONT-SIZE: 12px;
+        }
+
+        SELECT {
+            FONT-SIZE: 12px;
+        }
+
+        INPUT {
+            FONT-SIZE: 12px;
+        }
+
+        .p1 {
+            FONT-SIZE: 12px;
+        }
+
+        P {
+            FONT-SIZE: 12px;
+            LINE-HEIGHT: 130%;
+        }
+
+        DIV {
+            FONT-SIZE: 12px;
+            LINE-HEIGHT: 130%;
+        }
+
+        .p2 {
+            FONT-SIZE: 12px;
+            LINE-HEIGHT: 130%;
+        }
+
+        .vip {
+            FONT-SIZE: 12px;
+            COLOR: #ffffff;
+        }
+
+        .p3 {
+            FONT-SIZE: 14px;
+        }
+
+        .p4 {
+            FONT-SIZE: 14px;
+            LINE-HEIGHT: 130%;
+        }
+
+        .p5 {
+            FONT-SIZE: 10px;
+            FONT-FAMILY: arial;
+        }
+
+        .p6 {
+            LINE-HEIGHT: 160%;
+        }
+
+        .p7 {
+            LINE-HEIGHT: 180%;
+        }
+
+        .hot {
+            COLOR: #ff3300;
+        }
+
+        A:link {
+            COLOR: #000066;
+        }
+
+        A:visited {
+            COLOR: #000066;
+        }
+
+        A.lb:link {
+            COLOR: black;
+        }
+
+        A.lb:visited {
+            COLOR: black;
+        }
+
+        A.lg:link {
+            COLOR: #717171;
+        }
+
+        A.lg:visited {
+            COLOR: #717171;
+        }
+
+        A:hover {
+            COLOR: red;
+        }
+
+        A.lb:hover {
+            COLOR: red;
+        }
+
+        .pw {
+            COLOR: white;
+        }
+
+        A.lw:link {
+            COLOR: white;
+        }
+
+        A.lw:visited {
+            COLOR: white;
+        }
+
+        A.ch:link {
+            COLOR: #697111;
+        }
+
+        A.ch:visited {
+            COLOR: #697111;
+        }
+
+        .sinput {
+            BORDER-RIGHT: 1px ridge;
+            BORDER-TOP: #ffffff 1px ridge;
+            BORDER-LEFT: #ffffff 1px ridge;
+            BORDER-BOTTOM: 1px ridge;
+            BACKGROUND-COLOR: #cccccc;
+        }
+
+        .ring {
+            FONT-SIZE: 12px;
+            COLOR: #000066;
+            FONT-FAMILY: webdings;
+        }
+    </STYLE>
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+    <script src="~/Areas/Admin/js/Channel.js"></script>
+    <SCRIPT language=JavaScript>
+        $(function () {
+            Channel.loginInit();
+        });
+        function changeImg() {
+            document.getElementById("image1").src = "/admin/login/ImageValidate?a=" + Math.random();
+        }
+    </SCRIPT>
+</head>
+<body>
+    @using (Html.BeginForm("DoLogin", "Channel", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+                <TBODY>
+                    <TR>
+                        <TD align=middle>
+                            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                                <TBODY>
+                                    <TR>
+                                        <TD height=1></TD>
+                                    </TR>
+                                    <TR>
+                                        <TD align=middle>
+                                            <IMG height=247
+                                                 src="/Areas/Admin/images/login_image3.gif" width=525 border=0>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD>
+                                            <SPAN style="FONT-SIZE: 1pt">&nbsp;</SPAN>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD align=middle>
+
+                                            <TABLE cellSpacing=0 cellPadding=0 width=889 align=center
+                                                   border=0>
+                                                <TBODY>
+                                                    <TR>
+                                                        <TD width=387 rowSpan=3>&nbsp;</TD>
+                                                        <TD vAlign=center align=middle width=71 height=22>管理账号
+                                                        <TD height=30 style="width: 158px">
+                                                            <INPUT style="BORDER-RIGHT: rgb(182,182,182) 1px solid; BORDER-TOP: rgb(182,182,182) 1px solid; FONT-WEIGHT: normal; FONT-SIZE: 12px; BORDER-LEFT: rgb(182,182,182) 1px solid; BORDER-BOTTOM: rgb(182,182,182) 1px solid;"
+                                                                   tabIndex=3 name="txtUserName" id="txtUserName" value="" autocomplete="off">
+                                                        </TD>
+                                                        <TD vAlign=bottom width=272 rowSpan=3>
+                                                            <a  id="btn_submit"><img  src="/Areas/Admin/images/Login_lostPass.gif"border="0" height="39" width="48"/></a>
+                                                            @*<INPUT tabIndex=6
+                                                                   type=image height=39 width=48
+                                                                    align=middle 
+                                                                   name=image2 id="Image2">*@
+                                                        </TD>
+                                                    </TR>
+                                                    <TR>
+                                                        <TD vAlign=center align=middle height=22>授权密码
+                                                        <TD height=30 style="width: 158px">
+                                                            <INPUT style="BORDER-RIGHT: rgb(182,182,182) 1px solid; BORDER-TOP: rgb(182,182,182) 1px solid; FONT-WEIGHT: lighter; FONT-SIZE: 12px; BORDER-LEFT: rgb(182,182,182) 1px solid; BORDER-BOTTOM: rgb(182,182,182) 1px solid;"
+                                                                   tabIndex=4 type=password name="txtPassword" id="txtPassword" value="">
+                                                        </TD>
+                                                    </TR>
+                                                    <TR>
+                                                        <TD vAlign=center align=middle>验证码：</TD>
+                                                        <TD height=30 style="width: 158px">
+                                                            <INPUT style="BORDER-RIGHT: rgb(182,182,182) 1px solid; BORDER-TOP: rgb(182,182,182) 1px solid; FONT-WEIGHT: lighter; FONT-SIZE: 12px; BORDER-LEFT: rgb(182,182,182) 1px solid; BORDER-BOTTOM: rgb(182,182,182) 1px solid; FONT-FAMILY: 宋体"
+                                                                   tabIndex=5 maxLength=4 size=11 name="txtCheckCode" id="txtCheckCode" autocomplete="off">
+                                                         <img id="image1" src="/admin/login/ImageValidate" style="cursor:pointer;" onclick="javascript: Channel.ChangeCodeImg(this.id);" />
+
+                                                        </TD>
+                                                    </TR>
+                                                </TBODY>
+                                            </TABLE>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD>
+                                            <SPAN style="FONT-SIZE: 1pt">&nbsp;</SPAN>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD vAlign=bottom align=middle height=12>
+                                            <FONT face="Arial, Helvetica, sans-serif"></FONT>
+                                        </TD>
+                                    </TR>
+                                </TBODY>
+                            </TABLE>
+                        </TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </div>
+    }
+</body>
+</html>

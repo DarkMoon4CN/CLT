@@ -1,0 +1,95 @@
+GO
+
+/****** Object:  Table [dbo].[hx_Bid_records_deleted]    Script Date: 2016/10/21 14:23:51 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[hx_Bid_records_deleted](
+	[bid_records_id] [int] NOT NULL,
+	[borrower_registerid] [int] NULL,
+	[targetid] [int] NULL,
+	[loan_number] [numeric](18, 0) NULL,
+	[annual_interest_rate] [numeric](38, 2) NULL,
+	[current_period] [int] NULL,
+	[investment_amount] [numeric](38, 2) NULL,
+	[value_date] [datetime] NULL,
+	[investment_maturity] [datetime] NULL,
+	[invest_time] [datetime] NULL,
+	[invest_state] [int] NULL,
+	[flow_return] [int] NULL,
+	[repayment_amount] [numeric](38, 6) NULL,
+	[repayment_period] [datetime] NULL,
+	[investor_registerid] [int] NULL,
+	[payment_status] [int] NULL,
+	[withoutinterest] [numeric](38, 2) NULL,
+	[haveinterest] [numeric](38, 2) NULL,
+	[contractid] [int] NULL,
+	[contractpath] [varchar](255) NULL,
+	[invitationcode] [varchar](50) NULL,
+	[OrdId] [decimal](20, 0) NULL,
+	[ordstate] [int] NULL,
+	[IsLoans] [int] NULL,
+	[JiaxiNum] [decimal](6, 2) NULL,
+	[BonusAmt] [decimal](10, 2) NULL,
+	[deletedTime] [datetime] NULL,
+ CONSTRAINT [PK_HX_BID_RECORDS_DELETED] PRIMARY KEY CLUSTERED 
+(
+	[bid_records_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[hx_Bid_records_deleted] ADD  CONSTRAINT [DF_hx_Bid_records_deleted_withoutinterest]  DEFAULT ((0.00)) FOR [withoutinterest]
+GO
+
+ALTER TABLE [dbo].[hx_Bid_records_deleted] ADD  CONSTRAINT [DF_hx_Bid_records_deleted_haveinterest]  DEFAULT ((0.00)) FOR [haveinterest]
+GO
+
+ALTER TABLE [dbo].[hx_Bid_records_deleted] ADD  CONSTRAINT [DF_hx_Bid_records_deleted_ordstate]  DEFAULT ((0)) FOR [ordstate]
+GO
+
+ALTER TABLE [dbo].[hx_Bid_records_deleted] ADD  CONSTRAINT [DF_hx_Bid_records_deleted_IsLoans]  DEFAULT ((0)) FOR [IsLoans]
+GO
+
+ALTER TABLE [dbo].[hx_Bid_records_deleted] ADD  CONSTRAINT [DF_hx_Bid_records_deleted_JiaxiNum]  DEFAULT ((0)) FOR [JiaxiNum]
+GO
+
+ALTER TABLE [dbo].[hx_Bid_records_deleted] ADD  CONSTRAINT [DF_hx_Bid_records_deleted_BonusAmt]  DEFAULT ((0)) FOR [BonusAmt]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'分期总数' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_Bid_records_deleted', @level2type=N'COLUMN',@level2name=N'current_period'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1 成功  2 失败  3流标返还 
+   
+   如果是投标返还的话通过触发器更改对应金额问题' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_Bid_records_deleted', @level2type=N'COLUMN',@level2name=N'invest_state'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1 无返还  2已返还' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_Bid_records_deleted', @level2type=N'COLUMN',@level2name=N'flow_return'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 未还款    1 借款人自己还款  2 平台代还' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_Bid_records_deleted', @level2type=N'COLUMN',@level2name=N'payment_status'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'加息券加息比例' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_Bid_records_deleted', @level2type=N'COLUMN',@level2name=N'JiaxiNum'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'代金券金额' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_Bid_records_deleted', @level2type=N'COLUMN',@level2name=N'BonusAmt'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'被删除时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_Bid_records_deleted', @level2type=N'COLUMN',@level2name=N'deletedTime'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'用户投标无效删除' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_Bid_records_deleted'
+GO
+

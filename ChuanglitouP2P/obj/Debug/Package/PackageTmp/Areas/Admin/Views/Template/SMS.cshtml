@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewBag.Title = "短信模板";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+    List<ChuangLitouP2P.Models.hx_td_SMSEmail> list_SMSEmail = ViewBag.SMSEmail == null || (List<ChuangLitouP2P.Models.hx_td_SMSEmail>)ViewBag.SMSEmail == null ? null : (List<ChuangLitouP2P.Models.hx_td_SMSEmail>)ViewBag.SMSEmail;
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="/Scripts/Validform_v5.3.2_min.js"></script>
+<script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+
+<style type="text/css">
+    .tdleft {
+        width: 20%;
+        text-align: right;
+    }
+
+    .tdright {
+        width: 80%;
+        text-align: left;
+    }
+
+    tr {
+        background: rgb(255, 255, 255);
+    }
+</style>
+
+
+<script type="text/javascript">
+
+
+        $(function () {
+            //$(".registerform").Validform();  //就这一行代码！;
+            $(".registerform").Validform({
+                tiptype: 2
+            });
+
+
+            $("#SmsEmailId").change(function () {
+                var seid = $("#SmsEmailId").val();
+                $("#SEContext").val("");
+                if (seid == "") {
+                    $("#SEContext").val("");
+                }
+                else {
+                    //layer.msg("数据加载中..", 1, 1);
+                    var seid = $("#SmsEmailId").val();
+                    $.post("/Admin/Template/checksmseamil?Act=check&method=post", { "data": seid }, function (msg) {
+                        $("#SEContext").val(msg);
+
+                    });
+                }
+
+            });
+
+
+
+
+
+            var utilityHandle = {
+                setFocus: function (objFocusEven, values) {
+                    objFocusEven.focus(); // 默认使用focus方法聚焦
+                    var objEven = objFocusEven[0]; // 将Jquery对象转换为Dom对象
+                    if (window.getSelection) {
+                        // 现代浏览器
+                        objEven.selectionStart = objEven.selectionEnd = values;
+                    } else if (document.selection) {
+                        var txt = objEven.createTextRange(); // 将传入的控件对象转换为Dom对象，并创建一个TextRange对象
+                        txt.moveStart('character', values);   // 设置光标显示的位置
+                        txt.collapse(true);
+                        txt.select();
+                    }
+                }
+            };
+            var setFocusText = $("#SEContext");
+            utilityHandle.setFocus(setFocusText, setFocusText.val().length);
+        })
+
+
+
+
+
+</script>
+
+<style type="text/css">
+    .auto-style1 {
+        width: 105px;
+    }
+</style>
+
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">短信模版</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        短信模版管理
+    </h3>
+    <div class="tz_box cz_box">
+        @using (Html.BeginForm("SMSPost", "Template", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+            {
+            <div class="z_cont2">
+                @Html.AntiForgeryToken()
+                
+                <table width="100%" style="table-layout:fixed;padding-left:10px;margin-top:10px;">
+
+                    <tr>
+                        <td class="tdleft"><span style="color:red;">*</span> <label for="contract_type_id">短信模版：</label></td>
+                        <td class="tdright">
+                            <select id="SmsEmailId" style="height:28px;" name="SmsEmailId" datatype="int" nullmsg="请选择短信模版！" errormsg="请选择短信模版！">
+                                <option value="0">--请选择--</option>
+                                @if (list_SMSEmail != null && list_SMSEmail.Count > 0)
+                                {
+                                    foreach (var item in list_SMSEmail)
+                                    {
+                                        <option value="@(item.SmsEmailId)">@(item.SmsEname)</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tdleft"><span style="color:red;">*</span> <label for="contract_template_name">内容：</label></td>
+                        <td class="tdright">
+                            <textarea id="SEContext" name="SEContext" cols="100" rows="8" style="width:650px;height:150px;" datatype="*" errormsg="请输入内容！"  nullmsg="内容不能为空！"></textarea>
+                            <span class="Validform_checktip">请输入内容！</span>
+                        </td>
+                    </tr>
+
+
+                </table>
+            </div>
+            <div class="submin_box">
+                <input type="submit" class="z_btn_01" value="确 定" />
+            </div>
+            
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "n": /^\d+$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+        $("#web_type_menu_id").change(function () {
+            var checkValue = $("#web_type_menu_id").val();
+            if (checkValue == "17") {
+                $("#dispup").show();
+            }
+            else {
+                $("#dispup").hide();
+            }
+        });
+
+    });
+</script>
+

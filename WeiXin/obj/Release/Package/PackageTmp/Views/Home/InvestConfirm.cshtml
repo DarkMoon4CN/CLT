@@ -1,0 +1,338 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+@model  ChuangLitouP2P.Models.V_borrowing_target_addlist
+@{
+    ViewBag.Title = "确认投资";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+    //List<hx_UserAct> UsrAct = ViewBag.UsrAct == null ? null : ViewBag.UsrAct;
+    decimal invAmt = ViewBag.investmentamountd == null ? 0.00M : ViewBag.investmentamountd;
+
+
+    DateTime Endtime = DateTime.Parse(Model.end_time.ToString());
+
+    DateTime Stime = DateTime.Parse(Model.start_time.ToString());
+
+    DateTime online = DateTime.Parse(Model.sys_time.ToString());
+
+    DateTime rpdt = DateTime.Parse(Model.repayment_date.ToString());
+    DateTime rest = DateTime.Parse(Model.release_date.ToString());
+
+    decimal Percentage = Utils.GetPercentage(decimal.Parse(Model.borrowing_balance.ToString()), decimal.Parse(Model.fundraising_amount.ToString()));
+    decimal Difference = Utils.GetDifference(decimal.Parse(Model.borrowing_balance.ToString()), decimal.Parse(Model.fundraising_amount.ToString()));
+
+    long diffdays = Utils.DateDiff("Day", DateTime.Parse(rest.ToString("yyyy-MM-dd")), DateTime.Parse(rpdt.ToString("yyyy-MM-dd")));
+
+}
+
+@Url.File("/js/layer/layer.min.js").ToHtml()
+@Url.File("/js/Rewards.js").ToHtml()
+<style type="text/css">
+    .ct3_cont {
+        margin: 0 90px;
+        display: none;
+    }
+
+    .pop_table tr td {
+        text-align: center;
+        border: 1px solid #eee;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .even {
+        background-color: #f5f5f5;
+    }
+    /*奇数行样式*/
+    .odd {
+        background-color: white;
+    }
+    /*偶数行样式*/
+    .selected {
+        background-color: #f8b8b6;
+    }
+    .xubox_layer {
+    margin-left:-143.5px!important;
+    }
+</style>
+
+
+
+
+
+@using (Html.BeginForm("PostInvest", ViewContext.RouteData.GetRequiredString("controller"), FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+{
+    <header class="header">
+        <div class="return"><a href="javascript:history.go(-1);"></a></div>
+        <h2 class="head_title">确认投资</h2>
+
+        <i id="Rewards" style="display:none">0</i>
+    </header>
+
+    <section>
+        <div class="group_item">
+            <div class="group_tit">创利投用户名：</div>
+            <div class="group_txt">@ViewBag.Username</div>
+        </div>
+    </section>
+    <section class="invest_box">
+        <div class="group_item">
+            <div class="group_tit">我的账户金额：</div>
+            <div class="group_txt">@(ViewBag.accamt)元</div>
+        </div>
+        @{
+            decimal ca1 = 0.00M;
+            decimal ca = 0.00M;
+
+            decimal.TryParse(ViewBag.accamt.ToString(), out ca1);
+            ca = ca1 - invAmt;
+
+        }
+
+        <div class="group_item">
+            <div class="group_tit">投资金额：</div>
+            <div class="group_txt"><b class="color_orange">@invAmt  元</b></div>
+        </div>
+
+        @if (ca < 0)
+        {
+            <div class="group_item">
+                <div class="group_tit">还需金额：</div>
+                <div class="group_txt">@ca.ToString().Replace("-", "")  元</div>
+                <div class="group_rebtn"><a href="/usercenter/Recharge">去充值</a></div>
+            </div>
+        }
+
+        @*@if (UsrAct.Count > 0)
+    {
+        int jxqcount = 0;*@
+            <div class="group_item">
+                <div class="group_tit">使用奖励：</div>
+                @*<div class="group_txt" onclick="showUserActRewType(0)"><input type="tel" value="" class="group_text" readonly id="reward_txt" name="reward_txt" /></div>*@
+                <div class="group_txt"><input type="tel" value="" class="group_text" readonly id="reward_txt" name="reward_txt" /></div>
+
+                <div onclick="showUserActRewType(0)"><b class="color_orange" id="xianjiquan">可用抵扣券 
+                    @*@UsrAct.Where(w => w.ActID > 0 && w.RewTypeID == 2).Sum(w => w.Amt)*@  
+                    @ViewBag.xianjinMoney
+                    元</b></div>
+
+                <div class="group_chevron"></div>
+            </div>
+            <div class="group_item">
+                <div class="group_tit">使用加息券：</div>
+                <div class="group_txt"><input type="tel" value="" class="group_text" readonly id="jiaxiquan_txt" name="jiaxiquan_txt" /></div>
+
+                
+                @*@if (Model.unit_day == 1 && Model.life_of_loan == 3)
+                {
+                    jxqcount= UsrAct.Where(w => w.RewTypeID == 3 && w.Amt == 1 || w.Amt==3).Count();  //三月标
+                }
+                else if (Model.unit_day == 1 && Model.life_of_loan == 6)
+                {
+                    jxqcount= UsrAct.Where(w => w.RewTypeID == 3 && w.Amt == 2 || w.Amt == 3).Count();
+                }
+                else
+                {
+                    jxqcount = UsrAct.Where(w => w.RewTypeID == 3 &&  w.Amt == 3).Count();
+                }*@
+
+                <div onclick="showUserActRewType(1)"><b class="color_orange" id="jiaxiquan">可用加息券 
+                    @ViewBag.jiaxiCount
+                    @*@jxqcount*@ 
+                    张 </b></div>
+                <div class="group_chevron"></div>
+            </div>
+        @*}*@
+
+    </section>
+
+    <input type="hidden" id="Diff" name="Diff" value="@(Difference)" />
+    <input type="hidden" id="id" name="id" value="@(Model.targetid)" />
+    <input type="hidden" id="Isinterest" name="Isinterest" value="0" />
+    <input type="hidden" name="Rewardsid" id="Rewardsid" />
+    <input type="hidden" name="investamount" id="investamount" value="@invAmt" />
+
+    <div class="confirm_btn_box">
+        <p><label><input name="agree" type="checkbox" id="agree" checked> 已经阅读并同意<投资合同范本></label></p>
+        <input name="intt" value="确定投资" id="btn_submit" type="submit" class="invest_btn" onclick="return checkForm();">
+    </div>
+    <div class="bot_height"></div>
+
+            }
+
+
+
+<div class="layer_pop_bg"></div>
+
+@*@if (UsrAct.Count > 0)
+{*@
+
+    <div class="payment_pop" id="payment_pop">
+        <div class="pay_title">选择奖励</div>
+        <div class="pop_table">
+
+
+            @*<table width="100%" id="list_tb">
+                    <tr>
+                        <td width="20%" height="30" bgcolor="#eeeeee"><input name="checkall" id="checkall" type="checkbox" value="" disabled="disabled" /></td>
+                        <td width="20%" bgcolor="#eeeeee">类型</td>
+                        <td width="20%" bgcolor="#eeeeee">金额</td>
+                        <td width="40%" bgcolor="#eeeeee">最低使用限额</td>
+                    </tr>
+
+
+                    <tbody>
+
+                        @foreach (hx_UserAct item in UsrAct)
+                        {
+                            <tr>
+                                <td height="36"><input name="check" type="checkbox" value="@(item.UserAct)" /></td>
+                                <td>
+                                    @if (item.RewTypeID == 2)
+                                    {
+                                        @:抵扣券
+                                                 }
+                                    else if (item.RewTypeID == 3)
+                                    {
+                                        @:加息券
+                                                }
+
+                                    <input id="u@(item.UserAct)" name="u@(item.UserAct)" type="hidden" value="@item.AmtUses" />
+
+                                </td>
+                                <td>
+                                    @if (item.RewTypeID == 2)
+                                    {
+                                        @(item.Amt) @:元
+                                                 }
+                                    else if (item.RewTypeID == 3)
+                                    {
+                                        @(item.Amt) @:%
+                                                }
+                                </td>
+                                <td>
+                                    @if (item.Uselower <= 0 )
+                                    {
+                                        @:无投资门槛
+                                                }
+                                    else
+                                    {
+                                        @item.Uselower
+                                    }
+
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>*@
+
+
+        </div>
+        <div class="pay_btn"><a href="javascript:void(0);" id="btnSubmit">确定</a><a href="javascript:void(0);" id="pay_close">取消</a></div>
+    </div>
+@*}*@
+
+
+@Html.Hidden("hidResult")
+<script type="text/javascript">
+    $(function () {
+        function anim(duration) {
+            $('#payment_pop').animate(
+                { height: 'toggle' },
+                { duration: duration }
+            );
+        }
+        //抵扣券
+        $("#payment_pop").hide(); //遮罩层内选择券DIV
+        $(".layer_pop_bg").hide();//遮罩层
+        $('#xianjiquan').click(function () {//点击显示抵扣券
+            $('#jiaxiquan_txt').val("");//点击显示加息券赋值
+            $(".layer_pop_bg").show();//遮罩层
+            $('#mintbar').slideUp('slow');
+            anim(200);
+        });
+        $('.layer_pop_bg,#pay_close').click(function () {
+            $(".layer_pop_bg").hide();//遮罩层
+            $("#payment_pop").slideDown(); //遮罩层内选择券DIV
+            anim(0);
+        });
+        $('.layer_pop_bg').click(function () {
+            $(".layer_pop_bg").hide();//遮罩层
+            $("#payment_pop").slideDown(); //遮罩层内选择券DIV
+            anim(0);
+        });
+
+        $('#btnSubmit').click(function () {
+            $(".layer_pop_bg").hide();//遮罩层
+            $("#payment_pop").slideDown(); //遮罩层内选择券DIV
+            anim(0);
+            var Isinterest = $('#Isinterest').val();
+
+            if (Isinterest == 0) {
+                $('#reward_txt').val($('#hidResult').val());//点击显示抵扣券赋值
+            }else {
+                $('#jiaxiquan_txt').val($('#hidResult').val());//点击显示抵扣券赋值
+            }
+        });
+
+        $("#shouyi").hide();
+        $('.group_money').click(function () {
+            $('#shouyi').slideDown(200);
+        });
+
+        //加息券
+        $('#jiaxiquan').click(function () {//点击显示加息券
+            $('#reward_txt').val("");//点击显示抵扣券赋值
+            $(".layer_pop_bg").show();//遮罩层
+
+            anim(200);
+            //alert($('#Rewards').text() + "----" + df.val());
+        });
+    });
+    var istype=false;
+    var flag = true;
+    function checkForm() {
+        var isAgree = $("input[id='agree']").is(":checked");
+        if (isAgree == false) {
+            layer.msg("请同意合同范本！", 2, 5);
+            return false;
+        }
+        if (flag) {
+            flag = false;
+            $(".invest_btn").css('background', '#cccccc');
+        }else {
+            layer.msg("请不要重复提交！", 2, 5);
+            return false;
+        }
+
+    }
+
+    //点击抵扣券/加息券
+    function showUserActRewType(rtype){
+        //investAmtChange();
+       
+        var isinter=$('#Isinterest').val();
+        if (rtype==isinter) {
+            fxtype = 0;
+            $.post("/Home/investUserActRewType", {"isinterest":rtype,"targetid":@Model.targetid,"Rewardsids":df.val()  }, function (data) {
+                $(".pop_table").html(data);
+            });
+
+        }else {
+            if (df.val().length>0) {
+                var ts=(isinter == 1) ? "加息" : "现金";
+                layer.msg("请先取消已选"+ts+"券！", 2, 5);
+                return false;
+            }else {
+                fxtype = 0;
+                $('#Isinterest').val(rtype);
+                $.post("/Home/investUserActRewType", {"isinterest":rtype,"targetid":@Model.targetid,"Rewardsids":df.val()  }, function (data) {
+                    $(".pop_table").html(data);
+                });
+
+            }
+        }
+    }
+
+</script>

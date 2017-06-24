@@ -1,0 +1,133 @@
+﻿@using ChuanglitouP2P.Common;
+@{
+    int uid = Utils.checkloginsessiontop();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title </title>
+    <meta name="keywords" content="@ViewBag.keywords" />
+    <meta name="description" content="@ViewBag.desc " />
+    @Url.File("/Content/base.css").ToHtml()
+    @Url.File("/Content/css.css").ToHtml()
+    @RenderSection("css", required: false)
+    @Url.File("/Scripts/jquery-1.9.1.min.js").ToHtml()
+    @Url.File("/Scripts/jquery.flexslider.js").ToHtml()
+    @Url.File("/Scripts/index.js").ToHtml()
+    @Url.File("/Scripts/clock_time.js").ToHtml()
+
+    <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwNDg0Nl8yNjQ2OTVfNDAwODkwMjIyNl8"></script>
+    <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+    <script type="text/javascript">
+        $(function () {
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA1' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA2' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA3' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA4' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA5' });
+            BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA6' });
+        });
+        function ScrollImgLeft() {
+            var speed = 20;
+            var scroll_begin = document.getElementById("scroll_begin");
+            var scroll_end = document.getElementById("scroll_end");
+            var scroll_div = document.getElementById("scroll_div");
+            //scroll_begin.innerHTML += scroll_begin.innerHTML
+            scroll_end.innerHTML = scroll_begin.innerHTML;
+            function Marquee() {
+                if (scroll_end.offsetWidth - scroll_div.scrollLeft <= 0)
+                    scroll_div.scrollLeft -= scroll_begin.offsetWidth;
+                else
+                    scroll_div.scrollLeft++;
+            }
+            var MyMar = setInterval(Marquee, speed);
+            scroll_div.onmouseover = function () { clearInterval(MyMar); }
+            scroll_div.onmouseout = function () { MyMar = setInterval(Marquee, speed); }
+        }
+    </script>
+</head>
+<body>
+    <!--头部-->
+    <div style="position:fixed;left:0;top:0;z-index:99999;width:100%;">
+        <div class="w_header">
+
+            <div class="header1">
+                <div class="hea_dw">
+
+                </div>
+                <div class="hea_qq">
+                    <a id="BizQQWPA3" target="_blank">
+                        点击联系在线客服<br>
+                        QQ: 4008902226
+                    </a>
+                </div>
+                <div class="hea_p">
+                    客服电话：010-53732056（工作时间：9:00~18:00）
+                </div>
+                <div id="hea_p2" class="hea_p2">
+                    <em>
+                        <img title="关注创利投微信服务号" src="@Url.Image("hea_wx.png")" alt="关注创利投微信服务号">
+                        <img title="关注创利投微信服务号" src="@Url.Image("hea_wx1.png")" alt="关注创利投微信服务号">
+                    </em>
+                </div>
+                <div id="hea_p3" class="hea_p2 hea_p3">
+                    <em>
+                        <img title="在线客服" src="@Url.Image("hea_qq.png")" alt="">
+                        <a id="BizQQWPA2"><img title="在线客服" src="@Url.Image("hea_qq1.png")" alt="创利投在线客服"></a>
+                    </em>
+                </div>
+                @*<div id="hea_p5" class="hea_p5" style="visibility:hidden;">
+                        <em>
+                            <img title="扫描关注微信" src="images/hea_shouji.png" alt="">
+                            <img title="扫描关注微信" src="images/hea_shouji1.png" alt="">
+                        </em>
+                    </div>
+                    <div class="hea_p5_tu">
+
+                    </div>*@
+                <div class="hea_p4">
+                    @if (uid > 0)
+                {
+                        <a class="hea_em4 hea_a" href="@Url.Action("Index", "usercenter")" rel="nofollow">欢迎您，@Utils.GetUsrNameSex() </a><a class="hea_a hea_altho" href="/logout.html" rel="nofollow">[退出]</a>
+                }
+                else
+                {
+                        <a class="hea_em4 hea_a" href="@Url.Action("Index", "Signin", new { area = "" })" style="color:#339DDA;" rel="nofollow">登录</a><a class="hea_a hea_altho" href="@Url.Action("Index", "Register", new { area = "" })" style="color:#F88433;" rel="nofollow">注册</a>
+                }
+                    <a class="commona">
+                        |
+                    </a>
+                    <a class="commona commona-else" href="/clt_Login_register.html" rel="nofollow">
+                        帮助中心
+                    </a>
+                    <a class="commona commona-else" style="margin-right:14px;" href="/about.html" rel="nofollow">
+                        关于我们
+                    </a>
+                    <a class="commona commona-else" style="margin-right:0" href="/bigdata.html" rel="nofollow">
+                        平台数据
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="yetou" style="position:inherit; top: 35px; width: 100%; z-index: 8888;">
+            <!--logo导航的修改-->
+            <div class="w_logo">
+                <ul class="w_logo1">
+                    <a id="w_logo1_index" href="/"></a>
+                    <a href="/" id="back">返回首页</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>
+    @RenderBody()
+    </div>
+     @*@{Html.RenderPartial("_Footer");}*@
+    @RenderSection("scripts", required: false)
+    @*99click 监控代码*@
+    @Url.File("/Scripts/o_code.js").ToHtml()
+</body>
+</html>

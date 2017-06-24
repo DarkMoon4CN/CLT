@@ -1,0 +1,27 @@
+﻿@using ChuanglitouP2P.Common;
+@model ChuanglitouP2P.Model.chinapnr.NetSave.ReNetSave
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Su_Enterpriserecharge</title>
+</head>
+<body>
+    <div> 
+        @if (Model.RespCode != "" || Model.RespCode == null)
+        {
+            @:充值成功 ,  充值金额: @Model.TransAmt 元
+        }
+        else
+        {
+            @:充值失败   @Utils.GetReturnCode(Int32.Parse(Model.RespCode));
+        }
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+﻿@using ChuanglitouP2P.Common;
+@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@model PagedList<hx_Capital_account_water>
+
+
+
+@if (Model.Count > 0)
+{
+
+
+    <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+            <tr class="cz_tr01">
+                <th width="140">收入</th>
+                <th width="140">支出</th>
+                <th width="200">发生时间</th>
+                <th width="150">类型</th>
+                <th width="172">账户可用余额</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (hx_Capital_account_water item in Model)
+            {
+                decimal  incomeweb = decimal.Parse(item.income.ToString());
+
+                decimal expenditureweb = decimal.Parse(item.expenditure.ToString());
+
+                <tr>
+                    @if (incomeweb > 0)
+                    {
+                       <td>@incomeweb.ToString("0.00") 元</td>
+                    }
+                    else
+                    {
+                        <td>--</td>
+                    }
+
+
+                    @if (expenditureweb > 0)
+                    {
+                       <td>@expenditureweb.ToString("0.00") 元</td>
+                    }
+                    else
+                    {
+                        if (item.types_Finance == 39 || item.types_Finance == 40)
+                        {
+                            <td>0.00</td>
+                        }
+                        else
+                        {
+                            <td>--</td>
+                        }
+
+
+
+                    }
+                    <td>@DateTime.Parse(item.createtime.ToString()).ToString("yyyy-MM-dd HH:mm:ss")  </td>
+                    <td>@Utils.GetEnumTypesFinanceName(Int32.Parse(item.types_Finance.ToString()))</td>
+                    <td>@item.account_balance 元</td>
+                </tr>
+                    }
+           
+
+        </tbody>
+    </table>
+<div class="page_box">
+    <div class="page_left">
+        @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", PageIndexParameterName = "pageIndex", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox2", GoToButtonId = "goToBtn2" }, new MvcAjaxOptions
+   { UpdateTargetId = "Capital", HttpMethod = "Post", DataFormId = "searchForm", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "Capital")).AjaxOptions(a => a.SetUpdateTargetId("Capital"))
+    </div>
+    <div class="page_right">
+        <div class="input-group" style="margin:20px 0">
+            <span class="input-group-addon">转到第</span>
+            <input type="text" id="pageIndexBox2" class="form-control input-sm" />
+            <span class="input-group-addon">页</span>
+            <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn2">跳转</button></span>
+        </div>
+    </div>
+</div>
+
+}
+

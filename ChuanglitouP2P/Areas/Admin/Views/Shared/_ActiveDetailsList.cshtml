@@ -1,0 +1,85 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<ActDetailMode>
+
+<div class="z_table02" id="dTable">
+    <table cellpadding="0" cellspacing="0" border="0" id="tab_01">
+        <tr class="z_tabEle">
+            <td width="50">ID</td>
+            <td width="57">姓名</td>
+            <td width="55" class="z_tdShow">
+                等级
+                <div style="width:53px;">
+                    <h2>等级</h2>
+                </div>
+            </td>
+            <td width="85">投资时间</td>
+            <td width="89" class="z_tdShow">
+                投资金额
+                <div style="width:87px">
+                    <h2>投资金额</h2>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">默认时间</a><a href="javascript:void(0)">从高到低</a><a href="javascript:void(0)">从低到高</a>
+                        </li>
+                    </ul>
+            </td>
+            <td width="85">注册时间</td>
+            <td width="58">红包类型</td>
+            <td width="66">总使用红包金额</td>
+            <td width="68">使用本次活动红包金额</td>
+            <td width="72">使用本次活动加息券</td>
+            <td width="75">现金奖励</td>
+            <td width="145">投资标的</td>
+        </tr>
+      
+        @if (Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td><a>@item.registerid</a></td>
+                    @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                    {
+                        if (item.realname != null && item.realname.Length > 1)
+                        {
+                            item.realname = item.realname.Substring(0, 1) + "**";
+                        }
+
+                    }
+                    <td><a>@item.realname</a></td>
+                    <td>@Utils.RetUseridentity(@item.useridentity.ToString())</td>
+                   <td>@item.invest_time</td>
+                    
+                    <td>@item.investment_amount</td>
+                    <td>@item.registration_time</td>
+                    <td>@item.hbtype</td>
+                    <td>@item.BonusAmt</td>
+                    <td>@item.hdhbje</td>
+                    <td>@Convert.ToInt32(item.jxq)</td>
+                    <td>@item.xjjl</td>
+                    <td>@item.borrowingTitle</td>
+                </tr>
+
+            }
+        }
+
+    </table>
+
+    <div class="page_box">
+        <div class="page_left">
+            @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox2", GoToButtonId = "goToBtn2" }, new MvcAjaxOptions
+           { UpdateTargetId = "dTable", HttpMethod = "Post", DataFormId = "searchForm", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "dTable")).AjaxOptions(a => a.SetUpdateTargetId("dTable"))
+        </div>
+        <div class="page_right">
+            <div class="input-group" style="margin:20px 0">
+                <span class="input-group-addon">转到第</span>
+                <input type="text" id="pageIndexBox2" class="form-control input-sm" />
+                <span class="input-group-addon">页</span>
+                <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn2">跳转</button></span>
+            </div>
+        </div>
+    </div>
+</div>

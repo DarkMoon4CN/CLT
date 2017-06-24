@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3c5a039b14f4439da853e6713e939d0d" Name="Diagram1">
+        <EntityTypeShape EntityType="chuangtouModel.area" Width="1.5" PointX="12.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.bonus_account" Width="1.5" PointX="10.125" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.bonus_account_water" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.city" Width="1.5" PointX="12" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.Contract_management" Width="2.125" PointX="7.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.guarantee_way" Width="1.5" PointX="7.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_Activity_schedule" Width="1.625" PointX="9.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_Bid_records" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_bonding_company" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_borrower_guarantor_picture" Width="1.5" PointX="12.375" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_borrowing_target" Width="2" PointX="5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_borrowing_target_detailed" Width="1.5" PointX="5.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_Capital_account_water" Width="1.5" PointX="5.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_CashAwards" Width="1.5" PointX="14.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_Contract_template" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_contract_type" Width="1.5" PointX="14.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_income_statement" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_investsearch" Width="1.5" PointX="14.625" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_member_table" Width="1.5" PointX="0.625" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_Mention_charges" Width="1.5" PointX="11.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_Project_type" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_Recharge_history" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_repayment_plan" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_about_news" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_Ad" Width="1.5" PointX="13.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_adminuser" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_Bank" Width="1.5" PointX="18.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_department" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_department_child" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_frozen" Width="1.5" PointX="18.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_Links" Width="1.5" PointX="18.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_LL_cash" Width="1.5" PointX="18.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_LLBack" Width="1.5" PointX="7.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_LLPay_bindCard" Width="1.5" PointX="9.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_LLpay_city" Width="1.5" PointX="20.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_LLpay_re_cash" Width="1.5" PointX="2.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_LLpay_Recharge" Width="1.5" PointX="20.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_Loan_records" Width="1.5" PointX="4.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_LoginInfo" Width="1.5" PointX="20.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_menu" Width="1.5" PointX="20.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_Myborrow" Width="1.5" PointX="11.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_Phone_records" Width="1.5" PointX="13.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_reviewremarks" Width="1.5" PointX="20.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_SMS_record" Width="1.5" PointX="15.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_SMSEmail" Width="1.5" PointX="17.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_System_message" Width="1.5" PointX="20.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_UserCash" Width="1.875" PointX="22.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_Userinvitation" Width="1.5" PointX="22.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_web_Ad_type" Width="1.5" PointX="6.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_web_type" Width="1.5" PointX="22.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_Test_records" Width="1.5" PointX="22.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_UsrBindCardC" Width="1.5" PointX="22.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.Overdue_repayment" Width="1.5" PointX="19.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.province" Width="1.5" PointX="22.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.sysdiagram" Width="1.5" PointX="8.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_td_admin_role" Width="1.5" PointX="21.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_AD_type" Width="1.5" PointX="23.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.v_admin_role_menu" Width="1.75" PointX="25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.v_adminuser_department" Width="1.5" PointX="0.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_Bid_Frozen" Width="1.5" PointX="25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_Bid_income_statement" Width="1.5" PointX="24.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_bid_records_bonus_account" Width="1.5" PointX="13.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_bonus_account" Width="1.5" PointX="24.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_bonus_account_water" Width="1.5" PointX="15.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_borrow_repayment_plan" Width="1.5" PointX="2.625" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_borrowing_Bid_records_income_statement" Width="1.5" PointX="4.875" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_borrowing_Bid_records_income_statement_uc" Width="1.5" PointX="10.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_borrowing_target_addlist" Width="1.5" PointX="25.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_borrowing_target_bonding" Width="1.5" PointX="27.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_borrowing_target_review" Width="1.5" PointX="7" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_contract_type_template" Width="1.5" PointX="26.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_hx_Bid_records_borrowing_target" Width="1.5" PointX="17.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_hx_Bid_records_borrowing_target_uc" Width="1.5" PointX="27.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_incomeborr_count" Width="1.5" PointX="19.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_LL_Cash_User" Width="1.5" PointX="21.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_LLBack_Card_List" Width="1.5" PointX="27.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_LLPay_Re" Width="1.5" PointX="29.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_Phone_records" Width="1.5" PointX="28.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_Recharge_user_bank" Width="1.5" PointX="28.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_Repayment_plan_loan_records" Width="1.5" PointX="29.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_SMS_Record" Width="1.5" PointX="29.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_td_LLpay_bank" Width="1.5" PointX="29.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_type_news" Width="1.5" PointX="32.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_UserCash_Bank" Width="1.5" PointX="30.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_UserInvitation" Width="1.5" PointX="12.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_UsrBindCardBank" Width="1.5" PointX="14.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chuangtouModel.V_yaoqin_count" Width="1.5" PointX="27.75" PointY="30.75" IsExpanded="true" />
+        <AssociationConnector Association="chuangtouModel.FK_BONUS_AC_REFERENCE_HX_ACTIV" ManuallyRouted="false" />
+        <AssociationConnector Association="chuangtouModel.FK_CONTRACT_REFERENCE_HX_BORRO" ManuallyRouted="false" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_INCOM_REFERENCE_HX_BID_R" ManuallyRouted="false" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_BORRO_REFERENCE_HX_BORRO" ManuallyRouted="false" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_BORRO_REFERENCE_HX_MEMBE" ManuallyRouted="false" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_CAPIT_REFERENCE_HX_MEMBE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_ActivityTable" Width="1.5" PointX="3.25" PointY="5.125" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_ActivityType" Width="1.5" PointX="1.5" PointY="44.75" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_RewardType" Width="1.5" PointX="1.5" PointY="47.25" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_SMSContext" Width="1.5" PointX="3" PointY="50" />
+        <EntityTypeShape EntityType="chuangtouModel.hx_UserAct" Width="1.5" PointX="0.5" PointY="0.5" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_ACTIV_REFERENCE_HX_ACTIV" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_ACTIV_REFERENCE_HX_REWAR" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_SMSCO_REFERENCE_HX_ACTIV" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_USERA_REFERENCE_HX_ACTIV2" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_USERA_REFERENCE_HX_ACTIV" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_USERA_REFERENCE_HX_MEMBE" />
+        <AssociationConnector Association="chuangtouModel.FK_HX_USERA_REFERENCE_HX_REWAR" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

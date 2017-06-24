@@ -1,0 +1,17 @@
+E:\新版网站\HX.QRCode\bin\Release\HX.QRCode.dll.config
+E:\新版网站\HX.QRCode\bin\Release\HX.QRCode.dll
+E:\新版网站\HX.QRCode\bin\Release\HX.QRCode.pdb
+E:\新版网站\HX.QRCode\bin\Release\EntityFramework.dll
+E:\新版网站\HX.QRCode\bin\Release\EntityFramework.SqlServer.dll
+E:\新版网站\HX.QRCode\bin\Release\Microsoft.AspNet.Identity.Core.dll
+E:\新版网站\HX.QRCode\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\新版网站\HX.QRCode\bin\Release\QuickMark.dll
+E:\新版网站\HX.QRCode\bin\Release\ThoughtWorks.QRCode.dll
+E:\新版网站\HX.QRCode\bin\Release\EntityFramework.xml
+E:\新版网站\HX.QRCode\bin\Release\EntityFramework.SqlServer.xml
+E:\新版网站\HX.QRCode\bin\Release\Microsoft.AspNet.Identity.Core.xml
+E:\新版网站\HX.QRCode\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\新版网站\HX.QRCode\bin\Release\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+E:\新版网站\HX.QRCode\bin\Release\zh-Hans\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+E:\新版网站\HX.QRCode\obj\Release\HX.QRCode.dll
+E:\新版网站\HX.QRCode\obj\Release\HX.QRCode.pdb

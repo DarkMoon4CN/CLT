@@ -1,0 +1,8 @@
+﻿@using ChuanglitouP2P.Common
+@{
+    Layout = null;
+}
+
+@Url.ApiFile("layer.min.js").ToHtml()
+<script type="text/javascript"> layer.msg("充值准备中.....!", 0.5, 1);</script>
+@Html.Raw(ViewBag.str)

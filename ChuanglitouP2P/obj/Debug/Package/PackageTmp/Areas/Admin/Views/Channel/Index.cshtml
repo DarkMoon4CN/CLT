@@ -1,0 +1,116 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@using ChuangLitouP2P.Models;
+@model PagedList<hx_Channel>
+@{
+    ViewBag.Title = "渠道管理";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+    Dictionary<int, int> dictOrder = (Dictionary<int, int>)ViewBag.DictOrder;
+    Dictionary<int, int> dictRegister = (Dictionary<int, int>)ViewBag.DictRegister;
+}
+            <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+            <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+            <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+            <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+            <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+            <style type="text/css">
+                tfoot tr {
+                    height: 35px;
+                    line-height: 35px;
+                    left: 30px;
+                }
+            </style>
+            <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+            <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+            <script src="~/Areas/Admin/js/common.js"></script>
+            <script src="~/Scripts/layer/layer.min.js"></script>
+            <script src="~/Areas/Admin/js/DateJs,js.js"></script>
+            <script src="~/Areas/Admin/js/Channel.js"></script>
+
+            <script type="text/javascript">
+                $(function () {
+                    Channel.listInit();
+                });
+            </script>
+            <h2 class="z_location">
+                <a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>
+                >
+                <a href="javascript:void(0)"> 渠道管理</a>
+                >
+                <a href="javascript:void(0)"> 邀请列表</a>
+            </h2>
+            <div class="z_body">
+                <p class="tP3">
+                    快速搜索
+                </p>
+                @using (Html.BeginForm("Index", "Channel", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <p class="tP4 tx_tp4" style="height:60px; padding-bottom:15px; ">
+                        <label for="channelName">渠道名：</label><input type="text" class="txt1" id="channelName" name="channelName" value="@ViewBag.ChannelName" style="width:100px;" />&nbsp;
+                        <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+                        <input type="button" id="btn_Add" class="btn2" value="新&nbsp;&nbsp;&nbsp;增" />
+                    </p>
+                }
+                <span class="icon-sprite icon-list"></span>
+                <h3 class="listtitle">
+                    渠道列表
+                </h3>
+                <table cellspacing="0" cellpadding="0" class="listtable">
+                    <tbody>
+                        <tr class="tz_tr">
+                            <th>编号</th>
+                            <th>渠道名称</th>
+                            <th>渠道类型</th>
+                            <th>渠道推广链接</th>
+                            <th>渠道使用者</th>
+                            <th>渠道被邀请总数</th>
+                            <th>被邀请首投总数</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                                <tr>
+                                    <td>@item.ChannelID</td>
+                                    <td>@item.ChannelName</td>
+                                    <td>@item.type</td>
+                                    <td><a href="/register/index?channel=@item.Invitedcode&type=1" target="_blank">@item.Invitedcode</a></td>
+                                    @if (item.hx_Channel_AdminUser == null || item.hx_Channel_AdminUser.Count == 0)
+                                    {
+                                        <td>--</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.hx_Channel_AdminUser.FirstOrDefault().AdminUserName</td>
+                                    }
+
+                                    <td><a href="/Admin/Channel/ChannelUserList?AdminUserName=@item.hx_Channel_AdminUser.FirstOrDefault().AdminUserName">@dictRegister[item.ChannelID]</a></td>
+                                    <td><a href="/Admin/Channel/ChannelInvList?AdminUserName=@item.hx_Channel_AdminUser.FirstOrDefault().AdminUserName">@dictOrder[item.ChannelID]</a></td>
+                                    @if (item.Status == 0)
+                                    {
+                                        <td>禁用</td>
+                                    }
+                                    else
+                                    {
+                                        <td>启用</td>
+                                    }
+                                    <td><a href="javascript:void(0);" id="copy" onclick="Channel.GotoEditor(@item.ChannelID)">编辑</a></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div class="pagination ue-clear">
+                    <div class="pagination-container">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new
+                   {
+                       page,
+                       channelName = @ViewBag.ChannelName
+                   }))<div style="padding:10px;font-weight:600">当前第 @Model.PageNumber 页,共 @Model.PageCount 页，共 @Model.TotalItemCount 条记录</div>
+                    </div>
+                </div>
+            </div>

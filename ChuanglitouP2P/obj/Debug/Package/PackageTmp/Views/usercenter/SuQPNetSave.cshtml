@@ -1,0 +1,66 @@
+﻿@using ChuanglitouP2P.Common;
+@model ChuanglitouP2P.Model.chinapnr.NetSave.ReQPNetSave
+@{
+    ViewBag.Title = "用户充值-创利投-安全的阳光P2B网络借贷金融平台";
+    ViewBag.keywords = "P2B借贷,P2P理财,P2B理财,互联网金融,网络理财,投资理财,个人借贷平台,企业融资,创利投";
+    ViewBag.desc = "创利投是中国最安全阳光的互联网金融理财服务平台，五大安全系统保证您的理财账户安全，最安全的第三方充值支付托管平台，丰厚的邀请奖励金额，是您最放心安全的理财投资平台。你的账户在创利投决定安全.";
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+}
+@Url.File("Content/reg_common.css").ToHtml()
+@Url.File("Scripts/Validform_v5.3.2_min.js").ToHtml()
+@Url.File("Scripts/layer.min.js").ToHtml()
+<script type="text/javascript"> layer.msg("页面转跳中", 3, 1, function () { window.location.href = '/usercenter/Index' });</script>
+<div class="user_right_box">
+    <div class="user_right_frame" style="margin-top:30px;">
+
+        @if (Model.RespCode != null && Model.RespCode != "")
+        {
+            if (Model.RespCode == "000")
+            {
+                <div class="success_box clearfix">
+                    <div class="success_title">
+                        <img src="/images/ok_icon.png" />
+
+                        <div class="success_txt"><strong>恭喜您，充值成功</strong></div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="success_prompt">
+                        <ul>
+                            <li>充值时间：@Utils.GetDateFormat(DateTime.Now)</li>
+                            <li>充值金额：<b class="color_red">@Model.TransAmt</b>元</li>
+                            <li>状态：充值成功</li>
+                        </ul>
+                    </div>
+                </div>
+
+            }
+            else
+            {
+
+                <div class="success_box clearfix">
+                    <div class="success_title">
+                        <img src="/images/failure_icon.png" />
+                        <div class="success_txt">
+                            <strong style="color:#ff0000;">充值失败 @Model.RespDesc </strong><p>如有疑问，请拨打创利投客服热线：010-53732056</p>@*@Utils.GetReturnCode(Int32.Parse(Model.RespCode))*@
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+        else
+        {
+
+            <div class="success_box clearfix">
+                <div class="success_title">
+                    <img src="/images/failure_icon.png" />
+                    <div class="success_txt">
+                        <strong style="color:#ff0000;">充值失败  </strong><p>如有疑问，请拨打创利投客服热线：010-53732056</p>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+</div>

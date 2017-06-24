@@ -1,0 +1,209 @@
+﻿@charset "utf-8";
+/* CSS Document */
+div,p,a,ul,li,span,em,i,dl,dt,dd,body,h2,h3,h5{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+em,i{
+	font-style:normal;	
+}
+images{
+	border:none;
+}
+li{
+	list-style-type:none;	
+}
+body{
+	background:#ed642d;
+	font-family:"微软雅黑";	
+	min-width: 320px;
+	max-width: 640px;
+}
+
+/*---------------media-----------------------*/
+
+@media screen and (max-device-width: 320px) {
+    
+}
+@media screen and (min-width: 321px) and (max-width: 375px) {
+    
+}
+@media screen and (min-width: 376px) and (max-width: 414px) {
+    
+
+}
+@media screen and (min-width: 415px) and (max-width: 768px) {
+    
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 2900px) {
+    
+
+}
+
+/*----part1 -------------------------------------*/
+.w_apptui{
+	width: 100%;
+	height: auto;
+}
+.w_apptui_1{
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+.w_apptui_1 img{
+	width: 100%;
+	height: auto;
+}
+.w_apptui_1_main{
+	position: absolute;
+	right: 15%;
+	bottom: 21%;
+}
+.w_apptui_1_main_a{
+	display: block;
+	width: 4.5rem;
+	height: 1rem;
+	line-height: 1rem;
+	background: #00a3ff;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 1em;
+	text-align:center;
+	font-family: "微软雅黑";
+    box-shadow: 0px 1px 1px #1f71e0;
+}
+
+.w_apptui_2{
+	width: 100%;
+	height: auto;
+}
+.w_apptui_2 img{
+	width: 100%;
+	height: auto;
+}
+.w_apptui_3{
+	width: 100%;
+	height: auto;
+}
+.w_apptui_3 img{
+	width: 100%;
+	height: auto;
+}
+.w_apptui_4{
+	width: 100%;
+	height: auto;
+}
+.w_apptui_4 img{
+	width: 100%;
+	height: auto;
+}
+.w_apptui_5{
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+.w_apptui_5 img{
+	width: 100%;
+	height: auto;
+}
+.w_apptui_5_main{
+	position: absolute;
+	right: 15%;
+	bottom: 18%;
+}
+.w_apptui_5_main a{
+	display: inline-block;
+	margin:7% 0;
+}
+.w_apptui_5_main a:first-child{
+	width: 4rem;
+	height: 0.9rem;
+	background: url(../images/w_app_btn1.png) no-repeat;
+	background-size: 100%;
+}
+.w_apptui_5_main a:last-child{
+	width: 4rem;
+	height: 0.9rem;
+	background: url(../images/w_app_btn2.png) no-repeat;
+	background-size: 100%;
+}
+
+
+
+
+/*----底部广告-----------------------*/
+
+ .fixed_Bar {
+        height: auto;
+        width: 100%;
+        background: rgba(28,29,54,.85);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        overflow: hidden;
+        padding: 5px 0;
+    }
+
+    .BarCentert {
+        height: auto;
+        width: 14.55rem;
+        margin: 0 auto;
+        position: relative;
+    }
+
+        .BarCentert img {
+            width: 7.675rem;
+            height: auto;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+
+    .fixed_Bar a {
+        padding: 5px 20px;
+        height: auto;
+        position: absolute;
+        top: 0.6rem;
+        left: 8.8rem;
+        color: #fff;
+        font-size: 0.55rem;
+        text-align: center;
+        background: #276fe6;
+        border-bottom: 1px solid #10498f;
+        font-family: "微软雅黑";
+        font-weight: normal;
+    }
+
+    .fixed_Bar_Close {
+        position: absolute;
+        right: 0.3rem;
+        top: 0.7rem;
+        width: 0.9rem;
+        height: 0.9rem;
+        display: inline-block;
+        background: url('/Areas/activity/Sources/20161014/images/fixed_Bar_Close.png') no-repeat;
+        background-size: 100%;
+    }
+
+    .shade {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+    }
+
+        .shade img {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin-top: 20%;
+            margin-left: 20%;
+        }

@@ -1,0 +1,301 @@
+﻿
+@model ChuangLitouP2P.Models.hx_borrowing_target
+@{ 
+    
+}
+
+<div class="z_cont2">
+
+    <table width="100%" style="table-layout:fixed;padding-left:10px;margin-top:10px;">
+        <tr>
+            <td class="tdleft">
+                <label for="">借款人Id:</label>
+            </td>
+            <td class="tdright">
+                @*<input type="text" name="username" id="username" readonly="readonly" class="inputxt" value="" />*@
+                @Html.TextBoxFor(model => model.hx_member_table.username, new { htmlAttributes = new { @datatype = "*2-30", @nullmsg = "请选择借款人！", @errormsg = "请选择正确的借款人！", @readonly = "readonly", @class = "inputxt" } })
+                <input id="btnSelectBorrower" class="button white medium" type="button" onclick="javascript: getSection();" value="选择借款人" />
+                <input id="btnAddUser" class="button white medium" type="button" onclick="javascript:window.location = '/admin/LoanManage/AddUser.aspx';" value="添加客户" />
+                @Html.HiddenFor(model => model.borrower_registerid)
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="">合同编号：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.loan_number, new { htmlAttributes = new { @datatype = "*2-30", @nullmsg = "请输入合同编号！", @errormsg = "合同编号为2-30个字符！" } })
+                <input id="btnloan_number" class="button white medium" type="button" value="生成合同编号" />
+                <span class="Validform_checktip">请输入合同编号！</span> <span> 规则:年+月+日+0001(201412020001)12位</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="borrowing_title">项目标题：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.borrowing_title, new { htmlAttributes = new { @ajaxurl = "/admin/DaiKuan/CheckTitle", @datatype = "*2-60", @nullmsg = "请设置项目标题！", @errormsg = "请项目标题为2-60个字符！" } })
+                <span class="Validform_checktip">请设置项目标题！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="project_type_id">项目类别：</label>
+            </td>
+            <td class="tdright">
+                @Html.DropDownList("project_type_id", ViewBag.ProjectType as IEnumerable<SelectListItem>)
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="borrowing_thumbnail">项目图片：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.borrowing_thumbnail, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请上传项目图片！", @errormsg = "请上传项目图片！" } })
+                <span class="Validform_checktip">请上传项目图片！</span><br />
+                <input type="file" id="fileImg" name="fileImg" /><input type="button" id="btnUpload" value="上传图片" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="borrowing_balance">借款金额：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.borrowing_balance, new { htmlAttributes = new { @placeholder = "0.00", @class = "inputxt", @datatype = "*", @nullmsg = "请设置借款金额！", @errormsg = "借款金额为数字型！" } })
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="annual_interest_rate">网站年利率：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.annual_interest_rate, new { htmlAttributes = new { @placeholder = "0.00", @class = "inputxt", @datatype = "*", @nullmsg = "请输入借款年利率！", @errormsg = "年利率为数字类型！" } })
+                <span class="Validform_checktip">请输入借款年利率！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="release_date">借款日期：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.release_date, new { htmlAttributes = new { @datatype = "d", @nullmsg = "请设置借款日期！", @errormsg = "借款日期为日期格式！", @class = "jcDate jcDateIco", @style = "padding-left:40px;",@autocomplete = "off" } })
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="life_of_loan">借款期限：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.life_of_loan, new { htmlAttributes = new { @class = "inputxt", @datatype = "n", @nullmsg = "请设置借款期限！", @errormsg = "借款期限为数字型！" } })
+                <span class="Validform_checktip">请设置借款期限！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="unit_day">单位(月/天)：</label>
+            </td>
+            <td class="tdright">
+                <select id="unit_day" name="unit_day">
+                    <option value="1">月</option>
+                    <option value="3">天</option>
+                </select><div class="Validform_checktip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="repayment_date">还款日期：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.repayment_date, new { htmlAttributes = new { @datatype = "d", @nullmsg = "请设置还款日期！", @errormsg = "还款日期为日期格式！", @class = "jcDate jcDateIco", @style = "padding-left:40px;",@autocomplete = "off" } })
+                <span class="Validform_checktip">请设置还款日期！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="month_payment_date">每月付息日：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.month_payment_date, new { htmlAttributes = new { @datatype = "day1", @nullmsg = "请设置每月付息日！", @errormsg = "每月付息日应输入1-28号任一天数！" } })
+                <span class="Validform_checktip">请设置每月付息日！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="minimum">最低投资：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.minimum, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置最低投资金额限制！", @errormsg = "最低投资金额限制为1-38位数字！" } })
+                <span class="Validform_checktip">请设置最低投资金额限制！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="maxmum">最高投资：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.maxmum, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置最高投资金额限制！", @errormsg = "最高投资金额限制为1-38位数字！" } })
+                <span class="Validform_checktip">请设置最高投资金额限制 (0.00 表示不限)！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="companyid">担保公司：</label>
+            </td>
+            <td class="tdright">
+                @Html.DropDownList("companyid", ViewBag.Company as IEnumerable<SelectListItem>)
+                <div class="Validform_checktip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="guarantee_way_id">担保方式：</label>
+            </td>
+            <td class="tdright">
+                @Html.DropDownList("guarantee_way_id", ViewBag.Way as IEnumerable<SelectListItem>)
+                <div class="Validform_checktip">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="payment_options">还款方式：</label>
+            </td>
+            <td class="tdright">
+                @Html.DropDownList("payment_options", ViewBag.Option as IEnumerable<SelectListItem>)
+                <div class="Validform_checktip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="start_time">开始宣传时间：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.start_time, new { htmlAttributes = new { @datatype = "d", @nullmsg = "请设置招标开始宣传时间！", @errormsg = "招标开始宣传时间为日期格式！" } })
+                <span class="Validform_checktip">请设置招标开始宣传时间！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="sys_time">招标上线时间：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.sys_time, new { htmlAttributes = new { @datatype = "d", @nullmsg = "请设置招标上线时间！", @errormsg = "招标上线时间日期格式！" } })
+                <span class="Validform_checktip">请设置招标上线时间！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="end_time">宣传结束时间：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.end_time, new { htmlAttributes = new { @datatype = "d", @nullmsg = "请设置招标开始宣传时间！", @errormsg = "招标开始宣传时间为日期格式！" } })
+                <span class="Validform_checktip">请设置招标结束时间！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="service_charge">手续费：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.service_charge, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置手续费！", @errormsg = "手续费限制为1-38位数字！" } })
+                <span class="Validform_checktip">请设置手续费！</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="loan_management_fee">借款者管理费</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.loan_management_fee, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置借款者管理费！", @errormsg = "借款者管理费为1-38位数字！" } })
+                <span class="Validform_checktip">请设置借款者管理费！</span> <span>管理费 = 本金总额×管理费率 0即不收取&nbsp;&nbsp;&nbsp; [系统按千分比计算 1%为0.10]</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="investors_management_fee">投资者管理费：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.investors_management_fee, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置投资者管理费！", @errormsg = "投资者管理费为1-38位数字！" } })
+                <span class="Validform_checktip">请设置投资者管理费！</span>  <span>管理费 = 投资总额×管理费率 0即不收取</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="ordinary_overdue_management_fees">普通逾期管理费：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.ordinary_overdue_management_fees, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置普通逾期管理费！", @errormsg = "普通逾期管理费为1-38位数字！" } })
+                <span class="Validform_checktip">请设置普通逾期管理费！</span> <span>逾期管理费总额 = 逾期本息总额×对应逾期管理费率×逾期天数 0即不收取</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="seriously_overdue_management_fees">严重逾期管理费：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.seriously_overdue_management_fees, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置严重逾期管理费！", @errormsg = "严重逾期管理费为1-38位数字！" } })
+                <span class="Validform_checktip">请设置严重逾期管理费！</span><span>逾期管理费总额 = 逾期本息总额×对应逾期管理费率×逾期天数 0即不收取</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="ordinary_overdue_penalty">普通逾期罚息：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.ordinary_overdue_penalty, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置普通逾期罚息！", @errormsg = "普通逾期罚息为1-38位数字！" } })
+                <span class="Validform_checktip">请设置普通逾期罚息！</span><span>逾期管理费总额 = 逾期本息总额×对应逾期管理费率×逾期天数 0即不收取</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="seriously_overdue_penalty">严重逾期罚息：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.seriously_overdue_penalty, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置严重逾期罚息！", @errormsg = "严重逾期罚息为1-38位数字！" } })
+                <span class="Validform_checktip">请设置严重逾期罚息！</span><span>逾期管理费总额 = 逾期本息总额×对应逾期管理费率×逾期天数 0即不收取</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="transfer_Expenses">债权转让管理费：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.transfer_Expenses, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置债权转让管理费！", @errormsg = "债权转让管理费为1-38位数字！" } })
+                <span class="Validform_checktip">请设置债权转让管理费！ </span><span>管理费 = 转让金额×管理费率 0即不收取</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="guarantee_fee">担保费费率：</label>
+            </td>
+            <td class="tdright">
+                @Html.EditorFor(model => model.guarantee_fee, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置债权转让管理费！", @errormsg = "债权转让管理费为1-38位数字！" } })
+                <span class="Validform_checktip">请设置担保费费率！ </span><span>管理费 = 本金总额×管理费率 0即不收取</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="recommend">是否推荐：</label>
+            </td>
+            <td class="tdright">
+                @Html.DropDownList("recommend", ViewBag.Recommend as IEnumerable<SelectListItem>)
+                <div class="Validform_checktip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft">
+                <label for="IsUse">是否担保：</label>
+            </td>
+            <td class="tdright">
+                @Html.DropDownList("IsUse", ViewBag.IsUse as IEnumerable<SelectListItem>)
+                <div class="Validform_checktip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdleft"></td>
+            <td class="tdright">
+                <input type="submit" id="btnSubmit" value="确定" class="btn" />
+                &nbsp;<a href="#" onclick="javascript:history.back()"><span class="button white medium" id="getback">返回</span></a>
+            </td>
+        </tr>
+    </table>

@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "红包";
+
+    //ViewBag.keywords = "新手理财活动,投资理财活动,理财送现金，创利投活动，创利投";
+
+    //ViewBag.desc = "创利投推出新手理财送好礼，现金红包送不停活动，活动期间新用户注册就送50元，首次投资成功再送您50元，挂牌上市企业创利投等您来赚钱！";
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<link href="~/Areas/activity/Sources/20161014/style/common.css" rel="stylesheet" />
+<link href="~/Areas/activity/Sources/20161014/style/css.css" rel="stylesheet" />
+<script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("nav.susnav,footer.footer").hide();
+    });
+</script>
+@{string url = ChuanglitouP2P.Common.Settings.Instance.CurrentUserId <= 0 ? "/login.html" : "/Cash/CashCoupon"; }
+<div class="User_body">
+    <div class="User_01">
+    </div>
+    <div class="User_02"></div>
+    <div class="User_03">
+        <h3>新人注册可获得50元抵扣券，首投再送50元抵扣券</h3>
+        <h5><span>用户可在：我的账户 &gt; 抵扣券中查看</span></h5>
+        <div class="User3_top">
+            <ul>
+                <li class="zt2_li01">注册送抵扣券</li>
+                <li class="zt2_li02"><span>50</span>元</li>
+                <li class="zt2_li03"><a href="@url">马上领取</a></li>
+                <li class="zt2_li04">注册成功，直接奖励50元抵扣券</li>
+            </ul>
+            <ul>
+                <li class="zt2_li01">首次投资成功再送</li>
+                <li class="zt2_li02"><span>50</span>元</li>
+                <li class="zt2_li03"><a href="@url">马上领取</a></li>
+                <li class="zt2_li04">首次投资成功再送50元抵扣券</li>
+            </ul>
+        </div>
+        <div class="zt2_bot"><a href="@url">马上领取</a></div>
+    </div>
+    <div class="User_04">
+        <dl>
+            <dt>活动细则：</dt>
+            <dd>1、活动时间自2016年11月1日-2016年11月30日；</dd>
+            <dd>2、活动期间内，用户注册实名认证成功可获得50元抵扣券，该抵扣券有效期截止到2016年11月30日；</dd>
+            <dd>3、用户首次投资创利投任意项目（最低100元）再送50元抵扣券，该抵扣券有效期截止到2016年11月30日；</dd>
+            <dd>4、抵扣券使用规则：投资到期后，抵扣券自动转化为可用余额，可随投资本金一起提现，也可用于下次投资。</dd>
+            <dd>5、所获奖励请到“我的账户 > 抵扣券 ”中查看；</dd>
+            <dd>6、刷奖、冒用他人身份证、银行卡等作 弊者一经核实，取消活动资格，创利投有权收回所得奖励；</dd>
+            <dd class="dd_end">活动最终解释权在法律范围内归北京创利投网络科技有限公司所有</dd>
+        </dl>
+    </div>
+
+    @*<div class="fixed_Bar">
+        <div class="BarCentert">
+            <a href="/register">马上注册</a>
+        </div>
+    </div>*@
+
+    <div class="shade">
+        <img src="~/Areas/activity/Sources/20161014/images/weixintuiguang.png">
+    </div>
+    <div class="fixed_Bar">
+        <div class="BarCentert">
+            <img src="~/Areas/activity/Sources/20161014/images/User_img07.png">
+            <a href="javascript:void(0)">立刻下载</a>
+            <span class="fixed_Bar_Close"></span>
+        </div>
+    </div>
+
+</div>
+<script src="~/js/om_code.js"></script>
+<script type="text/javascript">
+    $(".BarCentert").on("click","a",function(){
+        $(".shade").show();
+    })
+    $(".shade").on("click",function(){
+        $(".shade").hide();
+    })
+    $(".fixed_Bar_Close").on("click",function(){
+        $(".fixed_Bar").hide();
+    })
+</script>

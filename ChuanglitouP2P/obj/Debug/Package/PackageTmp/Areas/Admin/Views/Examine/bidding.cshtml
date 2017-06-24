@@ -1,0 +1,167 @@
+﻿
+@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.V_borrowing_target_addlist>
+@{
+    ViewBag.Title = "招标中贷款";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+
+    //投资记录
+    function invesrecord(targetid) {
+        var url = "/admin/Examine/InvesRecord?targetid=" + targetid;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '投资记录',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['989px', "500px"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+
+    //满标放款 
+    function lending(targetid) {
+        var url = "/admin/Examine/lending?targetid=" + targetid;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '投资放款',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['989px', "500px"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+
+
+    //满标 
+    function getItemFullscale(id) {
+        var url = "/admin/Examine/Fullscale?id=" + id;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '满标审核',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['989px', "500px"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+
+    function closewindows() {
+        layer.close(editwindow);
+        window.location.href=location.href;
+    }
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">贷款管理</a>><a href="javascript:void(0)"> 贷款列表</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+    <p class="tP3">
+        快速搜索
+    </p>
+    @using (Html.BeginForm("bidding", "Examine", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:60px; padding-bottom:15px; ">
+            <label for="borrowing_title">项目名称：</label><input type="text" class="txt1" id="borrowing_title" name="borrowing_title" value="@(ViewBag.borrowing_title)" style="width:100px;" />&nbsp;
+            <label for="realname">贷款人：</label><input type="text" class="txt1" id="realname" name="realname" value="@(ViewBag.realname)" style="width:100px;" />&nbsp;
+
+            <label for="time1">借款日期：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="time1" name="time1" value="@(ViewBag.time1)" autocomplete="off" />-<input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="time2" name="time2" value="@(ViewBag.time2)"  autocomplete="off" />
+
+            <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+        </p>
+    }
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        会员列表
+    </h3>
+
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th scope="col">合同编号 </th>
+                <th scope="col">标题</th>
+                <th scope="col">借款人</th>
+                <th scope="col">借款金额</th>
+                <th scope="col">筹款金额</th>
+                <th scope="col">还需金额</th>
+                <th scope="col">借款日期</th>
+                <th scope="col">咨询费</th>
+                <th scope="col">担保费</th>
+                <th scope="col">操作</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    decimal dec = decimal.Parse(item.borrowing_balance.ToString()) - decimal.Parse(item.fundraising_amount.ToString());
+                    var tender_state = item.tender_state;
+                    <tr>
+
+                        <td>@(item.loan_number) </td>
+                        <td><a href="/invest_borrow_@(item.targetid).html" title="@(item.borrowing_title)" target="_blank">@Utils.GetSubString(item.borrowing_title.ToString(), 10, "...")</a></td>
+                        @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                        {
+                            if (item.realname != null && item.realname.Length > 1)
+                            {
+                                item.realname = item.realname.Substring(0, 1) + "**";
+                            }
+
+                        }
+                        <td>@(item.realname)</td>
+                        <td>@(RMB.GetWebConvertdisp(decimal.Parse(item.borrowing_balance.ToString()), 2, true))</td>
+                        <td>@(RMB.GetWebConvertdisp(decimal.Parse(item.fundraising_amount.ToString()), 2, true) )</td>
+                        <td>@(dec)</td>
+                        <td>@DateTime.Parse(item.release_date.ToString()).ToString("yyyy-MM-dd")</td>
+                        <td>@(RMB.GetWebConvertdisp(decimal.Parse(item.consultingAMT.ToString()), 2, true))</td>
+                        <td>@(RMB.GetWebConvertdisp(decimal.Parse(item.guaranteeAMT.ToString()), 2, true))</td>
+                        <td>
+                            @if (tender_state == 2)
+                            {
+                                <a href="javascript:void(0);" onclick="javascript:invesrecord(@item.targetid)">投资记录&nbsp;</a>  
+                                <a href ="javascript:void(0);"  onclick="javascript:getItemFullscale(@item.targetid)">&nbsp;满标</a>
+                            }
+                            else if (tender_state == 3)
+                            {
+                                <a href="javascript:void(0);" onclick="javascript:invesrecord(@item.targetid)">投资记录&nbsp;</a>  
+                                <a href ="javascript:void(0);"  onclick="javascript:lending(@item.targetid)">&nbsp;满标放款</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="pagination ue-clear">
+        <div class="pagination-container">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("bidding", new { page, borrowing_title = @ViewBag.borrowing_title, realname = @ViewBag.realname, time1 = ViewBag.time1, time2 = ViewBag.time2 }))
+        </div>
+    </div>
+    @*</div>*@
+</div>
+
+
+

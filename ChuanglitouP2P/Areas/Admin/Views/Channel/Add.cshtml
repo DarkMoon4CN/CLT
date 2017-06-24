@@ -1,0 +1,154 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新增渠道</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/js/Channel.js"></script>
+
+    <style type="text/css">
+        .auto-style1 {
+            width: 105px;
+        }
+
+        .auto-style5 {
+            width: 256px;
+        }
+
+        .auto-style6 {
+            width: 25px;
+        }
+
+        .auto-style7 {
+            width: 537px;
+        }
+
+        .Validform_error {
+            background-color: #ffe7e7;
+        }
+    </style>
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Areas/Admin/js/common.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Channel.addInit();
+    });
+    </script>
+</head>
+<body>
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">新增渠道</a></h2>
+    <div class="z_body">
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            新增渠道
+        </h3>
+        @using (Html.BeginForm("Add", "Channel", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <table width="100%" style="table-layout:fixed;margin-top:10px;">
+                <tr>
+                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style1">渠道名称：</td>
+                    <td class="auto-style7">
+                        <input  type="text" value="" id="channelName" class="inputxt" style = "width:230px;height:25px;"/>
+                    </td>
+                    <td><span class="Validform_checktip"></span></td>
+                </tr>
+                <tr>
+                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style1">渠道类型：</td>
+                    <td class="auto-style7">
+                        <select id="channelType" style="width:80px;height:25px;" name="channelType">
+                            <option value="-1">--请选择--</option>
+                            <option value="cps1" selected>cps1</option>
+                            <option value="cps2">cps2</option>
+                            <option value="cpc">cpc</option>
+                        </select>
+                        <span>cps1（复投可参加活动） cps2（首复投都不参加活动） cpc（参加所有活动）</span>
+                    </td>
+                    <td><span class="Validform_checktip"></span></td>
+                </tr>
+                <tr>
+                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style1">渠道邀请链接：</td>
+                    <td class="auto-style7">
+                        <input type="text" value="" id="invitedcodeURL" class="inputxt" style="width:230px;height:25px;"/>
+                        <input type="hidden" value="" id="invitedcode" />
+                        <span> &nbsp;&nbsp;<a href="javascript:void(0);"  id="copy" onclick="Channel.Copy()">复制链接</a></span>
+                    </td>
+                    <td><span class="Validform_checktip"></span></td>
+                </tr>
+                <tr>
+                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style1">是否启用:</td>
+                    <td class="auto-style7">
+                        <select id="status" style="width:80px;height:25px;" name="status">
+                            <option value="-1">--请选择--</option>
+                            <option value="1"selected>启用</option>
+                            <option value="0" >禁用</option>
+                        </select>
+                        <span>默认为启用</span>
+                    </td>
+                    <td><span class="Validform_checktip"></span></td>
+                </tr>
+
+
+                <tr>
+                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style1">渠道使用者：</td>
+                    <td class="auto-style7">
+                        <input type="text" value="" id="adminUserName" class="inputxt" style="width:230px;height:25px;" />
+                        <span>创建渠道使用者的账号</span>
+                    </td>
+                    <td><span class="Validform_checktip"></span></td>
+                </tr>
+
+
+                <tr>
+                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style1">渠道使用者密码：</td>
+                    <td class="auto-style7">
+                        <input type="password" value="123456" id="adminUserPassword" class="inputxt" style="width:230px;height:25px;" />
+                        <span>创建渠道使用者的密码 默认123456</span>
+                    </td>
+                    <td><span class="Validform_checktip"></span></td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style1">中文名：</td>
+                    <td class="auto-style7">
+                        <input type="text"  id="trueName" class="inputxt" style="width:230px;height:25px;" />
+                        <span>渠道用户真实姓名</span>
+                    </td>
+                    <td><span class="Validform_checktip"></span></td>
+                </tr>
+                <tr>
+                    <td class="auto-style6"></td>
+                    <td class="auto-style1"></td>
+                    <td class="auto-style7">
+                      <input type="button" class="button white medium" id="btnSave" value="确定" />&nbsp;
+                      <input type="button" value="关闭" Class="button white medium" onclick="Channel.CloseLayer()" />
+                    </td>
+                    <td></td>
+                </tr>
+
+            </table>
+        }
+        <span class="icon-sprite icon-list"></span>
+    </div>
+
+</body>
+</html>

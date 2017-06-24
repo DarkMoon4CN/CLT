@@ -1,0 +1,199 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+.content {
+  width: 100%;
+  hieght: 100%;
+  background: pink;
+}
+/*转盘抽奖*/
+.zp_cont {
+  height: 515px;
+  width: 515px;
+  position: relative;
+  margin: 50px auto 0;
+  background-size: cover;
+  z-index: 999;
+}
+.zp_pointer {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -225px;
+  margin-top: -225px;
+  z-index: 99;
+}
+.zp_pointer img {
+  width: 450px;
+  height: 450px;
+  margin: 25px;
+}
+.zp_rotate {
+  width: 138px;
+  height: 168px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -45px;
+  margin-top: -45px;
+  z-index: 100;
+}
+.zp_rotate img {
+  width: 138px;
+  height: 168px;
+}
+/*------------中奖纪录------------------*/
+.jilu {
+  margin: 20px auto;
+  width: 300px;
+  height: 400px;
+  background: #FEE5B9;
+  border-radius: 10px;
+  padding: 20px;
+}
+.jilu h1 {
+  color: #fff;
+  text-align: center;
+  color: red;
+  font-size: 20px;
+  line-height: 40px;
+}
+.jilu h2 {
+  color: #fff;
+  text-align: center;
+  color: red;
+  font-size: 16px;
+  line-height: 40px;
+  font-family: "微软雅黑";
+}
+.jilu h2 span {
+  margin: 0 5px;
+}
+.scroll_cont {
+  width: 100%;
+  height: 320px;
+  border-top: 1px dashed #CFCBC3;
+  border-bottom: 1px dashed #CFCBC3;
+}
+.gd_cont {
+  padding: 0 10px;
+  width: 100%;
+  height: 320px;
+}
+.gd_cont li {
+  width: 100%;
+  line-height: 26px;
+  height: 26px;
+}
+.gd_cont li p {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+.gd_cont li p span {
+  width: 20%;
+  display: inline-block;
+  margin-right: 10px;
+}
+.gd_cont li p strong {
+  width: 60%;
+  display: inline-block;
+  color: #BE6E62;
+  font-size: 14px;
+}
+/*------弹窗bg-------------------------------*/
+.c_bg {
+  background: #000;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: none;
+}
+.tc_01 {
+  background: url(../images/cj_tc02.png) no-repeat;
+  display: none;
+}
+.tc_02 {
+  background: url(../images/cj_tc01.png) no-repeat;
+  display: none;
+}
+.tc_03 {
+  background: url(../images/cj_tc03.png) no-repeat;
+  display: none;
+}
+div.tc_02 dd {
+  width: 12rem;
+  margin: 0 auto;
+}
+div.tc_02 dd a {
+  float: left;
+  width: 5.3rem;
+  display: block;
+  height: 1.7rem;
+  background: #ff4338;
+  margin: 0 auto;
+  line-height: 1.7rem;
+  color: #fff;
+  font-size: 0.75rem;
+  border-radius: 30px;
+  font-weight: normal;
+}
+.tc_cont {
+  width: 13.25rem;
+  height: 12.75rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -6.625rem;
+  margin-top: -6.375rem;
+  background-size: cover;
+  z-index: 9999;
+}
+.btn_close {
+  width: 1rem;
+  height: 1rem;
+  background: url(../images/btn_close.png) no-repeat;
+  background-size: 1rem;
+  float: right;
+  margin: 0.875rem 0.8rem 0 0;
+}
+.tc_cont dl {
+  padding-top: 8.5rem;
+  text-align: center;
+}
+.tc_cont dt {
+  color: #333;
+  line-height: 1.5rem;
+  font-size: 0.6rem;
+}
+.tc_cont dd {
+  height: 1.7rem;
+}
+.tc_cont dd span {
+  display: block;
+  height: 1.7rem;
+  width: 6rem;
+  background: #ff4338;
+  margin: 0 auto;
+  line-height: 1.7rem;
+  color: #fff;
+  font-size: 0.75rem;
+  border-radius: 30px;
+  font-weight: normal;
+}

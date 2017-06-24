@@ -1,0 +1,86 @@
+﻿
+@using Webdiyer.WebControls.Mvc;
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<V_type_news>
+
+<div id="dTable">
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="cont_02">
+                <h2><a id="asd" onclick="Alink('@item.newid')" href="javascript:null(0)" >@item.News_title</a></h2>
+                <p>@Utils.GetSubString(Utils.RemoveALLHTML(item.context.ToString()), 100, "......") </p>
+                <div class="cont_more"><span>@DateTime.Parse(item.createtime.ToString()).ToString("yyyy-MM-dd") </span><a onclick="Alink('@item.newid')" href="javascript:null(0)">点击详情</a></div>
+            </div>
+        }
+    }
+    <div class="page_box">
+        <div class="page_left">
+            @Ajax.Pager(
+        Model
+             , new PagerOptions
+             {
+                 FirstPageText = "<<"
+              ,
+                 LastPageText = ">>"
+              ,
+                 NextPageText = ">"
+              ,
+                 PrevPageText = "<"
+              ,
+                 ContainerTagName = "ul"
+              ,
+                 NumericPagerItemCount = 5
+              ,
+                 CssClass = "pagination"
+              ,
+                 CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>"
+              ,
+                 DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>"
+              ,
+                 PagerItemTemplate = "<li>{0}</li>"
+              ,
+                 PageIndexBoxId = "pageIndexBox2"
+              ,
+                 GoToButtonId = "goToBtn2"
+             }
+           , new MvcAjaxOptions
+           {
+               UpdateTargetId = "dTable"
+            ,
+               HttpMethod = "Post"
+            ,
+               DataFormId = "searchForm"
+            ,
+               OnBegin = "AjaxStart()"
+            ,
+               OnComplete = "AjaxStop()"
+           }).Options(o => o.AddRouteValue("target", "dTable")).AjaxOptions(a => a.SetUpdateTargetId("dTable"))
+        </div>
+        <div class="page_right">
+            <div class="input-group" style="margin:20px 0">
+                <span class="input-group-addon">转到第</span>
+                <input type="text" id="pageIndexBox2" class="form-control input-sm" />
+                <span class="input-group-addon">页</span>
+                <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn2">跳转</button></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        function Alink(newid) {
+            $.ajax({
+                url: "/Content/kindeditor/asp.net/AjaxUpdate.ashx?id=" + newid + "",
+                data: "id=" + newid + "",
+                type: "Post",
+                async: false,
+                dataType: "text",
+                success: function (dta) {
+                    //点击量增加成功
+                },
+            });
+            var newTab = window.open('about:blank');
+            newTab.location.href = "/about/Detail/" + newid;
+        }
+    </script>

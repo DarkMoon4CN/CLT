@@ -1,0 +1,550 @@
+﻿@using ChuanglitouP2P.Common
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        新手理财送好礼，现金红包送不停-创利投
+    </title>
+    <meta name="description" content="创利投邀请好友来赚钱，邀请好友送50元现金，更能坐享好友前三次投资额的0.5%现金奖励，邀请越多，奖励越多，挂牌上市企业创利投等您呼朋唤友来赚钱！" />
+    <meta name="keywords" content="创利投邀请好友,创利投返现金,p2p网贷邀请活动,创利投邀请奖励,创利投活动" />
+
+    <link href="~/Areas/Topic/Sources/20160819/css/newStyle2.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/Areas/Topic/Sources/20160819/js/jquery-1.9.1.min.js"></script>
+    @Url.File("Scripts/Validform_v5.3.2_min.js").ToHtml()
+    @Url.File("Scripts/layer.min.js").ToHtml()
+    <script src="~/Areas/Topic/Sources/20160819/js/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        var _oztime = (new Date()).getTime();
+    </script>
+    <link rel="stylesheet" href="~/Areas/Topic/Sources/20160819/css/style.css?v=2" />
+    <link rel="stylesheet" href="~/Areas/Topic/Sources/20160819/css/common.css" />
+    <script type="text/javascript" src="js/index.js"></script>
+    <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+    <script type="text/javascript">
+        BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA' });
+        BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA1' });
+        BizQQWPA.addCustom({ aty: '0', a: '0', nameAccount: 4008902226, selector: 'BizQQWPA2' });
+    </script>
+
+    <script type="text/javascript">
+        var _adwq = _adwq || [];
+        _adwq.push(['_setAccount', 'xfowj']);
+        _adwq.push(['_setDomainName', '.chuanglitou.cn']);
+        _adwq.push(['_trackPageview']);
+
+        (function () {
+            var adw = document.createElement('script');
+            adw.type = 'text/javascript';
+            adw.async = true;
+            adw.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://s') + '.emarbox.com/js/adw.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(adw, s);
+        })();
+    </script>
+    <script src="~/Areas/Topic/Sources/20160906/js/countUp.js"></script>
+    <script type="text/javascript">
+        var editwindow;
+        $(function () {
+
+            //document.getElementById("ttzcode").value = GetQueryString("ttzcode");
+            //document.getElementById("regid").value = GetQueryString("regid");
+
+            $(".registerform").Validform({
+                tiptype: 4,
+                ajaxPost: true,
+                callback: function (data) {
+                    if (data.rs == "y") {
+                        layer.msg("注册成功，正在转向第三方托管账户...", 3, 1);
+                        location.href = data.url;
+                    }
+                    else {
+                        layer.msg("" + data.error + "", 1, 5);
+                    }
+                }
+            });
+
+            $.extend($.Datatype, {
+                "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+                "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+                "day1": /^[1-2]\d{0,1}$|^28$/,
+                "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+                "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+                "regex1": /^[0-9A-Za-z]{6,25}$/,
+                "vcode": /^[0-9]*$/
+            });
+
+            $("#vsmscode").click(function () {
+
+                var mobile = $("#mobile").val();
+
+                if (mobile == null || mobile.length <= 0) {
+                    layer.alert("手机号不能为空");
+                    return false;
+                }
+                else {
+                    var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+                    if (re.test(mobile) == false) {
+                        layer.alert("手机号格式不对!");
+                        $("#mobile").val("");
+                        return false;
+                    }
+
+                }
+                $.post("/Register/checkmobile", { "param": mobile }, function (msg) {
+
+                    if (msg == "手机号已经被注册") {
+
+                        layer.alert(msg);
+                    }
+                    else {
+
+                        $.post("/Register/vsmscode", { "mobile": mobile }, function (msg) {
+                            var data = JSON.parse(msg);
+                            if (data.rs == "y") {
+                                settime1();
+                                layer.msg("" + data.info + "", 5, 1);
+
+                            }
+                            else {
+
+                                if (data.info == "v") {
+                                    df("ad");
+                                } else {
+                                    layer.msg("" + data.info + "", 2, 5);
+                                    $("#mobile").val("");
+                                }
+                            }
+
+                        });
+
+                    }
+
+                });
+
+            });
+
+            $("#smscode").click(function () {
+                var mobile = $("#mobile").val();
+
+                if (mobile == null || mobile.length <= 0) {
+                    layer.alert("手机号不能为空");
+                    return false;
+                }
+                else {
+                    var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+                    if (re.test(mobile) == false) {
+                        layer.alert("手机号格式不对!");
+                        $("#mobile").val("");
+                        return false;
+                    }
+                }
+                $.post("/Register/checkmobile", { "param": mobile }, function (msg) {
+
+                    if (msg == "手机号已经被注册") {
+
+                        layer.alert(msg);
+                    }
+                    else {
+                        df("sms");
+                    }
+                }
+                );
+            });
+
+            $("#vcodec").click(function () {
+                var mobilec = $("#mobile").val();
+                var urlc = "/Register/vcodec?mobile=" + mobilec;
+                $("#vcodec").attr("ajaxurl", urlc);
+            });
+
+
+        });
+
+        function df(sms) {
+            var pageii = $.layer({
+                type: 1,
+                title: false,
+                area: ['700px', '460px'],
+                border: [0],
+                closeBtn: [0, false],
+                shift: 'top',
+                bgcolor: '',
+                page: {
+                    html: '<div class="reg_pop_wrap"  id="vcodet" >    <div class="reg_pop_box" style=" width:480px; height:220px; background:#fff; position:fixed; left:50%; top:50%; z-index:99; margin:-160px 0 0 -290px; padding:50px;">    	<div style="font-size:14px; font-weight:bold;">填写验证码完成短信发送</div>        <div style="width:100%; float:left; margin:30px 0 0 0;"><span style="float:left; margin:0 20px 0 0;">验证码：<input  id="Validatecode"  name="" type="text" style="width:160px; height:42px; line-height:42px; border:1px solid #d6d6d6; color:#333; text-indent:5px;" /></span><span><img id="image1" src="/Validate.html?a=@ViewBag.rndstr" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();" /></span></div>        <div><input  id="codebtn" name="" value="发送短信" type="button" style="width:162px; height:45px; line-height:45px; font-size:18px; color:#fff; text-align:center; background:#f76b1e; border:none; cursor:pointer; margin:25px 0 0 48px;font-family:microsoft YaHei;" />    <input id = "pagebtn"  name="" value="关闭窗口" type="button" style="width:162px; height:45px; line-height:45px; font-size:18px; color:#fff; text-align:center; background:#00af96; border:none; cursor:pointer; margin:25px 0 0 48px;font-family:microsoft YaHei;" /></div>    </div></div>'
+
+                }
+            });
+            $('#pagebtn').on('click', function () {
+                layer.close(pageii);
+            });
+            $('#codebtn').on('click', function () {
+                var validvcode = $('#Validatecode').val()
+                var mobile = $("#mobile").val();
+                if (validvcode == null || validvcode.length <= 0) {
+                    layer.alert("验证码不能为空");
+                    return false;
+                }
+                if (mobile == null || mobile.length <= 0) {
+                    layer.alert("手机号不能为空");
+                    return false;
+                }
+                else {
+                    var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+                    if (re.test(mobile) == false) {
+                        layer.alert("手机号格式不对!");
+                        $("#mobile").val("");
+                        return false;
+                    }
+                }
+                $.post("/Register/checkmobile", { "param": mobile, }, function (msg) {
+
+                    if (msg == "手机号已经被注册") {
+                        layer.alert(msg);
+                    }
+                    else {
+                        if (sms == "ad") {
+                            $.post("/Register/vsmscode", { "mobile": mobile, "vcode": validvcode }, function (msg) {
+                                var data = JSON.parse(msg);
+                                if (data.rs == "y") {
+                                    settime1();
+                                    layer.close(pageii);
+                                    layer.msg("" + data.info + "", 5, 1);
+                                }
+                                else {
+                                    layer.msg("" + data.info + "", 2, 5);
+                                }
+
+                            });
+
+                        }
+                        else {
+                            $.post("/Register/Regsmscode", { "mobile": mobile, "vcode": validvcode }, function (msg) {
+                                var data = JSON.parse(msg);
+                                if (data.rs == "y") {
+                                    settime();
+                                    layer.close(pageii);
+                                    layer.msg("" + data.info + "", 2, 1);
+                                }
+                                else {
+                                    if (data.info == "v") {
+                                        layer.close(pageii);
+                                        df("sms");
+                                    } else {
+                                        layer.msg("" + data.info + "", 2, 5);
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+
+                }
+                );
+            });
+
+            changeImg();
+        }
+
+        function changeImg() {
+            $("#image1").attr("src", "/Register/GetValidateCode?a=" + Math.random());
+        }
+
+        var countdown = 60;
+        function settime() {
+            if (countdown == 1) {
+                $("#smscode").removeAttr("disabled");
+                $("#smscode").val("发送验证码");
+                $("#yuyin_code").slideDown();
+                countdown = 60;
+            } else {
+                $("#smscode").attr("disabled", true);
+                $("#smscode").val("" + countdown + "秒后可重发");
+                countdown--;
+                if (countdown > 0) {
+                    setTimeout(function () {
+                        settime()
+                    }, 1000)
+                }
+            }
+        }
+        var countdown1 = 60;
+        function settime1() {
+            if (countdown1 == 1) {
+                $("#vsmscode").removeAttr("disabled");
+                $("#vsmscode").text("获取语音验证码");
+                $("#yuyin_code").slideUp();
+                countdown1 = 60;
+
+            } else {
+                $("#vsmscode").attr("disabled", true);
+                $("#vsmscode").text("" + countdown1 + "秒后可重获取语音验证码");
+                countdown1--;
+
+                if (countdown1 > 0) {
+                    setTimeout(function () {
+                        settime1();
+                    }, 1000)
+                }
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        var _oztime = (new Date()).getTime();
+    </script>
+
+    <script type="text/javascript">
+        var _adwq = _adwq || [];
+        _adwq.push(['_setAccount', 'xfowj']);
+        _adwq.push(['_setDomainName', '.chuanglitou.cn']);
+        _adwq.push(['_trackPageview']);
+
+        (function () {
+            var adw = document.createElement('script');
+            adw.type = 'text/javascript';
+            adw.async = true;
+            adw.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://s') + '.emarbox.com/js/adw.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(adw, s);
+        })();
+    </script>
+</head>
+<body>
+    <div class="w_logo">
+        <div class="w_logo1">
+            <a id="w_logo1_index" href="/"></a>
+            <div class="dengluBox">
+                <a href="http://www.chuanglitou.cn" class="back-index">返回首页</a>
+                <span>|  &nbsp;已有账户？  </span>
+                <a href="http://www.chuanglitou.cn/login.html">立即登录</a>
+                <span class="tel">热线电话：010-53732056</span>
+            </div>
+        </div>
+    </div>
+    <style>
+        .zc_register {
+            padding-top: 15px;
+        }
+
+            .zc_register ul {
+                margin-top: 0;
+            }
+
+        .Validform_checktip {
+            display: block;
+            width: 100%;
+        }
+    </style>
+
+    <div class="zc_n_body">
+
+        <div class="zc_n_top">
+            <div class="zc_n_banner">
+                <!--<div class="zc_n_box">
+
+                    <div class="ban_xf2">安全、权威、专业</div>
+                    <div class="ban_xf3">年化收益率&nbsp;<span>8%~12%</span></div>
+                    <a class="ban_xf_input" href="/register.html">注册领50元红包</a>
+                    <div class="ban_xf4">已有账号？<a href="/usercenter/index.html" class="ban_xf_a">马上登录</a></div>
+                </div>-->
+                <form id="form1" class="registerform" action="/Register/Add" method="post">
+                    <div class="zc_register">
+                        <div class="ban_xf1">收益稳健<span>8%-12%</span></div>
+                        <div class="login_info_box">
+                            <input type="hidden" id="register" name="action" value="register" />
+                            <input type="hidden" id="ttzcode" name="ttzcode" value="" />
+                            <input type="hidden" id="regid" name="regid" value="" />
+                            <ul>
+                                <li class="login_left"><span class="color_red">*</span>手机号</li>
+                                <li>
+                                    <input name="mobile" type="text" id="mobile" class="login_txt" ajaxurl="/Register/checkmobile?action=mobile" datatype="mobile" nullmsg="请填写手机号！" errormsg="手机号格式不对！" /><span class="reg_icon phone_icon"></span><span class="Validform_checktip"></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="login_left"><span class="color_red">*</span>验证码</li>
+                                <li>
+                                    <input name="vcodec" id="vcodec" type="text" ajaxurl="checkregister.html?action=vcodec" datatype="*" nullmsg="请填写验证码！" class="login_txt yzm_txt" /><span><input name="smscode" id="smscode" value="获取短信验证码" class="obtain_btn" type="button" /></span><span class="reg_icon plane_icon"></span>
+                                </li>
+                            </ul>
+                            <ul id="yuyin_code" style="display: none;">
+                                <li class="login_left">&nbsp;</li>
+                                <li><span style="float: left; margin: 0 10px 0 0;"><b>如您无法收到短信验证码</b>，请</span><a href="javascript:void(0)" id="vsmscode" class="color_orange">获取语音验证码</a></li>
+                            </ul>
+                            <ul>
+                                <li class="login_left"><span class="color_red">*</span>密码</li>
+                                <li>
+                                    <input name="userpassword" type="password" id="userpassword" class="login_txt" datatype="*6-16" nullmsg="请设置密码！" errormsg="密码范围在6~16位之间！" /><span class="reg_icon password_icon"></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="login_left"><span class="color_red">*</span>确认密码</li>
+                                <li>
+                                    <input name="reuserpassword" type="password" id="reuserpassword" class="login_txt" datatype="*" recheck="userpassword" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！" /><span class="reg_icon passwordc_icon"></span>
+                                </li>
+                            </ul>
+
+                            <div class="clear"></div>
+                            <div class="login_xy">
+                                <label>
+                                    <input name="services" type="checkbox" id="services" value="1" checked="checked" />我已阅读并接受《<a href="/chuanglitou.pdf" target="_blank"> 创利投注册协议 </a>》
+                                </label>
+                            </div>
+                            <div>
+                                <input type="submit" name="butreg" id="butreg" value="注册领红包" class="login_btn" />
+                            </div>
+                            <div class="login_anquan">您的信息已通过SSL加密保护，数据传输安全！</div>
+                            <div class="ban_xf5"><span>广告</span>市场有风险，投资需谨慎</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="zc_n_01 zc_n_h2">
+            <h2>创利投平台优势</h2>
+            <div class="zc_n_cont1">
+                <dl class="zc_n_dl01">
+                    <dt>灵活稳健</dt>
+                    <dd>
+                        坐享8%~12%历史年化收益<br>
+                        约40倍活期利率
+                    </dd>
+                </dl>
+                <dl class="zc_n_dl02">
+                    <dt>资金安全</dt>
+                    <dd>
+                        八级严格风控体系<br>
+                        第三方托管
+                    </dd>
+                </dl>
+                <dl class="zc_n_dl03">
+                    <dt>权威专业</dt>
+                    <dd>
+                        北控交挂牌上市平台<br>
+                        更规范 更透明
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        @*<div class="zc_n_02 zc_n_h2">
+            <div class="xianjin_1260_main_1">
+                <div class="xianjin_1260_main_1_main">
+                    <div class="xianjin_1260_main_1_main_1">
+                        <div class="xianjin_1260_main_1_main_1_top">
+                            <h3>下载创利投APP</h3>
+                            <h2>登录即可获得<span style="color:#f03a28">1260</span>元抵扣券</h2>
+                        </div>
+                        <div class="xianjin_1260_main_1_main_1_bottom">
+                            <dl>
+                                <dt>
+                                    <img src="~/Areas/Topic/Sources/20160819/images/xianjin_1260_01.png">
+                                    <p>10<small>元</small></p>
+                                    <span>6张<br>抵扣券</span>
+                                </dt>
+                                <dd>
+                                    投资<br>
+                                    1个月标<br>
+                                    每满500元可使用一张
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <img src="~/Areas/Topic/Sources/20160819/images/xianjin_1260_01.png">
+                                    <p>50<small>元</small></p>
+                                    <span>4张<br>抵扣券</span>
+                                </dt>
+                                <dd>
+                                    投资<br>
+                                    3个月以上标（含3个月）<br>
+                                    每满5000元可使用一张
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <img src="~/Areas/Topic/Sources/20160819/images/xianjin_1260_01.png">
+                                    <p>100<small>元</small></p>
+                                    <span>5张<br>抵扣券</span>
+                                </dt>
+                                <dd>
+                                    投资<br>
+                                    3个月以上标（含3个月）<br>
+                                    每满10000元可使用一张
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <img src="~/Areas/Topic/Sources/20160819/images/xianjin_1260_01.png">
+                                    <p>500<small>元</small></p>
+                                    <span>1张<br>抵扣券</span>
+                                </dt>
+                                <dd>
+                                    投资<br>
+                                    6个月标以上（含6个月）<br>
+                                    满50000元可使用一张
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>*@
+
+        <div class="zc_n_03 zc_n_h2">
+            <h2></h2>
+            <div class="zc_n_cont3 zc_n_cont31">
+                <a href="/register.html" target="_blank" class="btn-zc"></a>
+            </div>
+        </div>
+
+        <div class="zc_n_04 zc_n_h2">
+            <h2>创利投投资流程</h2>
+            <div class="zc_n_cont4 zc_n_cont41">
+            </div>
+        </div>
+
+        <div class="shouyiBox">
+            <h2>截至目前已为小伙伴赚取收益（元）</h2>
+            <p id="tg-pank" data-spark="@Convert.ToDecimal(ChuanglitouP2P.BLL.B_usercenter.GetIncome())">
+            </p>
+            <script type="text/javascript">
+                var options = {
+                    useEasing: true,
+                    useGrouping: true,
+                    separator: ',',
+                    decimal: '.',
+                    prefix: '<span>',
+                    suffix: '</span>'
+                };
+                var demo2 = new CountUp("tg-pank", 0, $("#tg-pank").data("spark"), 2, 2.5, options);
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() >= 600) {
+                        demo2.start();
+                    }
+                })
+            </script>
+            <a href="/Investlist.html" class="btn">马上去赚钱吧</a>
+        </div>
+    </div>
+    <div class="reg_pop_wrap" id="vcodet" style="display: none">
+        <div class="reg_pop_bglayer"></div>
+        <div class="reg_pop_box">
+            <div class="reg_pop_tit">填写验证码完成短信发送</div>
+            <div class="reg_pop_item"><span style="float: left; margin: 0 20px 0 0;">验证码：<input name="" type="text" class="yzm_txt" /></span><span><img src="/Register/GetValidateCode" /></span></div>
+            <div>
+                <input name="" value="发送短信" type="button" class="yz_btn" />
+            </div>
+        </div>
+
+    </div>
+
+    <div style="position:fixed;top:40%;right:2%;"><img src="~/Areas/Topic/Sources/20160819/images/apptuier.png" /></div>
+    <script src="~/Scripts/o_code.js"></script>
+</body>
+</html>

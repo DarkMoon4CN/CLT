@@ -1,0 +1,103 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.hx_UserAct>
+@{
+    ViewBag.Title = "奖励查询";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+    $(function(){
+        initpage();
+    });
+
+    function initpage() {
+        var ddlType=@("$hid_ddlType").val();
+        $("#ddlType").val(ddlType);
+    }
+
+</script>
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">统计管理</a>><a href="javascript:void(0)"> 奖励统计</a>><a href="javascript:void(0)"> 奖励查询</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+    <p class="tP3">
+        快速搜索
+    </p>
+    @using (Html.BeginForm("Rewardquery", "Statistics", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:60px; padding-bottom:15px; ">
+            <label for="username">用户名：</label><input type="text" class="txt1" id="username" name="username" value="@(ViewBag.username)" style="width:100px;" />&nbsp;
+           
+            <label for="time1">奖励时间：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="time1" name="time1" value="@(ViewBag.time1)" autocomplete="off" />-<input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="time2" name="time2" value="@(ViewBag.time2)" autocomplete="off" />&nbsp;
+          <label for="ddlType">分类：</label>@Html.DropDownList("ddlType", ViewBag.TypeDropDownList as IEnumerable<SelectListItem>, new { @style="height:25px;line-height:25px;" })
+            @Html.Hidden("hid_ddlType",ViewBag.ddlType as string)
+
+            <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+        </p>
+    }
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        奖励查询列表
+    </h3>
+
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th scope="col">用户名</th>
+                <th scope="col">奖励类型</th>
+                <th scope="col">金额</th>
+                <th scope="col">奖励时间</th>
+                <th scope="col">使用时间</th>
+                <th scope="col">结束时间</th>
+                <th scope="col">状态 </th>      
+            </tr>
+            @if (Model != null)
+            {
+                foreach (hx_UserAct item in Model)
+                {
+                    <tr>
+
+                        <td>@(item.hx_member_table.username+"["+@item.hx_member_table.realname + "]") </td>
+
+                        <td>@(item.hx_RewardType.RewTypeName)</td>
+                        <td>@(item.Amt)</td>
+                        <td>@(item.Createtime.ToString())</td>
+                        <td>@(item.UseTime==null?"":((DateTime)item.UseTime).ToString("yyyy-MM-dd HH:mm:ss") )</td>
+                        <td>@(((DateTime)item.AmtEndtime).ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                        <td>@(Utils.GetRewardState(item.UseState.ToString()))</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="pagination ue-clear">
+        <div class="pagination-container">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Rewardquery", new { page, username = @ViewBag.username, ddlType = @ViewBag.ddlType, time1 = @ViewBag.time1, time2 = @ViewBag.time2 }))
+        </div>
+    </div>
+    @*</div>*@
+</div>
+
+

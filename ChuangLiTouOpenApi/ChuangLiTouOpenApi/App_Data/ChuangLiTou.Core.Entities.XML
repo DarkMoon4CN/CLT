@@ -1,0 +1,3438 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ChuangLiTou.Core.Entities</name>
+    </assembly>
+    <members>
+        <member name="T:ChuangLiTou.Core.Entities.ChinaPnr.BaseRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.BaseRequest.MerId">
+            <summary>
+            汇付商户号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.BaseRequest.Version">
+            <summary>
+            版本 10
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.BaseRequest.CmdId">
+            <summary>
+            方法名
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.BaseRequest.MerCustId">
+            <summary>
+            商户客户号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.BaseRequest.ChkValue">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.BaseRequest.BgRetUrl">
+            <summary>
+            商户后台应答地址
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.BaseRequest.RetUrl">
+            <summary>
+            回调地址
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.ChinaPnr.ChargeEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.ChargeEntity.OrdId">
+            <summary>
+            由商户的系统生成，必须保证唯一，请使用纯数字
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.ChargeEntity.OrdDate">
+            <summary>
+            格式为 YYYYMMDD，例如：20130307
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.ChargeEntity.UsrCustId">
+            <summary>
+            由汇付生成，用户的唯一性标识
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.ChargeEntity.GateBusiId">
+             <summary>
+            支付网关业务代号 网关的细分业务类型
+             
+            B2C--B2C 网银支付
+            B2B--B2B 网银支付
+            FPAY--快捷支付
+            WH--代扣
+            网关的具体说明请见“附件二：网关支付类型“
+             </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.ChargeEntity.OpenBankId">
+            <summary>
+            开户银行代号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.ChargeEntity.DcFlag">
+            <summary>
+            借贷记标记
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.ChargeEntity.TransAmt">
+            <summary>
+            泛指交易金额，如充值、支付、取现、冻结和解冻金额（金额格式必须是###.00）比如 2.00，2.01
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.UserEntity.UsrName">
+            <summary>
+            真实名称
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.UserEntity.UsrMp">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity">
+            <summary>
+            Class SubmitTenderEntity.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.OrdId">
+            <summary>
+            订单号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.OrdDate">
+            <summary>
+            订单日期
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.TransAmt">
+            <summary>
+            交易金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.UsrCustId">
+            <summary>
+            用户客户号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.MaxTenderRate">
+            <summary>
+            最大投资手续费率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.BorrowerDetails">
+            <summary>
+            借款人信息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.BorrowerCustId">
+            <summary>
+            借款人客户号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.BorrowerAmt">
+            <summary>
+            借款金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.BorrowerRate">
+            <summary>
+            借款手续费率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.ProId">
+            <summary>
+            项目ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.IsFreeze">
+            <summary>
+            是否冻结
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.FreezeOrdId">
+            <summary>
+            冻结订单号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.RetUrl">
+            <summary>
+            页面返回URL
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.MerPriv">
+            <summary>
+            商户私有域
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.ReqExt">
+            <summary>
+            入参扩展域
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.AcctId">
+            <summary>
+            代金券出账子账户
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity.VocherAmt">
+            <summary>
+            代金券金额
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity">
+            <summary>
+            投资实体 xiezh 
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity.id">
+            <summary>
+            标编号	标的唯一编号(不为空,很重要)
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity.link">
+             <summary>
+            标的链接	URL链接.
+             </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity.useraddress">
+            <summary>
+            用户所在地	投标人所在城市.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity.username">
+            <summary>
+            用户名	投标人的用户名称,登录账号,可辨识区分,可支持加密数据.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity.userid">
+            <summary>
+            用户编号	投标人的用户编号/ID.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity.type">
+            <summary>
+            投标方式	例如:手动、自动.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity.money">
+            <summary>
+            投标金额	投标金额实际生效部分(保留两位小数).
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity.account">
+            <summary>
+            有效金额	投标金额实际生效部分(保留两位小数),请过滤掉投资金额小于10块的记录.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity.status">
+            <summary>
+            投标状态	例如:成功、部分成功、失败.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.InvestmentEntity.add_time">
+            <summary>
+            投标时间	格式如:2014-03-13 16:44:26.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.id">
+            <summary>
+            标的唯一编号(不为空,很重要)
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.platform_name">
+            <summary>
+            平台名称	平台中文名称.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.url">
+            <summary>
+            标的链接	借款标的URL链接.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.title">
+            <summary>
+            标题	标的标题信息.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.username">
+            <summary>
+            用户名	借款人(发标人)的用户名称,如果没有借款人用户名,一定要返回下面的 userid,尽量不为空.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.userid">
+            <summary>
+            用户编号	发标人的用户编号/ID.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.status">
+            <summary>
+            标的状态	0,正在投标中的借款标;1,已完成(包括还款中和已完成的借款标).
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.c_type">
+             <summary>
+             借款类型	0 代表信用标,1 担保标;2 抵押,质押标, 3 秒标;
+             4 债权转让标(流转标,二级市场标的);5 理财计划(宝类业务_活期);
+            6 其它;7 净值标;8 活动标(体验标).9 理财计划(宝类业务_定期).
+            3，4，5标类型不参与贷款余额计算；请注意5【理财计划(宝类业务_活期)】和【9理财计划(宝类业务_定期)】的区分；4债权转让标指的是不会产生新待还的转让
+             如果会产生新待还，请返回其他标类型.
+             </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.amount">
+            <summary>
+            借款金额	以元为单位,精度2位(1000.00),如万元请转换为元,请过滤掉借款金额小于50块的标.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.rate">
+            <summary>
+            借款年利率	如果为月利率或天利率,统一转换为年利率并使用小数表示;精度4位,如:0.0910.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.period">
+            <summary>
+            借款期限	借款期限的数字。如3月这里只返回3若借款标的为流转标,对应的要有流转期限.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.p_type">
+            <summary>
+            期限类型	0 代表天,1 代表月.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.pay_way">
+            <summary>
+            还款方式	
+            0 代表其他;
+            1 按月等额本息还款;
+            2按月付息,到期还本;
+            3 按天计息,一次性还本付息;
+            4,按月计息,一次性还本付息;
+            5 按季分期还款;
+            6 为等额本金,按月还本金;
+            7 先息期本.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.process">
+            <summary>
+            完成百分比	转换成小数表示.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.reward">
+            <summary>
+            投标奖励	如奖励为百分比,使用小数表示. 非必须
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.guarantee">
+            <summary>
+            担保奖励	如奖励为百分比,使用小数表示. 非必须
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.start_time">
+            <summary>
+            标的创建时间	格式如:2013-08-10 14:24:01(24小时制).
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.end_time">
+            <summary>
+            满标时间(最后一笔投标时间)	格式如:2013-08-10 13:10:00我们要的投资记录最后一笔的时间,请不要理解为标最后的的还款完成日期.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.invest_num">
+            <summary>
+            投资次数	这笔借款标有多少个投标记录.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.P2Peye.LoanEntity.c_reward">
+            <summary>
+            续投奖励	继续投标的奖励. 非必须
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.P2Peye.ResponseP2PeyeInvestment">
+            <summary>
+            接口响应投资类 xiezh
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.P2Peye.ResponseP2PeyeLoan">
+            <summary>
+            接口响应借款类 xiezh
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.appId">
+            <summary>
+            应用id
+            </summary>
+            <value>The application identifier.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.appName">
+            <summary>
+            应用名称
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.appSecret">
+            <summary>
+            秘钥
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.accessToken">
+            <summary>
+            授权码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.timeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.appSafeCode">
+            <summary>
+            安全码
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.appServerIps">
+            <summary>
+            应用ip
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.isDelete">
+            <summary>
+            是否删除
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.appStatus">
+            <summary>
+            应用状态
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.createdOn">
+            <summary>
+            创建时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.AuthEntity.updatedOn">
+            <summary>
+            更新时间
+            </summary>        
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.ProEnt.PresentEntity">
+            <summary>
+            Class PresentEntity.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.UserCashId">
+            <summary>
+            UserCashId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.registerid">
+            <summary>
+            registerid
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.UsrCustId">
+            <summary>
+            由汇付生成的唯一标识
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.TransAmt">
+            <summary>
+            提现金额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.FeeAmt">
+            <summary>
+            FeeAmt
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.OrdId">
+            <summary>
+            OrdId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.OrdIdTime">
+            <summary>
+            申请时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.OrdIdState">
+            <summary>
+            0 待审核 1待付款  3 已付款 4未通过(必须填写原因)
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.OperTime">
+            <summary>
+            OperTime
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.Reason">
+            <summary>
+            Reason
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.Remarks">
+            <summary>
+            Remarks
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.TransState">
+            <summary>
+            提现状态 999 处理中(默认)      400 取现失败    000成功
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.OpenAcctId">
+            <summary>
+            OpenAcctId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.OpenBankId">
+            <summary>
+            OpenBankId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ProEnt.PresentEntity.FeeObjFlag">
+            <summary>
+            FeeObjFlag
+            </summary>        
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.RequestPage">
+            <summary>
+            分页实体
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.RequestPage.pageIndex">
+            <summary>
+            请求的页码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.RequestPage.pageSize">
+            <summary>
+            每页记录条数
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.AdNews.RequestAd">
+            <summary>
+            获取广告参数实体
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.AdNews.RequestAd.top">
+            <summary>
+            获取条数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.AdNews.RequestAd.adtypeId">
+            <summary>
+            广告列表编号
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.AdNews.RequestID">
+            <summary>
+            单个ID参数实体
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.AdNews.RequestID.ID">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.AdNews.RequestNews">
+            <summary>
+            新闻参数实体
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.AdNews.RequestNews.newType">
+            <summary>
+            新闻类型编号
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.AdNews.RequestTypeAd">
+            <summary>
+            获取广告参数实体分页
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.AdNews.RequestTypeAd.adtypeId">
+            <summary>
+            广告列表编号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.AppUpdate.RequestPackage.Code">
+            <summary>
+            更新包编码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.AppUpdate.RequestVersion.Platform">
+            <summary>
+            平台标识
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.AppUpdate.RequestVersion.Channel">
+            <summary>
+            渠道
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.AppUpdate.RequestVersion.DeviceVersion">
+            <summary>
+            设备当前版本号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Bonus.RequestBonusDetail.userAct">
+            <summary>
+            券编号
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Bonus.RequestCheckBonus">
+            <summary>
+            验证优惠券是否可用实体
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Bonus.RequestCheckBonus.bonusId">
+            <summary>
+            优惠券id 集合 用逗号隔开 1,2,3,4
+            </summary>
+            <value>The bonus identifier.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Bonus.RequestCheckBonus.userId">
+            <summary>
+            当前用户Id
+            </summary>
+            <value>The user identifier.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Bonus.RequestCheckBonus.investAmount">
+            <summary>
+            投资金额
+            </summary>
+            <value>The invest amount.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Bonus.RequestBonus.userId">
+             <summary>
+            用户id
+             </summary> 
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Bonus.RequestBonus.rewardState">
+            <summary>
+            奖励状态 0 未使用   1已使用  2 已过期 3 锁定中
+            </summary>
+            <value>The state of the reward.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Bonus.RequestOwnBonus.userId">
+             <summary>
+            用户id
+             </summary> 
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Borrow.RequestBorrow">
+            <summary>
+            项目标请求参数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Borrow.RequestBorrow.status">
+            <summary>
+            状态  -1  录入 0 审核中 1 初审通过  2 复审通过(开标上线)    3 满标 (还款中)     4放款 (还款中)   5 已还清   6初审未通过   7 复审未通过  8 流标
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Borrow.RequestBorrowDetail">
+            <summary>
+            标详细类
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Borrow.RequestBorrowDetail.targetId">
+            <summary>
+            标id
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Borrow.RequestTender">
+            <summary>
+            Class RequestTender.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Borrow.RequestTender.userId">
+             <summary>
+            用户ID
+             </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Borrow.RequestTender.targetId">
+            <summary>
+            标ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Borrow.RequestTender.investAmount">
+            <summary>
+            投资金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Borrow.RequestTender.bonusIds">
+            <summary>
+            红包+代金券 id集合
+            </summary>
+            <value>The bonus ids.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Borrow.RequestTender.addRateIds">
+            <summary>
+            加息券 id集合
+            </summary>
+            <value>add Rate Ids.</value>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Capital.RequestCapital">
+            <summary>
+            资金请求参数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Capital.RequestCapital.userId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Cash.RequestCash.userId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Cash.RequestCash.usrBindCardId">
+            <summary>
+            用户绑定的卡Id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Cash.RequestCash.transAmt">
+            <summary>
+            提现金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Contract.RequestInvestmentContract.TargetId">
+            <summary>
+            标的ID
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Invest.RequestIncome">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Invest.RequestIncome.userId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Invest.RequestInvest">
+            <summary>
+            Class RequestInvest.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Invest.RequestInvest.recordId">
+            <summary>
+            记录ID
+            </summary>
+            <value>The record identifier.</value>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Invest.RequestInvestInvpeople">
+            <summary>
+            Class RequestInvestInvpeople
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Invest.RequestInvestInvpeople.userId">
+            <summary>
+            邀请人ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Invest.RequestInvestInvpeoplePage.userId">
+            <summary>
+            邀请人ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Invest.RequestInvestRecord.recordId">
+            <summary>
+            记录ID
+            </summary>
+            <value>The record identifier.</value>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Member.RequestFindPass">
+            <summary>
+            找回密码请求实体类
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestFindPass.mobile">
+            <summary>
+            手机号（登录账号）
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestFindPass.code">
+            <summary>
+            找回密码短信验证码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestFindPass.newPwd">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Member.RequestMember">
+            <summary>
+            Class RequestMember.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestMember.userId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestMember.userName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestMemberBonus.userId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestMemberBonus.selectedIds">
+            <summary>
+            已选中的id 红包格式：b_id1,id2 加息券格式：r_id1,id2
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestMemberCapital.userId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Member.RequestMemberInvest">
+            <summary>
+            Class RequestMemberInvest.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestMemberInvest.userId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail">
+            <summary>
+            Class RequestMemberDetail.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail.userId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Member.RequestModifyPass">
+            <summary>
+            修改密码请求实体类
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestModifyPass.userId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestModifyPass.orgPwd">
+            <summary>
+            原始密码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestModifyPass.newPwd">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestPayEntity.userId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestPayEntity.bankCard">
+            <summary>
+            银行卡号
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Member.RequestRegistMember">
+            <summary>
+            会员注册实体类
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestRegistMember.userMobile">
+            <summary>
+            用户手机号(账号)
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestRegistMember.userPass">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestRegistMember.code">
+            <summary>
+            注册验证码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestRegistMember.sourceFrom">
+            <summary>
+            来源：1-IOS 2-安卓 3-PC 4-WAP
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Member.RequestValidate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestValidate.userId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestValidate.userIdNo">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestValidateOrgMobileEntity.userId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestValidateOrgMobileEntity.mobile">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestValidateOrgMobileEntity.code">
+            <summary>
+            短信验证码 获取验证码时 该参数可不传
+            </summary>
+            <value>The code.</value>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Member.RequestLoginEntity">
+            <summary>
+            会员登录请求实体类
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestLoginEntity.userName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Member.RequestLoginEntity.userPass">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.NormalArea.RequestAreaEntity">
+            <summary>
+            Class RequestAreaEntity.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.NormalArea.RequestAreaEntity.parentId">
+            <summary>
+            父类ID
+            </summary>
+            <value>The parent identifier.</value>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Recharge.RequestRecharge">
+            <summary>
+            充值接口
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Recharge.RequestRecharge.userId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Recharge.RequestRecharge.bankType">
+            <summary>
+            银行类型
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Recharge.RequestRecharge.bankNo">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Recharge.RequestRecharge.amountOfCharge">
+            <summary>
+            充值金额
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Region.RequestRegionEntity">
+            <summary>
+            Class RequestRegionEntity.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Region.RequestRegionEntity.userId">
+            <summary>
+            用户id
+            </summary>
+            <value>The user identifier.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Region.RequestRegionEntity.provinceId">
+            <summary>
+            省份id
+            </summary>
+            <value>The province identifier.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Region.RequestRegionEntity.cityId">
+            <summary>
+            市id
+            </summary>
+            <value>The city identifier.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Region.RequestRegionEntity.countyId">
+            <summary>
+            县id
+            </summary>
+            <value>The county identifier.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Region.RequestRegionEntity.detailAddress">
+            <summary>
+            详细地址.
+            </summary>
+            <value>The detail address.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Region.RequestRegionEntity.userName">
+            <summary>
+            用户姓名
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Region.RequestRegionEntity.mobile">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Region.RequestRegionEntity.zipCode">
+            <summary>
+            邮政编码
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.RequestHeader">
+            <summary>
+            接口公共参数实体
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.RequestHeader.appId">
+            <summary>
+            应用id
+            </summary> 
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.RequestHeader.appSecret">
+            <summary>
+            秘钥
+            </summary>         
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.RequestHeader.accessToken">
+            <summary>
+            授权码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.RequestHeader.timeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.RequestHeader.specialStamp">
+            <summary>
+            特殊戳，普通Controller必须要带
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.RequestParam`1">
+            <summary>
+            接口请求参数实体
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.RequestParam`1.header">
+            <summary>
+            权限验证数据
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.RequestParam`1.body">
+            <summary>
+            业务参数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.RequestParam.header">
+            <summary>
+            权限验证数据
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Share.RequestQRCode">
+            <summary>
+            请求分享的账号（手机号）实体
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Share.RequestQRCode.UserId">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Sms.SmsEntity.mobile">
+             <summary>
+            手机号
+             </summary>
+             <value>The mobile.</value>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Request.Sms.RequestBindMobileEntity">
+            <summary>
+            绑定手机号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Sms.RequestBindMobileEntity.mobile">
+             <summary>
+            手机号
+             </summary>
+             <value>The mobile.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Request.Sms.RequestBindMobileEntity.userId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.AdNews.AdEntity">
+            <summary>
+            广告列表
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.AdEntity.Adid">
+            <summary>
+            标识
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.AdEntity.AdName">
+            <summary>
+            广告名称
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.AdEntity.Adcreatetime">
+            <summary>
+            创建时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.AdEntity.AdState">
+            <summary>
+            0 默认 (有效)  1下架(无效)
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.AdEntity.AdTypeId">
+            <summary>
+            AdTypeId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.AdEntity.AdPath">
+            <summary>
+            广告路径
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.AdEntity.AdLink">
+            <summary>
+            广告链接
+            </summary>        
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity">
+            <summary>
+            新闻列表
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.newid">
+            <summary>
+            新闻Id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.web_Type_menu_id">
+            <summary>
+            web_Type_menu_id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.News_title">
+            <summary>
+            标题
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.News_Key">
+            <summary>
+            News_Key
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.news_Des">
+            <summary>
+            新闻描述
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.context">
+            <summary>
+            内容
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.createtime">
+            <summary>
+            创建时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.adminuserid">
+            <summary>
+            adminuserid
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.menu_name">
+            <summary>
+            menu_name
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.rootid">
+            <summary>
+            rootid
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.path1">
+            <summary>
+            path1
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.orderid">
+            <summary>
+            orderid
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.topmenuname">
+            <summary>
+            topmenuname
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.comm">
+            <summary>
+            comm
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.listcomm">
+            <summary>
+            listcomm
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity.newimg">
+            <summary>
+            newimg
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AppUpdate.AppDownloadInfo.Code">
+            <summary>
+            更新包编码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AppUpdate.AppDownloadInfo.FileName">
+            <summary>
+            更新包文件名称
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AppUpdate.AppDownloadInfo.Version">
+            <summary>
+            更新包版本号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AppUpdate.AppDownloadInfo.Description">
+            <summary>
+            更新包描述信息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AppUpdate.AppDownloadInfo.Channel">
+            <summary>
+            针对渠道
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AppUpdate.AppDownloadInfo.UpdateLevel">
+            <summary>
+            更新包级别.1:接口变更-非常严重;2:业务增加-较严重;3:业务变更-严重;4:阶段性Bug修复-一般;5:日常更新-一般
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AppUpdate.AppDownloadInfo.ValideCode">
+            <summary>
+            更新包校验码.默认MD5
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AppUpdate.AppDownloadInfo.IsEnable">
+            <summary>
+            更新包是否可用。0:不可以更新，1:可以更新
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.AppUpdate.AppDownloadInfo.CreateTime">
+            <summary>
+            更新包发布时间
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bank.BankEntity.Bankid">
+            <summary>
+            Bankid
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bank.BankEntity.BankName">
+            <summary>
+            BankName
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bank.BankEntity.OpenBankId">
+            <summary>
+            OpenBankId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bank.BankEntity.CardImage">
+            <summary>
+            CardImage
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bank.BankEntity.Isquick">
+            <summary>
+            Isquick
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bank.BankEntity.Isordinary">
+            <summary>
+            Isordinary
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.bonus_account_id">
+            <summary>
+            奖励帐户id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.activity_schedule_id">
+            <summary>
+            活动计划表id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.membertable_registerid">
+            <summary>
+            用户注册id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.activity_schedule_name">
+            <summary>
+            活动计划名称
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.amount_of_reward">
+            <summary>
+            奖励金额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.use_lower_limit">
+            <summary>
+            使用下限
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.reward">
+            <summary>
+            奖励方式 0 常规(只奖励单方)  1 邀请奖励双方
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.start_date">
+            <summary>
+            有效开始日期
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.end_date">
+            <summary>
+            结束日期
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.reward_state">
+            <summary>
+            奖励状态 0 未使用   1已使用  2 已过期
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.reward_remarks">
+            <summary>
+            奖励备注
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.entry_time">
+            <summary>
+            录入时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.act_state">
+            <summary>
+            使用状态 0 未使用  1 已使用  3 已过期
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.proid">
+            <summary>
+            应用项目
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.selectedItem">
+            <summary>
+            是否选中　１选中　０未选中
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.UseLifeLoan">
+            <summary>
+            使用限制-限制可使用的标的期限(最小月-最大月)。要求大于等于最小月且小于等于最大月
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.BonusEntity.UseLifeLoanMessage">
+            <summary>
+            使用限制-限制可使用的标的期限，配套描述信息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.LogId">
+            <summary>
+            LogId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.UserId">
+            <summary>
+            UserId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.ActivityId">
+            <summary>
+            ActivityId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.ActType">
+            <summary>
+            ActType
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.ActivityName">
+            <summary>
+            ActivityName
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.UseBeginOn">
+            <summary>
+            UseBeginOn
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.UseEndOn">
+            <summary>
+            UseEndOn
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.RecordId">
+            <summary>
+            RecordId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.TargetId">
+            <summary>
+            TargetId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.UsedRecordId">
+            <summary>
+            UsedRecordId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.UsedTargetId">
+            <summary>
+            UsedTargetId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.AddRate">
+            <summary>
+            AddRate
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.UseStatus">
+            <summary>
+            0 可用 1 已用 2已过期
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.CreateOn">
+            <summary>
+            CreateOn
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.selectedItem">
+            <summary>
+            是否选中　１选中　０未选中
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.UseLifeLoan">
+            <summary>
+            使用限制-限制可使用的标的期限(最小月-最大月)。要求大于等于最小月且小于等于最大月
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.RateBonusEntity.UseLifeLoanMessage">
+            <summary>
+            使用限制-限制可使用的标的期限，配套描述信息
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusDetailEntity">
+            <summary>
+            现金券、优惠券详情
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusDetailEntity.ActName">
+            <summary>
+            活动名称
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusDetailEntity.Remark">
+            <summary>
+            使用说明
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusDetailEntity.ActTime">
+            <summary>
+            有效时间  （2016/10/19  暂不使用）
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusDetailEntity.AmtEndTime">
+            <summary>
+            有效时间 （2016/10/19  启用）
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusDetailEntity.RewTypeID">
+            <summary>
+            券类型
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusDetailEntity.ActRangeID">
+            <summary>
+            使用范围
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusDetailEntity.ActRangeRemarks">
+            <summary>
+            使用范围说明
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusDetailEntity.UseLifeLoan">
+            <summary>
+            使用限制-限制可使用的标的期限(最小月-最大月)。要求大于等于最小月且小于等于最大月
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusDetailEntity.UseLifeLoanMessage">
+            <summary>
+            使用限制-限制可使用的标的期限，配套描述信息
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusEntity">
+            <summary>
+            个人代金券列表数据
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusEntity.UserAct">
+            <summary>
+            券编号
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusEntity.RewTypeID">
+            <summary>
+            券类型
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusEntity.Amt">
+            <summary>
+            金额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusEntity.ActTime">
+            <summary>
+            活动有效时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusEntity.TypeName">
+            <summary>
+            来源
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusEntity.UseState">
+            <summary>
+            使用状态 0 未使用   1已使用  2 已过期 3 锁定中
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusEntity.UseLifeLoan">
+            <summary>
+            使用限制-限制可使用的标的期限(最小月-最大月)。要求大于等于最小月且小于等于最大月
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusEntity.UseLifeLoanMessage">
+            <summary>
+            使用限制-限制可使用的标的期限，配套描述信息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Bonus.OwnBonusEntity.Remark">
+            <summary>
+            使用说明
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.target_detailed_id">
+            <summary>
+            标的详细id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.borrower_registerid">
+            <summary>
+            借款人id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.targetid">
+            <summary>
+            标的id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.item_details">
+            <summary>
+            项目详情
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.borrower_circumstances">
+            <summary>
+            借款人情况
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.borrower_base_material">
+            <summary>
+            借款人基础材料
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.use_funds">
+            <summary>
+            资金用途
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.independent_advice">
+            <summary>
+            创利投独立意见
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.guarantee_agency_views">
+            <summary>
+            担保机构意见
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.risk_control_measures">
+            <summary>
+            风险控制措施
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.createtime">
+            <summary>
+            创建日期
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowDetailEntity.pictures">
+            <summary>
+            担保方图片
+            </summary>      
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.targetId">
+            <summary>
+            标ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.borrower_registerid">
+            <summary>
+            借款人id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.userName">
+            <summary>
+            借款人姓名
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.loan_number">
+            <summary>
+            用于合同编号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.borrowing_title">
+            <summary>
+            借款标题
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.borrowing_thumbnail">
+            <summary>
+            借款缩略图
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.project_type_id">
+            <summary>
+            项目类型id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.annual_interest_rate">
+            <summary>
+            年利率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.borrowing_balance">
+            <summary>
+            借款金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.life_of_loan">
+            <summary>
+            借款期限
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.unit_day">
+             <summary>
+            单位(月/天) 1 月  3 天
+             </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.release_date">
+            <summary>
+            借款日期
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.value_date">
+            <summary>
+            统一起息日
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.month_payment_date">
+            <summary>
+            每月付息日期 
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.repayment_date">
+            <summary>
+            还款日期
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.minimum">
+            <summary>
+            0表示不限 
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.maxmum">
+            <summary>
+            0 表示不限
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.companyid">
+            <summary>
+            担保公司id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.guarantee_way_id">
+            <summary>
+            担保方式id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.payment_options">
+            <summary>
+            1 按月等额本息 3 每月还息，到期还本  4 一次性还本付息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.start_time">
+            <summary>
+            招标开始时间
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.end_time">
+            <summary>
+            招标结束时间
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.service_charge">
+            <summary>
+            资询服务费费率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.loan_management_fee">
+            <summary>
+            借款帐户管理费费率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.investors_management_fee">
+            <summary>
+            投资帐户管理费费率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.ordinary_overdue_management_fees">
+            <summary>
+            普通逾期管理费费率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.seriously_overdue_management_fees">
+            <summary>
+            seriously_overdue_management_fees
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.ordinary_overdue_penalty">
+            <summary>
+            ordinary_overdue_penalty
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.seriously_overdue_penalty">
+            <summary>
+            seriously_overdue_penalty
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.transfer_Expenses">
+            <summary>
+            transfer_Expenses
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.fundraising_amount">
+            <summary>
+            根据和投资明细表触发器计算 已筹款
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.tender_state">
+            <summary>
+             2 复审通过(开标上线)     3 满标 (还款中)     4放款 (还款中)   5 已还清   
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.full_scale_loan">
+            <summary>
+            0 未放款  1已放款
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.flow_return">
+            <summary>
+            0 未满标 1 未返还
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.recommend">
+            <summary>
+            recommend
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.sys_time">
+            <summary>
+            sys_time
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.repaymentperiods">
+            <summary>
+            默认为 0   在生成原款计划时触发器自动生成还款期数总数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.reviewremarks">
+            <summary>
+            reviewremarks
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.recheckremarks">
+            <summary>
+            recheckremarks
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.guarantee_fee">
+            <summary>
+            guarantee_fee
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.consultingAMT">
+            <summary>
+            consultingAMT
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.guaranteeAMT">
+            <summary>
+            guaranteeAMT
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.B_Rates">
+            <summary>
+            B_Rates
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.H_Repayment_Amt">
+            <summary>
+            H_Repayment_Amt
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.Repay_Time">
+            <summary>
+            Repay_Time
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.G_contract_Path">
+            <summary>
+            G_contract_Path
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.IsUse">
+            <summary>
+            IsUse
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.indexorder">
+            <summary>
+            indexorder
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowEntity.investCount">
+            <summary>
+            投标数
+            </summary> 
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Borrow.BorrowGuarantorPictureEntity">
+            <summary>
+            借款方关图片及担保方图片
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowGuarantorPictureEntity.borrower_guarantor_picture_id">
+            <summary>
+            自增图片id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowGuarantorPictureEntity.borrower_registerid">
+            <summary>
+            借款人id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowGuarantorPictureEntity.targetid">
+            <summary>
+            标的id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowGuarantorPictureEntity.type_picture">
+            <summary>
+            借款方图片类型   1基础材料 2担保材料 3现场图片
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowGuarantorPictureEntity.picture_path">
+            <summary>
+            图片路径
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowGuarantorPictureEntity.picture_name">
+            <summary>
+            图片名称
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Borrow.BorrowGuarantorPictureEntity.uploadtime">
+            <summary>
+            上传时间
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Capital.ResponsePresentEntity">
+            <summary>
+            提现列表.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Capital.ResponsePresentEntity.presentAmount">
+            <summary>
+            提现金额
+            </summary>
+            <value>The present amount.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Capital.ResponsePresentEntity.appliedOn">
+            <summary>
+            申请时间
+            </summary>
+            <value>The present amount.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Capital.ResponsePresentEntity.presentStatu">
+            <summary>
+            提现状态
+            </summary>
+            <value>The present amount.</value>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Capital.ResponseTotalInvestEntity">
+            <summary>
+            Class ResponseTotalInvestEntity.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Capital.ResponseTotalInvestEntity.targetName">
+            <summary>
+            标名称
+            </summary>
+            <value>The name of the target.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Capital.ResponseTotalInvestEntity.investAmount">
+            <summary>
+            投资金额
+            </summary>
+            <value>The invest amount.</value>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Invest.InvestCountEntity">
+            <summary>
+            返回累计邀请信息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestCountEntity.RegisterCount">
+            <summary>
+            获取累计邀请注册人数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestCountEntity.InvestCount">
+            <summary>
+            获取累计邀请投资人数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestCountEntity.strLink">
+            <summary>
+            生产二维码链接地址
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.receivableInterest">
+            <summary>
+            应收利息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.recordId">
+            <summary>
+            记录ID
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.targetId">
+            <summary>
+            标ID
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.targetTitle">
+            <summary>
+            标的标题
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.investMemberId">
+            <summary>
+            投资用户id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.investMemberName">
+            <summary>
+            投资人姓名
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.deadLine">
+            <summary>
+            期限
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.unitDay">
+            <summary>
+            单位(月/天) 1 月  3 天
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.rate">
+            <summary>
+            年化收益
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.borrowTotalAmount">
+            <summary>
+            项目总额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.fundTotalAmount">
+            <summary>
+            已投总金额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.investAmount">
+            <summary>
+            投资金额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.paymentStatus">
+            <summary>
+            0 未还款    1 借款人自己还款  2 平台代还
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.rateBeginOn">
+            <summary>
+            开始计算利息日期
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.investMaturity">
+            <summary>
+            投资到期日
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.createdOn">
+            <summary>
+            投资时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.investNumber">
+            <summary>
+            已购买人数
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.paymentDate">
+            <summary>
+            还款日期
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.valueDate">
+            <summary>
+            付息日
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.paymentOption">
+            <summary>
+            1 按月等额本息  3 每月还息，到期还本   4 一次性还本付息
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.guarantee_way_id">
+            <summary>
+            担保类型
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.month_payment_date">
+            <summary>
+            每月付息日
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.jiaxiNum">
+            <summary>
+            每月付息日
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestEntity.BonusAmt">
+            <summary>
+            每月付息日
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestRecordEntity.phone">
+            <summary>
+            手机号码
+            </summary>        
+        </member>
+        <member name="F:ChuangLiTou.Core.Entities.Response.Invest.InvestRecordEntity.investMoney">
+            <summary>
+            投资金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.InvestRecordEntity.investTime">
+            <summary>
+            投资时间
+            </summary>        
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Invest.MemberInvestEntity">
+            <summary>
+            Class MemberInvestEntity.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.MemberInvestEntity.userId">
+            <summary>
+            会员ID.
+            </summary>
+            <value>The member identifier.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.MemberInvestEntity.userBalance">
+            <summary>
+            账户余额.
+            </summary>
+            <value>The member balance.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ActivityBonusEntity.bonus">
+            <summary>
+            账号代金券列表.
+            </summary>
+            <value>The bonus.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ActivityBonusEntity.addRate">
+            <summary>
+            加息券列表.
+            </summary>
+            <value>The bonus.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseIncomeEntity.shortDate">
+            <summary>
+            年月
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.targetid">
+            <summary>
+            标Id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.loan_number">
+            <summary>
+            合同号
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.borrowing_title">
+            <summary>
+            标题
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.borrowing_balance">
+            <summary>
+            借款金额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.investment_amount">
+            <summary>
+            投资金额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.income_statement_id">
+            <summary>
+            income_statement_id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.borrower_registerid">
+            <summary>
+            借款人Id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.annual_revenue">
+            <summary>
+            annual_revenue
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.invest_time">
+            <summary>
+            投资时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.current_investment_period">
+            <summary>
+            current_investment_period
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.value_date">
+            <summary>
+            起息日
+            </summary>        
+        </member>
+        <member name="F:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.interest_payment_date">
+            <summary>
+            预期还款日
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.repayment_period">
+            <summary>
+            真实还款时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.day">
+            <summary>
+            付息日
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.repayment_amount">
+            <summary>
+            还款金额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.investor_registerid">
+            <summary>
+            投资人Id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.payment_status">
+            <summary>
+            还款状态 1提前还款 2待还款 3延迟（已还款） 4已还款 5 延迟（待还款）
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.bid_records_id">
+            <summary>
+            记录Id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.annual_interest_rate">
+            <summary>
+            年化
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.registerid">
+            <summary>
+            registerid
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.available_balance">
+            <summary>
+            available_balance
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.payment_options">
+            <summary>
+            payment_options
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.OutCustId">
+            <summary>
+            OutCustId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.loan_management_fee">
+            <summary>
+            loan_management_fee
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.Principal">
+            <summary>
+            Principal
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.interestDay">
+            <summary>
+            interestDay
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.TotalInstallments">
+            <summary>
+            TotalInstallments
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.ordstate">
+            <summary>
+            ordstate
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.username">
+            <summary>
+            username
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.realname">
+            <summary>
+            realname
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.mobile">
+            <summary>
+            mobile
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Invest.ResponseInvestIncomeEntity.orderid">
+            <summary>
+            orderid
+            </summary>        
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater">
+            <summary>
+            资金流水
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater.account_water_id">
+            <summary>
+            帐户流水id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater.membertable_registerid">
+            <summary>
+            用户id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater.income">
+            <summary>
+            收入
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater.expenditure">
+            <summary>
+            支出
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater.time_of_occurrence">
+            <summary>
+            发生时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater.account_balance">
+            <summary>
+            账户余额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater.types_Finance">
+            <summary>
+            资金类型
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater.createtime">
+            <summary>
+            创建时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater.keyid">
+            <summary>
+            主键id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.CapitalAccountWater.remarks">
+            <summary>
+            备注
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberBankEntity.UsrBindCardID">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberBankEntity.UsrCustId">
+            <summary>
+            用户客户号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberBankEntity.OpenAcctId">
+            <summary>
+            开户银行号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberBankEntity.OpenBankId">
+            <summary>
+            开户银行代码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberBankEntity.RealName">
+            <summary>
+            真实姓名
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberBankEntity.CardImage">
+            <summary>
+            LOGO
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberBankEntity.BankName">
+            <summary>
+            银行名称
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberBankEntity.defCard">
+            <summary>
+            0 默认   1设置为默认卡
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberBankEntity.BindCardType">
+            <summary>
+            BindCardType
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.registerid">
+            <summary>
+            注册id
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.password">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.mobile">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.realname">
+            <summary>
+            真实姓名
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.UsrCustId">
+            <summary>
+            用户客户号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.userPhotoUrl">
+            <summary>
+            用户头像地址
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.iD_number">
+            <summary>
+            身份证号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.transactionpassword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.istransactionpassword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.ismobile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.isrealname">
+            <summary>
+             是否实名认证 0 未认证   1已认证
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.isbankcard">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.isemail">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.userstate">
+            <summary>
+            0 正常  1禁止登录
+            </summary>
+            
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.account_total_assets">
+            <summary>
+            帐户总资产
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.totalGains">
+            <summary>
+            帐户总收益
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.interestIncome">
+            <summary>
+            利息收益
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.activityReward">
+            <summary>
+            活动奖励
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.couponIncome">
+            <summary>
+            加息券收益
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.claimsIncome">
+            <summary>
+            债券收益
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.receivedIncome">
+            <summary>
+            已赚的利息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.receivingIncome">
+            <summary>
+            未赚的利息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.totalAmount">
+            <summary>
+            待收本金
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.bonusAmount">
+            <summary>
+            奖励金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.totalInverstAmount">
+            <summary>
+            总投资记录
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.available_balance">
+            <summary>
+            可用余额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.collect_total_amount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.frozen_sum">
+            <summary>
+            冻结金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.open_tonto_account">
+            <summary>
+            0 默认未开通   1 已开通
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.tonto_account_user">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.usertypes">
+            <summary>
+            0 投资  1借款用户  2借款企业
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.registration_time">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.lastlogintime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.lastloginIP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.customserviceid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.homephone">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.contactaddress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.zipcode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.qq">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.msn">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.invitedcode">
+            <summary>
+            邀请码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.UsrId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.useridentity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.CopName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.Channelsource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.Tid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberEntity.WXAppId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Member.MemberWithRedpacketEntity">
+            <summary>
+            会员基本信息的扩展，增加优惠券数量和红包金额字段
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberWithRedpacketEntity.VoucherCount">
+            <summary>
+            优惠券数量
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Member.MemberWithRedpacketEntity.RedpacketMoney">
+            <summary>
+            红包金额
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.NormalArea.NormalAreaEntity">
+            <summary>
+            省市区
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.NormalArea.NormalAreaEntity.AreaId">
+            <summary>
+            区域Id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.NormalArea.NormalAreaEntity.AreaCode">
+            <summary>
+            区域码
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.NormalArea.NormalAreaEntity.AreaName">
+            <summary>
+            区域名称
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.NormalArea.NormalAreaEntity.ParentId">
+            <summary>
+            父类id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.NormalArea.NormalAreaEntity.AreaLevel">
+            <summary>
+            等级 省1市2县3
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.NormalArea.NormalAreaEntity.AreaOrder">
+            <summary>
+            排序值
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.NormalArea.NormalAreaEntity.AreaNameEn">
+            <summary>
+            英文名称
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.NormalArea.NormalAreaEntity.AreaShortNameEn">
+            <summary>
+            英文简写
+            </summary>        
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Record.BorrowRecordEntity">
+             <summary>
+            借款人信息
+             </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.BorrowRecordEntity.BorrowerCustId">
+            <summary>
+            借款人客户号
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.BorrowRecordEntity.BorrowerAmt">
+            <summary>
+            借款金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.BorrowRecordEntity.BorrowerRate">
+            <summary>
+            借款手续费率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.BorrowRecordEntity.ProId">
+            <summary>
+            项目ID
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Record.RecordEntity">
+            <summary>
+            Class RecordEntity.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.bid_records_id">
+            <summary>
+            bid_records_id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.borrower_registerid">
+            <summary>
+            borrower_registerid
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.targetid">
+            <summary>
+            targetid
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.loan_number">
+            <summary>
+            loan_number
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.annual_interest_rate">
+            <summary>
+            annual_interest_rate
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.current_period">
+            <summary>
+            分期总数
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.investment_amount">
+            <summary>
+            投资金额
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.value_date">
+            <summary>
+            value_date
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.investment_maturity">
+            <summary>
+            investment_maturity
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.invest_time">
+            <summary>
+            投资时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.invest_state">
+            <summary>
+            1 成功  2 失败  3流标返还  如果是投标返还的话通过触发器更改对应金额问题
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.flow_return">
+            <summary>
+            1 无返还  2已返还
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.repayment_amount">
+            <summary>
+            repayment_amount
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.repayment_period">
+            <summary>
+            repayment_period
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.investor_registerid">
+            <summary>
+            investor_registerid
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.payment_status">
+            <summary>
+            0 未还款    1 借款人自己还款  2 平台代还
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.withoutinterest">
+            <summary>
+            withoutinterest
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.haveinterest">
+            <summary>
+            haveinterest
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.contractid">
+            <summary>
+            contractid
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.contractpath">
+            <summary>
+            contractpath
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.invitationcode">
+            <summary>
+            invitationcode
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.OrdId">
+            <summary>
+            OrdId
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.ordstate">
+            <summary>
+            ordstate
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Record.RecordEntity.IsLoans">
+            <summary>
+            IsLoans
+            </summary>        
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.ResultInfo`1">
+            <summary>
+            响应实体类
+            </summary>
+            <typeparam name="T">响应体对象</typeparam>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.ResultInfo`1.code">
+            <summary>
+            响应码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.ResultInfo`1.message">
+            <summary>
+            响应信息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.ResultInfo`1.body">
+            <summary>
+            响应体(泛型)
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.Share.QRCodeEntity">
+            <summary>
+            二维码返回实体
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.Share.QRCodeEntity.LinkUrl">
+            <summary>
+             图片地址
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsEmailEntity.SmsEmailId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsEmailEntity.SmsEname">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsEmailEntity.SEContext">
+            <summary>
+            0 是邮件类别 1 短信类别
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsEmailEntity.SEtype">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsRecordEntity.sms_record_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsRecordEntity.senduserid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsRecordEntity.phone_number">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsRecordEntity.smscontext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsRecordEntity.smstype">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsRecordEntity.sendtime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsRecordEntity.orderid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsRecordEntity.vcode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsRecordEntity.hits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.SmsEmail.SmsRecordEntity.ip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity">
+            <summary>
+            Class ResponseUserAddressEntity.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.userId">
+            <summary>
+            用户id
+            </summary>
+            <value>The user identifier.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.provinceId">
+            <summary>
+            省级id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.provinceName">
+            <summary>
+            省级名称
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.cityId">
+            <summary>
+            市级id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.cityName">
+            <summary>
+            市级名称
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.countyId">
+            <summary>
+            县级id
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.countyName">
+            <summary>
+            县级名称
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.detailAddress">
+            <summary>
+            详细地址
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.createdOn">
+            <summary>
+            创建时间
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.updatedOn">
+            <summary>
+            updatedOn
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.userName">
+            <summary>
+            用户名
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.mobile">
+            <summary>
+            手机号
+            </summary>        
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.Response.UserAddress.ResponseUserAddressEntity.zipCode">
+            <summary>
+            邮编
+            </summary>        
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.ttnz.BorrowingEntity">
+            <summary>
+            Class BorrowingEntity.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ttnz.BorrowingEntity.hkfs">
+            <summary>
+            还款方式
+            </summary>
+            <value>The HKFS.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ttnz.BorrowingEntity.dkqx">
+            <summary>
+            贷款期限
+            </summary>
+            <value>The DKQX.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ttnz.BorrowingEntity.bname">
+            <summary>
+            标名称
+            </summary>
+            <value>The bname.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ttnz.BorrowingEntity.tzjd">
+            <summary>
+            投资进度.
+            </summary>
+            <value>The TZJD.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ttnz.BorrowingEntity.qtje">
+            <summary>
+            起投金额
+            </summary>
+            <value>The qtje.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ttnz.BorrowingEntity.ktje">
+            <summary>
+            可投金额
+            </summary>
+            <value>The ktje.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ttnz.BorrowingEntity.jkje">
+            <summary>
+            标的投资总金额
+            </summary>
+            <value>The jkje.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ttnz.BorrowingEntity.key">
+            <summary>
+            渠道给平台的唯一key.
+            </summary>
+            <value>The key.</value>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.ttnz.BorrowingEntity.nhsy">
+            <summary>
+            年化收益
+            </summary>
+            <value>The nhsy.</value>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.wdzg.InvestRecordEntity">
+            <summary>
+            投资信息实体 
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.InvestRecordEntity.tender_id">
+            <summary>
+            投资ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.InvestRecordEntity.username">
+            <summary>
+            投资人名称
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.InvestRecordEntity.account">
+            <summary>
+            有效投资金额 : 单位：元
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.InvestRecordEntity.borrow_id">
+            <summary>
+            标ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.InvestRecordEntity.tender_time">
+            <summary>
+            投资时间 : 时间戳格式
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.InvestRecordEntity.status">
+            <summary>
+            状态	status	*	0 待审核 1 待回款 2 成功回款 3 坏账 4债权转让 5投标失败
+            </summary>
+        </member>
+        <member name="T:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity">
+            <summary>
+            标信息
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.url">
+            <summary>
+            标详情URL
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.id">
+            <summary>
+            标ID
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.title">
+            <summary>
+            标名称
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.account">
+            <summary>
+            借款金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.apr">
+            <summary>
+            年利率
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.limit">
+            <summary>
+            借款期限
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.limit_type">
+            <summary>
+            借款期限类型
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.way">
+            <summary>
+            还款方式
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.account_yes">
+            <summary>
+            已投金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.account_min">
+            <summary>
+            起投金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.account_max">
+            <summary>
+            最大金额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.username">
+            <summary>
+            发标人用户名
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.add_time">
+            <summary>
+            添加时间
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.verify_time">
+            <summary>
+            初审时间
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.success_time">
+            <summary>
+            复审通过时间
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.type">
+            <summary>
+            标类型
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.status">
+            <summary>
+            标状态
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.reward">
+            <summary>
+            奖励
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.is_diya">
+            <summary>
+            是否抵押
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.is_danbao">
+            <summary>
+            是否担保
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.is_mima">
+            <summary>
+            是否密码
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.is_miao">
+            <summary>
+            是否秒标
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzg.TargetDetailEntity.is_zhuan">
+            <summary>
+            是否债权转让
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.projectId">
+            <summary>
+            项目主键(唯一)
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.title">
+            <summary>
+            title	String	借款标题	是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.amount">
+            <summary>
+            amount	double	借款金额(若标未满截标，以投标总额为准)	是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.schedule">
+            <summary>
+            schedule	String	进度 例如：100（只传满标数据，进度均为100）	是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.interestRate">
+            <summary>
+            interestRate	String	利率 百分比 例如：24.5% 统一转化为年化利率传过来。	是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.deadline">
+            <summary>
+            deadline	int	借款期限	是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.deadlineUnit">
+            <summary>
+            deadlineUnit	String	期限单位 * 仅限 ‘天’ 或 ‘月’	是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.reward">
+            <summary>
+            reward	double	奖励统一返回比例,而不是奖励金额。例如：奖励50元，借款金额1000元； 奖励=50/1000=5% 即返回’5’）
+            奖励比例统一去掉’%’，比如奖励比例1.2%则返回’1.2’即可
+            年化奖励直接加到利率字段中	是（如果平台系统无奖励字段，则统一返回0）
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.type">
+            <summary>
+            例如： 抵押标 ，质押标，信用标，债权转让标，净值标，秒标等。移动端数据需注明移动端。
+            (对于不参与计算平均利率的秒标（天标）、活动标（体验标），就传“秒标”或是“活动标”)
+            借款类型可根据平台的情况修改，不限于上述类型。若一个标有多个类型，则在每个类型中间加半角分号“;”（如实地认证+担保，就传“实地认证;担保”）	是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.repaymentType">
+             <summary>
+             还款方式
+            1：到期还本息(到期还本付息，一次性还本付息，按日计息到期还本,一次性付款、秒还)
+            2：每月等额本息(按月分期，按月等额本息)
+            3：每季分期（按季分期，按季等额本息）
+            5：每月付息到期还本(先息后本)
+            6：等额本金(按月等额本金)
+            7：每季付息到期还本（按季付息到期还本）
+            8：每月付息分期还本
+            9：先付息到期还本	是
+             </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.plateType">
+            <summary>
+            标所属平台频道板块
+            如：爱投资频道下的融资租赁、保理等	否
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.guarantorsType">
+            <summary>
+            保障担保机构名称
+            如：爱投资标保障机构	否
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.province">
+            <summary>
+            借款人所在省份。比如“广东”，“浙江”等，去掉“省”	否
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.city">
+            <summary>
+            借款人所在城市。	否
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.userName">
+            <summary>
+            发标人ID 不能将ID加*隐藏部分字符，否则会导致多个借款人使用同一个ID，导致借款集中度高。
+            是
+            </summary> 
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.userAvatarUrl">
+            <summary>
+            发标人头像的URL	否
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.amountUsedDesc">
+            <summary>
+            借款用途	否
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.revenue">
+            <summary>
+            营收。即该笔借款平台收取的服务费、管理费等。	否
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.loanUrl">
+            <summary>
+            标的详细页面地址链接	是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.successTime">
+            <summary>
+            标的成功时间。（满标的时间）
+            注意：是标被投满的时间（此标最后一个投标人投标的时间），而不是发标时间。
+            格式为标准时间格式：’2014-07-23 12:23:22’
+            注意：getProjectsByDate调用时必须有该字段。	是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.BorrowEntity.publishTime">
+            <summary>
+            发标时间
+            格式为标准时间格式：’2014-07-23 12:23:22’	否
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.Investors.subscribeUserName">
+            <summary>
+            投标人ID
+            不能将ID加*隐藏部分字符，否则会导致多个投资人使用同一个ID，导致投资集中度高。
+            是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.Investors.amount">
+            <summary>
+            投标金额
+            用户初始投标的金额。对于平台优惠奖励政策的情况（如投标人投****元自动返还**元，或是某个人获得满标奖励**）只计投标金额。
+            是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.Investors.validAmount">
+            <summary>
+            有效金额
+            实际中标金额。如平台无’投标金额’和’有效金额’之分，则’投标金额’和’有效金额’传一样的即可。
+            是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.Investors.addDate">
+            <summary>
+            投标时间
+            格式为标准时间格式：’2014-07-23 12:23:22’
+            是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.Investors.status">
+            <summary>
+            投标状态
+            1：全部通过 2：部分通过 注意：平台没有这个字段的默认为1
+            是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.Investors.type">
+            <summary>
+            标识手动或自动投标
+            0：手动 1：自动 注意:平台没有这个字段的默认为0
+            是
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.Investors.sourceType">
+            <summary>
+            投标来源
+            1 ：PC端 2 ：WAP端 3 ：平台APP客户端 4 ：微信
+            否
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.ResponseBorrow.totalPage">
+            <summary>
+            总页数(每页显示20条借款标信息)
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.ResponseBorrow.currentPage">
+            <summary>
+            当前页数（从1开始）
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.ResponseBorrow.totalCount">
+            <summary>
+            总标数
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.ResponseBorrow.totalAmount">
+            <summary>
+            当天借款标总额
+            </summary>
+        </member>
+        <member name="P:ChuangLiTou.Core.Entities.wdzj.ResponseBorrow.borrowList">
+            <summary>
+            借款标信息（参照下面）
+            </summary>
+        </member>
+    </members>
+</doc>

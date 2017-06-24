@@ -1,0 +1,53 @@
+﻿@model ChuanglitouP2P.Model.chinapnr.Cash.M_Cash
+
+@{
+    ViewBag.Title = "请不要关闭页面,跳转中.....";
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+
+}
+<script type="text/javascript" src="/Scripts/jquery-1.9.1.min.js"></script>
+<script src="/Scripts/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+         $(function () {
+             layer.msg("数据处理中....！请不要关闭", 60, 1);
+         });
+
+</script>
+
+<form id="form1" action="@ViewBag.url" method="post">
+    <div>
+        <input id="Version" name="Version" value="@Model.Version" type="hidden" />
+        <input id="CmdId" name="CmdId" value="@Model.CmdId" type="hidden" />
+        <input id="MerCustId" name="MerCustId" value="@Model.MerCustId" type="hidden" />
+        <input id="OrdId" name="OrdId" value="@Model.OrdId" type="hidden" />
+        <input id="UsrCustId" name="UsrCustId" value="@Model.UsrCustId" type="hidden" />
+        <input name="TransAmt" id="TransAmt" value="@Model.TransAmt" type="hidden" />
+
+        <input id="ServFee" name="ServFee" value="@Model.ServFee" type="hidden" />
+        <input id="ServFeeAcctId" name="ServFeeAcctId" value="@Model.ServFeeAcctId" type="hidden" />
+        <input id="OpenAcctId" name="OpenAcctId" value="@Model.OpenAcctId" type="hidden" />
+        <input id="RetUrl" name="RetUrl" value="@Model.RetUrl" type="hidden" />
+        <input id="BgRetUrl" name="BgRetUrl" value="@Model.BgRetUrl" type="hidden" />
+        <input id="Remark" name="Remark" value="@Model.Remark" type="hidden" />
+        <input id="CharSet" name="CharSet" value="@Model.CharSet" type="hidden" />
+        <input id="MerPriv" name="MerPriv" value="@Model.MerPriv" type="hidden" />
+        <input id="ReqExt" name="ReqExt" value="@Model.ReqExt" type="hidden" />
+        <input id="ChkValue" name="ChkValue" value="@Model.ChkValue" type="hidden" />
+    </div>
+</form>
+<script type="text/javascript">
+    $(function () {
+        var code = '@ViewBag.errCode';
+        if (code == "0") {
+            $("#form1").submit();
+        }
+        else if (code == "-1") {
+            alert("可用余额不足，无法提现");
+            window.location.href = "/Cash/Index";
+        }
+        else if (code == "-2") {
+            alert("银行卡信息异常，请重试");
+            window.location.href = "/Cash/Index";
+        }
+    })
+</script>

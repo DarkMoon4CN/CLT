@@ -1,0 +1,74 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using Webdiyer.WebControls.Mvc;
+@using ChuangLitouP2P.Models;
+@model PagedList<V_borrowing_Bid_records_income_statement_uc>
+@{
+    ViewBag.Title = "还本付息记录";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+    int pageIndex = ViewBag.pageIndex;
+    int pageCount = ViewBag.pageCount;
+}
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">还本付息记录</h2>
+</header>
+<section class="user_form_record">
+    <div>
+
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+
+        <dl>
+            <dt>@item.borrowing_title  </dt>
+            <dd><div>投资金额：<b class="color_orange"> @item.investment_amount </b></div><div>预期年化：@item.annual_revenue %  
+             
+                   @if (item.JiaxiNum != null && item.JiaxiNum > 0)
+                {
+                    @: +  @item.JiaxiNum  %
+    }
+
+                
+                </div></dd>
+            <dd><div>计息日：@DateTime.Parse(item.value_date.ToString()).ToString("yyyy-MM-dd")</div><div>付息日：@DateTime.Parse(item.interest_payment_date.ToString()).ToString("yyyy-MM-dd") </div></dd>
+            
+
+          
+
+
+    @if (item.repayment_period != null && item.repayment_period.ToString().Length > 0)
+    {
+        <dd>
+            <div>预计本息：@item.repayment_amount </div>
+            <div>已付本息：@item.repayment_amount </div>
+        </dd>
+                <dd><div>实际支付时间：@item.repayment_period </div></dd>
+    }
+    else
+    {
+        <dd>
+            <div>预计本息：@item.repayment_amount </div>
+            <div>已付本息：--</div>
+        </dd>
+            <dd><div>实际支付时间：未支付</div></dd>
+    }
+           
+
+
+
+        </dl>
+
+    }
+}
+    </div>
+</section>
+
+<section class="page_box">
+    <div class="page_prev"><a href="/usercenter/interests?pageIndex=@(pageIndex<=1?1:(pageIndex-1))&bid=@ViewBag.bid">上一页</a></div>
+    <div class="page_number">@(pageIndex <= 1 ? 1 : pageIndex)/@(pageCount <= 1 ? 1 : pageCount)</div>
+    <div class="page_next"><a href="/usercenter/interests?pageIndex=@(pageIndex<=1?2:(pageIndex+1))&bid=@ViewBag.bid">下一页</a></div>
+</section>
+<div class="bot_height"></div>

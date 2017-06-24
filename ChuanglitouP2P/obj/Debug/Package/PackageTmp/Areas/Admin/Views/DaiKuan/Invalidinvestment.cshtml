@@ -1,0 +1,76 @@
+﻿@using ChuanglitouP2P.Common
+@model  IEnumerable<ChuangLitouP2P.Models.V_Bid_records_Lost>
+@{
+    ViewBag.Title = "投标校验";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">贷款管理</a>><a href="javascript:void(0)">投标校验</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <form id="form1" class="registerform" action="/DaiKuan/postInvalidinvestment" method="post">
+        <h3 class="listtitle">
+            投资未成功或未回调列表
+
+
+            <input type="submit" name="校验列表" value="校验列表" />
+        </h3>
+    </form>
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+              
+                <th scope="col">标的</th>
+                <th scope="col">投资人</th>
+                <th scope="col">投资金额</th>
+                <th scope="col">年化率</th>
+                <th scope="col">订单</th>
+                <th scope="col">投资时间</th>
+                
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                       
+                        <td>@(item.borrowing_title)</td>
+                        @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                        {
+                            if (item.realname != null && item.realname.Length > 1)
+                            {
+                                item.realname = item.realname.Substring(0, 1) + "**";
+                            }
+
+                        }
+                        <td>@(item.realname)</td>
+                        <td>@RMB.GetWebConvertdisp(decimal.Parse((item.investment_amount.ToString())), 2, true)</td>
+                        <td>@RMB.GetWebConvertdisp(decimal.Parse(item.annual_interest_rate == null ? "0.00" : item.annual_interest_rate.ToString()), 2, true)</td>
+                        <td>@item.OrdId</td>
+                        <td>@(item.invest_time)</td>
+                        
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,78 @@
+﻿@using ChuanglitouP2P.Common;
+@model ChuangLitouP2P.Models.hx_member_table
+@{
+    ViewBag.Title = "安全中心";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">安全中心</h2>
+</header>
+<section class="user_safety_box">
+    <div class="safety_item">
+        <div class="safety_icon"><i class="fa fa-lock"></i></div>
+        <div class="safety_txt"><a href="/usercenter/ChangePwd"><strong>登录密码</strong></a></div>
+        <div class="safety_chevron">修改<span></span></div>
+    </div>
+    <div class="safety_item">
+        <div class="safety_icon"><i class="fa fa-mobile" style="font-size:24px;"></i></div>
+        <div class="safety_txt"><strong>手机号码</strong><br><span>@Utils.ReplaceWithSpecialChar(Model.mobile, 3, 4, '*')</span></div>
+        <div class="safety_chevron">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    </div>
+    <div class="safety_item">
+        <div class="safety_icon"><i class="fa fa-user"></i></div>
+        <div class="safety_txt">
+            @if (Model.UsrCustId != null && Model.UsrCustId.Length > 0)
+            {   //已认证
+
+                <a href="javascript:void(0);">
+                    <strong>实名认证</strong><br><span>
+                        *@if (!string.IsNullOrEmpty(Model.realname) && Model.realname != "")
+                        {
+                            @Model.realname.Substring(1)
+                        }
+                        (@if (!string.IsNullOrEmpty(Model.iD_number) && Model.iD_number != "")
+                        {
+                            @Utils.ReplaceWithSpecialChar(Model.iD_number, 3, 4, '*')
+                        })
+                    </span>
+                </a>
+            }
+            else
+            {
+                <a href="/opening_account/Index/@Model.registerid "><strong>实名认证</strong></a>
+            }
+        </div>
+        @if (Model.UsrCustId != null && Model.UsrCustId.Length > 0)
+        {   //已认证
+            <div class="safety_chevron">已认证<span></span></div>
+        }
+        else
+        {
+            <div class="safety_chevron" onclick="t()">去认证<span></span></div>
+        }
+    </div>
+    <div class="safety_item">
+        <div class="safety_icon"><i class="fa fa-unlock-alt"></i></div>
+        <div class="safety_txt"><a href="/usercenter/ChangeTradePwd"><strong>交易密码</strong><br><span>账户资金变动时使用</span></a></div>
+        <div class="safety_chevron">修改<span></span></div>
+    </div>
+    <div class="safety_item">
+        <div class="safety_icon"><i class="fa fa-credit-card"></i></div>
+        <div class="safety_txt"><a href="/Bank/Index"><strong>银行卡管理</strong><br><span>银行卡绑定后才可提现</span></a></div>
+        @{
+            string flag = "未绑卡";
+            string color = "style=color:#999;";
+            if (ViewBag.flag) { flag = "已绑卡"; color = "style=color:#999;"; } else {flag= "未绑卡"; color = "style=color:red;"; }
+        }
+        <div class="safety_chevron"><a href="/Bank/Index" @color>@flag<span></span></a></div>
+    </div>
+</section>
+<div class="bot_height"></div>
+
+<script>
+    function t() {
+        location.href = "/opening_account/Index/@Model.registerid";
+    }
+</script>

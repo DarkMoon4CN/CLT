@@ -1,0 +1,31 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuangLitouP2P.Models.hx_td_about_news
+@{
+    ViewBag.Title = "网站公告";
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+@section css{
+    @Url.File("/Content/common.css").ToHtml()
+}
+<div class="content">
+    <div class="about_pic">
+        <a href="http://www.chuanglitou.com/CLT_company.html"> <img src="/AdImg/201556155337450.jpg" width="980" height="203"> </a>
+    </div>
+    <div class="about_left_box">
+        @{Html.RenderAction("LeftNav");}
+       
+    </div><div id="context1" class="about_right">
+    <div class="about_nav">
+        <a href="/">首页</a><span>&gt;</span>
+        <a href="/CLT_company.html">关于我们</a><span>&gt;</span>网站公告
+    </div>
+    <div class="about_title">
+        <h1 class="about_tit">@Model.News_title</h1>
+    </div>
+    <div class="about_info">
+        @Model.context.ToHtml()
+    </div>
+</div>
+
+</div>

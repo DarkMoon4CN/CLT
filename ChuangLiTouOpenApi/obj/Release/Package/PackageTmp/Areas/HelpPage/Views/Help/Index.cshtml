@@ -1,0 +1,87 @@
+﻿@using System.Web.Http
+@using System.Web.Http.Controllers
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel 
+@model Collection<ApiDescription>
+
+@{
+    ViewBag.Title = "开放平台接口文档";
+
+    // Group APIs by controller
+    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+}
+
+<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+<header class="help-page">
+    <div class="content-wrapper">
+        <div class="float-left">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+</header>
+<div id="body" class="help-page">
+    <section class="featured">
+
+        <div class="content-wrapper">
+            <h3>
+                1.接口说明
+            </h3>
+            <p>
+                （1） 测试接口地址:http://testapi.chuanglitou.cn
+            </p>
+            <p>   （2） 支持的传输协议 http   </p>
+            <p>  （3） 支持的数据传输格式 application/json   </p>
+            <p> （4） 编码格式：UTF-8   </p>
+            <p> （5） 请求方式  POST   </p>
+            <h3> 2.接口输入参数说明   </h3>
+            <p> {   </p>
+                 <p> "header"://系统参数   </p>
+            <p> {   </p>
+            <p> "appId":"123456",   </p>
+            <p> "appSecret":"123456",   </p>
+            <p> "timeStamp":"20160517081349",   </p>
+            <p> "accessToken":"e89295418cbf6f69c9cff8eb9006940f"   </p>
+            <p> },   </p>
+            <p> "body"://业务数据   </p>
+            <p> {   </p>
+            <p> 具体业务请求数据，格式为JSON字符串，详细见各接口说明。   </p>
+            <p> }   </p>
+            <p> }   </p>
+            <h3>
+                 
+                3.系统参数说明
+            </h3>
+            <p> appId:调用方应用ID   </p>
+            <p> appSecret:调用方密钥   </p>
+            <p> timeStamp:当前时间,格式｛yyyyMMddHHmmss｝   </p>
+            <p> accessToken:Md5数字签名   </p>
+            <h3> 4.接口输出参数   </h3>
+            <p> {   </p>
+            <p> "code":"状态码,详见状态码列表",   </p>
+            <p> "message":"状态描述",   </p>
+            <p> "body":   </p>
+            <p> {   </p>
+            <p>
+                具体业务输出数据，格式为JSON字符串，详细见各接口说明。
+            </p>
+            <p>
+                }
+            </p>
+            <p> } </p>
+            <h3 style="color: red;">数字签名AccessToken</h3> 
+            <b style="color: red;">
+
+                说明：将系统参数{Key: Value}按字典升序排序，｜号分割相连,拼接接口安全码 （接口提供），最后将body数据加入后进行MD5加密，获得32位小写加密串，参与加密的参数不包含AccessToken本身，例如：
+                body有参数：Md5("appId:123456|appSecret:123456|timeStamp:1477626849|安全码|{"UserId":"48673"}")
+                body无参数：Md5("appId:123456|appSecret:123456|timeStamp:1477626849|安全码") 
+            </b>
+</div>
+
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups.OrderBy(t => t.Key.ControllerName))
+        {
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }
+    </section>
+</div>

@@ -1,0 +1,60 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuangLitouP2P.Models.V_type_news
+
+@{
+    ViewBag.Title = @Model.News_title+ "_"+ @Model.menu_name + "_帮助中心 - 创利投";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+@section css{
+    @Url.File("/Content/common.css").ToHtml()
+}
+<script>
+    window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "24" }, "share": {} };
+
+    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+
+<div class="content">
+    <div class="about_pic">
+       @Html.Raw(ChuanglitouP2P.Common.Utils.GetWebAD(5, 1))
+    </div>
+    <div class="about_left_box">
+        @{Html.RenderAction("LeftNav");}
+
+    </div><div id="context1" class="about_right">
+        <div class="about_nav">
+            @*<a href="/">首页</a><span>&gt;</span>*@
+            <a href="/CLT_Login_register.html">帮助中心</a><span>&gt;</span> @Model.menu_name
+        </div>
+        <div class="about_title">
+            <h1 class="about_tit">@Model.News_title</h1>
+        </div>
+        <div class="about_info">
+            @Model.context.ToHtml()   
+    </div>
+
+    @if (ViewBag.lastCount > 0)
+    {
+        <div class="article_left">
+            上一篇：<a href="@ViewBag.lastpath"> @ViewBag.lastNewsTitle  </a>
+        </div>
+    }
+
+    @if (ViewBag.nextcount > 0)
+    {
+        <div class="article_left">
+            下一篇：<a href="@ViewBag.nextpath"> @ViewBag.nextNewsTitle </a>
+        </div>
+    }
+
+    <div class="bdsharebuttonbox">
+        <span>分享到</span>
+        <a href="javascript:void(0)" class="bds_more" data-cmd="more"></a>
+        <a href="javascript:void(0)" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+        <a href="javascript:void(0)" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="javascript:void(0)" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+        <a href="javascript:void(0)" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    </div>
+
+</div>

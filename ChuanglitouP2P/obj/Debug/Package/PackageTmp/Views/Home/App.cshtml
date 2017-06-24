@@ -1,0 +1,289 @@
+﻿
+@{
+    ViewBag.Title = "创利投 - APP推广";
+
+    Layout = "~/Views/Shared/Index_LayoutHeader.cshtml";
+}
+    <link rel="stylesheet" type="text/css" href="~/Content/listStyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/wstyle.css">
+    <link rel="stylesheet" href="~/Content/animate.css" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/parallax.js"></script>
+    <script type="text/javascript" src="~/Scripts/swiper.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/index.js"></script>
+    <script src="~/Scripts/browser.js"></script>
+    <script>
+        $(function () {
+            $(".clickAndorid").on("click", function ()
+            {
+                if (browser.versions.weixin) {
+                    window.location.href= "http://sj.qq.com/myapp/detail.htm?apkName=com.example.chuanglitou";
+                }
+                else
+                {
+                    window.location.href = "/Home/GetAndroidAPP";
+                }
+            });
+            $(".clickIos").on("click", function ()
+            {
+                  window.location.href = "https://itunes.apple.com/cn/app/chuang-li-tou/id1152272905?mt=8";
+            });
+        });
+    </script>
+    <div class="app_tui" id="app_tui">
+        <ul class="fixedNav">
+            <li class="cur">
+                <em class="icon"></em>
+            </li>
+            <li>
+                <em class="icon"></em>
+            </li>
+            <li>
+                <em class="icon"></em>
+            </li>
+            <li>
+                <em class="icon"></em>
+            </li>
+            <li>
+                <em class="icon"></em>
+            </li>
+        </ul>
+        <div class="wrapBox" id="wrapBox">
+            <div class="box b1_bg">
+                <div class="b1_box1">
+                    <div class="b1_box1_left">
+                        <img src="/images/app_01_tu_01.png" alt="" style="margin-bottom:20px;" />
+                    </div>
+                    <div class="b1_box1_right">
+                        <img src="/images/app_01_tu_02.png" alt="" />
+                        <a class="clickAndorid" href="javascript:void(0);" style="display:block;position: absolute;left: 45%;top: 50%;"><img src="/images/andriod.png" /></a>
+                        <a class="clickIos" href="javascript:void(0);" style="display:block;position: absolute;left: 45%;top: 72%;"><img src="/images/iphone.png" /></a>
+                    </div>
+                </div>
+
+                <div class="box_fixed b1_fixed" style="top:0!important;">
+                    <img src="/images/app_01_bg.jpg" alt="" style="width:100%;height:100%;" />
+                </div>
+
+            </div>
+            <div class="box b2_bg">
+                <div class="b1_box2">
+                    <div class="b1_box2_left">
+                        <img src="/images/app_02_tu_01.png" alt="" style="margin-left:100px;" />
+                    </div>
+                    <div class="b1_box2_right">
+                        <img src="/images/app_02_tu_02.png" alt="" />
+                    </div>
+                </div>
+
+                <div class="box_fixed b2_fixed">
+                    <img src="/images/app_02_bg.jpg" alt="" style="width:100%;height:100%;" />
+                </div>
+            </div>
+            <div class="box b3_bg">
+                <div class="b1_box3">
+                    <div class="b1_box3_left">
+                        <img src="/images/app_03_tu_01.png" alt="" style="margin-bottom:20px;" />
+                    </div>
+                    <div class="b1_box3_right">
+                        <img src="/images/app_03_tu_02.png" alt="" />
+                    </div>
+
+                </div>
+
+                <div class="box_fixed b3_fixed">
+                    <img src="/images/app_03_bg.jpg" alt="" style="width:100%;height:100%;" />
+                </div>
+            </div>
+            <div class="box b4_bg">
+                <div class="b1_box4">
+                    <div class="b1_box4_left">
+                        <img src="/images/app_04_tu_01.png" alt="" style="margin-bottom:20px;" />
+                    </div>
+                    <div class="b1_box4_right">
+                        <img src="/images/app_04_tu_02.png" alt="" />
+                    </div>
+
+                </div>
+
+                <div class="box_fixed b4_fixed">
+                    <img src="/images/app_04_bg.jpg" alt="" style="width:100%;height:100%;" />
+                </div>
+            </div>
+            <div class="box b5_bg" style="position: relative;">
+                <div class="b1_box5">
+                    <div class="b1_box5_left">
+                        <img src="/images/app_05_tu_01.png" alt="" style="margin-bottom:20px;" />
+                    </div>
+                    <div class="b1_box5_right">
+                        <img src="/images/app_05_tu_02.png" alt="" />
+                        <a class="clickAndorid" href="javascript:void(0);"  style="display:block;position: absolute;left: -18%;top: 156%;"><img src="/images/andriod.png" /></a>
+                        <a class="clickIos" href="javascript:void(0);" style="display:block;position: absolute;left: 52%;top: 156%;"><img src="/images/iphone.png" /></a>
+                    </div>
+                </div>
+                <div class="box_fixed b5_fixed">
+                    <img src="/images/app_05_bg.jpg" alt="" style="width:100%;height:100%;" />
+                </div>
+                <div class="w_bottom" style="position: absolute;bottom:0;left:0;">
+                    <div class="w_bottom1">
+                        <div class="w_ft_01">
+                            <div class="b_intro">
+                                客服热线（服务时间：9:00~18:00）<br />
+                                <em>
+                                    010-53732056
+                                </em><br />
+                                <a href="javascript:void(0);" target="_blank" id="BizQQWPA">
+                                    <span>联系在线客服 ></span>
+                                </a><br />
+                                <i>
+                                    市场有风险&nbsp;&nbsp;投资需谨慎
+                                </i>
+                            </div>
+                            <div class="b_intro1">
+                                <div>
+                                    <i>关于我们</i>
+                                    <a href="/about.html#001">公司介绍</a>
+                                    <a href="/about.html#002">媒体报道</a>
+                                    <a href="/about.html#003">联系我们</a>
+                                </div>
+                                <div class="b_intro1_div1">
+                                    <i>安全保障</i>
+                                    <a href="/securityIndex.html">四方六项</a>
+                                    <a href="/securityIndex.html">技术保障</a>
+                                    <a href="/securityIndex.html">法律保障</a>
+                                </div>
+                                <div class="b_intro1_div2">
+                                    <i>帮助中心</i>
+                                    <a href="/clt_Login_register.html">注册登录</a>
+                                    <a href="/clt_Certification.html">认证安全</a>
+                                    <a href="/clt_Prepaid.html">充值提现</a>
+                                </div>
+                            </div>
+
+                            <div class="b_intro2">
+                                <span>移动投资&nbsp;想投就投</span>
+                                <p>
+                                    扫描关注订阅号
+                                </p>
+                            </div>
+                            <div class="b_intro2 b_intro3">
+                                <span>财富动态&nbsp;尽在掌握</span>
+                                <p>
+                                    扫描关注服务号
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="b_intro4">
+                            <a class="b_a1" href="http://www.anquan.org/authenticate/cert/?site=www.chuanglitou.com&at=business">
+                            </a>
+                            
+            @*<a class="b_a2" href="http://si.trustutn.org/info?sn=756150724000233411076">
+            </a>
+            <a class="b_a3" href="https://credit.szfw.org/CX20150721010801010189.html">
+            </a>*@
+	    <a class="b_a2" href="http://webapi.chuanglitou.com/Jump.html?type=2&v=1.1">
+            </a>
+            <a class="b_a3" href="http://webapi.chuanglitou.com/Jump.html?type=3&v=1.1">
+            </a>
+                        </div>
+                        <p class="b_intro5">
+                            Copyright&copy;2015 创利投chuanglitou.cn All Rights Reserved 北京创利投网络科技有限公司 京ICP备14060741号 京ICP证160693号
+                        </p>
+                        <div class="b_intro6">
+                            友情链接：
+
+                            <div style="display: inline-block;vertical-align: text-top;height:30px;max-width:840px;overflow:hidden;">
+                                <a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a>
+                                <a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a>
+                                <a href="http://www.trhome.cc" target="_blank">网上投资理财</a>
+                                <a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a><a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a>
+                                <a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a><a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a>
+                                <a href="http://www.trhome.cc" target="_blank">网上投资理财</a><a href="http://www.trhome.cc" target="_blank">网上投资理财</a>
+                                <a href="http://daikuan.anxin.com/" target="_blank">个人贷款</a>
+                                <a href="http://www.p2pchina.com/" target="_blank">网贷中国</a>
+
+                                <a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a>
+                                <a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a>
+                                <a href="http://www.trhome.cc" target="_blank">网上投资理财</a>
+                                <a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a><a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a>
+                                <a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a><a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a>
+                                <a href="http://www.trhome.cc" target="_blank">网上投资理财</a><a href="http://www.trhome.cc" target="_blank">网上投资理财</a>
+                                <a href="http://daikuan.anxin.com/" target="_blank">个人贷款</a>
+                                <a href="http://www.p2pchina.com/" target="_blank">网贷中国</a>
+
+                            </div>
+                            <span class="bottom_lianjie" tel="top"><label>展开</label><img src="images/bottom_jiantou.png"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+			var swiper = new Swiper('.swiper-container', {
+		        pagination: '.swiper-pagination',
+		        nextButton: '.swiper-button-next',
+		        prevButton: '.swiper-button-prev',
+		        slidesPerView: 1,
+		        paginationClickable: true,
+		        spaceBetween: 30,
+		        loop: true,
+		        autoplay:2000
+		    });
+
+		    $(function(){
+				$(window).scroll(function() {
+					if($(window).scrollTop() >= 100){
+						$('.actGotop').fadeIn(300);
+					}else{
+						$('.actGotop').fadeOut(300);
+					}
+				});
+				$('.actGotop').click(function(){
+				$('html,body').animate({scrollTop: '0px'}, 800);});
+			});
+
+
+			var ie6 = !-[1,]&&!window.XMLHttpRequest;
+			ie6 || loadImg.init();
+			window.addEventListener("DOMContentLoaded", function(){
+					playbox.init("playbox");
+				}, false);
+    </script>
+
+    <!-- <script>
+        playbox.init(document.getElementById('playbox')).play();
+    </script> -->
+
+    <script type="text/javascript">
+				$(".bottom_lianjie").on("click",function(){
+					var zhi=$(this).attr("tel");
+					if(zhi=="top"){
+					    $(".bottom_lianjie img").css({
+							"transform":"rotate(180deg)",
+							"-ms-transform":"rotate(180deg)",
+							"-moz-transform":"rotate(180deg)",
+							"-webkit-transform":"rotate(180deg)",
+							"-o-transform": "rotate(180deg)",
+		                    "margin":"6px 0 0 5px"
+						});
+						$(this).attr("tel","bottom");
+						$(".b_intro6>div").css({ "height": "auto" });
+						$(".bottom_lianjie label").html("收起");
+					}else{
+					    $(".bottom_lianjie img").css({
+							"transform":"rotate(0deg)",
+							"-ms-transform":"rotate(0deg)",
+							"-moz-transform":"rotate(0deg)",
+							"-webkit-transform":"rotate(0deg)",
+							"-o-transform": "rotate(0deg)",
+							"margin": "5px 0 0 5px"
+						});
+						$(this).attr("tel","top");
+						$(".b_intro6>div").css({ "height": "30px" });
+						$(".bottom_lianjie label").html("展开");
+					}
+				})
+    </script>

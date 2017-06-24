@@ -1,0 +1,116 @@
+﻿@using ChuanglitouP2P.Common;
+@model ChuanglitouP2P.Model.chinapnr.InitiativeTender.ReInitiativeTender
+@{
+    ViewBag.Title = "投资成功";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+
+<script src="~/js/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+
+@if (Model != null)
+{
+    if (Model.RespCode == "000" || Model.RespCode == "322" || Model.RespCode == "534" || Model.RespCode == "360" || Model.RespCode == "099")
+    {
+        <script>_ozprm = "userid=@ViewBag.userid&orderid=@Model.OrdId";</script>
+        <div class="bContent" style="margin:30px auto;">
+            <div class="content sure_cont">
+                <div class="sure_v01">
+                    @{
+                        #region [双十二活动可获得抽奖次数]
+                        int LuckCount = ChuanglitouP2P.BLL.TActivity_Luck.GetOneShotCount(Settings.Instance.CurrentUserId, Model.OrdId, 1000);
+                        //string okout = "style='display: block;'";
+                        //string okpush = "style='text-align:center;display: none;'";
+                        //if (LuckCount > 0)
+                        //{
+                        //    okout = "style='display:none;'";
+                        //    okpush = "style='text-align:center;display:block;'";
+                        //}
+                        #endregion
+                    }
+                    <div class="sure_top" style="width:50%;margin:0 auto;">
+                        <span class="span_right"></span>
+                        <dl id="Okout" style='display: none;'>
+                            <dt>恭喜您！投资成功！</dt>
+                            <dd>项目名称：@ViewBag.borrowing_title</dd>
+                            <dd>投资金额：@Model.TransAmt  元<a href="/usercenter/MyInvest" class="sure_a_jl">查看投资记录</a></dd>
+                            <dd class="sure_dd01"><a href="/">再投一笔</a>&nbsp;&nbsp;&nbsp;<i>5s后将自动跳转……</i></dd>
+                        </dl>
+                        <dl id="OkPush" style='text-align:center;display: none;'>
+                            <dt><img src="~/Areas/activity/Sources/20161212/images/chenggong.png" /></dt>
+                            <dd style="margin:10px 0px 20px 0px; ">
+                                恭喜您获得
+                                <span id="spanAre">@LuckCount</span>
+                                次抽奖机会！
+                            </dd>
+                            <dd style="margin-bottom:10px;">
+                                <span style="width:100%; height:40px; background-color:#5bb2f3;display:block;">
+                                    <a href="/20160901.html" style="line-height:40px; color:#fff">立即抽奖</a>
+                                </span>
+                            </dd>
+                            <dd style="margin-bottom:20px; "><a href="/" style="color:#808080">暂时不用</a></dd>
+                            <dd><span style="font-size:10px; color:#808080;">如果您在投资过程中遇到难题<br />请联系客服：</span><span style="color:#000dff;font-size:10px">010-53732056</span></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                        }
+                        else
+                        {
+                            <div class="bContent" style="margin:30px auto;">
+                                <div class="content sure_cont">
+                                    <div class="sure_v01">
+                                        <div class="sure_top" style="width:50%;margin:0 auto;">
+                                            <span class="span_wrong"></span>
+                                            <dl>
+                                                <dt>抱歉！投资失败！</dt>
+                                                <dd>项目名称：@ViewBag.borrowing_title</dd>
+                                                <dd>投资金额：@Model.TransAmt 元</dd>
+                                                <dd class="sure_dd01"><a href="/index.html" target="_blank">重新投资</a></dd>
+                                                <dd class="sure_dd02">网络不好，<a href="/">请重试</a></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+
+
+                        }
+                        else
+                        {
+                            <div class="bContent" style="margin:30px auto;">
+                                <div class="content sure_cont">
+                                    <div class="sure_v01">
+                                        <div class="sure_top" style="width:50%;margin:0 auto;">
+                                            <span class="span_wrong"></span>
+                                            <dl>
+                                                <dt>抱歉！非法参数来源！</dt>
+
+                                                <dd class="sure_dd01"><a href="/" target="_blank">返回首页</a></dd>
+
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+<script type="text/javascript">
+
+    function jump(url) {
+        location.href = url;
+    }
+    $(document).ready(function () {
+        if ($("#spanAre").html() != 0) {
+            $("#OkPush").show();
+        }
+        else {
+            $("#Okout").show();
+            window.setTimeout('jump("/")', 5 * 1000);
+        }
+        $("body").css("background-color", "white");
+
+    });
+</script>

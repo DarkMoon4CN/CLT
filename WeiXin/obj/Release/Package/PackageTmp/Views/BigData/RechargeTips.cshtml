@@ -1,0 +1,91 @@
+﻿
+
+@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuangLitouP2P.Models;
+@{
+    List<hx_td_Bank> listBank = ViewBag.listBank == null ? null : ViewBag.listBank as List<hx_td_Bank>;
+}
+
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script src="~/js/layer-v3.0.1/layer.js" type="text/javascript" charset="utf-8"></script>
+<script charset="utf-8" src="/js/index.js"></script>
+<link href="~/css/RechargeTips.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+
+<script type="text/javascript">
+    $(function () {
+        var paramVal = getUrlParam("isphone");
+        if (paramVal == "true")//是苹果app跳页
+        {
+            $(".header").hide();
+        }
+    });
+
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return decodeURI(r[2]); return null; //返回参数值
+    }
+</script>
+@using (Html.BeginForm("RechargeTips", "usercenter", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1", @id = "Form1" }))
+{
+
+<div id="recharge">
+    <header class="header">
+        <div class="return"><a href="javascript:history.go(-1);"></a></div>
+        <h2 class="head_title">银行限额说明</h2>
+    </header>
+    <table style="" cellpadding="0" cellspacing="0" border="0">
+        <thead>
+            <tr>
+                <th>银行名称</th>
+                <th>单笔限额</th>
+                <th>单卡单日累计限额</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (listBank != null)
+            {
+                foreach (var item in listBank)
+                {
+                    <tr>
+                        <td><img src="@item.CardImageNew">@item.BankName</td>
+                        <td>@(item.SingleTransQuota)元/笔</td>
+                        <td>@(item.CardDailyTransQuota)元/日</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+
+}
+<div class="bot_height"></div>
+
+
+<script type="text/javascript">
+    $(function () {
+        //$("#rechargexian").on("click", function () {
+        //    var index = layer.open({
+        //        type: 2,
+        //        content: ['http://test.chuanglitou.cn/Areas/Topic/Sources/20161122/RechargeTips.html', 'yes'],
+        //        shadeClose: true,
+        //        anim: 1,
+        //        area: ['100%', '80%'],
+        //        btn: '我知道了',
+        //        title:'银行限额',
+        //        scrollbar: true
+        //    });
+        //});
+
+    })
+</script>
+<div class="layer_pop_bg"></div>
+
+

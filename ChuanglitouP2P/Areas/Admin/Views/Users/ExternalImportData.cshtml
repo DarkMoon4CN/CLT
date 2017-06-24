@@ -1,0 +1,168 @@
+﻿
+@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.ViewUserCenter>
+@{
+    Layout = null;
+    var starttime = ViewBag.StartTime;
+    var endtime=ViewBag.EndTime;
+    var IsInvestment = ViewBag.IsInvestment;
+    var useridentity=ViewBag.useridentity;
+    var istruename=ViewBag.IsTrueName;
+    var iscps=ViewBag.IsCPS;
+    var beginbalance=ViewBag.BeginBalance;
+    var endbalance=ViewBag.EndBalance;
+    var investmentExpireStartDate = ViewBag.InvestmentExpireStartDate;//理财到期开始时间
+    var InvestmentExpireEndDate = ViewBag.InvestmentExpireEndDate;//理财到期结束时间
+    var investStartTime = ViewBag.InvestStartTime;//投资开始时间
+    var investEndTime = ViewBag.InvestEndTime;//投资结束时间
+    var investmentcount=ViewBag.InvestmentCount;
+    var projectterms = ViewBag.ProjectTerms;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>数据导出</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Areas/Admin/js/common.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#ExportExcel").bind("click", function () {
+                Export();
+            });
+
+        });
+        function Export() {
+
+            var projectname = $("#PrjName").val();
+            var starttime = $("#starttime").val();
+            var endtime = $("#endtime").val();
+            var IsInvestment=$("#IsInvestment").val();
+            var useridentity = $("#useridentity").val();
+            var istruename = $("#istruename").val();
+            var iscps = $("#iscps").val();
+            var beginbalance = $("#beginbalance").val();
+            var endbalance = $("#endbalance").val();
+            var investmentExpireStartDate=$("#investmentExpireStartDate").val();
+            var InvestmentExpireEndDate=$("#InvestmentExpireEndDate").val();
+            var investStartTime=$("#investStartTime").val();
+            var investEndTime=$("#investEndTime").val();
+            var investmentCount = $("#investmentCount").val();
+            var projectterms=$("#projectterms").val();
+
+
+            //$.getJSON("/admin/Users/ExternalCallToExcel", { starttime: starttime, endtime: endtime, useridentity: useridentity, istruename: istruename, iscps: iscps, beginBalance: beginbalance, endBalance: endbalance, investmentExpireDate: investmentExpireDate, InvestmentCount: investmentCount, projectname: projectname }, function (data) {
+            //    alert(data);
+            //    if (data == "您没有操作权限") {
+            //        alert("您没有操作权限");
+            //    } else {
+            //        alert(data);
+            //        downloadExcel(data);
+            //    }
+            //});
+
+
+            //$.ajax({
+            //    type: 'Get',
+            //    url: "/admin/Users/ExternalCallToExcel",
+            //    data: {
+            //        starttime: starttime, endtime: endtime,
+            //        IsInvestment: IsInvestment, useridentity: useridentity,
+            //        istruename: istruename, iscps: iscps,
+            //        beginBalance: beginbalance, endBalance: endbalance,
+            //        investmentExpireStartDate: investmentExpireStartDate,InvestmentExpireEndDate:InvestmentExpireEndDate,
+            //        investStartTime:investStartTime,investEndTime:investEndTime,
+            //        InvestmentCount: investmentCount, projectterms: projectterms, projectname: projectname
+            //    },
+            //    success: function (data) {
+            //        if (data == "您没有操作权限") {
+            //            alert("您没有操作权限");
+            //        } else {
+            //            downloadExcel(data);
+            //        }
+            //    },
+            //    error: function () {
+            //        //view("异常！");
+            //        alert("异常！");
+            //    }
+            //});
+
+            var url="/admin/Users/ExternalCallToExcel?starttime="+starttime+"&endtime="+endtime+"&IsInvestment="+IsInvestment+"&investStartTime="+investStartTime+"&investEndTime="+investEndTime+"&useridentity="+useridentity+"&istruename="+istruename+"&iscps="+iscps+"&beginBalance="+beginbalance+"&endBalance="+endbalance+"&investmentExpireStartDate="+investmentExpireStartDate+"&InvestmentExpireEndDate="+InvestmentExpireEndDate+"&InvestmentCount="+investmentCount+"&projectterms="+projectterms+"&projectname="+projectname;
+
+
+            var exportwindow = $.layer({
+                type: 2,
+                shadeClose: false,
+                title: '数据导出',
+                shade: [0.7, '#999'],
+                offset: ['', ''],
+                area: ['850px', "600px"],
+                iframe: { src: url, scrolling: false }
+            });
+        }
+
+        function downloadExcel(url) {
+            //alert(url);
+            var obj = $("#downloadExcelBtn");
+            obj.attr("href", url);
+            document.getElementById("downloadExcelBtn").click();
+        };
+
+    </script>
+</head>
+<body>
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>><a href="javascript:void(0)">客服外呼数据导出</a></h2>
+    <div class="z_body"  style="width:790px;">
+        <p class="tP3">
+            数据导出
+        </p>
+        <table cellspacing="0" cellpadding="0" class="listtable"  style="width:790px;">
+            <tr>
+               <td>项目名称：</td>
+                <td style="text-align:left;">
+                   <input type="text" id="PrjName" name="PrjName" style="width:200px; height:30px;" value="" />
+                   @*<input type="hidden" id="hid_uids" value="@(ViewBag.uids)" />*@
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align:left;">
+                    <input type="button" class="btn2" id="ExportExcel" value="导入" />
+                    <a href="" id="downloadExcelBtn" style="display:none;"></a>
+                    <input type="hidden" id="starttime" value="@starttime" />
+                    <input type="hidden" id="endtime" value="@endtime" />
+                    <input type="hidden" id="IsInvestment" value="@IsInvestment" />
+                    <input type="hidden" id="useridentity" value="@useridentity" />
+                    <input type="hidden" id="istruename" value="@istruename" />
+                    <input type="hidden" id="iscps" value="@iscps" />
+                    <input type="hidden" id="beginbalance" value="@beginbalance" />
+                    <input type="hidden" id="endbalance" value="@endbalance" />
+                    <input type="hidden" id="investmentExpireStartDate" value="@investmentExpireStartDate" />
+                    <input type="hidden" id="InvestmentExpireEndDate" value="@InvestmentExpireEndDate" />
+                    <input type="hidden" id="investStartTime" value="@investStartTime" />
+                    <input type="hidden" id="investEndTime" value="@investEndTime" />
+                    <input type="hidden" id="investmentCount" value="@investmentcount" />
+                    <input type="hidden" id="projectterms" value="@projectterms" />
+
+                </td>
+            </tr>
+        </table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿@using ChuanglitouP2P.Model;
+@model ChuanglitouP2P.Model.chinapnr.UsrAcctPay.ReUsrAcctPay
+@{
+    ViewBag.Title = "UsrPay";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+
+@if(Model.RespCode == "000")
+{
+    @:转账成功
+
+}
+else
+{
+
+    @:操作失败
+}
+

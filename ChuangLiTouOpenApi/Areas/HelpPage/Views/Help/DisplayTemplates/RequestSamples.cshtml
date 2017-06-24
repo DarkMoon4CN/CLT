@@ -1,0 +1,33 @@
+@using System.Net.Http.Headers
+@model Dictionary<MediaTypeHeaderValue, object>
+
+@{
+    // Group the samples into a single tab if they are the same.
+    Dictionary<string, object> samples = Model.GroupBy(pair => pair.Value).ToDictionary(
+        pair => String.Join(", ", pair.Select(m => m.Key.ToString()).ToArray()), 
+        pair => pair.Key);
+          samples.Remove("appSafeCode");
+    var mediaTypes = samples.Keys;
+}
+<div>
+    @foreach (var mediaType in mediaTypes)
+    {
+        <h4 class="sample-header">@mediaType</h4>
+        <div class="sample-content">
+            reqst=
+            @{
+                var sample = samples[mediaType];
+                
+                if (sample == null)
+                {
+                    <p>Sample not available.</p>
+                }
+                else
+                {
+                    sample = sample.ToString().Replace("\"appId\": 1,", "\"appId\": 123456,").Replace("\"appSecret\": \"sample string 1\",", "\"appSecret\": \"123456\", ").Replace("\"accessToken\": \"sample string 2\",", "\"accessToken\": \"294b8a0fe2ffaa85243bdb2b4ff94fe9\", ").Replace("\"timeStamp\": \"sample string 3\"", "\"timeStamp\": \"20160524112856\"");
+                    @Html.DisplayFor(s => sample);
+                }
+            }
+        </div>
+    }
+</div>

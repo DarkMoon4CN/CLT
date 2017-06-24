@@ -1,0 +1,104 @@
+﻿@*资金管理控件*@
+@using System.Web
+@helper HX_dropdownlistByCapital(int ddltype = 1,int defaultValue=0)
+{
+if (ddltype == 1)
+{
+        <label for="paystate">状态：</label>
+        <select style="height: 26px;width:87px;padding-left: 10px;" name="paystate" id="paystate">
+            <option value="-1">所有</option>
+            <option value="0">未支付</option>
+            <option value="1">充值成功</option>
+      
+        </select>
+}
+else if (ddltype == 2)
+{
+        <label for="paystate">状态：</label>
+        <select style="height: 26px;width:87px;padding-left: 10px;" name="paystate" id="paystate">
+            <option value="-1">所有</option>
+            <option value="0">支付失败</option>
+            <option value="1">支付成功</option>
+        </select>
+}
+else if (ddltype == 3)
+{
+        <label for="OrdIdState">状态：</label>
+        <select style="height: 26px;width:87px;padding-left: 10px;" name="OrdIdState" id="OrdIdState">
+            <option value="-1">所有</option>
+            <option value="0">待审核</option>
+            <option value="1">待付款</option>
+            <option value="3">已付款</option>
+            <option value="4">未通过</option>
+        </select>
+}
+else if (ddltype == 4)
+{
+        <label for="OrdIdState">状态：</label>
+        <select style="height: 26px;width:87px;padding-left: 10px;" name="OrdIdState" id="OrdIdState">
+            <option value="-1">所有</option>
+            <option value="0">订单未支付</option>
+            <option value="1">付款成功</option>
+            <option value="2">付款失败</option>
+            <option value="3">等待审核</option>
+            <option value="5">付款中</option>
+        </select>
+}
+else if (ddltype == 5)
+{
+    <input type="hidden" id="OrdIdState" name="OrdIdState" value="@(defaultValue)" />
+}
+else if (ddltype == 5)
+{
+        <label for="contract_type_id">合同模板类型：</label>
+        <select style="height: 24px;line-height:24px" name="contract_type_id" id="contract_type_id">
+            <option value="-1">请选择类型</option>
+            <option value="0">订单未支付</option>
+            <option value="1">付款成功</option>
+            <option value="2">付款失败</option>
+            <option value="3">等待审核</option>
+            <option value="5">付款中</option>
+        </select>
+}
+else if (ddltype == 6)
+{
+
+        <select style="height: 26px;width:87px;padding-left: 10px;" name="llpayOrdIdState" id="llpayOrdIdState">
+            <option value="-1">所有</option>
+            <option value="0">订单未支付</option>
+            <option value="1">付款成功</option>
+            <option value="2">付款失败</option>
+            <option value="3">等待审核</option>
+            <option value="5">付款中</option>
+        </select>
+}
+else if (ddltype == 7)
+{
+        <label for="paystate">状态：</label>
+        <select style="height: 26px;width:87px;padding-left: 10px;" name="paystate" id="paystate">
+            <option value="-1">所有</option>
+            <option value="0">充值失败</option>
+            <option value="1">充值成功</option>
+        </select>
+}
+else if (ddltype == 8)
+{
+        <select style="height: 26px;width:167px;padding-left: 10px;" name="AdTypeState" id="AdTypeState">
+            <option value="-1">所有</option>
+            <option value="1">首页顶部横幅广告</option>
+            <option value="2">首页中间横幅</option>
+            <option value="3">内页顶部横幅</option>
+            <option value="4">首页活动广告位</option>
+            <option value="5">帮助中心头部广告</option>
+            <option value="6">安全保障头部广告</option>
+            <option value="7">关于我们头部广告</option>
+            <option value="8">注册页广告</option>
+            <option value="9">登录页广告</option>
+            <option value="10">我要投资广告</option>
+            <option value="11">微信首页广告</option>
+            <option value="12">微信注册广告</option>
+            <option value="12">微信登录广告</option>
+        </select>
+}
+}
+

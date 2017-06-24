@@ -1,0 +1,38 @@
+﻿@using ChuangLiTou.Core.Helpers
+@using ChuangLiTou.Core.Entities.Request;
+@using ChuangLiTou.Core.Entities.Request.Recharge;
+
+@model RequestParam<RequestRecharge>
+@{
+    ViewBag.Title = "充值接口";
+    Layout = null;
+}
+
+@using (Html.BeginForm("RechargeSubmit", "Index", new { area = "Recharge" }, FormMethod.Post, new { id = "ModifyForm" }))
+{
+    <div>
+        UserId:@Html.TextBoxFor(m => m.body.userId)
+    </div>
+    <div>
+        银行:@Html.TextBoxFor(m => m.body.bankType)
+    </div>
+    
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/abc.jpg")" name="ABC" alt="ABC"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/gsyh1.jpg")" name="ICBC" alt="ICBC"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/zgyh1.jpg")" name="BOC" alt="BOC"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/jsyh1.jpg")" name="CCB" alt="CCB"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/ycyh1.jpg")" name="PSBC" alt="PSBC"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/pfyh1.jpg")" name="SPDB" alt="SPDB"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/gdyh1.jpg")" name="CEB" alt="CEB"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/zxyh1.jpg")" name="CITIC" alt="CITIC"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/xyyh1.jpg")" name="CIB" alt="CIB"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/payh1.jpg")" name="PINGAN" alt="PINGAN"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/shyh1.jpg")" name="BOS" alt="BOS"></a></p>
+    <p><a href="javascript:void(0);"><img src="@Url.Image("/bhyh1.jpg")" name="CBHB" alt="CBHB"></a></p>
+ 
+  
+    <div>
+        充值金额:@Html.TextBoxFor(m => m.body.amountOfCharge)
+    </div>
+    <input id="btnSubmit" type="submit" value="我去充值啦" />
+}

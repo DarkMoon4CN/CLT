@@ -1,0 +1,57 @@
+﻿@using ChuanglitouP2P.Common;
+@model  ChuangLitouP2P.Models.V_type_news
+@{
+    ViewBag.Title = @ViewBag.title1 + " - 创利投";
+
+    ViewBag.keywords = "P2B网贷,P2P理财,P2B理财,网络理财,投资理财,创利投";
+
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<link href="/Content/about.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/about.js"></script>
+
+<!--关于我们 begin---------------------------->
+
+<div class="gy_top">
+    <div class="gy_nav">
+        <a href="/about.html#001" class="gy_a1">公司介绍</a>
+        <a href="/about/List/17" class="gy_a2">媒体报道</a>
+        <a href="/about/List/21" class="gy_a3" id="gy_a3">网站公告</a>
+        <a href="/about/List/22" class="gy_a4">常见问题</a>
+        <a href="/about/List/23" class="gy_a5">行业新闻</a>
+        <a href="/about.html#006" class="gy_a6">招贤纳士</a>
+        <a href="/about.html#003" class="gy_a7">联系我们</a>
+    </div>
+</div>
+
+
+<!--内容 begin---------------------------->
+
+<div class="main_body">
+    <div class="cont_text">
+        <div class="topbiaoti" style="display:block;text-align:left; margin-bottom:40px;font-size:14px;font-family:&quot;微软雅黑&quot;color:#333;">
+            @Html.Raw(ViewBag.Link)
+        </div>
+        @if (Model != null)
+        {
+
+            <h3>@Model.News_title</h3>
+            <div style="display:block;margin-bottom:20px;border-bottom:1px solid #ccc;padding-bottom:10px;">
+                <span style="font-size:14px;color:#ADADAD;margin-right:6px;">【更新时间：@ViewBag.updateTime</span>
+                <span style="font-size:14px; color:#ADADAD;margin-right:6px; ">文章点击数量：@ViewBag.ClickCount】</span>
+            </div>
+            <p>
+
+                @Html.Raw(Model.context)
+
+            </p>
+
+
+
+        }
+
+    
+    </div>
+</div>

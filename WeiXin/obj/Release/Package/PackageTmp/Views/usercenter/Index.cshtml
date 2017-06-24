@@ -1,0 +1,148 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@model ChuangLitouP2P.Models.hx_member_table
+@{
+    ViewBag.Title = "我的账户";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+    B_usercenter o = new B_usercenter();
+}
+<!--首页抢现金红包二维码弹窗-->
+<style type="text/css">
+    .tanchu_hongbao {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 999999;
+        display: none;
+    }
+
+    .tanchu_hongbao_zhezhao {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.5;
+        z-index: 10;
+    }
+
+    .tanchu_hongbao_content {
+        width: 250px;
+        height: 60px;
+        position: relative;
+        margin: 170px auto;
+        text-align: center;
+        padding-top: 30px;
+        background: #ffffff;
+        z-index: 999;
+        border: 7px solid #ddd;
+    }
+
+
+
+    .Close {
+        float: right;
+        margin-top: -20px;
+        width: 35px;
+        height: 36px;
+    }
+</style>
+<!--注册送流量弹窗HTML，js判断等 2016.10.31日结束-->
+@*
+    <div class="tanchu_hongbao">
+        <div class="tanchu_hongbao_zhezhao"></div>
+        <div class="tanchu_hongbao_content" style="">
+            <a class="Close">X</a>
+            <span>您还未领取奖励流量，单击领取</span><br />
+            <a href='/receiveFlow.html'><input type="button" style="padding:4px; background:#ddd"  value="领取" /></a>
+    </div>
+    </div>
+    <script type="text/javascript">
+        var TZFlow = '@ViewBag.TZFlow';
+
+        if (TZFlow == "false") {
+
+            $(".tanchu_hongbao").css("display", "block");
+
+        }
+        $(".Close").on("click", function () {
+            $(".tanchu_hongbao").hide();
+        })
+    </script>*@
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">我的账户</h2>
+</header>
+<section class="user_header">
+    <div class="user_hicon"><span></span>今日赚取（元）</div>
+    <div class="user_money">@ViewBag.Dailyrevenue</div>
+</section>
+<section class="user_capital">
+    <div class="total_assets"><span>￥@Math.Round(o.GetInterest(Model.registerid), 2).ToString()        @*@ViewBag.zicai*@</span>累计赚取（元）</div>
+    <div class="assets_statistics">
+        <dl>
+            <dt>可用资金(元)</dt>
+            <dd>￥@Model.available_balance</dd>
+        </dl>
+        <dl>
+            <dt>可用奖励(元)</dt>
+            <dd>￥@ViewBag.jiangli</dd>
+        </dl>
+        <dl>
+            <dt>待收本金(元)</dt>
+            <dd>￥@o.GetPrincipal(Model.registerid).ToString()</dd>
+        </dl>
+    </div>
+</section>
+<div class="clear"></div>
+<section class="recharge_btn_box">
+    <a href="/usercenter/Recharge" class="recharge_btn">充值</a>
+    <a href="/usercenter/Cash">提现</a>
+</section>
+
+<section class="user_nav_box">
+    <div class="user_nav_item">
+        <ul>
+            <li><a href="/usercenter/ShowAccount"><i class="fa fa-signal"></i>账户总览<i class="arrow_icon"></i></a></li>
+            <li><a href="/usercenter/CapitalFlow"><i class="fa fa-bar-chart-o"></i>资金流水<i class="arrow_icon"></i></a></li>
+            <li><a href="/usercenter/MyInvest"><i class="fa fa-database"></i>我的投资<i class="arrow_icon"></i></a></li>
+            <li><a href="/Invitation/List"><i class="fa fa-share-alt"></i>邀请奖励<i class="arrow_icon"></i></a></li>
+            @{
+              
+                if (ViewBag.XJQ == true)//抵扣券
+                {
+                    <li><a href="/Cash/CashCoupon"><i class="fa fa-share-alt"></i><span style="position: absolute;margin-left: -3.1%;margin-top: 4.3%;width:6px;height:6px;border-radius:6px;background-color:red"></span>抵扣券<i class="arrow_icon"></i></a></li>
+                }
+                else
+                {
+                    <li><a href="/Cash/CashCoupon"><i class="fa fa-share-alt"></i>抵扣券<i class="arrow_icon"></i></a></li>
+                }
+                if (ViewBag.JXQ == true)//加息券
+                {
+                    <li><a href="/InterestRates/Index"><i class="fa fa-share-alt"></i><span style="position: absolute;margin-left: -3.1%;margin-top: 4.3%;width:6px;height:6px;border-radius:6px;background-color:red"></span>加息券<i class="arrow_icon"></i></a></li>
+                }
+                else
+                {
+                    <li><a href="/InterestRates/Index"><i class="fa fa-share-alt"></i>加息券<i class="arrow_icon"></i></a></li>
+                }
+            }
+            
+           
+        </ul>
+    </div>
+    <div class="user_nav_item">
+        <ul>
+            <li><a href="/usercenter/UserInfo"><i class="fa fa-user"></i>个人资料<i class="arrow_icon"></i></a></li>
+        </ul>
+    </div>
+    <div class="user_nav_item">
+        <ul>
+            <li><a href="/usercenter/security"><i class="fa fa-shield"></i>安全中心<i class="arrow_icon"></i></a></li>
+        </ul>
+    </div>
+
+</section>
+
+<div class="bot_height"></div>
+

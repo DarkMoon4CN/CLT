@@ -1,0 +1,221 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>群发短信</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Areas/Admin/js/common.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSend").bind("click", function () {
+                if (confirm("确认要发送短信吗？")) {
+                    sendSMS();
+                }
+            });
+            $("#btnTestSend").bind("click", function () {
+                if (confirm("确认要发送短信吗？")) {
+                    SendTestSMS();
+                }
+            });
+
+            $("#btnSendByCon").bind("click", function () {
+                if (confirm("确认要发送短信吗？")) {
+                    SendSMSByCon();
+                }
+            });
+
+        });
+
+        function SendSMSByCon() {
+            var condition = $("#condition").val();
+            if (validate()) {
+                var smstext = $("#content").val();
+                $.post("/admin/Users/SendSMSByCon", { condition: condition, txt: smstext }, function (result) {                    
+                    var data = ((typeof result) == 'object') ? result : null;//$.parseJSON(result);
+                    if (data==null&&(typeof result) == 'string') {
+                        if (result.indexOf("您没有操作权限")>-1){
+                            alert("您没有操作权限");
+                            return;
+                        } else if (result.indexOf("<") > -1) {
+                            alert(result);
+                            return;
+                        } else {
+                            data = $.parseJSON(result);
+                        }
+                    }
+                    // alert(data);
+                    if (data.ret == 1) {
+                        alert(data.msg);
+                        window.parent.closewindows();
+                    } else {
+                        alert(data.msg);
+                    }
+                });
+            }
+        }
+        function SendTestSMS() {
+            var tels = $("#txtTestTels").val();
+            if (validate()) {
+                if (tels.length <= 0) {
+                    alert("请输入手机号");
+                    return;
+                }
+                var smstext = $("#content").val();
+                //  alert(smstext);
+                $.post("/admin/Users/SendSMSTest", { uids: tels, txt: smstext }, function (result) {
+                    var data = ((typeof result) == 'object') ? result : null;//$.parseJSON(result);
+                    if (data == null && (typeof result) == 'string') {
+                        if (result.indexOf("您没有操作权限") > -1) {
+                            alert("您没有操作权限");
+                            return;
+                        } else if (result.indexOf("<") > -1) {
+                            alert(result);
+                            return;
+                        } else {
+                            data = $.parseJSON(result);
+                        }
+                    }
+                    // alert(data);
+                    if (data.ret == 1) {
+                        alert("发送成功！");
+                        window.parent.closewindows();
+                    } else {
+                        alert(data.msg);
+                    }
+                });
+            }
+        }
+        function sendSMS() {
+            if (validate()) {
+                var ids = $("#hid_uids").val();
+                if (ids.length <= 0) {
+                    alert("请选择要发送短信的用户");
+                    return;
+                }
+                var smstext = $("#content").val();
+                $.post("/admin/Users/SendSMSByIds", { uids: ids, txt: smstext }, function (result) {
+                    var data = ((typeof result) == 'object') ? result : null;//$.parseJSON(result);
+                    if (data == null && (typeof result) == 'string') {
+                        if (result.indexOf("您没有操作权限") > -1) {
+                            alert("您没有操作权限");
+                            return;
+                        } else if (result.indexOf("<") > -1) {
+                            alert(result);
+                            return;
+                        } else {
+                            data = $.parseJSON(result);
+                        }
+                    }
+                    if (data.ret == 1) {
+                        alert("发送成功！");
+                        window.parent.closewindows();
+                    } else {
+                        alert(data.msg);
+                    }
+                });
+            }
+        }
+
+        function validate() {
+            var smstext = $("#content").val();
+            if (smstext.length <= 0) {
+                alert('短信内容不能为空');
+                return false;
+            }
+            if (smstext.length > (70 - 11)) {
+                if (window.confirm('短信超过单条字数，将按两条短信计费。你确定要群发短信哦，请确认内容是否无误？ 点击确认发送，不发送点击取消')) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            return true;
+            //if (window.confirm('特别注意营销短信最后需加上 " 回复TD退订",你确定要群发短信哦，请确认内容是否无误？ 点击确认发送，不发送点击取消')) {
+
+            //    return true;
+            //} else {
+
+            //    return false;
+            //}
+        }
+
+    </script>
+</head>
+<body>
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>><a href="javascript:void(0)"> 选择会员</a></h2>
+    <div class="z_body" style="width:790px;">
+        <p class="tP3">
+            短信群发
+        </p>
+        <table cellspacing="0" cellpadding="0" class="listtable" style="width:790px;">
+            <tr>
+                <td>短信内容：</td>
+                <td style="text-align:left;">
+                    <textarea id="content" name="content" style="width:500px; height:100px;" rows="3"> </textarea>*头部签名及尾部退订系统自动添加
+                    <input type="hidden" id="hid_uids" value="@(ViewBag.uids)" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align:left;">
+                    <input type="button" class="btn2" id="btnSend" value="发送短信" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    手机号：
+                </td>
+                <td style="text-align:left;">
+                    <textarea id="txtTestTels" rows="5" cols="80"></textarea> 多个手机号用,分开
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align:left;">
+                    <input type="button" class="btn2" id="btnTestSend" value="群发短信" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    群发条件：
+                </td>
+                <td style="text-align:left;">
+                    <select style="height: 24px;line-height:24px" name="condation" id="condition">
+                        <option value="1000">老用户(当前时间前注册用户)</option>
+                        <option value="1001">所有投资客户</option>
+                        <option value="1002">只投资一次的客户</option>
+                        <option value="1003">投资两次以上的客户</option>
+                        <option value="1004">所有只注册未投资客户</option>
+                        <option value="1005">优惠券7天内即将过期</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align:left;">
+                    <input type="button" class="btn2" id="btnSendByCon" value="群发短信" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>全民友福同享</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="style/css.css?v=1">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script>
+	(function(doc,win){var docEl=doc.documentElement,recalc=function(){var clientWidth=docEl.clientWidth;if(!clientWidth){return}var w=20*(clientWidth/320);if(w>40){w=40}docEl.style.fontSize=w+"px"};if(!doc.addEventListener){return}if("orientationchange" in window){win.addEventListener("orientationchange",recalc,false)}win.addEventListener("resize",recalc,false);win.addEventListener("load",recalc,false);doc.addEventListener("DOMContentLoaded",recalc,false);recalc()})(document,window);
+    </script>
+</head>
+
+<body>
+
+    <div class="w_quanmin">
+        <img src="images/w_quanmin_01.jpg" class="w_quanminbg">
+        <div class="w_quanmin_main">
+            <div class="w_quanmin_main_1">
+                <img src="images/w_quanmin_main_1_top.png" class="w_quanmin_main_1_top">
+                <div class="w_quanmin_main_1_nei">
+                    <img src="images/w_quanmin_main_1_left.png">
+                    <img src="images/w_quanmin_main_1_right.png">
+                </div>
+                <a href="#"><img src="images/w_quanmin_main_1_btn.png"></a>
+            </div>
+            <div class="w_quanmin_main_2">
+                <img src="images/w_quanmin_main_2_top.png" class="w_quanmin_main_2_top">
+                <div class="w_quanmin_main_2_nei">
+                    <img src="images/w_quanmin_main_2_tu.png">
+                </div>
+                <a href="#"><img src="images/w_quanmin_main_2_btn.png"></a>
+            </div>
+            <div class="w_quanmin_main_3">
+                <img src="images/w_quanmin_main_3_top.png" class="w_quanmin_main_3_top">
+                <div class="w_quanmin_main_3_nei">
+                    <img src="images/w_quanmin_main_3_left.png">
+                    <img src="images/w_quanmin_main_3_right.png">
+                </div>
+                <a href="#"><img src="images/w_quanmin_main_2_btn.png"></a>
+            </div>
+            <div class="w_quanmin_main_4">
+               <dl>
+                    <dt>活动规则</dt>
+                    <dd>1、活动时间：2016年11月10日——2016年11月25日；</dd>
+                    <dd>2、活动期间每投资一笔（不分首投复投），当即进行返现，具体奖励细节请参见下表；</dd>
+                    <dd><img src="images/w_quanmin_main_4_tu.png"></dd>
+                    <dd>3、活动实物奖励将在活动结束后的10个工作日进行信息核对及奖品发放；</dd>                                                                              
+                    <dd style="text-align:right;margin-top:20px;font-size:0.35em;">活动最终解释权在法律范围内归北京创利投网络科技有限公司所有</dd>
+               </dl>
+            </div>
+            <div class="fenxiang">
+                <img src="images/fenxiang.png">
+            </div>
+            <div class="fixed">
+                <a href="javascript:void(0)">分享好友</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+
+$(".fixed").on("click","a",function(){
+    $(".fixed").hide();
+    $(".fenxiang").show();
+});
+$(".fenxiang").on("click", "img", function () {
+    $(".fenxiang").hide();
+    $(".fixed").show();
+});
+
+</script>

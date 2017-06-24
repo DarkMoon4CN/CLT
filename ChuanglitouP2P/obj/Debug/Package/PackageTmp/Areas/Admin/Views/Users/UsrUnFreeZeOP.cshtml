@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UsrUnFreeZeOP</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("UsrUnFreeZeOP", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            <div>
+                订单时间: <input id="OrdDate1" name="OrdDate1" type="text" value="20150529" />
+            </div>
+            <br />
+            <div>FreezeTrxId: <input id="FreezeTrxId1" name="FreezeTrxId1" type="text" /></div>
+            <br />
+            <input type="submit" id="valSubmit" name="valSubmit" value="解冻" />
+            <br />
+        }
+    </div>
+</body>
+</html>

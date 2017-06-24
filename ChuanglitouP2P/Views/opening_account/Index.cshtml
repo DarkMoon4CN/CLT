@@ -1,0 +1,79 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuanglitouP2P.Model.chinapnr.UserRegister.M_UserRegister
+@{
+    ViewBag.Title = "第三方平台开户";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+@Url.File("Content/reg_common.css").ToHtml()
+@Url.File("Scripts/Validform_v5.3.2_min.js").ToHtml()
+@Url.File("Scripts/layer.min.js").ToHtml()
+
+<script language="javascript" type="text/javascript">
+        $(function () {
+            $("#form1").Validform({
+                btnSubmit: "#submit1",
+            });
+        });
+
+        function thrtips()
+        {
+            layer.msg("正在链接第三方托管账户平台......", 10, 1);
+        }
+
+</script>
+
+<script>_ozprm = "userid= @ViewBag.uid "</script>
+
+<form id="form1" action="@ViewBag.url" method="post">
+
+
+    <div class="login_content ">
+        <div class="login_wrap reg_bg clearfix">
+            <div class="login_tit"><h2>账户注册</h2>Hi，新朋友，欢迎注册创利投 </div>
+            <div class="reg_lc"><img src="/images/reg_pic2.jpg" width="846" height="54" alt="" /></div>
+            <div class="reg_success_txt1">
+                <p>1. 创利投使用了汇付天下的第三方资金托管系统，全方位监管保证您的资金安全</p>
+                <p>2. 系统将自动为您分配用户名（格式为cltwl_您的用户名）</p>
+                <p>3. 您的账户将被对应到创利投账户，以标示在创利投的投资</p>
+                <p>4. 账户所有权归属于您，汇付天下根据您的指令进行资金调拨</p>
+                <p>5. 您的登录密码和交易密码都独立于创利投的密码体系</p>
+            </div>
+
+
+
+            <input id="Version" name="Version" type="hidden" value="@Model.Version"  />
+            <input id="CmdId" name="CmdId" type="hidden"  value="@Model.CmdId" />
+            <input id="MerCustId" name="MerCustId" type="hidden" value="@Model.MerCustId" />
+            <input id="RetUrl" name="RetUrl" type="hidden" value="@Model.RetUrl" />
+
+            <input name="BgRetUrl" type="hidden" id="BgRetUrl" value="@Model.BgRetUrl" />
+            <input id="UsrMp" name="UsrMp" type="hidden" value="@Model.UsrMp"  />
+            
+            <input id="ChkValue" name="ChkValue" type="hidden" value="@Model.ChkValue"  />
+
+
+            <input id="UsrId" name="UsrId" type="hidden" value="@Model.UsrId" />
+
+            <div class="reg_kaitong_btn">
+                <a href="javascript:void();" id="submit1" onclick="javascript:thrtips();">开通托管账户</a>
+            </div>
+
+            <div class="reg_success_txt1">
+                <p class="color_red">1. 您所有在创利投的投资、资金进出都由这个账户归集</p>
+                <p class="color_red">2. 创利投只获得账户流水信息，以保证您在创利投的交易信息准确</p>
+                <p class="color_red">3. 创利投根据账户流水信息协助您处理与汇付天下关于资金交易的相关问题</p>
+                <p>4. 汇付天下客服热线：400-821-3999 转2 转4</p>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+        <div class="login_kefu"><span class="login_kefu_icon">创利投客服热线（工作时间 9:00-18:00）010-53732056</span><span class="login_qq_icon"><a href="#">在线客服</a></span></div>
+        <div class="clear"></div>
+    </div>
+

@@ -1,0 +1,148 @@
+﻿@using ChuanglitouP2P.Common
+
+@{
+    ViewBag.Title = "创利投登录_登录创利投_创利投用户登录 - 创利投";
+
+    ViewBag.keywords = "创利投,创利投注册,注册创利投,创利投用户注册";
+
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0" /> 
+<link rel="shortcut icon" href="/images/favicon.ico"/>
+@Url.File("Content/reg_common.css").ToHtml()
+@Url.File("Scripts/Validform_v5.3.2_min.js").ToHtml()
+@Url.File("Scripts/layer.min.js").ToHtml()
+@Url.File("/Scripts/jquery.cookie-1.4.1.min.js").ToHtml()
+<script type="text/javascript">
+    var editwindow;
+    $(function () {
+        var rmb = $.cookie("rmbUser");
+        if (rmb == "true") {
+            $("#remember").attr("checked", true);
+            $("#username").val($.cookie("userName"));
+        }
+           $(".registerform").Validform({
+            tiptype: 4,
+            ajaxPost: true,
+            callback: function (data) {
+                if (data.rs == "y") {
+                    var value = $("input[id='remember']").is(':checked');
+                    //console.log("value+" + value);
+                    if (value==true) {
+                        var userName = $("#username").val();
+                        $.cookie("rmbUser", "true", { expires: 7 }); // 存储一个带7天期限的标记 cookie
+                        $.cookie("userName", userName, { expires: 7 }); // 存储一个带7天期限的用户 cookie
+                    }
+                    else {
+                        $.cookie("rmbUser", "false", { expires: -1 });
+                        $.cookie("userName", "", { expires: -1 });
+                    }
+                    layer.msg("登录成功，欢迎回来..", 3, 1);
+                    location.href = data.url;
+                }
+                else {
+                    layer.msg("登录失败：" + data.error + "", 2, 5);
+                }
+            }
+           });
+
+        $(document).keyup(function (event) {
+            if (event.keyCode == 13) {
+                $("#loginbtn").trigger("click");
+            }
+        });
+
+    });
+    function changeImg() {
+       
+        $("#image1").attr("src", "/Signin/GetValidateCode?a=" + Math.random());
+    }
+
+</script>
+<form id="form1" class="registerform" action="/Signin/login" method="post">
+
+    <div class="login_content">
+        <div class="login_wrap login_bg clearfix">
+            <div class="login_tit"><h2>登录</h2>Hi，欢迎回来创利投</div>
+            <div class="login_info_box login_form_box">
+                <ul>
+                    <li class="login_left">手机号</li>
+                    <li><input name="username" id="username" value="" type="text" class="login_txt" datatype="*3-30" nullmsg="请填写用户名或手机号！" AUTOCOMPLETE="off"  errormsg="用户名为3-30个字符！" /><span class="Validform_checktip"></span><span class="reg_icon phone_icon"></span></li>
+
+                    <input type="hidden" id="action" name="action" value="login" />
+                </ul>
+                <ul>
+                    <li class="login_left">密码</li>
+                    <li><input name="userpassword" id="userpassword" type="password" class="login_txt" datatype="*6-16" nullmsg="请设置密码！" AUTOCOMPLETE="off" errormsg="密码范围在6~16位之间！" /><span class="reg_icon password_icon"></span></li>
+                </ul>
+                <ul>
+                    <li class="login_left">验证码</li>
+                    <li><input name="Validatecode" id="Validatecode" type="text" ajaxurl="/Signin/Validate" datatype="*" nullmsg="请填写验证码！"  class="login_txt yzm_txt" /><span class="reg_icon plane_icon"></span><span style="float:left; margin:0 20px;">  <img id="image1" src="/Signin/GetValidateCode?a=@ViewBag.rndstr" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();" /></span><span style="float:left; margin:12px 0 0 0;"><a href="javascript:void(0)" onclick="javascript:changeImg();"><img src="/images/sx.jpg" /></a></span></li>
+                </ul>
+                <div class="clear"></div>
+                <div class="login_xy"><label><input name="remember" id="remember" type="checkbox" value="1" />记住用户名</label><a href="/Signin/forget" class="pass_login">忘记密码？</a></div>
+                <div><input name="loginbtn" id="loginbtn" value="立即登录" type="submit" class="login_btn" /></div>
+                <div class="login_link_reg">没有账号？<a href="/register.html">免费注册>></a></div>
+                <div class="login_anquan">您的信息已通过SSL加密保护，数据传输安全！</div>
+            </div>
+            <div class="reg_right" style="margin-top:40px;">
+
+
+
+
+                <div class="reg_ad">
+
+                    @Html.Raw(ChuanglitouP2P.Common.Utils.GetWebAD(9, 1))
+
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+        <div class="login_kefu"><span class="login_kefu_icon">创利投客服热线010-53732056（工作时间 9:00-18:00）</span><span class="login_qq_icon"><a href="javascript:void(0)" id="BizQQWPA4">在线客服</a></span></div>
+        <div class="clear"></div>
+    </div> 
+</form>
+
+<!-- WPA Button Begin -->
+<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwNDg0Nl8yNjQ2OTVfNDAwODkwMjIyNl8"></script>
+<!-- WPA Button END -->
+
+
+
+<script type="text/javascript" language="javascript">
+    function AddFavorite() {
+        var url = document.URL;
+        var title = "创利投"
+        try {
+            window.external.addFavorite(url, title);
+        } catch (e) {
+            try {
+                window.sidebar.addPanel(title, url, "");
+            } catch (e) {
+                alert("加入收藏失败，请使用Ctrl+D进行添加,或手动在浏览器里进行设置.");
+            }
+        }
+    }
+</script>
+<script>
+	window.onload = window.onscroll = window.onresize = function () {
+		var oDiv = document.getElementById('go_top');
+		var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+		var clientheight = document.documentElement.clientHeight;
+		var t = parseInt(scrolltop + (clientheight - oDiv.offsetHeight) / 3);
+		oDiv.style.right = 30 + 'px'
+		oDiv.style.top = 500 + 'px'
+
+		//alert(scrolltop)
+	}
+</script>
+<script language="javascript" src="~/Scripts/o_code.js"></script>

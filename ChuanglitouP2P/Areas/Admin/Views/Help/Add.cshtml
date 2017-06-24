@@ -1,0 +1,237 @@
+﻿
+@{
+    ViewBag.Title = "新增帮助中心";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+    List<ChuangLitouP2P.Models.hx_td_web_type> list_web_type = ViewBag.web_types == null || (List<ChuangLitouP2P.Models.hx_td_web_type>)ViewBag.web_types == null ? null : (List<ChuangLitouP2P.Models.hx_td_web_type>)ViewBag.web_types;
+
+    int rootid = int.Parse(ViewBag.rootid.ToString());
+
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<link href="/Content/kindeditor/themes/default/default.css" rel="stylesheet" />
+<link href="/Content/kindeditor/plugins/code/prettify.css" rel="stylesheet" />
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="/Scripts/Validform_v5.3.2_min.js"></script>
+<script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+<script src="/Content/kindeditor/kindeditor.js"></script>
+<script src="/Content/kindeditor/lang/zh_CN.js"></script>
+<script src="/Content/kindeditor/plugins/code/prettify.js"></script>
+
+<style type="text/css">
+    .tdleft {
+        width: 20%;
+        text-align: right;
+    }
+
+    .tdright {
+        width: 80%;
+        text-align: left;
+    }
+
+    tr {
+        background: rgb(255, 255, 255);
+    }
+</style>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：
+    
+    </a>
+    
+
+   @if (rootid == 1)
+   {
+    @:<a href="javascript:void(0)" class="z_mg5">安全保障</a>><a href = "javascript:void(0)" > 新增内容 </a>
+   }
+   else if (rootid == 2)
+   {
+    @:<a href="javascript:void(0)" class="z_mg5">帮助中心</a>><a href="javascript:void(0)"> 新增内容 </a>
+   }
+   else if (rootid == 3)
+   {
+    @:<a href="javascript:void(0)" class="z_mg5">关于我们</a>><a href="javascript:void(0)"> 新增内容 </a>
+   }
+
+    
+    
+    
+    
+    </h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        内容管理
+    </h3>
+    <div class="tz_box cz_box">
+        @using (Html.BeginForm("AddHelpPost", "Help", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+            {
+            <div class="z_cont2">
+                @Html.AntiForgeryToken()
+                <input type="hidden" id="rootid" name="rootid" value="@( ViewBag.rootid)" />
+                <table width="100%" style="table-layout:fixed;padding-left:10px;margin-top:10px;">
+                    <tr>
+                        <td class="tdleft"><label for="contract_type_id">内容标题：</label></td>
+                        <td class="tdright">
+                            <input type="text" id="News_title" name="News_title" class="" style="width:240px; height:24px;"  datatype="*2-30" nullmsg="内容不能为空！" errormsg="内容标题在2~30位之间！" />
+                            <span class="Validform_checktip"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tdleft"><label for="contract_type_id">类别分类：</label></td>
+                        <td class="tdright">
+                            <select id="web_type_menu_id" name="web_type_menu_id" datatype="int" nullmsg="请选择分类！" errormsg="请选择分类！" style="height:28px;">
+                                <option value="0">广告类别</option>
+                                @if (list_web_type != null && list_web_type.Count > 0)
+                                {
+                                    foreach (var item in list_web_type)
+                                    {
+                                        <option value="@(item.menu_id)">@(item.menu_name)</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="dispup" style="display:none;">
+                        <td class="tdleft"><label for="contract_template_name">推荐图片：</label></td>
+                        <td class="tdright">
+                            <input type="text" id="newimg" name="newimg" class="" style="width:340px; height:23px;"  />
+                            <span class="Validform_checktip"></span><br />
+                            <input type="file" id="fileImg" name="fileImg" /><input type="button" id="btnUpload" value="上传图片" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tdleft"><label for="contract_template_name">关键词：</label></td>
+                        <td class="tdright">
+                            <input type="text" id="News_Key" name="News_Key" class="" style="width:340px; height:23px;" datatype="*1-60" nullmsg="请输入关键词！" errormsg="请输入关键词！" />
+                            <span class="Validform_checktip"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft"><label for="contract_template_name">描述：</label></td>
+                        <td class="tdright">
+                            <input type="text" id="news_Des" name="news_Des" class="" style="width:340px; height:23px;" datatype="*1-60" nullmsg="描述不能为空！" errormsg="描述不能为空！" />
+                            <span class="Validform_checktip"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft"><label for="contract_template_name">正文内容：</label></td>
+                        <td class="tdright">
+                            <textarea id="context" name="context" cols="100" rows="8" style="width:750px;height:350px;visibility:hidden;"></textarea>
+                            <span class="Validform_checktip"></span>
+                        </td>
+                    </tr>
+                     
+
+                </table>
+            </div>
+            <div class="submin_box">
+                <input type="submit" class="z_btn_01" value="确 定" style="width:90px; height:25px;" />
+
+                <a href="javascript:void(0)" onclick="javascript: history.back()" class="z_btn_01" style="width:90px; height:25px; line-height:25px">返 回</a>
+
+                </div>
+                
+                }
+            </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "n": /^\d+$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+        //图片
+        $("#btnUpload").bind("click", function () {
+            if ($("#fileImg").val().length > 0) {
+                ajaxFileUpload();
+            }
+            else {
+                alert("请选择图片");
+            }
+        });
+
+        $("#web_type_menu_id").change(function () {
+            var checkValue = $("#web_type_menu_id").val();
+            if (checkValue == "17" || checkValue == "23") {
+                $("#dispup").show();
+            }
+            else {
+                $("#dispup").hide();
+            }
+        });
+
+    });
+
+    ///TODO 待完善
+    var editor1;
+    KindEditor.ready(function (K) {
+        editor1 = K.create('#context', {
+            cssPath: '/Content/kindeditor/plugins/code/prettify.css',
+            uploadJson: '/Areas/admin/common/upload_json.ashx',
+            fileManagerJson: '/Areas/admin/common/file_manager_json.ashx',
+            allowFileManager: true,
+            filterMode: false,//是否开启过滤模式
+            afterCreate: function () {
+                var self = this;
+                K.ctrl(document, 13, function () {
+                    self.sync();
+                    K('form[name=example]')[0].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function () {
+                    self.sync();
+                    K('form[name=example]')[0].submit();
+                });
+            }
+        });
+        prettyPrint();
+    });
+
+
+    //上次图片
+    function ajaxFileUpload() {
+        $.ajaxFileUpload
+        (
+            {
+                url: '/admin/UploadFile/ProductPicture', //用于文件上传的服务器端请求地址
+                secureuri: false, //一般设置为false
+                fileElementId: 'fileImg', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                dataType: 'json', //返回值类型 一般设置为json
+                success: function (data, status)  //服务器成功响应处理函数
+                {
+                    if (data.ret == 1) {
+                        $("#newimg").val(data.path);
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (data, status, e)//服务器响应失败处理函数
+                {
+                    alert("操作失败，请重新操作！");
+                }
+            }
+        )
+        return false;
+    }
+</script>
+

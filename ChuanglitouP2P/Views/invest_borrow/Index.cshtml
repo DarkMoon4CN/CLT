@@ -1,0 +1,727 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+@using Webdiyer.WebControls.Mvc;
+@model ChuangLitouP2P.Models.InvestMode
+@{
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+
+    V_borrowing_target_addlist Modelsre = Model.vbtaMode == null ? new V_borrowing_target_addlist() : Model.vbtaMode;
+    List<hx_borrower_guarantor_picture>
+    imgstr = ViewBag.imgstr == null ? null : ViewBag.imgstr as List<hx_borrower_guarantor_picture>
+        ;  //基本材料
+
+    List<hx_borrower_guarantor_picture>
+        daibao = ViewBag.daibao == null ? null : ViewBag.daibao as List<hx_borrower_guarantor_picture>
+            ;  //合同
+
+    List<hx_borrower_guarantor_picture>
+        xianchuang = ViewBag.xianchuang == null ? null : ViewBag.xianchuang as List<hx_borrower_guarantor_picture>
+            ; //现场
+
+    ViewBag.Title = Modelsre.borrowing_title + "- 理财产品" + " - 创利投";
+
+    ViewBag.keywords = "理财产品,个人理财产品,p2p理财产品,短期理财产品,创利投理财";
+
+    ViewBag.desc = "创利投金服为您提供短期理财产品，安全可靠的个人理财产品，可以选择投房贷、创业贷、新手标等p2p理财产品，网络投资理财首选创利投金服！";
+
+}
+@section css{
+    @Url.File("/Content/about.css").ToHtml() 
+    @Url.File("/Content/blueimp-gallery.min.css").ToHtml()
+    @Url.File("/Content/bootstrap-image-gallery.css").ToHtml()
+    @Url.File("/Content/pagecss.css").ToHtml()  
+    } 
+
+<script src="~/Scripts/uaredirect.js"></script>     
+<script type="text/javascript">
+
+    var ua = navigator.userAgent;
+    var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
+        isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
+        isAndroid = ua.match(/(Android)\s+([\d.]+)/),
+        isMobile = isIphone || isAndroid;
+    if(isMobile) {
+        var url = window.location.href;
+
+        var paramVal = getUrlParam("isPC");//括号里为参数名，该值为链接地址所带参数的值
+
+        var text = url.substring(41);
+        var lengt = text.indexOf(".");
+        text = text.substring(0,lengt);
+
+        //var murl = "http://m.chuanglitou.cn/home/ProjectDetail?targetid=" + text;
+
+        if(paramVal!="yes")
+        {
+            var murl = "http://m.chuanglitou.cn/home/ProjectDetail?targetid=" + text;
+            window.location.href = murl;
+        }
+        
+
+    }
+
+    //方法
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return decodeURI(r[2]); return null; //返回参数值
+    }
+
+
+    var dff;
+    function AjaxStart() {dff= layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+</script>
+<style>
+    .detailed_item_open {
+    text-align: right;
+    margin: -30px  0 0 0;
+    width: 100%;
+    float: left;
+    color: #ed5502;
+    cursor: pointer;
+}
+.detailed_item_open a {
+    color: #ed5502;
+}
+
+</style>
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#logintips").click(function()
+        {
+            layer.tips("请登录后再查看合同", this, { guide: 0, time: 10, style: ['background-color:#33CC00; color:#FFFFFF;', '#33CC00'] });
+
+        });
+
+        $("#logintips1").click(function()
+        {
+            layer.tips("项目满标结束，应客户要求关闭合同信息", this, { guide: 0, time: 10, style: ['background-color:#33CC00; color:#FFFFFF;', '#33CC00'] });
+
+        });
+
+    });
+
+    var minimum =@Modelsre.minimum;
+    var maxmum  =@Modelsre.maxmum;
+    //var _minTrans=minimum/100;
+    //var _perTrans=100;
+    var _minTrans=1;
+    var _perTrans=@Modelsre.minimum;
+    $(function () {
+        var Difference = $("#Diff").val();
+
+
+
+    });
+    //投资金额改变
+    function investAmtChange(){
+        var obj=$("#investmentamount").get(0);
+        var enme=parseInt($("#Diff").val());
+
+        var num=parseFloat(obj.value);
+        if(num>enme)
+        {
+            layer.msg("投资金额已超出可投金额", 1, 5);
+            if(enme>=maxmum)
+            {
+                if(maxmum<=0)
+                {
+                    $("#investmentamount").val(minimum);
+                    //var obj=$("#investmentamount").val();
+                    //var num=parseInt(obj);
+                    showEarnByAmt(num);
+                }
+                else
+                {
+                    $("#investmentamount").val(maxmum);
+                    //var obj=$("#investmentamount").val();
+                    //var num=parseInt(obj);
+                    showEarnByAmt(num);
+                }
+            }
+            else
+            {
+                $("#investmentamount").val(maxmum-enme);
+                //var obj=$("#investmentamount").val();
+                //var num=parseInt(obj);
+                showEarnByAmt(num);
+            }
+        }
+        else
+        {
+            if(num>maxmum && maxmum>0)
+            {
+                layer.msg("投资金额不能超过最高限额"+maxmum+"元！", 1, 5);
+
+                if(enme>maxmum)
+                {
+                    $("#investmentamount").val(maxmum);
+                }
+                else
+                {
+
+                    $("#investmentamount").val(enme);
+                }
+                //var obj=$("#investmentamount").val();
+                //var num=parseInt(obj);
+                showEarnByAmt(num);
+            }
+            else
+            {
+                if(isNaN(num)||num<_minTrans*_perTrans){
+                    layer.msg("最低投资金额为"+_minTrans*_perTrans+"元！",1, 5);
+                    num=_minTrans*_perTrans;
+
+                }else{
+                    if(parseInt(num%_perTrans)>0){
+                        layer.msg("投资金额为"+_perTrans+"元整数倍！", 1, 5);
+                    }
+                    num=parseInt(num/_perTrans)*_perTrans;
+                }
+            }
+            $("#investmentamount").val(num);
+            //var obj=$("#investmentamount").val();
+            //var num=parseInt(obj);
+            showEarnByAmt(num);
+        }
+    }
+
+    //通过投资金额    显示收益
+    function showEarnByAmt(obj){
+        if(isNaN(obj)||obj<1) return false;
+        var Lixi=0;
+        num=parseInt(obj/_perTrans)*_perTrans;
+        $.post("/invest_borrow/InvestCalculator?method=post", { "id":@Modelsre.targetid,"jialixi":Lixi,"data": num }, function (msg) {
+            var obj1 = JSON.parse(msg);
+            $("#investdisp").html(obj1.amount);
+            $("#Span1").html(obj1.principal);
+
+        });
+
+    }
+
+    var  sdb_tag=1;//展开隐藏按钮的临时变量
+    function showDanbao(obj)
+    {
+        
+        if(obj>3 && obj <7)
+        {
+            $("#danbao_right").css("height","290px");
+            $(".item2_pic").css("height","290px");
+            $("#detailed_item_open").css("margin-top","0px");
+            $("#show_danbao").text("-隐藏");
+        }
+        else if(obj >6)
+        {
+            $("#danbao_right").css("height","490px");
+            $(".item2_pic").css("height","490px");
+            $("#detailed_item_open").css("margin","margin: -20px 0 0 0;");
+            $("#show_danbao").text("-隐藏");
+        }
+        if(sdb_tag%2==0)
+        {
+            $("#danbao_right").css("height","147px");
+            $(".item2_pic").css("height","170px");
+            $("#detailed_item_open").css("margin-top","-20px");
+            $("#show_danbao").text("+展开");
+        }
+        sdb_tag++;
+    }
+
+
+
+
+    //投资倒计时
+    var itime = 0;
+    function getRTime(datet) {
+        var now = new Date();
+        var endDate = new Date(datet);
+        var leftTime = endDate.getTime() - now.getTime();
+        var leftsecond = parseInt(leftTime / 1000);
+        var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+        var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+        var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+        var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+        if (leftTime <= 0) {
+            location.reload();
+        }
+        else {
+            if (day1 > 0) {
+                $("#t_d").html(PrefixInteger(day1, 2) + "天");
+                $("#t_h").html(PrefixInteger(hour, 2) + "时");
+                $("#t_m").html(PrefixInteger(minute,2) + "分");
+                $("#t_s").hide();
+                $("#t_s1").hide();
+            } else {
+                $("#t_d").hide();
+                $("#t_d1").hide();
+                $("#t_h").html(PrefixInteger(hour, 2) + "时");
+                $("#t_m").html(PrefixInteger(minute,2) + "分");
+                $("#t_s").html(PrefixInteger(second,2) + "秒");
+            }
+        }
+    }
+    function StartRtime(datetimes) {
+
+        setInterval(function () { getRTime(datetimes); }, 1000);
+    }
+
+
+    //num传入的数字，n需要的字符长度
+    function PrefixInteger(num, n) {
+        return (Array(n).join(0) + num).slice(-n);
+    }
+</script>
+
+@Html.Raw(ChuanglitouP2P.Common.Utils.GetWebAD(3, 1))
+
+<div class="item_body">
+
+    <div class="item_location">
+        <a href="/" target="_blank">首页</a><i>></i><a href="/Investlist.html" target="_blank">我要投资</a><i>></i><a href="javascript:void(0);" target="_blank">项目详情</a>
+    </div>
+
+    <div class="item_01">
+        <div class="item_01_left">
+            <div class="item_01_tit">
+                <h1><span class="item_tit_01">优</span><span>@Modelsre.borrowing_title</span></h1><h2>
+                    @*项目编号：@Modelsre.loan_number*@
+                    <span>
+                        项目合同
+
+                        @if (ViewBag.uid > 0)
+                        {
+                            if (Modelsre.tender_state == 2)
+                            {
+                                <a href="@(Modelsre.G_contract_Path)" target="_blank"><img src="/images/item_img01.jpg"></a>
+                            }
+                            else
+                            {
+                                <a href="javascript:;" id="logintips1"><img src="/images/item_img01.jpg"></a>
+
+                            }
+                        }
+                        else
+                        {
+                            <a href="javascript:;" id="logintips"><img src="/images/item_img01.jpg"></a>
+                        }
+
+
+
+                    </span>
+                </h2>
+            </div>
+            <div class="item_detailed">
+                <div class="item_detailed_top">
+                    <dl class="item_dl01">
+                        <dt><i>@Modelsre.annual_interest_rate</i>%</dt>
+                        @*<dd>预期年化</dd>*@
+                    </dl>
+                    @{
+                        DateTime Endtime = DateTime.Parse(Modelsre.end_time.ToString());
+
+                        DateTime Stime = DateTime.Parse(Modelsre.start_time.ToString());
+
+                        DateTime online = DateTime.Parse(Modelsre.sys_time.ToString());
+
+                        DateTime rpdt = DateTime.Parse(Modelsre.repayment_date.ToString());
+                        DateTime rest = DateTime.Parse(Modelsre.release_date.ToString());
+
+                        decimal Percentage = Utils.GetPercentage(decimal.Parse(Modelsre.borrowing_balance.ToString()), decimal.Parse(Modelsre.fundraising_amount.ToString()));
+                        if (Percentage > 100.00M) { Percentage = 100.00M; }
+                        decimal Difference = Utils.GetDifference(decimal.Parse(Modelsre.borrowing_balance.ToString()), decimal.Parse(Modelsre.fundraising_amount.ToString()));
+                        if (Difference < 0.00M) { Difference = 0.00M; }
+
+                        long diffdays = Utils.DateDiff("Day", DateTime.Parse(rest.ToString("yyyy-MM-dd")), DateTime.Parse(rpdt.ToString("yyyy-MM-dd")));}
+                    <dl class="item_dl02">
+                        <dt>
+                            @if (diffdays < 60)
+                            {
+                                @:<i>@diffdays</i>天
+                             }
+                            else
+                            {
+                                @:<i>@Utils.GetLife_of_loan(Modelsre.life_of_loan.ToString(), Modelsre.unit_day.ToString())</i>
+                            }
+                        </dt>
+
+
+                        <dd>锁定期</dd>
+                    </dl>
+                    <dl class="item_dl03">
+                        <dt><i>@RMB.GetWebConvertdisp(decimal.Parse(Modelsre.borrowing_balance.ToString()), 2, true)</i></dt>
+                        <dd>项目金额</dd>
+                    </dl>
+                </div>
+
+                <div class="item_detailed_bot">
+                    
+                    <p class="item_detailed_p1">
+
+                        <span style="margin-left:44px;">还款日期：<i>@DateTime.Parse(Modelsre.repayment_date.ToString()).ToString("yyyy-MM-dd")</i></span>
+
+                        @if (Modelsre.targetid == 12053)
+                        {
+                        }
+                        else
+                        {
+                            if (Modelsre.payment_options == 4)
+                            {
+
+                            }
+                            else
+                            {
+                                @:<span style="margin-left:152px;">付息日：<i>每月@(Modelsre.month_payment_date)日</i></span>
+                                                }
+                        }
+
+
+
+                    </p>
+                    <div class="item_01_tit2">
+                        <h2>
+
+                            @if (Modelsre.IsUse == 0)
+                            {
+                                @:个人连带
+                                                    }
+                            else
+                            {
+                                @:担保机构：<a href="/Guarantee/Agency/@(Modelsre.companyid)" title="@Modelsre.company_name">  @Modelsre.company_name </a>
+
+                            }
+
+                        </h2>
+                        @if (Modelsre.targetid == 12053)
+                        {
+                            <span style="line-height:20px;margin-left:64px;color:#666;">还款方式：一次性还本付息</span>
+                        }
+                        else
+                        {
+                            if (Modelsre.payment_options == 4)
+                            {
+                            }
+                            else
+                            {
+                                @:<span style="line-height:20px;margin-left:64px;color:#666;">还款方式：@Utils.Getpayment_options(int.Parse(Modelsre.payment_options.ToString()))</span>
+                                                }
+                        }
+                        @*<h3>保障类型：<i>100%本息担保</i></h3>*@
+                    </div>
+                    @*<div class="fenxiang shareCont01">
+                        <!-- JiaThis Button BEGIN -->
+                        <div class="jiathis_style">
+                            <span style="float:left;">分享到：</span>
+                            <a class="jiathis_button_qzone"></a>
+                            <a class="jiathis_button_tsina"></a>
+                            <a class="jiathis_button_tqq"></a>
+                            <a class="jiathis_button_weixin"></a>
+                            <a class="jiathis_button_renren"></a>
+                            <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                        </div>
+                        <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+                        <script type="text/javascript" src="http://v3.jiathis.com/code/plugin.client.js" charset="utf-8"></script>
+                        <!-- JiaThis Button END -->
+                        欢迎点击分享，邀请好友体验投资，双方有奖
+                    </div>*@
+
+                </div>
+
+            </div>
+        </div>
+        <div class="item_01_right">
+            @if (Stime <= online && online > DateTime.Now)
+            {
+
+                <dl class="clock_dl" id="clock_dl">
+                    <dt>投资倒计时</dt>
+                    <dd class="clock_dd01"><span class="t_d" id="t_d">00</span><i class="i_day" id="t_d1">天</i><span class="t_h" id="t_h">00</span><i>小时</i><span class="t_m" id="t_m">00</span><i>分</i><span class="t_s" id="t_s">00</span><i class="i_sec" id="t_s1">秒</i></dd>
+                    <dd class="clock_dd02">开标时间：@online.ToString("yyyy-MM-dd HH:mm:ss")</dd>
+
+                    <dd class="clock_dd03">
+                        <input name="investmentamount" id="investmentamount" type="hidden" value="@(Modelsre.minimum)" autocomplete="off" onblur="investAmtChange();" />
+                               @*onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />*@
+
+                        每投资<span id="investdisp"></span>元&nbsp;&nbsp;&nbsp;&nbsp;收益<i id="Span1"></i>元
+                    </dd>
+
+                    <dd class="item_Msubmit"><input type="button" disabled value="未开始" class="item_disable"></dd>
+                </dl>
+                                    <script>StartRtime('@online.ToString("MMM dd,yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))');</script>
+            }
+            else
+            {
+
+                using (Html.BeginForm("investconfirm/" + @Modelsre.targetid, ViewContext.RouteData.GetRequiredString("controller"), FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <dl>
+                        <dt>投资金额</dt>
+                        
+                        
+                        @if (DateTime.Compare(Endtime, DateTime.Now) <= 0 && Percentage < 100.00M)
+                        {
+                            <dd>已投金额：@Modelsre.borrowing_balance.ToString() 元</dd>
+                            <dd>剩余可投：0.00 元</dd>
+                            <dd class="item_pro_dd"><span>投资进度：</span><span class="progress_bg"><i style="width:100%"></i></span><span class="progress_end">100%</span></dd>
+                        }
+                        else
+                        {
+                            <dd>已投金额：@Modelsre.fundraising_amount.ToString() 元</dd>
+                            <dd>剩余可投：@(Difference < 0 ? 0 : Difference) 元</dd>
+                            <dd class="item_pro_dd"><span>投资进度：</span><span class="progress_bg"><i style="width:@(Percentage)%"></i></span><span class="progress_end">@(Percentage)%</span></dd>
+                        }
+                        <dd class="item_Mvalue">
+                            <input name="investmentamount" id="investmentamount" type="text" autocomplete="off" value="@(Modelsre.minimum)" onblur="investAmtChange();" />
+                                   @*onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />*@
+                            元
+                            <input type="hidden" id="Diff" name="Diff" value="@(Difference)" />
+                            <input type="hidden" id="id" name="id" value="@(Modelsre.targetid)" />
+                        </dd>
+
+                        <dd class="item_More">每投资<span id="investdisp"></span>元&nbsp;&nbsp;&nbsp;&nbsp;收益<i id="Span1"></i>元</dd>
+
+                        @if (DateTime.Compare(Endtime, DateTime.Now) <= 0 && Percentage < 100.00M)
+                        {
+
+                            <dd class="item_Msubmit"><input type="button" class="gry" value="项目已结束"></dd>
+                        }
+
+                        else if (@Difference <= 0 && Modelsre.tender_state == 2)
+                        {
+                            <dd class="item_Msubmit"><input type="button"  class="gry" value="已满标"></dd>
+                        }
+                        else if (Modelsre.tender_state == 3)
+                        {
+                            <dd class="item_Msubmit "><input type="button" class="gry" value="已满标"></dd>
+                        }
+                        else if (Modelsre.tender_state == 4)
+                        {
+                            <dd class="item_Msubmit"><input type="button"  class="gry" value="还款中"></dd>
+                        }
+                        else if (Modelsre.tender_state == 5)
+                        {
+                            <dd class="item_Msubmit"><input type="button"  class="gry" value="已还清"></dd>
+                        }
+                        else
+                        {
+                            <dd class="item_Msubmit"><input type="submit" value="立即投资"></dd>
+                        }
+
+
+
+                    </dl>
+
+
+                }
+
+
+            }
+
+
+
+
+
+
+        </div>
+    </div>
+    <div class="item_02">
+        <div class="item2_top">
+         
+            <ul class="touzi_top item2_tit" style="width:100%;background-color:#f5f5f5;line-height:80px;">
+                <li>项目详情</li>
+                <li class="on">投资记录</li>
+            </ul>
+        </div>
+        <div class="item2_cont" style="padding:10px 1%;">
+            <div class="item2_tab item2_tab1" style="display: none;">
+
+                <div class="item2_cont02 item2_01" style="margin-top:0;">
+                    <div class="div_left">
+                        项目详情
+                    </div>
+                    <div class="div_right">
+                        <p>@Html.Raw(Modelsre.item_details)</p>
+                    </div>
+                </div>
+
+                <div class="item2_cont02 item2_01">
+                    <div class="div_left">
+                        借款人情况
+                    </div>
+                    <div class="div_right">
+                        <p>@Html.Raw(Modelsre.borrower_circumstances)</p>
+                    </div>
+                </div><div class="item2_cont02 item2_01">
+                    <div class="div_left">
+                        资金用途
+                    </div>
+                    <div class="div_right">
+                        <p>@Html.Raw(Modelsre.use_funds)</p>
+                    </div>
+                </div><div class="item2_cont02 item2_01">
+                    <div class="div_left">
+                        担保机构意见
+                    </div>
+                    <div class="div_right">
+
+                        <p>@Html.Raw(Modelsre.guarantee_agency_views)</p>
+                    </div>
+                </div><div class="item2_cont02 item2_01">
+                    <div class="div_left">
+                        风险控制措施
+                    </div>
+                    <div class="div_right">
+                        <p>@Html.Raw(Modelsre.risk_control_measures)</p>
+                    </div>
+                </div>
+
+                <div class="item2_cont02 item2_01">
+                    <div class="div_left">
+                        担保材料
+                    </div>
+                    @if (daibao.Count > 0)
+                    {
+                    <div class="div_right" id="danbao_right" style="height:147px;overflow:hidden;">
+                   
+                            <div class="item_detailed_pic"> 
+
+                                <ul class="item2_pic">
+
+                                    @foreach (var item in daibao)
+                                    {
+                                        <li>
+                                            <a href="@(Url.Content(item.picture_path))" data-gallery="cc" title="@(item.picture_name)"><img src="@(Url.Content(item.picture_path))"></a>@(item.picture_name)
+                                        </li>
+                                    }
+                                </ul>
+                               
+                            </div>
+                        @if(daibao.Count > 3 )
+                        {
+                            <div class="detailed_item_open">
+                                <a id="show_danbao" onclick="showDanbao(@daibao.Count)" href="javascript:void()">+展开</a>
+                            </div>
+                        }
+                    </div>  
+                    }
+                </div>
+  
+                
+                <div class="item2_cont02 item2_01">
+                    <div class="div_left">
+                        创利投独立意见
+                    </div>
+                    <div class="div_right">
+                        <p>@Html.Raw(Modelsre.independent_advice)</p>
+                    </div>
+
+                </div>
+            </div>  
+            <div class="item2_tab item2_tab2" id="dTable" style="display:block;margin-top:0px;">
+                @Html.Partial("InvestRecord", Model.Bid_record)
+            </div>        
+            
+        </div>
+
+     
+
+    </div>
+    
+
+
+</div>
+
+
+
+<!--图片全屏显示begin------------------------->
+
+
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--图片全屏显示end------------------------->
+
+@section Scripts{
+    @Url.File("/Scripts/jquery.SuperSlide.2.1.1.js").ToHtml()
+    @Url.File("/Scripts/jquery.blueimp-gallery.min.js").ToHtml()
+    @Url.File("/Scripts/bootstrap-image-gallery.js").ToHtml()
+    @*@Url.File("/Scripts/countdown.js").ToHtml()*@
+    @Url.File("/Scripts/layer.min.js").ToHtml()
+    @{Html.RegisterMvcPagerScriptResource();}
+<script>
+
+
+
+
+
+
+
+    $(function () {
+        var a = $(".hsw_con2 p a");
+        var b = $(".hsw_con2 p .hsw_con_a5")
+        a.click(function () {
+            $(this).addClass("hsw_con2_a").siblings().removeClass("hsw_con2_a");
+            /*a.find("img").attr("src","/images/jt.png")
+            $(this).find("img").attr("src","/images/jiantou.png")*/
+        })
+        b.mouseover(function () {
+            $(this).find("img").attr("src", "/images/jiantou.png")
+            $(this).find("img").css("top", "6px")
+        })
+        b.mouseout(function () {
+            $(this).find("img").attr("src", "/images/jt.png")
+            $(this).find("img").css("top", "7px")
+        })
+        /*b.click(function(){
+
+            $(this).find("img").attr("src","/images/jiantou.png");
+            $(this).siblings().find("img").attr("src","/images/jt.png");
+        })*/
+    })
+
+    jQuery(".item_02").slide({ titCell: ".item2_tit li", mainCell: ".item2_cont", trigger: "click" });
+
+    var obj=$("#investmentamount").get(0);
+    var num=parseInt(obj.value);
+    showEarnByAmt(num);
+</script>}

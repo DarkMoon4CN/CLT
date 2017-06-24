@@ -1,0 +1,109 @@
+﻿@using ChuanglitouP2P.Common
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>充值提现</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("about.css").ToHtml()
+    @Url.ApiFile("jquery-1.11.1.min.js").ToHtml()
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, resizeEvt = "orientationchange" in window ? "orientationchange" : "resize", recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; docEl.style.fontSize = 20 * (clientWidth / 320) + "px" }; if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false) })(document, window)
+    </script>
+</head>
+<body>
+    <article>
+        <ul class="helpList">
+            <li>
+                <a href="javascript:;">为什么网上银行充值成功，但账户余额却没有增加？<span class="icon-up"></span></a>
+                <p class="txtBox" style="display:block">
+                    由于在同一时间使用同一个第三方支付充值账户端口的用户可能非常多，导致网银显示与创利投账户金额不同步的情况。需要等待片刻，创利投将与汇付天下同步数据。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">可以用信用卡进行充值吗？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    无法使用信用卡充值提现。<br>
+                    根据央行的相关规定，创利投严禁信用卡充值、套现等行为。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">为什么无法使用网上银行充值？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    受银行系统兼容性的限制，某些银行的充值只能在 Windows 操作系统上进行。<br>
+                    建议使用IE浏览器（一般是IE7以上、IE10以下）尝试。<br>
+                    同时，请留意银行网上银行页面的提示。譬如确定充值数额是否超过银行卡的转账额度限制等。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">为什么提现会失败？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    造成提现失败的原因可能有以下几种：<br>
+                    1. 余额不足；<br>
+                    2. 账户中的资金尚未用于投资；<br>
+                    3. 银行开户行信息错误；<br>
+                    4. 银行账号/户名错误，或账号和户名不符；<br>
+                    5. 银行账户冻结或正在办理挂失。<br>
+                    如果遇到上述情况，我们会在收到银行转账失败的通知后解除您的提现资金冻结，并及时通知您相关信息，请您不必担心资金安全。<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">充值和提现是否收费？ <span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    1.充值免费的。投资人向第三方支付账户充值的手续费由创利投承担；<br>
+                    2.提现需要付费。费用由第三方支付平台收取。提现手续费：2元/笔；（暂由创利投支付）<br>
+
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">提现需要多长时间？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    创利投目前只提供一种提现模式：<br>
+                    普通提现<br>
+                    由于第三方支付平台和银行的工作流程原因，投资人在工作日（周六/周日/法定节假日均除外）20:00之前申请的提现的，下一工作日12:00-16:00到账， 否则将于第三个工作日12:00-16:00到账，即“T+1”到账机制（T指工作日）。 <br>
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">如何申请提现？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    1. 在“我的账户”界面点击“提现”，在汇付天下界面绑定提现使用的银行卡；绑定的银行卡的户名须与汇付天下开户时的姓名一致；<br>
+                    2. 在“我的账户”界面点击“提现”，通过汇付天下可随时将账户中的可用金额申请提现到绑定的银行卡账户中。 <br>
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">怎样的资金可以用于提现？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    投资人已经充值的资金，须在投资并回款之后方可提现。<br>
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">如何进行充值？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    1.在“我的账户”界面点击“充值”或者在投资项目界面点击“投资”，通过第三方支付平台实现充值；点击“投资”，如果金额不足，也可跳转至“充值”界面；<br>
+                    2. 充值后，显示成功付款并跳转至创利投界面，显示充值成功；<br>
+                    3. 通过“交易记录”可查看充值的金额及历史记录。<br>
+                </p>
+            </li>
+            <li>
+                <a href="javascript:;">如何开通第三方支付账户？<span class="icon-down"></span></a>
+                <p class="txtBox" style="display:none">
+                    1. 在注册创利投过程中，点击“开通托管账户”；<br>
+                    2. 在汇付天下的开户页面，填写真实姓名与身份证号码，及其他信息，完成开户；<br>
+                    注意牢记汇付天下的登录密码与支付密码，前述密码均与创利投的登录密码相互独立。<br>
+                </p>
+            </li>
+        </ul>
+    </article>
+    @Url.ApiFile("helpCenter.js").ToHtml()
+</body>
+</html>

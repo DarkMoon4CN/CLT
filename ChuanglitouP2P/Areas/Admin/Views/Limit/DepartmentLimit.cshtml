@@ -1,0 +1,215 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+@model Dictionary<int, List<hx_AdminLimitInfo>>
+@{
+    Layout = null;
+    var list = Model;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>部门权限</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/style.css" rel="stylesheet" />
+    <style type="text/css">
+        .listtable tbody tr td{
+            text-align:left;
+        }
+        .limit_1{
+            padding-left:20px;
+        }
+        .limit_2{
+            padding-left:40px;
+        }
+        .limit_3{
+            padding-left:60px;
+        }
+            .limit_3 input[type=checkbox] {
+                padding-left:20px;
+            }
+
+
+    </style>
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Areas/Admin/js/common.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            initPage();
+            $("#btnsave").bind("click", function () {
+                saveLimit();
+            });
+            $("#close").bind("click", function () {
+                closewindows();
+            });
+            //全选
+            $("#btnAllSelect").click(function () {
+                $("input[name='cbx_ButtonLimit']").each(function () {
+                    $(this).attr("checked", true);
+                });
+            });
+            //不选
+            $("#btnClearSelect").click(function () {
+                $("input[name='cbx_ButtonLimit']").each(function () {
+                    $(this).attr("checked", false);
+                });
+            });
+        });
+
+        function initPage() {
+            var id = $("#hid_id").val();
+            $.getJSON("/admin/Limit/GetLimitByDepartmentId", { departmentid :id}, function (data) {
+                if (data!=undefined && data.length>0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var json = data[i];
+                        var key = "#cbx_"+json.lid;
+                        $(key).attr("checked", "checked");
+                    }
+                }
+            });
+        }
+
+        function saveLimit() {
+            var id = $("#hid_id").val();
+            var cboxs = document.getElementsByName("cbx_ButtonLimit");
+            var ids = "";
+            for (var i = 0; i < cboxs.length; i++) {
+                if (cboxs[i].checked) {
+                    if (ids == "") {
+                        ids = cboxs[i].getAttribute("lid");
+
+                    } else {
+                        ids += "|" + cboxs[i].getAttribute("lid");
+                    }
+                }
+            }
+
+            $.getJSON("/admin/Limit/SaveDepartmentLimit", { departmentid: id, limitids :ids}, function (data) {
+                if (data.ret==1) {
+                    alert("操作成功!");
+                    closewindows();
+                } else {
+                    alert(data.msg);
+                }
+            });
+
+        }
+        function closewindows() {
+            window.parent.closewindows();
+        }
+
+    </script>
+
+</head>
+<body>
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">权限管理</a>><a href="javascript:void(0)"> 部门权限</a></h2>
+    <div class="z_body" style="margin:0;">
+        <div style="margin:10px 0 0 0; background:#fff9cb; line-height:22px; font-size:12px; border:1px solid #eee; padding:10px;">
+            共用按钮权限说明（只在一个列表中设置权限，其他列表中也获得同样的权限）<br />
+            1、贷款管理：项目详细，详细内容，基础材料，担保材料，现场图片，投资记录，还款明细<br />
+            2、会员管理：发放奖励，发送短信
+        </div>
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            权限列表
+        </h3>
+        <input type="button" id="btnAllSelect" class="btn1" value="全部选中" style="margin-bottom:1px;" />&nbsp;&nbsp;<input type="button" id="btnClearSelect" class="btn1" value="取消选中"  style="margin-bottom:1px;"  />
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                @if (list != null && list.Count() > 0)
+                {
+                    var list0 = new List<hx_AdminLimitInfo>();
+                    if (list.TryGetValue(0, out list0))
+                    {
+                        foreach (var item in list0)
+                        {
+                            <tr>
+                                <td class="limit_@(item.level)">
+                                    <span>@(item.title)</span>
+                                </td>
+                            </tr>
+                            var list1 = new List<hx_AdminLimitInfo>();
+                            if (list.TryGetValue(item.id, out list1))
+                            {
+                                foreach (var item1 in list1)
+                                {
+                                    <tr>
+                                        <td class="limit_@(item1.level)">
+                                            <span>@(item1.title)</span>
+                                            @if (item1.level == 3)
+                                            {   /*是页面级，子级是按钮功能*/
+                                                var list1_1 = new List<hx_AdminLimitInfo>();
+                                                if (list.TryGetValue(item1.id, out list1_1))
+                                                {
+                                                    foreach (var item1_1 in list1_1)
+                                                    {
+                                                        var ischeck = "";// item1_1.departmentId == Convert.ToInt32(ViewBag.departmentid as string)? "checked" : "";
+                                                        if (item1_1.level == 4)
+                                                        {   /*页面功能*/
+                                                            <input type="checkbox"  name="cbx_ButtonLimit" id="cbx_@(item1_1.id)" lid="@(item1_1.id)" value="@(item1_1.id)" /><label for="cbx_@(item1_1.id)">@(item1_1.title)</label>
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                    var list2 = new List<hx_AdminLimitInfo>();
+                                    if (list.TryGetValue(item1.id, out list2))
+                                    {
+                                        foreach (var item2 in list2)
+                                        {
+                                            if (item2.level < 4)
+                                            {   /*非页面功能*/
+                                                <tr>
+                                                    <td class="limit_@(item2.level)">
+                                                        <span>@(item2.title)</span>
+
+                                                        @if (item2.level == 3)
+                                                        {   /*是页面级，子级是按钮功能*/
+                                                            var list2_1 = new List<hx_AdminLimitInfo>();
+                                                            if (list.TryGetValue(item2.id, out list2_1))
+                                                            {
+                                                                foreach (var item2_1 in list2_1)
+                                                                {
+                                                                    var ischeck2 = "";// item2_1.departmentId == Convert.ToInt32(ViewBag.departmentid as string) ? "checked" : "";
+                                                                    if (item2_1.level == 4)
+                                                                    {   /*页面功能*/
+                                                                        <input type="checkbox" name="cbx_ButtonLimit" lid="@(item2_1.id)" id="cbx_@(item2_1.id)" value="@(item2_1.id)" /><label for="cbx_@(item2_1.id)">@(item2_1.title)</label>
+                                                                    }
+                                                                    }
+                                                                }
+                                                            }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                    <tr>
+                        <td style="text-align:center;">
+                            <input type="button" id="btnsave" class="btn1" value="保存" />&nbsp;&nbsp;
+                            <input type="button" id="close" class="btn1" value="关闭" />
+                            <input type="hidden" id="hid_id" value="@ViewBag.departmentid" />
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

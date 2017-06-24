@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script>
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        function jumpToUrl(url) {
+            if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /MSIE(\d+\.\d+);/.test(navigator.userAgent)) {
+                var referLink = document.createElement('a');
+                referLink.href = url;
+                document.body.appendChild(referLink);
+                referLink.click();
+            } else {
+                window.location.href = url;
+            }
+        }
+        window.onload = function () {
+            //认证为com域名作的,目前cn跳转时
+            if ("2" == GetQueryString("type")) {//互联网金融行业认证 http://si.trustutn.org/info?sn=756150724000233411076
+                var url = "http://si.trustutn.org/info?sn=756150724000233411076";
+                jumpToUrl(url)
+            } else if ("3" == GetQueryString("type")) {//诚信网站 https://credit.szfw.org/CX20150721010801010189.html
+                var url = "https://credit.szfw.org/CX20150721010801010189.html";
+                jumpToUrl(url)
+            } else {
+                jumpToUrl("http://www.chuanglitou.cn/");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

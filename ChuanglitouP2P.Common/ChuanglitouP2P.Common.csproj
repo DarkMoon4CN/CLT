@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{081CECF4-0B14-4971-84A0-D95D7D30DA14}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChuanglitouP2P.Common</RootNamespace>
+    <AssemblyName>ChuanglitouP2P.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=7.2.1.0, Culture=neutral, PublicKeyToken=304f5aa34aff2288, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="fastJSON">
+      <HintPath>DLL\fastJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonObject">
+      <HintPath>..\packages\JsonObject.1.0.0.0\JsonObject.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Log\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniProfiler, Version=3.2.0.157, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.3.2.0.157\lib\net40\MiniProfiler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MiniProfiler.EntityFramework6, Version=3.0.11.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.EF6.3.0.11\lib\net40\MiniProfiler.EntityFramework6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\ExtendLibrary\ServiceStack.Redis.3.9.60\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\ExtendLibrary\ServiceStack.Redis.3.9.60\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\ExtendLibrary\ServiceStack.Redis.3.9.60\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\ExtendLibrary\ServiceStack.Redis.3.9.60\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThoughtWorks.QRCode">
+      <HintPath>..\ChuangLiTou.Core.Helpers\Dll\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CacheHelper.cs" />
+    <Compile Include="CacheRemove.cs" />
+    <Compile Include="CacheType.cs" />
+    <Compile Include="Calculator.cs" />
+    <Compile Include="CalendarService.cs" />
+    <Compile Include="ChinaIDCard.cs" />
+    <Compile Include="chinapnr\CFormHelper.cs" />
+    <Compile Include="chinapnr\ChinapnrFacade.cs" />
+    <Compile Include="ConfigHelper.cs" />
+    <Compile Include="ConvertDataTable.cs" />
+    <Compile Include="ConvertHelper.cs" />
+    <Compile Include="DataCache.cs" />
+    <Compile Include="DataExtension.cs" />
+    <Compile Include="DataHelper.cs" />
+    <Compile Include="DbHelper.cs" />
+    <Compile Include="DllInterop.cs" />
+    <Compile Include="DNTRequest.cs" />
+    <Compile Include="EncryptHelper.cs" />
+    <Compile Include="EnumCode.cs" />
+    <Compile Include="EnumCommon.cs" />
+    <Compile Include="EnumHelp.cs" />
+    <Compile Include="EnumInvestSearch.cs" />
+    <Compile Include="EnumLLPayState.cs" />
+    <Compile Include="EnumMType.cs" />
+    <Compile Include="EnumOrdIdState.cs" />
+    <Compile Include="EnumSMSType.cs" />
+    <Compile Include="EnumTypesFinance.cs" />
+    <Compile Include="ExcelHelper\ExcelHelper.cs" />
+    <Compile Include="Extensionses\ParameterReplacer.cs" />
+    <Compile Include="FastJSON.cs" />
+    <Compile Include="GetIpToCity.cs" />
+    <Compile Include="HttpHelper.cs" />
+    <Compile Include="InvestCalculator.cs" />
+    <Compile Include="JsonHelper.cs" />
+    <Compile Include="LiumiTools.cs" />
+    <Compile Include="LoggerHelper.cs" />
+    <Compile Include="LogInfo.cs" />
+    <Compile Include="Log\Log4netLoggerProvider.cs" />
+    <Compile Include="Log\LoggerProvider.cs" />
+    <Compile Include="PageHelper.cs" />
+    <Compile Include="PublicURL.cs" />
+    <Compile Include="QRCode.cs" />
+    <Compile Include="RedisHelper.cs" />
+    <Compile Include="SerializeHelper.cs" />
+    <Compile Include="SiteHelper.cs" />
+    <Compile Include="pdf\HeaderAndFooterEvent.cs" />
+    <Compile Include="pdf\MyFontFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RMB.cs" />
+    <Compile Include="SendMail.cs" />
+    <Compile Include="SendSMS.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SmsType.cs" />
+    <Compile Include="SortType.cs" />
+    <Compile Include="StaticExtension.cs" />
+    <Compile Include="StringAlert.cs" />
+    <Compile Include="StringUtils.cs" />
+    <Compile Include="TaskBase.cs" />
+    <Compile Include="TaskManager.cs" />
+    <Compile Include="Task\CheckOrderTask.cs" />
+    <Compile Include="TXShareHelper.cs" />
+    <Compile Include="TypeParse.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="Util\CollectionExtensions.cs" />
+    <Compile Include="Util\CommandInfo.cs" />
+    <Compile Include="Util\IPagination.cs" />
+    <Compile Include="Util\JsonpFormatter.cs" />
+    <Compile Include="Util\PageParam.cs" />
+    <Compile Include="Util\Pagination.cs" />
+    <Compile Include="Validate.cs" />
+    <Compile Include="ValidateCode.cs" />
+    <Compile Include="ValidateHelper.cs" />
+    <Compile Include="Web References\Webservice\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="XmlHelper.cs" />
+    <Compile Include="YMSendSMS.cs" />
+    <Compile Include="YY_Sql.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Webservice\mo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\Webservice\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Webservice\SDKService.wsdl" />
+    <None Include="Web References\Webservice\SDKService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\Webservice\statusReport.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChuanglitouP2P.DBUtility\ChuanglitouP2P.DBUtility.csproj">
+      <Project>{0778b4c9-9309-4995-b7ad-a75a59a2f2b1}</Project>
+      <Name>ChuanglitouP2P.DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuanglitouP2P.Model\ChuanglitouP2P.Model.csproj">
+      <Project>{6df73cee-f1d7-4ea7-93c4-20ec96f62fc0}</Project>
+      <Name>ChuanglitouP2P.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\itextsharp-5.0.6\itextsharp.csproj">
+      <Project>{84c4fdd9-3ed7-453b-b9da-b3ed52cb071c}</Project>
+      <Name>itextsharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://sdk4report.eucp.b2m.cn:8080/sdk/SDKService%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Webservice\</RelPath>
+      <UpdateFromURL>http://sdk4report.eucp.b2m.cn:8080/sdk/SDKService%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ChuanglitouP2P_Common_Webservice_SDKService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLL\Aspose.Cells.dll" />
+    <Content Include="DLL\fastJSON.dll" />
+    <Content Include="DLL\ThoughtWorks.QRCode.dll" />
+    <Content Include="Log\log4net.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

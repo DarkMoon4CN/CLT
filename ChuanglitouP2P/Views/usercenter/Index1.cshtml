@@ -1,0 +1,161 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuangLitouP2P.Models;
+@using System.Data;
+@model ChuangLitouP2P.Models.hx_member_table
+@{
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+    B_usercenter o = new B_usercenter();
+    List<V_borrowing_Bid_records_income_statement> income = ViewBag.income == null ? null : ViewBag.income as List<V_borrowing_Bid_records_income_statement>;
+    List<V_hx_Bid_records_borrowing_target> vbht = ViewBag.vbht == null ? null : ViewBag.vbht as List<V_hx_Bid_records_borrowing_target>;
+
+    DataTable lixishuyi = o.GetTotalAmt(int.Parse(Model.registerid.ToString()));
+
+    DataTable benjin = o.GetToatlPrincipal(int.Parse(Model.registerid.ToString()));
+
+    DataTable benall = o.GetToatlPrincipalALL(int.Parse(Model.registerid.ToString()));
+}
+@Url.File("Scripts/highcharts.js").ToHtml()
+@Url.File("Scripts/exporting.js").ToHtml()
+@Url.File("Scripts/layer.min.js").ToHtml()
+<div class="content">
+    <!--公共的左侧-->
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+    <div>
+        <!--主页部分-->
+        <div class="conRig">
+            <div class="con_01">
+                <h2 class="c1_h2"><a href="#" target="_blank">最新通知 :  创利投“双十二投资返现” 活动圆满落幕 快来围观啦</a><a href="#" target="_blank" class="c1_a1">更多＞</a></h2>
+                <div class="c1_cont">
+                    <dl class="c1_dl">
+                        <dt><img src="/images/head.jpg"><a href="#" class="font_b">修改头像</a></dt>
+                        <dd>黄金会员</dd>
+                    </dl>
+
+                    <ul class="c1_ul1">
+                        <li class="c1_li01"><span>@(Model.username)</span><a href="/usercenter/Thirdparty_login" target="_blank">登录托管账户</a></li>
+                        <li class="c1_li02">
+                            <span title="已实名认证"><img src="/images/man.png"></span>
+                            <span title="已手机验证"><img src="/images/tel.png"></span>
+                            <span title="已邮箱验证"><img src="/images/mas.png"></span>
+                        </li>
+                        <li class="c1_li03"><em>安全等级：</em><span><i style="width:70%;"></i></span></li>
+                    </ul>
+
+                    <ul class="c1_ul2">
+                        <li class="c1_li04"><span>我的奖励</span></li>
+                        <li class="c1_li05"><span><img src="/images/new_user02.png"></span><span><img src="/images/new_user03.png"></span></li>
+                        <li class="c1_li06"><span class="span_left">抵扣券<i>@o.Getbonus_account(Model.registerid,2)</i>张</span><span class="span_right">加息券<i>@o.Getbonus_account(Model.registerid, 3)</i>张</span></li>
+                    </ul>
+
+                    <ul class="c1_ul3">
+                        <li class="c1_li07">已赚总额</li>
+                        <li class="c1_li08">@o.GetInterest(Model.registerid)</li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="gap"></div>
+
+            <div class="con_02">
+                <h2 class="c1_h2">我的资产</h2>
+                <div class="c2_cont">
+                    <dl class="c2_dl">
+                        <dt>我的资产<img src="/images/new_user13.jpg" id="icon_q"></dt>
+                        <dd class="c2_dd01">@Math.Round(o.TetTotalCapital(Model.registerid)+ o.GetPrincipal(Model.registerid), 2).ToString()</dd>
+                        <dd class="c2_dd02" id="ques_cont">我的资产=账户余额+理财资产</dd>
+                        
+                    </dl>
+
+                    <ul class="c2_ul1">
+                        <li>账户余额：<span><b>@Model.available_balance</b></span></li>
+                        <li>冻结金额：<span>@Model.account_total_assets</span></li>
+                        <li>可用奖励：<span>@Math.Round(o.GetBonuses(Model.registerid), 2).ToString()</span></li>
+                    </ul>
+
+                    <ul class="c2_ul2">
+                        <li class="c2_li01"><a href="/usercenter/recharge" target="_blank" class="c2_link1">充值</a><a href="/Cash/Index" target="_blank" class="c2_link2">提现</a></li>
+                        <li>理财资产：<span>@o.GetPrincipal(Model.registerid).ToString()</span></li>
+                        <li>待收收益：<span>@Math.Round(o.Getcollecttotalamountinterest(Model.registerid), 2).ToString()</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="gap"></div>
+
+            <div class="con_03">
+                <h2 class="c1_h2">投资账户</h2>
+                <div class="c3_cont">
+                    <table align="center" border="0" width="832" >
+                        <tr class="tr_01">
+                            <td>投资项目</td>
+                            <td>投资总额</td>
+                            <td>已赚金额</td>
+                            <td>理财金额</td>
+                            <td>投资笔数</td>
+                        </tr>
+                        <tr>
+                            <td>新手标</td>
+                            <td>@Math.Round(o.GetTotalinvestment(Model.registerid, 6), 2).ToString()</td>
+                            <td>@o.GetInterest(Model.registerid,6)</td>
+                            <td>0.00</td>
+                            <td>@o.GetInvesTotal(Model.registerid, 6)</td>
+                        </tr>
+                        <tr>
+                            <td>稳健理财</td>
+                            <td>@Math.Round(o.GetTotalinvestment(Model.registerid, 2)+ o.GetTotalinvestment(Model.registerid, 3)+ o.GetTotalinvestment(Model.registerid, 4)+ o.GetTotalinvestment(Model.registerid, 5), 2).ToString()元</td>
+                            <td>@o.GetInterest(Model.registerid)</td>
+                            <td>0.00</td>
+                            <td>@Math.Round(o.GetInvesTotal(Model.registerid,2)+ o.GetInvesTotal(Model.registerid, 3) + o.GetInvesTotal(Model.registerid, 4) + o.GetInvesTotal(Model.registerid, 5))</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="gap"></div>
+
+            <div class="con_03">
+                <h2 class="c1_h2">借款账户</h2>
+                <div class="c3_cont">
+                    <table align="center" border="0" width="832">
+                        <tr class="tr_01">
+                            <td>借款产品</td>
+                            <td>申请金额</td>
+                            <td>放款金额</td>
+                            <td>还款金额</td>
+                            <td>借款笔数</td>
+                        </tr>
+                        <tr>
+                            <td>新手标</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>稳健理财</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
+<script>
+var oImg=document.getElementById("icon_q");
+var oQue=document.getElementById("ques_cont");
+oImg.onclick=function(){
+	oQue.style.display='block';
+}
+
+</script>

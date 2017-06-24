@@ -1,0 +1,62 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@model PagedList<hx_ActivityTable>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link rel="stylesheet" href="/Areas/Admin/style/chonzhi.css" />
+<link rel="stylesheet" href="/Areas/Admin/style/style.css" />
+<link href="/Areas/Admin/style/jcDate.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/Admin/style/nav_style.css" rel="stylesheet" type="text/css">
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<link href="~/Content/pagecss.css" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript">
+    var dff;
+    function AjaxStart() {
+        // dff = layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        // var index = parent.layer.close(dff); //获取窗口索引
+        // layer.close(index);
+    }
+    //推荐
+    function SetACTState(id, state) {
+        $.getJSON("/admin/Activity/SetACTState", { id: id, state: state }, function (data) {
+            if (data.ret == 1) {
+                layer.msg("操作成功!", 1, 1)
+                location.reload(true);
+            } else {
+                alert(data.msg);
+            }
+        });
+    }
+</script>
+<div class="v_right">
+    <!--投资页面-->
+    <div class="touzi chonzhi">
+        <p class="tP1">
+            当前位置：活动管理 &nbsp;&nbsp;>&nbsp;&nbsp;常规活动
+        </p>
+        <div class="dq_div">
+            <div class="dq_div_in1">
+                <p class="dq_in1_div">
+                    常规活动列表
+                </p>
+                <div class="dq_in1_div2">
+                    <a href="/Admin/Activity/GeneralAdd">添加新活动</a>
+                </div>
+
+                @using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm", @class = "form-inline well well-sm" }))
+                { }
+
+                @Html.Partial("_GeneralACTList", Model)
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}

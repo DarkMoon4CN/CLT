@@ -1,0 +1,35 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuangLiTou.Core.Entities.ChinaPnr.SubmitTenderEntity
+
+@{
+    ViewBag.Title = "跳转中...";
+    Layout = null;
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<form id="form" action="@Settings.Instance.ChinapnrUrl" method="post">
+    @Html.ValidationSummary(true)
+    <div class="create_form">
+        <div>
+            @Html.HiddenFor(m => m.MerId)
+            @Html.HiddenFor(m => m.Version)
+            @Html.HiddenFor(m => m.CmdId)
+            @Html.HiddenFor(m => m.MerCustId)
+            @Html.HiddenFor(m => m.BgRetUrl)
+            @Html.HiddenFor(m => m.RetUrl)
+
+            @Html.HiddenFor(m => m.OrdId)
+            @Html.HiddenFor(m => m.OrdDate)
+            @Html.HiddenFor(m => m.TransAmt)
+            @Html.HiddenFor(m => m.UsrCustId)
+            @Html.HiddenFor(m => m.MaxTenderRate)
+            <input id="BorrowerDetails" name="BorrowerDetails" type="hidden" value=@Model.BorrowerDetails.ToHtml() />
+            @Html.HiddenFor(m => m.ReqExt)
+            @Html.HiddenFor(m => m.IsFreeze)
+            @Html.HiddenFor(m => m.FreezeOrdId)
+            @Html.HiddenFor(m => m.MerPriv)
+            @Html.HiddenFor(m => m.ChkValue)
+        </div>
+        <input type="submit" id="submitBtn" />
+    </div>
+</form>

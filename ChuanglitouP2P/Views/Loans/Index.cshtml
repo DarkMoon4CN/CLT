@@ -1,0 +1,299 @@
+﻿@using ChuanglitouP2P.Common
+
+@{
+
+
+    if(ViewBag.iscompany=="false")
+    {
+        ViewBag.Title = "个人快速贷款_个人借款首选创利投";
+
+        ViewBag.keywords = "个人借款,个人贷款,快速借款,创利投贷款";
+
+        ViewBag.desc = "创利投金服为您提供免手续费的房产抵押贷款，快速办理个人借款，方便您资金尽快周转！";
+    }
+    else
+    {
+        ViewBag.Title = "企业快速贷款_企业借款首选创利投";
+
+        ViewBag.keywords = "企业贷款,公司贷款,企业借贷,创利投贷款";
+
+        ViewBag.desc = "创利投金服为您提供免手续费的房产抵押贷款，快速办理企业借款，方便您资金尽快周转！";
+    }
+
+   
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+@Url.File("Content/reg_common.css").ToHtml()
+@Url.File("Content/style_register.css").ToHtml()
+
+@Url.File("Scripts/Validform_v5.3.2_min.js").ToHtml()
+@Url.File("Scripts/layer.min.js").ToHtml()
+@Url.File("Scripts/lhgcore.min.js").ToHtml()
+@Url.File("Scripts/lhgcalendar.min.js").ToHtml() 
+ 
+
+<div class="content" style="width: 980px;background: none;">
+    <div class="loan_wrap">
+        <div class="loan_apply_tabs" id="loan_apply_tabs">
+            <ul>
+                <li class="loan_apply_cur" id="person">个人申请贷款<i></i></li>
+                <li id="company">企业申请贷款<i></i></li>
+            </ul>
+        </div>
+        <div class="loan_apply_wrap" id="loan_apply_wrap">
+
+
+            <form id="form1" class="registerform" action="/Borrloans.html" method="post">
+
+                <input type="hidden" name="act" id="act" value="p" />
+                <div class="loan_apply_item" style="display:block;">
+                    <ul>
+                        <li><div class="loan_label"><span class="color_red">*</span>贷款人姓名：</div><input name="pUsername" id="pUsername" type="text" class="loan_txt" datatype="*2-20" nullmsg="请填写贷款人姓名！" errormsg="贷款人姓名范围在2~20位之间！" /></li>
+                        <li><div class="loan_label"><span class="color_red">*</span>联系电话：</div><input name="puserTel" id="puserTel" type="text" class="loan_txt" datatype="*2-20" nullmsg="请填写贷款人联系电话！" errormsg="贷款人联系电话范围在2~20位之间！" /></li>
+                        <li><div class="loan_label"><span class="color_red">*</span>贷款金额：</div><input name="pBorrAMT" id="pBorrAMT" type="text" class="loan_txt" datatype="n" nullmsg="请填写贷款金额！" errormsg="贷款金额格式不对！" /></li>
+                        <li><div class="loan_label"><span class="color_red">*</span>所在地区：</div><input name="pArea" id="pArea" type="text" class="loan_txt" datatype="*2-20" nullmsg="请填写所在地区！" errormsg="所在地区！" /></li>
+                        <li><div class="loan_label"><span class="color_red">*</span>贷款用途：</div><textarea cols="" rows="" name="pBorrPurposes" id="pBorrPurposes" class="loan_text" datatype="*" nullmsg="请填写贷款用途！"></textarea></li>
+                        <li>
+                            <div class="loan_label"><span class="color_red">*</span>贷款期限：</div><select class="loan_select" id="pTimeLimit" name="pTimeLimit" datatype="*" nullmsg="请选择贷款期限！">
+                                <option value="">请选择您的贷款期限</option>
+                                <option value="1">1个月</option>
+                                <option value="2">2个月</option>
+                                <option value="3">3个月</option>
+                                <option value="4">4个月</option>
+                                <option value="5">5个月</option>
+                                <option value="6">6个月</option>
+                                <option value="7">7个月</option>
+                                <option value="8">8个月</option>
+                                <option value="9">9个月</option>
+                                <option value="10">10个月</option>
+                                <option value="11">11个月</option>
+                                <option value="12">12个月</option>
+                                <option value="18">18个月</option>
+                                <option value="24">24个月</option>
+                            </select>
+                        </li>
+                        <li>
+                            <div class="loan_label"><span class="color_red">*</span>抵押情况：</div>
+                            <select class="loan_select" id="pMortgage" name="pMortgage" datatype="*" nullmsg="请选择抵押情况！">
+                                <option value="">==请选择==</option>
+                                <option value="1">无抵押</option>
+                                <option value="2">有抵押</option>
+                            </select>
+                        </li>
+                        <li><div class="loan_label">验证码：</div>
+                        <span style="float:left; margin:0 20px 0 0;">
+                            <input name="pcode" id="pcode" type="text" class="loan_txt loan_code" ajaxurl="/checkregister.html" datatype="*" nullmsg="请填写验证码！" /></span>
+                        <span style="float:left; margin:0 20px 0 0;"> 
+                            <img id="image1" src="/Validate.html" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();" /></span></li>
+                    </ul>
+                    <div class="loan_apply_btn"><a href="javascript:void(0)" id="psubmit">提交申请</a></div>
+                </div>
+
+            </form>
+
+
+
+
+            <div class="loan_apply_item">
+
+                <form id="form2" class="registerform" action="/Borrloans1.html" method="post">
+
+                    <input type="hidden" name="act" id="Hidden1" value="e" />
+                    <ul>
+                        <li><div class="loan_label"><span class="color_red">*</span>贷款人：</div><input name="Username" id="Username" type="text" class="loan_txt" datatype="*2-20" nullmsg="请填写贷款人姓名！" errormsg="贷款人姓名范围在2~20位之间！" /></li>
+                        <li><div class="loan_label"><span class="color_red">*</span>贷款电话：</div><input name="userTel" id="userTel" type="text" class="loan_txt" datatype="*7-20" nullmsg="请填写贷款人联系电话！" errormsg="贷款人联系电话范围在7~20位之间！" /></li>
+                        <li><div class="loan_label"><span class="color_red">*</span>贷款金额：</div><input name="BorrAMT" id="BorrAMT" type="text" class="loan_txt" datatype="n" nullmsg="请填写贷款金额！" errormsg="贷款金额格式不对！" /></li>
+                        <li><div class="loan_label"><span class="color_red">*</span>贷款用途：</div><textarea id="BorrPurposes" name="BorrPurposes" cols="" rows="" class="loan_text" datatype="*" nullmsg="请填写贷款用途！"></textarea></li>
+                        <li><div class="loan_label"><span class="color_red">*</span>公司名称：</div><input name="CompName" id="CompName" type="text" class="loan_txt" datatype="*" nullmsg="请填写公司名称！" /></li>
+                        <li><div class="loan_label"><span class="color_red">*</span>所属行业：</div><input name="Industry" id="Industry" type="text" class="loan_txt" datatype="*" nullmsg="请填写所属行业！" /></li>
+                        <li><div class="loan_label"><span class="color_red">*</span>注册资金：</div><input name="RegCapital" id="RegCapital" type="text" class="loan_txt" datatype="*" nullmsg="请填写注册资金！" /></li>
+                        <li>
+                            <div class="loan_label"><span class="color_red">*</span>贷款期限：</div><select class="loan_select" name="TimeLimit" id="TimeLimit" datatype="*" nullmsg="请选择贷款期限！">
+                                <option value="">请选择您的贷款期限</option>
+                                <option value="1">1个月</option>
+                                <option value="2">2个月</option>
+                                <option value="3">3个月</option>
+                                <option value="4">4个月</option>
+                                <option value="5">5个月</option>
+                                <option value="6">6个月</option>
+                                <option value="7">7个月</option>
+                                <option value="8">8个月</option>
+                                <option value="9">9个月</option>
+                                <option value="10">10个月</option>
+                                <option value="11">11个月</option>
+                                <option value="12">12个月</option>
+                                <option value="18">18个月</option>
+                                <option value="24">24个月</option>
+                            </select>
+                        </li>
+                        <li><div class="loan_label"><span class="color_red">*</span>成立时间：</div><span style="float:left; margin:0 20px 0 0;"><input name="FoundingTime" id="FoundingTime" type="text" class="loan_txt" datatype="d" nullmsg="请设置成立时间！" errormsg="成立时间为日期格式！" /></span></li>
+                        <li>
+                            <div class="loan_label">验证码：</div><span style="float:left; margin:0 20px 0 0;">
+
+                                <input name="vcode" id="vcode" type="text" class="loan_txt loan_code" ajaxurl="/checkregister.html?action=Validate" datatype="*" nullmsg="请填写验证码！" />
+                            </span>
+
+                            <span style="float:left; margin:0 20px 0 0;"><img id="Img1" src="/Validate.html" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();" /></span>
+                        </li>
+                    </ul>
+                    <div class="loan_apply_btn"><a href="javascript:void()" id="btnsubmit">提交申请</a></div>
+
+                </form>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#form1").Validform({
+                tiptype: 4,
+                ajaxPost: true,
+                callback: function (data) {
+                    if (data.rs == "y") {
+                        layer.msg("借款信息提示成功!", 3, 1);
+                        location.href = data.url;
+                    }
+                    else {
+                        layer.msg("" + data.error + "", 1, 5);
+                    }
+                }
+            });
+
+
+            J('#FoundingTime').calendar({ format: 'yyyy-MM-dd' });
+            $("#form2").Validform({
+                tiptype: 4,
+                ajaxPost: true,
+                callback: function (data) {
+
+                    if (data.rs == "y") {
+                        layer.msg("借款信息提示成功", 3, 1);
+                        location.href = data.url;
+                    }
+                    else {
+                        layer.msg("" + data.error + "", 1, 5);
+                    }
+                }
+            });
+
+
+            /*
+            $(".registerform").Validform({
+                tiptype: 4
+
+            });*/
+
+            $.extend($.Datatype, {
+                "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+                "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+                "day1": /^[1-2]\d{0,1}$|^28$/,
+                "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|14[57])[0-9]{8}$/,
+                "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+                "regex1": /^[0-9A-Za-z]{6,25}$/
+
+            });
+
+
+
+            //psubmit
+
+            $('#psubmit').click(function () {
+
+                $('#form1').submit();
+            });
+
+            $('#btnsubmit').click(function () {
+                $('#form2').submit();
+            });
+
+            /*
+            $('#psubmit').click(function () {
+
+                    var AjaxURL = "Borrloans.html";
+                    $.ajax({
+                        type: "POST",
+                        dataType: "html",
+                        async: true,
+                        url: AjaxURL + '?Action=' + 'p',
+                        data: $('#form1').serialize(),
+
+                        success: function (result) {
+                            var strresult = result;
+                            alert(strresult);
+                            //加载最大可退金额
+                            // $("#spanMaxAmount").html(strresult);
+                        },
+                        error: function (data) {
+                            alert("error:" + data.responseText);
+                        }
+
+                    });
+
+
+
+
+
+
+
+            });*/
+
+
+            $('.flexslider').flexslider({
+                directionNav: true,
+                pauseOnAction: false
+            });
+            function addClass() { $(this).addClass("hover"); } function removeClass() { $(this).removeClass("hover"); }
+            $(".nav ul li").hover(addClass, removeClass);
+            jQuery.jqtab = function (tabtit, tab_conbox, shijian) {
+                //$(tab_conbox).find("li").hide();
+                $(tabtit).find("li:first").addClass("loan_apply_cur").show();
+                $(tab_conbox).find("div:first").show();
+                $(tabtit).find("li").bind(shijian, function () {
+                    $(this).addClass("loan_apply_cur").siblings("li").removeClass("loan_apply_cur");
+                    var activeindex = $(tabtit).find("li").index(this);
+                   
+                    $(tab_conbox).children().eq(activeindex).show().siblings().hide();
+                    return false;
+                });
+            };
+            $.jqtab("#loan_apply_tabs", "#loan_apply_wrap", "click");
+
+        });
+
+        function changeImg() {
+            $("#image1").attr("src", "/Validate.html?a=" + Math.random());
+        }
+
+</script>
+
+<script>
+        $(function () {
+            var platParam = location.search;
+            if (platParam.indexOf('iscompany=true') < 0) {
+                $("#person").addClass("loan_apply_cur");
+                $("#company").removeClass("loan_apply_cur");
+                $("#loan_apply_wrap").children().eq(0).show().siblings().hide();
+               
+            } else {
+                $("#company").addClass("loan_apply_cur");
+                $("#person").removeClass("loan_apply_cur");
+
+                $("#loan_apply_wrap").children().eq(1).show().siblings().hide();
+              
+            }
+            $("#person").click(function () {
+                $(document).attr("title", "个人快速贷款_个人借款首选创利投");
+            });
+            $("#company").click(function () {
+                $(document).attr("title", "企业快速贷款_企业借款首选创利投");
+            });
+        })
+</script>
+

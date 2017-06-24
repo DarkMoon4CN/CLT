@@ -1,0 +1,70 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using Webdiyer.WebControls.Mvc;
+@using ChuangLitouP2P.Models;
+@model PagedList<hx_UserAct>
+@{
+    ViewBag.Title = "加息券";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+    int pageIndex = ViewBag.pageIndex;
+    int pageCount = ViewBag.pageCount;
+}
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">加息券</h2>
+</header>
+
+<section class="user_head_tabs">
+    <div><a href="/InterestRates/Index">未使用</a></div>
+    <div><a href="/InterestRates/activityUsed" >已使用</a></div>
+    <div><a href="/InterestRates/activityExpired" class="ptabs_curr">已过期</a></div>
+</section>
+
+
+<div class="jx_sec">
+
+    @if (Model.Count() > 0)
+    {
+        ChuanglitouP2P.BLL.EF.ActBase aBase = new ChuanglitouP2P.BLL.EF.ActBase();
+        string limitStr = "";
+        foreach (var item in Model)
+        {
+            aBase.GetCanUseLimit(item.UseLifeLoan, out limitStr);
+            limitStr = limitStr == "投资使用无限制" ? "" : limitStr;
+
+            <section class="jxq_itemR">
+                <div class="jx_img02 jx_pic">
+                    
+                    <dl class="jx_dl">
+                        <small style="position: absolute;margin: -14px -100px;">@limitStr</small>
+                        @*@if (item.Amt == Convert.ToDecimal(1.00))
+                        {
+                            <small style="position: absolute;margin: -14px -100px;">仅限投资三个月标</small>
+                        }
+                        else if (item.Amt == Convert.ToDecimal(2.00))
+                        {
+                            <small style="position: absolute;margin: -14px -100px;">仅限投资六个月标</small>
+                        }*@
+                        <dt><i>@item.Amt</i>%</dt>
+                        <dd class="jx_dd01">有效期：@DateTime.Parse(item.hx_ActivityTable.ActStarttime.ToString()).ToString("yyyy-MM-dd")   -  @DateTime.Parse(item.AmtEndtime.ToString()).ToString("yyyy-MM-dd")</dd>
+                        <dd class="jx_dd02"><a href="javascript:;">已过期</a></dd>
+                    </dl>
+                    <span class="jx_span">加<br>息<br>券</span>
+                </div>
+            </section>
+
+        }
+    }
+    else
+    {
+        <span style="display: block;margin: 20px;color: #666;text-align: center;">暂无记录</span>
+    }
+
+</div>
+<section class="page_box">
+    <div class="page_prev"><a href="/InterestRates/activityExpired?pageIndex=@(pageIndex<=1?1:(pageIndex-1))">上一页</a></div>
+    <div class="page_number">@(pageIndex<=1?1: pageIndex)/@(pageCount<=1?1: pageCount)</div>
+    <div class="page_next"><a href="/InterestRates/activityExpired?pageIndex=@(pageIndex<=1?2:(pageIndex+1))">下一页</a></div>
+</section>
+<div class="bot_height"></div>

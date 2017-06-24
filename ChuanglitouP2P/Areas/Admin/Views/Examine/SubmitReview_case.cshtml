@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "SubmitReview_case";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+    string df = ViewBag.dfd;
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+@if(df=="1")
+{
+    <script>
+        window.parent.closewindows();
+    </script>
+  
+
+}
+
+
+
+@Html.Raw(ViewBag.str1)

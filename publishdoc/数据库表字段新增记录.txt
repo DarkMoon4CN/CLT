@@ -1,0 +1,318 @@
+﻿1.用户表  hx_member_table 
+新增字段
+客服沟通次数	     CommNum	       int		
+充值次数	     RechargeNum	   int	
+提现次数	     CashNum	       int		
+投资次数	     InvestNum	       int	
+用户头像      	 avatar            varchar(200)
+	邀请是否有效	LostInvitation	int	 default 0 	
+执行语句：  
+alter table hx_member_table add LostInvitation int default 0 ;	--邀请是否有效
+update hx_member_table set LostInvitation=0;
+alter table hx_member_table add LoginNum int default 0 ;	
+update hx_member_table set LoginNum=0;
+alter table hx_member_table add calltime datetime;	
+update hx_member_table set calltime=null;
+
+
+汇付银行表 hx_td_Bank 
+	新增字段
+图片路径	CardImage	varchar(100)	
+快捷充值    Isquick     int  (0 默认    1 快捷)
+普通充值    Isordinary  int  (0 默认    1 快捷)
+alter table hx_td_Bank add  CardImage   varchar(100) null,Isquick int default 0,Isordinary int default 0  ,isGren int default 0 ;
+update hx_td_Bank set Isquick=0,Isordinary=0;
+
+
+用户绑卡表  hx_UsrBindCardC
+	新增字段
+绑卡方式	BindCardType	int （0 普通    1 快捷绑卡 QP）
+alter table hx_UsrBindCardC add  BindCardType int default 0 ;
+update hx_UsrBindCardC set BindCardType=0
+
+
+用户提现   hx_td_UserCash
+	新增字段
+实际支付	PayAmt	decimal(38,2)	（取现金额-手续费）
+alter table hx_td_UserCash add  PayAmt decimal(38,2) default 0.00 ;
+update hx_td_UserCash set PayAmt=0.00
+
+
+增加表hx_AdminLimitInfo
+	增加字段title字段
+	增加字段“UrlPara”（地址参数）
+	alter table hx_AdminLimitInfo add UrlPara varchar(100) 
+
+
+
+表hx_borrowing_target 
+增加一个是否删除字段（SQL语句） 
+alter table hx_borrowing_target add isDel int default 0 ;---是否删除 0-不删除，1-删除
+GO
+update hx_borrowing_target set isDel=0;
+GO
+	增加字段
+	是否可用加息券	IsIRC	int		 default 0	   0-不使用，1-使用
+借款用途	Purpose	varchar(200)	
+还款来源	PaySource	varchar(200)	
+抵押物房产	Collateral	varchar(200)	
+执行语句 :
+alter table hx_borrowing_target add IsIRC int default 0 , Purpose	varchar(200) null  ,PaySource	varchar(200) null ,  Collateral	varchar(200) null;
+update hx_borrowing_target set IsIRC=0;
+	是否加息【发布标的时需要选择】	Isinterest	int	  default 0   0不加息  1加息
+	执行语句：
+	alter table hx_borrowing_target add Isinterest int default 0 
+	update hx_borrowing_target set Isinterest=0;
+
+
+表 hx_td_about_news    
+	增加字段  
+ 		新闻图片  newimg  	varchar(200)
+	执行语句:
+	 	alter table  hx_td_about_news  add   newimg	varchar(300) null
+
+
+投资记录表   hx_Bid_records
+新增字段
+	加息券比例	JiaxiNum	decimal(6,2)
+	奖励金额	BonusAmt	decimal(10,2)
+	执行语句: 
+	alter table hx_Bid_records add JiaxiNum decimal(6,2), BonusAmt	decimal(10,2) ;
+	update hx_Bid_records set JiaxiNum=0.00,BonusAmt=0.00;
+
+客户沟通电话记录 hx_td_Phone_records 
+	增加沟通方式和问题类别 (张云飞)
+alter table hx_td_Phone_records add gtType varchar(50);	--沟通方式
+GO
+alter table hx_td_Phone_records add problemType varchar(50);	--问题类别
+GO
+
+用户邀请表  hx_td_Userinvitation 
+新增字段
+用户活动id	UserAct	int
+alter table hx_td_Userinvitation add UserAct int default 0 ;	--用户活动表的奖励id
+update hx_td_Userinvitation set UserAct=0;
+GO
+
+流水表bonus_account_water
+	新增字段 Createtime
+	alter table bonus_account_water add Createtime datetime;	
+	update bonus_account_water set Createtime=null;
+
+
+更改视图 V_incomeborr_count  
+	新增字段:  service_charge
+
+视图V_Phone_records
+	增加字段  gtType和problemType
+
+
+视图 V_hx_Bid_records_borrowing_target  
+	新增字段repayment_date    release_date
+
+视图 V_hx_Bid_records_borrowing_target
+	新增字段:  JiaxiNum  ,BonusAmt  ，project_type_id
+
+更新视图：V_type_news
+ 	新增字段:  newimg
+
+更新视图：V_borrowing_target_addlist、V_borrowing_target_bonding和V_borrowing_target_review
+在视图中添加表hx_borrowing_target中字段isDel=0的筛选
+
+
+更新视图：V_borrowing_target_addlist
+	新增字段   IsIRC    Purpose   PaySource    Collateral
+	新增字段:  Isinterest
+	新增关联表   hx_Project_type    新增字段:  Isinterest
+
+用户绑卡视图 V_UsrBindCardBank
+	新增字段
+		银行图像logo CardImage 
+		是否快充绑卡   Isquick
+是否普通绑卡   Isordinary 
+
+
+
+后台权限视图：V_DepUserLimitInfo【5月3日后更新sql语句的不需要添加】
+
+视图：V_Recharge_user_bank和V_UserCash_Bank
+	修改，增加关联字段：用户表  hx_member_table 的 mobile
+
+新增 邀请记录视图   V_invitation_record
+
+新增视图 V_ACT
+
+新增视图 View_BId_userAct
+
+新增视图 V_Bid_records_Lost
+
+新增活动信息表  hx_ActivityTable
+	字段1、面向用户 ActUser：
+		首次投资用户=1，续投用户=6，每标首投用户=3，每标最大投资用户=4，所有投资用户=5，非首投用户=2
+
+
+
+新增奖励类型表 hx_RewardType
+/****** Object:  Table [dbo].[hx_RewardType]    Script Date: 2016-9-5 08:49:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[hx_RewardType](
+	[RewTypeID] [int] IDENTITY(1,1) NOT NULL,
+	[RewTypeName] [varchar](200) NULL,
+ CONSTRAINT [PK_HX_REWARDTYPE] PRIMARY KEY CLUSTERED 
+(
+	[RewTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
+
+
+
+新增活动类别  hx_ActivityType
+/****** Object:  Table [dbo].[hx_ActivityType]    Script Date: 2016-9-5 08:50:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[hx_ActivityType](
+	[ActTypeId] [int] IDENTITY(1,1) NOT NULL,
+	[ActName] [varchar](200) NULL,
+ CONSTRAINT [PK_HX_ACTIVITYTYPE] PRIMARY KEY CLUSTERED 
+(
+	[ActTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
+
+新增用户活动表  hx_UserAct
+新增  订单id 	OrderID	decimal(20,0)
+执行语句： alter table hx_UserAct add OrderID	decimal(20,0)
+用户活动表 hx_UserAct  下面语句可以忽略，直接运行新建语句 
+
+新增字段:  奖励时间	Createtime	datetime
+alter table hx_UserAct add Createtime datetime ;
+	update hx_UserAct set Createtime='2016-08-17 16:00:00.000';
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[hx_UserAct](
+	[UserAct] [int] IDENTITY(1,1) NOT NULL,
+	[registerid] [int] NULL,
+	[ActID] [int] NULL,
+	[RewTypeID] [int] NULL,
+	[ActTypeId] [int] NULL,
+	[Amt] [decimal](20, 2) NULL CONSTRAINT [DF__hx_UserAct__Amt__4C564A9F]  DEFAULT ((0.00)),
+	[Uselower] [decimal](20, 2) NULL CONSTRAINT [DF__hx_UserAc__Uselo__4D4A6ED8]  DEFAULT ((0.00)),
+	[Usehight] [decimal](20, 2) NULL CONSTRAINT [DF__hx_UserAc__Usehi__4E3E9311]  DEFAULT ((0.00)),
+	[AmtEndtime] [datetime] NULL,
+	[AmtUses] [int] NULL,
+	[UseState] [int] NULL CONSTRAINT [DF__hx_UserAc__UseSt__4F32B74A]  DEFAULT ((0)),
+	[AmtProid] [int] NULL CONSTRAINT [DF__hx_UserAc__AmtPr__5026DB83]  DEFAULT ((0)),
+	[UseTime] [datetime] NULL,
+	[ISSmsOne] [int] NULL CONSTRAINT [DF__hx_UserAc__ISSms__511AFFBC]  DEFAULT ((0)),
+	[IsSmsThree] [int] NULL CONSTRAINT [DF__hx_UserAc__IsSms__520F23F5]  DEFAULT ((0)),
+	[IsSmsSeven] [int] NULL CONSTRAINT [DF__hx_UserAc__IsSms__5303482E]  DEFAULT ((0)),
+	[isSmsFifteen] [int] NULL CONSTRAINT [DF__hx_UserAc__isSms__53F76C67]  DEFAULT ((0)),
+	[isSmsSixteen] [int] NULL CONSTRAINT [DF__hx_UserAc__isSms__54EB90A0]  DEFAULT ((0)),
+	[OrderID] [decimal](20, 0) NULL,
+	[Createtime] [datetime] NULL,
+ CONSTRAINT [PK_HX_USERACT] PRIMARY KEY CLUSTERED 
+(
+	[UserAct] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[hx_UserAct]  WITH CHECK ADD  CONSTRAINT [FK_HX_USERA_REFERENCE_HX_ACTIV] FOREIGN KEY([ActTypeId])
+REFERENCES [dbo].[hx_ActivityType] ([ActTypeId])
+GO
+ALTER TABLE [dbo].[hx_UserAct] CHECK CONSTRAINT [FK_HX_USERA_REFERENCE_HX_ACTIV]
+GO
+ALTER TABLE [dbo].[hx_UserAct]  WITH CHECK ADD  CONSTRAINT [FK_HX_USERA_REFERENCE_HX_ACTIV2] FOREIGN KEY([ActID])
+REFERENCES [dbo].[hx_ActivityTable] ([ActID])
+GO
+ALTER TABLE [dbo].[hx_UserAct] CHECK CONSTRAINT [FK_HX_USERA_REFERENCE_HX_ACTIV2]
+GO
+ALTER TABLE [dbo].[hx_UserAct]  WITH CHECK ADD  CONSTRAINT [FK_HX_USERA_REFERENCE_HX_MEMBE] FOREIGN KEY([registerid])
+REFERENCES [dbo].[hx_member_table] ([registerid])
+GO
+ALTER TABLE [dbo].[hx_UserAct] CHECK CONSTRAINT [FK_HX_USERA_REFERENCE_HX_MEMBE]
+GO
+ALTER TABLE [dbo].[hx_UserAct]  WITH CHECK ADD  CONSTRAINT [FK_HX_USERA_REFERENCE_HX_REWAR] FOREIGN KEY([RewTypeID])
+REFERENCES [dbo].[hx_RewardType] ([RewTypeID])
+GO
+ALTER TABLE [dbo].[hx_UserAct] CHECK CONSTRAINT [FK_HX_USERA_REFERENCE_HX_REWAR]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 不限' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_UserAct', @level2type=N'COLUMN',@level2name=N'Uselower'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 不限' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_UserAct', @level2type=N'COLUMN',@level2name=N'Usehight'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1 仅单独使用  2 可组合使用' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_UserAct', @level2type=N'COLUMN',@level2name=N'AmtUses'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 未使用   1已使用  2 已过期  3 锁定中' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_UserAct', @level2type=N'COLUMN',@level2name=N'UseState'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 默认未通知   1通知' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_UserAct', @level2type=N'COLUMN',@level2name=N'ISSmsOne'
+GO
+
+
+
+
+新增登录用户信息表 hx_td_usrlogininfo
+/****** Object:  Table [dbo].[hx_td_usrlogininfo]    Script Date: 2016-9-5 09:40:00 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[hx_td_usrlogininfo](
+	[loginid] [int] IDENTITY(1,1) NOT NULL,
+	[registerid] [int] NULL,
+	[logintime] [datetime] NULL,
+	[Loginusrname] [varchar](200) NULL,
+	[loginusrpass] [varchar](200) NULL,
+	[loginstate] [int] NULL CONSTRAINT [DF__hx_td_usr__login__58520D30]  DEFAULT ((0)),
+	[loginIP] [varchar](20) NULL,
+	[logincity] [varchar](200) NULL,
+	[loginsource] [int] NULL,
+ CONSTRAINT [PK_HX_TD_USRLOGININFO] PRIMARY KEY CLUSTERED 
+(
+	[loginid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+ALTER TABLE [dbo].[hx_td_usrlogininfo]  WITH CHECK ADD  CONSTRAINT [FK_HX_TD_US_REFERENCE_HX_MEMBE] FOREIGN KEY([registerid])
+REFERENCES [dbo].[hx_member_table] ([registerid])
+GO
+ALTER TABLE [dbo].[hx_td_usrlogininfo] CHECK CONSTRAINT [FK_HX_TD_US_REFERENCE_HX_MEMBE]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 登录成功  1失败' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_td_usrlogininfo', @level2type=N'COLUMN',@level2name=N'loginstate'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 pc   1微信  2 安桌  3 苹果' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'hx_td_usrlogininfo', @level2type=N'COLUMN',@level2name=N'loginsource'
+GO
+
+
+
+
+新增文章表  点击量 字段
+alter table hx_td_about_news add  ClickCount int default 0
+
+
+
+
+

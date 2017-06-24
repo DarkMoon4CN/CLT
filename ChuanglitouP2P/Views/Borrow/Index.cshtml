@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "北京抵押贷款_个人抵押借款_企业快速借款 - 创利投";
+
+    ViewBag.keywords = "抵押贷款,房产贷款,企业借款,北京贷款";
+
+    ViewBag.desc = "创利投金服为您提供免手续费的房产抵押贷款，快速办理企业借款，方便您资金尽快周转！";
+
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+
+
+
+<!---login banner------------------------->
+
+<div class="login_top">
+    <div class="logCenter">
+        <div class="log_left">
+            <h2>创利投让您借款无烦恼</h2>
+            <div class="log_Lcont">
+                <dl>
+                    <dt><img src="/images/login_ban01.jpg"></dt>
+                    <dd>免手续费</dd>
+                </dl>
+                <dl>
+                    <dt><img src="/images/log_icon02.png"></dt>
+                    <dd>免手续费</dd>
+                </dl>
+                <dl>
+                    <dt><img src="/images/log_icon03.png"></dt>
+                    <dd>免手续费</dd>
+                </dl>
+                <dl>
+                    <dt><img src="/images/log_icon04.png"></dt>
+                    <dd>免手续费</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="log_right">
+            <h2>快速借款咨询</h2>
+            <ul>
+                <li><input type="text" placeholder="真实姓名"></li>
+                <li><input type="text" placeholder="手机号码"></li>
+                <li class="log_input"><input type="text" placeholder="输入验证码"><span><img src="/images/Validate.gif"></span><span><img src="/images/log_icon05.png"></span></li>
+                <li class="log_submit"><input type="submit" value="立即咨询"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--part1-------------->
+
+<div class="log_main">
+    <div class="log_btn">
+        <a href="/Loans.html?iscompany=false"  class="log_btn1">个人申请借款</a>
+        <a href="/Loans.html?iscompany=true"  class="log_btn2">企业申请借款</a>
+    </div>
+    <dl>
+        <dt>借款注意事项</dt>
+        <dd>1、借款注意的事项请您在借款前检查自动投标设置，以免借款成功后资金自动投出影响正常还款或提现。</dd>
+        <dd>2、请勿将所获借款用于任何违法活动及一切高风险投资（如证券期货、彩票等）。</dd>
+    </dl>
+</div>
+

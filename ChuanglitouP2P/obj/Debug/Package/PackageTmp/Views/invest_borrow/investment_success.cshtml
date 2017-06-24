@@ -1,0 +1,117 @@
+﻿@using ChuanglitouP2P.Common;
+@model ChuanglitouP2P.Model.chinapnr.InitiativeTender.ReInitiativeTender
+@{
+    ViewBag.Title = "投资成功";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<script src="~/Scripts/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<link href="~/Content/css.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/style.css" rel="stylesheet" type="text/css" />
+@if (Model != null)
+{
+    if (Model.RespCode == "000" || Model.RespCode == "322" || Model.RespCode == "360" || Model.RespCode == "099")
+    {
+        <!--modify by fangjianmin 在99click处增加用户id监控-->
+        <script>_ozprm = "userid=@ViewBag.userid&orderid=@Model.OrdId";</script>
+        <div class="bContent">
+            <div class="content sure_cont" style="background-color:white;">
+                <div class="sure_v01" style="width:700px">
+                    <div class="sure_top">
+                        <span class="span_right"></span>
+                        <dl>
+                            <dt>
+                                恭喜您！投资成功！
+                                @{int LuckCount = ChuanglitouP2P.BLL.TActivity_Luck.GetOneShotCount(Utils.checkloginsession(), Model.OrdId, 1000);
+                                    string choujiangjihui = "";
+                                    string choujianganjiu = "";
+                                    if (LuckCount > 0)
+                                    {
+                                        choujiangjihui = "获得" + LuckCount + "次抽奖机会！";
+                                        choujianganjiu = "<a id=\"linkA\" href=\"/20160901.html\" target=\"_blank\" style=\"margin-left:30px\">立即抽奖</a>";
+                                    }
+                                }
+                                @choujiangjihui
+                            </dt>
+                            <dd>项目名称：@ViewBag.borrowing_title</dd>
+                            <dd>投资金额：@Model.TransAmt  元<a href="/usercenter/touzi" class="sure_a_jl">查看投资记录</a></dd>
+                            <dd class="sure_dd01">
+                                <a href="/">再投一笔</a>
+                                @Html.Raw(choujianganjiu)
+                                <i>10s后将自动跳转……</i>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                                    }
+                                    else
+                                    {
+
+                                        <div class="bContent">
+                                            <div class="content sure_cont" style="background-color:white;">
+                                                <div class="sure_v01">
+                                                    <div class="sure_top">
+                                                        <span class="span_wrong"></span>
+                                                        <dl>
+                                                            <dt>抱歉！投资失败！</dt>
+                                                            <dd>项目名称：@ViewBag.borrowing_title</dd>
+                                                            <dd>投资金额：@Model.TransAmt 元</dd>
+                                                            <dd class="sure_dd01">
+                                                                <a href="/" target="_blank">重新投资</a>
+
+                                                            </dd>
+                                                            <dd class="sure_dd02">网络不好，<a href="/">请重试</a></dd>
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+
+
+                                    }
+                                    else
+                                    {
+                                        <div class="bContent">
+                                            <div class="content sure_cont">
+                                                <div class="sure_v01">
+                                                    <div class="sure_top">
+                                                        <span class="span_wrong"></span>
+                                                        <dl>
+                                                            <dt>抱歉！非法参数来源！</dt>
+
+                                                            <dd class="sure_dd01"><a href="/" target="_blank">返回首页</a></dd>
+
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+<script type="text/javascript">
+
+    window.setTimeout('jump("/")', 10 * 1000);
+    function jump(url) {
+        location.href = url;
+    }
+    $(document).ready(function () {
+        if ($("#linkA").html() == "") {
+            $("#linkA").hide();
+        }
+        else {
+            $("#linkA").show();
+        }
+    });
+</script>
+<style type="text/css">
+    .hea_p4 {
+        width: auto !important;
+    }
+</style>
+
+
+
+

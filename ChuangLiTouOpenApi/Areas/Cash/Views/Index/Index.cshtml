@@ -1,0 +1,46 @@
+﻿@using ChuanglitouP2P.Common
+@{
+    Layout = null;
+}
+@model ChuanglitouP2P.Model.chinapnr.Cash.M_Cash
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>提现</title>
+    @Url.ApiFile("jquery-1.11.1.min.js").ToHtml()
+    @Url.ApiFile("layer.min.js").ToHtml()
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+    </script>
+</head>
+<body>
+    <script type="text/javascript"> layer.msg("数据处理中....！请不要关闭", 0.5, 1);</script>
+    <form id="formauto" name="formauto" action="@Settings.Instance.ChinapnrUrl" method="post">
+        <div>
+            <input id="Version" name="Version" value="@Model.Version" type="hidden" />
+            <input id="CmdId" name="CmdId" value="@Model.CmdId" type="hidden" />
+            <input id="MerCustId" name="MerCustId" value="@Model.MerCustId" type="hidden" />
+            <input id="OrdId" name="OrdId" value="@Model.OrdId" type="hidden" />
+            <input id="UsrCustId" name="UsrCustId" value="@Model.UsrCustId" type="hidden" />
+            <input name="TransAmt" id="TransAmt" value="@Model.TransAmt" type="hidden" />
+
+            <input id="ServFee" name="ServFee" value="@Model.ServFee" type="hidden" />
+            <input id="ServFeeAcctId" name="ServFeeAcctId" value="@Model.ServFeeAcctId" type="hidden" />
+            <input id="OpenAcctId" name="OpenAcctId" value="@Model.OpenAcctId" type="hidden" />
+            <input id="RetUrl" name="RetUrl" value="@Model.RetUrl" type="hidden" />
+            <input id="BgRetUrl" name="BgRetUrl" value="@Model.BgRetUrl" type="hidden" />
+            <input id="Remark" name="Remark" value="@Model.Remark" type="hidden" />
+            <input id="CharSet" name="CharSet" value="@Model.CharSet" type="hidden" />
+            <input id="MerPriv" name="MerPriv" value="@Model.MerPriv" type="hidden" />
+            <input id="ReqExt" name="ReqExt" value="@Model.ReqExt" type="hidden" />
+            <input id="ChkValue" name="ChkValue" value="@Model.ChkValue" type="hidden" />
+        </div>
+    </form>
+    <script type="text/javascript">document.getElementById('formauto').submit();</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿
+@using ChuanglitouP2P.Common
+@model  IEnumerable<ChuangLitouP2P.Models.V_borrowing_Bid_records_income_statement_uc>
+@{
+    ViewBag.Title = "投资明细";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">贷款管理</a>><a href="javascript:void(0)">投资列表 </a>
+    @if (Model != null && Model.Count() > 0)
+    {
+       <a href="/admin/Replay/repayInvestmentdetails?date1=@(ViewBag.date1)&targetid=@(ViewBag.id)" style="margin-left:30px;"> 未完成还款的继续还款 </a>
+    }
+    </h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        投资列表
+    </h3>
+    <input type="button" class="btn1" onclick="javascript: history.back()" style="margin-left:900px;" value="返回" />
+
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th scope="col">投资人用户名</th>
+                <th scope="col">投资人姓名</th>
+                <th scope="col">投资金额</th>
+                <th scope="col">应还本息</th>
+                <th scope="col">还款状态</th>
+                <th scope="col">操作</th>
+            </tr>
+            @if (Model != null)
+            {
+                var num = 0;
+                var cuontlist = 0.0;
+                foreach (var item in Model)
+                {
+                    var payment_status = item.payment_status;
+                    <tr @(num%2==0?"style=\"background-color:#f2f2f2;\"":"" )>
+                        <td >@(item.username)</td>
+                        <td >@(item.realname)</td>
+                        <td >@(item.investment_amount)</td>
+                        <td >@(item.repayment_amount)</td>
+                        <td >
+                            @if (payment_status==0)
+                            {
+                               <span style="color:red">未还款</span>
+                            }
+                            else
+                            {
+                                <span>已还款</span>
+                            }
+                        </td>
+                        <td>
+                            @if (payment_status == 0)
+                            {
+                                <a href="/admin/Replay/Individualrepayment?targetid=@(item.targetid)&date1=@(ViewBag.date1)&bid=@(item.bid_records_id)">借款人还款</a>　
+                                <a href="/admin/Replay/Individualrepayment?targetid=@(item.targetid)&date1=@(ViewBag.date1)&bid=@(item.bid_records_id)&repayment_type=3">担保公司代还</a>
+                            }
+                            else
+                            {
+                                <span>无</span>
+                            }
+                        </td>
+                    </tr>
+                    num += 1;
+                    cuontlist = cuontlist + double.Parse(item.repayment_amount.ToString());
+                }
+                <tr>
+                    <td>人数总计:</td>
+                    <td>@num</td>
+                    <td>返款总计:</td>
+                    <td colspan="3">@cuontlist</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

@@ -1,0 +1,56 @@
+﻿@using ChuangLitouP2P.Models;
+@using Webdiyer.WebControls.Mvc;
+@using ChuanglitouP2P.Common;
+@model Webdiyer.WebControls.Mvc.PagedList<V_hx_Bid_records_borrowing_target>
+
+    <table class="item2_table">
+        <thead>
+            <tr>
+                <th style="width:280px;">手机号</th>
+                <th style="width:300px;">投资金额</th>
+                <th style="width:300px;">投资时间</th>
+            </tr>
+
+        </thead>
+        <tbody>
+
+            @if (Model != null)
+            {
+                foreach (V_hx_Bid_records_borrowing_target item in Model)
+                {
+
+
+                    <tr>
+                        <td class="item2_td_first"> @Utils.hidemobile(item.mobile.ToString()) </td>
+                        <td>@item.investment_amount</td>
+                        <td>@DateTime.Parse(item.invest_time==null?null: item.invest_time.ToString()).ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    </tr>
+
+
+
+                }
+            }
+
+          
+
+
+        </tbody>
+    </table>
+
+    <div class="page_box">
+        <div class="page_left">
+            @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox2", GoToButtonId = "goToBtn2" }, new MvcAjaxOptions
+       { UpdateTargetId = "dTable", HttpMethod = "Post", DataFormId = "searchForm", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "dTable")).AjaxOptions(a => a.SetUpdateTargetId("dTable"))
+        </div>
+        <div class="page_right">
+            <div class="input-group" style="margin:20px 0">
+                <span class="input-group-addon">转到第</span>
+                <input type="text" id="pageIndexBox2" class="form-control input-sm" />
+                <span class="input-group-addon">页</span>
+                <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn2">跳转</button></span>
+            </div>
+        </div>
+    </div>
+
+
+ 

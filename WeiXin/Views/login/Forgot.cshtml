@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "找回密码";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+<script src="~/Scripts/layer.min.js"></script>
+<script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	$(".registerform").Validform({
+	    tiptype: 4,
+	    ajaxPost: true,
+	    callback: function (data) {
+	        if (data.rs == "y") {
+	            layer.msg(data.info, 5, 1);
+	            //location.href = data.url;
+	            window.setTimeout('jump("' + data.url + '")', 5 * 1000);
+	        }
+	        else {
+	            layer.msg("登录失败：" + data.error + "", 2, 5);
+	        }
+	    }
+	});
+
+	$.extend($.Datatype, {
+	    "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+	    "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+	    "day1": /^[1-2]\d{0,1}$|^28$/,
+	    "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|14[57]|17[0678])[0-9]{8}$/,
+	    "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+	    "regex1": /^[0-9A-Za-z]{6,25}$/
+
+	});
+
+	$(document).keyup(function (event) {
+	    if (event.keyCode == 13) {
+	        $("#loginbtn").trigger("click");
+	    }
+	});
+
+
+	$("#smscode").click(function () {
+	    var mobile = $("#mobile").val();
+
+	    if (mobile == null || mobile.length <= 0) {
+	        layer.alert("手机号不能为空");
+	        return false;
+	    }
+	    else {
+	        var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+	        if (re.test(mobile) == false) {
+	            layer.alert("手机号格式不对!");
+	            $("#mobile").val("");
+	            return false;
+	        }
+	    }
+	    $.post("/Register/checkmobile", { "param": mobile }, function (msg) {
+
+	        if (msg == "手机号已经被注册") {
+	          
+	            var validvcode = $('#Validatecode').val()
+
+	            var mobile = $("#mobile").val();
+
+	            if (validvcode == null || validvcode.length <= 0) {
+	                layer.alert("验证码不能为空");
+	                return false;
+	            }
+	            if (mobile == null || mobile.length <= 0) {
+	                layer.alert("手机号不能为空");
+	                return false;
+	            }
+	            else {
+	                var re = /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0-9]|14[57])[0-9]{8}$/;
+	                if (re.test(mobile) == false) {
+	                    layer.alert("手机号格式不对!");
+	                    $("#mobile").val("");
+	                    return false;
+	                }
+	            }
+
+	            $.post("/login/smscode?action=smscode&method=post", { "mobile": mobile, "vcode": validvcode, "username": mobile }, function (msg) {
+	                var data = JSON.parse(msg);
+	                if (data.rs == "y") {
+	                    settime();
+	                  
+	                    layer.msg("" + data.info + "", 2, 1);
+	                }
+	               
+
+	            });
+
+
+	        }
+	        else {
+	            layer.alert("输入的手机号不存在!");
+	        }
+	    }
+        );
+	});
+
+});
+
+
+var countdown = 60;
+function settime() {
+    if (countdown == 1) {
+        $("#smscode").removeAttr("disabled");
+        $("#smscode").val("发送验证码");
+        countdown = 60;
+
+    } else {
+        $("#smscode").attr("disabled", true);
+
+        $("#smscode").val("" + countdown + "秒后可重发");
+        countdown--;
+
+
+        if (countdown > 0) {
+            setTimeout(function () {
+                settime()
+            }, 1000)
+        }
+    }
+}
+
+function jump(url) {
+    location.href = url;
+}
+function changeImg() {
+    $("#image1").attr("src", "/login/GetValidateCode?a=" + Math.random());
+}
+</script>
+
+
+    <header class="header" onclick="window.location.href='/'">
+        <div class="return"><a href="/"></a></div>
+        <h2 class="head_title">找回密码</h2>
+    </header>
+
+    <form class="registerform" method="post" action="/login/Getwxmobile">
+        <div class="form_box">
+            <ul>
+                <li><input name="mobile" id="mobile" class="form_text" maxlength="11" type="tel" placeholder="请输入手机号" datatype="s6-18" nullmsg="请填写手机号！" errormsg="手机号格式不对！"><span class="reg_icon phone_icon"></span></li>
+                <li class="code_box"><div class="code_text"><input name="Validatecode" id="Validatecode"  ajaxurl="/login/Validate"   class="form_text" type="tel" placeholder="请输入验证码" datatype="*" nullmsg="请填写验证码！" placeholder="请填写验证码"></div><div><img id="image1" src="/login/GetValidateCode?a=@ViewBag.rndstr" style="cursor:pointer;width:104px;height:43px; border:hidden;" onclick="javascript:changeImg();" /></div><span class="reg_icon plane_icon"></span></li>
+                <li class="code_box"><div class="code_text"><input name="vcodec" id="vcodec" class="form_text" type="tel" datatype="*" nullmsg="请填写短信验证码！" placeholder="请填写短信验证码"></div><div><input name="smscode" id="smscode" value="获取验证码" type="button" class="code_btn"></div><span class="reg_icon plane_icon"></span></li>
+
+            </ul>
+        </div>
+        <div class="confirm_btn_box">
+            <input name="dddd" value="下一步" type="submit" class="invest_btn" >
+        </div>
+        <div style="text-align:center;">客服热线：400-036-8888</div>
+    </form>
+    <div class="bot_height"></div>
+

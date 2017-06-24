@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>首页排序</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSetSort").bind("click", function () {
+                SetSortById();
+            });
+            $("#btnclose").bind("click", function () {
+                closewindows();
+            });
+        });
+
+        function SetSortById() {
+            var id = $("#hid_id").val();
+            var sortId = $("#ddlsort").val();
+
+            $.getJSON("/admin/DaiKuan/SetIndexOrder", { id: id, sortid:sortId }, function (json) {
+                if (json.ret==1) {
+                    alert("排序成功！");
+                    closewindows();
+                } else {
+                    alert(json.msg);
+                }
+            });
+        }
+
+        function closewindows() {
+            window.parent.closewindows();
+        }
+
+    </script>
+</head>
+<body>
+        <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">首页排序</a></h2>
+        <div class="z_body" style="height:250px;width:580px; margin-top:2px;">
+            <span class="icon-sprite icon-list"></span>
+            <h3 class="listtitle">
+                首页排序
+            </h3>
+                <p class="tP4 tx_tp4" style="height:50px; ">
+                    <label for="username">排序：</label>@Html.DropDownList("ddlsort",ViewBag.sortList as IEnumerable<SelectListItem>)
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="btnSetSort" class="btn1" value="确定">确定</button>&nbsp;
+                    <button id="btnclose" class="btn1" value="关闭">关闭</button>                    
+                    <input type="hidden" id="hid_id" value="@(ViewBag.id)" />
+
+                </p>
+        </div>
+</body>
+</html>

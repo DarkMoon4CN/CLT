@@ -1,0 +1,29 @@
+﻿@using ChuangLiTou.Core.Helpers
+@using ChuangLiTou.Core.Entities.Request;
+@using ChuangLiTou.Core.Entities.Request.Borrow;
+
+@model RequestParam<RequestTender>
+@{
+    ViewBag.Title = "充值接口";
+    Layout = null;
+}
+
+@using (Html.BeginForm("Index", "InvestSubmit", new { area = "MemberCenter" }, FormMethod.Post, new { id = "ModifyForm" }))
+{
+    <div>
+        用户Id:@Html.TextBoxFor(m => m.body.userId)
+    </div>
+    <div>
+        标Id:@Html.TextBoxFor(m => m.body.targetId)
+    </div>
+    <div>
+        红包:@Html.TextBoxFor(m => m.body.bonusIds)
+    </div>
+    <div>
+        加息券:@Html.TextBoxFor(m => m.body.addRateIds)
+    </div>
+    <div>
+        投资金额:@Html.TextBoxFor(m => m.body.investAmount)
+    </div>
+    <input id="btnSubmit" type="submit" value="确认投资" />
+}

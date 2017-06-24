@@ -1,0 +1,169 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<V_YaoQinList>
+
+@{
+    ViewBag.Title = "奖励管理-邀请奖励-创利投";
+    ViewBag.keywords = "奖励管理-邀请奖励-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+
+
+}
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="~/Scripts/qrcode/jquery.qrcode.min.js"></script>
+@Url.File("/Content/pagecss.css").ToHtml()
+
+<script type="text/javascript">
+    var dff;
+    function AjaxStart() {dff= layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+
+$(function () {
+	$('.share_weixin').click(function () {
+		$("#weixin_layer").fadeIn(200);
+		$('#weixin_pop').fadeIn(200);
+	});
+	$('.weixin_layer').click(function () {
+		$("#weixin_layer").hide();
+		$('#weixin_pop').hide();
+	});
+	$('#qrcode').qrcode({ width: 200, height: 200, text: $("#hidQrCode").val() });
+	
+});
+</script>
+<div class="content">
+    <!--公共的左侧-->
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+    <div>
+        <div class="reward">
+            <h2>
+                邀请好友
+               
+            </h2>
+            <p class="rP1">
+                邀请链接：
+                <input class="rTxt" type="text" id="content" value="@ViewBag.codes" />
+                <input class="rBtn" type="button" onclick="jsCopy()" value="复制链接" />
+            </p>
+            <p class="rP2">
+
+                创利投喊你领钱啦！新手注册送280元抵扣券，快快一起理财吧！
+                复制您的“邀请链接”，<br />通过QQ，微信，微博等方式发给好友，好友通过“邀请链接”注册！
+                @*复制您的“邀请链接”，通过QQ，微信，微博等方式发给好友，好友通过“邀请链接”成功注册并完成新手任务，您<br />即可获得10元现金！*@
+            </p>
+            <dl class="rDl1">
+                <dt><a href="@Html.Raw(ViewBag.weibo)" target="_blank"><img src="/images/rWb.jpg" alt="" /></a></dt>
+                <dd>新浪微博</dd>
+            </dl>
+            <dl>
+                <dt><a href="javascript:;" class="share_weixin"><img src="/images/rWx.jpg" alt=""></a></dt>
+
+
+                <dd>微信</dd>
+            </dl>
+            <dl>
+                <dt><a href="@Html.Raw( ViewBag.QQ)" target="_blank"><img src="/images/rQq.jpg" alt="" /></a></dt>
+                <dd>QQ</dd>
+            </dl>
+            <dl>
+                <dt><a href="@Html.Raw(ViewBag.qzone)" target="_blank"><img src="/images/rKj.jpg" alt="" /></a></dt>
+                <dd>QQ空间</dd>
+            </dl>
+            <dl>
+                <dt><a href="@Html.Raw(ViewBag.QQweibo)" target="_blank"><img src="/images/rTx.jpg" alt="" /></a></dt>
+                <dd>腾讯微博</dd>
+            </dl>
+            <dl>
+                <dt><a href="@Html.Raw(ViewBag.doubai)" target="_blank"><img src="/images/rDb.jpg" alt="" /></a></dt>
+                <dd>豆瓣</dd>
+            </dl>
+            <p class="rJx"></p>
+           
+
+@using (Html.BeginForm("yaoqing", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm", @class = "form-inline well well-sm" }))
+{ }
+
+            @Html.Partial("_yaoqinglist",Model)
+             <p class="rJx"></p>
+            <h2 class="rH3">
+                温馨提示
+            </h2>
+            <p class="rP3">
+                1.
+                在创利投已注册用户，可以获得唯一的邀请链接，分享给好友，受邀好友通过邀请人的邀请链接进行注册；
+            </p>
+            <p class="rP3">
+                2.
+                如果您在操作过程中，遇到任何问题，请拨打创利投客服电话: 010-53732056。
+            </p>
+        </div>
+
+
+    </div>
+</div>
+<div class="weixin_layer" id="weixin_layer" style="display: none;"></div>
+<div class="weixin_pop" id="weixin_pop" style="display: none;">
+    <div class="weixin_panel">
+        <p>
+            @*<img src="/images/share-weixin-ewm.jpg" />*@
+            <input type="hidden" id="hidQrCode" value="@ViewBag.NewWxUrl">
+            <div id="qrcode"  class="wx_qrcode" ></div>
+           
+        </p>
+    </div>
+</div>
+<style>
+    .weixin_layer {
+        z-index: 10002;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #ccc;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.5;
+        top: 0px;
+        left: 0px;
+        z-index: 98;
+    }
+
+    .weixin_pop {
+        width: 780px;
+        height: 540px;
+        background: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 99;
+        margin: -210px 0 0 -310px;
+        border-radius: 5px;
+        background-image:url('/Images/qr.jpg');
+    }
+
+    .weixin_panel {
+        text-align: center;
+        color: #666;
+        margin: 50px auto 0 auto;
+       
+    }
+
+        .weixin_panel p {
+            margin: 50px 0 0 0;
+        }
+    .wx_qrcode {
+        width:162px;
+        height:162px;
+        margin:22% 0px 0% 8%;
+    }
+</style>
+
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}

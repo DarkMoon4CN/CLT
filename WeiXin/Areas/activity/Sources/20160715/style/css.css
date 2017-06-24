@@ -1,0 +1,78 @@
+body {text-align:left;  -webkit-touch-callout: none;  -webkit-user-select: none;  -khtml-user-select: none;  -moz-user-select: none;  -ms-user-select: none;  user-select: none;  -webkit-tap-highlight-color:rgba(0,0,0,0);}
+body,button,input,select,textarea{font: 400 14px/1.25 Arial,Helvetica,"Microsoft YaHei",STHeiti,"Droid Sans Fallback",sans-serif;}
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{font-weight:normal;margin:0; padding:0;}
+table,td,th{border-collapse:collapse;}
+li{list-style:none;}
+fieldset, img, a img.iframe, input{border:0;}
+q:before,q:after{content:'';}
+input,textarea{outline-style:none;}
+input[type="text"],input[type="password"],textarea{outline-style:none;-webkit-appearance:none;}
+textarea{resize:none}
+address,caption,cite,code,dfn,em,i,th,var{font-style:normal;font-weight:normal;}
+input[type="button"],input[type="submit"],select,button{cursor:pointer;}
+input, textarea, lable, select{ vertical-align:middle;user-select: text;}
+legend{color:#000;}
+abbr,acronym{border:0;font-variant:normal;}
+a{text-decoration:none; cursor:pointer;-webkit-tap-highlight-color:none;}
+a:hover{text-decoration:none;}
+label{ cursor:pointer;}
+
+img{vertical-align: middle; display:inline-block}
+input,select,textarea{-webkit-appearance:none;outline:none;-o-appearance:none;-ms-appearance:none;}
+.clear{ clear:both; height:0; font:0/0 Arial; visibility:hidden; overflow:hidden; display:block;}
+.clearfix{ display: block; }
+.P_dflex {display: -webkit-box;/* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;/* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;/* TWEENER - IE 10 */
+    display: -webkit-flex;/* NEW - Chrome */
+    display: flex;/* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+.P_flex {-webkit-box-flex: 1;-moz-box-flex: 1;-webkit-flex: 1;-ms-flex: 1;flex: 1;}
+.P_vcenter {display: -webkit-box;/* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;/* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;/* TWEENER - IE 10 */
+    display: -webkit-flex;/* NEW - Chrome */
+    display: flex;/* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-box-align: center;-moz-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;
+}
+.ellipsis{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+
+/*----part1 -------------------------------------*/
+body,html{width:100%;height:100%;}
+.vis_body{
+	width:100%;
+	height:100%;
+	font-family:"微软雅黑";
+	background:#fff;
+}
+.vis_01{
+	width:100%;
+	height:16.5rem;
+	margin:0 auto;
+	background:url(../images/img_01.jpg) no-repeat center;
+	background-size:cover;
+}
+.vis_02{
+	width:13.25rem;
+	margin:0 auto;	
+}
+.vis_02 p{
+	text-indent:2em;
+	line-height:1.2rem;
+	color:#666;
+	font-size:0.5rem;
+}
+.vis_img{
+	height:20.2rem;
+	background:url(../images/img_02.jpg) no-repeat;
+	background-size:cover;
+	width:10rem;
+	margin:0 auto 7.5rem;
+}
+.vis_02 p.vis_p01{
+	text-indent:0;
+	text-align:center;
+	color:#666;
+	font-size:0.5rem;
+	padding-bottom:2.5rem;
+}

@@ -1,0 +1,1122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0E5096F8-5B8E-446F-B592-D88FE0D46FD0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WeiXin</RootNamespace>
+    <AssemblyName>WeiXin</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\activity\Controllers\W20161001Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20161018Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20161110Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20161111Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20161122Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20161212Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20170103Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20170104Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20170106Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\WLiuMiController.cs" />
+    <Compile Include="Areas\activity\Controllers\W20161014Controller.cs" />
+    <Compile Include="Areas\activity\Views\W20160914\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Areas\activity\Views\W20160914\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\activity\activityAreaRegistration.cs" />
+    <Compile Include="Areas\activity\Controllers\W20160715Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W201609011Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20160901Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20160906Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20160910Controller.cs" />
+    <Compile Include="Areas\activity\Controllers\W20160926Controller.cs" />
+    <Compile Include="Controllers\AboutMeController.cs" />
+    <Compile Include="Controllers\ActAuth.cs" />
+    <Compile Include="Controllers\BankController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BigDataController.cs" />
+    <Compile Include="Controllers\CashController.cs" />
+    <Compile Include="Controllers\Extensions.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InterestRatesController.cs" />
+    <Compile Include="Controllers\InvitationController.cs" />
+    <Compile Include="Controllers\loginController.cs" />
+    <Compile Include="Controllers\opening_accountController.cs" />
+    <Compile Include="Controllers\registerController.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Controllers\ThirdpartyController.cs" />
+    <Compile Include="Controllers\usercenterController.cs" />
+    <Compile Include="Controllers\XiCaiChannelController.cs" />
+    <Compile Include="Controllers\zhuanxController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\activity\Sources\20160906\images\btn_01.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\btn_02.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\btn_03.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\icon_01.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\icon_02.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\icon_03.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\icon_04.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\icon_06.jpg" />
+    <Content Include="Areas\activity\Sources\20160906\images\icon_img.jpg" />
+    <Content Include="Areas\activity\Sources\20160906\images\icon_r.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\w_zhuolu11_01.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\w_zhuolu11_02.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\w_zhuolu11_03.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\w_zhuolu11_01.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\w_zhuolu11_02.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\w_zhuolu11_03.png" />
+    <Content Include="Areas\activity\Sources\20160906\images\w_zhuolu_bg.png" />
+    <Content Include="Areas\activity\Sources\20160914\css\common.css" />
+    <Content Include="Areas\activity\Sources\20160914\css\css.css" />
+    <Content Include="Areas\activity\Sources\20160914\images\btn_01.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\icon_01.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\icon_02.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\icon_03.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\icon_04.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\icon_r.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\20160914\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_01.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_02.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_03.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_04.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_05.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_06.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_07.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_08.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\js\awardRotate.js" />
+    <Content Include="Areas\activity\Sources\20160914\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20160914\js\o_code.js" />
+    <Content Include="Areas\activity\Sources\20160914\js\scroll_js.js" />
+    <Content Include="Areas\activity\Sources\20160926\css\common1.css" />
+    <Content Include="Areas\activity\Sources\20160926\css\css.css" />
+    <Content Include="Areas\activity\Sources\20160926\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\20160926\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\20160926\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\20160926\images\wqiang_1.jpg" />
+    <Content Include="Areas\activity\Sources\20160926\images\wqiang_2.jpg" />
+    <Content Include="Areas\activity\Sources\20160926\images\wqiang_btn.png" />
+    <Content Include="Areas\activity\Sources\20160926\images\wqiang_fenxiang.png" />
+    <Content Include="Areas\activity\Sources\20160926\images\wqiang_hongbao.png" />
+    <Content Include="Areas\activity\Sources\20160926\images\wqiang_jieshu.jpg" />
+    <Content Include="Areas\activity\Sources\20160926\images\wqiang_jieshu_btn.png" />
+    <Content Include="Areas\activity\Sources\20160926\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\20160926\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20160926\wqiang.html" />
+    <Content Include="Areas\activity\Sources\20160926\wqiang_jieshu.html" />
+    <Content Include="Areas\activity\Sources\20160926\images\wqiang_jieshu.jpg" />
+    <Content Include="Areas\activity\Sources\20160926\images\wqiang_jieshu_btn.png" />
+    <Content Include="Areas\activity\Sources\20160926\wqiang_jieshu.html" />
+    <Content Include="Areas\activity\Sources\20161014\images\fixed_Bar_Close.png" />
+    <Content Include="Areas\activity\Sources\20161014\images\weixintuiguang.png" />
+    <Content Include="Areas\activity\Sources\20161018\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\20161018\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\20161018\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\20161018\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\20161018\images\w_yin10_01.jpg" />
+    <Content Include="Areas\activity\Sources\20161018\images\w_yin10_02.jpg" />
+    <Content Include="Areas\activity\Sources\20161018\images\w_yin10_03.jpg" />
+    <Content Include="Areas\activity\Sources\20161018\images\w_yin10_04.jpg" />
+    <Content Include="Areas\activity\Sources\20161018\images\yin10_btn1.png" />
+    <Content Include="Areas\activity\Sources\20161018\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20161018\style\common.css" />
+    <Content Include="Areas\activity\Sources\20161018\style\css.css" />
+    <Content Include="Areas\activity\Sources\20161018\w_yin10.html" />
+    <Content Include="Areas\activity\Sources\20161110\images\fenxiang.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_01.jpg" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_1_btn.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_1_left.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_1_right.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_1_top.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_2_btn.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_2_top.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_2_tu.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_3_btn.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_3_left.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_3_right.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_3_top.png" />
+    <Content Include="Areas\activity\Sources\20161110\images\w_quanmin_main_4_tu.png" />
+    <Content Include="Areas\activity\Sources\20161110\index.html" />
+    <Content Include="Areas\activity\Sources\20161110\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20161110\js\o_code.js" />
+    <Content Include="Areas\activity\Sources\20161110\style\css.css" />
+    <Content Include="Areas\activity\Sources\20161111\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\20161111\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\20161111\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\20161111\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\20161111\images\w_double11_bg.jpg" />
+    <Content Include="Areas\activity\Sources\20161111\images\w_double11_biaoti.png" />
+    <Content Include="Areas\activity\Sources\20161111\images\w_double11_btn.png" />
+    <Content Include="Areas\activity\Sources\20161111\images\w_double11_tu1.png" />
+    <Content Include="Areas\activity\Sources\20161111\images\w_double11_tu2.png" />
+    <Content Include="Areas\activity\Sources\20161111\images\w_double11_tu3.png" />
+    <Content Include="Areas\activity\Sources\20161111\style\common.css" />
+    <Content Include="Areas\activity\Sources\20161111\style\css.css" />
+    <Content Include="Areas\activity\Sources\20161111\w_double11.html" />
+    <Content Include="Areas\activity\Sources\20161122\images\app1260_1.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\app1260_2.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\fixed_Bar_Close.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\huodong_btn.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\20161122\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\weixintuiguang.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_01.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_01bg.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_02.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_02bg.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_03.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_04.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_05.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_bg.jpg" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_bg_01.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_bg_02.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_1260_bg_03.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\w_xianjin_zhuce_btn.png" />
+    <Content Include="Areas\activity\Sources\20161122\images\yijieshu.png" />
+    <Content Include="Areas\activity\Sources\20161122\Index.html" />
+    <Content Include="Areas\activity\Sources\20161122\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20161122\style\common.css" />
+    <Content Include="Areas\activity\Sources\20161122\style\css.css" />
+    <Content Include="Areas\activity\Sources\20161212\css\common.css" />
+    <Content Include="Areas\activity\Sources\20161212\css\css.css" />
+    <Content Include="Areas\activity\Sources\20161212\images\chenggong.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\dd2.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_12tu.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_bg1.jpg" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_bg2.jpg" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_bg3.jpg" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_biaotibg.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_btn1.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_btn2.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_btn3.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_guizetu.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_shibg.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_shijianbg.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_zhuanpanbg.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_zhuanpandeng1.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_zhuanpandeng2.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_zhuanpango.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_duoshou_zhuanpanjiang.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_tanchuangbg1.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_tanchuangbg2.png" />
+    <Content Include="Areas\activity\Sources\20161212\images\w_tanchuang_guanbi.png" />
+    <Content Include="Areas\activity\Sources\20161212\js\awardRotate.js" />
+    <Content Include="Areas\activity\Sources\20161212\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20161212\js\scroll_js.js" />
+    <Content Include="Areas\activity\Sources\20161212\wduoshou.html" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_12_01_01.jpg" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_12_01_02.jpg" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_12_01_03.jpg" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_12_21_xinkeli_pinbg.jpg" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_h3_span_1.png" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_h3_span_2.png" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_h3_span_3.png" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_xinkeli_btn1.png" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_xinkeli_main_2bg.jpg" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_xinkeli_main_3_centent_bg.png" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_xinkeli_main_3_dl_tu.png" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_xinkeli_main_4_centent_bg.png" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_xinkeli_main_4_dl_tu.png" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_xinkeli_main_4_dl_tu2.png" />
+    <Content Include="Areas\activity\Sources\20170103\images\w_xinkeli_main_4_dl_tu3.png" />
+    <Content Include="Areas\activity\Sources\20170103\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20170103\style\css.css" />
+    <Content Include="Areas\activity\Sources\20170104\css\css.css" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_dt_before.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_list1_left_01.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_list1_left_bg.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_list1_right_p3_a.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_list2_left_01.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_list3_left_01.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_list4_left_01.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_list5_left_01.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_list6_left_01.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_list7_left_01.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_newyear_main_1_01.jpg" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_newyear_main_1_02.jpg" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_newyear_main_1_03.jpg" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_newyear_main_2_01.jpg" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_newyear_main_2_02.jpg" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_newyear_main_2_03.jpg" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_newyear_main_2_centent_bg.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\w_newyear_main_2_p_a.png" />
+    <Content Include="Areas\activity\Sources\20170104\images\元旦跨年大狂欢活动%28暂修改2%29WAP_07.jpg" />
+    <Content Include="Areas\activity\Sources\20170104\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20170104\w_newyear.html" />
+    <Content Include="Areas\activity\Sources\20170106\css\css.css" />
+    <Content Include="Areas\activity\Sources\20170106\images\li_er.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\li_san.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\li_yi.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\ul_left_tou.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\ul_right_tou.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_1_main_bg.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_1_main_bottom_left_p.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_1_main_topafter.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_1_main_top_left_p.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_1_main_top_right_1.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_1_main_top_right_2.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_1_main_top_right_3.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_2_main_bg.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_2_main_div_1.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_2_main_div_2.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_2_main_div_a.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_2_main_h3bg.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_2_main_left_span.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_2_main_p_1.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_2_main_p_2.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_2_main_right_span.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_3_main_bg.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_3_main_top_left_img.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_3_main_top_right_img.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_centent_4_main_ul_biao_bg.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_yaoyoubg.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_yaoyou_main_1_01.jpg" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_yaoyou_main_1_02.jpg" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_yaoyou_main_1_03.jpg" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_yaoyou_main_2_h2bg.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\w_yaoyou_main_5bg.png" />
+    <Content Include="Areas\activity\Sources\20170106\images\yaoyou_Btn.png" />
+    <Content Include="Areas\activity\Sources\20170106\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20170106\js\o_code.js" />
+    <Content Include="Areas\activity\Sources\liumi\css\common.css" />
+    <Content Include="Areas\activity\Sources\liumi\css\css.css" />
+    <Content Include="Areas\activity\Sources\liumi\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\liumi\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\liumi\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\liumi\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\liumi\images\w_zhuce10_1.jpg" />
+    <Content Include="Areas\activity\Sources\liumi\images\w_zhuce10_2.jpg" />
+    <Content Include="Areas\activity\Sources\liumi\images\w_zhuce10_3.jpg" />
+    <Content Include="Areas\activity\Sources\liumi\images\w_zhuce10_4.jpg" />
+    <Content Include="Areas\activity\Sources\liumi\images\w_zhuce10_5.png" />
+    <Content Include="Areas\activity\Sources\liumi\images\w_zhuce10_6.png" />
+    <Content Include="Areas\activity\Sources\liumi\images\w_zhuce10_7.png" />
+    <Content Include="Areas\activity\Sources\liumi\images\w_zhuce10_8.png" />
+    <Content Include="Areas\activity\Sources\liumi\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\extend\layer.ext.js" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\jquery-1.3.2.js" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\layer.min.js" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\skin\default\icon_ext.png" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\skin\default\textbg.png" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\skin\default\xubox_ico0.png" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\skin\default\xubox_loading0.gif" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\skin\default\xubox_loading1.gif" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\skin\default\xubox_loading2.gif" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\skin\default\xubox_loading3.gif" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\skin\default\xubox_title0.png" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\skin\layer.css" />
+    <Content Include="Areas\activity\Sources\liumi\js\layer\skin\layer.ext.css" />
+    <Content Include="Areas\activity\Sources\liumi\js\o_code.js" />
+    <Content Include="Areas\activity\Sources\liumi\js\Validform_v5.3.2.js" />
+    <Content Include="Areas\activity\Sources\20161014\hongbao.html" />
+    <Content Include="Areas\activity\Sources\20161014\images\hongbao_01.jpg" />
+    <Content Include="Areas\activity\Sources\20161014\images\hongbao_02.jpg" />
+    <Content Include="Areas\activity\Sources\20161014\images\hongbao_03.jpg" />
+    <Content Include="Areas\activity\Sources\20161014\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\20161014\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\20161014\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\20161014\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\20161014\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20161014\style\common.css" />
+    <Content Include="Areas\activity\Sources\20161014\style\css.css" />
+    <Content Include="Areas\activity\Views\W20160906\index.html" />
+    <Content Include="Areas\activity\Views\W20160926\EndShow.cshtml" />
+    <Content Include="Areas\activity\Sources\20161001\css\common.css" />
+    <Content Include="Areas\activity\Sources\20161001\css\css.css" />
+    <Content Include="Areas\activity\Sources\20161001\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\20161001\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\20161001\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\20161001\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\20161001\images\wzhuce10_1.png" />
+    <Content Include="Areas\activity\Sources\20161001\images\wzhuce10_2.png" />
+    <Content Include="Areas\activity\Sources\20161001\images\wzhuce10_3.png" />
+    <Content Include="Areas\activity\Sources\20161001\images\wzhuce10_4.png" />
+    <Content Include="Areas\activity\Sources\20161001\images\wzhuce10_biaoge.png" />
+    <Content Include="Areas\activity\Sources\20161001\images\wzhuce10_btn1.jpg" />
+    <Content Include="Areas\activity\Sources\20161001\images\wzhuce10_btn2.jpg" />
+    <Content Include="Areas\activity\Sources\20161001\images\wzhuce10_riqibg.png" />
+    <Content Include="Areas\activity\Sources\20161001\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Views\W20160914\Index.aspx" />
+    <Content Include="Areas\activity\Sources\20160715\images\img_01.jpg" />
+    <Content Include="Areas\activity\Sources\20160715\images\img_02.jpg" />
+    <Content Include="Areas\activity\Sources\20160715\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20160715\style\css.css" />
+    <Content Include="Areas\activity\Sources\201609011\css\common.css" />
+    <Content Include="Areas\activity\Sources\201609011\css\css.css" />
+    <Content Include="Areas\activity\Sources\201609011\css\css_old.css" />
+    <Content Include="Areas\activity\Sources\201609011\images\cj_tc01.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\cj_tc02.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\cj_tc03.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\cj_tc04.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\guanbi.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\201609011\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\201609011\images\wzhuanpan_01.jpg" />
+    <Content Include="Areas\activity\Sources\201609011\images\wzhuanpan_02.jpg" />
+    <Content Include="Areas\activity\Sources\201609011\images\wzhuanpan_03.jpg" />
+    <Content Include="Areas\activity\Sources\201609011\images\wzhuanpan_04.jpg" />
+    <Content Include="Areas\activity\Sources\201609011\images\zhuanpan_bg.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\zhuanpan_deng1.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\zhuanpan_deng2.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\zhuanpan_go.png" />
+    <Content Include="Areas\activity\Sources\201609011\images\zhuanpan_jiang.png" />
+    <Content Include="Areas\activity\Sources\201609011\js\awardRotate.js" />
+    <Content Include="Areas\activity\Sources\201609011\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\201609011\js\scroll_js.js" />
+    <Content Include="Areas\activity\Sources\20160901\image\pic.gif" />
+    <Content Include="Areas\activity\Sources\20160901\image\User_img06.png" />
+    <Content Include="Areas\activity\Sources\20160901\image\User_img07.png" />
+    <Content Include="Areas\activity\Sources\20160901\image\wxinshou_01.jpg" />
+    <Content Include="Areas\activity\Sources\20160901\image\wxinshou_02.jpg" />
+    <Content Include="Areas\activity\Sources\20160901\image\wxinshou_03.jpg" />
+    <Content Include="Areas\activity\Sources\20160901\image\wxinshou_04.jpg" />
+    <Content Include="Areas\activity\Sources\20160901\image\wxinshou_biaoge.png" />
+    <Content Include="Areas\activity\Sources\20160901\image\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\20160901\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20160901\style\common.css" />
+    <Content Include="Areas\activity\Sources\20160901\style\css.css" />
+    <Content Include="Areas\activity\Sources\20160901\style\css_old.css" />
+    <Content Include="Areas\activity\Sources\20160906\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\extend\layer.ext.js" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\jquery-1.3.2.js" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\layer.min.js" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\skin\default\icon_ext.png" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\skin\default\textbg.png" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\skin\default\xubox_ico0.png" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\skin\default\xubox_loading0.gif" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\skin\default\xubox_loading1.gif" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\skin\default\xubox_loading2.gif" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\skin\default\xubox_loading3.gif" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\skin\default\xubox_title0.png" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\skin\layer.css" />
+    <Content Include="Areas\activity\Sources\20160906\js\layer\skin\layer.ext.css" />
+    <Content Include="Areas\activity\Sources\20160906\js\o_code.js" />
+    <Content Include="Areas\activity\Sources\20160906\js\Validform_v5.3.2.js" />
+    <Content Include="Areas\activity\Sources\20160906\style\css.css" />
+    <Content Include="Areas\activity\Sources\20160910\css\common.css" />
+    <Content Include="Areas\activity\Sources\20160910\css\css.css" />
+    <Content Include="Areas\activity\Sources\20160910\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\20160910\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\20160910\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\20160910\images\wdianchi.png" />
+    <Content Include="Areas\activity\Sources\20160910\images\wqiang_01.jpg" />
+    <Content Include="Areas\activity\Sources\20160910\images\wqiang_02.jpg" />
+    <Content Include="Areas\activity\Sources\20160910\images\wqiang_03.jpg" />
+    <Content Include="Areas\activity\Sources\20160910\images\wqiang_04.jpg" />
+    <Content Include="Areas\activity\Sources\20160910\images\wqiang_05.jpg" />
+    <Content Include="Areas\activity\Sources\20160910\images\wqiang_btn_1.png" />
+    <Content Include="Areas\activity\Sources\20160910\images\wqiang_btn_2.png" />
+    <Content Include="Areas\activity\Sources\20160910\images\wqiang_jindu.jpg" />
+    <Content Include="Areas\activity\Sources\20160910\images\wqiang_jindu_bg.jpg" />
+    <Content Include="Areas\activity\Sources\20160910\images\wqiang_zhong_1.png" />
+    <Content Include="Areas\activity\Sources\20160910\images\wshouji.png" />
+    <Content Include="Areas\activity\Sources\20160910\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\20160910\js\awardRotate.js" />
+    <Content Include="Areas\activity\Sources\20160910\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20160910\js\o_code.js" />
+    <Content Include="Areas\activity\Sources\20160910\js\scroll_js.js" />
+    <Content Include="Areas\activity\Sources\20160914\css\common.css" />
+    <Content Include="Areas\activity\Sources\20160914\css\css.css" />
+    <Content Include="Areas\activity\Sources\20160914\images\btn_01.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\icon_01.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\icon_02.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\icon_03.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\icon_04.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\icon_r.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\pic.gif" />
+    <Content Include="Areas\activity\Sources\20160914\images\User_img06.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\User_img07.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_01.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_02.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_03.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_04.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_05.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_06.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_07.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\wiPhonetuiguang_08.png" />
+    <Content Include="Areas\activity\Sources\20160914\images\wx_logo.jpg" />
+    <Content Include="Areas\activity\Sources\20160914\js\awardRotate.js" />
+    <Content Include="Areas\activity\Sources\20160914\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\activity\Sources\20160914\js\o_code.js" />
+    <Content Include="Areas\activity\Sources\20160914\js\scroll_js.js" />
+    <Content Include="Areas\activity\Views\WLiuMi\wzhuce10_liuliang.html" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\app.land.css" />
+    <Content Include="css\bigData.css" />
+    <Content Include="css\common.css" />
+    <Content Include="css\css.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\index.css" />
+    <Content Include="css\jquery.fancybox.css" />
+    <Content Include="css\RechargeTips.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\tips.css" />
+    <Content Include="css\wxyao.css" />
+    <Content Include="css\yaoqingcss.css" />
+    <Content Include="css\zhuolu.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="images\20150511153841_3343.jpg" />
+    <Content Include="images\328-133.jpg" />
+    <Content Include="images\550.jpg" />
+    <Content Include="images\551.jpg" />
+    <Content Include="images\abc_icon.png" />
+    <Content Include="images\advantage_icon.png" />
+    <Content Include="images\app-aqbz1.jpg" />
+    <Content Include="images\app-aqbz2.jpg" />
+    <Content Include="images\app-aqbz3.jpg" />
+    <Content Include="images\app-aqbz4.jpg" />
+    <Content Include="images\app-aqbz5.jpg" />
+    <Content Include="images\app1260_1.png" />
+    <Content Include="images\arrow1.gif" />
+    <Content Include="images\arrow2.gif" />
+    <Content Include="images\arrow_icon.png" />
+    <Content Include="images\bank\bhyh1.png" />
+    <Content Include="images\bank\bjncsyyh.png" />
+    <Content Include="images\bank\bjyh.png" />
+    <Content Include="images\bank\dyyh.png" />
+    <Content Include="images\bank\gdyh1.png" />
+    <Content Include="images\bank\gfyh.png" />
+    <Content Include="images\bank\gsyh1.png" />
+    <Content Include="images\bank\hxyh.png" />
+    <Content Include="images\bank\hzyh.png" />
+    <Content Include="images\bank\jsyh1.png" />
+    <Content Include="images\bank\jtyh.png" />
+    <Content Include="images\bank\msyh.png" />
+    <Content Include="images\bank\njyh.png" />
+    <Content Include="images\bank\nyyh1.png" />
+    <Content Include="images\bank\payy1.png" />
+    <Content Include="images\bank\pfyh1.png" />
+    <Content Include="images\bank\sfyh1.png" />
+    <Content Include="images\bank\shncyh.png" />
+    <Content Include="images\bank\shyh1.png" />
+    <Content Include="images\bank\xyyh1.png" />
+    <Content Include="images\bank\yxyh1.png" />
+    <Content Include="images\bank\zgyh1.png" />
+    <Content Include="images\bank\zsyh.png" />
+    <Content Include="images\bank\zsyh1.png" />
+    <Content Include="images\bank\zxyh1.png" />
+    <Content Include="images\banner1.jpg" />
+    <Content Include="images\banner2.jpg" />
+    <Content Include="images\ban_01.jpg" />
+    <Content Include="images\ban_02.png" />
+    <Content Include="images\ban_03.jpg" />
+    <Content Include="images\ban_04.jpg" />
+    <Content Include="images\ban_05.jpg" />
+    <Content Include="images\ban_06.jpg" />
+    <Content Include="images\ban_07.jpg" />
+    <Content Include="images\baozhang.jpg" />
+    <Content Include="images\bao_icon.png" />
+    <Content Include="images\BigData\pic.gif" />
+    <Content Include="images\BigData\User_img06.png" />
+    <Content Include="images\BigData\User_img07.png" />
+    <Content Include="images\BigData\wx_logo.jpg" />
+    <Content Include="images\BigData\w_yunying_1.jpg" />
+    <Content Include="images\BigData\w_yunying_1.png" />
+    <Content Include="images\BigData\w_yunying_2.png" />
+    <Content Include="images\BigData\w_yunying_2bg.jpg" />
+    <Content Include="images\BigData\w_yunying_3.png" />
+    <Content Include="images\BigData\w_yunying_3bg.jpg" />
+    <Content Include="images\BigData\w_yunying_4.png" />
+    <Content Include="images\BigData\w_yunying_5.png" />
+    <Content Include="images\boc_icon.png" />
+    <Content Include="images\btn_01.png" />
+    <Content Include="images\btn_02.jpg" />
+    <Content Include="images\btn_02.png" />
+    <Content Include="images\btn_03.png" />
+    <Content Include="images\btn_04.png" />
+    <Content Include="images\ccb_icon.png" />
+    <Content Include="images\ceb_icon.png" />
+    <Content Include="images\cgb_icon.png" />
+    <Content Include="images\choice_icon.png" />
+    <Content Include="images\cib_icon.png" />
+    <Content Include="images\cmbc_icon.png" />
+    <Content Include="images\cmb_icon.png" />
+    <Content Include="images\ecitic_icon.png" />
+    <Content Include="images\error.png" />
+    <Content Include="images\failure_icon.png" />
+    <Content Include="images\fancybox_loading%402x.gif" />
+    <Content Include="images\fancybox_loading.gif" />
+    <Content Include="images\fancybox_overlay.png" />
+    <Content Include="images\fancybox_sprite%402x.png" />
+    <Content Include="images\fancybox_sprite.png" />
+    <Content Include="images\friends_icon.png" />
+    <Content Include="images\full_icon.png" />
+    <Content Include="images\guarantee_icon.png" />
+    <Content Include="images\haha.png" />
+    <Content Include="images\hd_pic1.png" />
+    <Content Include="images\hd_pic2.png" />
+    <Content Include="images\hd_pic3.jpg" />
+    <Content Include="images\hd_pic4.jpg" />
+    <Content Include="images\hd_pic5.jpg" />
+    <Content Include="images\header-bg.gif" />
+    <Content Include="images\header.jpg" />
+    <Content Include="images\hxb_icon.png" />
+    <Content Include="images\icbc_icon.png" />
+    <Content Include="images\icon.png" />
+    <Content Include="images\icon_01.png" />
+    <Content Include="images\icon_02.png" />
+    <Content Include="images\icon_03.png" />
+    <Content Include="images\icon_04.png" />
+    <Content Include="images\icon_06.jpg" />
+    <Content Include="images\icon_img.jpg" />
+    <Content Include="images\icon_jx.png" />
+    <Content Include="images\icon_r.png" />
+    <Content Include="images\img_01.jpg" />
+    <Content Include="images\img_01.png" />
+    <Content Include="images\img_02.jpg" />
+    <Content Include="images\img_03.png" />
+    <Content Include="images\img_04.png" />
+    <Content Include="images\jx_img01.png" />
+    <Content Include="images\jx_img02.png" />
+    <Content Include="images\jx_img03.png" />
+    <Content Include="images\licaikuanghuan.jpg" />
+    <Content Include="images\logo.jpg" />
+    <Content Include="images\m-tc-top1.jpg" />
+    <Content Include="images\measures_pic6.jpg" />
+    <Content Include="images\navbg.gif" />
+    <Content Include="images\nav_icon.png" />
+    <Content Include="images\nav_icon2.png" />
+    <Content Include="images\New\ban1.jpg" />
+    <Content Include="images\New\ban2.jpg" />
+    <Content Include="images\New\ban3.jpg" />
+    <Content Include="images\New\banner.jpg" />
+    <Content Include="images\New\change3.gif" />
+    <Content Include="images\New\logo.gif" />
+    <Content Include="images\New\logo.jpg" />
+    <Content Include="images\New\newChange.gif" />
+    <Content Include="images\New\receive.gif" />
+    <Content Include="images\New\receive.jpg" />
+    <Content Include="images\New\return.gif" />
+    <Content Include="images\New\rule.gif" />
+    <Content Include="images\New\touzi.jpg" />
+    <Content Include="images\ok_icon.png" />
+    <Content Include="images\onLoad.gif" />
+    <Content Include="images\pc-right-hb.png" />
+    <Content Include="images\pc-tchongbao.png" />
+    <Content Include="images\pic.gif" />
+    <Content Include="images\pingan_icon.png" />
+    <Content Include="images\psbc_icon.png" />
+    <Content Include="images\rDb.jpg" />
+    <Content Include="images\recommend_icon.png" />
+    <Content Include="images\reg_banner.jpg" />
+    <Content Include="images\reg_icon.png" />
+    <Content Include="images\return_icon.png" />
+    <Content Include="images\right.png" />
+    <Content Include="images\rili.png" />
+    <Content Include="images\risk_pic2.jpg" />
+    <Content Include="images\risk_pic3.jpg" />
+    <Content Include="images\rKj.jpg" />
+    <Content Include="images\rQq.jpg" />
+    <Content Include="images\rTx.jpg" />
+    <Content Include="images\rWb.jpg" />
+    <Content Include="images\rWx.jpg" />
+    <Content Include="images\share_pic.png" />
+    <Content Include="images\show_bg.png" />
+    <Content Include="images\show_btn.png" />
+    <Content Include="images\show_close.png" />
+    <Content Include="images\spdb_icon.png" />
+    <Content Include="images\speed_icon.png" />
+    <Content Include="images\tc_in01.png" />
+    <Content Include="images\time_icon.png" />
+    <Content Include="images\title.png" />
+    <Content Include="images\tj.jpg" />
+    <Content Include="images\totop.png" />
+    <Content Include="images\user_headbg.png" />
+    <Content Include="images\User_img01.jpg" />
+    <Content Include="images\User_img02.jpg" />
+    <Content Include="images\User_img03.jpg" />
+    <Content Include="images\User_img04.jpg" />
+    <Content Include="images\User_img05.jpg" />
+    <Content Include="images\User_img06.png" />
+    <Content Include="images\User_img07.jpg" />
+    <Content Include="images\User_img07.png" />
+    <Content Include="images\user_pic.jpg" />
+    <Content Include="images\weixintuiguang.png" />
+    <Content Include="images\weixin_prompt.png" />
+    <Content Include="images\withd_bank_icon.jpg" />
+    <Content Include="images\withd_bank_icon.png" />
+    <Content Include="images\wx-close.png" />
+    <Content Include="images\wx_logo.jpg" />
+    <Content Include="images\wx_logo.png" />
+    <Content Include="images\wx_logoOld.png" />
+    <Content Include="images\wx_reward_pic1.jpg" />
+    <Content Include="images\wx_reward_pic2.jpg" />
+    <Content Include="images\wx_reward_pic3.jpg" />
+    <Content Include="images\wx_reward_pic_t.png" />
+    <Content Include="images\w_app_01.jpg" />
+    <Content Include="images\w_app_02.jpg" />
+    <Content Include="images\w_app_03.jpg" />
+    <Content Include="images\w_app_04.jpg" />
+    <Content Include="images\w_app_05.jpg" />
+    <Content Include="images\w_app_btn1.png" />
+    <Content Include="images\w_app_btn2.png" />
+    <Content Include="images\w_yaoqing_01.jpg" />
+    <Content Include="images\w_yaoqing_02.jpg" />
+    <Content Include="images\w_yaoqing_03.jpg" />
+    <Content Include="images\w_yaoqing_btn.png" />
+    <Content Include="images\w_yaoqing_fenxiang.png" />
+    <Content Include="images\xubox_ico0.png" />
+    <Content Include="images\yaoqing_pic1.jpg" />
+    <Content Include="images\yaoqing_pic2.jpg" />
+    <Content Include="images\yq.png" />
+    <Content Include="images\yuandai01.jpg" />
+    <Content Include="images\zc_icon07.jpg" />
+    <Content Include="images\shareoutimg.jpg" />
+    <Content Include="js\appScript.js" />
+    <Content Include="js\browser.js" />
+    <Content Include="js\clock_time.js" />
+    <Content Include="js\countdown.js" />
+    <Content Include="js\index.js" />
+    <Content Include="js\jquery-1.11.1.min.js" />
+    <Content Include="js\jquery-1.9.1.min.js" />
+    <Content Include="js\jquery-form.js" />
+    <Content Include="js\jquery.circliful.min.js" />
+    <Content Include="js\jquery.fancybox-thumbs.js" />
+    <Content Include="js\jquery.fancybox.pack.js" />
+    <Content Include="js\jquery.flexslider.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\jquery.mousewheel.js" />
+    <Content Include="js\jquery.tinycarousel.min.js" />
+    <Content Include="js\jquery.touchSwipe.min.js" />
+    <Content Include="js\layer-v3.0.1\layer.js" />
+    <Content Include="js\layer-v3.0.1\mobile\layer.js" />
+    <Content Include="js\layer-v3.0.1\mobile\need\layer.css" />
+    <Content Include="js\layer-v3.0.1\skin\default\icon-ext.png" />
+    <Content Include="js\layer-v3.0.1\skin\default\icon.png" />
+    <Content Include="js\layer-v3.0.1\skin\default\layer.css" />
+    <Content Include="js\layer-v3.0.1\skin\default\loading-0.gif" />
+    <Content Include="js\layer-v3.0.1\skin\default\loading-1.gif" />
+    <Content Include="js\layer-v3.0.1\skin\default\loading-2.gif" />
+    <Content Include="js\layer.css" />
+    <Content Include="js\layer.min.js" />
+    <Content Include="js\layer\extend\layer.ext.js" />
+    <Content Include="js\layer\images\icon_ext.png" />
+    <Content Include="js\layer\images\textbg.png" />
+    <Content Include="js\layer\images\xubox_ico0.png" />
+    <Content Include="js\layer\images\xubox_loading0.gif" />
+    <Content Include="js\layer\images\xubox_loading1.gif" />
+    <Content Include="js\layer\images\xubox_loading2.gif" />
+    <Content Include="js\layer\images\xubox_loading3.gif" />
+    <Content Include="js\layer\images\xubox_title0.png" />
+    <Content Include="js\layer\jquery-1.3.2.js" />
+    <Content Include="js\layer\layer.min.js" />
+    <Content Include="js\layer\skin\default\icon_ext.png" />
+    <Content Include="js\layer\skin\default\textbg.png" />
+    <Content Include="js\layer\skin\default\xubox_ico0.png" />
+    <Content Include="js\layer\skin\default\xubox_loading0.gif" />
+    <Content Include="js\layer\skin\default\xubox_loading1.gif" />
+    <Content Include="js\layer\skin\default\xubox_loading2.gif" />
+    <Content Include="js\layer\skin\default\xubox_loading3.gif" />
+    <Content Include="js\layer\skin\default\xubox_title0.png" />
+    <Content Include="js\layer\skin\layer.css" />
+    <Content Include="js\layer\skin\layer.ext.css" />
+    <Content Include="js\marquee.js" />
+    <Content Include="js\menu.js" />
+    <Content Include="js\om_code.js" />
+    <Content Include="js\Rewards.js" />
+    <Content Include="js\store.js" />
+    <Content Include="js\store.min.js" />
+    <Content Include="js\swipe.js" />
+    <Content Include="js\Validform_v5.3.2.js" />
+    <Content Include="js\Validform_v5.3.2_min.js" />
+    <Content Include="js\Validform_v5.3.2_ncr_min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="MerPrK530455.key" />
+    <Content Include="PgPubk.key" />
+    <Content Include="Areas\activity\Views\web.config" />
+    <Content Include="Areas\activity\Views\W20160910\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W201609011\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20160906\Index.cshtml" />
+    <Content Include="Scripts\countUp-jquery.js" />
+    <Content Include="Scripts\countUp.js" />
+    <Content Include="XMLWXACCESS.xml" />
+    <Content Include="Areas\activity\Views\W20160715\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20160901\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20160926\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20161001\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20160926\EndShow.cshtml" />
+    <Content Include="Areas\activity\Views\WLiuMi\Index.cshtml" />
+    <Content Include="Areas\activity\Views\WLiuMi\Receive.cshtml" />
+    <Content Include="Areas\activity\Views\W20161014\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20161018\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20161110\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20161111\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20161122\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20161212\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20170103\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20170104\Index.cshtml" />
+    <Content Include="Areas\activity\Views\W20170106\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\layer.css" />
+    <Content Include="Scripts\layer.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Help_Layout.cshtml" />
+    <Content Include="Views\Shared\Body_Layout.cshtml" />
+    <Content Include="Views\Home\ProjectDetail.cshtml" />
+    <Content Include="Views\Home\ProjectDetails.cshtml" />
+    <Content Include="Views\Home\InvestmentRecord.cshtml" />
+    <Content Include="Views\Home\InvestConfirm.cshtml" />
+    <Content Include="Views\Shared\IndexBottom_Layout.cshtml" />
+    <Content Include="Views\AboutMe\Index.cshtml" />
+    <Content Include="Views\Shared\_aboutList.cshtml" />
+    <Content Include="Views\AboutMe\List.cshtml" />
+    <Content Include="Views\AboutMe\Detail.cshtml" />
+    <Content Include="Views\AboutMe\Company.cshtml" />
+    <Content Include="Views\usercenter\Index.cshtml" />
+    <Content Include="Views\usercenter\ShowAccount.cshtml" />
+    <Content Include="Views\usercenter\Cash.cshtml" />
+    <Content Include="Views\usercenter\Recharge.cshtml" />
+    <Content Include="Views\usercenter\MyInvest.cshtml" />
+    <Content Include="Views\Invitation\Index.cshtml" />
+    <Content Include="Views\Invitation\List.cshtml" />
+    <Content Include="Views\usercenter\CapitalFlow.cshtml" />
+    <Content Include="Views\usercenter\RewardFlow.cshtml" />
+    <Content Include="Views\usercenter\UserInfo.cshtml" />
+    <Content Include="Views\usercenter\Security.cshtml" />
+    <Content Include="Views\usercenter\ChangePwd.cshtml" />
+    <Content Include="Views\usercenter\ChangeTradePwd.cshtml" />
+    <Content Include="Views\Bank\Index.cshtml" />
+    <Content Include="Views\Bank\Bind.cshtml" />
+    <Content Include="Views\Bank\UnBind.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\register\Index.cshtml" />
+    <Content Include="Views\opening_account\Index.cshtml" />
+    <Content Include="Views\login\Index.cshtml" />
+    <Content Include="Views\usercenter\bankingRecharge.cshtml" />
+    <Content Include="Views\usercenter\SuQPNetSave.cshtml" />
+    <Content Include="Views\usercenter\RechargeRecord.cshtml" />
+    <Content Include="Views\Cash\CashGENERAL.cshtml" />
+    <Content Include="Views\Cash\PostGENERALAmt.cshtml" />
+    <Content Include="Views\Cash\CashRecord.cshtml" />
+    <Content Include="Views\usercenter\interests.cshtml" />
+    <Content Include="Views\usercenter\Authentication.cshtml" />
+    <Content Include="Views\Home\PostInvest.cshtml" />
+    <Content Include="Views\Home\investment_success.cshtml" />
+    <Content Include="Views\InterestRates\Index.cshtml" />
+    <Content Include="Views\InterestRates\activityUsed.cshtml" />
+    <Content Include="Views\InterestRates\activityExpired.cshtml" />
+    <Content Include="Views\register\Succ_Registered.cshtml" />
+    <Content Include="Views\Security\Index.cshtml" />
+    <Content Include="Views\zhuanx\Index.cshtml" />
+    <Content Include="Views\Security\security.cshtml" />
+    <Content Include="Views\Security\Support.cshtml" />
+    <Content Include="Views\Security\legalclaims.cshtml" />
+    <Content Include="Views\Security\FundSecurity.cshtml" />
+    <Content Include="Views\Security\RiskControl.cshtml" />
+    <Content Include="Views\login\Forgot.cshtml" />
+    <Content Include="Views\login\ComForgot.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Shared\Index_Layout.cshtml" />
+    <Content Include="Views\Shared\Activity_Layout.cshtml" />
+    <Content Include="Views\usercenter\LLRechargeRecord.cshtml" />
+    <Content Include="Views\Cash\CashLLRecord.cshtml" />
+    <Content Include="Views\Cash\CashCoupon.cshtml" />
+    <Content Include="Views\Cash\CashUsed.cshtml" />
+    <Content Include="Views\Cash\CashOverdue.cshtml" />
+    <Content Include="Views\Home\DownLoad.cshtml" />
+    <Content Include="Views\BigData\Index.cshtml" />
+    <Content Include="Views\Home\App.cshtml" />
+    <Content Include="Views\BigData\RechargeTips.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\activity\Models\" />
+    <Folder Include="Areas\activity\Views\Shared\" />
+    <Folder Include="Views\Thirdparty\" />
+    <Folder Include="Views\XiCaiChannel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChuanglitouP2P.BLL\ChuanglitouP2P.BLL.csproj">
+      <Project>{f985f667-d4eb-4b5f-9e7f-ae7f222a5635}</Project>
+      <Name>ChuanglitouP2P.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuanglitouP2P.Common\ChuanglitouP2P.Common.csproj">
+      <Project>{081cecf4-0b14-4971-84a0-d95d7d30da14}</Project>
+      <Name>ChuanglitouP2P.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuanglitouP2P.DAL\ChuanglitouP2P.DAL.csproj">
+      <Project>{9b5238d7-0136-42c6-be5e-d8ac2668c200}</Project>
+      <Name>ChuanglitouP2P.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuanglitouP2P.DBUtility\ChuanglitouP2P.DBUtility.csproj">
+      <Project>{0778b4c9-9309-4995-b7ad-a75a59a2f2b1}</Project>
+      <Name>ChuanglitouP2P.DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuangLitouP2P.Models\ChuangLitouP2P.Models.csproj">
+      <Project>{5fefb89d-38b7-4984-9b29-2aafdf4d231e}</Project>
+      <Name>ChuangLitouP2P.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChuanglitouP2P.Model\ChuanglitouP2P.Model.csproj">
+      <Project>{6df73cee-f1d7-4ea7-93c4-20ec96f62fc0}</Project>
+      <Name>ChuanglitouP2P.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\itextsharp-5.0.6\itextsharp.csproj">
+      <Project>{84c4fdd9-3ed7-453b-b9da-b3ed52cb071c}</Project>
+      <Name>itextsharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LitJSON\LitJSON.csproj">
+      <Project>{efb27f7a-048b-45a4-bd73-cf0c1d9c15fa}</Project>
+      <Name>LitJSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcPager\MvcPager.csproj">
+      <Project>{eb54aa5a-1f91-4fdd-8e36-75ea8be6ce7d}</Project>
+      <Name>MvcPager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>26263</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:26263/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此项目引用这台计算机上缺少的 NuGet 程序包。使用 NuGet 程序包还原可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,37 @@
+﻿@using ChuanglitouP2P.Common;
+@model  ChuangLitouP2P.Models.V_type_news
+@{
+    ViewBag.Title = ViewBag.title;
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+<script src="~/js/jquery-1.9.1.min.js"></script>
+<script src="~/js/appScript.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("img").css("width", "100%");
+        var paramVal = getUrlParam("app") == null ? "" : getUrlParam("app").toLowerCase();
+        //$("#hidTest").val(paramVal);
+        if (paramVal != "clt" && window.location.href.indexOf("/AboutMe/Detail?id=2619") > 0) {
+            $("p.15 span strong a").prop("href", "/");
+        }
+        if (paramVal == "clt") {
+            $("footer.footer").hide();
+            $("p.15 span strong a").prop("href", "AppRedirect://home").text("点击投资得现金奖励！").css("color", "#E53333").removeAttr("target");
+        }
+    });
+</script>
+<input type="hidden" id="hidTest" />
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">@(ViewBag.title)</h2>
+</header>
+<section class="notice_wrap">
+    <h1 class="notice_title">@(Model != null ? Model.News_title : "")</h1>
+    <div class="notice_time">发布时间：@(Model != null ? ((DateTime)Model.createtime).ToString("yyyy-MM-dd HH:mm") : "")</div>
+    <div class="notice_box">
+        @Html.Raw((Model != null && Model.context != null) ?
+            Model.context.Replace("/admin/attached/image", Utils.GetRemote_url("admin/attached/image"))
+            : "")
+    </div>
+</section>
+<div class="clear"></div>

@@ -1,0 +1,181 @@
+﻿
+@{
+
+    ViewBag.Title = "新手注册送红包-创利投";
+
+    ViewBag.keywords = "新手理财活动,投资理财活动,理财送现金，创利投活动，创利投";
+
+    ViewBag.desc = "创利投推出新手理财送好礼，现金红包送不停活动，活动期间新用户注册就送50元，首次投资成功再送您50元，挂牌上市企业创利投等您来赚钱！";
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<link href="~/Areas/activity/Sources/201609011/css/css.css" rel="stylesheet" />
+<link href="~/Areas/activity/Sources/201609011/css/common.css" rel="stylesheet" />
+<script src="~/Areas/activity/Sources/201609011/js/jquery-1.9.1.min.js"></script>
+<script src="~/Areas/activity/Sources/201609011/js/awardRotate.js"></script>
+<script src="~/Areas/activity/Sources/201609011/js/scroll_js.js"></script>
+<div class="zhaunpan_content">
+    <div class="zhaunpan_content_1">
+        <img src="~/Areas/activity/Sources/201609011/images/wzhuanpan_01.jpg">
+    </div>
+
+    <div class="zhaunpan_content_2">
+        <img src="~/Areas/activity/Sources/201609011/images/wzhuanpan_02.jpg">
+        <div class="dazhaunpan_main">
+            <div class="zp_cont">
+                <div class="zp_pointer pointer">
+                    <img src="~/Areas/activity/Sources/201609011/images/zhuanpan_jiang.png">
+                </div>
+                <div class="zp_rotate">
+                    <img id="rotate" src="~/Areas/activity/Sources/201609011/images/zhuanpan_go.png" alt="turntable">
+                </div>
+                <div class="deng">
+                    <div class="dengUp">
+                        <img src="~/Areas/activity/Sources/201609011/images/zhuanpan_deng1.png">
+                    </div>
+                    <div class="dengDode">
+                        <img src="~/Areas/activity/Sources/201609011/images/zhuanpan_deng2.png">
+                    </div>
+                </div>
+                <p class="jl_time">您当前还有<i id="count">@ViewBag.ltrCanUseTimes</i>次抽奖机会</p>
+            </div>
+            <div class="jilu">
+                <h1>中奖榜单</h1>
+                <div class="jilu_main">
+                    <div class="scroll_cont">
+                        <ul class="gd_cont" id="xstCont" style="overflow: hidden;">
+                            @Html.Raw(ViewBag.ltrLuckMan)
+                        </ul>
+                    </div>
+                </div>
+                <h2>已有<span>@ViewBag.ltrLuckCount</span>人中奖</h2>
+            </div>
+        </div>
+        <div class="tanchuang_main">
+            <!--弹窗遮罩-->
+            <div class="c_bg"></div>
+
+            <!--中奖弹窗-->
+            <div class="tc_01 tc_cont">
+                <span class="btn_close"></span>
+                <div class="guanbi"></div>
+                <dl>
+                    <dt>恭喜您获得100元现金！</dt>
+                    <dd><a href="#" class="chakan">查看</a><a href="#" class="shiyong">立即使用</a></dd>
+                </dl>
+            </div>
+
+            <div class="tc_05 tc_cont">
+                <span class="btn_close"></span>
+                <div class="guanbi"></div>
+                <dl>
+                    <dt>恭喜您获得100元现金！</dt>
+                    <dd>平台将在3个工作日内返现到您的账户，您可以在‘<strong>我的账户-账户总览-可用余额</strong>’中查看</dd>
+                </dl>
+            </div>
+            <div class="tc_04 tc_cont" style="display: none;">
+                <span class="btn_close"></span>
+                <div class="guanbi"></div>
+                <dl>
+                    <dt>您还没哟登陆哦！</dt>
+                    <dd><span class="tc_close">知道啦</span></dd>
+                </dl>
+            </div>
+
+            <!--不满足抽奖条件-->
+            <div class="tc_02 tc_cont">
+                <span class="btn_close"></span>
+                <div class="guanbi"></div>
+                <dl>
+                    <dt>
+                        <!-- 您还不满足抽奖条件哦！ -->
+                    </dt>
+                    <dd>
+                        <!-- <span class="tc_close">知道啦</span> -->
+                    </dd>
+                </dl>
+            </div>
+
+            <!--三次抽奖已满-->
+            <div class="tc_03 tc_cont">
+                <span class="btn_close"></span>
+                <div class="guanbi"></div>
+                <dl>
+                    <dt>
+                        <!-- 今日三次机会已用完，请明日再来哦! -->
+                    </dt>
+                    <dd>
+                        <!-- <span class="tc_close">知道了</span> -->
+                    </dd>
+                </dl>
+            </div>
+            <input type="hidden" id="userid" value="0">
+        </div>
+
+    </div>
+
+    <div class="zhaunpan_content_3">
+        <img src="~/Areas/activity/Sources/201609011/images/wzhuanpan_03.jpg">
+        <div class="zhaunpan_content_3_main">
+            <div class="zhaunpan_content_3_main_1">
+                <dl>
+                    <dt>抽奖规则：</dt>
+                    <dd>1、新用户当天注册并实名认证即可获得一次抽奖机，次日完成实名认证不累计抽奖次数，新老用户每天登陆均有一次抽奖机会。（当日登陆获得的抽奖次数有效期截止当日23:59:59）；</dd>
+                    <dd>2、本次奖品中的代金券及加息券，截至日期为2016年9月30日（请在有效期内使用）；</dd>
+                    <dd>3、加息券及代金券直接发放至个人账户，加息券和代金券不可同时使用，可以和复投同用；</dd>
+                    <dd>4、现金奖励会在三个工作日内发放到您的这个人账户中；</dd>
+                    <dd>5、抽奖过程中，如果发现违规行为（如恶意注册大量账号，使用作弊程序等），创利投将取消您的中奖资格。</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="zhaunpan_content_4">
+        <img src="~/Areas/activity/Sources/201609011/images/wzhuanpan_04.jpg">
+        <div class="zhaunpan_content_4_main">
+            <div class="zhaunpan_content_4_main_1">
+                <dl>
+                    <dt>抽奖规则：</dt>
+                    <dd>1、该活动奖励可与加息券或代金券奖励同时享受；</dd>
+                    <dd>2、该返现奖励会在活动结束后三个工作日内直接返现到个人账户中，可用于投资，也可直接提现；</dd>
+                    <dd>3、2016年9月1日之前注册的用户均可参加该活动，活动期间（即2016年9月1日-9月30日）投资越多，返现越多；</dd>
+                    <dd>4、活动期间累计投资对应标的满指定金额，即可获得相应奖励；</dd>
+                    <dd>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp举例：张三活动期间累计投资9万元，其中1月标1万元、3月标3万元、6月标5万元，张三将获得总计返现49+299+999=1347元；</dd>
+                    <dd class="dd_last">*本活动规则在法律范围内解释权归创利投所有，如有疑问请联系在线客服010-53732056</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed_Bar">
+    <div class="BarCentert">
+        <a href="http://m.chuanglitou.cn/register.html">马上注册</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1254620195'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254620195%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<span id="cnzz_stat_icon_1254620195">
+    <a href="http://www.cnzz.com/stat/website.php?web_id=1254620195" target="_blank" title="站长统计"></a>
+</span>
+<script type="text/javascript">
+    var bool = true;
+    function aq() {
+        if (bool) {
+            if ($(".dengUp").show()) {
+                $(".dengDode").hide();
+            }
+        } else {
+            if ($(".dengDode").show()) {
+                $(".dengUp").hide();
+            }
+        }
+        bool = !bool;
+    }
+    setInterval(aq, 700);
+    $(function () {
+        $("div.fixed_Bar").hide();
+    });
+</script>

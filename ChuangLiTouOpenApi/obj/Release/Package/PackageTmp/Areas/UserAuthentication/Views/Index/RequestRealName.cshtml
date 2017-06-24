@@ -1,0 +1,32 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuangLiTou.Core.Entities.ChinaPnr.UserEntity
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>实名认证</title>
+    @Url.ApiFile("jquery-1.11.1.min.js").ToHtml()
+</head>
+<body>
+    <form id="submitForm" action="@Settings.Instance.ChinapnrUrl" method="post">
+        <input id="Version" name="Version" type="hidden" value="@Model.Version" />
+        <input id="CmdId" name="CmdId" type="hidden" value="@Model.CmdId" />
+        <input id="MerCustId" name="MerCustId" type="hidden" value="@Model.MerCustId" />
+        <input id="BgRetUrl" name="BgRetUrl" type="hidden" value="@Model.BgRetUrl" />
+        <input id="RetUrl" name="RetUrl" type="hidden" value="@Model.RetUrl" />
+        <input id="UsrMp" name="UsrMp" type="hidden" value="@Model.UsrMp" />
+        <input id="UsrEmail" name="UsrEmail" type="hidden" value="@Model.UsrEmail" />
+        <input id="UsrId" name="UsrId" type="hidden" value="@Model.UsrId" />
+        <input id="IdNo" name="IdNo" type="hidden" value="@Model.IdNo" />
+        <input id="IdType" name="IdType" type="hidden" value="00" />
+        <input id="ChkValue" name="ChkValue" type="hidden" value="@Model.ChkValue" />
+    </form>
+    <script>
+        $("#submitForm").submit();
+    </script>
+</body>
+</html>

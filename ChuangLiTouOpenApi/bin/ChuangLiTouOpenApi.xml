@@ -1,0 +1,1441 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ChuangLiTouOpenApi</name>
+    </assembly>
+    <members>
+        <member name="M:ChuangLiTouOpenApi.Areas.Callback.Controllers.IndexController.SubmitTenderLoading(System.Int32)">
+            <summary>
+            支付跳转页面
+            </summary>
+            <param name="recordId">The record identifier.</param>
+            <returns>ActionResult.</returns>
+             创 建 者：解志辉
+             创建日期：2016-06-03 17:01:56
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.Cash.Controllers.IndexController">
+            <summary>
+            提现相关接口
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Cash.Controllers.IndexController.CashCallback">
+            <summary>
+            提现回调页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Cash.Controllers.IndexController.CashBgCallback">
+            <summary>
+            汇付主动通知页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.InvestmentContract(System.Int32)">
+            <summary>
+            投资合同
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.RegistContract">
+            <summary>
+            注册协议
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.SecurityGuarantee">
+            <summary>
+            安全保障
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.AboutUs">
+            <summary>
+             关于我们
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.HelpCenter">
+            <summary>
+            帮助中心
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.LoginOrRegist">
+            <summary>
+            帮助中心 注册登录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.AuthSafe">
+            <summary>
+            帮助中心 认证安全
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.Recharge">
+            <summary>
+            帮助中心 充值提现
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.Invest">
+            <summary>
+            帮助中心 投资还款
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.CashServiceFeesNotice">
+            <summary>
+            提现手续费说明
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.H5.Controllers.IndexController.RechargeLimitNotice">
+            <summary>
+            充值限制说明
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:ChuangLiTouOpenApi.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,ChuangLiTouOpenApi.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,ChuangLiTouOpenApi.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},ChuangLiTouOpenApi.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.#ctor(ChuangLiTouOpenApi.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,ChuangLiTouOpenApi.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:ChuangLiTouOpenApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ChuangLiTouOpenApi.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.BindCardController">
+            <summary>
+            绑卡相关
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.BindCardController.Index(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            绑卡接口
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.BindCardController.BindCardCallback">
+            <summary>
+            绑卡回调页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.InvestSubmitController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.InvestSubmitController.Index(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Borrow.RequestTender})">
+            <summary>
+            确认投资页面
+            </summary>
+            <param name="reqst"></param>
+            <param name="projectTypeId">标的类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.InvestSubmitController.CallbackRetUrl">
+            <summary>
+            投资成功，汇付回调页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.InvestSubmitController.CallbackBgRetUrl">
+            <summary>
+            投资成功,汇付后台主动通知
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.InvestSubmitController.GetUseRewards(System.String,System.Int32)">
+            <summary>
+            获取本次使用奖励金额
+            </summary>
+            <param name="strid"></param>
+            <param name="userid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.ThirdManageController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.UploadImageController">
+            <summary>
+            图片上传
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.MemberCenter.Controllers.UploadImageController.Index(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            App上传图片
+            </summary>
+            <returns>返回上传图片的相对路径</returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.Recharge.Controllers.IndexController">
+            <summary>
+            充值
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Recharge.Controllers.IndexController.Index">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Recharge.Controllers.IndexController.RechargeSubmit(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Recharge.RequestRecharge})">
+            <summary>
+            充值接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Recharge.Controllers.IndexController.SuQPNetSave">
+            <summary>
+            快捷充值返回接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Recharge.Controllers.IndexController.ReQPNetSave">
+            <summary>
+            充值汇付后台主动通知
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Test.Controllers.IndexController.Index(System.String)">
+            <summary>
+            实名认证测试接口
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Test.Controllers.IndexController.Recharge(System.Int32)">
+            <summary>
+            充值接口
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Test.Controllers.IndexController.BindCard(System.Int32)">
+            <summary>
+            绑卡接口
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Test.Controllers.IndexController.ThirdManage(System.Int32)">
+            <summary>
+            管理我的托管帐号
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Test.Controllers.IndexController.InvestSubmit(System.Int32)">
+            <summary>
+            InvestSubmit
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.Test.Controllers.IndexController.ImgUpload(System.Int32)">
+            <summary>
+            InvestSubmit
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Areas.UserAuthentication.Controllers.IndexController">
+            <summary>
+            用户实名认证
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.UserAuthentication.Controllers.IndexController.RealNameAuth(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestValidate})">
+            <summary>
+            实名认证接口
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.UserAuthentication.Controllers.IndexController.BgRetUrlForUserRegister">
+            <summary>
+            实名认证 后台异步通知
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Areas.UserAuthentication.Controllers.IndexController.CallbackForUserRegister(System.Boolean)">
+            <summary>
+            实名注册回调地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.ActivityController.#ctor(ChuanglitouP2P.BLL.Api.AdNewsLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ChuangLiTouOpenApi.Controllers.AdNewsController"/> class.
+            </summary>
+            <param name="adnewsLogic">The adnews logic.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.ActivityController.SelectWebNews(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.AdNews.RequestTypeAd})">
+            <summary>
+            获取活动专区列表--刘佳
+            </summary>
+            <param name="reqst">newType 新闻类型编号，pageindex页码，pagesize一页显示条数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.AppUpdateController.SelectPackageInformation(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.AppUpdate.RequestVersion})">
+            <summary>
+            获取最新更新包下载信息
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.BankController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.BankController.#ctor(ChuanglitouP2P.BLL.Api.MemberLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ChuangLiTouOpenApi.Controllers.AdNewsController"/> class.
+            </summary>
+            <param name="adnewsLogic">The adnews logic.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.BankController.SelectBankList(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            获取银行列表--解志辉
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.BankController.SelectUserBankList(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            获取用户关联的银行列表--解志辉
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.AdNewsController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.AdNewsController.#ctor(ChuanglitouP2P.BLL.Api.AdNewsLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ChuangLiTouOpenApi.Controllers.AdNewsController"/> class.
+            </summary>
+            <param name="adnewsLogic">The adnews logic.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.AdNewsController.SelectWebAd(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.AdNews.RequestAd})">
+            <summary>
+            获取Banner轮播图数据列表--解志辉
+            </summary>
+            <param name="reqst">adtypeId 广告类型编号，top 显示条数</param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.AdNewsController.SelectWebNews(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.AdNews.RequestNews})">
+            <summary>
+            获取新闻列表信息--解志辉
+            </summary>
+            <param name="reqst">newType 新闻类型编号，pageindex页码，pagesize一页显示条数</param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.BonusController">
+            <summary>
+            优惠券相关接口--解志辉
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.BonusController.#ctor(ChuanglitouP2P.BLL.Api.BonusLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ChuangLiTouOpenApi.Controllers.BonusController"/> class.
+            </summary>
+            <param name="bonusLogic">The bonus logic.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.BonusController.CheckBonus(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Bonus.RequestCheckBonus})">
+            <summary>
+            获取特定红包当前是否可用--解志辉
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;System.String&gt;.</returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.BorrowController">
+            <summary>
+            项目标相关接口
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.BorrowController.SelectBorrowList(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Borrow.RequestBorrow})">
+            <summary>
+            获取标的数据列表--解志辉
+            </summary>
+            <param name="reqst">RequestBorrow</param>
+            <returns>ResultInfo&lt;BasePage&lt;List&lt;BorrowEntity&gt;&gt;&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.BorrowController.SelectBorrowDetail(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Borrow.RequestBorrowDetail})">
+            <summary>
+             获取特定标的详情信息--解志辉
+            </summary>
+            <param name="reqst">targetId</param>
+            <returns>ResultInfo&lt;BorrowEntity&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.BorrowController.SubmitTender(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Borrow.RequestTender})">
+            <summary>
+            确认投资接口--解志辉
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;System.Int32&gt;.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-31 18:01:28
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.BorrowController.SelectBorrowInfor(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Borrow.RequestBorrowDetail})">
+            <summary>
+            获取特定标的详细信息.包括:项目详情模块，风险控制模块，担保意见模块 --解志辉
+            <remark>位置：特定标的详情页下方</remark>
+            <remark>还有 投资记录 是另外一个接口Invest/SelectInvestRecordsByID。</remark>
+            </summary>
+            <param name="reqst">targetId</param>
+            <returns>ResultInfo&lt;BorrowDetailEntity&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.BorrowController.SelectNewHandBorrow(ChuangLiTou.Core.Entities.Request.RequestParam)">
+            <summary>
+            获取新手标数据
+            </summary>
+            <param name="reqst">targetId</param>
+            <returns>ResultInfo&lt;BorrowDetailEntity&gt;.</returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.CapitalController">
+            <summary>
+            资金相关接口
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.CapitalController.FundsManage(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            获取特定用户资金管理,包括：累计投资、应收利息  --解志辉
+            </summary>
+            <param name="reqst">{"userId":"用户ID"}</param>
+            <returns>ResultInfo&lt;MemberEntity&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.CapitalController.FundDetail(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Capital.RequestCapital})">
+            <summary>
+            查询用户资金明细--解志辉
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;MemberEntity&gt;.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-25 16:40:17
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.CapitalController.PresentRecord(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Capital.RequestCapital})">
+            <summary>
+            获取特定用户提现记录列表--解志辉
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;MemberEntity&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.CapitalController.SelectFundWater(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberCapital})">
+            <summary>
+            获取特定用户收支流水列表--解志辉
+            </summary>
+            <param name="reqst">
+                {"userId":"用户ID","pageIndex":"当前页数", "pageSize":"每页条数"}
+            </param>
+            <returns>ResultInfo&lt;BasePage&lt;List&lt;CapitalAccountWater&gt;&gt;&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.CapitalController.TotalCapital(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            获取特定用户资产统计信息--解志辉
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;MemberEntity&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.CapitalController.IsAllowRecharge(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Recharge.RequestRecharge})">
+            <summary>
+             是否允许用户充值资金
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.EncController.Decrypt(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Enc.RequestEnc})">
+            <summary>
+             Dec系统解密--解志辉
+            </summary>
+            <param name="reqst">加密串</param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.GlobalController">
+            <summary>
+            全局环境接口
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.GlobalController.SelectTypeFinance(ChuangLiTou.Core.Entities.Request.RequestParam)">
+            <summary>
+            获取流水的所有枚举状态
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.GlobalController.CustomerServiceNumber(ChuangLiTou.Core.Entities.Request.RequestParam)">
+            <summary>
+            获取客户服务电话号码
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.GlobalController.PlatformStatistics(ChuangLiTou.Core.Entities.Request.RequestParam)">
+            <summary>
+            获取平台统计信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.GlobalController.PlatformStatisticsReportUrl(ChuangLiTou.Core.Entities.Request.RequestParam)">
+            <summary>
+            获取平台运维报告的URL地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.GlobalController.RechargeRuleDescriptionUrl(ChuangLiTou.Core.Entities.Request.RequestParam)">
+            <summary>
+            获取平台充值规则说明的URL地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.GlobalController.NotificationMarks(ChuangLiTou.Core.Entities.Request.RequestParam{ChuanglitouP2P.Model.Invest.GlobalNotificationMarksRequest})">
+            <summary>
+            获取用户相关数据是否变更的标记状态.包含：代金卷
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.GlobalController.SpecialActivityUrl(ChuangLiTou.Core.Entities.Request.RequestParam)">
+            <summary>
+            获取特定时间内的主要推广活动的URL地址
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.GlobalController.CashServiceFees(ChuangLiTou.Core.Entities.Request.RequestParam{ChuanglitouP2P.Model.CashServiceFeesRequest})">
+            <summary>
+            获取此次提现需要花费的手续费金额
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.InvestController">
+            <summary>
+             投资相关接口
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.InvestController.#ctor(ChuanglitouP2P.BLL.Api.BonusLogic,ChuanglitouP2P.BLL.Api.InvestLogic)">
+            <summary>
+                构造函数
+            </summary>
+            <param name="bonusLogic">The bonus logic.</param>
+            <param name="investLogic"></param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.InvestController.SelectInvests(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberInvest})">
+            <summary>
+            获取特定用户已投资列表--解志辉
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;MemberInvestEntity&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.InvestController.SelectInvestDetail(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Invest.RequestInvest})">
+            <summary>
+            获取特定用户已投资明细--解志辉
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.InvestController.SelectIncomeList(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Invest.RequestIncome})">
+            <summary>
+            获取特定用户回款明细列表--解志辉
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.InvestController.SelectTotalIncome(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            获取特定用户回款总金额--解志辉
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.InvestController.SelectInvestRecordsByID(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Invest.RequestInvestRecord})">
+            <summary>
+            获取特定标的的投资记录--冀兴光
+            <remark>关联Borrow/SelectBorrowInfor</remark>
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.InvestController.SelectInvitationInvestCount(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Invest.RequestInvestInvpeople})">
+            <summary>
+            获取特定用户累计邀请信息--刘佳
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.InvestController.SelectInvitationDetail(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Invest.RequestInvestInvpeople})">
+            <summary>
+            获取邀请好友投资详情界面的上部分统计信息
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.InvestController.SelectInvitationDetailPage(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Invest.RequestInvestInvpeoplePage})">
+            <summary>
+            获取邀请好友投资详情界面的下部分的分页详情信息
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.InvestController.saveQRCode(System.String)">
+            <summary>
+            生成二维码图片
+            </summary>
+            <param name="invitedcode">邀请码</param>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.MemberController">
+            <summary>
+                用户相关接口
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.#ctor(ChuanglitouP2P.BLL.Api.MemberLogic,ChuanglitouP2P.BLL.Api.SmsRecordLogic,ChuanglitouP2P.BLL.Api.BonusLogic,ChuanglitouP2P.BLL.Api.RegionLogic)">
+            <summary>
+                会员相关接口
+            </summary>
+            <param name="logic"></param>
+            <param name="recordLogic"></param>
+            <param name="bonusLogic"></param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.Regist(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestRegistMember})">
+            <summary>
+                会员注册接口--解志辉
+            </summary> 
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.CheckMobile(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Sms.SmsEntity})">
+            <summary>
+                验证手机号是否被占用--解志辉
+            </summary>
+            <param name="reqst">
+                {"mobile":"手机号"}
+            </param>
+            <returns>Code==1  可用</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.Login(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestLoginEntity})">
+            <summary>
+                会员登录接口--解志辉
+            </summary>
+            <param name="reqst">
+                {"userName":"用户名","userPass":"密码明文"}
+            </param>
+            <returns>ResultInfo&lt;dynamic&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.FindPassword(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestFindPass})">
+            <summary>
+                找回密码接口--解志辉
+            </summary>
+            <param name="reqst">
+                {"mobile":"手机号","code":"验证码","newPwd":"密码明文"}
+            </param>
+            <returns>ResultInfo&lt;System.String&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.ModifyPassword(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestModifyPass})">
+            <summary>
+                修改密码--解志辉
+            </summary>
+            <param name="reqst">
+                {"userId":"用户ID","orgPwd":"原始密码","newPwd":"新密码明文"}
+            </param>
+            <returns>ResultInfo&lt;System.String&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.ModifyMobile(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestValidateOrgMobileEntity})">
+            <summary>
+            修改手机号--解志辉
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;System.String&gt;.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-25 16:27:44
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.IsRealName(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            验证用户是否实名--解志辉
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.SelectMemberInformation(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            获取特定会员基本信息--解志辉
+            </summary>
+            <param name="reqst">
+                {"userId":"用户ID"}
+            </param>
+            <returns>ResultInfo&lt;MemberEntity&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.SelectBalance(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            获取用户可用余额--解志辉
+            <remark>用户投资后,刷新账户余额</remark>
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;MemberInvestEntity&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.SelectBonus(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberBonus})">
+            <summary>
+            获取用户 余额+优惠券--解志辉 新
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;MemberInvestEntity&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.SelectActivity(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberBonus})">
+            <summary>
+            获取用户可用的代金券列表--刘佳
+            <remark>APP投资页调用此接口</remark>
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;MemberInvestEntity&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.SelectBonuses(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Bonus.RequestBonus})">
+            <summary>
+                获取用户奖励(优惠券 代金券)列表--解志辉.
+            </summary>
+            <param name="reqst">
+                {"userId":"用户ID","pageIndex":"当前页数", "pageSize":"每页条数"}
+            </param>
+            <returns>ResultInfo&lt;BasePage&lt;List&lt;BonusEntity&gt;&gt;&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.SelectPersonalBonuses(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Bonus.RequestOwnBonus})">
+            <summary>
+            获取特定用户已拥有的代金券列表--王雪松
+            <remark>个人中心-奖励券界面调用此接口</remark>
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.SelectPersonalBonusesDetail(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Bonus.RequestBonusDetail})">
+            <summary>
+            获取现特定代金卷的详情--王雪松
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.SelectUserAddress(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestMemberDetail})">
+            <summary>
+            获取用户常用地址--解志辉
+            </summary>
+            <param name="reqst">The reqst.</param>
+            <returns>ResultInfo&lt;NormalAreaEntity&gt;.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-26 16:45:10
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.SaveAddress(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Region.RequestRegionEntity})">
+            <summary>
+            保存用户常用地址数据--解志辉
+            </summary>
+            <returns>ResultInfo&lt;System.Int32&gt;.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-26 15:03:37
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.MemberController.SendMsg(System.String)">
+            <summary>
+                发送密码修改成功短信--解志辉
+            </summary>
+            <param name="mobile">手机号</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.PayController.UnBind(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Member.RequestPayEntity})">
+            <summary>
+            解绑LL银行卡
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.ShareController">
+            <summary>
+            分享接口
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.ShareController.SelectShareInfor(ChuangLiTou.Core.Entities.Request.RequestParam)">
+            <summary>
+            获取邀请好友的分享信息实体
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.ShareController.SelectShareQRCode(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Share.RequestQRCode})">
+            <summary>
+            获取用户分享的二维码
+            </summary>
+            <param name="reqst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.ShareController.SaveQRCode(System.String,System.String,System.String)">
+            <summary>
+            生成二维码图片
+            </summary>
+            <param name="str">二维码信息</param>
+            <param name="path">文件保存路径</param>
+            <param name="fileName">文件名 包含后缀</param>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.RegionController">
+            <summary>
+            省市县相关接口
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.RegionController.#ctor(ChuanglitouP2P.BLL.Api.RegionLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ChuangLiTouOpenApi.Controllers.RegionController"/> class.
+            </summary>
+            <param name="logic">The logic.</param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.RegionController.SelectProvince(ChuangLiTou.Core.Entities.Request.RequestParam)">
+            <summary>
+            获取省级区域--解志辉
+            </summary>
+            <returns>ResultInfo&lt;NormalAreaEntity&gt;.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-26 10:15:35
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.RegionController.SelectCity(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.NormalArea.RequestAreaEntity})">
+            <summary>
+            获取市级区域--解志辉
+            </summary>
+            <param name="reqst">The parent identifier.</param>
+            <returns>ResultInfo&lt;List&lt;NormalAreaEntity&gt;&gt;.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-26 11:15:45
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.RegionController.SelectCounty(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.NormalArea.RequestAreaEntity})">
+            <summary>
+            获取县级区域--解志辉
+            </summary>
+            <param name="reqst">The parent identifier.</param>
+            <returns>ResultInfo&lt;List&lt;NormalAreaEntity&gt;&gt;.</returns>
+             创 建 者：解志辉
+             创建日期：2016-05-26 11:15:42
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.SmsController">
+            <summary>
+            短信相关接口
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.SmsController.GetRegistCode(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Sms.SmsEntity})">
+            <summary>
+            获取注册验证码短信--解志辉
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.SmsController.GetModifyPwdCode(ChuangLiTou.Core.Entities.Request.RequestParam{ChuangLiTou.Core.Entities.Request.Sms.SmsEntity})">
+            <summary>
+                获取修改密码验证码短信--解志辉
+            </summary>
+            <returns>ResultInfo&lt;System.String&gt;.</returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.SmsController.SendSms(System.String,System.Int32,System.Int32)">
+            <summary>
+             发送短信--解志辉
+            </summary>
+            <param name="mobile"></param>
+            <param name="type"></param>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.TokenController">
+            <summary>
+                获取第三方请求token
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.TokenController.GetOAuthToken(System.String,System.String)">
+            <summary>
+                获取Token授权码
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="password">密码</param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Controllers.WdzgController">
+            <summary>
+                网贷中国 数据接口
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Controllers.WdzgController.SelectTargetByIdOrDate(System.String,System.String,System.String)">
+            <summary>
+                通过 【标ID】 或 【日期】 获取指定标信息，包含投资人数据--解志辉
+            </summary>
+            <param name="id">标的编号</param>
+            <param name="date">日期</param>
+            <param name="token">访问平台密钥</param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Factory.ApiAuth">
+            <summary>
+                创利投 API 属性过滤器 验证请求权限
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Factory.ApiAuth.CheckRequestParams(ChuangLiTou.Core.Entities.Request.RequestParam{System.Object},System.String)">
+            <summary>
+                验证公共参数是否合法
+            </summary>
+            <param name="reqt">参数.</param>
+            <param name="bodyStr">bodyjson字符串.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Factory.ApiAuth.GetBody(System.String)">
+            <summary>
+             获取body
+            </summary>
+            <param name="bodyStr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Factory.AppHandleErrorAttribute">
+            <summary>
+            错误日志（Controller发生异常时会执行这里）
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Factory.AppHandleErrorAttribute.OnException(System.Web.Mvc.ExceptionContext)">
+            <summary>
+            异常
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Factory.BaseApi">
+            <summary>
+                创利投 接口基类
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Factory.BaseApi.KickOutAppStoreRejectedAd(System.Collections.Generic.List{ChuangLiTou.Core.Entities.Response.AdNews.AdEntity},System.String)">
+            <summary>
+            删除特定活动实体-针对IOS移动端审核时存在资源侵权嫌疑
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Factory.BaseApi.AppendBankEntityAmtLimit(System.Collections.Generic.List{ChuangLiTou.Core.Entities.Response.Bank.BankEntity})">
+            <summary>
+            追加银行交易限额逻辑
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Factory.BaseThirdApi">
+            <summary>
+                第三方接口权限验证基础类 xiezh
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Factory.ControllerAuth">
+            <summary>
+                创利投 控制器 属性过滤器 验证请求权限
+                验证签名分2个步骤1.base64获取原有body;2.body和实际数据列转换成dataTable进行比对
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Factory.ControllerAuth.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+             汇付相关的过滤器
+            </summary>
+            <param name="actionContext"></param>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Factory.ControllerAuth.CheckRequestParams(ChuangLiTou.Core.Entities.Request.RequestParam{System.Object},System.String)">
+            <summary>
+                验证公共参数是否合法
+            </summary>
+            <param name="reqt">参数.</param>
+            <param name="bodyStr">bodyjson字符串.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Factory.ControllerAuth.MappingTbData(System.Type,System.Object)">
+            <summary>
+            根据Sytem.Type转换类型
+            </summary>
+            <param name="type">Sytem.Type</param>
+            <param name="data">数据对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Factory.ThirdApiAuth">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Factory.WebApiIoc.Bootstrapper">
+            <summary>
+            Class Bootstrapper.
+            </summary>
+        </member>
+        <member name="M:ChuangLiTouOpenApi.Factory.WebApiIoc.Bootstrapper.Start">
+            <summary>
+            Starts
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Factory.WebApiIoc.IocManage">
+            <summary>
+                IOC初始化方法
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Factory.WebApiIoc.SmDependencyResolver">
+            <summary>
+                解决方案
+            </summary>
+        </member>
+        <member name="T:ChuangLiTouOpenApi.Factory.WebApiIoc.StructureMapScope">
+            <summary>
+                StructureMap 服务类
+            </summary>
+        </member>
+    </members>
+</doc>

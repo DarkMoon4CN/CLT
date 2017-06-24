@@ -1,0 +1,97 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<V_hx_Bid_records_borrowing_target>
+@{
+    ViewBag.Title = "投资管理-投资记录-创利投";
+    ViewBag.keywords = "投资管理-投资记录-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+}
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+@Url.File("/Content/pagecss.css").ToHtml()
+
+
+<script type="text/javascript">
+    var dff;
+    function AjaxStart() {dff= layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+    function clickday(i) {
+        $('#tdays').val(i);
+        $('#startdatetime').val('');
+        $('#enddatetime').val('');
+    }
+    function checkForm()
+    {
+        return true;
+    }
+</script>
+
+<div class="content">
+    <!--公共的左侧-->
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+    <div>
+        <!--                                                                     投资记录-->
+        <div class="back choose" id="tz">
+            <h2>
+                投资记录
+            </h2>
+           
+            <div class="dContent">
+                <div class="hh">
+                    <div class="bAll">
+
+@using (Html.BeginForm("touzi", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm", @class = "form-inline well well-sm" }))
+{
+                        <select name="">
+                            <option>投资日期</option>
+                            <option>结束日期</option>
+                        </select>
+
+                        <p style="display: inline-block;">
+                            <i style="color:#0F91DD" class="bAllI tAllI" onclick="clickday('1')">今天</i>
+                            <i onclick="clickday('30')">最近一个月</i>
+                            <i onclick="clickday('90')">3个月</i>
+                            <i onclick="clickday('0')">全部</i>
+                        </p>
+                        <input type="hidden" name="tdays" id="tdays" value="@ViewBag.tdays" />
+                        <!--日历部分-->
+                        <input class="jcDate"  type="text" autocomplete="off" id="startdatetime"  name="startdatetime" value="@ViewBag.startdatetime" style="width:95px; height:28px; line-height:28px; padding-left:40px;margin-left: 5px;border:1px solid #f0f0f0;" />
+                        <b class="tI" style="margin: 0 8px;">至</b>
+                        <input class="jcDate"   type="text" autocomplete="off" id="enddatetime"  name="enddatetime" value="@ViewBag.enddatetime" style="width:95px; height:28px; line-height:28px; padding-left:40px;border:1px solid #f0f0f0;" />
+                        <input class="dBtn1 tBtn1"  type="submit" id="btn_submit" onclick="return checkForm();" value="查询" />
+}
+
+                    </div>
+                    @Html.Partial("_touziList", Model)
+                
+                
+                 </div>
+
+
+             
+                @*
+    <div class="hh" style="display: none;">
+
+        @using (Html.BeginForm("touzi1", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm1", @class = "form-inline well well-sm" }))
+        { }
+
+
+        @Html.Partial("_touzilist1", ViewBag.list as List<V_hx_Bid_records_borrowing_target>)
+
+
+    </div>
+                *@
+            </div>
+        </div>
+
+        @section Scripts{@{Html.RegisterMvcPagerScriptResource();}}
+    </div>
+</div>
+

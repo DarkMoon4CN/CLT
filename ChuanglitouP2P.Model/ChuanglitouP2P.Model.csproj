@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6DF73CEE-F1D7-4EA7-93C4-20EC96F62FC0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChuanglitouP2P.Model</RootNamespace>
+    <AssemblyName>ChuanglitouP2P.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\ChuangLiTouOpenApi\App_Data\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\ChuangLiTouOpenApi\App_Data\ChuanglitouP2P.Model.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MiniProfiler, Version=3.2.0.157, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.3.2.0.157\lib\net40\MiniProfiler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MiniProfiler.EntityFramework6, Version=3.0.11.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.EF6.3.0.11\lib\net40\MiniProfiler.EntityFramework6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chinapnr\AddBidInfo\M_AddBidInfo.cs" />
+    <Compile Include="chinapnr\AddBidInfo\R_AddBidInfo.cs" />
+    <Compile Include="chinapnr\AutoCreditAssign\M_AutoCreditAssign.cs" />
+    <Compile Include="chinapnr\AutoCreditAssign\ReAutoCreditAssign.cs" />
+    <Compile Include="chinapnr\AutoTenderPlanClose\M_AutoTenderPlanClose.cs" />
+    <Compile Include="chinapnr\AutoTenderPlanClose\ReAutoTenderPlanClose.cs" />
+    <Compile Include="chinapnr\AutoTenderPlan\M_AutoTenderPlan.cs" />
+    <Compile Include="chinapnr\AutoTenderPlan\ReAutoTenderPlan.cs" />
+    <Compile Include="chinapnr\AutoTender\M_AutoTender.cs" />
+    <Compile Include="chinapnr\AutoTender\ReAutoTender.cs" />
+    <Compile Include="chinapnr\CashAudit\M_CashAudit.cs" />
+    <Compile Include="chinapnr\CashAudit\ReCashAudit.cs" />
+    <Compile Include="chinapnr\CashReconciliation\M_CashReconciliation.cs" />
+    <Compile Include="chinapnr\CashReconciliation\M_OrdId.cs" />
+    <Compile Include="chinapnr\CashReconciliation\ReCashReconciliation.cs" />
+    <Compile Include="chinapnr\Cash\M_Cash.cs" />
+    <Compile Include="chinapnr\Cash\M_ReqExt.cs" />
+    <Compile Include="chinapnr\Cash\ReCash.cs" />
+    <Compile Include="chinapnr\ChinapnrAttribute\ChkValueSort.cs" />
+    <Compile Include="chinapnr\CorpRegister\M_CorpRegister.cs" />
+    <Compile Include="chinapnr\CorpRegister\ReCorpRegister.cs" />
+    <Compile Include="chinapnr\CreditAssign\M_BidDetails.cs" />
+    <Compile Include="chinapnr\CreditAssign\M_CreditAssign.cs" />
+    <Compile Include="chinapnr\CreditAssign\M_DivDetails.cs" />
+    <Compile Include="chinapnr\CreditAssign\ReCreditAssign.cs" />
+    <Compile Include="chinapnr\DelCard\M_DelCard.cs" />
+    <Compile Include="chinapnr\DelCard\ReDelCard.cs" />
+    <Compile Include="chinapnr\FssTrans\M_FssTrans.cs" />
+    <Compile Include="chinapnr\FssTrans\ReFssTrans.cs" />
+    <Compile Include="chinapnr\InitiativeTender\M_InitiativeTender.cs" />
+    <Compile Include="chinapnr\InitiativeTender\ReInitiativeTender.cs" />
+    <Compile Include="chinapnr\InitiativeTender\TenderAccPro.cs" />
+    <Compile Include="chinapnr\InitiativeTender\TenderJosnPro.cs" />
+    <Compile Include="chinapnr\Loans\M_DivDetails.cs" />
+    <Compile Include="chinapnr\Loans\M_Loans.cs" />
+    <Compile Include="chinapnr\Loans\ReLoans.cs" />
+    <Compile Include="chinapnr\MerCash\M_MerCash.cs" />
+    <Compile Include="chinapnr\MerCash\ReMerCash.cs" />
+    <Compile Include="chinapnr\MerCash\RepMerCash.cs" />
+    <Compile Include="chinapnr\NetSave\M_NetSave.cs" />
+    <Compile Include="chinapnr\NetSave\M_QPNetSave.cs" />
+    <Compile Include="chinapnr\NetSave\ReNetSave.cs" />
+    <Compile Include="chinapnr\NetSave\ReQPNetSave.cs" />
+    <Compile Include="chinapnr\QueryAccts\M_Details.cs" />
+    <Compile Include="chinapnr\QueryAccts\M_QueryAccts.cs" />
+    <Compile Include="chinapnr\QueryAccts\ReQueryAccts.cs" />
+    <Compile Include="chinapnr\QueryBalanceBg\M_QueryBalanceBg.cs" />
+    <Compile Include="chinapnr\QueryBalanceBg\ReQueryBalanceBg.cs" />
+    <Compile Include="chinapnr\QueryBalance\M_QueryBalance.cs" />
+    <Compile Include="chinapnr\QueryBalance\ReQueryBalance.cs" />
+    <Compile Include="chinapnr\QueryCardInfo\M_QueryCardInfo.cs" />
+    <Compile Include="chinapnr\QueryCardInfo\M_QueryPayQuota.cs" />
+    <Compile Include="chinapnr\QueryCardInfo\M_UsrCardInfolist.cs" />
+    <Compile Include="chinapnr\QueryCardInfo\ReQueryCardInfo.cs" />
+    <Compile Include="chinapnr\QueryCardInfo\ReQueryPayQuota.cs" />
+    <Compile Include="chinapnr\QueryTransStat\M_QueryTransStat.cs" />
+    <Compile Include="chinapnr\QueryTransStat\ReQueryTransStat.cs" />
+    <Compile Include="chinapnr\Reconciliation\M_Ord.cs" />
+    <Compile Include="chinapnr\Reconciliation\M_Reconciliation.cs" />
+    <Compile Include="chinapnr\Reconciliation\ReReconciliation.cs" />
+    <Compile Include="chinapnr\Repayment\M_Repayment.cs" />
+    <Compile Include="chinapnr\Repayment\M_RP_DivDetails.cs" />
+    <Compile Include="chinapnr\Repayment\M_RP_ProID.cs" />
+    <Compile Include="chinapnr\Repayment\ReqExtLoans.cs" />
+    <Compile Include="chinapnr\Repayment\ReRepayment.cs" />
+    <Compile Include="chinapnr\SaveReconciliation\M_OrdList.cs" />
+    <Compile Include="chinapnr\SaveReconciliation\M_SaveReconciliation.cs" />
+    <Compile Include="chinapnr\SaveReconciliation\ReSaveReconciliation.cs" />
+    <Compile Include="chinapnr\TenderCancle\M_TenderCancle.cs" />
+    <Compile Include="chinapnr\TenderCancle\ReTenderCancle.cs" />
+    <Compile Include="chinapnr\Transfer\M_Transfer.cs" />
+    <Compile Include="chinapnr\Transfer\ReTransfer.cs" />
+    <Compile Include="chinapnr\TrfReconciliation\M_Ordid.cs" />
+    <Compile Include="chinapnr\TrfReconciliation\M_TrfReconciliation.cs" />
+    <Compile Include="chinapnr\TrfReconciliation\ReTrfReconciliation.cs" />
+    <Compile Include="chinapnr\UserBindCard\M_UserBindCard.cs" />
+    <Compile Include="chinapnr\UserBindCard\ReUserBindCard.cs" />
+    <Compile Include="chinapnr\UserLogin\M_UserLogin.cs" />
+    <Compile Include="chinapnr\UserRegister\M_UserRegister.cs" />
+    <Compile Include="chinapnr\UserRegister\ReUserRegister.cs" />
+    <Compile Include="chinapnr\UsrAcctPay\M_UsrAcctPay.cs" />
+    <Compile Include="chinapnr\UsrAcctPay\ReUsrAcctPay.cs" />
+    <Compile Include="chinapnr\UsrFreezeBg\M_UsrFreezeBg.cs" />
+    <Compile Include="chinapnr\UsrFreezeBg\ReUsrFreezeBg.cs" />
+    <Compile Include="chinapnr\UsrTransfer\M_UsrTransfer.cs" />
+    <Compile Include="chinapnr\UsrTransfer\ReUsrTransfer.cs" />
+    <Compile Include="chinapnr\UsrUnFreeze\M_UsrUnFreeze.cs" />
+    <Compile Include="chinapnr\UsrUnFreeze\ReUsrUnFreeze.cs" />
+    <Compile Include="HolidayEntity.cs" />
+    <Compile Include="ImportErrorData.cs" />
+    <Compile Include="ImportErrorDataForIn.cs" />
+    <Compile Include="Invest\CashServiceFeesRequest.cs" />
+    <Compile Include="Invest\GlobalNotificationMarks.cs" />
+    <Compile Include="Invest\GlobelInvestStatistics.cs" />
+    <Compile Include="Invest\InvestmentParameters.cs" />
+    <Compile Include="Invest\InvestmentReceiveRecordInfo.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeDetails.cs" />
+    <Compile Include="Invest\InvestmentTotalIncome.cs" />
+    <Compile Include="Invest\InvitationDetail.cs" />
+    <Compile Include="Invest\GlobalNotificationTimestampRequest.cs" />
+    <Compile Include="Invest\UserInvestedStatistics.cs" />
+    <Compile Include="KeyValues.cs" />
+    <Compile Include="M_ActivityFlow.cs" />
+    <Compile Include="M_ActivityFlowWater.cs" />
+    <Compile Include="M_Activity_schedule.cs" />
+    <Compile Include="M_area.cs" />
+    <Compile Include="M_Bid_records.cs" />
+    <Compile Include="M_bonding_company.cs" />
+    <Compile Include="M_bonus_account.cs" />
+    <Compile Include="M_bonus_account_water.cs" />
+    <Compile Include="M_borrower_guarantor_picture.cs" />
+    <Compile Include="M_borrowing_target.cs" />
+    <Compile Include="M_borrowing_target_detailed.cs" />
+    <Compile Include="M_borrowing_target_ZhuoLu.cs" />
+    <Compile Include="M_Capital_account_water.cs" />
+    <Compile Include="M_CashAwards.cs" />
+    <Compile Include="M_city.cs" />
+    <Compile Include="M_Contract_management.cs" />
+    <Compile Include="M_Contract_template.cs" />
+    <Compile Include="M_contract_type.cs" />
+    <Compile Include="M_GrabIphone.cs" />
+    <Compile Include="M_guarantee_way.cs" />
+    <Compile Include="M_income_statement.cs" />
+    <Compile Include="M_LLPay.cs" />
+    <Compile Include="M_login.cs" />
+    <Compile Include="M_LuckDrawRecord.cs" />
+    <Compile Include="M_member_table.cs" />
+    <Compile Include="M_Mention_charges.cs" />
+    <Compile Include="M_Overdue_repayment.cs" />
+    <Compile Include="M_Project_type.cs" />
+    <Compile Include="M_province.cs" />
+    <Compile Include="M_Recharge_history.cs" />
+    <Compile Include="M_repayment_plan.cs" />
+    <Compile Include="M_reviewremarks.cs" />
+    <Compile Include="M_td_about_news.cs" />
+    <Compile Include="M_td_Ad.cs" />
+    <Compile Include="M_td_adminuser.cs" />
+    <Compile Include="M_td_department.cs" />
+    <Compile Include="M_td_frozen.cs" />
+    <Compile Include="M_td_Links.cs" />
+    <Compile Include="M_td_Loan_records.cs" />
+    <Compile Include="M_td_LoginInfo.cs" />
+    <Compile Include="M_td_menu.cs" />
+    <Compile Include="M_td_Myborrow.cs" />
+    <Compile Include="M_td_Phone_records.cs" />
+    <Compile Include="M_td_SMS_record.cs" />
+    <Compile Include="M_td_System_message.cs" />
+    <Compile Include="M_td_UserCash.cs" />
+    <Compile Include="M_td_Userinvitation.cs" />
+    <Compile Include="M_td_web_Ad_type.cs" />
+    <Compile Include="M_td_web_type.cs" />
+    <Compile Include="M_UsrBindCard.cs" />
+    <Compile Include="M_WithdrawalCash.cs" />
+    <Compile Include="PartialMemberModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponsePage.cs" />
+    <Compile Include="Return_Employee.cs" />
+    <Compile Include="Return_EmployeeDetails.cs" />
+    <Compile Include="Return_StatisticsEmployee.cs" />
+    <Compile Include="StatisticsEmployee.cs" />
+    <Compile Include="StatisticsReport.cs" />
+    <Compile Include="VeryCodes\NetCreditAssistant\Model\EnumCircleType.cs" />
+    <Compile Include="VeryCodes\NetCreditAssistant\Model\EnumRepaymentMode.cs" />
+    <Compile Include="VeryCodes\NetCreditAssistant\Model\InvestmentParameters.cs" />
+    <Compile Include="VeryCodes\NetCreditAssistant\Model\InvestmentReceiveRecordInfo.cs" />
+    <Compile Include="VeryCodes\NetCreditAssistant\Model\InvestmentTotalIncome.cs" />
+    <Compile Include="WDZJModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

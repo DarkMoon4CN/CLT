@@ -1,0 +1,50 @@
+﻿
+@using Webdiyer.WebControls.Mvc;
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<V_type_news>
+
+
+<section class="project_wrap">
+    <div class="notice_list">
+        <ul>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+
+                    <li>
+                        <a href="/AboutMe/Detail?id=@(item.newid)&title=@(ViewBag.title1)">
+                            <strong>@(item.News_title)</strong>
+                            <p>@DateTime.Parse(item.createtime.ToString()).ToString("yyyy-MM-dd HH:mm:ss")</p>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</section>
+<div class="clear"></div>
+<section class="page_box">
+    <div class="page_prev">
+        @if (Model.CurrentPageIndex > 1)
+        {
+            <a href="/AboutMe/list?id=@(ViewBag.id)&pageIndex=@(Model.CurrentPageIndex-1)">上一页</a>
+        }
+        else
+        {
+            <a href="javascript:void(0);">上一页</a>
+        }
+    </div>
+    <div class="page_number">@(Model.CurrentPageIndex)/@(Model.TotalPageCount)</div>
+    <div class="page_next">
+        @if (Model.CurrentPageIndex < Model.TotalPageCount)
+        {
+            <a href="/AboutMe/list?id=@(ViewBag.id)&pageIndex=@(Model.CurrentPageIndex + 1)">下一页</a>
+        }
+        else
+        {
+        <a href="javascript:void(0);">下一页</a>
+        }
+    </div>
+</section>

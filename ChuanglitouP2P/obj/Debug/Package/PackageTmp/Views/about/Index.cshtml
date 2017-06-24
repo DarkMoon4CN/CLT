@@ -1,0 +1,790 @@
+﻿@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@{
+    ViewBag.Title = "创利投简介_创利投金服 - 创利投";
+
+    ViewBag.keywords = "创利投简介_创利投金服 - 创利投";
+
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+
+    List<V_type_news> vtn = ViewBag.newslist == null ? null : ViewBag.newslist;
+    List<V_type_news> vtnlist = ViewBag.newslists == null ? null : ViewBag.newslists;
+    List<V_type_news> gonggao = ViewBag.gonggao == null ? null : ViewBag.gonggao;
+    List<V_type_news> hongyen = ViewBag.hongyenewslist == null ? null : ViewBag.hongyenewslist;
+    List<V_type_news> newslistimg = ViewBag.newslistimg == null ? null : ViewBag.newslistimg;
+    List<V_type_news> asks = ViewBag.asks == null ? null : ViewBag.asks;
+
+
+    int ic = 1, ib = 1;
+
+}
+<link href="/Content/about.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/about.js"></script>
+<!--关于我们 begin---------------------------->
+<div class="gy_top">
+    <div class="gy_nav">
+        <a href="javascript:void(0)" class="gy_a1" tg="top1" rel="nofollow">公司介绍</a>
+        <a href="javascript:void(0)" class="gy_a2" tg="top2">媒体报道</a>
+        <a href="javascript:void(0)" class="gy_a3" tg="top3" id="gy_a3" rel="nofollow">网站公告</a>
+        <a href="javascript:void(0)" class="gy_a4" tg="top4">常见问题</a>
+        <a href="javascript:void(0)" class="gy_a5" tg="top5">行业新闻</a>
+        <a href="javascript:void(0)" class="gy_a6" tg="top6" rel="nofollow">招贤纳士</a>
+        <a href="javascript:void(0)" class="gy_a7" tg="top7" rel="nofollow">联系我们</a>
+    </div>
+</div>
+
+<!--视频 begin---------------------------->
+@*<div class="gy_video">
+        <div class="gy_v01">
+            <a href="javascript:void(0)" class="gy_show"><img src="/images/video_bg.jpg" /></a>
+            <!-- JiaThis Button BEGIN -->
+            <div class="jiathis_style shareCont">
+                <span class="jiathis_txt">分享到：</span>
+                <a class="jiathis_button_tsina"></a>
+                <a class="jiathis_button_qzone"></a>
+                <a class="jiathis_button_weixin"></a>
+                <a class="jiathis_button_tqq"></a>
+                <a class="jiathis_button_ishare"></a>
+                <a class="jiathis_button_renren"></a>
+                <a class="jiathis_button_douban"></a>
+                <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+            </div>
+            <script type="text/javascript">
+                var jiathis_config = {
+                    summary: "",
+                    ralateuid: {
+                        "tsina": "chuanglitou"
+                    },
+                    shortUrl: false,
+                    hideMore: false
+                }
+            </script>
+            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+            <!-- JiaThis Button END -->
+        </div>
+
+        <div class="video_show"></div>
+        <div class="gy_v02">
+            <div class="gy_close">
+                <embed src="http://player.youku.com/player.php/sid/XMTY1MjA3MzA1Mg==/v.swf" allowfullscreen="true" quality="high" width="960" height="580" align="middle" allowscriptaccess="never" type="application/x-shockwave-flash"></embed>
+                <a href="javascript:void(0)" class="gy_btn"></a>
+            </div>
+        </div>
+
+    </div>*@
+<a name="001" id="001"> </a>
+<!--公司介绍-------------------------------->
+
+<div class="gy_js01 top1">
+
+    <h2 class="gy_h2">公司介绍</h2>
+    <h5 class="gy_h5"></h5>
+    <div class="gy_js02">
+        <p>创利投金服（www.chuanglitou.cn）是北京创利投网络科技有限公司旗下的阳光可信赖互联网+供应链垂直立体式金融服务平台。平台依托庞大的供应链体系与互联网金融完美结合的创新型商业模式，严苛健全的风控体系，致力于为投资者及中小企业搭建一个安全、专业、高效的互联网金融服务平台。</p>
+        <p>平台自创立以来，秉承“智创财富，惠利中华”的企业使命，始终坚持“诚信为先、合规为本、互利共赢、永续发展”的经营理念，在扶持中小企业，服务实体经济发展方面发挥了重要作用。平台现已获得国家ICP经营许可证，同时与中国权威第三方支付平台汇付天下签订资金托管协议，并有业内知名融资性担保机构提供担保，全方位保障投资者的资金安全。与此同时，平台凭借诚信经营先后荣获网贷俱乐部副会长单位及新金融家俱乐部副会长单位等荣誉称号，并拥有企业信用评价AA级信用资质及亚太地区安全联盟行业认证，是值得信赖和托付的优质互联网金融服务平台。</p>
+        <p>创利投金服在行业内稳扎稳打，品牌影响力日益突显，已于2015年11月12日正式挂牌上市北京股权交易中心，成功迈入资本市场发展之路。平台将继续通过合规稳健的运营，帮助更多投资用户实现财富增值，解决更多中小企业的融资难题，在推动行业健康发展的同时，为社会经济发展创造更大的价值。</p>
+        <div class="gy_js03">
+            <dl>
+                <dt><img src="/images/gy_img02.jpg" /></dt>
+                <dd class="gy_dd01">“创利投” 理念</dd>
+                <dd class="gy_dd02">项目可信，风控严格，灵活稳健，服务用心</dd>
+            </dl>
+            <dl>
+                <dt><img src="/images/gy_img03.jpg" /></dt>
+                <dd class="gy_dd01">“创利投” 价值观</dd>
+                <dd class="gy_dd02">通过“创利投”让投资用户实现财富增长，让企业合作伙伴实现融资需求，为社会经济发展创造价值。</dd>
+            </dl>
+            <dl>
+                <dt><img src="/images/gy_img04.jpg" /></dt>
+                <dd class="gy_dd01">“创利投” 使命</dd>
+                <dd class="gy_dd02">为个人和企业搭建一个可信、高效的桥梁，提供贴心的“一站式”金融对接服务</dd>
+            </dl>
+            <dl>
+                <dt><img src="/images/gy_img05.jpg" /></dt>
+                <dd class="gy_dd01">“创利投” 愿景</dd>
+                <dd class="gy_dd02">打造行业可信赖的供应链互联网金融P2B平台</dd>
+            </dl>
+        </div>
+    </div>
+
+
+</div>
+<a name="002" id="002"> </a>
+<!--媒体报道--------------->
+<div class="gy_mt01 top2">
+    <h2 class="gy_h2"> <a href="/about/List/17">  媒体报道 </a></h2>
+    <h5 class="gy_h5" style="text-align:left;line-height: 50px;font-weight: normal;font-size :16px;width: 1079px;margin :0 auto;padding-top: 16px;">
+        @if (vtn != null && vtn.Count != 0)
+        {
+            <a style="display:block;width: 100%;height: 100%;border:0px;outline:none" onclick="Alink('@vtn[0].newid')" href="javascript:null(0)">
+                @vtn[0].News_title
+            </a>
+        }
+    </h5>
+    <div class="gy_mt02">
+        @*<div class="gy_mt_left">
+
+                @foreach (var item in vtn)
+                {
+                    if (ic == 1)
+                    {
+                        <span class="gy_hover">
+                            <a href="javascript:void(0)">@item.News_title</a>
+                        </span>
+                    }
+                    else if (ic == 2)
+                    {
+                        <span>
+                            <a href="javascript:void(0)">@item.News_title</a>
+                        </span>
+                    }
+                    else if (ic == 3)
+                    {
+                        <span class="gy_mt_end">
+                            <a href="javascript:void(0)">@item.News_title</a>
+                        </span>
+                    }
+
+                    ic = ic + 1;
+
+
+                }
+
+
+
+            </div>*@
+        <div class="gy_mt_mid">
+
+            @*@foreach (var item in vtn)
+                {
+                    if (ib == 1)
+                    {
+                        <a style="display:block;width: 100%;height: 100%;" href="/about/Detail/@item.newid" target="_blank">
+                        <img src="@string.Format("/{0}",Url.Content(item.newimg))" style="width: 100%;height: 100%;"/></a>
+                    }
+                    break;
+                }*@
+
+            @if (vtn != null && vtn.Count != 0 && ib == 1)
+            { <a style="display:block;width: 100%;height: 100%;" onclick="Alink('@vtn[0].newid')" href="javascript:null(0)">
+                <img src="@string.Format("{0}",Url.Content(@vtn[0].newimg))" style="width: 100%;height: 100%;" />
+            </a>
+            }
+        </div>
+
+
+
+        <div class="gy_mt_rg">
+            <ul>
+                @foreach (var item in vtnlist)
+                {
+
+                    if (@item.News_title.Length > 20)
+                    {
+                        <li>
+                            <a title="@item.News_title" onclick="Alink('@item.newid')" href="javascript:null(0)">
+                                @(item.News_title.Substring(0, 17) + "...")
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a title="@item.News_title" onclick="Alink('@item.newid')" href="javascript:null(0)">
+                                @item.News_title
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+        <a class="gy_xq_02 xq_more" href="/about/List/17" target="_blank">更多>></a>
+    </div>
+</div>
+
+<!--网站公告------------------------------->
+<div class="gy_web top3">
+    <h2 class="gy_h2"><a href="/about/List/21">网站公告</a></h2>
+    <h5 class="gy_h5"></h5>
+    <div class="gy_web01">
+
+
+        <div class="gy_web_lf">
+
+            @{ ic = 1;}
+            @foreach (var item in gonggao)
+            {
+                if (Utils.IsOdd(ic))
+                {
+                    if (ic <= 9)
+                    {
+
+                        <div>
+                            <span class="gy_web_span1">0@(ic.ToString())</span>
+                            <dl>
+                                <dt>@(item.News_title)</dt>
+                                <dd><span>@(DateTime.Parse(item.createtime.ToString()))</span><a onclick="Alink('@item.newid')" href="javascript:null(0)">点击详情</a></dd>
+                            </dl>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div>
+                            <span class="gy_web_span1">@(ic.ToString())</span>
+                            <dl>
+                                <dt>@(item.News_title)</dt>
+                                <dd><span>@(DateTime.Parse(item.createtime.ToString()))</span><a onclick="Alink('@item.newid')" href="javascript:null(0)">点击详情</a></dd>
+                            </dl>
+                        </div>
+                    }
+                }
+
+                ic = ic + 1;
+
+            }
+
+
+
+
+        </div>
+        <div class="gy_web_rg">
+
+            @{ ic = 1;}
+            @foreach (var item in gonggao)
+            {
+                if (Utils.IsOdd(ic) == false)
+                {
+                    if (ic <= 9)
+                    {
+                        <div>
+                            <span class="gy_web_span1">0@(ic.ToString())</span>
+                            <dl>
+                                <dt>@item.News_title</dt>
+                                <dd><span>@(DateTime.Parse(item.createtime.ToString()))</span><a onclick="Alink('@item.newid')" href="javascript:null(0)">点击详情</a></dd>
+                            </dl>
+                        </div>}
+                    else
+                    {
+                        <div>
+                            <span class="gy_web_span1">@(ic.ToString())</span>
+                            <dl>
+                                <dt>@item.News_title</dt>
+                                <dd><span>@(DateTime.Parse(item.createtime.ToString()))</span><a onclick="Alink('@item.newid')" href="javascript:null(0)">点击详情</a></dd>
+                            </dl>
+                        </div>
+                    }
+
+                }
+                ic = ic + 1;
+            }
+        </div>
+
+
+
+
+        <a class="gy_xq_01 xq_more" href="/about/List/21" target="_blank">更多>></a>
+
+    </div>
+
+
+
+</div>
+
+<!--行业新闻------------------>
+<div class="gy_hy top5">
+    <h2 class="gy_h2"><a href="/about/List/23">行业新闻</a></h2>
+    <h5 class="gy_h5"></h5>
+    <div class="gy_hy01">
+        @{
+            if (newslistimg.Any())
+            {
+                <div class="gy_hyTop">
+                    @foreach (var cc in newslistimg)
+                    {
+                        <dl>
+                            <dt><img src="@cc.newimg" /></dt>
+                            <dd class="gy_hydd"> @cc.News_title<a onclick="Alink('@cc.newid')" href="javascript:null(0)">点击详情</a></dd>
+                            <dd class="gy_hydd2">@Utils.GetSubString(cc.News_title.ToString(), 20, "...")</dd>
+                        </dl>
+                    }
+                </div>
+            }
+
+
+        }
+
+        <ul>
+            @foreach (var icd in hongyen)
+            {
+                <li><a onclick="Alink('@icd.newid')" href="javascript:null(0)"> @icd.News_title </a><span> @DateTime.Parse(icd.createtime.ToString()).ToString("yyyy-MM-dd")</span></li>
+            }
+
+
+
+        </ul>
+        <a class="gy_xq_03 xq_more" href="/about/List/23" target="_blank">更多>></a>
+    </div>
+</div>
+
+<!--常见问题-------------------------------->
+<div class="gy_ques top4">
+    <h2 class="gy_h2"><a href="/about/List/22">常见问题</a></h2>
+    <h5 class="gy_h5"></h5>
+    <div class="gy_ques01">
+
+        @{ int aski = 0; }
+        @foreach (var ask in asks)
+        {
+            if (aski % 2 == 0)
+            {
+                <div class="gy_ques02">
+                    <span>
+                        <img src="/images/gy_img08.jpg" />
+                    </span>
+                    <dl>
+                        <dt>@ask.News_title</dt>
+                        <dd> @Utils.GetSubString(Utils.RemoveHtml(ask.context.ToString()), 210, "...")  <a onclick="Alink('@ask.newid')" href="javascript:null(0)">点击详情</a></dd>
+                    </dl>
+                </div>
+            }
+            else
+            {
+                <div class="gy_ques03">
+                    <span><img src="/images/gy_img10.jpg" /></span>
+                    <dl>
+                        <dt>@ask.News_title</dt>
+                        <dd>@Utils.GetSubString(Utils.RemoveHtml(ask.context.ToString()), 210, "...")<a onclick="Alink('@ask.newid')" href="javascript:null(0)">点击详情</a></dd>
+                    </dl>
+                </div>
+
+            }
+
+            aski = aski + 1;
+
+
+
+        }
+        <a class="gy_xq_04 xq_more" href="/about/List/22" target="_blank">更多>></a>
+
+    </div>
+
+
+</div>
+<a name="006" id="006"> </a>
+<!--------招贤纳士-------------------------->
+<div class="gy_zx top6">
+    <h2 class="gy_h2">招贤纳士</h2>
+    <h5 class="gy_h5"></h5>
+    <div class="gy_zx_bt">
+
+        @*<div class="gy_zx01">
+                <h2 class="tabHover">财务总监</h2>
+                <div class="gy_zxCont gy_sub">
+                    <div class="gy_zx02">
+                        <h5>岗位职责：</h5>
+                        <p>1、参与公司重大投资、融资等经营活动并提供建议和决策支持，参与风险评估、指导、跟踪和控制；</p>
+                        <p>2、负责制定公司利润计划、资本投资、财务规划、市场前景、开支预算及成本标准；</p>
+                        <p>3、参与制定财务方面的管理制度及有关规定，并监督执行；</p>
+                        <p>4、制定公司预算制度，实时控制预算情况；</p>
+                        <p>5、领导及监管财务部日常工作，审核，控制和完善内部帐务流程；</p>
+                        <p>6、主持建立和完善财务管理制度和相关工作程序，制定和管理税收政策方案及程序；</p>
+                        <p>7、掌握公司财务状况、经营成果和资金变动情况，拟订或规划资金筹措和资本运作方案。</p>
+                        <p>8、负责协调政府部门渠道关系，包括银行，工商，税务，统计，审计等部门，维护公司利益</p>
+
+                    </div>
+
+                    <div class="gy_zx03">
+                        <h5>任职要求：</h5>
+                        <p>1、正规全日制本科或以上学历；</p>
+                        <p>2、会计、财务、金融、经济等专业；</p>
+                        <p>3、注册会计师职业资格或同等资格，男女不限；</p>
+                        <p>4、三年以上财务总监/财务经理工作经验</p>
+                        <p>5、精通财务工作及管理流程；</p>
+                        <p>6、精通企业的财务预算、核算、分析；</p>
+                        <p>7、有丰富的税务筹划与账务处理工作经验；</p>
+                        <p>8、熟悉财务软件，能熟练使用办公自动化软件；</p>
+                        <p>9、具备良好的沟通能力，具备一定的谈判技巧，较强的对外协调能力，工作责任心强，能承受工作压力；</p>
+                        <p>10、思维清晰，工作主动积极，能独立并及时地高质量完成工作</p>
+                        <p>11、互联网金融、电子商务类公司财务工作经验优先考虑。</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="gy_zx01">
+                <h2>风控项目经理</h2>
+                <div class="gy_zxCont">
+                    <div class="gy_zx02">
+                        <h5>岗位职责：</h5>
+                        <p>1、独立或与上级配合对借款企业进行尽职调查；</p>
+                        <p>2、撰写尽职调查报告并上会陈述；</p>
+                        <p>3、对放款企业进行融后跟踪检查并撰写报告；</p>
+                        <p>4、与合作机构（担保公司、融资租赁公司、小贷公司等）配合、沟通并监督完成借款项目反担保物的抵质押操作。</p>
+                    </div>
+
+                    <div class="gy_zx03">
+                        <h5>任职要求：</h5>
+                        <p>1、本科或本科以上，财务、法律或其他专业；</p>
+                        <p>2、工作经验2-4年以上，有在会计师事务所审计工作经验，或担保公司、资产管理公司从事尽职调查2年以上的经验，或曾在实体企业中任管理职位；</p>
+                        <p>3、主导或参与尽职调查或审计5-10个以上的项目，熟悉尽职调查的流程和操作；</p>
+                        <p>4、擅长与人沟通，对担保、小贷、资管、基金等行业有一定的了解；</p>
+                        <p>5、工作细致、对企业的财务、经营等数据和数字敏感。</p>
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="gy_zx01">
+            <h2>数据分析师</h2>
+            <div class="gy_zxCont">
+                <div class="gy_zx02">
+                    <h5>岗位职责：</h5>
+                    <p>1、负责互联网金融平台的用户数据分析，通过已有原始客户数据进行分析整理，根据数据对用户进行二次开发；</p>
+                    <p>2、按照结果导向需求，挑选、分类，负责业务数据的清洗和整理；</p>
+                    <p>3、运营活动效果监测评估与建议，提升活动ROI；</p>
+                    <p>4、梳理业务数据，建立互联网金融平台数据分析体系，推动建立数据决策体系；</p>
+                    <p>5、及时响应运营相关数据统计分析需求，提供深度洞察建议；</p>
+                    <p>6、数据分析、制作数据报告、数据图表等；</p>
+                    <p>7、根据用户的定期沟通及跟踪，制定及执行阶段性用户激励政策；</p>
+                    <p>8、负责各种数据处理工具的运行并提出改进方案，协助分析工作的优化；</p>
+                    <p>9、领导临时交代的其他工作。</p>
+                </div>
+                <div class="gy_zx03">
+                    <h5>任职要求：</h5>
+                    <p>1、大学本科或以上学历，2年以上工作经验；</p>
+                    <p>2、有良好的语言表达能力、沟通协调能力、数据分析统计能力及思考力；</p>
+                    <p>3、拥有良好的团队合作意识，能承受一定的工作压力，事业心强。</p>
+                </div>
+
+                <br />
+                <div>
+                    <h5>联系方式：</h5>
+                    <p>1、邮箱：jiaxiaochun@chuanglitou.com</p>
+                    <p>2、电话：56288033</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gy_zx01">
+            <h2>SEM推广</h2>
+            <div class="gy_zxCont">
+                <div class="gy_zx02">
+                    <h5>岗位职责：</h5>
+                    <p>1、熟悉（360/Sogou/神马)关键词推广平台的投放竞价的原理、后台及工作方式；</p>
+                    <p>2、精通账户结构优化、关键词选择、关键词创意撰写、关键词排名监控，调价工作；</p>
+                    <p>3、能总结竞价排名规律，对竞价关键词进行整理和数据分析，能有效的对其进行评估；</p>
+                    <p>4、利用监控工具，对推广关键词进行调整、优化；</p>
+                    <p>5、对SEM相关数据进行分析并定期形成报告。</p>
+                </div>
+                <div class="gy_zx03">
+                    <h5>任职要求：</h5>
+                    <p>1、熟悉（360/Sogou/神马）搜索平台的关键词广告，熟练掌握竞价平台操作；</p>
+                    <p>2、熟悉用户搜索行为；</p>
+                    <p>3、有较强的数据分析能力，定期对相关数据进行有效分析，并不断提出改进方案；</p>
+                    <p>4、精通excel，熟练使用excel对各种数据进行分析；</p>
+                    <p>5、有一定SEM竞价及相关经验；</p>
+                    <p>6、大专以上学历。</p>
+                </div>
+
+                <br />
+                <div>
+                    <h5>联系方式：</h5>
+                    <p>1、邮箱：jiaxiaochun@chuanglitou.com</p>
+                    <p>2、电话：56288033</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gy_zx01">
+            <h2>运营总监</h2>
+            <div class="gy_zxCont">
+                <div class="gy_zx02">
+                    <h5>岗位职责：</h5>
+                    <p>1、负责公司线上p2p业务的筹备和运营管理工作，制定运营策略并组织执行；</p>
+                    <p>2、制定、完善、贯彻实施公司网贷平台运营管理制度及流程；研究国内外成熟的在线贷款网站，结合国内实际情况及互联网相关知识，对在线投融资项目提供全面的解决方案; </p>
+                    <p>3、统计、分析平台各类数据，提出改进方案，带领团队进行平台日常的维护，推广等；</p>
+                    <p>4、推动各项业务发展，提升运营效益，确保运营目标的实现；</p>
+                    <p>5、通过对用户体验和业务的分析，从而改进网贷平台的产品和市场规划，实现公司既定目标；</p>
+                    <p>6、运营管理培训、团队管理及人才梯队建设。</p>
+                    <p>7、完成上级领导交代的其他相关工作事宜。</p>
+                </div>
+
+                <div class="gy_zx03">
+                    <h5>任职要求：</h5>
+                    <p>1、本科及以上学历；</p>
+                    <p>2、5年以上担保、投资、银行、网贷类公司中高层管理经验；</p>
+                    <p>3、熟悉P2P网站架构和执行流程，熟悉网站运营管理结构和流程，了解P2P互联网金融业务的发展现状及趋势；</p>
+                    <p>4、有丰富的网站运营策划和市场推广经验；熟悉网站运营及业务规则，有较丰富的网站策划、项目规划、营销推广经验，具备良好的执行能力；</p>
+                    <p>5、有P2P互联网金融业务创始的从业经历者或P2P高管优先；</p>
+                    <p>6、具备良好的沟通与团队管理能力，能够独立组建团队，制定相关政策和管理制度。 </p>
+                </div>
+
+                <br />
+                <div>
+                    <h5>联系方式：</h5>
+                    <p>1、邮箱：jiaxiaochun@chuanglitou.com</p>
+                    <p>2、电话：56288033</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gy_zx01">
+            <h2>用户运营专员/主管</h2>
+            <div class="gy_zxCont">
+                <div class="gy_zx02">
+                    <h5>岗位职责：</h5>
+                    <p>1、挖掘平台潜力用户 ，建立对应的用户激励体制，引导用户产生优质内容；</p>
+                    <p>2、策划相关用户专题内容策划、用户资源统筹以及活动效果评估；</p>
+                    <p>3、维护核心用户关系，建立和维护良好社区氛围；</p>
+                    <p>4、及时、有逻辑的整理用户对产品使用相关的反馈与建议，在新功能上线之后组织用户进行有效内容并总结反馈；</p>
+                    <p>5、全权负责用户的拉新、留存、活跃、倒流等工作内容；</p>
+                    <p>6、完成上级领导交待的其它任务。</p>
+                </div>
+
+                <div class="gy_zx03">
+                    <h5>任职要求：</h5>
+                    <p>1、本科以上学历，2年互联网金融平台经验。社群运营、用户运营相关工作经验优先；</p>
+                    <p>2、对社群用户维护、社群氛围引导有丰富的经验，用户进行互动，对社会及用户热点有一定的敏感性；</p>
+                    <p>3、思维活跃、有活动、专题的策划能力，具有一定的文案基础。</p>
+                </div>
+
+                <br />
+                <div>
+                    <h5>联系方式：</h5>
+                    <p>1、邮箱：jiaxiaochun@chuanglitou.com</p>
+                    <p>2、电话：56288033</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gy_zx01">
+            <h2>客服专员</h2>
+            <div class="gy_zxCont">
+                <div class="gy_zx02">
+                    <h5>岗位职责：</h5>
+                    <p>1、负责接听客户呼入400电话或根据公司分配的客户名单，面对全国各地区客户进行理财产品电话销售，推荐公司服务和产品，按标准进行跟踪与管理；</p>
+                    <p>2、完成既定的销售目标及考核指标；</p>
+                    <p>3、接受理财产品、服务流程等相关课程的培训，接受测试及考核，主动学习提高业务技能。</p>
+                </div>
+
+                <div class="gy_zx03">
+                    <h5>任职要求：</h5>
+                    <p>1、普通话标准，语音甜美，吐字清晰流畅，表达能力强；</p>
+                    <p>2、电脑操作熟练，打字速度60字/分钟以上，准确率90%以上，熟悉并熟练操作OFFICE办公软件；</p>
+                    <p>3、喜欢销售工作，能够承受压力、勇于挑战高薪；</p>
+                    <p>4、个性开朗、反应敏捷，具有较强的事业心与团队协作精神。</p>
+                </div>
+                <br />
+                <div>
+                    <h5>联系方式：</h5>
+                    <p>1、邮箱：jiaxiaochun@chuanglitou.com</p>
+                    <p>2、电话：56288033</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gy_zx01">
+            <h2>运维工程师</h2>
+            <div class="gy_zxCont">
+                <div class="gy_zx02">
+                    <h5>岗位职责：</h5>
+                    <p>1、负责服务器的部署、配置、维护、日志分析、升级、迁移、数据备份恢复；</p>
+                    <p>2、负责公司互联网平台的信息安全及安全防护；</p>
+                    <p>3、负责监控互联网平台运行情况，并进行相应故障处理；</p>
+                    <p>4、负责公司内部网络及计算机管理。</p>
+                </div>
+
+                <div class="gy_zx03">
+                    <h5>任职要求：</h5>
+                    <p>1、计算机及相关专业，大专及以上学历；</p>
+                    <p>2、3年或以上实际服务器管理经验；</p>
+                    <p>3、精通常用服务器软件配置及维护：IIS、SqlServer、.Net Frameword、memcached；</p>
+                    <p>4、熟悉常见的服务器安全防护手段，熟练使用防火墙技术；</p>
+                    <p>5、熟悉SqlServer部署、集群、性能调优，数据备份恢复；MySQL数据库安装、数据备份恢复；</p>
+                    <p>6、熟悉WINDOWS、linux服务器及常见服务的安装、维护；</p>
+                    <p>7、熟悉常用的局域网管理软件及方式，熟练常见路由器管理操作；</p>
+                    <p>8、对工作认真负责，可以在压力下工作，对各种突发故障即刻解决，做事细致谨慎。</p>
+                </div>
+                <br />
+                <div>
+                    <h5>联系方式：</h5>
+                    <p>1、邮箱：jiaxiaochun@chuanglitou.com</p>
+                    <p>2、电话：56288033</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--联系我们-------------------------------->
+<a name="003" id="003"> </a>
+<div class="gy_tact top7">
+    <h2 class="gy_h2">联系我们</h2>
+    <h5 class="gy_h5"></h5>
+    <div class="gy_tact01">
+        <div class="gy_tact_top">
+
+            <div class="gy_tactLeft">
+                <dl class="gy_tact_01">
+                    <dt>联系我们</dt>
+                    <dd>北京创利投网络科技有限公司</dd>
+                    <dd>地址：北京市朝阳区四惠东通惠河畔创意园1003-B（100020）</dd>
+                    <dd>交通：1号线或八通线四惠东站A口出，过天桥向西直行500米，左转河对面即到</dd>
+                </dl>
+                <dl class="gy_tact_01">
+                    <dt>客户服务</dt>
+                    <dd>
+                        如果您在使用创利投（chuanglitou.cn）的过程中有任何<br />
+                        疑问，请联系我们的客服人员。
+                    </dd>
+                    <dd>电话：010-53732056（每天09:00-18:00）</dd>
+                    <dd>邮件：kefu@chuanglitou.com</dd>
+                    <dd>QQ：4008902226</dd>
+                </dl>
+                <dl class="gy_tact_01">
+                    <dt>信息同步</dt>
+                    <dd>欢迎关注我们的新浪微博和微信。 </dd>
+                    <dd>微信订阅号：beijingclt </dd>
+                    <dd>微信服务号：clt4008902226</dd>
+                </dl>
+            </div>
+            <div class="gy_tactRig">
+
+                <!--引用百度地图API-->
+                <style type="text/css">
+                    html, body {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    .iw_poi_title {
+                        color: #CC5522;
+                        font-size: 14px;
+                        font-weight: bold;
+                        overflow: hidden;
+                        padding-right: 13px;
+                        white-space: nowrap;
+                    }
+
+                    .iw_poi_content {
+                        font: 12px arial,sans-serif;
+                        overflow: visible;
+                        padding-top: 4px;
+                        white-space: -moz-pre-wrap;
+                        word-wrap: break-word;
+                    }
+                </style>
+                <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+
+                <!--百度地图容器-->
+                <div style="width:495px;height:322px;border:#ccc solid 1px;" id="dituContent"></div>
+
+                <script type="text/javascript">
+                    //创建和初始化地图函数：
+                    function initMap() {
+                        createMap();//创建地图
+                        setMapEvent();//设置地图事件
+                        addMapControl();//向地图添加控件
+                        addPolyline();//向地图中添加线
+                        addRemark();//向地图中添加文字标注
+                    }
+
+                    //创建地图函数：
+                    function createMap() {
+                        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+                        var point = new BMap.Point(116.517122, 39.912199);//定义一个中心点坐标
+                        map.centerAndZoom(point, 18);//设定地图的中心点和坐标并将地图显示在地图容器中
+                        window.map = map;//将map变量存储在全局
+                    }
+
+                    //地图事件设置函数：
+                    function setMapEvent() {
+                        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+                        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+                        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+                        map.disableKeyboard();//禁用键盘上下左右键移动地图，默认禁用(可不写)
+                    }
+
+                    //地图控件添加函数：
+                    function addMapControl() {
+                        //向地图中添加缩放控件
+                        var ctrl_nav = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_SMALL });
+                        map.addControl(ctrl_nav);
+                    }
+
+                    //标注线数组
+                    var plPoints = [{ style: "solid", weight: 4, color: "#f00", opacity: 1, points: ["116.517|39.91222", "116.517117|39.91222", "116.517117|39.912123", "116.517|39.912123", "116.517|39.912213"] }
+                    ];
+                    //向地图中添加线函数
+                    function addPolyline() {
+                        for (var i = 0; i < plPoints.length; i++) {
+                            var json = plPoints[i];
+                            var points = [];
+                            for (var j = 0; j < json.points.length; j++) {
+                                var p1 = json.points[j].split("|")[0];
+                                var p2 = json.points[j].split("|")[1];
+                                points.push(new BMap.Point(p1, p2));
+                            }
+                            var line = new BMap.Polyline(points, { strokeStyle: json.style, strokeWeight: json.weight, strokeColor: json.color, strokeOpacity: json.opacity });
+                            map.addOverlay(line);
+                        }
+                    }
+                    //文字标注数组
+                    var lbPoints = [{ point: "116.517126|39.912199", content: "北京创利投网络科技有限公司" }
+                    ];
+                    //向地图中添加文字标注函数
+                    function addRemark() {
+                        for (var i = 0; i < lbPoints.length; i++) {
+                            var json = lbPoints[i];
+                            var p1 = json.point.split("|")[0];
+                            var p2 = json.point.split("|")[1];
+                            var label = new BMap.Label("<div style='padding:2px;'>" + json.content + "</div>", { point: new BMap.Point(p1, p2), offset: new BMap.Size(3, -6) });
+                            map.addOverlay(label);
+                            label.setStyle({ borderColor: "#999" });
+                        }
+                    }
+
+                    initMap();//创建和初始化地图
+                </script>
+                @*<img src="/images/gy_img12.jpg" />*@
+            </div>
+
+        </div>
+        <div class="gy_tact_bot">
+            <dl>
+                <dt><img src="/images/gy_wx_01.jpg" style="width:100%;" /></dt>
+                <dd>订阅号</dd>
+            </dl>
+            <dl>
+                <dt><img src="/images/gy_wx_02.jpg" style="width:100%;" /></dt>
+                <dd>服务号</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //$('.gy_a3').click();
+    // document.getElementById("gy_a3").click();
+    //setTimeout($("#gy_a3").trigger("click"),1000);
+
+
+</script>
+<script>
+    function Alink(newid) {
+        $.ajax({
+            url: "/Content/kindeditor/asp.net/AjaxUpdate.ashx?id=" + newid + "",
+            data: "id=" + newid + "",
+            type: "Post",
+            async: false,
+            dataType: "text",
+            success: function (dta) {
+                //点击量增加成功
+            },
+        });
+        var newTab = window.open('about:blank');
+        newTab.location.href = "/about/Detail/" + newid;
+    }
+</script>

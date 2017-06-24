@@ -1,0 +1,91 @@
+﻿@{
+   
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>安全保障</title>
+    <style>
+* { margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+.container { width: 100%; height: 100%; position: absolute; left: 0; top: 0%; }
+.container .page { height: 100%; position: relative; color:#fff;text-align:center; }
+.container .page img{width:100%;height:100%;}
+.container .page0 { background-color: #6d8cf9; }
+.container .page1 { background-color:#5fbd98; }
+.container .page2 { background-color:#7fafdf; }
+.container .page3 { background-color: #9f6df0; }
+.container .page4 { background-color: #f18463; }
+.xiangxiatishi { display:block; position: fixed; bottom: 20px; left: 50%; -webkit-transform: translateX(-50%); -webkit-animation: dong 1s linear 0s infinite alternate; }
+
+</style>
+</head>
+<body onmousewheel="return false;">
+
+    <!--代码部分begin-->
+    <div class="container">
+        <div class="page page0 cur">
+            <img src="/images/app-aqbz1.jpg" />
+            <span class="xiangxiatishi"><img src="/images/i_swipe.png" /></span>
+        </div>
+        <div class="page page1">
+            <img src="/images/app-aqbz2.jpg" />
+            <span class="xiangxiatishi"><img src="/images/i_swipe.png" /></span>
+        </div>
+        <div class="page page2">
+            <img src="/images/app-aqbz3.jpg" />
+            <span class="xiangxiatishi"><img src="/images/i_swipe.png" /></span>
+        </div>
+        <div class="page page3">
+            <img src="/images/app-aqbz4.jpg" />
+            <span class="xiangxiatishi"><img src="/images/i_swipe.png" /></span>
+        </div>
+        <div class="page page4">
+            <img src="/images/app-aqbz5.jpg" />
+        </div>
+    </div>
+
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/jquery.touchSwipe.min.js"></script>
+    <script src="~/js/om_code.js"></script>
+    <script>
+    $(document).ready(
+        function() {
+            var nowpage = 0;
+            //给最大的盒子增加事件监听
+            $(".container").swipe(
+                {
+                    swipe:function(event, direction, distance, duration, fingerCount) {
+                         if(direction == "up"){
+                            nowpage = nowpage + 1;
+                         }else if(direction == "down"){
+                            nowpage = nowpage - 1;
+                         }
+
+                         if(nowpage > 4){
+                            nowpage = 4;
+                         }
+
+                         if(nowpage < 0){
+                            nowpage = 0;
+                         }
+
+                        $(".container").animate({"top":nowpage * -100 + "%"},400);
+
+                        $(".page").eq(nowpage).addClass("cur").siblings().removeClass("cur");
+
+                    }
+                }
+            );
+
+        }
+    );
+    </script>
+    <!--代码部分end-->
+
+</body>
+</html>
+

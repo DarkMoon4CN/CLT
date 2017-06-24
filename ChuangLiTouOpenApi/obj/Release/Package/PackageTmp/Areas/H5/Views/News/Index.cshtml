@@ -1,0 +1,29 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuangLiTou.Core.Entities.Response.AdNews.NewsEntity
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@Model.News_title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("about.css").ToHtml()
+    @Url.ApiFile("jquery-1.11.1.min.js").ToHtml()
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, resizeEvt = "orientationchange" in window ? "orientationchange" : "resize", recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; docEl.style.fontSize = 20 * (clientWidth / 320) + "px" }; if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false) })(document, window)
+    </script>
+    <style>
+        body {
+            padding: 5px 15px;
+        }
+    </style>
+</head>
+<body>
+    <article>@Model.context.ToHtml()</article>
+</body>
+</html>

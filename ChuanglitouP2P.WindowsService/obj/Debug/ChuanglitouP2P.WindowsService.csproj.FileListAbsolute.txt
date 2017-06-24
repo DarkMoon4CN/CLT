@@ -1,0 +1,25 @@
+E:\新版网站\ChuanglitouP2P.WindowsService\obj\Debug\ChuanglitouP2P.WindowsService.ProjectInstaller.resources
+E:\新版网站\ChuanglitouP2P.WindowsService\obj\Debug\ChuanglitouP2P.WindowsService.csproj.GenerateResource.Cache
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\Tools\Windows32\InstallUtil.exe
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\Tools\Windows32\InstallUtilLib.dll
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\Tools\Windows64\InstallUtil.exe
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\Tools\Windows64\InstallUtilLib.dll
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\Tools\Windows32\InstallUtil.exe.config
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\Tools\Windows64\InstallUtil.exe.config
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\Uninstall Windows Service.bat
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\Install And Run Windows Service.bat
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\ChuanglitouWindowsService.exe.config
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\ChuanglitouWindowsService.exe.manifest
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\ChuanglitouWindowsService.application
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\ChuanglitouWindowsService.exe
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\ChuanglitouWindowsService.pdb
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\log4net.dll
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\Newtonsoft.Json.dll
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\StructureMap.dll
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\log4net.xml
+E:\新版网站\ChuanglitouP2P.WindowsService\bin\Debug\Newtonsoft.Json.xml
+E:\新版网站\ChuanglitouP2P.WindowsService\obj\Debug\ChuanglitouWindowsService.exe.manifest
+E:\新版网站\ChuanglitouP2P.WindowsService\obj\Debug\ChuanglitouWindowsService.application
+E:\新版网站\ChuanglitouP2P.WindowsService\obj\Debug\ChuanglitouWindowsService.exe
+E:\新版网站\ChuanglitouP2P.WindowsService\obj\Debug\ChuanglitouWindowsService.pdb
+E:\新版网站\ChuanglitouP2P.WindowsService\obj\Debug\ChuanglitouP2P.WindowsService.csprojResolveAssemblyReference.cache

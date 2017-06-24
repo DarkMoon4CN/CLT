@@ -1,0 +1,89 @@
+﻿@using ChuanglitouP2P.Common;
+@model IEnumerable<ChuangLitouP2P.Models.hx_td_Bank>
+@{
+    ViewBag.Title = "快捷卡设置";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    .icon-sprite {
+        HEIGHT: 16px;
+        BACKGROUND-IMAGE: url(/Areas/admin/images/icons.png);
+        BACKGROUND-REPEAT: no-repeat;
+        POSITION: absolute;
+        LEFT: 10px;
+        MARGIN-TOP: -8px;
+        DISPLAY: inline-block;
+        TOP: 50%;
+        WIDTH: 16px;
+    }
+
+    .icon-edit {
+        BACKGROUND-POSITION: -63px -1px;
+    }
+
+    .icon-delete {
+        BACKGROUND-POSITION: -83px -2px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">快捷卡设置</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+
+    @using (Html.BeginForm("QueryPay", "Template", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:50px; ">
+
+            <input type="submit" class="btn2" value="同步信息" />
+        </p>
+    }
+    <span class=""></span>
+    <h3 class="listtitle">
+        快捷卡列表
+    </h3>
+
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th scope="col">ID</th>
+                <th scope="col">银行名称</th>
+                <th scope="col">银行代码</th>
+                <th scope="col">单笔限额</th>
+                <th scope="col">单日限额</th>
+                <th scope="col">图片路径</th>
+                <th scope="col">小图路径</th>
+                <th scope="col">操作</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="height:36px;">@(item.Bankid) </td>
+                        <td style="height:36px;">@(item.BankName)</td>
+                        <td style="height:36px;">@(item.OpenBankId)</td>
+                        <td style="height:36px;">@(item.SingleTransQuota)元</td>
+                        <td style="height:36px;">@(item.CardDailyTransQuota)元</td>
+                        <td style="height:36px;">@(item.CardImage)</td>
+                        <td style="height:36px;">@(item.CardImageNew)</td>
+                        <td style="height:36px;"></td>
+                        
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

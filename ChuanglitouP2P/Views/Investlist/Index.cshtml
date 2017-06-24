@@ -1,0 +1,153 @@
+﻿@using ChuanglitouP2P.BLL.EF
+@using ChuanglitouP2P.Common
+@{
+    ViewBag.Title = "理财产品_个人理财产品_p2p理财产品_短期理财产品 - 创利投";
+
+    ViewBag.keywords = "理财产品,个人理财产品,p2p理财产品,短期理财产品,创利投理财";
+
+    ViewBag.desc = "创利投金服为您提供短期理财产品，安全可靠的个人理财产品，可以选择投房贷、创业贷、新手标等p2p理财产品，网络投资理财首选创利投金服！";
+
+
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+    var list_arp = new InvestSearch().GetInvestSearchByType(ChuanglitouP2P.Common.EnumInvestSearch.Arp);
+    var list_repayment = new InvestSearch().GetInvestSearchByType(ChuanglitouP2P.Common.EnumInvestSearch.Repayment);
+    var list_account = new InvestSearch().GetInvestSearchByType(ChuanglitouP2P.Common.EnumInvestSearch.Account);
+    var list_schedule = new InvestSearch().GetInvestSearchByType(ChuanglitouP2P.Common.EnumInvestSearch.Schedule);
+    var list_status = new InvestSearch().GetInvestSearchByType(ChuanglitouP2P.Common.EnumInvestSearch.Status);
+    var list_project = new InvestSearch().ProjectTypeCache();
+}
+<link href="~/Content/laypage.css" rel="stylesheet" />
+<script src="~/Scripts/laypage.js"></script>
+<!--中间部分-->
+
+@Html.Raw(ChuanglitouP2P.Common.Utils.GetWebAD(3, 1))
+<style type="text/css">
+    .jiaobiao {
+        font-size: 14px;
+        color: #FFF;
+        width: 200px;
+        height: 80px;
+        display: block;
+        background: red;
+        text-align: center;
+        line-height: 135px;
+        transform: rotate(40deg);
+        -ms-transform: rotate(40deg);
+        -moz-transform: rotate(40deg);
+        -webkit-transform: rotate(40deg);
+        -o-transform: rotate(40deg);
+        position: absolute;
+        top: -12%;
+        right: -41%;
+    }
+
+    .hsw_con3_common {
+        position: relative;
+        overflow: hidden;
+        float: left;
+    }
+
+    .hsw_con3_fy {
+        clear: both;
+    }
+</style>
+<input type="hidden" value="@DateTime.Now" id="hidFXSTime" />
+<input type="hidden" value="@DateTime.Now.AddDays(-2)" id="hidFXETime" />
+<div class="hsw_con">
+    <div class="hsw_con1">
+        首页 > 我要投资
+    </div>
+    <div class="hsw_new_box">
+        <table cellspacing="0" cellpadding="0" id="table_search">
+            @if (list_arp != null && list_arp.Count > 0)
+            {
+                <tr>
+                    <td class="hsw_td1">收益：</td>
+                    <td class="hsw_td1 hsw_td2"><a href="javascript:void(0);" skey="0" sname="arp">全部</a></td>
+                    @foreach (var item in list_arp)
+                    {
+                        <td><a href="javascript:void(0);" skey="@(item.investsearchid)" sname="arp">@(item.investname)</a> </td>
+                    }
+                </tr>
+            }
+            @if (list_repayment != null && list_repayment.Count > 0)
+            {
+                <tr>
+                    <td class="hsw_td1">期限：</td>
+                    <td class="hsw_td1 hsw_td2"><a href="javascript:void(0);" skey="0" sname="repayment">全部</a></td>
+                    @foreach (var item in list_repayment)
+                    {
+                        <td><a href="javascript:void(0);" skey="@(item.investsearchid)" sname="repayment">@(item.investname)</a> </td>
+                    }
+                </tr>
+            }
+            @if (list_account != null && list_account.Count > 0)
+            {
+                <tr>
+                    <td class="hsw_td1">金额：</td>
+                    <td class="hsw_td1 hsw_td2"><a href="javascript:void(0);" skey="0" sname="account">全部</a></td>
+                    @foreach (var item in list_account)
+                    {
+                        <td><a href="javascript:void(0);" skey="@(item.investsearchid)" sname="account">@(item.investname)</a> </td>
+                    }
+                </tr>
+            }
+            @if (list_schedule != null && list_schedule.Count > 0)
+            {
+                <tr>
+                    <td class="hsw_td1">进度：</td>
+                    <td class="hsw_td1 hsw_td2"><a href="javascript:void(0);" skey="0" sname="schedule">全部</a></td>
+                    @foreach (var item in list_schedule)
+                    {
+                        <td><a href="javascript:void(0);" skey="@(item.investsearchid)" sname="schedule">@(item.investname)</a> </td>
+                    }
+                </tr>
+            }
+            @if (list_status != null && list_status.Count > 0)
+            {
+                <tr>
+                    <td class="hsw_td1">状态：</td>
+                    <td class="hsw_td1 hsw_td2"><a href="javascript:void(0);" skey="0" sname="status">全部</a></td>
+                    @foreach (var item in list_status)
+                    {
+                        <td><a href="javascript:void(0);" skey="@(item.investsearchid)" sname="status">@(item.investname)</a> </td>
+                    }
+                </tr>
+            }
+            @if (list_project != null && list_project.Count > 0)
+            {
+                <tr>
+                    <td class="hsw_td1">分类：</td>
+                    <td class="hsw_td1 hsw_td2"><a href="javascript:void(0);" skey="0" sname="project">全部</a></td>
+                    @foreach (var item in list_project)
+                    {
+                        if (item.project_type_id != 5 && item.project_type_id != 6)
+                        {
+                            <td><a href="javascript:void(0);" skey="@(item.project_type_id)" sname="project">@(item.project_type_name)</a> </td>
+                        }
+
+                    }
+                </tr>
+            }
+            <tr>
+                <td class="hsw_td1">排序：</td>
+                <td class="hsw_td1 hsw_td2"><a href="javascript:void(0);" skey="0" sname="sort">全部</a></td>
+                <td><a class="hsw_td_img1" href="javascript:void(0);" skey="1" sname="sort">期   限</a></td>
+                <td><a class="hsw_td_img2" href="javascript:void(0);" skey="2" sname="sort">发标时间</a></td>
+                <td><a class="hsw_td_img2" href="javascript:void(0);" skey="3" sname="sort">借款利率</a></td>
+
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="hsw_con3" id="div_hsw_con3">
+    </div>
+    @*<div class="hsw_con3_fy" id="div_page">*@
+</div>
+@Url.File("/Scripts/Investlist.js").ToHtml()
+<script type="text/javascript">
+    $(function () {
+        investlist.initpage();
+    });
+</script>

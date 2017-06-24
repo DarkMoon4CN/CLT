@@ -1,0 +1,69 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuanglitouP2P.Model.chinapnr.UserBindCard.ReUserBindCard
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>回调页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("css.css").ToHtml()
+    @Url.ApiFile("jquery-1.11.1.min.js").ToHtml()
+    @Url.ApiFile("layer.min.js").ToHtml()
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+        $(function () {
+            var respCode = $("#respCode").val();
+            if (respCode == "000") {
+                setTimeout("result('bindCard-success')", 5000);
+            }
+            else {
+                setTimeout("result('bindCard-fail')", 5000);
+            }
+        });
+    </script>
+</head>
+<body class="v_body">
+    <input type="hidden" id="respCode" value="@Model.RespCode" /> 
+    @if (Model.RespCode != null && Model.RespCode != "")
+    {
+        if (Model.RespCode == "000")
+        {
+            <div class="v_01">
+                <dl>
+                    <dt><img class="icon_right" src="@Url.Image("icon_02.png")"></dt>
+                    <dd>绑卡成功！</dd>
+                </dl>
+                <p>如果您在绑卡过程中遇到难题，请联系客服：@Settings.Instance.GetCustomerServiceNumber</p>
+            </div>
+        }
+        else
+        {
+            <div class="v_01">
+                <dl>
+                    <dt><img class="icon_wrong" src="@Url.Image("icon_01.png")"></dt>
+                    <dd>绑卡失败！</dd>
+                </dl>
+                <p>提示：@Model.RespCode.ToString()+@HttpUtility.UrlDecode(Model.RespDesc)</p>
+                <p>如果您在绑卡过程中遇到难题，请联系客服：@Settings.Instance.GetCustomerServiceNumber</p>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="v_01">
+            <dl>
+                <dt><img class="icon_wrong" src="@Url.Image("icon_01.png")"></dt>
+                <dd>绑卡失败！</dd>
+            </dl>
+            <p>如果您在绑卡过程中遇到难题，请联系客服：@Settings.Instance.GetCustomerServiceNumber</p>
+        </div>
+    }
+    @Url.ApiFile("h52App.js").ToHtml()
+</body>
+</html>

@@ -1,0 +1,475 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>新手注册送红包</title>
+    <link href="Content/css.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/awardRotate.js"></script>
+    <script type="text/javascript" src="Scripts/scroll_js.js"></script>
+
+
+</head>
+<body>
+    <center>
+        <!--头部-->
+        <div class="w_header">
+            <div class="header1">
+                <div class="hea_dw">
+                    服务号
+                </div>
+                <div class="hea_qq">
+                    <a href="#" target="_blank">
+                        点击联系在线客服<br>
+                        QQ: 4008902226
+                    </a>
+                </div>
+                <div class="hea_p">
+                    客服电话：400-890-2226（工作时间：9:00~18:00）
+                </div>
+                <div id="hea_p2" class=" hea_p2">
+                    <em>
+                        <img title="扫描关注微信" src="images/hea_wx.png" alt="">
+                        <img title="扫描关注微信" src="images/hea_wx1.png" alt="">
+                    </em>
+                </div>
+                <div id="hea_p3" class="hea_p2 hea_p3">
+                    <em>
+                        <img title="在线客服" src="images/hea_qq.png" alt="">
+                        <a id="BizQQWPA2"><img title="在线客服" src="images/hea_qq1.png" alt=""></a>
+                    </em>
+                </div>
+                <div class="hea_p4">
+                    <a class="hea_em4 hea_a" href="/login.html">登录</a> <a class="hea_a hea_altho" href="/register.html">注册</a>
+                    <a class="commona">
+                        |
+                    </a>
+                    <a class="commona commona-else" href="/CLT_Login_register.html">
+                        帮助中心
+                    </a>
+                    <a class="commona commona-else" style="margin-right:0" href="/CLT_company.html">
+                        关于我们
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <!--logo-->
+        <!--logo导航的修改-->
+        <div class="w_logo">
+            <ul class="w_logo1">
+                <li><a id="w_logo1_index" href="/"></a></li>
+                <li><a href="/index.html">首页</a></li>
+                <li class="subnav-tz">
+                    <a href="/Investlist.html">我要投资</a>
+                    <!--我要投资下拉菜单-->
+                    <!-- <div class="menuBox">
+                        <i class="sanjiao"></i>
+                        <i class="sanjiao2"></i>
+                        <ul>
+                            <li><a href="#">散标</a></li>
+                            <li><a href="#">定利宝</a></li>
+                        </ul>
+                    </div>
+
+                    <script>
+                        $('.subnav-tz').mouseover(function() {
+                            $('.menuBox').stop().show();
+                            $('.subnav-tz>a:first-child').css('color','#0176ba');
+                        })
+
+                        $('.subnav-tz').mouseout(function() {
+                            $('.menuBox').stop().hide();
+                            $('.subnav-tz>a:first-child').css('color','#666');
+                        })
+                    </script> -->
+                    <!--我要投资下拉菜单结束-->
+
+                </li>
+                <li><a href="/Borrow.html"> 我要借款</a></li>
+                <li><a href="/securityIndex.html"> 安全保障 </a></li>
+                <li><a href="/guide.html"> 新手指引</a></li>
+                <li>
+                    <a class="logoA" href="/usercenter/index">
+                        <img src="images/logo_man.jpg" align="absmiddle" style="margin-right: 6px;" alt="创利投金服" title="创利投金服LOGO">我的账户
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="zhaunpan_content">
+            <div class="zhaunpan_content_1">
+                <img src="images/zhuanpan_01.jpg" class="bg_1">
+            </div>
+
+            <div class="zhaunpan_content_2">
+                <img src="images/zhuanpan_02.jpg" class="bg_2">
+                <div class="daojishi_biaoti">
+                    <p>离<span>9.3活动开始</span>仅有</p>
+                </div>
+                <div class="daojishi">
+
+                    <div class="daojishi_1">
+                        <div class="daojishi_1_shuzi">
+                            <p id="t_h"></p>
+                            <span class="shuzi_bg"></span>
+                            <span class="shuzi_bg"></span>
+                            <a href="#" class="xian"></a>
+                        </div>
+                        <small>时</small>
+                    </div>
+                    <div class="daojishi_2">
+                        <div class="daojishi_2_shuzi">
+                            <p id="t_m"></p>
+                            <span class="shuzi_bg"></span>
+                            <span class="shuzi_bg"></span>
+                            <a href="#" class="xian"></a>
+                        </div>
+                        <small>分</small>
+                    </div>
+                    <div class="daojishi_3">
+                        <div class="daojishi_3_shuzi">
+                            <p id="t_s"></p>
+                            <span class="shuzi_bg"></span>
+                            <span class="shuzi_bg"></span>
+                            <a href="#" class="xian"></a>
+                        </div>
+                        <small>秒</small>
+                    </div>
+                </div>
+                <div class="dazhaunpan_main">
+                    <div class="zp_cont">
+                        <div class="zp_pointer pointer">
+                            <img src="images/zhuanpan_jiang.png">
+                        </div>
+                        <div class="zp_rotate">
+                            <img id="rotate" src="images/zhuanpan_go.png" alt="turntable">
+                        </div>
+                        <div class="deng">
+                            <div class="dengUp">
+                                <img src="images/zhuanpan_deng1.png">
+                            </div>
+                            <div class="dengDode">
+                                <img src="images/zhuanpan_deng2.png">
+                            </div>
+                        </div>
+                        <p class="jl_time">您当前还有<i id="count">0</i>次抽奖机会</p>
+                    </div>
+                    <div class="jilu">
+                        <h1>中奖榜单</h1>
+                        <div class="scroll_cont">
+                            <ul class="gd_cont" id="xstCont" style="overflow: hidden;">
+                                <!--<li>
+                                    <p><span id="aaa">1****8</span>抽中了<strong>10元现金券</strong></p>
+                                </li>
+                                <li>
+                                    <p><span>s****q</span>抽中了<strong>10元现金券</strong></p>
+                                </li>
+                                <li>
+                                    <p><span>a****8</span>抽中了<strong>10元现金券</strong></p>
+                                </li>
+                                <li>
+                                    <p><span>想****8</span>抽中了<strong>10元现金券</strong></p>
+                                </li>
+                                <li>
+                                    <p><span>g****4</span>抽中了<strong>10元现金券</strong></p>
+                                </li>
+                                <li>
+                                    <p><span>c****2</span>抽中了<strong>10元现金券</strong></p>
+                                </li>
+                                <li>
+                                    <p><span>天****9</span>抽中了<strong>10元现金券</strong></p>
+                                </li>
+                                <li>
+                                    <p><span>1****8</span>抽中了<strong>10元现金券</strong></p>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <h2>已有<span>0</span>人中奖</h2>
+                    </div>
+                </div>
+                <div class="tanchuang_main">
+                    <!--弹窗遮罩-->
+                    <div class="c_bg"></div>
+
+                    <!--中奖弹窗-->
+                    <div class="tc_01 tc_cont">
+                        <span class="btn_close"></span>
+                        <div class="guanbi"></div>
+                        <dl>
+                            <dt>恭喜您获得100元现金！</dt>
+                            <dd><a href="#" class="chakan">查看</a><a href="#" class="shiyong">立即使用</a></dd>
+                        </dl>
+                    </div>
+
+                    <div class="tc_04 tc_cont" style="display:none;">
+                        <span class="btn_close"></span>
+                        <div class="guanbi"></div>
+                        <dl>
+                            <dt>您还没哟登陆哦！</dt>
+                            <dd><span class="tc_close">知道啦</span></dd>
+                        </dl>
+                    </div>
+
+                    <!--不满足抽奖条件-->
+                    <div class="tc_02 tc_cont">
+                        <span class="btn_close"></span>
+                        <div class="guanbi"></div>
+                    </div>
+                    <dl>
+                        <dt><!-- 您还不满足抽奖条件哦！ --></dt>
+                        <dd><!-- <span class="tc_close">知道啦</span> --></dd>
+                    </dl>
+                </div>
+
+                <!--三次抽奖已满-->
+                <div class="tc_03 tc_cont">
+                    <span class="btn_close"></span>
+                    <div class="guanbi"></div>
+                    <dl>
+                        <dt><!-- 今日三次机会已用完，请明日再来哦! --></dt>
+                        <dd><!-- <span class="tc_close">知道了</span> --></dd>
+                    </dl>
+                </div>
+                <input type="hidden" id="userid" value="0">
+            </div>
+        </div>
+
+        <div class="zhaunpan_content_3">
+            <img src="images/zhuanpan_03.jpg" class="bg_3">
+            <div class="zhaunpan_content_3_main">
+                <div class="zhaunpan_content_3_main_1">
+                    <dl>
+                        <dt>抽奖规则：</dt>
+                        <dd>1、新用户当天注册并实名认证即可获得一次抽奖机，次日完成实名认证不累计抽奖次数，新老用户每天登陆均有一次抽奖机<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp会。（当日登陆获得的抽奖次数有效期截止当日23:59:59）；</dd>
+                        <dd>2、本次奖品中的代金券及加息券，截至日期为2016年9月30日（请在有效期内使用）；</dd>
+                        <dd>3、加息券及代金券直接发放至个人账户，加息券和代金券不可同时使用，可以和复投同用；</dd>
+                        <dd>4、现金奖励会在三个工作日内发放到您的这个人账户中；</dd>
+                        <dd>5、抽奖过程中，如果发现违规行为（如恶意注册大量账号，使用作弊程序等），创利投将取消您的中奖资格。</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="zhaunpan_content_4">
+            <img src="images/zhuanpan_04.jpg" class="bg_4">
+            <div class="zhaunpan_content_4_main">
+                <div class="zhaunpan_content_4_main_1">
+                    <dl>
+                        <dt>抽奖规则：</dt>
+                        <dd>1、该活动奖励可与加息券或代金券奖励同时享受；</dd>
+                        <dd>2、该返现奖励会在活动结束后三个工作日内直接返现到个人账户中，可用于投资，也可直接提现；</dd>
+                        <dd>3、2016年9月1日之前注册的用户均可参加该活动，活动期间（即2016年9月1-9月30日）投资越多，返现越多；</dd>
+                        <dd>4、活动期间累计投资对应标的满指定金额，即可获得相应奖励；</dd>
+                        <dd>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp举例：张三活动期间累计投资9万元，其中1月标1万元、3月标3万元、6月标5万元，张三将获得总计返现<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp49+299+999=1347元；</dd>
+                        <dd class="dd_last">*本活动规则在法律范围内解释权归创利投所有，如有疑问请联系在线客服400-890-2226</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="w_bottom">
+            <div class="w_ft_01">
+                <div class="b_intro">
+                    客服热线（服务时间：9:00~18:00）<br />
+                    <em>
+                        400-890-2226
+                    </em><br />
+                    <a href="javascript:void(0);" target="_blank" id="BizQQWPA">
+                        <span>联系在线客服 ></span>
+                    </a><br />
+                    <i>
+                        市场有风险&nbsp;&nbsp;投资需谨慎
+                    </i>
+                </div>
+                <div class=" b_intro1">
+                    <div>
+                        <i>关于我们</i><a href="/CLT_company.html">公司介绍</a><a href="/CLT_Mediareports.html">媒体报道</a><a href="/CLT_Contactus.html">联系我们</a>
+
+                    </div>
+                    <div class="b_intro1_div1">
+                        <i>安全保障</i><a href="/CLT_security.html">四方六项</a><a href="/CLT_support.html">技术保障</a><a href="/CLT_legalprotection.html">法律保障</a>
+
+                    </div>
+                    <div class="b_intro1_div2">
+                        <i>帮助中心</i><a href="/CLT_Login_register.html">注册登录</a><a href="/CLT_Certification.html">认证安全</a><a href="/CLT_Prepaid.html">充值提现</a>
+
+                    </div>
+                </div>
+
+                <div class="b_intro2">
+                    <span>移动投资&nbsp;想投就投</span>
+                    <p>
+                        扫描关注订阅号
+                    </p>
+                </div>
+                <div class="b_intro2 b_intro3">
+                    <span>财富动态&nbsp;尽在掌握</span>
+                    <p>
+                        扫描关注服务号
+                    </p>
+                </div>
+                <div class="b_intro4">
+                    <a class="b_a1" href="http://www.anquan.org/authenticate/cert/?site=www.chuanglitou.com&at=business">
+                    </a>
+                    <a class="b_a2" href="http://si.trustutn.org/info?sn=756150724000233411076">
+                    </a>
+                    <a class="b_a3" href="https://credit.szfw.org/CX20150721010801010189.html">
+                    </a>
+                </div>
+                <p class="b_intro5">
+                    ©2015 创利投chuanglitou.cn All Rights Reserved 北京创利投网络科技有限公司 京ICP备160693号
+                </p>
+
+                <div class="b_intro6">
+                    友情链接：<a href="http://www.csai.cn/p2p/" target="_blank">p2p超市</a><a href="http://www.wukongshuo.com/LiCai/" target="_blank">理财资讯</a><a href="http://www.trhome.cc" target="_blank">网上投资理财</a><a href="http://daikuan.anxin.com/" target="_blank">个人贷款</a><a href="http://www.p2pchina.com/" target="_blank">网贷中国</a><a href="http://www.wangdaidp.com/" target="_blank">网贷点评</a><a href="http://www.wdzj.com/" target="_blank">网贷之家</a>
+
+                </div>
+            </div>
+        </div>
+
+        <style>
+            /*导航我要投资下拉菜单--放在css.css里面的样式*/
+            .w_logo1 li {
+                display: inline-block;
+                float: left;
+            }
+
+                .w_logo1 li.subnav-tz {
+                    position: relative;
+                }
+
+                .w_logo1 li a {
+                    float: none;
+                    border-bottom: 3px solid transparent;
+                }
+
+            .menuBox {
+                position: absolute;
+                z-index: 1000;
+                border: 1px solid #e6e6e6;
+                top: 10px;
+                left: 0px;
+                width: 91px;
+                background-color: #fff;
+                display: inline-block;
+                padding: 5px 0;
+                top: 70px;
+                left: 0px;
+                display: none;
+            }
+
+            .w_logo1 li.subnav-tz a:hover {
+                border-bottom: 3px solid transparent;
+            }
+
+            .menuBox .sanjiao {
+                height: 0;
+                width: 0;
+                position: absolute;
+                border: 15px solid transparent;
+                border-bottom-color: #e6e6e6;
+                top: -31px;
+                left: 25px;
+                margin: 0;
+                padding: 0;
+            }
+
+            .menuBox .sanjiao2 {
+                height: 0;
+                width: 0;
+                position: absolute;
+                border: 15px solid transparent;
+                border-bottom-color: #fff;
+                top: -30px;
+                left: 25px;
+                margin: 0;
+                padding: 0;
+            }
+
+            .menuBox ul li {
+                display: block;
+                padding-left: 16px;
+                line-height: 30px;
+                height: 30px;
+                float: none;
+                overflow: hidden;
+                width: 60px;
+            }
+
+                .menuBox ul li a {
+                    display: inline-block;
+                    width: 60px;
+                    height: 30px;
+                    overflow: hidden;
+                    color: #666;
+                    line-height: 30px;
+                    text-align: left;
+                    float: none;
+                    margin-right: 0;
+                    font-size: 14px;
+                }
+
+                    .menuBox ul li a:hover {
+                        border-bottom: none;
+                    }
+        </style>
+        <script>
+
+            function GetRTime() {
+                var EndTime = new Date('2016/09/03 00:00:00');
+                var NowTime = new Date();
+                var t = EndTime.getTime() - NowTime.getTime();
+                var h = Math.floor(t / 1000 / 60 / 60);
+                var m = Math.floor(t / 1000 / 60 % 60);
+                var s = Math.floor(t / 1000 % 60);
+
+                document.getElementById("t_h").innerHTML = h;
+                document.getElementById("t_m").innerHTML = m;
+                document.getElementById("t_s").innerHTML = s;
+                if (document.getElementById("t_h").innerHTML < 10) {
+                    document.getElementById("t_h").innerHTML = "0" + document.getElementById("t_h").innerHTML;
+                }
+                if (document.getElementById("t_m").innerHTML < 10) {
+                    document.getElementById("t_m").innerHTML = "0" + document.getElementById("t_m").innerHTML;
+                }
+                if (document.getElementById("t_s").innerHTML < 10) {
+                    document.getElementById("t_s").innerHTML = "0" + document.getElementById("t_s").innerHTML;
+                }
+                if (document.getElementById("t_h").innerHTML < 0) {
+                    document.getElementById("t_h").innerHTML == 0;
+                } else if (document.getElementById("t_m").innerHTML < 0) {
+                    document.getElementById("t_m").innerHTML == 0;
+                } else if (document.getElementById("t_s").innerHTML < 0) {
+                    document.getElementById("t_s").innerHTML == 0;
+                }
+                if (document.getElementById("t_m").innerHTML == "0-1") {
+                    $(".daojishi").hide();
+                    $(".daojishi_biaoti").hide();
+                }
+            }
+            setInterval(GetRTime, 0);
+
+            function aq() {
+                if ($(".dengUp").show()) {
+                    $(".dengDode").hide();
+                }
+            }
+            setInterval(aq, 700);
+            function aw() {
+                if ($(".dengDode").show()) {
+                    $(".dengUp").hide();
+                }
+            }
+            setInterval(aw, 1400);
+        </script>
+        <script type="text/javascript">
+            //剩余抽奖机会
+            var scount = 1;
+            // $.post("/activity/20160602/20160602hd.aspx?action=count", function (data) {
+            //    scount = data;
+            // });
+
+            $("#count").html(scount);
+        </script>
+    </center>
+</body>
+</html>

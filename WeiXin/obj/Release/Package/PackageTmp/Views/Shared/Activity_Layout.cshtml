@@ -1,0 +1,45 @@
+﻿@using ChuanglitouP2P.Common;
+@using Microsoft.AspNet.Identity;
+
+@{
+    Int64 uid = 0;
+
+    Int64.TryParse(User.Identity.GetUserId(), out uid);
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.keywords" />
+    <meta name="description" content="@ViewBag.desc " />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    @Url.File("/js/jquery.min.js").ToHtml()
+
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><a href="/"><img src="/images/wx_logo.png" alt=""></a></div>
+
+        @if (uid > 0)
+        {
+
+            <div class="header_link"><a href="/usercenter/index" style="font-size:12px;"> 欢迎您，@Utils.GetWXUsrNameSex(uid)  </a><a href="/login/SignOut">退出</a></div>
+        }
+        else
+        {
+            <div class="header_link"><a href="/login/Index">登录</a><a href="/register/Index">注册</a></div>
+        }
+    </header>
+
+    @RenderBody()
+
+    @RenderSection("js", required: false)
+    @RenderSection("css", required: false)
+    <script src="~/js/om_code.js"></script>
+</body>
+</html>

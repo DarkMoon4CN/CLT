@@ -1,0 +1,151 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuangLitouP2P.Models;
+@model ChuangLitouP2P.Models.UsrDetialsFunds
+@{
+    ViewBag.Title = "资金管理-资金流水-创利投";
+    ViewBag.keywords = "资金管理-资金流水-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+}
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+@Url.File("/Content/pagecss.css").ToHtml()
+<script type="text/javascript">
+    function AjaxStart() {
+        dff = layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+
+</script>
+<div class="content">
+    <!--公共的左侧-->
+    @UCLeft.HX_UCLeft()
+    <div>
+        <!-- 资金流水-->
+        <div class="back choose" id="zjls">
+            <h2>
+                资金流水
+            </h2>
+            <div class="dTab">
+                <p class="dAdd">资金账户流水</p>
+                <p>奖励流水</p>
+            </div>
+            <div class="dContent">
+                
+                <div class="hh">
+
+                    <div class="dRl" id="dRl" style="margin：20px 0;">
+
+                        @using (Html.BeginForm("Detailsfunds", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm", @class = "form-inline well well-sm" }))
+            {
+                            @*<div class="cz1_tab cz2_cont cz_date1">
+                                <input type="hidden" name="timeday" id="timeday" value="0" />
+
+                                <span class="hover" onclick="clickday(-3)">最近3天</span> <span onclick="7">最近7天</span><span onclick="30">1个月</span><span onclick="90">3个月</span>
+                                <input class="jcDate" id="startdatetime" name="startdatetime" style="width:95px; height:28px; line-height:20px; padding-left:40px;margin-left: 5px;border:1px solid #f0f0f0;" />
+                                <b class="tI" style="margin: 0 8px;">至</b>
+                                <input class="jcDate" id="enddatetime" name="enddatetime" style="width:95px; height:28px; line-height:20px; padding-left:40px;border:1px solid #f0f0f0;" />
+                                <input class="dBtn1 tBtn1" type="submit" value="查询" />
+                            </div>*@
+
+                                <input type="hidden" name="timeday" id="timeday" value="0" />
+                                <em class="dEmr">最近3天</em>
+                                <em>最近7天</em>
+                                <em>1个月</em>
+                                <em class="dEmAdd">3个月</em>
+                                <!--日历部分-->
+                                <input class="jcDate" id="startdatetime" name="startdatetime" style="width:95px; height:28px; line-height:28px; padding-left:40px;margin-left: 5px;border:1px solid #f0f0f0;" />
+                                <b class="tI" style="margin: 0 8px;">至</b>
+                                <input class="jcDate" id="enddatetime" name="enddatetime" style="width:95px; height:28px; line-height:28px; padding-left:40px;border:1px solid #f0f0f0;" />
+                                <input class="dBtn1 tBtn1" type="submit" value="查询" />
+                        }
+                    </div>
+
+
+                    <div class="cz_table cz_tab01" id="Capital">
+
+                        @Html.Partial("_Detailsfunds", Model.Capital)
+
+                    </div>
+
+
+                </div>
+                <div class="hh" style="display: none;">
+                    <div class="dRl" id="dRlACT" style="margin：20px 0;" >
+                        @using (Html.BeginForm("Detailsfunds", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchFormACT", @class = "form-inline well well-sm" }))
+                        {
+                            @*<div class="cz1_tab cz2_cont cz_date2">
+                                <input type="hidden" name="timeday" id="timeday" value="0" />
+                                <span class="hover" onclick="clickday(-3)">最近3天</span> <span onclick="7">最近7天</span><span onclick="30">1个月</span><span onclick="90">3个月</span>
+                                <input class="jcDate" id="startdatetime" name="startdatetime" style="width:95px; height:28px; line-height:20px; padding-left:40px;margin-left: 5px;border:1px solid #f0f0f0;" />
+                                <b class="tI" style="margin: 0 8px;">至</b>
+                                <input class="jcDate" id="enddatetime" name="enddatetime" style="width:95px; height:28px; line-height:20px; padding-left:40px;border:1px solid #f0f0f0;" />
+                                <input class=" dBtn1 tBtn1" type="submit" value="查询" />
+                            </div>*@
+
+
+                            <input type="hidden" name="timeday" id="timedayACT" value="0" />
+                            <em class="dEmr">最近3天</em>
+                            <em>最近7天</em>
+                            <em>1个月</em>
+                            <em class="dEmAdd">3个月</em>
+                            <!--日历部分-->
+                            <input class="jcDate" id="startdatetime" name="startdatetime" style="width:95px; height:28px; line-height:28px; padding-left:40px;margin-left: 5px;border:1px solid #f0f0f0;" />
+                            <b class="tI" style="margin: 0 8px;">至</b>
+                            <input class="jcDate" id="enddatetime" name="enddatetime" style="width:95px; height:28px; line-height:28px; padding-left:40px;border:1px solid #f0f0f0;" />
+                            <input class="dBtn1 tBtn1" type="submit" value="查询" />
+                        }
+
+                    </div>
+                    <div class="cz_table cz_tab02" id="ACT">
+
+                        @Html.Partial("_ACT", Model.V_ACT)
+
+                    </div>
+                </div>
+
+                
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //切换
+
+    tab('.cz_tab01 table', '.cz_date1 span', 'hover');
+    tab('.cz_tab02 table', '.cz_date2 span', 'hover');
+
+
+    //切换
+
+    function tab(oTab, obj, arrClass) {
+        var _this = $(this);
+        $(obj).click(function () {
+            $(this).addClass(arrClass).siblings().removeClass(arrClass);
+            $(oTab).eq($(this).index()).css("display", "block").siblings().css("display", "none")
+        });
+
+    };
+
+
+    function clickday(i) {
+        $('#timeday').val(i);
+        $('#startdatetime').val('');
+        $('#enddatetime').val('');
+    }
+
+</script>
+
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}
+

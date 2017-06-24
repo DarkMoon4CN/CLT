@@ -1,0 +1,165 @@
+﻿@model ChuangLitouP2P.Models.hx_member_table
+@{
+    ViewBag.Title = "添加客户";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+    
+}
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+<script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script type="text/javascript" src="~/Areas/Admin/js/lhgcore.min.js"></script>
+<script type="text/javascript" src="~/Areas/Admin/js/lhgcalendar.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+        //document.getElementById("ttzcode").value = GetQueryString("ttzcode");
+        //document.getElementById("regid").value = GetQueryString("regid");
+
+        $(".registerform").Validform({
+            tiptype: 4,
+            ajaxPost: true,
+            callback: function (data) {
+                if (data.rs == "y") {
+                  
+                    layer.msg("" + data.info + "", 1, 5);
+                }
+                else {
+                    layer.msg("" + data.error + "", 1, 5);
+                }
+            }
+        });
+
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "vcode": /^[0-9]*$/
+        });
+
+
+    });
+
+</script>
+
+<style type="text/css">
+    .tdleft {
+        width: 20%;
+        text-align: right;
+    }
+
+    .tdright {
+        width: 80%;
+        text-align: left;
+    }
+
+    tr {
+        background: rgb(255, 255, 255);
+        line-height: 25px;
+    }
+
+        tr td input {
+            height: 20px;
+            line-height: 20px;
+        }
+</style>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">用户管理</a>><a href="javascript:void(0)"> 新增用户</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        新增用户
+    </h3>
+    <div class="tz_box cz_box" style="height:1200px;">
+
+        @using (Html.BeginForm("PostUsers", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => Model.registerid)
+
+            <div class="z_cont2">
+
+                <table width="100%" style="table-layout:fixed;padding-left:10px;margin-top:10px;">
+                    <tr>
+                        <td class="tdleft">
+                            <label for="borrowing_title">手机号：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.mobile, new { htmlAttributes = new { @ajaxurl = "/Register/checkmobile?action=mobile", @datatype = "mobile", @nullmsg = "请输入手机号！", @errormsg = "手机号格式不对！" } })
+                            <span class="Validform_checktip">请设置手机号！</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tdleft">
+                            <label for="">请输入密码：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @datatype = "*6-30", @nullmsg = "请输入密码！", @errormsg = "密码为6-30个字符！" } })
+                            
+                        </td>
+                    </tr>
+                   
+                   
+                   
+                    <tr>
+                        <td class="tdleft">
+                            <label for="borrowing_balance">邮箱：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new {@class = "inputxt", @datatype = "e", @nullmsg = "请设置邮箱！", @errormsg = "邮箱格式不对！" } })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="annual_interest_rate">真实姓名：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.realname, new { htmlAttributes = new { @class = "inputxt", @datatype = "*", @nullmsg = "请输入真实姓名！" } })
+                            <span class="Validform_checktip">请输入真实姓名！</span>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="tdleft">
+                            <label for="annual_interest_rate">身份证号：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.iD_number, new { htmlAttributes = new { @class = "inputxt", @datatype = "*18-18", @nullmsg = "请输入身份证号！"  , @errormsg = "身份证号格式不对！" } })
+                            <span class="Validform_checktip">请输入身份证号！</span>
+                        </td>
+                    </tr>
+
+                   
+                    <tr>
+                        <td class="tdleft"></td>
+                        <td class="tdright">
+                          
+                                <input type="submit" id="btnSubmit" value="确定" class="btn1" />
+                          
+                            &nbsp;<a href="#" onclick="javascript:history.back()" class="btn1" style="height:25px;">&nbsp;&nbsp;<span class="button white medium" id="getback">返回</span>&nbsp;&nbsp;</a>
+                        </td>
+                    </tr>
+
+                  
+                </table>
+
+            </div>
+
+        }
+
+    </div>
+
+
+
+</div>

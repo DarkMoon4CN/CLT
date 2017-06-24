@@ -1,0 +1,117 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuangLitouP2P.Models;
+@model PagedList<V_borrowing_Bid_records_income_statement_uc>
+@{
+    ViewBag.Title = "投资管理-回款计划-创利投";
+    ViewBag.keywords = "投资管理-回款计划-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+
+}
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+@Url.File("/Content/pagecss.css").ToHtml()
+<script type="text/javascript">
+    var dff;
+    $(function () {
+
+        $("#btnOutExcel").bind("click", function () {
+            outputExcel();
+        });
+    });
+
+
+    function downloadExcel(url) {
+        var obj = $("#downloadExcelBtn");
+        obj.attr("href", url);
+        document.getElementById("downloadExcelBtn").click();
+        // obj.click();
+    }
+
+    function outputExcel() {
+        var startdatetime = $("#startdatetime").val();
+        var enddatetime = $("#enddatetime").val();
+        var timeday = $("#timeday").val();
+      
+        $.ajax({
+            type: 'Get',
+            url: "/usercenter/IndexToExcel",
+            data: { startdatetime: startdatetime, enddatetime: enddatetime, timeday: timeday},
+            //dataType: dataType,
+            success: function (data) {
+                downloadExcel(data);
+            },
+            error: function () {
+                // view("异常！");
+                //alert("异常！");
+            }
+        });
+    }
+
+
+
+    function AjaxStart() {dff= layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+</script>
+
+<div class="content">
+    <!--公共的左侧-->
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+    <div>
+        <!--                                                                     回款计划-->
+        <div class="back choose">
+            <h2>
+                回款计划
+            </h2>
+            <p class="bIntro">
+                您目前待收的本息总额是：<em>  @ViewBag.ds </em>元，共<em>@(ViewBag.count)</em>笔投资，最后一笔回款时间：<em>@ViewBag.str</em> 。
+            </p>
+            <div class="bAll" style="margin-left:15px;">
+
+@using (Html.BeginForm("huikuan", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm", @class = "form-inline well well-sm" }))
+{
+
+                <p style="display: inline-block;">
+                    <i class="bAllI" style="color:#0F91DD;margin-right: 20px;">全部</i>
+                    <i >当天</i>
+                    <i  >最近一个月</i>
+                </p>
+                <input type="hidden" name="timeday" id="timeday" value="0" />
+                <!--日历部分-->
+                <input class="jcDate" autocomplete="off" id="startdatetime"   name="startdatetime" style="width:95px; height:28px; line-height:28px; padding-left:40px;margin-left: 5px;border:1px solid #f0f0f0;" />
+                <b class="tI">至</b>
+                <input class="jcDate" autocomplete="off" id="enddatetime"  name="enddatetime"  style="width:95px; height:28px; line-height:28px; padding-left:40px;border:1px solid #f0f0f0;" />
+                <input class=" dBtn1 tBtn1" style="margin-left:30px;" type="submit" value="查询" />
+                <input style="background-color:#0F91DD ;" class=" dBtn1 tBtn1"  id="btnOutExcel" type="button" value="导出" />
+}
+
+
+              </div>
+            @Html.Partial("_huikuanList", Model)
+           
+        </div>
+
+
+    </div>
+    @section Scripts{@{Html.RegisterMvcPagerScriptResource();}}
+</div>
+<a href="" id="downloadExcelBtn" style="display:;"></a>
+
+<script type="text/javascript">
+    function clickday(i)
+    {
+      
+        $('#timeday').val(i);
+        $('#startdatetime').val('');
+        $('#enddatetime').val('');
+
+        alert($('#timeday').val());
+    }
+</script>

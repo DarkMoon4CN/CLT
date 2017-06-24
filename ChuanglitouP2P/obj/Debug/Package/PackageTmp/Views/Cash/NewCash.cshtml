@@ -1,0 +1,896 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuanglitouP2P.Model;
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<hx_td_UserCash>
+@{
+    ViewBag.Title = "资金管理-我要提现-创利投";
+    ViewBag.keywords = "资金管理-我要提现-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+
+    M_member_table mmt = (M_member_table)ViewBag.users;
+
+    List<V_UsrBindCardBank> list = ViewBag.UsrBindCard as List<V_UsrBindCardBank>;
+
+    string OpenBankId = "", CardImage = "", UsrBindCardID = "", OpenAcctId = "";
+
+
+    @*
+        dynamic p = ViewBag.o as dynamic;
+        dynamic o = new ExpandoObject();
+        o.Id = "111";
+        o.name = "zcjgkr";
+        ViewBag.o = o;*@
+}
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<link href="~/Content/pagecss.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    var dff;
+    function AjaxStart() {
+        dff = layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+    $(function () {
+        $(".dAdd").click();
+
+    });
+</script>
+<style type="text/css">
+    .xinjia_1 {
+        margin: 20px 20px 0px 20px;
+        padding: 0 20px 0 20px;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .xinjia_1 > h3 {
+            color: #333;
+            font-weight: normal;
+            font-size: 18px;
+            font-family: "微软雅黑";
+            line-height: 60px;
+        }
+
+        .xinjia_1 ul {
+            width: 100%;
+        }
+
+            .xinjia_1 ul li {
+                float: left;
+                display: inline-block;
+                margin: 2% 1.4%;
+                width: 30%;
+                border: 1px dashed #ccc;
+                border-radius: 5px;
+                text-align: center;
+                line-height: 150px;
+                height: 131px;
+            }
+
+                .xinjia_1 ul li a {
+                    display: block;
+                    background: url('../../Images/u139.png') center 20px no-repeat;
+                    margin-top: 20px;
+                }
+
+                    .xinjia_1 ul li a span {
+                        display: block;
+                        color: #999;
+                    }
+
+        .xinjia_1 p {
+            margin: 10px 0;
+            color: #929292;
+            font-size: 14px;
+            clear: both;
+        }
+
+    .xinjia_2 {
+        margin: 20px 20px 0px 20px;
+        padding: 0 20px 0 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .xinjia_2 ul li {
+            display: block;
+            line-height: 50px;
+        }
+
+        .xinjia_2 ul li {
+            display: block;
+            line-height: 50px;
+        }
+
+    .li_01 span, .li_02 span, .li_03 span, .li_05 span, .li_06 span {
+        display: inline-block;
+        margin-right: 10px;
+        width: 7em;
+        color: #333;
+        vertical-align: middle;
+        text-align: right;
+    }
+
+    .li_01 p {
+        display: inline-block;
+        margin: 0;
+        vertical-align: bottom;
+    }
+
+    .li_01 label {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+        .li_01 label input {
+            vertical-align: middle;
+        }
+
+        .li_01 label a {
+            color: #333;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+    .tishi {
+        display: inline-block;
+        margin: 0;
+        color: #FF3300;
+        font-size: 12px !important;
+    }
+
+    .li_02 p, .li_03 p {
+        display: inline-block;
+        margin: 0;
+        color: #333;
+        vertical-align: middle;
+    }
+
+    .li_03 small {
+        color: #FF6600;
+        font-size: 14px;
+        font-family: "微软雅黑";
+    }
+
+    .li_04 span {
+        display: inline-block;
+        margin-right: 10px;
+        width: 7em;
+        background: url(../images/dStar.jpg) no-repeat 2.2em 20px;
+        color: #333;
+        vertical-align: middle;
+        text-align: right;
+    }
+
+    .li_04 p {
+        display: inline-block;
+        margin: 0;
+        vertical-align: middle;
+    }
+
+        .li_04 p input {
+            outline: none;
+            border: 1px solid #ccc;
+            color: #333;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .li_04 p a {
+            margin-left: 5px;
+            color: #333;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+
+    .li_05 p {
+        display: inline-block;
+        margin: 0;
+        vertical-align: middle;
+    }
+
+        .li_05 p a {
+            color: #333;
+            font-size: 14px;
+            cursor: default;
+        }
+
+    .li_06 p {
+        display: inline-block;
+        margin: 0;
+        color: #333;
+        vertical-align: middle;
+    }
+
+    .lijiti {
+        display: block;
+        margin: 50px auto;
+        width: 250px;
+        border: none;
+        border-radius: 5px;
+        background-color: #69C;
+        color: #fff;
+        font-size: 14px;
+        font-family: '微软雅黑';
+        line-height: 38px;
+        cursor: pointer;
+    }
+
+    .xinjia_tan {
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        margin-left: -200px;
+        width: 400px;
+        z-index: 999999;
+        background-color: #fff;
+    }
+
+        .xinjia_tan h3 {
+            padding-left: 10px;
+            border-bottom: 1px solid #eee;
+            background-color: #e8f7ff;
+            color: #777;
+            letter-spacing: 8px;
+            font-weight: normal;
+            font-size: 16px;
+            font-family: "微软雅黑";
+            line-height: 40px;
+        }
+
+            .xinjia_tan h3 a {
+                float: right;
+                font-size: 30px;
+            }
+
+        .xinjia_tan span {
+            display: block;
+            margin-left: 3px;
+            color: #666;
+            text-align: center;
+            font-size: 18px;
+            font-family: "微软雅黑";
+            line-height: 125px;
+        }
+
+        .xinjia_tan > div {
+            margin: 0 0 24px 0;
+            text-align: center;
+        }
+
+            .xinjia_tan > div button {
+            }
+
+    .xinjia_tan_btn1 {
+        margin: 0 7px;
+        width: 100px;
+        outline: none;
+        border: none;
+        border-radius: 2px;
+        background-color: #11a7ff;
+        color: #fff;
+        font-family: "微软雅黑";
+        line-height: 30px;
+        cursor: pointer;
+    }
+
+    .xinjia_tan_btn2 {
+        margin: 0 7px;
+        width: 100px;
+        outline: none;
+        border: none;
+        border: 1px solid #11a7ff;
+        border-radius: 2px;
+        background: none;
+        color: #11a7ff;
+        line-height: 28px;
+        cursor: pointer;
+    }
+
+    .bang {
+        float: left;
+        display: inline-block;
+        margin: 2% 1.4%;
+        width: 30%;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 90px;
+        height: 131px;
+        position: relative;
+        background: url('../../Images/111.png');
+        border: none;
+        cursor: pointer;
+    }
+
+    .xinjia_1 ul li.bang {
+        border: none;
+    }
+
+    .bang_Hei {
+        background: url('../../Images/hei_bg.png');
+    }
+
+        .bang_Hei span, .bang_Hei p small, .bang_Hei p sub, .bang_Hei a {
+            color: #909090;
+        }
+
+    .bang_1 {
+        position: absolute;
+        left: 18.5px;
+        top: 14px;
+        width: 21px;
+        height: 21px;
+    }
+
+    .bang_2 {
+        position: absolute;
+        color: #fff;
+        font-family: "微软雅黑";
+        font-size: 10px;
+        left: 46px;
+        top: 24px;
+        line-height: 0;
+    }
+
+    .bang_3 {
+        position: absolute;
+        right: 71px;
+        top: 21px;
+    }
+
+    .bang_4 {
+        position: absolute;
+        right: 7px;
+        font-size: 12px;
+        color: #fff;
+        top: 24px;
+        line-height: 0;
+        font-family: "微软雅黑";
+    }
+
+    .bang_5 {
+        position: absolute;
+        top: 60px;
+        left: 52px;
+        color: #fff !important;
+        font-size: 16px !important;
+        font-family: "微软雅黑";
+        vertical-align: middle;
+        margin: 0 !important;
+        line-height: 20px;
+    }
+
+    .bang_6 {
+        vertical-align: middle;
+    }
+
+    .bang_7 {
+        margin-top: 12px;
+        font-size: 16px;
+    }
+
+    .bang_6, .bang_7, .bang_8 {
+        vertical-align: middle;
+        margin-top: 5px;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .bang_9 {
+        position: absolute;
+        bottom: -54px;
+        left: 97px;
+        color: #fff;
+        font-size: 12px;
+        background: none !important;
+        margin: 0 !important;
+    }
+
+    .bgGray {
+        background-color: #939CA5;
+        cursor: text;
+    }
+
+    .li_04_input {
+        height: 30px;
+    }
+
+    .introduce {
+        height: 100%;
+        margin-bottom: 3em;
+    }
+
+    .tixian_shade {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 999999;
+        left: 0;
+        top: 0;
+        filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000,endColorstr=#88000000);
+        display: none;
+        background-color: rgba(0,0,0,.5);
+    }
+
+    #tipsFee {
+        color: red;
+    }
+
+    li.li_01 input[type=radio] {
+        border-style: none;
+    }
+
+    #tbTips {
+        border-collapse: collapse;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+        #tbTips td {
+            /*border: 1px solid #e1dede;*/
+            /*文良修改*/
+            border: 1px solid #e1dede;
+            padding: 5px 20px;
+        }
+
+        #tbTips tbody tr {
+            background-color: white !important;
+        }
+
+        #tbTips th {
+            /*border-top: 1px solid #e1dede;
+            border-bottom: 1px solid #e1dede;*/
+            /*文良修改*/
+            border: 1px solid #e1dede;
+            min-width: 80px;
+            padding: 10px 20px;
+        }
+
+        #tbTips thead tr {
+            border-left: 1px solid #e1dede;
+            border-right: 1px solid #e1dede;
+        }
+</style>
+<div class="tixian_shade"></div>
+<div class="content">
+    <!--公共的左侧-->
+
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+    <!--                                                                     我要提现-->
+    <div class="deposit choose">
+        <div class="dHeader">
+            我要提现
+        </div>
+        <div class="dTab">
+            <p class="dAdd">提现</p>
+            @*<p>快速提现</p>*@
+            <p>提现记录</p>
+        </div>
+        <div class="dContent" style="clear:both;">
+            <!--普通提现内容-->
+
+            <div class="dTx" style="padding-top:0;position:relative;">
+                <div class="xinjia_tan" style="display:none;">
+                    <h3>
+                        提示
+                        <a class="xinjia_tan_close">×</a>
+                    </h3>
+
+                    <span>您是否已成功绑定了银行卡？</span>
+                    <div>
+                        <button class="xinjia_tan_btn1">绑卡成功</button>
+                        <button class="xinjia_tan_btn2">绑卡遇到问题</button>
+                    </div>
+                    <div style="display:none;">
+                        <input type="button" value="好的" id="btnTipOk" class="xinjia_tan_btn1" />
+                    </div>
+                </div>
+                <div class="xinjia_1">
+                    <h3>我的银行卡</h3>
+                    <ul>
+                        @{
+                            string submitStyle = "";
+                            System.Text.StringBuilder bankHtml = new System.Text.StringBuilder();
+
+                            if (list == null || list.Count <= 0)
+                            {
+                                submitStyle = "bgGray";
+                            }
+                            else
+                            {
+                                foreach (V_UsrBindCardBank item in list)
+                                {
+                                    string defStr = item.defCard == 1 ? "<img class='bang_3' src='/Images/" + (item.defCard == 1 ? "333.png" : "hei_1.png") + "'><span class='bang_4'>默认提现卡</span>" : "";
+                                    string cardType = item.BindCardType == 0 ? "普通卡" : "快捷卡";
+                                    bankHtml.AppendFormat(@" <li class='bang {9}' idGren='{6}' usrBCID='{7}' isChecked='{8}'>
+                                                            <img src='{0}' class='bang_1'>
+                                                            <span class='bang_2'>{1}</span>
+                                                            {2}
+                                                            <p class='bang_5'>
+                                                                <small class='bang_6'>{3}</small><sub class='bang_7'>***********</sub><small class='bang_8'>{4}</small>
+                                                            </p>
+                                                            <a class='bang_9'>{5}</a>
+                                                        </li>",
+                                                            item.CardImageNew,
+                                                            item.BankName,
+                                                            defStr,
+                                                            item.OpenAcctId.Substring(0, 3),
+                                                            item.OpenAcctId.Substring(item.OpenAcctId.Length - 4, 4),
+                                                            cardType,
+                                                            item.isGren,
+                                                            item.UsrBindCardID.ToString(),
+                                                            item.defCard,
+                                                            (item.defCard == 1 ? "" : "bang_Hei"));
+                                }
+                            }
+                            var defCard = list.Where(c => c.defCard == 1).FirstOrDefault();
+                            if (defCard == null || defCard.BindCardType == 0)
+                            {
+                                bankHtml.Append(@"<li>
+                                                    <a id='addNewCard'>
+                                                        <span>添加银行卡</span>
+                                                    </a>
+                                                </li>");
+                            }
+                        }
+                        @Html.Raw(bankHtml)
+                    </ul>
+                    <p>
+                        尊敬的用户，请您仔细阅读温馨提示。<br />
+                        所有银行都支持普通提现和快速提现服务。<br />
+                        即时提现服务只支持以下银行：工商、农业、招商、北京、中行、民生、渤海、光大、兴业、浙商、广发、华夏、平安、上海农商
+                    </p>
+                </div>
+                <div class="xinjia_2">
+                    <ul>
+                        <li class="li_01">
+                            <span>提现方式</span>
+                            <p>
+                                <label>
+                                    <input type="radio" name="tixuan" cashType="0" id="rdoNormal">
+                                    <a>普通提现</a>
+                                </label>
+                                <label>
+                                    <input type="radio" name="tixuan" cashType="1">
+                                    <a>快速提现</a>
+                                </label>
+                                <label>
+                                    <input type="radio" name="tixuan" cashType="2">
+                                    <a>即时提现</a>
+                                </label>
+                            </p>
+                            <p class="tishi" style="display:none;">您所绑定的银行卡不支持即时提现，如需使用，请添加新的银行卡</p>
+                        </li>
+                        <li class="li_02">
+                            <span>收款人</span>
+                            <p>@mmt.realname</p>
+                        </li>
+                        <li class="li_03">
+                            <span>可提现金额</span>
+                            <p><small>@mmt.available_balance</small>元</p>
+                        </li>
+                        <li class="li_04">
+                            <span>提现金额</span>
+                            <p>
+                                <label>
+                                    <input type="text" value="请输入提现金额" class="li_04_input">
+                                    <a>元</a>
+                                    <small style="font-size :12px;color :red;font-family: '微软雅黑';vertical-align :middle;display:none;">
+                                        输入错误，提现金额不能超过可用余额~
+                                    </small>
+                                </label>
+                            </p>
+                        </li>
+                        <li class="li_05">
+                            <span>手续费</span>
+                            <p>
+                                <a id="aFeeAmt">0.00元</a><label id="tipsFee">（已由创利投为您垫付）</label>
+                            </p>
+                        </li>
+                        <li class="li_06">
+                            <span>预计到账时间</span>
+                            <p>
+                                @*预计下周一 12月19日到账（T+1日到账，具体时间以银行操作为准）*@
+                            </p>
+                        </li>
+                    </ul>
+                    <button class="lijiti @submitStyle">立即提现</button>
+                </div>
+
+                @using (Html.BeginForm("CashGENERAL", "Cash", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1", @id = "Form1", @target = "_blank" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" id="TransAmt" name="TransAmt" />
+                    <input type="hidden" id="UsrBindCardID" name="UsrBindCardID" />
+
+
+                    <p style="height: 9px;background: #f0f0f0;margin:0;margin-top: 70px;"></p>
+                    <div class="introduce">
+                        <h3>温馨提示</h3>
+                        <p>
+                            1、为了您的资金安全，请确保提现银行账号的姓名和您进行实名验证的姓名一致。
+                        </p><p>
+                            2、提现过程遇到问题，请联系客服，010-53732056
+                        </p><p>
+                            3、请确保您输入的是正确的储蓄卡账号，而非信用卡账号。
+                        </p><p>
+                            4、实际到账时间以第三方支付平台及提现银行实际操作为准。
+                        </p><p>
+                            5、创利投平台目前通过第三方平台汇付天下进行资金提现。
+                        </p><p>
+                            6、提现手续费明细
+                        </p>
+                        <table id="tbTips">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">提现手续费</th>
+                                    <th>到帐周期</th>
+                                    <th>提现限定</th>
+                                    <th>支付方式</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>普通提现</td>
+                                    <td>2元/笔</td>
+                                    <td>工作日（周一至周五）当日申请的提现，T+1工作日到账；周六日和法定节假日提现，到账时间顺延。 </td>
+                                    <td>无</td>
+                                    <td>暂由平台垫付</td>
+                                </tr>
+                                <tr>
+                                    <td>快速提现</td>
+                                    <td>工作日（周一至周五）00:00至14：30之间发起提现，按照每笔取现金额的0.5‰+2元/笔收取; 14: 30至24：00之间发起提现，按照2元/笔收取; 如遇节假日，按照2元/笔收取;。 </td>
+                                    <td>工作日（周一至周五）00:00至14：30之间发起提现，当日到账；14: 30至24：00之间发起提现，T + 1工作日到账；周六日和法定节假日提现，到账时间顺延。</td>
+                                    <td>无</td>
+                                    <td>暂由平台垫付</td>
+                                </tr>
+                                <tr>
+                                    <td>即时提现</td>
+                                    <td>按照每笔取现金额的0.5‰+2元/笔收取;如遇节假日，则按照提现金额的0.5‰×（间隔的节假日天数+1）+2元/笔收取。</td>
+                                    <td>到账时间为2小时内到账</td>
+                                    <td>提现金额20万以上需要人工审核，到账时间以实际操作为准。 </td>
+                                    <td>由客户支付</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+
+            <div class="dTx dRl dRl_wsh" style="padding-top:0;">
+                <p class="dEmr" style="margin-top: 18px;">
+                    您累计成功取现<strong style="color: rgb(15, 145, 227);"> @ViewBag.succCount </strong>笔，累计取现金额为<em style="margin-right:0px;"> @ViewBag.succTotal </em>元
+                </p>
+                @using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm1", @class = "form-inline well well-sm" }))
+                {
+                    <input type="hidden" name="timeday" id="timeday" value="@ViewBag.timeday" />
+                    <em class="dEmr">今天</em>
+                    <em>近一个月</em>
+                    <em>近三个月</em>
+                    <em class="dEmAdd">全部</em>
+                    <!--日历部分-->
+
+                    <input type="hidden" id="OrdIdState" name="OrdIdState" value="@ViewBag.OrdIdState" />
+                    <input class="jcDate" autocomplete="off" id="startdatetime" name="startdatetime" value="@ViewBag.startdatetime" style="width:95px; height:28px; line-height:20px; padding-left:40px;border:1px solid #f0f0f0;" />
+                    <i class="dRl_i">至</i>
+                    <input class="jcDate" autocomplete="off" id="enddatetime" name="enddatetime" value="@ViewBag.enddatetime" style="width:95px; height:28px; line-height:20px; padding-left:40px;border:1px solid #f0f0f0;" />
+                    <input class="dBtn1" type="submit" value="查询" id="cashlist" onclick="sumsecr1(0)" />
+
+                }
+
+                <div class="dTable dTable_wsh" id="dTable">
+                    @Html.Partial("_Cashlist", Model)
+                </div>
+            </div>
+            @section Scripts{@{Html.RegisterMvcPagerScriptResource();}}
+        </div>
+    </div>
+</div>
+@{
+    string markD = DateTime.Now.DayOfWeek == DayOfWeek.Friday && DateTime.Now.TimeOfDay > new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0).TimeOfDay ? DateTime.Now.AddDays(1).ToString("yyyy年MM月dd日") : DateTime.Now.ToString("yyyy年MM月dd日");
+}
+<script type="text/javascript">
+    $(function () {
+        function round2(number, fractiondigits) {
+            return Math.round(number * Math.pow(10, fractiondigits)) / Math.pow(10, fractiondigits);
+        }
+        //返回true表示传入参数不是有效数字
+        function checkMoney(moneyObj) {
+            return $.trim(moneyObj).length <= 0 || isNaN(moneyObj);
+        }
+        function changeAmtCss(obj) {
+            if (checkMoney($(obj).val())) { $(obj).css({ "border": "1px solid black" }); return; }
+            if (parseFloat($(obj).val()) > parseFloat($("li.li_03 p small").text())) {
+                $(obj).css({ "border": "1px solid red" }).siblings("small").show();
+                $("button.lijiti").addClass("bgGray").prop("disabled", true);
+            }
+            else {
+                $(obj).css({ "border": "2px solid green" }).siblings("small").hide();
+                $("button.lijiti").removeClass("bgGray").removeProp("disabled");
+            }
+        }
+        var delayFlag;
+        $(".li_04_input").keyup(function () {
+            changeAmtCss(this);
+            clearTimeout(delayFlag);
+            delayFlag = setTimeout(function () { calcFeeAmt(); }, 500);
+            //var fee = calcFeeAmt();
+            //var cashType = $("input[type='radio'][name='tixuan']:checked").attr("cashtype");
+            //if (cashType == 2) {
+            //    $("#aFeeAmt").text(round2(fee,2) + "元");
+            //    $("#tipsFee").text("（手续费由用户支付，节假日汇付天下会加收手续费，具体金额以汇付收取为准。）");
+            //}
+            //else {
+            //    $("#aFeeAmt").text(round2(fee,2) + "元");
+            //    $("#tipsFee").text("（已由创利投为您垫付）");
+            //}
+        }).blur(function () {
+            changeAmtCss(this);
+            //var fee = calcFeeAmt();
+            //var cashType = $("input[type='radio'][name='tixuan']:checked").attr("cashtype");
+            //if (cashType == 2) {
+            //    $("#aFeeAmt").text(round2(fee,2) + "元");
+            //    $("#tipsFee").text("（手续费由用户支付，节假日汇付天下会加收手续费，具体金额以汇付收取为准。）");
+            //}
+            //else {
+            //    $("#aFeeAmt").text(round2(fee, 2) + "元");
+            //    $("#tipsFee").text("（已由创利投为您垫付）");
+            //}
+            calcFeeAmt();
+            if ($(this).val() == "") {
+                $(this).val("请输入提现金额");
+            }
+        }).focus(function () {
+            if ($(this).val() == "请输入提现金额") {
+                $(this).val("");
+            }
+        });
+        $(".xinjia_tan_close").on("click", function () {
+            $(".xinjia_tan,.tixian_shade").hide();
+        });
+        function checkGren(isGren) {
+            if (isGren == "0") {
+                $("input[type='radio'][name='tixuan'][cashtype='2']").prop("checked", false).prop("disabled", true);
+                $("p.tishi").show();
+            }
+            else {
+                $("input[type='radio'][name='tixuan'][cashtype='2']").removeProp("disabled");
+                $("p.tishi").hide();
+            }
+        }
+        $("li.bang").click(function () {
+            $(this).attr("isChecked", "1").removeClass("bang_Hei").siblings("li.bang").attr("isChecked", "0").addClass("bang_Hei");
+            $(this).children("img.bang_3").prop("src", "/Images/333.png");
+            $(this).siblings("li.bang").children("img.bang_3").prop("src", "/Images/hei_1.png");
+            var isGren = $(this).attr("idgren");
+            checkGren(isGren);
+        });
+        function setFeeAmt(cashType, fee) {
+            //var feeAmt = 0;
+            //var money = $(".li_04_input").val();
+            //var cashType = $("input[type='radio'][name='tixuan']:checked").attr("cashtype");
+            //if (checkMoney(money) || cashType.length <= 0) { return 0; }
+            //if (cashType == 0) { feeAmt = 2; }
+            //if (cashType == 1 || cashType == 2) { feeAmt = parseFloat(money) * 5 / 10000 + 2; }
+            //return feeAmt;
+            $("#aFeeAmt").text(round2(fee, 2) + "元");
+            if (cashType == 2) {
+                $("#tipsFee").text("（手续费由用户支付，节假日汇付天下会加收手续费，具体金额以汇付收取为准。）");
+            }
+            else {
+                $("#tipsFee").text("（已由创利投为您垫付）");
+            }
+        }
+        function calcFeeAmt() {
+            var money = $(".li_04_input").val();
+            var cashType = $("input[type='radio'][name='tixuan']:checked").attr("cashtype");
+            if (checkMoney(money) || cashType.length <= 0) { setFeeAmt(cashType, 0); return; }
+            $.post("/Cash/CalcFeeAmt", { cashType: cashType, transAmt: money }, function (result) {
+                setFeeAmt(cashType, result);
+            });
+        }
+        $("input[type='radio'][name='tixuan']").click(function () {
+            var cashType = $(this).attr("cashtype");
+            var actionUrl = "";
+            var mark = "（如遇法定节假日则顺延至下一个工作日）";
+            if (cashType == 0) { actionUrl = "/Cash/CashGENERAL"; mark = '@DateTime.Now.AddDays(1).ToString("yyyy年MM月dd日")' + mark; }
+            if (cashType == 1) { actionUrl = "/Cash/CashQm"; mark = '@markD' + mark; }
+            if (cashType == 2) { actionUrl = "/Cash/CashIMMEDIATE"; mark = '@DateTime.Now.ToString("yyyy年MM月dd日")' + "(具体时间以银行操作为准）" }
+            $("#Form1").prop("action", actionUrl);
+            calcFeeAmt();
+            //var fee = calcFeeAmt();
+            //if (cashType == 2) {
+            //    $("#aFeeAmt").text(round2(fee,2) + "元");
+            //    $("#tipsFee").text("（手续费由用户支付，节假日汇付天下会加收手续费，具体金额以汇付收取为准。）");
+            //}
+            //else {
+            //    $("#aFeeAmt").text(round2(fee, 2) + "元");
+            //    $("#tipsFee").text("（已由创利投为您垫付）");
+            //}
+            $(".li_06 p").text(mark);
+        });
+        $(".xinjia_tan_btn2").click(function () {
+            $(this).parent("div").hide().siblings("div").show().siblings("span").html("<span style='margin-top: 20px;line-height:40px;'>请联络贵宾热线</span><span style='line-height:40px;'>010-53732056</span><span style='margin-bottom: 20px;line-height:40px;'>为您提供一对一咨询服务</span>")//('请联络贵宾热线 010-53732056 为您提供一对一咨询服务');
+        });
+        $(".xinjia_tan_btn1").click(function () {
+            //var parameters = "?";
+            //parameters += "a=";
+            //if ($("input[type='radio'][name='tixuan']:checked").length > 0) { parameters += $("input[type='radio'][name='tixuan']:checked").attr("cashtype"); }
+            //parameters += "&b=";
+            //var money = $(".li_04_input").val();
+            //if (!checkMoney(money)) { parameters += money; }
+            //parameters += "&c=";
+            //var ubcID = $("li.bang[isChecked='1']").attr("usrBCID");
+            //if ($.trim(ubcID).length > 0) { parameters += ubcID; }
+            //window.location.href = "http://" + window.location.host + window.location.pathname + parameters;
+            window.location.reload();
+        });
+        $("#btnTipOk").click(function () {
+            $(".xinjia_tan,.tixian_shade").hide();
+        });
+        function showTips(content, leftBtn, rightBtn) {
+            $(".xinjia_tan span").text(content);
+            $(".xinjia_tan button.xinjia_tan_btn1").text(leftBtn);
+            $(".xinjia_tan button.xinjia_tan_btn2").text(rightBtn);
+            $("#btnTipOk").parent("div").hide().siblings("div").show();
+            $(".xinjia_tan,.tixian_shade").show();
+        }
+        $(".lijiti").click(function () {
+            if ($("input[type='radio'][name='tixuan']:checked").length <= 0) { alert("请选择提现方式！"); return; }
+            var money = $(".li_04_input").val();
+            if (checkMoney(money)) { alert("请填写有效的提现金额！"); return; }
+            var ubcID = $("li.bang[isChecked='1']").attr("usrBCID");
+            if ($.trim(ubcID).length <= 0) { alert("请选择提现银行卡！"); return; }
+            $("#TransAmt").val(money);
+            $("#UsrBindCardID").val(ubcID);
+            $("#Form1").submit();
+            showTips("您是否已提现成功？", "提现成功", "提现遇到问题");
+        });
+        function isUserLink(url) {
+            var ieu = IsExistUser();//UCLeft.cshtml
+            if (ieu == "n") {
+                layer.msg("登录超时,请重新登录..", 2, 5, function () {
+                    window.location.href = "/login.html";
+                });
+                return;
+            } else {
+                window.open(url);
+            }
+        }
+        $("#addNewCard").click(function () {
+            isUserLink('/BindCard/thirdparty_bindbank');
+            showTips("您是否已成功绑定了银行卡？", "绑卡成功", "绑卡遇到问题");
+        });
+
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return decodeURI(r[2]); return null; //返回参数值
+        }
+        //var a = getUrlParam("a");
+        //var b = getUrlParam("b");
+        //var c = getUrlParam("c");
+        //if ($.trim(a).length > 0) {
+        //    $("input[type='radio'][name='tixuan'][cashtype='" + a + "']").click();
+        //}
+        //if ($.trim(b).length > 0) {
+        //    $(".li_04_input").val(b).blur();
+        //}
+        //if ($.trim(c).length > 0) {
+        //    $("li.bang[usrBCID='" + c + "']").attr("isChecked", "1");
+        //}
+
+        //$("input[type='radio'][name='tixuan']").removeProp("checked");
+
+        $("input[type='radio'][name='tixuan'][cashtype='0']").click();
+        $("input.li_04_input").val("请输入提现金额");
+        checkGren($("li.bang[isChecked='1']").attr("idgren"));
+    });
+</script>

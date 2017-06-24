@@ -1,0 +1,268 @@
+﻿
+@using ChuangLitouP2P.Models
+@{
+    var leftTree = ChuanglitouP2P.Areas.Admin.Controllers.Extensions.GetUserLeftLimitByExt();
+}
+<div class="v_left">
+    <p><a href="javascript:void(0)"><img src="~/Areas/admin/images/img_logo.jpg" /></a></p>
+    <div class="left_nav">
+        
+        @*  *@
+        @if (leftTree != null && leftTree.Count > 0)
+    {
+        //模块级
+        var _num = 0;
+        var list0 = new List<hx_AdminLimitInfo>();
+        if (leftTree.TryGetValue(0, out list0))
+        {
+            foreach (var item in list0)
+            {
+                var _iconClass = "home";
+                var strShowHide = "hide";
+                if (_num == 0)
+                {
+                    strShowHide = "show";
+                }
+                if (_num>0)
+                {
+                    _iconClass = "home" + _num;
+                }
+                _num += 1;
+                var list1 = new List<hx_AdminLimitInfo>();
+                <h2 class="@(_iconClass)"><a href="javascript:void(0)" target="menuFrame">@(item.title)</a></h2>
+                <div class="left_nav1 show_01 @(strShowHide)">
+                    @if (leftTree.TryGetValue(item.id, out list1))
+                    {
+                        var _num1=0;
+                        foreach (var item1 in list1)
+                        {
+                            _num1 = _num1+1;
+                            var url = "javascript:void(0)";
+                            var _temp = "";
+                            if (item1.level == 3)
+                            {
+                                url = "/admin/" + item1.ControllerName + "/" + item1.ActionName + item1.UrlPara;
+                                _temp = @"target=""menuFrame""";
+                            }
+                            <h3 class="home_01"><a href="@(url)"  target="menuFrame">@(item1.title)</a></h3>
+                            if (item.level < 3)
+                            {
+                                var list2 = new List<hx_AdminLimitInfo>();
+                                if (leftTree.TryGetValue(item1.id, out list2))
+                                {
+                                    var _class = "hide";
+                                    if (_num == 1 && _num1==1)
+                                    {
+                                        _class = "show show_02";
+                                    }
+                                    <ul class="@(_class)">
+                                        @foreach (var item2 in list2)
+                                        {
+                                            var url2 = "javascript:void(0)";
+                                            if (item2.level == 3)
+                                            {
+                                                url2 = "/admin/" + item2.ControllerName + "/" + item2.ActionName + item2.UrlPara;
+                                            }
+                                            <li><a href="@(url2)" target="menuFrame">@(item2.title)</a></li>
+                                        }
+                                    </ul>
+                                }
+                            }
+
+
+                        }
+                    }
+
+                </div>
+
+            }
+        }
+    }
+       
+@*
+    <h2 class="home"><a href="javascript:void(0)">全局主页</a></h2>
+    <div class="left_nav1 show_01 show">
+        <h3 class="home_01"><a href="javascript:void(0)">全局设置</a></h3>
+        <ul class="show show_02">
+            <li><a href="/Admin/default/Home" target="menuFrame" class="a_checked">参数设置</a></li>
+            <li><a href="/Admin/Template/Email" target="menuFrame">邮件模板</a></li>
+            <li><a href="/Admin/Template/SMS" target="menuFrame">短信模板</a></li>
+        </ul>
+        <h3><a href="javascript:void(0)">类别管理</a></h3>
+        <ul class="hide">
+            <li><a href="/Admin/ProjectType/Index" target="menuFrame">项目类型</a></li>
+            <li><a href="/Admin/BondingCompany/Index" target="menuFrame">担保公司</a></li>
+
+            <li><a href="/Admin/GuaranteeWay/Index" target="menuFrame">担保方式</a></li>
+            <li><a href="/Admin/ContractType/Index" target="menuFrame">合同类型</a></li>
+        </ul>
+        <h3><a href="javascript:void(0)">权限管理</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/AdminUser/index" target="menuFrame">账号管理</a></li>
+            <li><a href="/admin/Deparment/index" target="menuFrame">部门管理</a></li>
+            <li><a href="/admin/Limit/Index" target="menuFrame">菜单管理</a></li>
+
+        </ul>
+
+        <h3><a href="javascript:void(0)">新闻分类</a></h3>
+        <ul class="hide">
+            <li><a href="/Admin/WebType/index?rootid=1" target="menuFrame">安全保障</a></li>
+            <li><a href="/Admin/WebType/index?rootid=2" target="menuFrame">帮助中心</a></li>
+            <li><a href="/Admin/WebType/index?rootid=3" target="menuFrame">关于我们</a></li>
+        </ul>
+    </div>
+
+    <h2 class="home1"><a href="javascript:void(0)">会员管理</a></h2>
+    <div class="left_nav1 left_nav2 hide">
+        <h3><a href="/admin/Users/Index" target="menuFrame">会员</a></h3>
+        <h3><a href="/admin/Users/Investment" target="menuFrame">投资</a></h3>
+        <h3><a href="/admin/Users/Recharge" target="menuFrame">充值</a></h3>
+        <h3><a href="/admin/Users/UserCash" target="menuFrame">提现</a></h3>
+        <h3><a href="/admin/Users/CRM" target="menuFrame">CRM</a></h3>
+        <h3><a href="/admin/Users/loyalty" target="menuFrame">忠诚度</a></h3>
+    </div>
+
+    <h2 class="home2"><a href="javascript:void(0)" target="menuFrame">贷款管理</a></h2>
+    <div class="left_nav1 hide">
+        <h3 class="home_01"><a href="javascript:void(0)" target="menuFrame">贷款管理</a></h3>
+        <ul class="show show_02">
+            <li><a href="/admin/DaiKuan/Editor" target="menuFrame" class="a_checked">新增贷款</a></li>
+            <li><a href="/admin/DaiKuan/Index" target="menuFrame">贷款列表</a></li>
+            <li><a href="/admin/Replay/ThreeDay" target="menuFrame">三日内需还款的</a></li>
+            <li><a href="/Admin/DaiKuan/Invalidinvestment" target="menuFrame">投标校验</a></li>
+
+            <li><a href="/Admin/DaiKuan/MyborrowidList" target="menuFrame">借款管理</a></li>
+
+        </ul>
+        <h3><a href="javascript:void(0)">贷款审核</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/Examine/waitverify" target="menuFrame">待初审贷款</a></li>
+            <li><a href="/admin/Examine/Rewaitverify" target="menuFrame">待复审贷款</a></li>
+            <li><a href="/admin/Examine/bidding" target="menuFrame">招标中贷款</a></li>
+            <li><a href="/admin/Replay/Repayment_loan" target="menuFrame">还款中贷款</a></li>
+            <li><a href="/admin/Replay/LoanCompleted" target="menuFrame">已经完成贷款</a></li>
+
+        </ul>
+
+    </div>
+
+    <h2 class="home3"><a href="javascript:void(0)">活动管理</a></h2>
+    <div class="left_nav1 left_nav2 hide">
+
+
+        <h3><a href="/Admin/Activity/index" target="menuFrame">常规投资</a></h3>
+        <h3><a href="/Admin/Activity/ActRegList" target="menuFrame">新人注册</a></h3>
+        <h3><a href="/Admin/Activity/ActInvitefriendsList" target="menuFrame">邀请好友</a></h3>
+
+
+    </div>
+
+    <h2 class="home4"><a href="javascript:void(0)" target="menuFrame">内容管理</a></h2>
+    <div class="left_nav1 hide">
+        <h3 class="home_01"><a href="javascript:void(0)" target="menuFrame">安全保障</a></h3>
+        <ul class="show show_02">
+            <li><a href="/admin/help/Add?rootid=1" target="menuFrame" class="a_checked">新增安全保障</a></li>
+            <li><a href="/admin/help/index?rootid=1" target="menuFrame">内容列表</a></li>
+        </ul>
+
+        <h3><a href="javascript:void(0)">帮助中心</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/help/Add?rootid=2" target="menuFrame">新增帮助中心</a></li>
+            <li><a href="/admin/help/index?rootid=2" target="menuFrame">帮助中心列表</a></li>
+        </ul>
+
+        <h3><a href="javascript:void(0)">关于我们</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/help/Add?rootid=3" target="menuFrame">新增内容列表</a></li>
+            <li><a href="/admin/help/index?rootid=3" target="menuFrame">内容列表</a></li>
+        </ul>
+
+        <h3><a href="javascript:void(0)">广告管理</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/Ad/AddAd" target="menuFrame">新增广告</a></li>
+            <li><a href="/admin/Ad/Index" target="menuFrame">广告列表</a></li>
+        </ul>
+
+        <h3><a href="javascript:void(0)">友情链接</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/Link/Add" target="menuFrame">新增链接</a></li>
+            <li><a href="/admin/Link/Index" target="menuFrame">链接列表</a></li>
+        </ul>
+    </div>
+
+    <h2 class="home5"><a href="javascript:void(0)">合同管理</a></h2>
+    <div class="left_nav1 left_nav2 hide">
+        <h3><a href="/admin/ContractTemp/Template" target="menuFrame">合同模板新增</a></h3>
+        <h3><a href="/admin/ContractTemp/Index" target="menuFrame">合同模板列表</a></h3>
+    </div>
+
+    <h2 class="home6"><a href="javascript:void(0)" target="menuFrame">资金管理</a></h2>
+    <div class="left_nav1 hide">
+        <h3 class="home_01"><a href="javascript:void(0)" target="menuFrame">充值管理</a></h3>
+        <ul class="show show_02">
+            <li><a href="/admin/Recharge/Index" target="menuFrame" class="a_checked">在线充值单</a></li>
+            <li><a href="/admin/Recharge/Recharge" target="menuFrame">平台账户充值</a></li>
+            <li><a href="/admin/Recharge/UserToPlatform" target="menuFrame">用户向平台划账</a></li>
+            <li><a href="/admin/Recharge/PlatformToUser" target="menuFrame">平台向用户划账</a></li>
+            <li><a href="/admin/Recharge/LLPayList" target="menuFrame">连连充值列表</a></li>
+        </ul>
+
+        <h3><a href="javascript:void(0)">提现申请管理</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/UserCash/Index" target="menuFrame">所有申请</a></li>
+            <li><a href="/admin/UserCash/Index?OrdIdState=0&ddlType=0" target="menuFrame">待审核</a></li>
+            <li><a href="/admin/UserCash/Index?OrdIdState=1&ddlType=0" target="menuFrame">待付款</a></li>
+            <li><a href="/admin/UserCash/Index?OrdIdState=3&ddlType=0" target="menuFrame">已付款</a></li>
+            <li><a href="/admin/UserCash/Index?OrdIdState=4&ddlType=0" target="menuFrame">未通过</a></li>
+        </ul>
+
+        <h3><a href="javascript:void(0)">连连批付管理</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/LLManage/Index" target="menuFrame" class="a_hover">所有申请</a></li>
+            <li><a href="/admin/LLManage/Index?OrdIdState=3&ddlType=5" target="menuFrame">等待审核</a></li>
+            <li><a href="/admin/LLManage/Index?OrdIdState=1&ddlType=5" target="menuFrame">付款成功</a></li>
+            <li><a href="/admin/LLManage/Index?OrdIdState=2&ddlType=5" target="menuFrame">付款失败</a></li>
+            <li><a href="/admin/LLManage/Index?OrdIdState=5&ddlType=5" target="menuFrame">付款中</a></li>
+        </ul>
+    </div>
+
+    <h2 class="home7"><a href="javascript:void(0)" target="menuFrame">统计管理</a></h2>
+    <div class="left_nav1 hide">
+        <h3 class="home_01"><a href="javascript:void(0)" target="menuFrame">借出统计</a></h3>
+        <ul class="show show_02">
+            <li><a href="/admin/Statistics/Borrowingpresident" target="menuFrame" class="a_checked">借出总统计</a></li>
+            <li><a href="/admin/Statistics/OutNumberInvestors" target="menuFrame">投资人数</a></li>
+            <li><a href="/admin/Statistics/Amountinvestment" target="menuFrame">投资金额</a></li>
+        </ul>
+
+        <h3><a href="javascript:void(0)">借入统计</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/Statistics/InBorrowingpresident" target="menuFrame">借入总统计</a></li>
+            <li><a href="/admin/Statistics/BorrowersNumber" target="menuFrame">借款人数</a></li>
+            <li><a href="/admin/Statistics/BorrowAmt" target="menuFrame">借款金额</a></li>
+        </ul>
+
+        <h3><a href="javascript:void(0)">会员投资排行</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/Statistics/Investmentrank" target="menuFrame">会员投资排行</a></li>
+
+        </ul>
+
+        <h3><a href="javascript:void(0)">平台统计</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/Statistics/RechargeStatistics" target="menuFrame">充值统计</a></li>
+            <li><a href="/admin/Statistics/CashStatistics" target="menuFrame">提现统计</a></li>
+            <li><a href="/admin/Statistics/UserStatistics" target="menuFrame">用户统计</a></li>
+        </ul>
+
+        <h3><a href="javascript:void(0)">奖励统计</a></h3>
+        <ul class="hide">
+            <li><a href="/admin/Statistics/Rewardquery" target="menuFrame">奖励查询</a></li>
+            <li><a href="/admin/Statistics/CouponStatistics" target="menuFrame">奖励统计</a></li>
+        </ul>
+
+    </div>
+*@
+
+    </div>
+</div>

@@ -1,0 +1,527 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuanglitouP2P.Model.StatisticsEmployee>
+@{
+    ViewBag.Title = "统计报表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+    var searchterm = ViewBag.searchterm;
+
+    List<ChuanglitouP2P.Model.StatisticsReport> listReport = ViewBag.ListStatisticsReport;
+
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+        var searchtermed = $("#hid_searchterm").val();
+        $("#searchterm").val(searchtermed);
+        if (searchtermed == "0")//显示KPI列表
+        {
+            $("#tableKPI").show();
+            $("#tableAchievement").hide();
+        }
+        if (searchtermed == "1")//显示业务统计列表
+        {
+            
+            $("#tableKPI").hide();
+            $("#tableAchievement").show();
+        }
+
+
+        $("#btnOutExcel").bind("click", function () {
+            outputExcel();
+        });
+
+
+        $("#searchterm").bind("change", function () {
+            var searchterm = $("#searchterm").val();
+            if (searchterm == 0)//显示KPI列表
+            {
+                $("#tableKPI").show();
+                $("#tableAchievement").hide();
+            }
+            if (searchterm == 1)//显示业务统计列表
+            {
+                $("#tableKPI").hide();
+                $("#tableAchievement").show();
+            }
+        });
+
+
+        $("#btnexcel").bind("click", function () {
+            outputExcel()
+        });
+    });
+    function downloadExcel(url) {
+        var obj = $("#downloadExcelBtn");
+        obj.attr("href", url);
+        document.getElementById("downloadExcelBtn").click();
+        // obj.click();
+    }
+
+    function outputExcel() {
+
+        var starttime = $("#start_time").val();
+        var endtime = $("#end_time").val();
+        var searchterm = $("#searchterm").val();
+
+
+        $.ajax({
+            type: 'Get',
+            url: "/admin/Users/StatisticsReportToExcel",
+            data: { starttime: starttime, endtime: endtime, searchterm: searchterm},
+            //dataType: dataType,
+            success: function (data) {
+                if (data == "您没有操作权限") {
+                    alert("您没有操作权限");
+                } else {
+                    downloadExcel(data);
+                }
+            },
+            error: function () {
+                // view("异常！");
+                //alert("异常！");
+            }
+        });
+    }
+
+    function closewindows() {
+        layer.close(editwindow);
+    }
+
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>><a href="javascript:void(0)"> 统计报表</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+    <p class="tP3">
+        快速搜索
+    </p>
+                            
+    @using (Html.BeginForm("StatisticsReportCondition", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="tP4 tx_tp4" style="height:60px; padding-bottom:15px; ">
+            <div style="margin-top:1em;">
+                <label for="start_time">时间：</label>
+                <input type="text" class="jcDate jcDateIco" style="padding-left:30px;line-height:20px;width:70px;" id="start_time" name="starttime" value="@(ViewBag.StartTime)" autocomplete="off" />---
+
+                <label for="end_time">结束时间：</label>
+                <input type="text" class="jcDate jcDateIco" style="padding-left:30px;line-height:20px;width:70px;" id="end_time" name="endtime" value="@(ViewBag.EndTime)" autocomplete="off" />
+                &nbsp;&nbsp;&nbsp;
+
+                <select name="searchterm" id="searchterm">
+                    @*<option value="-1">请选择</option>*@
+                    <option value="0">KPI</option>
+                    <option value="1">业绩</option>
+                </select>
+                &nbsp;&nbsp;&nbsp;
+                <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+                <input type="button" class="btn2" id="btnexcel" value="导出" />
+                <input type="hidden" id="hid_OrderByFiled" name="hid_OrderByFiled" value="@ViewBag.HidValOrderB" />
+                <input type="hidden" id="hid_searchterm" value="@ViewBag.searchterm" />
+
+            </div>
+        </div>
+    }
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        统计报表
+    </h3>
+    <table cellspacing="0" cellpadding="0" class="listtable" id="tableKPI">
+        <tbody>
+            <tr class="tz_tr">
+                <th scope="col">员工姓名 </th>
+                <th scope="col">员工工号</th>
+                <th scope="col">电话量</th>
+                <th scope="col">接通量</th>
+                <th scope="col">接通率</th>
+                <th scope="col">有效量</th>
+                <th scope="col">有效率</th>
+            </tr>
+            @if (Model != null)
+            {
+                string ConnectRate;//接通率
+                string ValidRate;//有效率
+                foreach (var item in Model)
+                {
+                    if (Convert.ToInt32(item.callOutNumber) != 0)
+                    {
+                        ConnectRate = Convert.ToString(Convert.ToInt32(item.callOutSuccessNumber) * 100 / Convert.ToInt32(item.callOutNumber)) + "%";//接通率
+                        ValidRate = Convert.ToString(Convert.ToInt32(item.callOutValidNumber) * 100 / Convert.ToInt32(item.callOutNumber)) + "%";//有效率
+                    }
+                    else
+                    {
+                        ConnectRate = "0 %";
+                        ValidRate = "0 %";
+                    }
+                    <tr>
+                        <td>@item.employeeName</td>
+                        <td>@item.exten</td>
+                        <td>@item.callOutNumber</td>
+                        <td>@item.callOutSuccessNumber</td>
+                        <td>@ConnectRate</td>
+                        <td>@item.callOutValidNumber</td>
+                        <td>@ValidRate</td>
+                    </tr>
+                }
+            }
+            <tr>
+                <td></td>
+                <td>总计：</td>
+                <td>@ViewBag.AllCallOutNumber</td>
+                <td>@ViewBag.AllcallOutSuccessNumber</td>
+                <td>@ViewBag.AllConnectRate</td>
+                <td>@ViewBag.AllcallOutValidNumber</td>
+                <td>@ViewBag.AllValidRate</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <table cellspacing="0" cellpadding="0" class="listtable" id="tableAchievement" style="display:none;">
+        <tbody>
+            <tr class="tz_tr">
+                <th scope="col">员工姓名 </th>
+                <th scope="col">员工工号</th>
+                <th scope="col">首投人数</th>
+                <th scope="col">首投金额</th>
+                <th scope="col">复投人数</th>
+                <th scope="col">复投金额</th>
+                <th scope="col">投资总金额</th>
+                <th scope="col">折标总金额</th>
+                <th scope="col">充值总金额</th>
+                <th scope="col">1月期总金额</th>
+                <th scope="col">3月期总金额</th>
+                <th scope="col">6月期总金额</th>
+            </tr>
+            @if (listReport != null)
+            {
+                foreach (var item in listReport)
+                {
+                    <tr>
+                        <td>@item.EmployeeName</td>
+                        <td>@item.EmployeeNumber</td>
+                        <td>@item.FirstCount</td>
+                        <td>@item.FirstMoney</td>
+                        <td>@item.complexCount</td>
+                        <td>@item.complexMoney</td>
+                        <td>@item.InvestAllMoney</td>
+                        <td>@item.FoldAllMoney</td>
+                        <td>@item.RechargeAllMoney</td>
+                        <td>@item.JanMoney</td>
+                        <td>@item.MarMoney</td>
+                        <td>@item.JunMoney</td>
+                    </tr>
+                }
+            }
+            <tr>
+                <td></td>
+                <td>总计：</td>
+                <td>@ViewBag.AllFirstCount</td>
+                <td>@ViewBag.AllFirstMoney</td>
+                <td>@ViewBag.AllComplexCount</td>
+                <td>@ViewBag.AllComplexMoney</td>
+                <td>@ViewBag.AllAllMoney</td>
+                <td>@ViewBag.AllFractureMoney</td>
+                <td>@ViewBag.AllRechargeAllMoney</td>
+                <td>@ViewBag.AllJanMoney</td>
+                <td>@ViewBag.AllMarMoney</td>
+                <td>@ViewBag.AllJunMoney</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <style type="text/css">
+        .PagedList-goToPage {
+            display: inline-block;
+            width: 20%;
+        }
+
+            .PagedList-goToPage fieldset {
+                border: none;
+            }
+
+        .pagination-container {
+            display: inline-block;
+            width: 55%;
+            vertical-align: bottom!important;
+            margin-top: 0px!important
+        }
+
+        .pagination ul li {
+            margin-top: 0px!important;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $(".PagedList-goToPage label").text("页码");
+            $(".PagedList-goToPage input[type='submit']").val("跳转");
+            $(".PagedList-goToPage input").css("height", "26px");
+        })
+    </script>
+    <div class="pagination ue-clear">
+        <div>
+            @*class="pagination-container">*@
+            <div style="overflow:hidden">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("StatisticsReportCondition", new
+           {
+               page,
+               starttime = ViewBag.StartTime,
+               endtime = ViewBag.EndTime,
+               searchterm = ViewBag.searchterm
+
+           }))
+                @Html.PagedListGoToPageForm((IPagedList)Model, Url.Action("StatisticsReportCondition", new
+           {
+               starttime = ViewBag.StartTime,
+               endtime = ViewBag.EndTime,
+               searchterm = ViewBag.searchterm
+           }))
+            </div>
+            <div style="padding:10px;font-weight:600">共 @ViewBag.TotalItemCount 条， @ViewBag.TotalPageCount 页数据</div>
+        </div>
+
+    </div>
+    @*</div>*@
+</div>
+
+<a href="" id="downloadExcelBtn" style="display:none;"></a>
+
+
+
+
+<!--弹出框-->
+<div times="1" id="xubox_shade1" class="xubox_shade" style="z-index:100; background-color:#999; opacity:0.7; filter:alpha(opacity=70);display:none;"></div>
+<div class="xubox_layer" style="z-index: 100; width: 350px; height: 360px; margin-left: -175px;margin-top:-180px; top:50%; left: 50%;display:none;">
+    <div style="background-color:#f7f7f7; z-index:100" class="xubox_main">
+
+        <div class="location"></div>
+        <div class="blank10"></div>
+
+
+
+        <div style="cursor: move;" move="ok" class="xubox_title"><em>系统赠送加息券/抵扣券</em></div>
+        <span class="xubox_setwin"><a class="xubox_close xulayer_png32 xubox_close0" href="javascript:;" onclick="closeTck()" style=""></a></span>
+        <span class="xubox_botton"></span>
+
+
+        <form name="form1list" method="post" id="form1list" action="/admin/Users/SendOut" class="registerform">
+            <div class="container">
+
+                <input name="registerid" type="hidden" id="registerid">
+
+                <div class="blank10"></div>
+
+
+
+                <div id="submit_sk" class="search block">
+                    <div class="h">
+                        <span class="icon-sprite icon-list"></span>
+                        <h3>为客户手动添加抵扣券/加息券</h3>
+                    </div>
+
+                    <div class="cnt-wp">
+                        <table style="table-layout: fixed; margin-top: 10px; width: 100%;">
+                            <!-- 抵扣券选择 -->
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:right;">
+                                        <input type="radio" name="typex" value="2" id="type0" checked="checked" onclick="choose(0);"><label for="type0" onclick="choose(0);">抵扣券</label>
+                                    </td>
+                                    <td><input type="radio" name="typex" value="3" id="type1" onclick="choose(1);"><label for="type1" onclick="choose(1);">加息券</label></td>
+                                </tr>
+
+                                <tr atr="rates" style="display:none;">
+                                    <td style="width: 40%; text-align: right;">加息券</td>
+                                    <td>
+                                        <select name="ddlRateList" id="ddlRateList" style="height:20px;width:152px;">
+                                            <option value="0">请选择</option>
+                                            @*<option value="0.2">0.2%加息券</option>
+                                                <option value="0.5">0.5%加息券</option>
+                                                <option value="1">1%加息券</option>
+                                                <option value="1.5">1.5%加息券</option>
+                                                <option value="2">2%加息券</option>
+                                                <option value="2.5">2.5%加息券</option>
+                                                <option value="3">3%加息券</option>*@
+
+                                            <option value="1">1%加息券</option>
+                                            <option value="2">2%加息券</option>
+                                            <option value="3">3%加息券</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr atr="bonus">
+                                    <td style="width: 40%; text-align: right;">现金抵扣券</td>
+                                    <td>
+                                        <select name="bonusType" id="bonusType" style="height:20px;width:152px;">
+                                            <option value="8">8元抵扣券</option>
+                                            <option value="10">10元抵扣券</option>
+                                            <option value="20">20元抵扣券</option>
+                                            <option value="50">50元抵扣券</option>
+                                            <option value="100">100元抵扣券</option>
+                                            <option value="500">500元抵扣券</option>
+
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">标题</td>
+                                    <td>
+                                        <input name="txtTitle" type="text" id="txtTitle" style="height:16px;width:150px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">有效开始日期</td>
+                                    <td>
+                                        <input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:18px;width:110px;" id="time1" name="time1" value="" autocomplete="off" />
+                                    </td>
+                                </tr>
+                                <!-- 结束时间选择 -->
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">有效结束日期</td>
+                                    <td>
+                                        <input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:18px;width:110px;" id="time2" name="time2" value="" autocomplete="off" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">最低使用限额</td>
+                                    <td>
+                                        <input name="Uselower" type="text" value="100" id="Uselower" style="height:16px;width:150px;">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">最高使用限额</td>
+                                    <td>
+                                        <input name="Usehight" type="text" value="200" id="Usehight" style="height:16px;width:150px;">
+                                    </td>
+                                </tr>
+
+                                <!-- 数量填写 -->
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">数量</td>
+                                    <td>
+                                        <input name="bonus_k" type="text" value="1" id="bonus_k" style="height:16px;width:150px;">
+                                    </td>
+                                </tr>
+                                <!-- 项目借款期限 -->
+                                <tr>
+                                    <td style="width: 40%; text-align: right;">项目期限</td>
+                                    <td>
+                                        <input name="UseLifeLoanStart" type="text" id="UseLifeLoanStart" style="height:16px;width:4em;">
+                                        -
+                                        <input name="UseLifeLoanEnd" type="text" id="UseLifeLoanEnd" style="height:16px;width:4em;">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <div style="width: 100%; height: auto; text-align: center; margin-top: 10px;">
+                    <input type="submit" name="Button2" value="确定" onclick="return ck();" id="Button2" class="button white medium" style="padding:5px 16px;cursor:pointer;border-radius:5px;background-color:#f7f7f7;border:1px solid #ccc;">
+                    &nbsp;<input type="button" value="关闭" class="medium" onclick="closeTck()" style="padding:5px 16px;cursor:pointer;border-radius:5px;background-color:#f7f7f7;border:1px solid #ccc;">
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+</div>
+
+<script>
+    $(function () {
+        $('.cnt-wp table tr').css('background', '#f7f7f7');
+        $('.ffjl').click(function () {
+            $('#xubox_shade1').css('display', 'block');
+            $('.xubox_layer').css('display', 'block');
+            var strIds = "";
+            $("input[name='cbx_item']").each(function () {
+                if ($(this).attr("checked")) {
+                    if (strIds.length > 0) {
+                        strIds = strIds + ",";
+                    }
+                    strIds = strIds + $(this).val();
+                }
+            });
+
+            $("#registerid").val(strIds);
+
+
+
+        })
+
+    })
+    function closeTck() {
+        $('#xubox_shade1').css('display', 'none');
+        $('.xubox_layer').css('display', 'none');
+
+    }
+    function ck() {
+
+
+        var vl = $("#txtTitle").val().trim();
+        if (vl == "") {
+            alert("标题不能为空");
+            return false
+        }
+        vl = $("#bonus_start_time").val().trim();
+        if (vl == "") {
+            alert("开始时间不能为空");
+            return false
+        }
+
+        vl = $("#bonus_end_time").val().trim();
+        if (vl == "") {
+            alert("结束时间不能为空");
+            return false
+        }
+
+        vl = $("#bonus_k").val().trim();
+        if (vl == "") {
+            alert("数量不能为空");
+            return false
+        }
+        if ($("tr[atr=\"rates\"]").css("display") != "none") {
+            vl = $("#ddlRateList").val();
+            if (vl == "0") {
+                alert("请选择加息券");
+                return false
+            }
+        }
+
+        if ($("#registerid").val() == "") {
+            alert("请选择用户");
+            return false
+        }
+
+        return true;
+
+    }
+    function choose(i) {
+        if (i == 0) {
+            $("tr[atr=\"rates\"]").hide();
+            $("tr[atr=\"bonus\"]").show();
+        } if (i == 1) {
+            $("tr[atr=\"rates\"]").show();
+            $("tr[atr=\"bonus\"]").hide();
+        }
+    }
+
+</script>

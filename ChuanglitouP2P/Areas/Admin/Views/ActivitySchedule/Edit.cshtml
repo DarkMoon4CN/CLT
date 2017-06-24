@@ -1,0 +1,134 @@
+﻿@model ChuangLitouP2P.Models.hx_Activity_schedule
+@{
+    ViewBag.Title = "编辑活动计划";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="/Areas/Admin/styleCont/jcDate.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/Admin/styleCont/nav_style.css" rel="stylesheet" type="text/css">
+<script src="/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+
+<script type="text/javascript">
+    function checkForm()
+    {
+        if ($("#ActName").val() == "")
+        {
+            alert("活动计划名称不能为空!");
+            $("#Adname").focus();
+            return false;
+        }
+    }
+
+    function afterAdd(data)
+    {
+        alert(data.info);
+
+    }
+    function clearNoNum(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+        obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+    }
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="/Admin/ActivitySchedule/Index" class="z_mg5">活动计划管理</a>><a href="javascript:void(0)"> 编辑活动计划</a></h2>
+<div class="z_body">
+    <h3 class="z_h3">编辑活动计划</h3>
+    <div class="z_02 z_main">
+        @using (Html.BeginForm("EditPost", "ActivitySchedule", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="activity_schedule_id" id="activity_schedule_id" value="@(Model.activity_schedule_id)" />
+            <div class="z_cont2">
+
+                <ul class="zTab_ul">
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label>活动计划名称：</label>
+                        <input type="text" id="activity_schedule_name" name="activity_schedule_name" class="" style="width:240px" datatype="*2-60" nullmsg="活动计划名称不能空！" errormsg="活动计划名称至少2个字符,最多60个字符！" value="@(Model.activity_schedule_name)" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01" id="logodisp">
+                        <label for="money">&nbsp; &nbsp; &nbsp; &nbsp; 奖励金额：</label>
+                        <input type="text" id="amount_of_reward" name="amount_of_reward" class="" style="width:240px;" datatype="*" nullmsg="请设置奖励金额！" errormsg="奖励金额为数字类型！" placeholder="0.00" onkeyup="clearNoNum(this)" value="@(Model.amount_of_reward)" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01" id="logodisp">
+                        <label for="money">&nbsp; &nbsp; &nbsp; &nbsp; 使用下限：</label>
+                        <input type="text" id="use_lower_limit" name="use_lower_limit" class="" style="width:240px;" datatype="*" nullmsg="请设置使用下限！" errormsg="请设置使用下限为数字类型！" placeholder="0.00" onkeyup="clearNoNum(this)" value="@(Model.use_lower_limit)" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="money">&nbsp; &nbsp; &nbsp; &nbsp; 奖励方式：</label>
+                        <select id="reward" name="reward">
+                            @if (Model.reward == 1)
+                            {
+                                <option value="0">常规(只奖励单方) </option>
+                                <option value="1" selected="selected">奖励双方</option>
+                            }
+                            else
+                            {
+                                <option value="0" selected="selected">常规(只奖励单方) </option>
+                                <option value="1">奖励双方</option>
+                            }
+                            
+                        </select>
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+
+
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="money">&nbsp; &nbsp; &nbsp; &nbsp; 开始日期：</label>
+                        <input type="text" id="start_date" name="start_date" class="jcDate jcDateIco" style="width:240px" datatype="*" nullmsg="请选择开始日期！" errormsg="开始日期格式不正确！" autocomplete="off" value="@(DateTime.Parse(Model.start_date.ToString()).ToString("yyyy-MM-dd"))" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="money">&nbsp; &nbsp; &nbsp; &nbsp; 结束日期：</label>
+                        <input type="text" name="end_date" id="end_date" class="jcDate jcDateIco" style="width:240px" datatype="*" nullmsg="请选择结束日期！" errormsg="结束日期格式不正确！" autocomplete="off" value="@(DateTime.Parse(Model.end_date.ToString()).ToString("yyyy-MM-dd"))" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px; " class="z_li_01">
+                        <div class="submin_box">
+                            <input type="submit" class="z_btn_01" value="保存">
+                            <input type="button" class="z_btn_02" value="返回" onclick="javascript:history.back()">
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+
+
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4
+
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+
+    });
+
+</script>
+

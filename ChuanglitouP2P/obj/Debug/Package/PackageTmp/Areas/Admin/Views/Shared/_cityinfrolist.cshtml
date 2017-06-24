@@ -1,0 +1,51 @@
+﻿@using ChuanglitouP2P.Common;
+@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+
+@model PagedList<hx_td_usrlogininfo>
+
+<table style="margin-left: 28px;" class="hy_cash_tab" cellpadding="0" cellspacing="0">
+    
+    
+    <tr class="hy_cash_tab_tr">
+        <td>序号</td>
+        <td>登录时间</td>
+        <td>登录IP</td>
+        <td>登录城市</td>
+        <td>登录终端</td>
+        <td>登录状态</td>
+    </tr>
+
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.loginid</td>
+                <td>@DateTime.Parse(item.logintime.ToString()).ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>@item.loginIP</td>
+                <td>@item.logincity</td>
+                <td>@Utils.loginsource(int.Parse(item.loginsource.ToString()))</td>
+                <td>@Utils.loginState(int.Parse(item.loginstate.ToString()))</td>
+            </tr>
+
+        }
+
+    }
+</table>
+<div class="hsw_ht_fy">
+    <div class="page_box">
+        <div class="page_left">
+            @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", PageIndexParameterName = "Citypageindex", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBoxCity", GoToButtonId = "goToBtnCity" }, new MvcAjaxOptions
+       { UpdateTargetId = "cityinfo", HttpMethod = "Post", DataFormId = "searchFormcity", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "cityinfo")).AjaxOptions(a => a.SetUpdateTargetId("cityinfo"))
+        </div>
+        <div class="page_right">
+            <div class="input-group" style="margin:20px 0">
+                <span class="input-group-addon">转到第</span>
+                <input type="text" id="pageIndexBoxCity" class="form-control input-sm" />
+                <span class="input-group-addon">页</span>
+                <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtnCity">跳转</button></span>
+            </div>
+        </div>
+    </div>
+</div>

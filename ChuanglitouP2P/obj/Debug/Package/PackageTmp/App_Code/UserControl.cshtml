@@ -1,0 +1,208 @@
+﻿@using System.Web
+@helper HX_RadioActUser(int acttype = 1)
+{
+
+if (acttype == 1)
+{
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="0" checked="checked" type="radio" name="ActUser" id="ActUser"><i class="w_i">
+                首次用户注册
+            </i>
+        </lable>
+
+}
+else if (acttype == 2)
+{
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="1" checked="checked" type="radio" name="ActUser" id="ActUser"><i class="w_i">
+                首次投资用户
+            </i>
+        </lable>
+
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="5" type="radio" name="ActUser" id="ActUser"><i class="w_i">所有投资用户</i>
+        </lable>
+
+}
+else if (acttype == 3)
+{
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="1" type="radio" checked="checked" name="ActUser" id="ActUser"><i class="w_i">
+                首次投资用户
+            </i>
+        </lable>
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="2" type="radio" name="ActUser" id="ActUser"><i class="w_i">非首投用户</i>
+        </lable>
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="3" type="radio" name="ActUser" id="ActUser"><i class="w_i">
+                每标首投用户
+            </i>
+        </lable>
+
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="4" type="radio" name="ActUser" id="ActUser"><i class="w_i">
+                每标最大投资用户
+            </i>
+        </lable>
+}
+else if (acttype == 4)
+{
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="1" checked="checked" type="radio" name="ActUser" id="ActUser1"><i class="w_i">
+                <label for="ActUser1">首次投资用户</label>
+            </i>
+        </lable>
+
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="6" type="radio" name="ActUser" id="ActUser6"><i class="w_i">
+                <label for="ActUser6">续投用户</label>
+            </i>
+        </lable>
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="3" type="radio" name="ActUser" id="ActUser3"><i class="w_i">
+                <label for="ActUser3">每标首投用户</label>
+            </i>
+        </lable>
+
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="4" type="radio" name="ActUser" id="ActUser4"><i class="w_i">
+                <label for="ActUser4">每标最大投资用户</label>
+            </i>
+        </lable>
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="5" type="radio" name="ActUser" id="ActUser5"><i class="w_i"><label for="ActUser5">所有投资用户</label></i>
+        </lable>
+
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="7" type="radio" name="ActUser" id="ActUser6"><i class="w_i"><label for="ActUser6">回款复投用户</label></i>
+        </lable>
+
+}
+else if (acttype == 5)
+{
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="5" type="radio" name="ActUser" id="ActUser" checked="checked"><i class="w_i">所有投资用户</i>
+        </lable>
+        <lable style="margin-right: 12px;" class="z_li_02">
+            <input value="0" checked="checked" type="radio" name="ActUser" id="ActUser"><i class="w_i">首次用户注册</i>
+        </lable>
+}
+}
+@helper HX_SelectActUser(int acttype = 1, int Disp = 0)
+{
+if (acttype == 1)
+{   /*用户等级*/
+    if (Disp == 0)
+    {
+            <label for="useridentity">等级：</label>
+    }
+
+        <select style="height: 24px;line-height:24px" name="useridentity" id="useridentity">
+            <option value="-1">请选择</option>
+            <option value="0">普通会员</option>
+            <option value="1">vip会员</option>
+            <option value="2">黄金</option>
+            <option value="3">虚假会员</option>
+            <option value="4">渠道合作</option>
+            <option value="5">白金</option>
+            <option value="6">钻石</option>
+            <option value="7">钻石1</option>
+            <option value="8">钻石2</option>
+        </select>
+}
+else if (acttype == 2)
+{   /*来源*/
+        <label for="Channelsource">来源：</label>
+        <select style="height: 24px;line-height:24px" name="Channelsource" id="Channelsource">
+            <option value="-1">请选择</option>
+            <option value="0">pc注册</option>
+            <option value="1">pc端好友邀请</option>
+            <option value="2">微信注册</option>
+            <option value="3">微信端好友邀请</option>
+            <option value="4">IOS客户端</option>
+            <option value="5">安卓客户端</option>
+            @*<option value="2">某渠道</option>*@
+        </select>
+}
+else if (acttype == 3)
+{
+        <label for="rewardType">奖励类型：</label>
+        <select style="height: 24px;line-height:24px" name="rewardType" id="rewardType">
+            <option value="-1">请选择</option>
+            <option value="1">现金</option>
+            <option value="2">现金劵</option>
+            <option value="3">加息券</option>
+
+        </select>
+}
+else if (acttype == 4)
+{
+    if (Disp == 0)
+    {
+            <label for="rewardType">会员类型：</label>
+    }
+        <select style="height: 24px;line-height:24px" name="usertypes" id="usertypes">
+            <option value="0">投资用户</option>
+            <option value="1">借款用户</option>
+            <option value="2">借款企业</option>
+        </select>
+}
+else if (acttype == 5)
+{
+    if (Disp == 0)
+    {
+            <label for="rewardType">会员类型：</label>
+    }
+        <select style="height: 24px;line-height:24px" name="usertypes" id="usertypes">
+            <option value="-1">请选择</option>
+            <option value="0">投资用户</option>
+            <option value="1">借款用户</option>
+            <option value="2">借款企业</option>
+        </select>
+}
+
+
+}
+
+
+
+@helper ACT_UseState()
+{
+    <select name="UseState" id="UseState">
+        <option value="-1">请选择</option>
+        <option value="0">未使用</option>
+        <option value="1">已使用</option>
+        <option value="2">已过期</option>
+        <option value="3">锁定中</option>
+    </select>
+}
+
+@helper Act_DateTime()
+{
+
+    <select name="ActDateTime" id="ActDateTime">
+        <option value="-1">请选择</option>
+        <option value="0">获得时间</option>
+        <option value="1">使用时间</option>
+        <option value="2">过期时间</option>
+        <option value="3">注册时间</option>
+    </select>
+
+}
+@helper Act_BorrType()
+{
+    <select name="BorrType" id="BorrType">
+        <option value="-1">请选择</option>
+        <option value="1"> 企业</option>
+        <option value="0"> 个人</option>
+    </select>
+}
+@helper Act_Reward()
+{
+    <select name="Reward" id="Reward">
+        <option value="-1">全部用户</option>
+        <option value="0">未中奖用户</option>
+        <option value="1"> 中奖用户</option>
+    </select>
+}

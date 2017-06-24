@@ -1,0 +1,47 @@
+﻿<footer class="footer">
+    <div class="footer_nav"><a href="/">首页</a>|<a href="/AboutMe/List?id=21">网站公告</a>|<a href="/AboutMe/Company">关于我们</a>|<a href="http://www.chuanglitou.cn?isPC=yes">电脑版</a></div>
+    <div class="footer_safety">账户资金由汇付天下托管，保障安全</div>
+    <div class="footer_safety">© 2015创利投  京ICP备 13053014号</div>
+    <div class="footer_icon">
+        <div><a id='A1' href='http://www.anquan.org/authenticate/cert/?site=www.chuanglitou.com&at=business' target='_blank'><img src='http://www.chuanglitou.cn/images/hy_124x47_gray.png' border='0' /></a></div>
+        @*<div><a id='A12' href='http://si.trustutn.org/info?sn=756150724000233411076' target='_blank'><img src='http://www.chuanglitou.cn/images/cifi.png' border='0' /></a></div>
+        <div><a id='___szfw_logo___' href='https://credit.szfw.org/CX20150721010801010189.html' target='_blank'><img src='http://www.chuanglitou.cn/images/cert.png' border='0' /></a></div>*@
+<div><a id='A12' href='http://webapi.chuanglitou.com/Jump.html?type=2' target='_blank'><img src='http://www.chuanglitou.cn/images/cifi.png' border='0' /></a></div>
+        <div><a id='___szfw_logo___' href='http://webapi.chuanglitou.com/Jump.html?type=3' target='_blank'><img src='http://www.chuanglitou.cn/images/cert.png' border='0' /></a></div>
+        <script type='text/javascript'>(function () { document.getElementById('___szfw_logo___').oncontextmenu = function () { return false; } })();</script>
+    </div>
+</footer>
+<nav class="susnav">
+    <ul id="menu">
+        <li id="m1"><div><a href="/" class="menu_index"><i></i><strong>我要投资</strong></a></div></li>
+        <li id="m2" ><div><a href="/usercenter/Index" class="menu_user"><i></i><strong>我的账户</strong></a></div></li>
+        <li id="m3" ><div><a href="/zhuanx/Index" class="menu_inves"><i></i><strong>活动专享</strong></a></div></li>
+        <li id="m4">
+            <div><a href="javascript:;" class="menu_security"><i></i><strong>关于我们</strong></a></div>
+            <div class="subnav">
+                <div class="navmenu"><a href="/Security/security">安全保障</a><a href="/AboutMe/Company">公司介绍</a><a href="/AboutMe/List?id=21">网站公告</a><a href="/AboutMe/Index">联系我们</a></div>
+                <div class="tiggle"></div>
+                <div class="innertiggle"></div>
+            </div>
+        </li>
+    </ul>
+</nav>
+<script type="text/javascript">
+    var urlstr = location.href;
+    var urlstatus = false;
+    if (urlstr.indexOf("usercenter") > 0 || urlstr.indexOf("InterestRates") > 0 || urlstr.indexOf("Cash") > 0 || urlstr.indexOf("Invitation") > 0) {
+
+        $("#m2").addClass('menu_curr');
+    }
+    else if (urlstr.indexOf("zhuanx") > 0)
+    {
+        $("#m3").addClass('menu_curr');
+    }
+    else if (urlstr.indexOf("AboutMe") > 0 || urlstr.indexOf("Security") > 0) {
+        $("#m4").addClass('menu_curr');
+    }
+    else
+    {
+        $("#m1").addClass('menu_curr');     
+    }
+</script>

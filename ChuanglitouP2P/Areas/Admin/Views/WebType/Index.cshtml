@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+    List<ChuangLitouP2P.Models.hx_td_web_type> list_web_type = ViewBag.web_types == null || (List<ChuangLitouP2P.Models.hx_td_web_type>)ViewBag.web_types == null ? null : (List<ChuangLitouP2P.Models.hx_td_web_type>)ViewBag.web_types;
+}
+
+<link rel="stylesheet" href="~/Areas/admin/css/validstyle.css" type="text/css" media="all" />
+<link href="~/Areas/admin/css/admin.content.css" rel="stylesheet" type="text/css" />
+<link href="~/Areas/admin/css/admin.global.css" rel="stylesheet" type="text/css" />
+ 
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+<div class="container">
+    <div class="location">当前位置：基础分类 -&gt; 网站分类</div>
+    <input type="hidden" id="rootid" name="rootid" value="@( ViewBag.rootid)" />
+    
+    <div class="blank10"></div>
+
+    <div class="block">
+
+
+        <div class="h">
+            <span class="icon-sprite icon-list"></span>
+            <h3>网站分类列表</h3>
+
+            <div class="bar">
+                <a href="/Admin/WebType/Add?rootid=@(ViewBag.rootid)"><span class="button white medium">新增分类</span></a>
+            </div>
+        </div>
+
+        <div class="cnt-wp">
+            <div class="cnt">
+
+                <div id="cnt" class="cnt"><table class="data-table" width="100%" border="0" cellspacing="0" cellpadding="0" id="tb1">           
+ <tbody>               
+ <tr> 
+     <th width="1%"></th> 
+     <th width="30%" scope="col" style="text-align:left;">类别名称</th>               
+     <th width="25%" scope="col">创建日期</th>               
+     <th width="15%" scope="col">增加</th>               
+     <th width="15%" scope="col">修改</th>               
+     <th width="15%" scope="col">删除</th>          
+  </tr>    
+     @if (list_web_type != null && list_web_type.Count > 0)
+     {
+         foreach (var item in list_web_type)
+         {
+
+            <tr>
+                <td></td>
+                @if (item.depath == 0)
+                {
+                    <td style="text-align:left"><img src=~/Areas/admin/images/openfolder.gif align=absmiddle /><span>@(item.menu_name)</span></td>
+                }
+                else if (item.depath == 1)
+                {
+                    <td style="text-align:left"><span style=width:40px;text-align:right;display:inline-block;><img src=~/Areas/admin/images/t.gif align=absmiddle /><img src=~/Areas/admin/images/file.gif align=absmiddle /></span><span>@(item.menu_name)</span></td>
+                }
+                else if (item.depath == 2)
+                {
+                    <td style="text-align:left"><span style=width:70px;text-align:right;display:inline-block;><img src=~/Areas/admin/images/t.gif align=absmiddle /><img src=~/Areas/admin/images/file.gif align=absmiddle /></span><span>@(item.menu_name)</span></td>
+                }
+                else if (item.depath == 3)
+                {
+                    <td style="text-align:left"><span style=width:90px;text-align:right;display:inline-block;><img src=~/Areas/admin/images/t.gif align=absmiddle /><img src=~/Areas/admin/images/file.gif align=absmiddle /></span><span>@(item.menu_name)</span></td>
+                }
+
+                <td>@(((DateTime)item.createtime).ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                <td align=center><a class="opt" title="增加" href="/Admin/WebType/Add?rootid=@item.rootid&parentid=@item.menu_id"><img src="~/Areas/admin/images/add.gif" width="16" /></a>  </td>
+                <td align=center><a class="opt" title="修改" href="/Admin/WebType/Edit?id=@(item.menu_id)&rootid=@item.rootid"><img src="~/Areas/admin/images/edit.gif" width="16" /></a></td>
+                <td align=center><a class="opt" title="删除" href="/admin/WebType/DelById?id=@item.menu_id&rootid=@item.rootid"><img src="~/Areas/admin/images/no.gif" width="16" /></a></td>
+            </tr>
+         }
+
+     }
+   
+  </tbody>      
+  </table>
+                </div>
+            </div>
+
+
+
+
+            <div id="pagebar" align="center" style="margin-top:10px"></div>
+
+        </div>
+    </div>
+</div>
+
+

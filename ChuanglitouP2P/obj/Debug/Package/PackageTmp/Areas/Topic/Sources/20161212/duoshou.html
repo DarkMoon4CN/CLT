@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双十二剁手</title>
+    <link rel="stylesheet" type="text/css" href="Content/css.css">
+    <link rel="stylesheet" type="text/css" href="Content/animate.css">
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/index.js"></script>        
+    <script type="text/javascript" src="Scripts/awardRotate.js"></script>
+    <script type="text/javascript" src="Scripts/scroll_js.js"></script>
+<body>
+
+    <div class="duoshou">
+        <div class="duoshou_1">
+            <img src="images/duoshou_1bg.jpg" class="duoshou_1_bg">
+            <div class="duoshou_1_main">
+                <img src="images/duoshou_toptu.png">
+            </div>
+        </div>
+        <div class="duoshou_2">
+            <img src="images/duoshou_2bg.jpg" class="duoshou_2_bg">
+            <div class="duoshou_2_main">
+                <div class="duo_2_main_top">
+                    <h2>活动介绍</h2>
+                    <p>活动期间，投资每满1000元（实际投资金额，奖券金额除外）即可获得大转盘抽奖一次！<br>（多投多得，上不封顶！不限标的！）</p>
+                </div>
+                <div class="duo_2_main_content">
+                    <div class="duo_2_main_content_1">
+                        <div class="daojishi_top">距离<span></span>活动开始仅有</div>
+                        <div class="daojishi_content">
+                            <div class="daojishi_1">
+                                <div class="daojishi_1_shuzi">
+                                    <p id="t_r">01</p>
+                                    <span class="shuzi_bg"></span>
+                                    <span class="shuzi_bg"></span>
+                                    <a href="#" class="xian"></a>
+                                </div>
+                                <small>天</small>                    
+                             </div>
+                             <div class="daojishi_1">
+                                <div class="daojishi_1_shuzi">
+                                    <p id="t_h">08</p>
+                                    <span class="shuzi_bg"></span>
+                                    <span class="shuzi_bg"></span>
+                                    <a href="#" class="xian"></a>
+                                </div>
+                                <small>时</small>                    
+                             </div>
+                             <div class="daojishi_1">
+                                <div class="daojishi_1_shuzi">
+                                    <p id="t_m">24</p>
+                                    <span class="shuzi_bg"></span>
+                                    <span class="shuzi_bg"></span>
+                                    <a href="#" class="xian"></a>
+                                </div>
+                                <small>分</small>                    
+                             </div>
+                             <div class="daojishi_1">
+                                <div class="daojishi_1_shuzi">
+                                    <p id="t_s">30</p>
+                                    <span class="shuzi_bg"></span>
+                                    <span class="shuzi_bg"></span>
+                                    <a href="#" class="xian"></a>
+                                </div>
+                                <small>秒</small>                    
+                             </div>
+                        </div>
+                    </div>
+                    <div class="duo_2_main_content_2">
+                        <div class="zhuanpan">
+                            <div class="zhuanpan_jiang"></div>
+                            <div class="zhuanpan_go zp_rotate"></div>
+                            <div class="zhuanpan_deng">
+                                <div class="dengUp">
+                                    <img src="images/duoshou_zhuanpandeng1.png">
+                                </div>
+                                <div class="dengDode">
+                                    <img src="images/duoshou_zhuanpandeng2.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="duo_2_main_content_3">
+                        <p>您有<span id="count">3</span>次抽奖机会</p>
+                        <a href="#" class="Btn1">活动未开始</a>
+                        <a href="#" class="Btn2">继续投资</a>
+                        <small>查看奖品</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="duoshou_3">
+            <img src="images/duoshou_3bg.jpg" class="duoshou_3_bg">
+            <div class="duoshou_3_main">
+                <div class="duoshou_3_main_jilu">
+                    <div>
+                        <h2>抽奖记录</h2>
+                        <ul id="xstCont">
+                            <li><span>恭喜138xxxxx654用户</span><span>获得2%抵扣券奖品</span></li>
+                            <li><span>恭喜138xxxxx654用户</span><span>获得2%抵扣券奖品</span></li>
+                            <li><span>恭喜138xxxxx654用户</span><span>获得2%抵扣券奖品</span></li>
+                            <li><span>恭喜138xxxxx654用户</span><span>获得2%抵扣券奖品</span></li>
+                            <li><span>恭喜138xxxxx654用户</span><span>获得2%抵扣券奖品</span></li>
+                            <li><span>恭喜138xxxxx654用户</span><span>获得2%抵扣券奖品</span></li>
+                            <li><span>恭喜138xxxxx654用户</span><span>获得2%抵扣券奖品</span></li>
+                            <li><span>恭喜138xxxxx654用户</span><span>获得2%抵扣券奖品</span></li>
+                            <li><span>恭喜138xxxxx654用户</span><span>获得2%抵扣券奖品</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="duoshou_3_main_bottom">
+                    <h2>活动规则</h2>
+                    <dl>
+                        <dd>1、活动时间：2016年12月12日至2016年12月14日；</dd>
+                        <dd>2、大转盘活动获得的抵扣券、加息券自领取之日起有效期为10天；</dd>
+                        <dd>3、加息券只可投资3个月以上产品使用，抵扣券使用比例为100：1，不限产品期限；</dd>
+                        <dd>4、所获奖励请到“我的账户 > 奖励管理中查看；</dd>
+                        <dd>5、现金奖励直接发送到账户余额；实物奖品将于活动结束7日内寄出；</dd>
+                        <dd>6、渠道用户不享受此次活动；</dd>
+                        <dd class="dd_last">7、活动最终解释权在法律范围内归北京创利投网络科技有限公司所有。</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="tanchuang">
+            <div class="tanchuang_main">
+                <img src="images/tanchuangbg.png">
+                <p class="Prize">小米手环(2代)</p>
+                <span class="tanchuang_main_guan"></span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function(){            
+            $(".duoshou_1_main").animate({opacity: 1}, 200, function() {
+                $(".duoshou_1_main").addClass('animated bounceInDown');
+            });
+        })
+    </script>
+    <script>
+       
+       function GetRTime(){
+           var EndTime= new Date('2016/12/12 00:00:00');
+           var NowTime = new Date();
+           var t =EndTime.getTime() - NowTime.getTime();
+           var r=Math.floor(t/1000/60/60/24);
+           var h=Math.floor(t/1000/60/60%24);
+           var m=Math.floor(t/1000/60%60);
+           var s=Math.floor(t/1000%60);
+
+           document.getElementById("t_r").innerHTML = r;
+           document.getElementById("t_h").innerHTML = h;
+           document.getElementById("t_m").innerHTML = m;
+           document.getElementById("t_s").innerHTML = s;
+           if(document.getElementById("t_r").innerHTML<10){
+                document.getElementById("t_r").innerHTML="0"+document.getElementById("t_r").innerHTML;
+           }
+           if(document.getElementById("t_h").innerHTML<10){
+                document.getElementById("t_h").innerHTML="0"+document.getElementById("t_h").innerHTML;
+           }
+           if(document.getElementById("t_m").innerHTML<10){
+                document.getElementById("t_m").innerHTML="0"+document.getElementById("t_m").innerHTML;
+           }
+           if(document.getElementById("t_s").innerHTML<10){
+                document.getElementById("t_s").innerHTML="0"+document.getElementById("t_s").innerHTML;
+           }
+           if(document.getElementById("t_r").innerHTML<0){
+                document.getElementById("t_r").innerHTML==0;
+           }else if(document.getElementById("t_h").innerHTML<0){
+                document.getElementById("t_h").innerHTML==0;
+           }else if(document.getElementById("t_m").innerHTML<0){
+                document.getElementById("t_m").innerHTML==0;
+           }else if(document.getElementById("t_s").innerHTML<0){
+                document.getElementById("t_s").innerHTML==0;
+           }
+           if(t<0){
+            $(".daojishi").hide();
+            $(".daojishi_biaoti").hide();
+            $(".Btn1").hide();
+            $(".Btn2").css("display", "block");
+
+            }
+       }
+       setInterval(GetRTime,0);
+       
+       function aq(){
+            if($(".dengUp").show()){
+                $(".dengDode").hide();
+            }
+       }
+        setInterval(aq,1400);
+        function aw(){
+            if($(".dengDode").show()){
+                $(".dengUp").hide();
+            }
+       }
+       function deltegate(){
+        setInterval(aw,1400);
+       }        
+        setTimeout(deltegate,700);
+    </script>
+    <script type="text/javascript">
+        //剩余抽奖机会
+        var scount=1;
+        // $.post("/activity/20160602/20160602hd.aspx?action=count", function (data) {
+        //    scount = data;
+        // });
+
+        $("#count").html(scount);
+    </script>
+</body>
+</html>

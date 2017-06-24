@@ -1,0 +1,2605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="chuangtouModelStoreContainer" CdmEntityContainer="chuangtouEntities">
+    <EntitySetMapping Name="areas">
+      <EntityTypeMapping TypeName="chuangtouModel.area">
+        <MappingFragment StoreEntitySet="area">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="areaID" ColumnName="areaID" />
+          <ScalarProperty Name="area1" ColumnName="area" />
+          <ScalarProperty Name="fatherID" ColumnName="fatherID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bonus_account">
+      <EntityTypeMapping TypeName="chuangtouModel.bonus_account">
+        <MappingFragment StoreEntitySet="bonus_account">
+          <ScalarProperty Name="bonus_account_id" ColumnName="bonus_account_id" />
+          <ScalarProperty Name="activity_schedule_id" ColumnName="activity_schedule_id" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="activity_schedule_name" ColumnName="activity_schedule_name" />
+          <ScalarProperty Name="amount_of_reward" ColumnName="amount_of_reward" />
+          <ScalarProperty Name="use_lower_limit" ColumnName="use_lower_limit" />
+          <ScalarProperty Name="reward" ColumnName="reward" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="reward_state" ColumnName="reward_state" />
+          <ScalarProperty Name="reward_remarks" ColumnName="reward_remarks" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="act_state" ColumnName="act_state" />
+          <ScalarProperty Name="proid" ColumnName="proid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bonus_account_water">
+      <EntityTypeMapping TypeName="chuangtouModel.bonus_account_water">
+        <MappingFragment StoreEntitySet="bonus_account_water">
+          <ScalarProperty Name="Createtime" ColumnName="Createtime" />
+          <ScalarProperty Name="account_water_id" ColumnName="account_water_id" />
+          <ScalarProperty Name="bonus_account_id" ColumnName="bonus_account_id" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="income" ColumnName="income" />
+          <ScalarProperty Name="expenditure" ColumnName="expenditure" />
+          <ScalarProperty Name="time_of_occurrence" ColumnName="time_of_occurrence" />
+          <ScalarProperty Name="reward_balance" ColumnName="reward_balance" />
+          <ScalarProperty Name="award_description" ColumnName="award_description" />
+          <ScalarProperty Name="water_type" ColumnName="water_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cities">
+      <EntityTypeMapping TypeName="chuangtouModel.city">
+        <MappingFragment StoreEntitySet="city">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cityID" ColumnName="cityID" />
+          <ScalarProperty Name="city1" ColumnName="city" />
+          <ScalarProperty Name="fatherID" ColumnName="fatherID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contract_management">
+      <EntityTypeMapping TypeName="chuangtouModel.Contract_management">
+        <MappingFragment StoreEntitySet="Contract_management">
+          <ScalarProperty Name="contract" ColumnName="contract" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="lender_name" ColumnName="lender_name" />
+          <ScalarProperty Name="lender_username" ColumnName="lender_username" />
+          <ScalarProperty Name="lender_registerid" ColumnName="lender_registerid" />
+          <ScalarProperty Name="lender_id_card" ColumnName="lender_id_card" />
+          <ScalarProperty Name="lenders_account_name" ColumnName="lenders_account_name" />
+          <ScalarProperty Name="lender_bank_account" ColumnName="lender_bank_account" />
+          <ScalarProperty Name="lender_bank" ColumnName="lender_bank" />
+          <ScalarProperty Name="lender_address" ColumnName="lender_address" />
+          <ScalarProperty Name="lenders_telephone" ColumnName="lenders_telephone" />
+          <ScalarProperty Name="lenders_email" ColumnName="lenders_email" />
+          <ScalarProperty Name="lendres_date_contract" ColumnName="lendres_date_contract" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="borrower_name" ColumnName="borrower_name" />
+          <ScalarProperty Name="borrower_username" ColumnName="borrower_username" />
+          <ScalarProperty Name="borrower_id_card" ColumnName="borrower_id_card" />
+          <ScalarProperty Name="borrower_account_name" ColumnName="borrower_account_name" />
+          <ScalarProperty Name="borrower_bank_account" ColumnName="borrower_bank_account" />
+          <ScalarProperty Name="borrower_date_contract" ColumnName="borrower_date_contract" />
+          <ScalarProperty Name="borrower_bank" ColumnName="borrower_bank" />
+          <ScalarProperty Name="witness_name" ColumnName="witness_name" />
+          <ScalarProperty Name="witness_address" ColumnName="witness_address" />
+          <ScalarProperty Name="witness_telephone" ColumnName="witness_telephone" />
+          <ScalarProperty Name="witness_agent" ColumnName="witness_agent" />
+          <ScalarProperty Name="witness_admid" ColumnName="witness_admid" />
+          <ScalarProperty Name="witness_username" ColumnName="witness_username" />
+          <ScalarProperty Name="witness_id_card" ColumnName="witness_id_card" />
+          <ScalarProperty Name="witness_date_contract" ColumnName="witness_date_contract" />
+          <ScalarProperty Name="surety_company_name" ColumnName="surety_company_name" />
+          <ScalarProperty Name="guarantee_business_icense" ColumnName="guarantee_business_icense" />
+          <ScalarProperty Name="ensure_address" ColumnName="ensure_address" />
+          <ScalarProperty Name="guarantee_legal_representative" ColumnName="guarantee_legal_representative" />
+          <ScalarProperty Name="guarantor_agent" ColumnName="guarantor_agent" />
+          <ScalarProperty Name="guarantor_companyid" ColumnName="guarantor_companyid" />
+          <ScalarProperty Name="guarantor_agent_usernqme" ColumnName="guarantor_agent_usernqme" />
+          <ScalarProperty Name="guarantor_agent_id_card" ColumnName="guarantor_agent_id_card" />
+          <ScalarProperty Name="guarantor_agent_idate_contract" ColumnName="guarantor_agent_idate_contract" />
+          <ScalarProperty Name="contract_money" ColumnName="contract_money" />
+          <ScalarProperty Name="counselling_service" ColumnName="counselling_service" />
+          <ScalarProperty Name="contract_amount" ColumnName="contract_amount" />
+          <ScalarProperty Name="suretyship_contract" ColumnName="suretyship_contract" />
+          <ScalarProperty Name="mode_payment" ColumnName="mode_payment" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+          <ScalarProperty Name="contractpath" ColumnName="contractpath" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="guarantee_way">
+      <EntityTypeMapping TypeName="chuangtouModel.guarantee_way">
+        <MappingFragment StoreEntitySet="guarantee_way">
+          <ScalarProperty Name="guarantee_way_id" ColumnName="guarantee_way_id" />
+          <ScalarProperty Name="guarantee_way_name" ColumnName="guarantee_way_name" />
+          <ScalarProperty Name="amount_guaranteed" ColumnName="amount_guaranteed" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_Activity_schedule">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_Activity_schedule">
+        <MappingFragment StoreEntitySet="hx_Activity_schedule">
+          <ScalarProperty Name="activity_schedule_id" ColumnName="activity_schedule_id" />
+          <ScalarProperty Name="activity_schedule_name" ColumnName="activity_schedule_name" />
+          <ScalarProperty Name="amount_of_reward" ColumnName="amount_of_reward" />
+          <ScalarProperty Name="use_lower_limit" ColumnName="use_lower_limit" />
+          <ScalarProperty Name="reward" ColumnName="reward" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_ActivityTable">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_ActivityTable">
+        <MappingFragment StoreEntitySet="hx_ActivityTable">
+          <ScalarProperty Name="ActTargetPlatform" ColumnName="ActTargetPlatform" />
+          <ScalarProperty Name="ActID" ColumnName="ActID" />
+          <ScalarProperty Name="ActTypeId" ColumnName="ActTypeId" />
+          <ScalarProperty Name="RewTypeID" ColumnName="RewTypeID" />
+          <ScalarProperty Name="ActName" ColumnName="ActName" />
+          <ScalarProperty Name="ActUser" ColumnName="ActUser" />
+          <ScalarProperty Name="ActStarttime" ColumnName="ActStarttime" />
+          <ScalarProperty Name="ActEndtime" ColumnName="ActEndtime" />
+          <ScalarProperty Name="ActRule" ColumnName="ActRule" />
+          <ScalarProperty Name="ActState" ColumnName="ActState" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_ActivityType">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_ActivityType">
+        <MappingFragment StoreEntitySet="hx_ActivityType">
+          <ScalarProperty Name="ActTypeId" ColumnName="ActTypeId" />
+          <ScalarProperty Name="ActName" ColumnName="ActName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_Bid_records">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_Bid_records">
+        <MappingFragment StoreEntitySet="hx_Bid_records">
+          <ScalarProperty Name="BonusAmt" ColumnName="BonusAmt" />
+          <ScalarProperty Name="JiaxiNum" ColumnName="JiaxiNum" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="current_period" ColumnName="current_period" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="investment_maturity" ColumnName="investment_maturity" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="invest_state" ColumnName="invest_state" />
+          <ScalarProperty Name="flow_return" ColumnName="flow_return" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="withoutinterest" ColumnName="withoutinterest" />
+          <ScalarProperty Name="haveinterest" ColumnName="haveinterest" />
+          <ScalarProperty Name="contractid" ColumnName="contractid" />
+          <ScalarProperty Name="contractpath" ColumnName="contractpath" />
+          <ScalarProperty Name="invitationcode" ColumnName="invitationcode" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+          <ScalarProperty Name="IsLoans" ColumnName="IsLoans" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_bonding_company">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_bonding_company">
+        <MappingFragment StoreEntitySet="hx_bonding_company">
+          <ScalarProperty Name="companyid" ColumnName="companyid" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="registered_capital" ColumnName="registered_capital" />
+          <ScalarProperty Name="Date_incorporation" ColumnName="Date_incorporation" />
+          <ScalarProperty Name="company_address" ColumnName="company_address" />
+          <ScalarProperty Name="company_profile" ColumnName="company_profile" />
+          <ScalarProperty Name="business_licence" ColumnName="business_licence" />
+          <ScalarProperty Name="business_certificate" ColumnName="business_certificate" />
+          <ScalarProperty Name="contract_covers" ColumnName="contract_covers" />
+          <ScalarProperty Name="contract_bottom" ColumnName="contract_bottom" />
+          <ScalarProperty Name="legal_representative" ColumnName="legal_representative" />
+          <ScalarProperty Name="agent" ColumnName="agent" />
+          <ScalarProperty Name="agent_name" ColumnName="agent_name" />
+          <ScalarProperty Name="agent_id_card" ColumnName="agent_id_card" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="Tax_NO" ColumnName="Tax_NO" />
+          <ScalarProperty Name="GuarType" ColumnName="GuarType" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="AuditStat" ColumnName="AuditStat" />
+          <ScalarProperty Name="TrxId" ColumnName="TrxId" />
+          <ScalarProperty Name="OpenBandkId" ColumnName="OpenBandkId" />
+          <ScalarProperty Name="CardId" ColumnName="CardId" />
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+          <ScalarProperty Name="company_Url" ColumnName="company_Url" />
+          <ScalarProperty Name="company_tel" ColumnName="company_tel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_borrower_guarantor_picture">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_borrower_guarantor_picture">
+        <MappingFragment StoreEntitySet="hx_borrower_guarantor_picture">
+          <ScalarProperty Name="picture_index" ColumnName="picture_index" />
+          <ScalarProperty Name="borrower_guarantor_picture_id" ColumnName="borrower_guarantor_picture_id" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="type_picture" ColumnName="type_picture" />
+          <ScalarProperty Name="picture_path" ColumnName="picture_path" />
+          <ScalarProperty Name="picture_name" ColumnName="picture_name" />
+          <ScalarProperty Name="uploadtime" ColumnName="uploadtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_borrowing_target">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_borrowing_target">
+        <MappingFragment StoreEntitySet="hx_borrowing_target">
+          <ScalarProperty Name="Isinterest" ColumnName="Isinterest" />
+          <ScalarProperty Name="Collateral" ColumnName="Collateral" />
+          <ScalarProperty Name="PaySource" ColumnName="PaySource" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="IsIRC" ColumnName="IsIRC" />
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="borrowing_thumbnail" ColumnName="borrowing_thumbnail" />
+          <ScalarProperty Name="project_type_id" ColumnName="project_type_id" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="life_of_loan" ColumnName="life_of_loan" />
+          <ScalarProperty Name="unit_day" ColumnName="unit_day" />
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="month_payment_date" ColumnName="month_payment_date" />
+          <ScalarProperty Name="repayment_date" ColumnName="repayment_date" />
+          <ScalarProperty Name="minimum" ColumnName="minimum" />
+          <ScalarProperty Name="maxmum" ColumnName="maxmum" />
+          <ScalarProperty Name="companyid" ColumnName="companyid" />
+          <ScalarProperty Name="guarantee_way_id" ColumnName="guarantee_way_id" />
+          <ScalarProperty Name="payment_options" ColumnName="payment_options" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="service_charge" ColumnName="service_charge" />
+          <ScalarProperty Name="loan_management_fee" ColumnName="loan_management_fee" />
+          <ScalarProperty Name="investors_management_fee" ColumnName="investors_management_fee" />
+          <ScalarProperty Name="ordinary_overdue_management_fees" ColumnName="ordinary_overdue_management_fees" />
+          <ScalarProperty Name="seriously_overdue_management_fees" ColumnName="seriously_overdue_management_fees" />
+          <ScalarProperty Name="ordinary_overdue_penalty" ColumnName="ordinary_overdue_penalty" />
+          <ScalarProperty Name="seriously_overdue_penalty" ColumnName="seriously_overdue_penalty" />
+          <ScalarProperty Name="transfer_Expenses" ColumnName="transfer_Expenses" />
+          <ScalarProperty Name="fundraising_amount" ColumnName="fundraising_amount" />
+          <ScalarProperty Name="tender_state" ColumnName="tender_state" />
+          <ScalarProperty Name="full_scale_loan" ColumnName="full_scale_loan" />
+          <ScalarProperty Name="flow_return" ColumnName="flow_return" />
+          <ScalarProperty Name="recommend" ColumnName="recommend" />
+          <ScalarProperty Name="sys_time" ColumnName="sys_time" />
+          <ScalarProperty Name="repaymentperiods" ColumnName="repaymentperiods" />
+          <ScalarProperty Name="reviewremarks" ColumnName="reviewremarks" />
+          <ScalarProperty Name="recheckremarks" ColumnName="recheckremarks" />
+          <ScalarProperty Name="guarantee_fee" ColumnName="guarantee_fee" />
+          <ScalarProperty Name="consultingAMT" ColumnName="consultingAMT" />
+          <ScalarProperty Name="guaranteeAMT" ColumnName="guaranteeAMT" />
+          <ScalarProperty Name="B_Rates" ColumnName="B_Rates" />
+          <ScalarProperty Name="H_Repayment_Amt" ColumnName="H_Repayment_Amt" />
+          <ScalarProperty Name="Repay_Time" ColumnName="Repay_Time" />
+          <ScalarProperty Name="G_contract_Path" ColumnName="G_contract_Path" />
+          <ScalarProperty Name="IsUse" ColumnName="IsUse" />
+          <ScalarProperty Name="indexorder" ColumnName="indexorder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_borrowing_target_detailed">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_borrowing_target_detailed">
+        <MappingFragment StoreEntitySet="hx_borrowing_target_detailed">
+          <ScalarProperty Name="target_detailed_id" ColumnName="target_detailed_id" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="item_details" ColumnName="item_details" />
+          <ScalarProperty Name="borrower_circumstances" ColumnName="borrower_circumstances" />
+          <ScalarProperty Name="borrower_base_material" ColumnName="borrower_base_material" />
+          <ScalarProperty Name="use_funds" ColumnName="use_funds" />
+          <ScalarProperty Name="independent_advice" ColumnName="independent_advice" />
+          <ScalarProperty Name="guarantee_agency_views" ColumnName="guarantee_agency_views" />
+          <ScalarProperty Name="risk_control_measures" ColumnName="risk_control_measures" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_Capital_account_water">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_Capital_account_water">
+        <MappingFragment StoreEntitySet="hx_Capital_account_water">
+          <ScalarProperty Name="account_water_id" ColumnName="account_water_id" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="income" ColumnName="income" />
+          <ScalarProperty Name="expenditure" ColumnName="expenditure" />
+          <ScalarProperty Name="time_of_occurrence" ColumnName="time_of_occurrence" />
+          <ScalarProperty Name="account_balance" ColumnName="account_balance" />
+          <ScalarProperty Name="types_Finance" ColumnName="types_Finance" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="keyid" ColumnName="keyid" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_CashAwards">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_CashAwards">
+        <MappingFragment StoreEntitySet="hx_CashAwards">
+          <ScalarProperty Name="CashAwardsid" ColumnName="CashAwardsid" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="proid" ColumnName="proid" />
+          <ScalarProperty Name="Amounts" ColumnName="Amounts" />
+          <ScalarProperty Name="AwardsTime" ColumnName="AwardsTime" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="OrdIdstate" ColumnName="OrdIdstate" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_Contract_template">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_Contract_template">
+        <MappingFragment StoreEntitySet="hx_Contract_template">
+          <ScalarProperty Name="contract_template_id" ColumnName="contract_template_id" />
+          <ScalarProperty Name="contract_type_id" ColumnName="contract_type_id" />
+          <ScalarProperty Name="contract_template_name" ColumnName="contract_template_name" />
+          <ScalarProperty Name="contract_template_context" ColumnName="contract_template_context" />
+          <ScalarProperty Name="usestate" ColumnName="usestate" />
+          <ScalarProperty Name="cretatetime" ColumnName="cretatetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_contract_type">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_contract_type">
+        <MappingFragment StoreEntitySet="hx_contract_type">
+          <ScalarProperty Name="contract_type_id" ColumnName="contract_type_id" />
+          <ScalarProperty Name="contract_type_name" ColumnName="contract_type_name" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_income_statement">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_income_statement">
+        <MappingFragment StoreEntitySet="hx_income_statement">
+          <ScalarProperty Name="income_statement_id" ColumnName="income_statement_id" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="OutCustId" ColumnName="OutCustId" />
+          <ScalarProperty Name="annual_revenue" ColumnName="annual_revenue" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="current_investment_period" ColumnName="current_investment_period" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="interest_payment_date" ColumnName="interest_payment_date" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="InCustId" ColumnName="InCustId" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="Principal" ColumnName="Principal" />
+          <ScalarProperty Name="interestpayment" ColumnName="interestpayment" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="BidOrderid" ColumnName="BidOrderid" />
+          <ScalarProperty Name="interestDay" ColumnName="interestDay" />
+          <ScalarProperty Name="TotalInstallments" ColumnName="TotalInstallments" />
+          <ScalarProperty Name="BorrFees" ColumnName="BorrFees" />
+          <ScalarProperty Name="InveFess" ColumnName="InveFess" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_investsearch">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_investsearch">
+        <MappingFragment StoreEntitySet="hx_investsearch">
+          <ScalarProperty Name="investsearchid" ColumnName="investsearchid" />
+          <ScalarProperty Name="investtype" ColumnName="investtype" />
+          <ScalarProperty Name="investname" ColumnName="investname" />
+          <ScalarProperty Name="splitname" ColumnName="splitname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_member_table">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_member_table">
+        <MappingFragment StoreEntitySet="hx_member_table">
+          <ScalarProperty Name="channel_invitedcode" ColumnName="channel_invitedcode" />
+          <ScalarProperty Name="ExtendCode" ColumnName="ExtendCode" />
+          <ScalarProperty Name="calltime" ColumnName="calltime" />
+          <ScalarProperty Name="LoginNum" ColumnName="LoginNum" />
+          <ScalarProperty Name="LostInvitation" ColumnName="LostInvitation" />
+          <ScalarProperty Name="InvestNum" ColumnName="InvestNum" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="CashNum" ColumnName="CashNum" />
+          <ScalarProperty Name="RechargeNum" ColumnName="RechargeNum" />
+          <ScalarProperty Name="CommNum" ColumnName="CommNum" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="iD_number" ColumnName="iD_number" />
+          <ScalarProperty Name="transactionpassword" ColumnName="transactionpassword" />
+          <ScalarProperty Name="istransactionpassword" ColumnName="istransactionpassword" />
+          <ScalarProperty Name="ismobile" ColumnName="ismobile" />
+          <ScalarProperty Name="isrealname" ColumnName="isrealname" />
+          <ScalarProperty Name="isbankcard" ColumnName="isbankcard" />
+          <ScalarProperty Name="isemail" ColumnName="isemail" />
+          <ScalarProperty Name="userstate" ColumnName="userstate" />
+          <ScalarProperty Name="account_total_assets" ColumnName="account_total_assets" />
+          <ScalarProperty Name="available_balance" ColumnName="available_balance" />
+          <ScalarProperty Name="collect_total_amount" ColumnName="collect_total_amount" />
+          <ScalarProperty Name="frozen_sum" ColumnName="frozen_sum" />
+          <ScalarProperty Name="open_tonto_account" ColumnName="open_tonto_account" />
+          <ScalarProperty Name="tonto_account_user" ColumnName="tonto_account_user" />
+          <ScalarProperty Name="usertypes" ColumnName="usertypes" />
+          <ScalarProperty Name="registration_time" ColumnName="registration_time" />
+          <ScalarProperty Name="lastlogintime" ColumnName="lastlogintime" />
+          <ScalarProperty Name="lastloginIP" ColumnName="lastloginIP" />
+          <ScalarProperty Name="customserviceid" ColumnName="customserviceid" />
+          <ScalarProperty Name="homephone" ColumnName="homephone" />
+          <ScalarProperty Name="contactaddress" ColumnName="contactaddress" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="qq" ColumnName="qq" />
+          <ScalarProperty Name="msn" ColumnName="msn" />
+          <ScalarProperty Name="invitedcode" ColumnName="invitedcode" />
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+          <ScalarProperty Name="useridentity" ColumnName="useridentity" />
+          <ScalarProperty Name="CopName" ColumnName="CopName" />
+          <ScalarProperty Name="Channelsource" ColumnName="Channelsource" />
+          <ScalarProperty Name="Tid" ColumnName="Tid" />
+          <ScalarProperty Name="WXAppId" ColumnName="WXAppId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_Mention_charges">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_Mention_charges">
+        <MappingFragment StoreEntitySet="hx_Mention_charges">
+          <ScalarProperty Name="mention_charges_id" ColumnName="mention_charges_id" />
+          <ScalarProperty Name="mention_charges_name" ColumnName="mention_charges_name" />
+          <ScalarProperty Name="minimum_amount" ColumnName="minimum_amount" />
+          <ScalarProperty Name="maximum_amount" ColumnName="maximum_amount" />
+          <ScalarProperty Name="fees" ColumnName="fees" />
+          <ScalarProperty Name="fees_unit" ColumnName="fees_unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_Project_type">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_Project_type">
+        <MappingFragment StoreEntitySet="hx_Project_type">
+          <ScalarProperty Name="project_type_id" ColumnName="project_type_id" />
+          <ScalarProperty Name="project_type_name" ColumnName="project_type_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_Recharge_history">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_Recharge_history">
+        <MappingFragment StoreEntitySet="hx_Recharge_history">
+          <ScalarProperty Name="recharge_history_id" ColumnName="recharge_history_id" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="recharge_amount" ColumnName="recharge_amount" />
+          <ScalarProperty Name="recharge_time" ColumnName="recharge_time" />
+          <ScalarProperty Name="account_amount" ColumnName="account_amount" />
+          <ScalarProperty Name="order_No" ColumnName="order_No" />
+          <ScalarProperty Name="recharge_condition" ColumnName="recharge_condition" />
+          <ScalarProperty Name="recharge_bank" ColumnName="recharge_bank" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_repayment_plan">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_repayment_plan">
+        <MappingFragment StoreEntitySet="hx_repayment_plan">
+          <ScalarProperty Name="repayment_plan_id" ColumnName="repayment_plan_id" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="BorrUsrCustId" ColumnName="BorrUsrCustId" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="current_period" ColumnName="current_period" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="repayment_type" ColumnName="repayment_type" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="actual_amount_repayment" ColumnName="actual_amount_repayment" />
+          <ScalarProperty Name="repayment_state" ColumnName="repayment_state" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="interestpayment" ColumnName="interestpayment" />
+          <ScalarProperty Name="fees" ColumnName="fees" />
+          <ScalarProperty Name="O_penalty" ColumnName="O_penalty" />
+          <ScalarProperty Name="shall_repayment" ColumnName="shall_repayment" />
+          <ScalarProperty Name="pla_amt_generation" ColumnName="pla_amt_generation" />
+          <ScalarProperty Name="Interest_spreads" ColumnName="Interest_spreads" />
+          <ScalarProperty Name="Rep_Remarks" ColumnName="Rep_Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_RewardType">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_RewardType">
+        <MappingFragment StoreEntitySet="hx_RewardType">
+          <ScalarProperty Name="RewTypeID" ColumnName="RewTypeID" />
+          <ScalarProperty Name="RewTypeName" ColumnName="RewTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_Ad">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_Ad">
+        <MappingFragment StoreEntitySet="hx_td_Ad">
+          <ScalarProperty Name="Adid" ColumnName="Adid" />
+          <ScalarProperty Name="AdName" ColumnName="AdName" />
+          <ScalarProperty Name="Adcreatetime" ColumnName="Adcreatetime" />
+          <ScalarProperty Name="AdState" ColumnName="AdState" />
+          <ScalarProperty Name="AdTypeId" ColumnName="AdTypeId" />
+          <ScalarProperty Name="AdPath" ColumnName="AdPath" />
+          <ScalarProperty Name="AdLink" ColumnName="AdLink" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_adminuser">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_adminuser">
+        <MappingFragment StoreEntitySet="hx_td_adminuser">
+          <ScalarProperty Name="adminuserid" ColumnName="adminuserid" />
+          <ScalarProperty Name="adminuser" ColumnName="adminuser" />
+          <ScalarProperty Name="userpass" ColumnName="userpass" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="trueName" ColumnName="trueName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="lastLoginTime" ColumnName="lastLoginTime" />
+          <ScalarProperty Name="lastLoginIP" ColumnName="lastLoginIP" />
+          <ScalarProperty Name="loginTimes" ColumnName="loginTimes" />
+          <ScalarProperty Name="worknum" ColumnName="worknum" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+          <ScalarProperty Name="area_id" ColumnName="area_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_Bank">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_Bank">
+        <MappingFragment StoreEntitySet="hx_td_Bank">
+          <ScalarProperty Name="CardImageNew" ColumnName="CardImageNew" />
+          <ScalarProperty Name="CardDailyTransQuota" ColumnName="CardDailyTransQuota" />
+          <ScalarProperty Name="SingleTransQuota" ColumnName="SingleTransQuota" />
+          <ScalarProperty Name="isGren" ColumnName="isGren" />
+          <ScalarProperty Name="Isordinary" ColumnName="Isordinary" />
+          <ScalarProperty Name="Isquick" ColumnName="Isquick" />
+          <ScalarProperty Name="CardImage" ColumnName="CardImage" />
+          <ScalarProperty Name="Bankid" ColumnName="Bankid" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="OpenBankId" ColumnName="OpenBankId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_department">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_department">
+        <MappingFragment StoreEntitySet="hx_td_department">
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+          <ScalarProperty Name="department_name" ColumnName="department_name" />
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="parentpath" ColumnName="parentpath" />
+          <ScalarProperty Name="depath" ColumnName="depath" />
+          <ScalarProperty Name="rootid" ColumnName="rootid" />
+          <ScalarProperty Name="child" ColumnName="child" />
+          <ScalarProperty Name="previd" ColumnName="previd" />
+          <ScalarProperty Name="nextid" ColumnName="nextid" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_department_child">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_department_child">
+        <MappingFragment StoreEntitySet="hx_td_department_child">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+          <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+          <ScalarProperty Name="isread" ColumnName="isread" />
+          <ScalarProperty Name="isadd" ColumnName="isadd" />
+          <ScalarProperty Name="isedit" ColumnName="isedit" />
+          <ScalarProperty Name="isdelete" ColumnName="isdelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_frozen">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_frozen">
+        <MappingFragment StoreEntitySet="hx_td_frozen">
+          <ScalarProperty Name="Frozenid" ColumnName="Frozenid" />
+          <ScalarProperty Name="MBT_Registerid" ColumnName="MBT_Registerid" />
+          <ScalarProperty Name="FrozenidAmount" ColumnName="FrozenidAmount" />
+          <ScalarProperty Name="FrozenidNo" ColumnName="FrozenidNo" />
+          <ScalarProperty Name="FrozenState" ColumnName="FrozenState" />
+          <ScalarProperty Name="FrozenDate" ColumnName="FrozenDate" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="FreezeTrxId" ColumnName="FreezeTrxId" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_LL_cash">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_LL_cash">
+        <MappingFragment StoreEntitySet="hx_td_LL_cash">
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="LLcashid" ColumnName="LLcashid" />
+          <ScalarProperty Name="no_order" ColumnName="no_order" />
+          <ScalarProperty Name="dt_order" ColumnName="dt_order" />
+          <ScalarProperty Name="money_order" ColumnName="money_order" />
+          <ScalarProperty Name="acct_name" ColumnName="acct_name" />
+          <ScalarProperty Name="bank_code" ColumnName="bank_code" />
+          <ScalarProperty Name="province_code" ColumnName="province_code" />
+          <ScalarProperty Name="city_code" ColumnName="city_code" />
+          <ScalarProperty Name="brabank_name" ColumnName="brabank_name" />
+          <ScalarProperty Name="ordertime" ColumnName="ordertime" />
+          <ScalarProperty Name="card_no" ColumnName="card_no" />
+          <ScalarProperty Name="paystate" ColumnName="paystate" />
+          <ScalarProperty Name="Usrid" ColumnName="Usrid" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_LLBack">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_LLBack">
+        <MappingFragment StoreEntitySet="hx_td_LLBack">
+          <ScalarProperty Name="LLbankid" ColumnName="LLbankid" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="cardType" ColumnName="cardType" />
+          <ScalarProperty Name="CardImage" ColumnName="CardImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_LLPay_bindCard">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_LLPay_bindCard">
+        <MappingFragment StoreEntitySet="hx_td_LLPay_bindCard">
+          <ScalarProperty Name="bindCardid" ColumnName="bindCardid" />
+          <ScalarProperty Name="Usrid" ColumnName="Usrid" />
+          <ScalarProperty Name="BankCard" ColumnName="BankCard" />
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="Bindtime" ColumnName="Bindtime" />
+          <ScalarProperty Name="Re_Amt" ColumnName="Re_Amt" />
+          <ScalarProperty Name="Quota" ColumnName="Quota" />
+          <ScalarProperty Name="Citycode" ColumnName="Citycode" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="no_agree" ColumnName="no_agree" />
+          <ScalarProperty Name="cardstate" ColumnName="cardstate" />
+          <ScalarProperty Name="province_code" ColumnName="province_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_LLpay_city">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_LLpay_city">
+        <MappingFragment StoreEntitySet="hx_td_LLpay_city">
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="cityname" ColumnName="cityname" />
+          <ScalarProperty Name="Citycode" ColumnName="Citycode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_LLpay_re_cash">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_LLpay_re_cash">
+        <MappingFragment StoreEntitySet="hx_td_LLpay_re_cash">
+          <ScalarProperty Name="re_cashid" ColumnName="re_cashid" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="no_order" ColumnName="no_order" />
+          <ScalarProperty Name="OutAcctId" ColumnName="OutAcctId" />
+          <ScalarProperty Name="InAcctId" ColumnName="InAcctId" />
+          <ScalarProperty Name="TransAmt" ColumnName="TransAmt" />
+          <ScalarProperty Name="h_state" ColumnName="h_state" />
+          <ScalarProperty Name="htype" ColumnName="htype" />
+          <ScalarProperty Name="OrdTime" ColumnName="OrdTime" />
+          <ScalarProperty Name="Usrid" ColumnName="Usrid" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_LLpay_Recharge">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_LLpay_Recharge">
+        <MappingFragment StoreEntitySet="hx_td_LLpay_Recharge">
+          <ScalarProperty Name="Rechargeid" ColumnName="Rechargeid" />
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+          <ScalarProperty Name="no_order" ColumnName="no_order" />
+          <ScalarProperty Name="ordertime" ColumnName="ordertime" />
+          <ScalarProperty Name="info_order" ColumnName="info_order" />
+          <ScalarProperty Name="money_order" ColumnName="money_order" />
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="card_no" ColumnName="card_no" />
+          <ScalarProperty Name="ReState" ColumnName="ReState" />
+          <ScalarProperty Name="oid_paybill" ColumnName="oid_paybill" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_Loan_records">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_Loan_records">
+        <MappingFragment StoreEntitySet="hx_td_Loan_records">
+          <ScalarProperty Name="Loan_records_id" ColumnName="Loan_records_id" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="InCustId" ColumnName="InCustId" />
+          <ScalarProperty Name="OutCustId" ColumnName="OutCustId" />
+          <ScalarProperty Name="LoanAMT" ColumnName="LoanAMT" />
+          <ScalarProperty Name="LoanOrdId" ColumnName="LoanOrdId" />
+          <ScalarProperty Name="LoanDate" ColumnName="LoanDate" />
+          <ScalarProperty Name="Free" ColumnName="Free" />
+          <ScalarProperty Name="DivDetails" ColumnName="DivDetails" />
+          <ScalarProperty Name="SubOrdid" ColumnName="SubOrdid" />
+          <ScalarProperty Name="SubOrdDate" ColumnName="SubOrdDate" />
+          <ScalarProperty Name="unFreezeOrdId" ColumnName="unFreezeOrdId" />
+          <ScalarProperty Name="FreezeTrxId" ColumnName="FreezeTrxId" />
+          <ScalarProperty Name="bid_orderid" ColumnName="bid_orderid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_LoginInfo">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_LoginInfo">
+        <MappingFragment StoreEntitySet="hx_td_LoginInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="AdminUserName" ColumnName="AdminUserName" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+          <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+          <ScalarProperty Name="LoginSuccess" ColumnName="LoginSuccess" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_menu">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_menu">
+        <MappingFragment StoreEntitySet="hx_td_menu">
+          <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+          <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="parentpath" ColumnName="parentpath" />
+          <ScalarProperty Name="depath" ColumnName="depath" />
+          <ScalarProperty Name="rootid" ColumnName="rootid" />
+          <ScalarProperty Name="child" ColumnName="child" />
+          <ScalarProperty Name="previd" ColumnName="previd" />
+          <ScalarProperty Name="nextid" ColumnName="nextid" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="path1" ColumnName="path1" />
+          <ScalarProperty Name="path2" ColumnName="path2" />
+          <ScalarProperty Name="path3" ColumnName="path3" />
+          <ScalarProperty Name="path4" ColumnName="path4" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_Myborrow">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_Myborrow">
+        <MappingFragment StoreEntitySet="hx_td_Myborrow">
+          <ScalarProperty Name="Myborrowid" ColumnName="Myborrowid" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="userTel" ColumnName="userTel" />
+          <ScalarProperty Name="BorrAMT" ColumnName="BorrAMT" />
+          <ScalarProperty Name="BorrPurposes" ColumnName="BorrPurposes" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="CompName" ColumnName="CompName" />
+          <ScalarProperty Name="Industry" ColumnName="Industry" />
+          <ScalarProperty Name="RegCapital" ColumnName="RegCapital" />
+          <ScalarProperty Name="TimeLimit" ColumnName="TimeLimit" />
+          <ScalarProperty Name="FoundingTime" ColumnName="FoundingTime" />
+          <ScalarProperty Name="Mortgage" ColumnName="Mortgage" />
+          <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+          <ScalarProperty Name="BorrType" ColumnName="BorrType" />
+          <ScalarProperty Name="BorrState" ColumnName="BorrState" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_Phone_records">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_Phone_records">
+        <MappingFragment StoreEntitySet="hx_td_Phone_records">
+          <ScalarProperty Name="problemType" ColumnName="problemType" />
+          <ScalarProperty Name="gtType" ColumnName="gtType" />
+          <ScalarProperty Name="recordsid" ColumnName="recordsid" />
+          <ScalarProperty Name="recordcontext" ColumnName="recordcontext" />
+          <ScalarProperty Name="recordtime" ColumnName="recordtime" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="adminid" ColumnName="adminid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_reviewremarks">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_reviewremarks">
+        <MappingFragment StoreEntitySet="hx_td_reviewremarks">
+          <ScalarProperty Name="reviewid" ColumnName="reviewid" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="tender_state" ColumnName="tender_state" />
+          <ScalarProperty Name="reviewremarks" ColumnName="reviewremarks" />
+          <ScalarProperty Name="reviewtime" ColumnName="reviewtime" />
+          <ScalarProperty Name="admin_operator" ColumnName="admin_operator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_SMS_record">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_SMS_record">
+        <MappingFragment StoreEntitySet="hx_td_SMS_record">
+          <ScalarProperty Name="sms_record_id" ColumnName="sms_record_id" />
+          <ScalarProperty Name="senduserid" ColumnName="senduserid" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="smscontext" ColumnName="smscontext" />
+          <ScalarProperty Name="smstype" ColumnName="smstype" />
+          <ScalarProperty Name="sendtime" ColumnName="sendtime" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="vcode" ColumnName="vcode" />
+          <ScalarProperty Name="hits" ColumnName="hits" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_SMSEmail">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_SMSEmail">
+        <MappingFragment StoreEntitySet="hx_td_SMSEmail">
+          <ScalarProperty Name="SmsEmailId" ColumnName="SmsEmailId" />
+          <ScalarProperty Name="SmsEname" ColumnName="SmsEname" />
+          <ScalarProperty Name="SEContext" ColumnName="SEContext" />
+          <ScalarProperty Name="SEtype" ColumnName="SEtype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_System_message">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_System_message">
+        <MappingFragment StoreEntitySet="hx_td_System_message">
+          <ScalarProperty Name="Messageid" ColumnName="Messageid" />
+          <ScalarProperty Name="MTitle" ColumnName="MTitle" />
+          <ScalarProperty Name="PubTime" ColumnName="PubTime" />
+          <ScalarProperty Name="MContext" ColumnName="MContext" />
+          <ScalarProperty Name="Mstate" ColumnName="Mstate" />
+          <ScalarProperty Name="MUrl" ColumnName="MUrl" />
+          <ScalarProperty Name="MReg" ColumnName="MReg" />
+          <ScalarProperty Name="Mtype" ColumnName="Mtype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_UserCash">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_UserCash">
+        <MappingFragment StoreEntitySet="hx_td_UserCash">
+          <ScalarProperty Name="CashChl" ColumnName="CashChl" />
+          <ScalarProperty Name="PayAmt" ColumnName="PayAmt" />
+          <ScalarProperty Name="UserCashId" ColumnName="UserCashId" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="TransAmt" ColumnName="TransAmt" />
+          <ScalarProperty Name="FeeAmt" ColumnName="FeeAmt" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="OrdIdTime" ColumnName="OrdIdTime" />
+          <ScalarProperty Name="OrdIdState" ColumnName="OrdIdState" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="TransState" ColumnName="TransState" />
+          <ScalarProperty Name="OpenAcctId" ColumnName="OpenAcctId" />
+          <ScalarProperty Name="OpenBankId" ColumnName="OpenBankId" />
+          <ScalarProperty Name="FeeObjFlag" ColumnName="FeeObjFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_Userinvitation">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_Userinvitation">
+        <MappingFragment StoreEntitySet="hx_td_Userinvitation">
+          <ScalarProperty Name="UserAct" ColumnName="UserAct" />
+          <ScalarProperty Name="invitationid" ColumnName="invitationid" />
+          <ScalarProperty Name="invcode" ColumnName="invcode" />
+          <ScalarProperty Name="invtime" ColumnName="invtime" />
+          <ScalarProperty Name="invpersonid" ColumnName="invpersonid" />
+          <ScalarProperty Name="Invpeopleid" ColumnName="Invpeopleid" />
+          <ScalarProperty Name="InvitesStates" ColumnName="InvitesStates" />
+          <ScalarProperty Name="Invitereward" ColumnName="Invitereward" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_web_Ad_type">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_web_Ad_type">
+        <MappingFragment StoreEntitySet="hx_td_web_Ad_type">
+          <ScalarProperty Name="AdTypeId" ColumnName="AdTypeId" />
+          <ScalarProperty Name="AdtypeName" ColumnName="AdtypeName" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_web_type">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_web_type">
+        <MappingFragment StoreEntitySet="hx_td_web_type">
+          <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+          <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="parentpath" ColumnName="parentpath" />
+          <ScalarProperty Name="depath" ColumnName="depath" />
+          <ScalarProperty Name="rootid" ColumnName="rootid" />
+          <ScalarProperty Name="child" ColumnName="child" />
+          <ScalarProperty Name="previd" ColumnName="previd" />
+          <ScalarProperty Name="nextid" ColumnName="nextid" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="path1" ColumnName="path1" />
+          <ScalarProperty Name="path2" ColumnName="path2" />
+          <ScalarProperty Name="path3" ColumnName="path3" />
+          <ScalarProperty Name="path4" ColumnName="path4" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_Test_records">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_Test_records">
+        <MappingFragment StoreEntitySet="hx_Test_records">
+          <ScalarProperty Name="TrecordsID" ColumnName="TrecordsID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="amt" ColumnName="amt" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_UsrBindCardC">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_UsrBindCardC">
+        <MappingFragment StoreEntitySet="hx_UsrBindCardC">
+          <ScalarProperty Name="BindCardType" ColumnName="BindCardType" />
+          <ScalarProperty Name="UsrBindCardID" ColumnName="UsrBindCardID" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="OpenAcctId" ColumnName="OpenAcctId" />
+          <ScalarProperty Name="OpenBankId" ColumnName="OpenBankId" />
+          <ScalarProperty Name="defCard" ColumnName="defCard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Overdue_repayment">
+      <EntityTypeMapping TypeName="chuangtouModel.Overdue_repayment">
+        <MappingFragment StoreEntitySet="Overdue_repayment">
+          <ScalarProperty Name="overdue_repayment_id" ColumnName="overdue_repayment_id" />
+          <ScalarProperty Name="repayment_plan_id" ColumnName="repayment_plan_id" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="loan_management_fee" ColumnName="loan_management_fee" />
+          <ScalarProperty Name="ordinary_overdue_management_fees" ColumnName="ordinary_overdue_management_fees" />
+          <ScalarProperty Name="seriously_overdue_management_fees" ColumnName="seriously_overdue_management_fees" />
+          <ScalarProperty Name="ordinary_overdue_penalty" ColumnName="ordinary_overdue_penalty" />
+          <ScalarProperty Name="seriously_overdue_penalty" ColumnName="seriously_overdue_penalty" />
+          <ScalarProperty Name="actual_repayment_time" ColumnName="actual_repayment_time" />
+          <ScalarProperty Name="overdue_days" ColumnName="overdue_days" />
+          <ScalarProperty Name="interest_state" ColumnName="interest_state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="provinces">
+      <EntityTypeMapping TypeName="chuangtouModel.province">
+        <MappingFragment StoreEntitySet="province">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="provinceID" ColumnName="provinceID" />
+          <ScalarProperty Name="province1" ColumnName="province" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_admin_role">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_admin_role">
+        <MappingFragment StoreEntitySet="hx_td_admin_role">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+          <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+          <ScalarProperty Name="isread" ColumnName="isread" />
+          <ScalarProperty Name="isadd" ColumnName="isadd" />
+          <ScalarProperty Name="isedit" ColumnName="isedit" />
+          <ScalarProperty Name="isdelete" ColumnName="isdelete" />
+          <ScalarProperty Name="adminuserid" ColumnName="adminuserid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_AD_type">
+      <EntityTypeMapping TypeName="chuangtouModel.V_AD_type">
+        <MappingFragment StoreEntitySet="V_AD_type">
+          <ScalarProperty Name="Adid" ColumnName="Adid" />
+          <ScalarProperty Name="AdName" ColumnName="AdName" />
+          <ScalarProperty Name="Adcreatetime" ColumnName="Adcreatetime" />
+          <ScalarProperty Name="AdState" ColumnName="AdState" />
+          <ScalarProperty Name="AdTypeId" ColumnName="AdTypeId" />
+          <ScalarProperty Name="AdLink" ColumnName="AdLink" />
+          <ScalarProperty Name="AdPath" ColumnName="AdPath" />
+          <ScalarProperty Name="AdtypeName" ColumnName="AdtypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_admin_role_menu">
+      <EntityTypeMapping TypeName="chuangtouModel.v_admin_role_menu">
+        <MappingFragment StoreEntitySet="v_admin_role_menu">
+          <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+          <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="rootid" ColumnName="rootid" />
+          <ScalarProperty Name="depath" ColumnName="depath" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="isread" ColumnName="isread" />
+          <ScalarProperty Name="isadd" ColumnName="isadd" />
+          <ScalarProperty Name="isedit" ColumnName="isedit" />
+          <ScalarProperty Name="isdelete" ColumnName="isdelete" />
+          <ScalarProperty Name="adminuserid" ColumnName="adminuserid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="path1" ColumnName="path1" />
+          <ScalarProperty Name="path2" ColumnName="path2" />
+          <ScalarProperty Name="path3" ColumnName="path3" />
+          <ScalarProperty Name="path4" ColumnName="path4" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_adminuser_department">
+      <EntityTypeMapping TypeName="chuangtouModel.v_adminuser_department">
+        <MappingFragment StoreEntitySet="v_adminuser_department">
+          <ScalarProperty Name="adminuserid" ColumnName="adminuserid" />
+          <ScalarProperty Name="adminuser" ColumnName="adminuser" />
+          <ScalarProperty Name="userpass" ColumnName="userpass" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="trueName" ColumnName="trueName" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="lastLoginTime" ColumnName="lastLoginTime" />
+          <ScalarProperty Name="lastLoginIP" ColumnName="lastLoginIP" />
+          <ScalarProperty Name="loginTimes" ColumnName="loginTimes" />
+          <ScalarProperty Name="worknum" ColumnName="worknum" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+          <ScalarProperty Name="area_id" ColumnName="area_id" />
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="rootid" ColumnName="rootid" />
+          <ScalarProperty Name="department_name" ColumnName="department_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Bid_Frozen">
+      <EntityTypeMapping TypeName="chuangtouModel.V_Bid_Frozen">
+        <MappingFragment StoreEntitySet="V_Bid_Frozen">
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+          <ScalarProperty Name="Frozenid" ColumnName="Frozenid" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="FreezeTrxId" ColumnName="FreezeTrxId" />
+          <ScalarProperty Name="FrozenState" ColumnName="FrozenState" />
+          <ScalarProperty Name="FrozenidNo" ColumnName="FrozenidNo" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Bid_income_statement">
+      <EntityTypeMapping TypeName="chuangtouModel.V_Bid_income_statement">
+        <MappingFragment StoreEntitySet="V_Bid_income_statement">
+          <ScalarProperty Name="income_statement_id" ColumnName="income_statement_id" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="OutCustId" ColumnName="OutCustId" />
+          <ScalarProperty Name="annual_revenue" ColumnName="annual_revenue" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="current_investment_period" ColumnName="current_investment_period" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="interest_payment_date" ColumnName="interest_payment_date" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="InCustId" ColumnName="InCustId" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="interestpayment" ColumnName="interestpayment" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="BidOrderid" ColumnName="BidOrderid" />
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_bid_records_bonus_account">
+      <EntityTypeMapping TypeName="chuangtouModel.V_bid_records_bonus_account">
+        <MappingFragment StoreEntitySet="V_bid_records_bonus_account">
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="current_period" ColumnName="current_period" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="proid" ColumnName="proid" />
+          <ScalarProperty Name="bonus_account_id" ColumnName="bonus_account_id" />
+          <ScalarProperty Name="activity_schedule_id" ColumnName="activity_schedule_id" />
+          <ScalarProperty Name="activity_schedule_name" ColumnName="activity_schedule_name" />
+          <ScalarProperty Name="amount_of_reward" ColumnName="amount_of_reward" />
+          <ScalarProperty Name="use_lower_limit" ColumnName="use_lower_limit" />
+          <ScalarProperty Name="reward" ColumnName="reward" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="reward_state" ColumnName="reward_state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_bonus_account">
+      <EntityTypeMapping TypeName="chuangtouModel.V_bonus_account">
+        <MappingFragment StoreEntitySet="V_bonus_account">
+          <ScalarProperty Name="iD_number" ColumnName="iD_number" />
+          <ScalarProperty Name="bonus_account_id" ColumnName="bonus_account_id" />
+          <ScalarProperty Name="activity_schedule_id" ColumnName="activity_schedule_id" />
+          <ScalarProperty Name="activity_schedule_name" ColumnName="activity_schedule_name" />
+          <ScalarProperty Name="amount_of_reward" ColumnName="amount_of_reward" />
+          <ScalarProperty Name="use_lower_limit" ColumnName="use_lower_limit" />
+          <ScalarProperty Name="reward" ColumnName="reward" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="reward_state" ColumnName="reward_state" />
+          <ScalarProperty Name="reward_remarks" ColumnName="reward_remarks" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="act_state" ColumnName="act_state" />
+          <ScalarProperty Name="proid" ColumnName="proid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_bonus_account_water">
+      <EntityTypeMapping TypeName="chuangtouModel.V_bonus_account_water">
+        <MappingFragment StoreEntitySet="V_bonus_account_water">
+          <ScalarProperty Name="account_water_id" ColumnName="account_water_id" />
+          <ScalarProperty Name="bonus_account_id" ColumnName="bonus_account_id" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="income" ColumnName="income" />
+          <ScalarProperty Name="expenditure" ColumnName="expenditure" />
+          <ScalarProperty Name="time_of_occurrence" ColumnName="time_of_occurrence" />
+          <ScalarProperty Name="reward_balance" ColumnName="reward_balance" />
+          <ScalarProperty Name="award_description" ColumnName="award_description" />
+          <ScalarProperty Name="water_type" ColumnName="water_type" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="act_state" ColumnName="act_state" />
+          <ScalarProperty Name="activity_schedule_name" ColumnName="activity_schedule_name" />
+          <ScalarProperty Name="reward_state" ColumnName="reward_state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_borrow_repayment_plan">
+      <EntityTypeMapping TypeName="chuangtouModel.V_borrow_repayment_plan">
+        <MappingFragment StoreEntitySet="V_borrow_repayment_plan">
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="project_type_id" ColumnName="project_type_id" />
+          <ScalarProperty Name="borrowing_thumbnail" ColumnName="borrowing_thumbnail" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="life_of_loan" ColumnName="life_of_loan" />
+          <ScalarProperty Name="unit_day" ColumnName="unit_day" />
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="month_payment_date" ColumnName="month_payment_date" />
+          <ScalarProperty Name="repayment_date" ColumnName="repayment_date" />
+          <ScalarProperty Name="minimum" ColumnName="minimum" />
+          <ScalarProperty Name="maxmum" ColumnName="maxmum" />
+          <ScalarProperty Name="companyid" ColumnName="companyid" />
+          <ScalarProperty Name="guarantee_way_id" ColumnName="guarantee_way_id" />
+          <ScalarProperty Name="payment_options" ColumnName="payment_options" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="service_charge" ColumnName="service_charge" />
+          <ScalarProperty Name="loan_management_fee" ColumnName="loan_management_fee" />
+          <ScalarProperty Name="investors_management_fee" ColumnName="investors_management_fee" />
+          <ScalarProperty Name="ordinary_overdue_management_fees" ColumnName="ordinary_overdue_management_fees" />
+          <ScalarProperty Name="seriously_overdue_management_fees" ColumnName="seriously_overdue_management_fees" />
+          <ScalarProperty Name="ordinary_overdue_penalty" ColumnName="ordinary_overdue_penalty" />
+          <ScalarProperty Name="seriously_overdue_penalty" ColumnName="seriously_overdue_penalty" />
+          <ScalarProperty Name="transfer_Expenses" ColumnName="transfer_Expenses" />
+          <ScalarProperty Name="fundraising_amount" ColumnName="fundraising_amount" />
+          <ScalarProperty Name="tender_state" ColumnName="tender_state" />
+          <ScalarProperty Name="full_scale_loan" ColumnName="full_scale_loan" />
+          <ScalarProperty Name="flow_return" ColumnName="flow_return" />
+          <ScalarProperty Name="recommend" ColumnName="recommend" />
+          <ScalarProperty Name="sys_time" ColumnName="sys_time" />
+          <ScalarProperty Name="repaymentperiods" ColumnName="repaymentperiods" />
+          <ScalarProperty Name="reviewremarks" ColumnName="reviewremarks" />
+          <ScalarProperty Name="recheckremarks" ColumnName="recheckremarks" />
+          <ScalarProperty Name="guarantee_fee" ColumnName="guarantee_fee" />
+          <ScalarProperty Name="consultingAMT" ColumnName="consultingAMT" />
+          <ScalarProperty Name="guaranteeAMT" ColumnName="guaranteeAMT" />
+          <ScalarProperty Name="B_Rates" ColumnName="B_Rates" />
+          <ScalarProperty Name="H_Repayment_Amt" ColumnName="H_Repayment_Amt" />
+          <ScalarProperty Name="Repay_Time" ColumnName="Repay_Time" />
+          <ScalarProperty Name="repayment_plan_id" ColumnName="repayment_plan_id" />
+          <ScalarProperty Name="current_period" ColumnName="current_period" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="repayment_type" ColumnName="repayment_type" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="actual_amount_repayment" ColumnName="actual_amount_repayment" />
+          <ScalarProperty Name="repayment_state" ColumnName="repayment_state" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="interestpayment" ColumnName="interestpayment" />
+          <ScalarProperty Name="fees" ColumnName="fees" />
+          <ScalarProperty Name="O_penalty" ColumnName="O_penalty" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="shall_repayment" ColumnName="shall_repayment" />
+          <ScalarProperty Name="available_balance" ColumnName="available_balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_borrowing_Bid_records_income_statement">
+      <EntityTypeMapping TypeName="chuangtouModel.V_borrowing_Bid_records_income_statement">
+        <MappingFragment StoreEntitySet="V_borrowing_Bid_records_income_statement">
+          <ScalarProperty Name="current_period" ColumnName="current_period" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="contractpath" ColumnName="contractpath" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="income_statement_id" ColumnName="income_statement_id" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="annual_revenue" ColumnName="annual_revenue" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="current_investment_period" ColumnName="current_investment_period" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="interest_payment_date" ColumnName="interest_payment_date" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="available_balance" ColumnName="available_balance" />
+          <ScalarProperty Name="payment_options" ColumnName="payment_options" />
+          <ScalarProperty Name="BorrUsrCustId" ColumnName="BorrUsrCustId" />
+          <ScalarProperty Name="OutCustId" ColumnName="OutCustId" />
+          <ScalarProperty Name="bid_orderid" ColumnName="bid_orderid" />
+          <ScalarProperty Name="SubOrdid" ColumnName="SubOrdid" />
+          <ScalarProperty Name="SubOrdDate" ColumnName="SubOrdDate" />
+          <ScalarProperty Name="loan_management_fee" ColumnName="loan_management_fee" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="Principal" ColumnName="Principal" />
+          <ScalarProperty Name="interestpayment" ColumnName="interestpayment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_borrowing_Bid_records_income_statement_uc">
+      <EntityTypeMapping TypeName="chuangtouModel.V_borrowing_Bid_records_income_statement_uc">
+        <MappingFragment StoreEntitySet="V_borrowing_Bid_records_income_statement_uc">
+          <ScalarProperty Name="JiaxiNum" ColumnName="JiaxiNum" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="income_statement_id" ColumnName="income_statement_id" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="annual_revenue" ColumnName="annual_revenue" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="current_investment_period" ColumnName="current_investment_period" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="interest_payment_date" ColumnName="interest_payment_date" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="available_balance" ColumnName="available_balance" />
+          <ScalarProperty Name="payment_options" ColumnName="payment_options" />
+          <ScalarProperty Name="OutCustId" ColumnName="OutCustId" />
+          <ScalarProperty Name="loan_management_fee" ColumnName="loan_management_fee" />
+          <ScalarProperty Name="Principal" ColumnName="Principal" />
+          <ScalarProperty Name="interestDay" ColumnName="interestDay" />
+          <ScalarProperty Name="TotalInstallments" ColumnName="TotalInstallments" />
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_borrowing_target_addlist">
+      <EntityTypeMapping TypeName="chuangtouModel.V_borrowing_target_addlist">
+        <MappingFragment StoreEntitySet="V_borrowing_target_addlist">
+          <ScalarProperty Name="project_type_name" ColumnName="project_type_name" />
+          <ScalarProperty Name="Isinterest" ColumnName="Isinterest" />
+          <ScalarProperty Name="Collateral" ColumnName="Collateral" />
+          <ScalarProperty Name="PaySource" ColumnName="PaySource" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="IsIRC" ColumnName="IsIRC" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="borrowing_thumbnail" ColumnName="borrowing_thumbnail" />
+          <ScalarProperty Name="project_type_id" ColumnName="project_type_id" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="life_of_loan" ColumnName="life_of_loan" />
+          <ScalarProperty Name="unit_day" ColumnName="unit_day" />
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="month_payment_date" ColumnName="month_payment_date" />
+          <ScalarProperty Name="repayment_date" ColumnName="repayment_date" />
+          <ScalarProperty Name="minimum" ColumnName="minimum" />
+          <ScalarProperty Name="maxmum" ColumnName="maxmum" />
+          <ScalarProperty Name="companyid" ColumnName="companyid" />
+          <ScalarProperty Name="guarantee_way_id" ColumnName="guarantee_way_id" />
+          <ScalarProperty Name="payment_options" ColumnName="payment_options" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="service_charge" ColumnName="service_charge" />
+          <ScalarProperty Name="loan_management_fee" ColumnName="loan_management_fee" />
+          <ScalarProperty Name="investors_management_fee" ColumnName="investors_management_fee" />
+          <ScalarProperty Name="ordinary_overdue_management_fees" ColumnName="ordinary_overdue_management_fees" />
+          <ScalarProperty Name="seriously_overdue_management_fees" ColumnName="seriously_overdue_management_fees" />
+          <ScalarProperty Name="ordinary_overdue_penalty" ColumnName="ordinary_overdue_penalty" />
+          <ScalarProperty Name="seriously_overdue_penalty" ColumnName="seriously_overdue_penalty" />
+          <ScalarProperty Name="transfer_Expenses" ColumnName="transfer_Expenses" />
+          <ScalarProperty Name="fundraising_amount" ColumnName="fundraising_amount" />
+          <ScalarProperty Name="tender_state" ColumnName="tender_state" />
+          <ScalarProperty Name="full_scale_loan" ColumnName="full_scale_loan" />
+          <ScalarProperty Name="flow_return" ColumnName="flow_return" />
+          <ScalarProperty Name="recommend" ColumnName="recommend" />
+          <ScalarProperty Name="sys_time" ColumnName="sys_time" />
+          <ScalarProperty Name="repaymentperiods" ColumnName="repaymentperiods" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="guarantee_way_name" ColumnName="guarantee_way_name" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="target_detailed_id" ColumnName="target_detailed_id" />
+          <ScalarProperty Name="reviewremarks" ColumnName="reviewremarks" />
+          <ScalarProperty Name="recheckremarks" ColumnName="recheckremarks" />
+          <ScalarProperty Name="guarantee_fee" ColumnName="guarantee_fee" />
+          <ScalarProperty Name="consultingAMT" ColumnName="consultingAMT" />
+          <ScalarProperty Name="guaranteeAMT" ColumnName="guaranteeAMT" />
+          <ScalarProperty Name="B_Rates" ColumnName="B_Rates" />
+          <ScalarProperty Name="H_Repayment_Amt" ColumnName="H_Repayment_Amt" />
+          <ScalarProperty Name="Repay_Time" ColumnName="Repay_Time" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="G_contract_Path" ColumnName="G_contract_Path" />
+          <ScalarProperty Name="BorrUsrCustId" ColumnName="BorrUsrCustId" />
+          <ScalarProperty Name="GuarType" ColumnName="GuarType" />
+          <ScalarProperty Name="GuarCompUsrCustId" ColumnName="GuarCompUsrCustId" />
+          <ScalarProperty Name="borrower_circumstances" ColumnName="borrower_circumstances" />
+          <ScalarProperty Name="item_details" ColumnName="item_details" />
+          <ScalarProperty Name="borrower_base_material" ColumnName="borrower_base_material" />
+          <ScalarProperty Name="use_funds" ColumnName="use_funds" />
+          <ScalarProperty Name="independent_advice" ColumnName="independent_advice" />
+          <ScalarProperty Name="guarantee_agency_views" ColumnName="guarantee_agency_views" />
+          <ScalarProperty Name="risk_control_measures" ColumnName="risk_control_measures" />
+          <ScalarProperty Name="IsUse" ColumnName="IsUse" />
+          <ScalarProperty Name="indexorder" ColumnName="indexorder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_borrowing_target_review">
+      <EntityTypeMapping TypeName="chuangtouModel.V_borrowing_target_review">
+        <MappingFragment StoreEntitySet="V_borrowing_target_review">
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="borrowing_thumbnail" ColumnName="borrowing_thumbnail" />
+          <ScalarProperty Name="project_type_id" ColumnName="project_type_id" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="life_of_loan" ColumnName="life_of_loan" />
+          <ScalarProperty Name="unit_day" ColumnName="unit_day" />
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="month_payment_date" ColumnName="month_payment_date" />
+          <ScalarProperty Name="repayment_date" ColumnName="repayment_date" />
+          <ScalarProperty Name="minimum" ColumnName="minimum" />
+          <ScalarProperty Name="maxmum" ColumnName="maxmum" />
+          <ScalarProperty Name="companyid" ColumnName="companyid" />
+          <ScalarProperty Name="guarantee_way_id" ColumnName="guarantee_way_id" />
+          <ScalarProperty Name="payment_options" ColumnName="payment_options" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="service_charge" ColumnName="service_charge" />
+          <ScalarProperty Name="loan_management_fee" ColumnName="loan_management_fee" />
+          <ScalarProperty Name="investors_management_fee" ColumnName="investors_management_fee" />
+          <ScalarProperty Name="ordinary_overdue_management_fees" ColumnName="ordinary_overdue_management_fees" />
+          <ScalarProperty Name="seriously_overdue_management_fees" ColumnName="seriously_overdue_management_fees" />
+          <ScalarProperty Name="ordinary_overdue_penalty" ColumnName="ordinary_overdue_penalty" />
+          <ScalarProperty Name="seriously_overdue_penalty" ColumnName="seriously_overdue_penalty" />
+          <ScalarProperty Name="transfer_Expenses" ColumnName="transfer_Expenses" />
+          <ScalarProperty Name="fundraising_amount" ColumnName="fundraising_amount" />
+          <ScalarProperty Name="full_scale_loan" ColumnName="full_scale_loan" />
+          <ScalarProperty Name="flow_return" ColumnName="flow_return" />
+          <ScalarProperty Name="recommend" ColumnName="recommend" />
+          <ScalarProperty Name="sys_time" ColumnName="sys_time" />
+          <ScalarProperty Name="repaymentperiods" ColumnName="repaymentperiods" />
+          <ScalarProperty Name="reviewid" ColumnName="reviewid" />
+          <ScalarProperty Name="reviewremarks" ColumnName="reviewremarks" />
+          <ScalarProperty Name="reviewtime" ColumnName="reviewtime" />
+          <ScalarProperty Name="admin_operator" ColumnName="admin_operator" />
+          <ScalarProperty Name="adminuserid" ColumnName="adminuserid" />
+          <ScalarProperty Name="trueName" ColumnName="trueName" />
+          <ScalarProperty Name="tender_state" ColumnName="tender_state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_contract_type_template">
+      <EntityTypeMapping TypeName="chuangtouModel.V_contract_type_template">
+        <MappingFragment StoreEntitySet="V_contract_type_template">
+          <ScalarProperty Name="contract_template_id" ColumnName="contract_template_id" />
+          <ScalarProperty Name="contract_template_name" ColumnName="contract_template_name" />
+          <ScalarProperty Name="contract_template_context" ColumnName="contract_template_context" />
+          <ScalarProperty Name="usestate" ColumnName="usestate" />
+          <ScalarProperty Name="cretatetime" ColumnName="cretatetime" />
+          <ScalarProperty Name="contract_type_name" ColumnName="contract_type_name" />
+          <ScalarProperty Name="contract_type_id" ColumnName="contract_type_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_hx_Bid_records_borrowing_target_uc">
+      <EntityTypeMapping TypeName="chuangtouModel.V_hx_Bid_records_borrowing_target_uc">
+        <MappingFragment StoreEntitySet="V_hx_Bid_records_borrowing_target_uc">
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="current_period" ColumnName="current_period" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="investment_maturity" ColumnName="investment_maturity" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="invest_state" ColumnName="invest_state" />
+          <ScalarProperty Name="flow_return" ColumnName="flow_return" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="withoutinterest" ColumnName="withoutinterest" />
+          <ScalarProperty Name="haveinterest" ColumnName="haveinterest" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="payment_options" ColumnName="payment_options" />
+          <ScalarProperty Name="contractid" ColumnName="contractid" />
+          <ScalarProperty Name="contractpath" ColumnName="contractpath" />
+          <ScalarProperty Name="life_of_loan" ColumnName="life_of_loan" />
+          <ScalarProperty Name="unit_day" ColumnName="unit_day" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="FrozenidAmount" ColumnName="FrozenidAmount" />
+          <ScalarProperty Name="FrozenidNo" ColumnName="FrozenidNo" />
+          <ScalarProperty Name="FrozenState" ColumnName="FrozenState" />
+          <ScalarProperty Name="FreezeTrxId" ColumnName="FreezeTrxId" />
+          <ScalarProperty Name="borrUsrCustid" ColumnName="borrUsrCustid" />
+          <ScalarProperty Name="available_balance" ColumnName="available_balance" />
+          <ScalarProperty Name="tender_state" ColumnName="tender_state" />
+          <ScalarProperty Name="invitationcode" ColumnName="invitationcode" />
+          <ScalarProperty Name="borrealname" ColumnName="borrealname" />
+          <ScalarProperty Name="borusername" ColumnName="borusername" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+          <ScalarProperty Name="frozen_sum" ColumnName="frozen_sum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_incomeborr_count">
+      <EntityTypeMapping TypeName="chuangtouModel.V_incomeborr_count">
+        <MappingFragment StoreEntitySet="V_incomeborr_count">
+          <ScalarProperty Name="service_charge" ColumnName="service_charge" />
+          <ScalarProperty Name="income_statement_id" ColumnName="income_statement_id" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="OutCustId" ColumnName="OutCustId" />
+          <ScalarProperty Name="annual_revenue" ColumnName="annual_revenue" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="current_investment_period" ColumnName="current_investment_period" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="interest_payment_date" ColumnName="interest_payment_date" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="InCustId" ColumnName="InCustId" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="Principal" ColumnName="Principal" />
+          <ScalarProperty Name="interestpayment" ColumnName="interestpayment" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="BidOrderid" ColumnName="BidOrderid" />
+          <ScalarProperty Name="interestDay" ColumnName="interestDay" />
+          <ScalarProperty Name="TotalInstallments" ColumnName="TotalInstallments" />
+          <ScalarProperty Name="BorrFees" ColumnName="BorrFees" />
+          <ScalarProperty Name="InveFess" ColumnName="InveFess" />
+          <ScalarProperty Name="loan_management_fee" ColumnName="loan_management_fee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_LL_Cash_User">
+      <EntityTypeMapping TypeName="chuangtouModel.V_LL_Cash_User">
+        <MappingFragment StoreEntitySet="V_LL_Cash_User">
+          <ScalarProperty Name="LLcashid" ColumnName="LLcashid" />
+          <ScalarProperty Name="no_order" ColumnName="no_order" />
+          <ScalarProperty Name="dt_order" ColumnName="dt_order" />
+          <ScalarProperty Name="money_order" ColumnName="money_order" />
+          <ScalarProperty Name="acct_name" ColumnName="acct_name" />
+          <ScalarProperty Name="province_code" ColumnName="province_code" />
+          <ScalarProperty Name="city_code" ColumnName="city_code" />
+          <ScalarProperty Name="brabank_name" ColumnName="brabank_name" />
+          <ScalarProperty Name="ordertime" ColumnName="ordertime" />
+          <ScalarProperty Name="card_no" ColumnName="card_no" />
+          <ScalarProperty Name="paystate" ColumnName="paystate" />
+          <ScalarProperty Name="Usrid" ColumnName="Usrid" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="bank_code" ColumnName="bank_code" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="h_state" ColumnName="h_state" />
+          <ScalarProperty Name="htype" ColumnName="htype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_LLBack_Card_List">
+      <EntityTypeMapping TypeName="chuangtouModel.V_LLBack_Card_List">
+        <MappingFragment StoreEntitySet="V_LLBack_Card_List">
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="bindCardid" ColumnName="bindCardid" />
+          <ScalarProperty Name="Usrid" ColumnName="Usrid" />
+          <ScalarProperty Name="BankCard" ColumnName="BankCard" />
+          <ScalarProperty Name="Bindtime" ColumnName="Bindtime" />
+          <ScalarProperty Name="Re_Amt" ColumnName="Re_Amt" />
+          <ScalarProperty Name="Quota" ColumnName="Quota" />
+          <ScalarProperty Name="Citycode" ColumnName="Citycode" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="no_agree" ColumnName="no_agree" />
+          <ScalarProperty Name="cardstate" ColumnName="cardstate" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="CardImage" ColumnName="CardImage" />
+          <ScalarProperty Name="province_code" ColumnName="province_code" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_LLPay_Re">
+      <EntityTypeMapping TypeName="chuangtouModel.V_LLPay_Re">
+        <MappingFragment StoreEntitySet="V_LLPay_Re">
+          <ScalarProperty Name="Rechargeid" ColumnName="Rechargeid" />
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+          <ScalarProperty Name="no_order" ColumnName="no_order" />
+          <ScalarProperty Name="ordertime" ColumnName="ordertime" />
+          <ScalarProperty Name="info_order" ColumnName="info_order" />
+          <ScalarProperty Name="money_order" ColumnName="money_order" />
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="card_no" ColumnName="card_no" />
+          <ScalarProperty Name="ReState" ColumnName="ReState" />
+          <ScalarProperty Name="oid_paybill" ColumnName="oid_paybill" />
+          <ScalarProperty Name="re_cashid" ColumnName="re_cashid" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="TransAmt" ColumnName="TransAmt" />
+          <ScalarProperty Name="h_state" ColumnName="h_state" />
+          <ScalarProperty Name="htype" ColumnName="htype" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="OrdTime" ColumnName="OrdTime" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Phone_records">
+      <EntityTypeMapping TypeName="chuangtouModel.V_Phone_records">
+        <MappingFragment StoreEntitySet="V_Phone_records">
+          <ScalarProperty Name="problemType" ColumnName="problemType" />
+          <ScalarProperty Name="gtType" ColumnName="gtType" />
+          <ScalarProperty Name="recordsid" ColumnName="recordsid" />
+          <ScalarProperty Name="recordcontext" ColumnName="recordcontext" />
+          <ScalarProperty Name="recordtime" ColumnName="recordtime" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="adminid" ColumnName="adminid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="adminuser" ColumnName="adminuser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Recharge_user_bank">
+      <EntityTypeMapping TypeName="chuangtouModel.V_Recharge_user_bank">
+        <MappingFragment StoreEntitySet="V_Recharge_user_bank">
+          <ScalarProperty Name="usertypes1" ColumnName="usertypes" />
+          <ScalarProperty Name="useridentity" ColumnName="useridentity" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="recharge_history_id" ColumnName="recharge_history_id" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="recharge_amount" ColumnName="recharge_amount" />
+          <ScalarProperty Name="recharge_time" ColumnName="recharge_time" />
+          <ScalarProperty Name="account_amount" ColumnName="account_amount" />
+          <ScalarProperty Name="order_No" ColumnName="order_No" />
+          <ScalarProperty Name="recharge_condition" ColumnName="recharge_condition" />
+          <ScalarProperty Name="recharge_bank" ColumnName="recharge_bank" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Repayment_plan_loan_records">
+      <EntityTypeMapping TypeName="chuangtouModel.V_Repayment_plan_loan_records">
+        <MappingFragment StoreEntitySet="V_Repayment_plan_loan_records">
+          <ScalarProperty Name="repayment_plan_id" ColumnName="repayment_plan_id" />
+          <ScalarProperty Name="BorrUsrCustId" ColumnName="BorrUsrCustId" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="current_period" ColumnName="current_period" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="repayment_type" ColumnName="repayment_type" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="actual_amount_repayment" ColumnName="actual_amount_repayment" />
+          <ScalarProperty Name="repayment_state" ColumnName="repayment_state" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="interestpayment" ColumnName="interestpayment" />
+          <ScalarProperty Name="fees" ColumnName="fees" />
+          <ScalarProperty Name="O_penalty" ColumnName="O_penalty" />
+          <ScalarProperty Name="shall_repayment" ColumnName="shall_repayment" />
+          <ScalarProperty Name="pla_amt_generation" ColumnName="pla_amt_generation" />
+          <ScalarProperty Name="Interest_spreads" ColumnName="Interest_spreads" />
+          <ScalarProperty Name="Rep_Remarks" ColumnName="Rep_Remarks" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="Loan_records_id" ColumnName="Loan_records_id" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="InCustId" ColumnName="InCustId" />
+          <ScalarProperty Name="OutCustId" ColumnName="OutCustId" />
+          <ScalarProperty Name="LoanAMT" ColumnName="LoanAMT" />
+          <ScalarProperty Name="LoanOrdId" ColumnName="LoanOrdId" />
+          <ScalarProperty Name="LoanDate" ColumnName="LoanDate" />
+          <ScalarProperty Name="SubOrdid" ColumnName="SubOrdid" />
+          <ScalarProperty Name="SubOrdDate" ColumnName="SubOrdDate" />
+          <ScalarProperty Name="unFreezeOrdId" ColumnName="unFreezeOrdId" />
+          <ScalarProperty Name="FreezeTrxId" ColumnName="FreezeTrxId" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="available_balance" ColumnName="available_balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_SMS_Record">
+      <EntityTypeMapping TypeName="chuangtouModel.V_SMS_Record">
+        <MappingFragment StoreEntitySet="V_SMS_Record">
+          <ScalarProperty Name="sms_record_id" ColumnName="sms_record_id" />
+          <ScalarProperty Name="senduserid" ColumnName="senduserid" />
+          <ScalarProperty Name="smscontext" ColumnName="smscontext" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="smstype" ColumnName="smstype" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="sendtime" ColumnName="sendtime" />
+          <ScalarProperty Name="vcode" ColumnName="vcode" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_td_LLpay_bank">
+      <EntityTypeMapping TypeName="chuangtouModel.V_td_LLpay_bank">
+        <MappingFragment StoreEntitySet="V_td_LLpay_bank">
+          <ScalarProperty Name="Rechargeid" ColumnName="Rechargeid" />
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+          <ScalarProperty Name="no_order" ColumnName="no_order" />
+          <ScalarProperty Name="ordertime" ColumnName="ordertime" />
+          <ScalarProperty Name="info_order" ColumnName="info_order" />
+          <ScalarProperty Name="money_order" ColumnName="money_order" />
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="card_no" ColumnName="card_no" />
+          <ScalarProperty Name="ReState" ColumnName="ReState" />
+          <ScalarProperty Name="oid_paybill" ColumnName="oid_paybill" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_type_news">
+      <EntityTypeMapping TypeName="chuangtouModel.V_type_news">
+        <MappingFragment StoreEntitySet="V_type_news">
+          <ScalarProperty Name="ClickCount" ColumnName="ClickCount" />
+          <ScalarProperty Name="newimg" ColumnName="newimg" />
+          <ScalarProperty Name="newid" ColumnName="newid" />
+          <ScalarProperty Name="web_Type_menu_id" ColumnName="web_Type_menu_id" />
+          <ScalarProperty Name="News_title" ColumnName="News_title" />
+          <ScalarProperty Name="News_Key" ColumnName="News_Key" />
+          <ScalarProperty Name="news_Des" ColumnName="news_Des" />
+          <ScalarProperty Name="context" ColumnName="context" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="adminuserid" ColumnName="adminuserid" />
+          <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="rootid" ColumnName="rootid" />
+          <ScalarProperty Name="path1" ColumnName="path1" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="topmenuname" ColumnName="topmenuname" />
+          <ScalarProperty Name="comm" ColumnName="comm" />
+          <ScalarProperty Name="listcomm" ColumnName="listcomm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_UserCash_Bank">
+      <EntityTypeMapping TypeName="chuangtouModel.V_UserCash_Bank">
+        <MappingFragment StoreEntitySet="V_UserCash_Bank">
+          <ScalarProperty Name="CashChl" ColumnName="CashChl" />
+          <ScalarProperty Name="useridentity" ColumnName="useridentity" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="UserCashId" ColumnName="UserCashId" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="TransAmt" ColumnName="TransAmt" />
+          <ScalarProperty Name="FeeAmt" ColumnName="FeeAmt" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="OrdIdTime" ColumnName="OrdIdTime" />
+          <ScalarProperty Name="OrdIdState" ColumnName="OrdIdState" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="TransState" ColumnName="TransState" />
+          <ScalarProperty Name="OpenAcctId" ColumnName="OpenAcctId" />
+          <ScalarProperty Name="OpenBankId" ColumnName="OpenBankId" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="available_balance" ColumnName="available_balance" />
+          <ScalarProperty Name="usertypes" ColumnName="usertypes" />
+          <ScalarProperty Name="FeeObjFlag" ColumnName="FeeObjFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_UserInvitation">
+      <EntityTypeMapping TypeName="chuangtouModel.V_UserInvitation">
+        <MappingFragment StoreEntitySet="V_UserInvitation">
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="invpersonid" ColumnName="invpersonid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="invitationid" ColumnName="invitationid" />
+          <ScalarProperty Name="invcode" ColumnName="invcode" />
+          <ScalarProperty Name="invtime" ColumnName="invtime" />
+          <ScalarProperty Name="Invpeopleid" ColumnName="Invpeopleid" />
+          <ScalarProperty Name="InvitesStates" ColumnName="InvitesStates" />
+          <ScalarProperty Name="Invitereward" ColumnName="Invitereward" />
+          <ScalarProperty Name="userstate" ColumnName="userstate" />
+          <ScalarProperty Name="registration_time" ColumnName="registration_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_UsrBindCardBank">
+      <EntityTypeMapping TypeName="chuangtouModel.V_UsrBindCardBank">
+        <MappingFragment StoreEntitySet="V_UsrBindCardBank">
+          <ScalarProperty Name="isGren" ColumnName="isGren" />
+          <ScalarProperty Name="BindCardType" ColumnName="BindCardType" />
+          <ScalarProperty Name="CardImageNew" ColumnName="CardImageNew" />
+          <ScalarProperty Name="Isordinary" ColumnName="Isordinary" />
+          <ScalarProperty Name="Isquick" ColumnName="Isquick" />
+          <ScalarProperty Name="CardImage" ColumnName="CardImage" />
+          <ScalarProperty Name="UsrBindCardID" ColumnName="UsrBindCardID" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="OpenAcctId" ColumnName="OpenAcctId" />
+          <ScalarProperty Name="OpenBankId" ColumnName="OpenBankId" />
+          <ScalarProperty Name="defCard" ColumnName="defCard" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_yaoqin_count">
+      <EntityTypeMapping TypeName="chuangtouModel.V_yaoqin_count">
+        <MappingFragment StoreEntitySet="V_yaoqin_count">
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+          <ScalarProperty Name="invitationcode" ColumnName="invitationcode" />
+          <ScalarProperty Name="yaousername" ColumnName="yaousername" />
+          <ScalarProperty Name="yaouid" ColumnName="yaouid" />
+          <ScalarProperty Name="invuid" ColumnName="invuid" />
+          <ScalarProperty Name="invusername" ColumnName="invusername" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="yaorealname" ColumnName="yaorealname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_DepUserLimit1">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_DepUserLimit1">
+        <MappingFragment StoreEntitySet="hx_DepUserLimit">
+          <ScalarProperty Name="createTime" ColumnName="createTime" />
+          <ScalarProperty Name="limitId" ColumnName="limitId" />
+          <ScalarProperty Name="adminUserId" ColumnName="adminUserId" />
+          <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+          <ScalarProperty Name="limitType" ColumnName="limitType" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_AdminLimitInfo">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_AdminLimitInfo">
+        <MappingFragment StoreEntitySet="hx_AdminLimitInfo">
+          <ScalarProperty Name="UrlPara" ColumnName="UrlPara" />
+          <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+          <ScalarProperty Name="lastTime" ColumnName="lastTime" />
+          <ScalarProperty Name="lastOper" ColumnName="lastOper" />
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="SortId" ColumnName="SortId" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DepUserLimitInfo">
+      <EntityTypeMapping TypeName="chuangtouModel.V_DepUserLimitInfo">
+        <MappingFragment StoreEntitySet="V_DepUserLimitInfo">
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="relationId" ColumnName="relationId" />
+          <ScalarProperty Name="adminUserId" ColumnName="adminUserId" />
+          <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+          <ScalarProperty Name="limitType" ColumnName="limitType" />
+          <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+          <ScalarProperty Name="lastTime" ColumnName="lastTime" />
+          <ScalarProperty Name="lastOper" ColumnName="lastOper" />
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="SortId" ColumnName="SortId" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_invitation_record">
+      <EntityTypeMapping TypeName="chuangtouModel.V_invitation_record">
+        <MappingFragment StoreEntitySet="V_invitation_record">
+          <ScalarProperty Name="ActTypeId" ColumnName="ActTypeId" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="water_type" ColumnName="water_type" />
+          <ScalarProperty Name="award_description" ColumnName="award_description" />
+          <ScalarProperty Name="income" ColumnName="income" />
+          <ScalarProperty Name="Invpeopleid" ColumnName="Invpeopleid" />
+          <ScalarProperty Name="invpersonid" ColumnName="invpersonid" />
+          <ScalarProperty Name="invtime" ColumnName="invtime" />
+          <ScalarProperty Name="invcode" ColumnName="invcode" />
+          <ScalarProperty Name="invitationid" ColumnName="invitationid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_usrlogininfo">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_usrlogininfo">
+        <MappingFragment StoreEntitySet="hx_td_usrlogininfo">
+          <ScalarProperty Name="loginsource" ColumnName="loginsource" />
+          <ScalarProperty Name="logincity" ColumnName="logincity" />
+          <ScalarProperty Name="loginIP" ColumnName="loginIP" />
+          <ScalarProperty Name="loginstate" ColumnName="loginstate" />
+          <ScalarProperty Name="loginusrpass" ColumnName="loginusrpass" />
+          <ScalarProperty Name="Loginusrname" ColumnName="Loginusrname" />
+          <ScalarProperty Name="logintime" ColumnName="logintime" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="loginid" ColumnName="loginid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_ACT">
+      <EntityTypeMapping TypeName="chuangtouModel.V_ACT">
+        <MappingFragment StoreEntitySet="V_ACT">
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="registration_time" ColumnName="registration_time" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="ActID" ColumnName="ActID" />
+          <ScalarProperty Name="ActTypeId" ColumnName="ActTypeId" />
+          <ScalarProperty Name="Channelsource" ColumnName="Channelsource" />
+          <ScalarProperty Name="useridentity" ColumnName="useridentity" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="ActName" ColumnName="ActName" />
+          <ScalarProperty Name="ActState" ColumnName="ActState" />
+          <ScalarProperty Name="ActEndtime" ColumnName="ActEndtime" />
+          <ScalarProperty Name="ActStarttime" ColumnName="ActStarttime" />
+          <ScalarProperty Name="Createtime" ColumnName="Createtime" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="isSmsSixteen" ColumnName="isSmsSixteen" />
+          <ScalarProperty Name="isSmsFifteen" ColumnName="isSmsFifteen" />
+          <ScalarProperty Name="IsSmsSeven" ColumnName="IsSmsSeven" />
+          <ScalarProperty Name="IsSmsThree" ColumnName="IsSmsThree" />
+          <ScalarProperty Name="ISSmsOne" ColumnName="ISSmsOne" />
+          <ScalarProperty Name="UseTime" ColumnName="UseTime" />
+          <ScalarProperty Name="AmtProid" ColumnName="AmtProid" />
+          <ScalarProperty Name="UseState" ColumnName="UseState" />
+          <ScalarProperty Name="AmtEndtime" ColumnName="AmtEndtime" />
+          <ScalarProperty Name="Usehight" ColumnName="Usehight" />
+          <ScalarProperty Name="Uselower" ColumnName="Uselower" />
+          <ScalarProperty Name="Amt" ColumnName="Amt" />
+          <ScalarProperty Name="RewTypeID" ColumnName="RewTypeID" />
+          <ScalarProperty Name="UserAct" ColumnName="UserAct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_BId_userAct">
+      <EntityTypeMapping TypeName="chuangtouModel.View_BId_userAct">
+        <MappingFragment StoreEntitySet="View_BId_userAct">
+          <ScalarProperty Name="Channelsource" ColumnName="Channelsource" />
+          <ScalarProperty Name="useridentity" ColumnName="useridentity" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="isSmsSixteen" ColumnName="isSmsSixteen" />
+          <ScalarProperty Name="isSmsFifteen" ColumnName="isSmsFifteen" />
+          <ScalarProperty Name="IsSmsSeven" ColumnName="IsSmsSeven" />
+          <ScalarProperty Name="IsSmsThree" ColumnName="IsSmsThree" />
+          <ScalarProperty Name="ISSmsOne" ColumnName="ISSmsOne" />
+          <ScalarProperty Name="UseTime" ColumnName="UseTime" />
+          <ScalarProperty Name="AmtProid" ColumnName="AmtProid" />
+          <ScalarProperty Name="UseState" ColumnName="UseState" />
+          <ScalarProperty Name="AmtUses" ColumnName="AmtUses" />
+          <ScalarProperty Name="AmtEndtime" ColumnName="AmtEndtime" />
+          <ScalarProperty Name="Usehight" ColumnName="Usehight" />
+          <ScalarProperty Name="Uselower" ColumnName="Uselower" />
+          <ScalarProperty Name="Amt" ColumnName="Amt" />
+          <ScalarProperty Name="ActTypeId" ColumnName="ActTypeId" />
+          <ScalarProperty Name="RewTypeID" ColumnName="RewTypeID" />
+          <ScalarProperty Name="ActID" ColumnName="ActID" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="UserAct" ColumnName="UserAct" />
+          <ScalarProperty Name="JiaxiNum" ColumnName="JiaxiNum" />
+          <ScalarProperty Name="BonusAmt" ColumnName="BonusAmt" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="current_period" ColumnName="current_period" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_SMSContext">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_SMSContext">
+        <MappingFragment StoreEntitySet="hx_SMSContext">
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="SmsSixteen" ColumnName="SmsSixteen" />
+          <ScalarProperty Name="SmsFifteen" ColumnName="SmsFifteen" />
+          <ScalarProperty Name="SmsSeven" ColumnName="SmsSeven" />
+          <ScalarProperty Name="SmsThree" ColumnName="SmsThree" />
+          <ScalarProperty Name="SmsOne" ColumnName="SmsOne" />
+          <ScalarProperty Name="ActID" ColumnName="ActID" />
+          <ScalarProperty Name="SmsID" ColumnName="SmsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_borrowing_target_bonding">
+      <EntityTypeMapping TypeName="chuangtouModel.V_borrowing_target_bonding">
+        <MappingFragment StoreEntitySet="V_borrowing_target_bonding">
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+          <ScalarProperty Name="CardId" ColumnName="CardId" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="Tax_NO" ColumnName="Tax_NO" />
+          <ScalarProperty Name="agent" ColumnName="agent" />
+          <ScalarProperty Name="business_certificate" ColumnName="business_certificate" />
+          <ScalarProperty Name="business_licence" ColumnName="business_licence" />
+          <ScalarProperty Name="company_profile" ColumnName="company_profile" />
+          <ScalarProperty Name="company_address" ColumnName="company_address" />
+          <ScalarProperty Name="Date_incorporation" ColumnName="Date_incorporation" />
+          <ScalarProperty Name="registered_capital" ColumnName="registered_capital" />
+          <ScalarProperty Name="CopName" ColumnName="CopName" />
+          <ScalarProperty Name="usertypes" ColumnName="usertypes" />
+          <ScalarProperty Name="legal_representative" ColumnName="legal_representative" />
+          <ScalarProperty Name="payment_options" ColumnName="payment_options" />
+          <ScalarProperty Name="iD_number" ColumnName="iD_number" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="agent_id_card" ColumnName="agent_id_card" />
+          <ScalarProperty Name="agent_name" ColumnName="agent_name" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="companyid" ColumnName="companyid" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="repayment_date" ColumnName="repayment_date" />
+          <ScalarProperty Name="month_payment_date" ColumnName="month_payment_date" />
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
+          <ScalarProperty Name="unit_day" ColumnName="unit_day" />
+          <ScalarProperty Name="life_of_loan" ColumnName="life_of_loan" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Bid_records_Lost">
+      <EntityTypeMapping TypeName="chuangtouModel.V_Bid_records_Lost">
+        <MappingFragment StoreEntitySet="V_Bid_records_Lost">
+          <ScalarProperty Name="FreezeTrxId" ColumnName="FreezeTrxId" />
+          <ScalarProperty Name="FrozenidNo" ColumnName="FrozenidNo" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Usr_Phone_adminUsr">
+      <EntityTypeMapping TypeName="chuangtouModel.V_Usr_Phone_adminUsr">
+        <MappingFragment StoreEntitySet="V_Usr_Phone_adminUsr">
+          <ScalarProperty Name="adminuser" ColumnName="adminuser" />
+          <ScalarProperty Name="problemType" ColumnName="problemType" />
+          <ScalarProperty Name="gtType" ColumnName="gtType" />
+          <ScalarProperty Name="recordtime" ColumnName="recordtime" />
+          <ScalarProperty Name="recordcontext" ColumnName="recordcontext" />
+          <ScalarProperty Name="recordsid" ColumnName="recordsid" />
+          <ScalarProperty Name="calltime" ColumnName="calltime" />
+          <ScalarProperty Name="LoginNum" ColumnName="LoginNum" />
+          <ScalarProperty Name="InvestNum" ColumnName="InvestNum" />
+          <ScalarProperty Name="CashNum" ColumnName="CashNum" />
+          <ScalarProperty Name="RechargeNum" ColumnName="RechargeNum" />
+          <ScalarProperty Name="CommNum" ColumnName="CommNum" />
+          <ScalarProperty Name="useridentity" ColumnName="useridentity" />
+          <ScalarProperty Name="lastlogintime" ColumnName="lastlogintime" />
+          <ScalarProperty Name="registration_time" ColumnName="registration_time" />
+          <ScalarProperty Name="available_balance" ColumnName="available_balance" />
+          <ScalarProperty Name="account_total_assets" ColumnName="account_total_assets" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationAuthorizations">
+      <EntityTypeMapping TypeName="chuangtouModel.ApplicationAuthorization">
+        <MappingFragment StoreEntitySet="ApplicationAuthorization">
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="AppStatus" ColumnName="AppStatus" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="AppServerIps" ColumnName="AppServerIps" />
+          <ScalarProperty Name="AppSafeCode" ColumnName="AppSafeCode" />
+          <ScalarProperty Name="AppSecret" ColumnName="AppSecret" />
+          <ScalarProperty Name="AppName" ColumnName="AppName" />
+          <ScalarProperty Name="AppId" ColumnName="AppId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statistics_Member">
+      <EntityTypeMapping TypeName="chuangtouModel.Statistics_Member">
+        <MappingFragment StoreEntitySet="Statistics_Member">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="IsFinish" ColumnName="IsFinish" />
+          <ScalarProperty Name="InvestCount" ColumnName="InvestCount" />
+          <ScalarProperty Name="RealNameCount" ColumnName="RealNameCount" />
+          <ScalarProperty Name="RegistCount" ColumnName="RegistCount" />
+          <ScalarProperty Name="StatisticsDate" ColumnName="StatisticsDate" />
+          <ScalarProperty Name="StatisticsId" ColumnName="StatisticsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewInvestDetails">
+      <EntityTypeMapping TypeName="chuangtouModel.ViewInvestDetail">
+        <MappingFragment StoreEntitySet="ViewInvestDetail">
+          <ScalarProperty Name="BonusAmt" ColumnName="BonusAmt" />
+          <ScalarProperty Name="jiaxiNum" ColumnName="jiaxiNum" />
+          <ScalarProperty Name="month_payment_date" ColumnName="month_payment_date" />
+          <ScalarProperty Name="guarantee_way_id" ColumnName="guarantee_way_id" />
+          <ScalarProperty Name="investNumber" ColumnName="investNumber" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="paymentDate" ColumnName="paymentDate" />
+          <ScalarProperty Name="investMaturity" ColumnName="investMaturity" />
+          <ScalarProperty Name="rateBeginOn" ColumnName="rateBeginOn" />
+          <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+          <ScalarProperty Name="paymentOption" ColumnName="paymentOption" />
+          <ScalarProperty Name="investAmount" ColumnName="investAmount" />
+          <ScalarProperty Name="fundTotalAmount" ColumnName="fundTotalAmount" />
+          <ScalarProperty Name="borrowTotalAmount" ColumnName="borrowTotalAmount" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="unitDay" ColumnName="unitDay" />
+          <ScalarProperty Name="deadLine" ColumnName="deadLine" />
+          <ScalarProperty Name="investMemberName" ColumnName="investMemberName" />
+          <ScalarProperty Name="investMemberId" ColumnName="investMemberId" />
+          <ScalarProperty Name="targetTitle" ColumnName="targetTitle" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="recordId" ColumnName="recordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewInvestLists">
+      <EntityTypeMapping TypeName="chuangtouModel.ViewInvestList">
+        <MappingFragment StoreEntitySet="ViewInvestList">
+          <ScalarProperty Name="BonusAmt" ColumnName="BonusAmt" />
+          <ScalarProperty Name="jiaxiNum" ColumnName="jiaxiNum" />
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+          <ScalarProperty Name="receivableInterest" ColumnName="receivableInterest" />
+          <ScalarProperty Name="month_payment_date" ColumnName="month_payment_date" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="investMaturity" ColumnName="investMaturity" />
+          <ScalarProperty Name="rateBeginOn" ColumnName="rateBeginOn" />
+          <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+          <ScalarProperty Name="investAmount" ColumnName="investAmount" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="unitDay" ColumnName="unitDay" />
+          <ScalarProperty Name="deadLine" ColumnName="deadLine" />
+          <ScalarProperty Name="investMemberName" ColumnName="investMemberName" />
+          <ScalarProperty Name="investMemberId" ColumnName="investMemberId" />
+          <ScalarProperty Name="targetTitle" ColumnName="targetTitle" />
+          <ScalarProperty Name="targetId" ColumnName="targetId" />
+          <ScalarProperty Name="recordId" ColumnName="recordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewInvestRecords">
+      <EntityTypeMapping TypeName="chuangtouModel.ViewInvestRecord">
+        <MappingFragment StoreEntitySet="ViewInvestRecord">
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="invest_state" ColumnName="invest_state" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewTargetWithRecords">
+      <EntityTypeMapping TypeName="chuangtouModel.ViewTargetWithRecord">
+        <MappingFragment StoreEntitySet="ViewTargetWithRecords">
+          <ScalarProperty Name="sys_time" ColumnName="sys_time" />
+          <ScalarProperty Name="maxmum" ColumnName="maxmum" />
+          <ScalarProperty Name="minimum" ColumnName="minimum" />
+          <ScalarProperty Name="indexorder" ColumnName="indexorder" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="fundraising_amount" ColumnName="fundraising_amount" />
+          <ScalarProperty Name="invest_num" ColumnName="invest_num" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="H_Repayment_Amt" ColumnName="H_Repayment_Amt" />
+          <ScalarProperty Name="payment_options" ColumnName="payment_options" />
+          <ScalarProperty Name="unit_day" ColumnName="unit_day" />
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="life_of_loan" ColumnName="life_of_loan" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="project_type_id" ColumnName="project_type_id" />
+          <ScalarProperty Name="month_payment_date" ColumnName="month_payment_date" />
+          <ScalarProperty Name="repayment_date" ColumnName="repayment_date" />
+          <ScalarProperty Name="tender_state" ColumnName="tender_state" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewThirdWangDaiZhongGuos">
+      <EntityTypeMapping TypeName="chuangtouModel.ViewThirdWangDaiZhongGuo">
+        <MappingFragment StoreEntitySet="ViewThirdWangDaiZhongGuo">
+          <ScalarProperty Name="is_zhuan" ColumnName="is_zhuan" />
+          <ScalarProperty Name="is_miao" ColumnName="is_miao" />
+          <ScalarProperty Name="is_mima" ColumnName="is_mima" />
+          <ScalarProperty Name="is_danbao" ColumnName="is_danbao" />
+          <ScalarProperty Name="is_diya" ColumnName="is_diya" />
+          <ScalarProperty Name="reward" ColumnName="reward" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="success_time" ColumnName="success_time" />
+          <ScalarProperty Name="verify_time" ColumnName="verify_time" />
+          <ScalarProperty Name="add_time" ColumnName="add_time" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="account_max" ColumnName="account_max" />
+          <ScalarProperty Name="account_min" ColumnName="account_min" />
+          <ScalarProperty Name="account_yes" ColumnName="account_yes" />
+          <ScalarProperty Name="way" ColumnName="way" />
+          <ScalarProperty Name="limit_type" ColumnName="limit_type" />
+          <ScalarProperty Name="limit" ColumnName="limit" />
+          <ScalarProperty Name="apr" ColumnName="apr" />
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="url" ColumnName="url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetPageIndex" FunctionName="chuangtouModel.Store.GetPageIndex" />
+    <FunctionImportMapping FunctionImportName="GetPageRecord" FunctionName="chuangtouModel.Store.GetPageRecord" />
+    <FunctionImportMapping FunctionImportName="pagination" FunctionName="chuangtouModel.Store.pagination" />
+    <FunctionImportMapping FunctionImportName="prStatisticsMember" FunctionName="chuangtouModel.Store.prStatisticsMember" />
+    <FunctionImportMapping FunctionImportName="upPhone" FunctionName="chuangtouModel.Store.upPhone" />
+    <FunctionImportMapping FunctionImportName="usp_PagingLarge" FunctionName="chuangtouModel.Store.usp_PagingLarge" />
+    <EntitySetMapping Name="hx_td_about_news">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_about_news">
+        <MappingFragment StoreEntitySet="hx_td_about_news">
+          <ScalarProperty Name="ClickCount" ColumnName="ClickCount" />
+          <ScalarProperty Name="newimg" ColumnName="newimg" />
+          <ScalarProperty Name="listcomm" ColumnName="listcomm" />
+          <ScalarProperty Name="comm" ColumnName="comm" />
+          <ScalarProperty Name="adminuserid" ColumnName="adminuserid" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="context" ColumnName="context" />
+          <ScalarProperty Name="news_Des" ColumnName="news_Des" />
+          <ScalarProperty Name="News_Key" ColumnName="News_Key" />
+          <ScalarProperty Name="News_title" ColumnName="News_title" />
+          <ScalarProperty Name="web_Type_menu_id" ColumnName="web_Type_menu_id" />
+          <ScalarProperty Name="newid" ColumnName="newid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_td_Links">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_td_Links">
+        <MappingFragment StoreEntitySet="hx_td_Links">
+          <ScalarProperty Name="Linkstate" ColumnName="Linkstate" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="LinkLogo" ColumnName="LinkLogo" />
+          <ScalarProperty Name="LinkType" ColumnName="LinkType" />
+          <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+          <ScalarProperty Name="Linkname" ColumnName="Linkname" />
+          <ScalarProperty Name="Linkid" ColumnName="Linkid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_YaoQinList">
+      <EntityTypeMapping TypeName="chuangtouModel.V_YaoQinList">
+        <MappingFragment StoreEntitySet="V_YaoQinList">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="Createtime" ColumnName="Createtime" />
+          <ScalarProperty Name="water_type" ColumnName="water_type" />
+          <ScalarProperty Name="award_description" ColumnName="award_description" />
+          <ScalarProperty Name="reward_balance" ColumnName="reward_balance" />
+          <ScalarProperty Name="time_of_occurrence" ColumnName="time_of_occurrence" />
+          <ScalarProperty Name="expenditure" ColumnName="expenditure" />
+          <ScalarProperty Name="income" ColumnName="income" />
+          <ScalarProperty Name="membertable_registerid" ColumnName="membertable_registerid" />
+          <ScalarProperty Name="bonus_account_id" ColumnName="bonus_account_id" />
+          <ScalarProperty Name="account_water_id" ColumnName="account_water_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GrabIphone">
+      <EntityTypeMapping TypeName="chuangtouModel.GrabIphone">
+        <MappingFragment StoreEntitySet="GrabIphone">
+          <ScalarProperty Name="InvestmentAmount" ColumnName="InvestmentAmount" />
+          <ScalarProperty Name="BidRecordsID" ColumnName="BidRecordsID" />
+          <ScalarProperty Name="TargetID" ColumnName="TargetID" />
+          <ScalarProperty Name="WinningTime" ColumnName="WinningTime" />
+          <ScalarProperty Name="WinningState" ColumnName="WinningState" />
+          <ScalarProperty Name="LuckDrawState" ColumnName="LuckDrawState" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="RegrsterID" ColumnName="RegrsterID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statistics_ActiveSepteberCashback">
+      <EntityTypeMapping TypeName="chuangtouModel.Statistics_ActiveSepteberCashback">
+        <MappingFragment StoreEntitySet="Statistics_ActiveSepteberCashback">
+          <ScalarProperty Name="HasCashback" ColumnName="HasCashback" />
+          <ScalarProperty Name="CashbackAmount" ColumnName="CashbackAmount" />
+          <ScalarProperty Name="InvestTotalAmount" ColumnName="InvestTotalAmount" />
+          <ScalarProperty Name="InvestTimes" ColumnName="InvestTimes" />
+          <ScalarProperty Name="InvestTerm" ColumnName="InvestTerm" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewUserInviteInfors">
+      <EntityTypeMapping TypeName="chuangtouModel.ViewUserInviteInfor">
+        <MappingFragment StoreEntitySet="ViewUserInviteInfor">
+          <ScalarProperty Name="IsBindedCard" ColumnName="IsBindedCard" />
+          <ScalarProperty Name="DeadLineNumber" ColumnName="DeadLineNumber" />
+          <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+          <ScalarProperty Name="BorrowTitle" ColumnName="BorrowTitle" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="InvestAmount" ColumnName="InvestAmount" />
+          <ScalarProperty Name="InvestedOn" ColumnName="InvestedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="InviteCode" ColumnName="InviteCode" />
+          <ScalarProperty Name="InvitedRealName" ColumnName="InvitedRealName" />
+          <ScalarProperty Name="InvitedName" ColumnName="InvitedName" />
+          <ScalarProperty Name="InvitedId" ColumnName="InvitedId" />
+          <ScalarProperty Name="InviteRealName" ColumnName="InviteRealName" />
+          <ScalarProperty Name="InviteName" ColumnName="InviteName" />
+          <ScalarProperty Name="InviteId" ColumnName="InviteId" />
+          <ScalarProperty Name="invitationid" ColumnName="invitationid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_Channel">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_Channel">
+        <MappingFragment StoreEntitySet="hx_Channel">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="Invitedcode" ColumnName="Invitedcode" />
+          <ScalarProperty Name="ChannelName" ColumnName="ChannelName" />
+          <ScalarProperty Name="ChannelID" ColumnName="ChannelID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_Channel_AdminUser">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_Channel_AdminUser">
+        <MappingFragment StoreEntitySet="hx_Channel_AdminUser">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="TrueName" ColumnName="TrueName" />
+          <ScalarProperty Name="AdminUserPassword" ColumnName="AdminUserPassword" />
+          <ScalarProperty Name="AdminUserName" ColumnName="AdminUserName" />
+          <ScalarProperty Name="AdminUserID" ColumnName="AdminUserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="hx_Channel_AdminUser_Rel" TypeName="chuangtouModel.hx_Channel_AdminUser_Rel" StoreEntitySet="hx_Channel_AdminUser_Rel">
+      <EndProperty Name="hx_Channel_AdminUser">
+        <ScalarProperty Name="AdminUserID" ColumnName="AdminUserID" />
+      </EndProperty>
+      <EndProperty Name="hx_Channel">
+        <ScalarProperty Name="ChannelID" ColumnName="ChannelID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="V_Channel_Invite">
+      <EntityTypeMapping TypeName="chuangtouModel.V_Channel_Invite">
+        <MappingFragment StoreEntitySet="V_Channel_Invite">
+          <ScalarProperty Name="DeadLineNumber" ColumnName="DeadLineNumber" />
+          <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="invest_state" ColumnName="invest_state" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="channel_invitedcode" ColumnName="channel_invitedcode" />
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="registration_time" ColumnName="registration_time" />
+          <ScalarProperty Name="AdminUserName" ColumnName="AdminUserName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="ChannelName" ColumnName="ChannelName" />
+          <ScalarProperty Name="ChannelID" ColumnName="ChannelID" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Channel_UserList">
+      <EntityTypeMapping TypeName="chuangtouModel.V_Channel_UserList">
+        <MappingFragment StoreEntitySet="V_Channel_UserList">
+          <ScalarProperty Name="AdminUserName" ColumnName="AdminUserName" />
+          <ScalarProperty Name="registration_time" ColumnName="registration_time" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewUserCenters">
+      <EntityTypeMapping TypeName="chuangtouModel.ViewUserCenter">
+        <MappingFragment StoreEntitySet="ViewUserCenter">
+          <ScalarProperty Name="IsCPS" ColumnName="IsCPS" />
+          <ScalarProperty Name="investCount" ColumnName="investCount" />
+          <ScalarProperty Name="usertypes" ColumnName="usertypes" />
+          <ScalarProperty Name="available_balance" ColumnName="available_balance" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="registration_time" ColumnName="registration_time" />
+          <ScalarProperty Name="isrealname" ColumnName="isrealname" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_QuanmamaRecord">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_QuanmamaRecord">
+        <MappingFragment StoreEntitySet="hx_QuanmamaRecord">
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="CraeteTime" ColumnName="CraeteTime" />
+          <ScalarProperty Name="Creater" ColumnName="Creater" />
+          <ScalarProperty Name="SendState" ColumnName="SendState" />
+          <ScalarProperty Name="GiftMoney" ColumnName="GiftMoney" />
+          <ScalarProperty Name="InvestPeriod" ColumnName="InvestPeriod" />
+          <ScalarProperty Name="TotalInvestMoney" ColumnName="TotalInvestMoney" />
+          <ScalarProperty Name="InvestMoney" ColumnName="InvestMoney" />
+          <ScalarProperty Name="InvestTime" ColumnName="InvestTime" />
+          <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
+          <ScalarProperty Name="UsrCustID" ColumnName="UsrCustID" />
+          <ScalarProperty Name="RegisterMobile" ColumnName="RegisterMobile" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hx_AppUpdatePackage">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_AppUpdatePackage">
+        <MappingFragment StoreEntitySet="hx_AppUpdatePackage">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="DownloadCount" ColumnName="DownloadCount" />
+          <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+          <ScalarProperty Name="Ways" ColumnName="Ways" />
+          <ScalarProperty Name="VirtualPath" ColumnName="VirtualPath" />
+          <ScalarProperty Name="ValideCode" ColumnName="ValideCode" />
+          <ScalarProperty Name="Channel" ColumnName="Channel" />
+          <ScalarProperty Name="DependCode" ColumnName="DependCode" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UpdateLevel" ColumnName="UpdateLevel" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="Platform" ColumnName="Platform" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="XiCaiUsers">
+      <EntityTypeMapping TypeName="chuangtouModel.XiCaiUser">
+        <MappingFragment StoreEntitySet="XiCaiUsers">
+          <ScalarProperty Name="Display" ColumnName="Display" />
+          <ScalarProperty Name="RegisterUserID" ColumnName="RegisterUserID" />
+          <ScalarProperty Name="XiCaiUserID" ColumnName="XiCaiUserID" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ViewDetailsReports" FunctionName="chuangtouModel.Store.ViewDetailsReports" />
+    <EntitySetMapping Name="hx_UserAct">
+      <EntityTypeMapping TypeName="chuangtouModel.hx_UserAct">
+        <MappingFragment StoreEntitySet="hx_UserAct">
+          <ScalarProperty Name="UseLifeLoan" ColumnName="UseLifeLoan" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Createtime" ColumnName="Createtime" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="isSmsSixteen" ColumnName="isSmsSixteen" />
+          <ScalarProperty Name="isSmsFifteen" ColumnName="isSmsFifteen" />
+          <ScalarProperty Name="IsSmsSeven" ColumnName="IsSmsSeven" />
+          <ScalarProperty Name="IsSmsThree" ColumnName="IsSmsThree" />
+          <ScalarProperty Name="ISSmsOne" ColumnName="ISSmsOne" />
+          <ScalarProperty Name="UseTime" ColumnName="UseTime" />
+          <ScalarProperty Name="AmtProid" ColumnName="AmtProid" />
+          <ScalarProperty Name="UseState" ColumnName="UseState" />
+          <ScalarProperty Name="AmtUses" ColumnName="AmtUses" />
+          <ScalarProperty Name="AmtEndtime" ColumnName="AmtEndtime" />
+          <ScalarProperty Name="Usehight" ColumnName="Usehight" />
+          <ScalarProperty Name="Uselower" ColumnName="Uselower" />
+          <ScalarProperty Name="Amt" ColumnName="Amt" />
+          <ScalarProperty Name="ActTypeId" ColumnName="ActTypeId" />
+          <ScalarProperty Name="RewTypeID" ColumnName="RewTypeID" />
+          <ScalarProperty Name="ActID" ColumnName="ActID" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="UserAct" ColumnName="UserAct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewDetailsReports1">
+      <EntityTypeMapping TypeName="chuangtouModel.ViewDetailsReport">
+        <MappingFragment StoreEntitySet="ViewDetailsReport">
+          <ScalarProperty Name="JunMoney" ColumnName="JunMoney" />
+          <ScalarProperty Name="MarMoney" ColumnName="MarMoney" />
+          <ScalarProperty Name="JanMoney" ColumnName="JanMoney" />
+          <ScalarProperty Name="IsFirstInvest" ColumnName="IsFirstInvest" />
+          <ScalarProperty Name="RechargeAllMoney" ColumnName="RechargeAllMoney" />
+          <ScalarProperty Name="FoldAllMoney" ColumnName="FoldAllMoney" />
+          <ScalarProperty Name="InvestAllMoney" ColumnName="InvestAllMoney" />
+          <ScalarProperty Name="useridentity" ColumnName="useridentity" />
+          <ScalarProperty Name="registration_time" ColumnName="registration_time" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_hx_Bid_records_borrowing_target">
+      <EntityTypeMapping TypeName="chuangtouModel.V_hx_Bid_records_borrowing_target">
+        <MappingFragment StoreEntitySet="V_hx_Bid_records_borrowing_target">
+          <ScalarProperty Name="iD_number" ColumnName="iD_number" />
+          <ScalarProperty Name="usertypes" ColumnName="usertypes" />
+          <ScalarProperty Name="useridentity" ColumnName="useridentity" />
+          <ScalarProperty Name="service_charge" ColumnName="service_charge" />
+          <ScalarProperty Name="Tid" ColumnName="Tid" />
+          <ScalarProperty Name="Channelsource" ColumnName="Channelsource" />
+          <ScalarProperty Name="registration_time" ColumnName="registration_time" />
+          <ScalarProperty Name="repayment_date" ColumnName="repayment_date" />
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
+          <ScalarProperty Name="BonusAmt" ColumnName="BonusAmt" />
+          <ScalarProperty Name="JiaxiNum" ColumnName="JiaxiNum" />
+          <ScalarProperty Name="project_type_id" ColumnName="project_type_id" />
+          <ScalarProperty Name="IsLoans" ColumnName="IsLoans" />
+          <ScalarProperty Name="ordstate" ColumnName="ordstate" />
+          <ScalarProperty Name="borrowing_balance" ColumnName="borrowing_balance" />
+          <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+          <ScalarProperty Name="borusername" ColumnName="borusername" />
+          <ScalarProperty Name="borrealname" ColumnName="borrealname" />
+          <ScalarProperty Name="invitationcode" ColumnName="invitationcode" />
+          <ScalarProperty Name="tender_state" ColumnName="tender_state" />
+          <ScalarProperty Name="available_balance" ColumnName="available_balance" />
+          <ScalarProperty Name="borrUsrCustid" ColumnName="borrUsrCustid" />
+          <ScalarProperty Name="FreezeTrxId" ColumnName="FreezeTrxId" />
+          <ScalarProperty Name="FrozenState" ColumnName="FrozenState" />
+          <ScalarProperty Name="FrozenidNo" ColumnName="FrozenidNo" />
+          <ScalarProperty Name="FrozenidAmount" ColumnName="FrozenidAmount" />
+          <ScalarProperty Name="UsrCustId" ColumnName="UsrCustId" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="unit_day" ColumnName="unit_day" />
+          <ScalarProperty Name="life_of_loan" ColumnName="life_of_loan" />
+          <ScalarProperty Name="contractpath" ColumnName="contractpath" />
+          <ScalarProperty Name="contractid" ColumnName="contractid" />
+          <ScalarProperty Name="payment_options" ColumnName="payment_options" />
+          <ScalarProperty Name="registerid" ColumnName="registerid" />
+          <ScalarProperty Name="realname" ColumnName="realname" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="haveinterest" ColumnName="haveinterest" />
+          <ScalarProperty Name="withoutinterest" ColumnName="withoutinterest" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="investor_registerid" ColumnName="investor_registerid" />
+          <ScalarProperty Name="repayment_period" ColumnName="repayment_period" />
+          <ScalarProperty Name="repayment_amount" ColumnName="repayment_amount" />
+          <ScalarProperty Name="flow_return" ColumnName="flow_return" />
+          <ScalarProperty Name="invest_state" ColumnName="invest_state" />
+          <ScalarProperty Name="invest_time" ColumnName="invest_time" />
+          <ScalarProperty Name="investment_maturity" ColumnName="investment_maturity" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="investment_amount" ColumnName="investment_amount" />
+          <ScalarProperty Name="current_period" ColumnName="current_period" />
+          <ScalarProperty Name="annual_interest_rate" ColumnName="annual_interest_rate" />
+          <ScalarProperty Name="loan_number" ColumnName="loan_number" />
+          <ScalarProperty Name="targetid" ColumnName="targetid" />
+          <ScalarProperty Name="borrower_registerid" ColumnName="borrower_registerid" />
+          <ScalarProperty Name="bid_records_id" ColumnName="bid_records_id" />
+          <ScalarProperty Name="borrowing_title" ColumnName="borrowing_title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Holidays">
+      <EntityTypeMapping TypeName="chuangtouModel.Holiday">
+        <MappingFragment StoreEntitySet="Holiday">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="DuringDays" ColumnName="DuringDays" />
+          <ScalarProperty Name="Endtime" ColumnName="Endtime" />
+          <ScalarProperty Name="Starttime" ColumnName="Starttime" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

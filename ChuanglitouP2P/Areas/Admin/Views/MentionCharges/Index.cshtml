@@ -1,0 +1,126 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc;
+@using ChuangLitouP2P.Models;
+@using PagedList
+@model PagedList.IPagedList<hx_Mention_charges>
+@{
+    ViewBag.Title = "提现费用管理";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">提现费用管理</a></h2>
+<div class="z_body">
+    
+        <p class="tP3">
+            <a href="/Admin/MentionCharges/Add" class="add_btn">新增</a>
+            快速搜索
+        </p>
+
+        @using (Html.BeginForm("Index", "MentionCharges", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <p class="tP4 tx_tp4" style="height:40px; ">
+                <label class="first txt-green">手续费名称：</label>
+
+                <input name="mention_charges_name" type="text" id="mention_charges_name" class="input-small" style="height:22px; width:210px;" value="@(ViewBag.mention_charges_name)" /> &nbsp; 
+                <label class="first txt-green">单位：</label>
+                <select name="fees_unit" id="fees_unit" style="height:26px;">
+                    @if (ViewBag.fees_unit == 0)
+                    {
+                        <option value="-1">请选择单位  </option>
+                        <option selected="selected" value="0">单笔(元) </option>
+                                <option value="1">单笔百分比(%) </option>
+                    }
+                    else if (ViewBag.fees_unit == 1)
+                    {
+                        <option value="-1">请选择单位  </option>
+                        <option  value="0">单笔(元) </option>
+                        <option value="1" selected="selected">单笔百分比(%) </option>
+                    }
+                    else
+                    {
+                        <option selected="selected" value="-1">请选择单位  </option>
+                        <option value="0">单笔(元) </option>
+                        <option value="1">单笔百分比(%) </option>
+                    }
+
+
+                </select> &nbsp; 
+                <label><input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" /></label>
+
+
+            </p>
+        }
+        <span class="icon-sprite icon-list"></span>
+
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th scope="col">编号 </th>
+                    <th scope="col">手续费名称</th>
+                    <th scope="col">最低金额</th>
+                    <th scope="col">最高金额</th>
+                    <th scope="col">手续费</th>
+                    <th scope="col">单位</th>
+                    <th scope="col">操作</th>
+
+                </tr>
+                @if (Model != null)
+                {
+                    foreach (hx_Mention_charges item in Model)
+                    {
+
+                        <tr>
+                            <td>@(item.mention_charges_id)</td>
+                           
+
+                            <td>@(item.mention_charges_name)</td>
+                            <td>@(item.minimum_amount)</td>
+                            <td>@(item.maximum_amount)</td>
+                            <td>@(item.fees)</td>
+
+                            @if (item.fees_unit == 1)
+                            {
+                                <td>单笔百分比(%)</td>
+                            }
+                            else
+                            {
+                                <td>单笔(元)</td>
+                            }
+
+                            <td>
+                                <a class="opt" title="编辑" href="/admin/MentionCharges/Edit?id=@item.mention_charges_id&page=@ViewBag.page&mention_charges_name=@ViewBag.mention_charges_name&fees_unit=@ViewBag.fees_unit">编辑</a> &nbsp;
+                                <a class="opt" title="删除" href="/admin/MentionCharges/DelById?id=@item.mention_charges_id&page=@ViewBag.page&mention_charges_name=@ViewBag.mention_charges_name&fees_unit=@ViewBag.fees_unit">  删除</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="pagination ue-clear">
+            <div class="pagination-container">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, mention_charges_name = @ViewBag.mention_charges_name, fees_unit = ViewBag.fees_unit }))
+            </div>
+        </div>
+</div>
+
+

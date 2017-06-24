@@ -1,0 +1,207 @@
+﻿@model ChuangLitouP2P.Models.hx_td_adminuser
+@{
+    ViewBag.Title = "编辑用户信息";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .tdleft {
+            width: 20%;
+            text-align: right;
+        }
+
+        .tdright {
+            width: 80%;
+            text-align: left;
+        }
+
+        tr {
+            background: rgb(255, 255, 255);
+            line-height: 35px;
+        }
+
+            tr td input {
+                height: 25px;
+                line-height: 25px;
+                width: 200px;
+            }
+    </style>
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">用户管理</a>><a href="javascript:void(0)"> 编辑账号</a></h2>
+    <div class="z_body">
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            账号信息
+        </h3>
+        @using (Html.BeginForm("Editor", "AdminUser", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()           
+             @Html.HiddenFor(model=>model.adminuserid)
+
+            <table width="100%" style="table-layout:fixed;padding-left:10px;margin-top:10px;" id="tb_admininfo">
+                <tr>
+                    <td class="tdleft">
+                        <label for="">用户名:</label>
+                    </td>
+                    <td class="tdright">
+                        @Html.EditorFor(model => model.adminuser, new { htmlAttributes = new { @datatype = "*2-20", @nullmsg = "用户名不能为空！", @errormsg = "请输入用户名在2~20位之间！", @class = "inputxt", @ajaxurl = "/admin/AdminUser/CheckName",@readonly="readonly" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdleft">
+                        <label for="">密码:</label>
+                    </td>
+                    <td class="tdright">
+                        @*@Html.EditorFor(model => model.userpass, new { htmlAttributes = new { @datatype = "*6-16", @nullmsg = "请设置密码！", @errormsg = "密码范围在6~16位之间！", @class = "inputxt" } })*@
+                        <input value="" type="password" name="userpass" id="userpass" class="inputxt"  />
+                    </td>
+                </tr>
+                @*<tr>
+                    <td class="tdleft">
+                        <label for="">确认密码:</label>
+                    </td>
+                    <td class="tdright">
+                        <input value="" type="text" name="PasswordConfirm" id="PasswordConfirm" class="inputxt" datatype="*" recheck="userpass" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！" />
+                    </td>
+                </tr>*@
+                <tr>
+                    <td class="tdleft">
+                        <label for="">真实姓名:</label>
+                    </td>
+                    <td class="tdright">
+                        @Html.EditorFor(model => model.trueName, new { htmlAttributes = new { @datatype = "*2-20", @nullmsg = "真实姓名不能为空！", @errormsg = "请输入真实姓名在2~20位之间！", @class = "inputxt" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdleft">
+                        <label for="">工号:</label>
+                    </td>
+                    <td class="tdright">
+                        @Html.EditorFor(model => model.worknum, new { htmlAttributes = new { @class = "inputxt" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdleft">
+                        <label for="">性别:</label>
+                    </td>
+                    <td class="tdright">
+                        <select id="sex" name="sex" style="width:150px; height:25px;line-height:25px;">
+                            <option id="男" selected="selected">男</option>
+                            <option id="女">女</option>
+                        </select>
+                        @Html.Hidden("hid_sex",Model.sex.ToString())
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdleft">
+                        <label for="">手机:</label>
+                    </td>
+                    <td class="tdright">
+                        @Html.EditorFor(model => model.tel, new { htmlAttributes = new { @class = "inputxt" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdleft">
+                        <label for="">座机:</label>
+                    </td>
+                    <td class="tdright">
+                        @Html.EditorFor(model => model.phone_number, new { htmlAttributes = new { @class = "inputxt" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdleft">
+                        <label for="">部门:</label>
+                    </td>
+                    <td class="tdright">
+                        @Html.DropDownList("department_id", ViewBag.department as IEnumerable<SelectListItem>, new { @style = "width:150px; height:25px;line-height:25px;" })
+                        @Html.Hidden("hid_department_id",Model.department_id)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdleft">
+                        <label for="">状态:</label>
+                    </td>
+                    <td class="tdright">
+                        <select id="state" name="state" style="width:150px; height:25px;line-height:25px;">
+                            <option value="1" selected="selected">开启</option>
+                            <option value="0">禁用</option>
+                        </select>
+                        @Html.Hidden("hid_state",Model.state.ToString())
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdleft">
+                        &nbsp;
+                    </td>
+                    <td class="tdright">
+                        <input type="submit" id="btnSave" class="btn1" value="保存" />&nbsp;&nbsp;
+                        <input type="button" id="btnClose" class="btn1" value="返回" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#adminuser").attr("ajaxurl", "/admin/AdminUser/CheckName?key=@(ViewBag.id)");
+            $(".registerform").Validform({
+                tiptype: 4
+
+            });
+            $.extend($.Datatype, {
+                "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+                "d": /^(\d{4})\-(\d{2})\-(\d{2})|(\d{4})\-(\d{1})\-(\d{1})|(\d{4})\-(\d{1})\-(\d{2})$/,
+                "day1": /^[1-2]\d{0,1}$|^28$/,
+                "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+                "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+                "regex1": /^[0-9A-Za-z]{6,25}$/,
+                "float": /([0-9]+.[0-9]{2})[0-9]*/,
+                "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+                "n": /^\d+$/,
+                "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+                "time2": /^(\d{4})\-(\d{1,2})\-(\d{1,2}) (\d{2}):(\d{2}):(\d{2})$/,
+                "int": /[1-9]\d*/
+
+            });
+
+            $("#btnClose").bind("click", function () {
+                window.location.href = "/admin/AdminUser/Index";
+               // closewindows();
+            });
+
+            $("#btnSave").bind("click", function () {
+                var department_id = $("#department_id").val();
+                if (department_id == undefined || department_id == "0") {
+                    layer.alert("请选择管理员所在部门！");
+                    return false;
+                }
+            });
+            initPage();
+        });
+
+        function initPage() {
+            var sex = $("#hid_sex").val();
+            var state = $("#hid_state").val();
+            var department_id = $("#hid_department_id").val();
+            $("#sex").val(sex);
+            $("#state").val(state);
+            $("#department_id").val(department_id);
+        }
+
+        function closewindows() {
+            window.parent.closewindows();
+        }
+    </script>
+

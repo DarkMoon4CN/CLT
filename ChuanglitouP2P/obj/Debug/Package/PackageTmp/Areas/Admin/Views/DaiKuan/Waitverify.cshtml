@@ -1,0 +1,160 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+
+@model IEnumerable<ChuangLitouP2P.Models.V_borrowing_target_review>
+@{
+    Layout = null;
+    hx_borrowing_target target = ViewBag.item == null ? new hx_borrowing_target() : (hx_borrowing_target)ViewBag.item;
+
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>审核结果</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 105px;
+        }
+
+        .auto-style5 {
+            width: 256px;
+        }
+
+        .auto-style6 {
+            width: 25px;
+        }
+
+        .auto-style7 {
+            width: 537px;
+        }
+    </style>
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Areas/Admin/js/common.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+
+    <script type="text/javascript">
+
+
+        function closewindows() {
+            window.parent.closewindows();
+
+        }
+    </script>
+</head>
+<body>
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">借款初审</a></h2>
+    <div class="z_body">
+        @if (ViewBag.state == null || ViewBag.state != "view")
+        {
+
+            <p class="tP3">
+                借款初审
+            </p>
+            @using (Html.BeginForm("Waitverify", "DaiKuan", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.Hidden("id", ViewBag.id as string);
+                <table width="100%" style="table-layout:fixed;margin-top:10px;">
+                    <tr>
+                        <td class="auto-style6">&nbsp;</td>
+                        <td class="auto-style1">借款金额：</td>
+                        <td class="auto-style7">
+                            @Html.TextBox("borrowing_balance", ((decimal)target.borrowing_balance).ToString("0.00"), new { ReadOnly = true }))
+
+                        </td>
+                        <td><span class="Validform_checktip"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style6">&nbsp;</td>
+                        <td class="auto-style1">咨询服务费：</td>
+                        <td class="auto-style7">
+                            @Html.TextBox("consultingAMT", ((decimal)(target.borrowing_balance * target.service_charge / 10)).ToString("0.00"), new { ReadOnly = true, datatype = "*", nullmsg = "咨询服务费不能为空！" }))
+                            <span>默认为按后台设置计算出来</span>
+                        </td>
+                        <td><span class="Validform_checktip"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style6">&nbsp;</td>
+                        <td class="auto-style1">担保服务费:</td>
+                        <td class="auto-style7">
+                            @Html.TextBox("guaranteeAMT", ((decimal)(target.borrowing_balance * target.guarantee_fee)).ToString("0.00"), new { ReadOnly = true, datatype = "*", nullmsg = "担保服务费不能为空！" }))
+                            <span>默认为按后台设置计算出来</span>
+                        </td>
+                        <td><span class="Validform_checktip"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style6">&nbsp;</td>
+                        <td class="auto-style1"><span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">是否通过</span>：</td>
+                        <td class="auto-style7">
+                            <input id="radio1" name="tender_state" type="radio" value="6" /> 初审未通过  <input id="radio2" name="tender_state" type="radio" value="1" checked="checked" /> 初审通过，等待复审
+                        </td>
+                        <td><span class="Validform_checktip"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style6">&nbsp;</td>
+                        <td class="auto-style1"><span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">初审处理意见</span>：</td>
+                        <td class="auto-style5" colspan="2">
+                            @Html.TextBox("reviewremarks", target.reviewremarks, new { ReadOnly = true, datatype = "*", nullmsg = "请设置初审处理意见！", errormsg = "请设置初审处理意见！", style = "width:75%; height: 98px;" }))
+                            <span class="Validform_checktip">请设置初审处理意见！</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style6"></td>
+                        <td class="auto-style1"></td>
+                        <td class="auto-style7">
+                            <input type="submit" value="确定" />
+                            &nbsp;<input type="button" value="关闭" Class="button white medium" onclick="javascript: closewindows();" />
+                        </td>
+                        <td></td>
+                    </tr>
+
+                </table>
+            }
+        }
+
+        <div class="tz_box cz_box">
+            <span class="icon-sprite icon-list"></span>
+            <h3 class="listtitle">
+                审核处理列表
+            </h3>
+            <table cellspacing="0" cellpadding="0" class="listtable">
+                <tbody>
+                    <tr class="tz_tr">
+                        <th scope="col">贷款名称</th>
+                        <th scope="col">状态 </th>
+                        <th scope="col">处理意见</th>
+                        <th scope="col">处理时间</th>
+                        <th scope="col">处理人员</th>
+                    </tr>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(item.borrowing_title)</td>
+                                <td>Utils.GetTender_state(@(item.tender_state.ToString()))</td>
+                                <td>@(item.reviewremarks)</td>
+                                <td>@(((DateTime)item.reviewtime).ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                                <td>@(item.trueName)</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+        </div>
+    </div>
+</body>
+</html>

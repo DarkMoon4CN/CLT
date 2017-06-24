@@ -1,0 +1,73 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+@model PagedList<V_type_news>
+@{
+    if (ViewBag.MenuId == 17)
+    {
+        ViewBag.Title = "网贷媒体报道 - 创利投";
+        ViewBag.keywords = "创利投,媒体报道,网贷媒体报道";
+        ViewBag.desc = "创利投是安全阳光的互联网金融理财服务平台，媒体报道主要为您提供来自国内外知名媒体的客观报道。";
+    }
+    else if (ViewBag.MenuId == 21)
+    {
+        ViewBag.Title = "创利投公告_创利投活动公告 - 创利投";
+        ViewBag.keywords = "创利投,创利投公告,创利投活动,网贷平台";
+        ViewBag.desc = "创利投是安全阳光的互联网金融理财服务平台，创利投公告主要为您提供活动公告，公司大事件等。";
+    }
+    else if (ViewBag.MenuId == 22)
+    {
+        ViewBag.Title = "理财小知识_网贷问答平台_投资理财资讯 - 创利投";
+        ViewBag.keywords = "理财小知识,网贷知识问答,投资理财资讯,理财常见问题,创利投";
+        ViewBag.desc = "创利投金服常见为题为您提供理财小知识，网贷知识问答，投资理财资讯，投资理财常见问题，创利投励志成为客户最值得信赖的互联网投融资理财平台。";
+    }
+    else if (ViewBag.MenuId == 23)
+    {
+        ViewBag.Title = "P2P理财新闻_网贷新闻_网贷政策 - 创利投";
+        ViewBag.keywords = "网贷新闻,P2P理财新闻,网贷政策,P2P网贷行业";
+        ViewBag.desc = "创利投行业新闻版块第一时间为您提供，关于网贷新闻，网贷政策，P2P理财新闻等互联网金融等资讯内容。";
+    }
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+@Url.File("/Content/about.css").ToHtml()
+@Url.File("/Content/pagecss.css").ToHtml()
+@Url.File("/Scripts/layer.min.js").ToHtml()
+@Url.File("/Scripts/about.js").ToHtml()
+<script type="text/javascript">
+    function AjaxStart() {
+        dff = layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+</script>
+<!--关于我们 begin---------------------------->
+<div class="gy_top">
+    <div class="gy_nav">
+        <a href="/about.html#001" class="gy_a1">公司介绍</a>
+        <a href="/about/List/17" class="gy_a2">媒体报道</a>
+        <a href="/about/List/21" class="gy_a3" id="gy_a3">网站公告</a>
+        <a href="/about/List/22" class="gy_a4">常见问题</a>
+        <a href="/about/List/23" class="gy_a5">行业新闻</a>
+        <a href="/about.html#006" class="gy_a6">招贤纳士</a>
+        <a href="/about.html#003" class="gy_a7">联系我们</a>
+    </div>
+</div>
+
+<div class="cont_01">
+    <div class="topbiaoti" style="display:block;text-align:left; margin-bottom:40px;font-size:14px;font-family:&quot;微软雅黑&quot;color:#333;">
+        @Html.Raw(ViewBag.Link)
+    </div>
+    <h2 class="gy_h2">@ViewBag.title1</h2>
+    @* <h5 class="gy_h5">来自国内外知名媒体的客观报道</h5>*@
+    @using (Html.BeginForm("List", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm", @class = "form-inline well well-sm" }))
+    {
+
+    }
+    <div class="cz_table cz_tab01" id="dTable">
+        @Html.Partial("_aboutList", Model)
+    </div>
+
+</div>
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}

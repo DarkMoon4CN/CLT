@@ -1,0 +1,4 @@
+E:\新版网站\LLYTPay\bin\Debug\LLYTPay.dll
+E:\新版网站\LLYTPay\bin\Debug\LLYTPay.pdb
+E:\新版网站\LLYTPay\obj\Debug\LLYTPay.dll
+E:\新版网站\LLYTPay\obj\Debug\LLYTPay.pdb

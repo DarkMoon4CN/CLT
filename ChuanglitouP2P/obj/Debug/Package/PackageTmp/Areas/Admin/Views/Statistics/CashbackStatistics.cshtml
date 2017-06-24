@@ -1,0 +1,237 @@
+﻿
+@using ChuangLitouP2P.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<Statistics_ActiveSepteberCashback>
+@{
+    ViewBag.Title = "返现统计";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+    int regcount = 0;
+    int realCount = 0;
+    int firstCount = 0;
+}
+
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    .icon-sprite {
+        HEIGHT: 16px;
+        BACKGROUND-IMAGE: url(/admin/images/icons.png);
+        BACKGROUND-REPEAT: no-repeat;
+        POSITION: absolute;
+        LEFT: 10px;
+        MARGIN-TOP: -8px;
+        DISPLAY: inline-block;
+        TOP: 50%;
+        WIDTH: 16px;
+    }
+
+    .icon-edit {
+        BACKGROUND-POSITION: -63px -1px;
+    }
+
+    .icon-delete {
+        BACKGROUND-POSITION: -83px -2px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var done=@ViewBag.HasCalculate;
+        if(done==1)
+        {
+            $('#btnExcuteCalculate').hide();
+        }
+    });
+
+    function downloadExcel(url) {
+        //alert(url);
+        var obj = $("#downloadExcelBtn");
+        obj.attr("href", url);
+        document.getElementById("downloadExcelBtn").click();
+        //$("#downloadExcelBtn").click();
+    }
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">统计管理</a>><a href="javascript:void(0)"> 统计列表</a></h2>
+<h2 class="z_location">
+    累计参与人数：<font style="color:red">@ViewBag.JoinMemberCount</font>人&nbsp;&nbsp;&nbsp;&nbsp;累积投资金额：<font style="color:red">@ViewBag.InvestTotalAmount</font>元
+</h2>
+<div class="z_body">
+    <p class="tP3">
+        快速搜索
+        @using (Html.BeginForm("CashbackStatistics", "Statistics", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+            {
+            @Html.AntiForgeryToken()
+
+        <p class="tP4 tx_tp4" style="height:50px; ">
+            <label for="username">用户名：</label><input type="text" class="txt1" id="username" name="username" value="@(ViewBag.username)" style="width:100px;" />
+            <label for="username">累计投资金额：</label><input type="text" class="txt1" id="investTotalAmountFrom" name="investTotalAmountFrom" value="@(ViewBag.investTotalAmountFrom)" style="width:100px;" />元 - <input type="text" class="txt1" id="investTotalAmountTo" name="investTotalAmountTo" value="@(ViewBag.investTotalAmountTo)" style="width:100px;" />
+            项目期限：@Html.DropDownList("projectTerm", ViewBag.ProjectTermList as List<SelectListItem>, "请选择")
+            累计应返现金：<input type="text" class="txt1" id="cashbackTotalAmountFrom" name="cashbackTotalAmountFrom" value="@(ViewBag.cashbackTotalAmountFrom)" style="width:100px;" />元 - <input type="text" class="txt1" id="cashbackTotalAmountTo" name="cashbackTotalAmountTo" value="@(ViewBag.cashbackTotalAmountTo)" style="width:100px;" />元
+            返现状态：@Html.DropDownList("cashbackStatus", ViewBag.CashbackStatusList as List<SelectListItem>, "请选择")&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn2" id="btnCashPayment" value="发放返现" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn2" id="downloadExcel" value="全部导出" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn2" id="btnExcuteCalculate" value="执行统计" />&nbsp;&nbsp;&nbsp;&nbsp;
+            @*<input type="button" class="btn2" id="btnClearCalculate" value="删除统计结果" />*@
+        </p>
+        }
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            返现统计列表
+        </h3>
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th scope="col">编号</th>
+                    <th scope="col">用户名</th>
+                    <th scope="col">项目期限</th>
+                    <th scope="col">累计投资金额(元)</th>
+                    <th scope="col">累计投资笔数</th>
+                    <th scope="col">累计应返现(元)</th>
+                    <th scope="col">状态</th>
+                    <th scope="col">操作</th>
+
+                </tr>
+                @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                        <tr>
+                            <td>@(item.Id)</td>
+                            <td>@(item.UserName)</td>
+                            <td>@(item.InvestTerm)</td>
+                            <td>@(item.InvestTotalAmount)</td>
+                            <td>@(item.InvestTimes)</td>
+                            <td>@(item.CashbackAmount)</td>
+                            <td>@(item.HasCashback == 0 ? "未返现" : "已返现")</td>
+                            <td><a href="/Admin/Users/Investment">查看投资记录</a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="pagination ue-clear">
+            <div class="pagination-container">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("CashbackStatistics", new
+           {
+               page,
+               username = @ViewBag.username,
+               investTotalAmountFrom = @ViewBag.investTotalAmountFrom,
+               investTotalAmountTo = @ViewBag.investTotalAmountTo,
+               projectTerm = @ViewBag.projectTerm,
+               cashbackTotalAmountFrom = @ViewBag.cashbackTotalAmountFrom,
+               cashbackTotalAmountTo = @ViewBag.cashbackTotalAmountTo,
+               cashbackStatus = @ViewBag.cashbackStatus
+           }))
+            </div>
+        </div>
+    </div>
+    <a href="" id="downloadExcelBtn" style="display:;"></a>
+    <script>
+        $('#btnExcuteCalculate').click(function () {
+            var index = layer.msg('正在处理中，请稍后...',0,9);
+            $.ajax({
+                type: 'Get',
+                url: "/admin/Statistics/CashbackStatisticsCalculate",
+                data: {},
+                //dataType: dataType,
+                success: function (data) {
+                    if (data == "您没有操作权限") {
+                        alert("您没有操作权限");
+                    } else {
+                        alert(data);
+                        window.location.href="/admin/Statistics/CashbackStatistics";
+                        //$('#btnExcuteCalculate').hide();
+                    }
+                },
+                error: function () {
+                    //view("异常！");
+                    alert("异常！");
+                }
+            });
+            layer.close(index);
+        });
+
+        //$('#btnClearCalculate').click(function () {
+        //    var index = layer.msg('正在处理中，请稍后...',0,9);
+        //    $.ajax({
+        //        type: 'Get',
+        //        url: "/admin/Statistics/CashbackStatisticsClear",
+        //        data: {},
+        //        //dataType: dataType,
+        //        success: function (data) {
+        //            if (data == "您没有操作权限") {
+        //                alert("您没有操作权限");
+        //            } else {
+        //                alert(data);
+        //                window.location.href="/admin/Statistics/CashbackStatistics";
+        //                //$('#btnExcuteCalculate').hide();
+        //            }
+        //        },
+        //        error: function () {
+        //            //view("异常！");
+        //            alert("异常！");
+        //        }
+        //    });
+        //    layer.close(index);
+        //});
+
+        $("#downloadExcel").click(function () {
+            var index = layer.msg('正在处理中，请稍后...',0,9);
+            $.ajax({
+                type: 'Get',
+                url: "/admin/Statistics/CashbackStatisticsToExcel",
+                data: {},
+                //dataType: dataType,
+                success: function (data) {
+                    if (data == "您没有操作权限") {
+                        alert("您没有操作权限");
+                    } else {
+                        downloadExcel(data);
+                    }
+                },
+                error: function () {
+                    //view("异常！");
+                    alert("异常！");
+                }
+            });
+            layer.close(index);
+        });
+
+        $("#btnCashPayment").click(function () {
+            if(confirm('请确认是否发放返现？'))
+            {
+                var index = layer.msg('正在处理中，请稍后...',0,9);
+                $.ajax({
+                    type: 'Get',
+                    url: "/admin/Statistics/Cashback",
+                    data: {},
+                    //dataType: dataType,
+                    success: function (data) {
+                        if (data == "您没有操作权限") {
+                            layer.close(index);
+                            alert("您没有操作权限");
+                        } else {
+                            layer.close(index);
+                            alert(data);
+                            window.location.href="/admin/Statistics/CashbackStatistics";
+                        }
+                    },
+                    error: function () {
+                        //view("异常！");
+                        alert("异常！");
+                    }
+                });
+            }
+        });
+    </script>

@@ -1,0 +1,32 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuangLiTou.Core.Entities.Response.ResultInfo<string>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>确认投资</title>
+    @Url.ApiFile("layer.min.js").ToHtml()
+    <script type="text/javascript"> layer.msg("数据处理中.....!", 0.5, 1);</script>
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+    </script>
+</head>
+<body>
+    @{
+        if (Model != null && Model.code == "1")
+        {
+            <div>@Model.body.ToHtml()</div>
+        }
+        else
+        {
+            <span>@Model.message</span>
+        }
+    }
+</body>
+</html>

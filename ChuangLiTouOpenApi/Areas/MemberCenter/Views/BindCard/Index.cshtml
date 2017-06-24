@@ -1,0 +1,39 @@
+﻿@using ChuanglitouP2P.Common
+@model ChuangLiTou.Core.Entities.ChinaPnr.UserEntity
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>绑卡</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("jquery-1.11.1.min.js").ToHtml()
+    @Url.ApiFile("layer.min.js").ToHtml()
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+    </script>
+</head>
+<body>
+    <script type="text/javascript">
+        $(function () {
+            layer.msg("数据处理中....！请不要关闭", 60, 1);
+        });
+    </script>
+    <form id="form1" action="@Settings.Instance.ChinapnrUrl" method="post">
+        <div>
+            <input id="Version" name="Version" type="hidden" value="@Model.Version" />
+            <input id="CmdId" name="CmdId" value="@Model.CmdId" type="hidden" />
+            <input id="MerCustId" name="MerCustId" value="@Model.MerCustId" type="hidden" />
+            <input id="UsrCustId" name="UsrCustId" value="@Model.UsrCustId" type="hidden" />
+            <input id="BgRetUrl" name="BgRetUrl" value="@Model.BgRetUrl" type="hidden" />
+            <input id="MerPriv" name="MerPriv" value="@Model.MerPriv" type="hidden" />
+            <input id="ChkValue" name="ChkValue" value="@Model.ChkValue" type="hidden" />
+        </div>
+    </form>
+    <script type="text/javascript">$("#form1").submit();</script>
+</body>
+</html>

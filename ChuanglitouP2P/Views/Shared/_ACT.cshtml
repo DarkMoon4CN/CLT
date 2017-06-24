@@ -1,0 +1,122 @@
+﻿@using ChuanglitouP2P.Common;
+@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@model PagedList<hx_UserAct>
+
+@if (Model.Count > 0)
+{
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <thead>
+        <tr class="cz_tr01">
+            <th width="140">收入</th>
+            <th width="140">支出</th>
+            <th width="200">发生时间</th>
+            <th width="150">类型</th>
+            <th width="172">状态</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (hx_UserAct item in Model)
+        {
+            <tr>
+
+                @if (item.RewTypeID == 1)
+                {
+                  <td>@item.Amt  元</td>
+
+                }
+                else if (item.RewTypeID == 2)
+                {
+                    <td> @item.Amt 元</td>
+                }
+                else if (item.RewTypeID == 3)
+                {
+                    <td>@item.Amt %</td>
+                }
+               
+                @if (item.UseState > 0)
+                {
+                    if (item.RewTypeID == 1)
+                    {
+                       @*<td>@item.Amt  元</td>*@
+                        <td>--</td>
+                    }
+                    else if (item.RewTypeID == 2)
+                    {
+                        if (item.UseState == 2 || item.UseState==0)
+                        {
+                          <td> --</td>
+                        }
+                        else
+                        {
+                           <td> @item.Amt 元</td>
+                        }
+
+                    }
+                    else if (item.RewTypeID == 3)
+                    {
+                        if (item.UseState == 2 || item.UseState == 0)
+                        {
+                            <td> --</td>
+                        }
+                        else
+                        {
+                            <td>@item.Amt %</td>
+                        }
+
+                    }
+                }
+                else
+                {
+                    <td>--</td>
+                }
+                
+
+                <td>
+                @{ 
+
+                    DateTime optime;
+
+                    DateTime.TryParse(item.Createtime.ToString(), out optime);
+
+                }
+                  @(item.UseTime == null ? optime.ToString("yyyy-MM-dd HH:mm:ss") : DateTime.Parse(item.UseTime.ToString()).ToString("yyyy-MM-dd HH:mm:ss"))
+               
+
+
+
+                </td>
+
+                <td>@item.hx_RewardType.RewTypeName</td>
+
+                <td> @Utils.GetRewardState(item.UseState.ToString())</td>
+               
+                
+
+
+            </tr>
+        }
+
+        
+
+
+    </tbody>
+</table>
+
+<div class="page_box">
+    <div class="page_left">
+        @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", PageIndexParameterName = "regpageindex", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox3", GoToButtonId = "goToBtn3" }, new MvcAjaxOptions
+   { UpdateTargetId = "ACT", HttpMethod = "Post", DataFormId = "searchFormACT", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "ACT")).AjaxOptions(a => a.SetUpdateTargetId("ACT"))
+    </div>
+    <div class="page_right">
+        <div class="input-group" style="margin:20px 0">
+            <span class="input-group-addon">转到第</span>
+            <input type="text" id="pageIndexBox3" class="form-control input-sm" />
+            <span class="input-group-addon">页</span>
+            <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn3">跳转</button></span>
+        </div>
+    </div>
+</div>
+}

@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "好友邀请";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/uaredirect.js"></script> 
+<script type="text/javascript">
+    var id = '@ViewBag.invitedcode';
+    
+    window.location.href = "http://www.chuanglitou.cn/Register.html";
+    //window.open("http://test.chuanglitou.cn");
+    //uaredirect("http://test.chuanglitou.cn", "http://www.chuanglitou.cn");
+</script>
+

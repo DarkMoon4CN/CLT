@@ -1,0 +1,103 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.V_contract_type_template>
+@{
+    ViewBag.Title = "合同模板列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">合同模板</a>><a href="javascript:void(0)"> 合同模板列表</a></h2>
+<div class="z_body">
+    <div class="tz_box cz_box">
+        <p class="tP3">
+            快速搜索
+        </p>
+        @using (Html.BeginForm("Index", "ContractTemp", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <p class="tP4 tx_tp4" style="height:50px; ">
+                <label for="username">合同模板名称：</label><input type="text" class="txt1" id="contract_template_name" name="contract_template_name" value="@(ViewBag.contract_template_name)" style="width:150px;" />
+
+                <label for="contract_type_id">合同类别id：</label>@Html.DropDownList("contract_type_id", ViewBag.list_ConType as IEnumerable<SelectListItem>, new { @style = "height:24px;LINE-HEIGHT: 24px;" })
+
+                <input type="hidden" id="hid_type" value="@(ViewBag.contract_type_id)" />
+
+                <input type="submit" class="btn2" value="查&nbsp;询" />
+               
+            </p>
+        }
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            合同模板列表
+        </h3>
+
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th scope="col">id </th>
+                    <th scope="col">合同模版名称</th>
+                    <th scope="col">合同模版类型</th>
+                    <th scope="col">使用状态</th>
+                    <th scope="col">创建时间</th>
+                    <th scope="col">修改</th>
+                    <th scope="col">删除</th>
+                </tr>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(item.contract_template_id)</td>
+                            <td>@(item.contract_template_name)</td>
+                            <td>@(item.contract_type_name)</td>
+                            @if (item.usestate == 0)
+                            {
+                                <td> <a href="/admin/ContractTemp/ModifyStateById?id=@(item.contract_template_id)&state=1">设为使用</a></td>
+                            }
+                            else
+                            {
+                                <td> <a href="/admin/ContractTemp/ModifyStateById?id=@(item.contract_template_id)&state=0">取消使用</a></td>
+                            }
+                            <td>@(item.cretatetime)</td>
+                            <td>
+                                <a class="opt" title="修改" href="/admin/ContractTemp/Template?id=@(item.contract_template_id)">修改</a>
+                            </td>
+                            <td>
+                                <a class="opt" title="删除" href="/admin/ContractTemp/DelTempliate?id=@(item.contract_template_id)" OnClick="javascript:return confirm( '你确认要删除吗？[删除后将无法恢复]');">删除</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="pagination ue-clear">
+            <div class="pagination-container">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, contract_template_name = @ViewBag.contract_template_name, contract_type_id = @ViewBag.contract_type_id }))
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        setDefaultddlType();
+    });
+
+    //设置下拉框默认
+    function setDefaultddlType() {
+        var _type = $("#hid_type").val();
+        $("#contract_type_id").val(_type);
+    }
+
+</script>

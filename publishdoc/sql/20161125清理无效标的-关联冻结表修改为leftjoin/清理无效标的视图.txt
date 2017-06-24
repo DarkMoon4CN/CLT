@@ -1,0 +1,29 @@
+GO
+
+/****** Object:  View [dbo].[V_Bid_records_Lost]    Script Date: 2016/11/25 10:34:33 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+ALTER VIEW [dbo].[V_Bid_records_Lost]
+AS
+SELECT   dbo.hx_Bid_records.bid_records_id, dbo.hx_Bid_records.investment_amount, dbo.hx_Bid_records.OrdId, 
+                dbo.hx_Bid_records.invest_time, dbo.hx_borrowing_target.borrowing_title, dbo.hx_borrowing_target.borrowing_balance, 
+                dbo.hx_borrowing_target.annual_interest_rate, dbo.hx_Bid_records.investor_registerid, 
+                dbo.hx_member_table.username, dbo.hx_member_table.mobile, dbo.hx_member_table.realname, 
+                dbo.hx_Bid_records.ordstate, dbo.hx_member_table.UsrCustId, dbo.hx_td_frozen.FrozenidNo, 
+                dbo.hx_td_frozen.FreezeTrxId
+FROM      dbo.hx_Bid_records INNER JOIN
+                dbo.hx_borrowing_target ON dbo.hx_Bid_records.targetid = dbo.hx_borrowing_target.targetid INNER JOIN
+                dbo.hx_member_table ON dbo.hx_Bid_records.investor_registerid = dbo.hx_member_table.registerid left JOIN
+                dbo.hx_td_frozen ON dbo.hx_Bid_records.bid_records_id = dbo.hx_td_frozen.bid_records_id
+WHERE   (dbo.hx_Bid_records.ordstate = 0)
+
+
+
+GO
+

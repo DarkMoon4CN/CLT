@@ -1,0 +1,426 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+@model  ChuangLitouP2P.Models.V_borrowing_target_addlist
+@{
+    ViewBag.Title = "项目详情页";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+    //List<hx_UserAct> UsrAct = ViewBag.UsrAct == null ? null : ViewBag.UsrAct;
+
+}
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="~/Scripts/Rewards.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+    .ct3_cont {
+        margin: 0 90px;
+        /*display: none;*/
+    }
+
+    .pop_table tr td {
+        text-align: center;
+        border: 1px solid #eee;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .even {
+        background-color: #f5f5f5;
+    }
+    /*奇数行样式*/
+    .odd {
+        background-color: white;
+    }
+    /*偶数行样式*/
+    .selected {
+        background-color: #f8b8b6;
+    }
+</style>
+@Html.Raw(ChuanglitouP2P.Common.Utils.GetWebAD(3, 1))
+<!--中间部分-->
+@using (Html.BeginForm("PostInvest", ViewContext.RouteData.GetRequiredString("controller"), FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1", @target = "_blank" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="hsw_con">
+        <div class="hsw_con1 location_new">
+            您所在的位置：首页 > 我要投资 > @Model.borrowing_title
+        </div>
+        <div class="ct_01">
+            <h2 class="ct_h2">投资项目信息</h2>
+            <div class="ct_1_01"><span class="ct_span01">项目名称：@*@Model.project_type_name—*@ @Model.borrowing_title</span><span class="ct_span02">年化收益：@(Model.annual_interest_rate)%</span><span class="ct_span03">还款方式：@Utils.Getpayment_options(int.Parse(Model.payment_options.ToString()))</span></div>
+            <div class="ct_1_02"><span class="ct_span01">投资时间：@DateTime.Now.ToString("yyyy-MM-dd")</span><span class="ct_span02">回款时间：@(DateTime.Parse(Model.repayment_date.ToString()).ToString("yyyy-MM-dd"))</span></div>
+        </div>
+        @{
+            DateTime Endtime = DateTime.Parse(Model.end_time.ToString());
+
+            DateTime Stime = DateTime.Parse(Model.start_time.ToString());
+
+            DateTime online = DateTime.Parse(Model.sys_time.ToString());
+
+            DateTime rpdt = DateTime.Parse(Model.repayment_date.ToString());
+            DateTime rest = DateTime.Parse(Model.release_date.ToString());
+
+            decimal Percentage = Utils.GetPercentage(decimal.Parse(Model.borrowing_balance.ToString()), decimal.Parse(Model.fundraising_amount.ToString()));
+            decimal Difference = Utils.GetDifference(decimal.Parse(Model.borrowing_balance.ToString()), decimal.Parse(Model.fundraising_amount.ToString()));
+
+            long diffdays = Utils.DateDiff("Day", DateTime.Parse(rest.ToString("yyyy-MM-dd")), DateTime.Parse(rpdt.ToString("yyyy-MM-dd")));}
+        <div class="ct_02">
+            <h2 class="ct_h2">回款收益信息</h2>
+            <div class="ct_1_01">
+                <span class="ct_span01">
+                    投资金额：
+                    <input type="text" class="in_change" id="investamount" name="investamount" value="@(ViewBag.investmentamountd)" autocomplete="off" onblur="investAmtChange();" onfocus="setTempAmt();" />
+                    @*onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />*@
+                    <a href="javascript:;" class="ct_change" id="changeinv">修改</a>
+                </span><span class="ct_span02">到期收益:<i id="investdisp">@ViewBag.lixi </i> 元</span><span class="ct_span03">到期总收益：<i id="Span1">@ViewBag.countAmt</i> 元</span>
+            </div>
+            <input type="hidden" id="tempinv" name="tempinv" value="0" />
+
+            <input type="hidden" id="Diff" name="Diff" value="@(Difference)" />
+            <input type="hidden" id="id" name="id" value="@(Model.targetid)" />
+            <input type="hidden" id="Isinterest" name="Isinterest" value="0" />
+        </div>
+        <div class="ct_03">
+
+            @*@if (UsrAct.Count > 0)
+                {*@
+            <div class="ct3_top" style='background-image: none;'><h2 class="ct_h2">可用奖励</h2></div>
+            <div class="ct3_bot">
+                <div class="ct3_cont">
+                    <div style="width:40%; padding-left:10px; padding-right:15px; line-height:40px;"><input type="radio" id="tyradio" name="tyradio" checked="checked" value="0" onclick="showUserActRewType(0)" style="width:13px; height:13px;" />抵扣券&nbsp;&nbsp;&nbsp;&nbsp;  <input type="radio" id="tyradio2" name="tyradio" value="1" onclick="showUserActRewType(1)" style="width:13px; height:13px;" />加息券</div>
+                    <div class="xsclass">
+                        @Html.Raw(ViewBag.UsrAct)
+                        @*<table width="100%" class="pop_table" id="list_tb" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+                                <thead>
+                                    <tr>
+                                        <td width="11%" height="36" bgcolor="#f5f5f5"><input name="checkall" id="checkall" type="checkbox" value="" disabled="disabled" /></td>
+
+                                        <td width="22%" bgcolor="#f5f5f5">类型</td>
+                                        <td width="22%" bgcolor="#f5f5f5">金额</td>
+                                        <td width="22%" bgcolor="#f5f5f5">最低使用限额</td>
+                                        <td width="23%" bgcolor="#f5f5f5">使用限制</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (hx_UserAct item in UsrAct)
+                                    {
+                                        if (item.RewTypeID == 2)
+                                        {
+
+
+                                            <tr>
+                                                <td height="36"><input name="check" ck="rad"  type="checkbox" value="@(item.UserAct)" /></td>
+                                                <td>
+                                                    抵扣券
+                                                    <input id="u@(item.UserAct)" name="u@(item.UserAct)" type="hidden" value="@item.AmtUses" />
+                                                </td>
+                                                <td>
+
+                                                    @(item.Amt)元
+
+                                                </td>
+                                                <td>
+                                                    @if (item.Uselower <= 0 )
+                                                    {
+                                                        @:无投资门槛
+                                                    }
+                                                    else
+                                                    {
+                                                        @item.Uselower
+                                                    }
+
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+
+                            </table>*@
+                    </div>
+
+                </div>
+
+                <p class="ct3_p">
+                    本次共使用奖励金额：<i id="Rewards">0</i>
+                    <span id="jsdw" style="float: none; display:inline-block">元</span>
+
+
+
+                </p>
+            </div>
+
+
+            @*  }*@
+
+            <input type="hidden" name="Rewardsid" id="Rewardsid" />
+
+
+
+        </div>
+
+        <div class="ct_04">
+            <dl>
+                <dt><span class="ct4_span1">本次投资金额：</span><span class="ct4_span2" id="dispinvst">@ViewBag.investmentamountd 元</span></dt>
+
+
+
+                <dd><span class="ct4_span1">可用奖励：</span><span class="ct4_span2" id="jiangli">0.00 元</span></dd>
+                <dd id="yfje"><span class="ct4_span1">应付金额：</span><span class="ct4_span2"><i id="dispamt">0.00 元</i></span></dd>
+
+
+
+
+            </dl>
+            <p class="ct4_p1"><input type="submit" value="充值并投资" onclick="return investAlter()"></p>
+        </div>
+        <div class="ct_05"></div>
+
+    </div>
+            }
+@*<script src="~/Scripts/layer-v3.0.1/layer.js"></script>*@
+<script type="text/javascript">
+    var minimum =@Model.minimum;
+    var maxmum  =@Model.maxmum;
+    var _minTrans=1;
+    var _perTrans=@Model.minimum;
+    var tempAmt=0;
+    $(function(){
+        var a = $(".hsw_con2 p a");
+        var b = $(".hsw_con2 p .hsw_con_a5")
+        a.click(function(){
+            $(this).addClass("hsw_con2_a").siblings().removeClass("hsw_con2_a");
+            /*a.find("img").attr("src","images/jt.png")
+            $(this).find("img").attr("src","images/jiantou.png")*/
+        })
+        b.mouseover(function(){
+            $(this).find("img").attr("src","/images/jiantou.png")
+            $(this).find("img").css("top","6px")
+        })
+        b.mouseout(function(){
+            $(this).find("img").attr("src","/images/jt.png")
+            $(this).find("img").css("top","7px")
+        })
+        /*b.click(function(){
+
+            $(this).find("img").attr("src","images/jiantou.png");
+            $(this).siblings().find("img").attr("src","images/jt.png");
+        })*/
+
+        $("#changeinv").click(function(){
+            var amt=$('#investamount').val();
+            if(amt!=null)
+            {
+                showEarnByAmt(amt);
+            }
+            else{
+
+                layer.msg("投资金额不能为空！", 1, 5);
+            }
+        });
+    })
+
+
+    function inittable(){
+        $("tbody>tr").each(function () {
+
+            $(this).removeClass("selected")
+            .find(":checkbox").prop("checked", false);
+
+
+        });
+
+        $('#jiangli').text('0 元');
+        $('#Rewardsid').val("");
+        $('#dispamt').text( '0元');
+        $('#Rewards').text('0');
+        $('#tempinv').val(0);
+        invtemp=parseFloat($('#investamount').val());
+        Rewardsid=[];
+        numj = parseFloat("0");
+
+    };
+
+    function setTempAmt()
+    {
+        tempAmt=$("#investamount").val();
+    }
+
+
+    //投资金额改变
+    function investAmtChange(){
+        var temp= parseFloat($('#investamount').val());
+        if(tempAmt > temp)
+        {
+            layer.tips('投资金额比原有资金少时,请重新选择抵扣券及加息券!', $('#investamount'), { guide: 2, time: 5, style: ['background-color:#33CC00; color:#FFFFFF;', '#33CC00'] });
+            inittable();
+            tempAmt=0;
+        }else
+        {
+            var rewards = parseFloat($('#Rewards').text());
+            $('#dispamt').text((temp - rewards) + '元');
+        }
+
+        fxtype =0;//清空抵扣券分档状态
+        var obj=$("#investamount").get(0);
+        var enme=parseInt($("#Diff").val());
+        $("#tempinv").val(obj.value);
+        var num=parseInt(obj.value);
+        if(num>enme)
+        {
+            layer.msg("投资金额已超出可投金额", 1, 5);
+            if(enme>=maxmum)
+            {
+                if(maxmum<=0)
+                {
+                    $("#investamount").val(minimum);
+                    var obj=$("#investamount").val();
+                    var num=parseInt(obj);
+                    showEarnByAmt(num);
+                }
+                else
+                {
+                    $("#investamount").val(maxmum);
+                    var obj=$("#investamount").val();
+                    var num=parseInt(obj);
+                    showEarnByAmt(num);
+                }
+            }
+            else
+            {
+                $("#investamount").val(maxmum-enme);
+                var obj=$("#investamount").val();
+                var num=parseInt(obj);
+                showEarnByAmt(num);
+            }
+            inittable();
+        }
+        else
+        {
+            if(num>maxmum && maxmum>0)
+            {
+                layer.msg("投资金额不能超过最高限额"+maxmum+"元！", 1, 5);
+
+                if(enme>maxmum)
+                {
+                    $("#investamount").val(maxmum);
+                }
+                else
+                {
+
+                    $("#investamount").val(enme);
+                }
+                var obj=$("#investamount").val();
+                var num=parseInt(obj);
+                showEarnByAmt(num);
+            }
+            else
+            {
+                if(isNaN(num)||num<_minTrans*_perTrans){
+                    layer.msg("最低投资金额为"+_minTrans*_perTrans+"元！",1, 5);
+                    num=_minTrans*_perTrans;
+
+                }else{
+                    if(parseInt(num%_perTrans)>0){
+                        layer.msg("投资金额为"+_perTrans+"元整数倍！", 1, 5);
+                    }
+                    num=parseInt(num/_perTrans)*_perTrans;
+                }
+            }
+            $("#investamount").val(num);
+            var obj=$("#investamount").val();
+            var num=parseInt(obj);
+            showEarnByAmt(num);
+        }
+    }
+
+    //通过投资金额    显示收益
+    function showEarnByAmt(obj){
+        if(isNaN(obj)||obj<1) return false;
+        num=parseFloat(obj/_perTrans)*_perTrans;
+        $("#dispinvst").text(num+'元');
+        var Lixi=0;
+        var Isinterest = $('#Isinterest').val();
+        if (Isinterest == 1) {
+            Lixi=$('#Rewards').text().replace("%","");
+        }
+        $.post("/invest_borrow/InvestCalculator?method=post", { "id":@Model.targetid ,"jialixi":Lixi,"data": num }, function (msg) {
+            var obj1 = JSON.parse(msg);
+            var amtlixi=num+parseFloat(obj1.principal)
+            $("#investdisp").html(obj1.principal);
+            $("#Span1").html(amtlixi);
+        });
+
+    }
+
+    //点击抵扣券/加息券
+    function showUserActRewType(rtype){
+        inittable();
+        tempAmt=0;
+        investAmtChange();
+        fxtype =0;//清空抵扣券分档状态
+        $('#Isinterest').val(rtype);
+        $.post("/invest_borrow/investUserActRewType", {"isinterest":rtype,"targetid":@Model.targetid  }, function (data) {
+            $(".xsclass").html(data);
+        });
+
+    }
+
+</script>
+
+
+<style type="text/css">
+    .tanchu_hongbao_zhezhao {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.5;
+        z-index: 10;
+    }
+
+    .tanchu_hongbao_content {
+        width: 410px;
+        height: 322px;
+        position: absolute;
+        top: 50%;
+        margin-top: -151px;
+        left: 50%;
+        margin-left: -275px;
+    }
+
+    .tanchu_hongbao {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.5);
+        z-index: 999999;
+        display: none;
+    }
+</style>
+
+<div class="tanchu_hongbao" style="filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000,endColorstr=#88000000);">
+    <div class="tanchu_hongbao_content">
+
+        <div style="padding: 17px; line-height: 25px; background-color: #fff; color: #555; border-top:1px solid #ccc">
+            <span style="font-size:18px;">
+                跳转投资页面……
+            </span><div style="float:right; font-size:180%;cursor: pointer;" onclick="closeAlter();">×</div><hr />
+            <span style="color:#222">请在新开页面投资后选择</span><br><br><img src="/images/right.png" style="vertical-align: middle;"><span style="vertical-align: middle;">投资成功</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; <a href="/usercenter/touzi" style="color:#0066FF">查看投资记录</a><br><img src="/images/error.png" style="vertical-align: middle;"><span style="vertical-align: middle;">投资失败</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 建议您 &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:history.go(-1)" style="color:#0066FF">重新进行投资</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+
+    function investAlter(){
+        $(".tanchu_hongbao").show();
+    }
+    function closeAlter(){
+        $(".tanchu_hongbao").hide();
+    }
+</script>

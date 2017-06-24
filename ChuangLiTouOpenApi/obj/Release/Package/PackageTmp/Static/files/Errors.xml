@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ErrorList>
+  <Error ErrorCode="0" ErrorInfo="欢迎对接开放平台，该接口已经对外开放" />
+  <Error ErrorCode="200" ErrorInfo="权限验证成功" />
+  <Error ErrorCode="200.1" ErrorInfo="暂无数据" />
+  <Error ErrorCode="403" ErrorInfo="您无权对当前数据进行操作" />
+  <Error ErrorCode="500" ErrorInfo="网络异常，请稍后再试" />
+  <Error ErrorCode="500.1" ErrorInfo="请求参数不合法" />
+  <Error ErrorCode="500.2" ErrorInfo="请求参数不正确" />
+  <Error ErrorCode="500.3" ErrorInfo="该请求未得到服务器响应" />
+  <Error ErrorCode="500.4" ErrorInfo="Token验证失败" />
+  <Error ErrorCode="500.5" ErrorInfo="Token已过期，请重新获取Token" />
+  <Error ErrorCode="5000000080" ErrorInfo="缺少参数Header" />
+  <Error ErrorCode="5000000081" ErrorInfo="缺少参数AppId" />
+  <Error ErrorCode="5000000082" ErrorInfo="缺少参数AppSecret" />
+  <Error ErrorCode="5000000083" ErrorInfo="缺少参数AccessToken" />
+  <Error ErrorCode="5000000084" ErrorInfo="缺少参数MethodName" />
+  <Error ErrorCode="5000000084.1" ErrorInfo="MethodName参数不合法" />
+  <Error ErrorCode="5000000085" ErrorInfo="缺少参数TimeStamp" />
+  <Error ErrorCode="5000000085.1" ErrorInfo="TimeStamp格式不正确" />
+  <Error ErrorCode="5000000086" ErrorInfo="缺少参数Body" />
+  <Error ErrorCode="5000000087" ErrorInfo="缺少必要参数" />
+  <Error ErrorCode="5000000088" ErrorInfo="AppId或AppSecret参数错误" />
+  <Error ErrorCode="5000000088.1" ErrorInfo="签名验证失败" />
+  <Error ErrorCode="5000000088.2" ErrorInfo="未绑定当前Ip" />
+  <Error ErrorCode="1" ErrorInfo="ok" />
+  <Error ErrorCode="99999" ErrorInfo="未知错误" />
+  <Error ErrorCode="404" ErrorInfo="缺少业务参数,请联系开发人员" />
+  <Error ErrorCode="100000000" ErrorInfo="会员相关接口" />
+  <Error ErrorCode="100000000.1" ErrorInfo="注册成功" />
+  <Error ErrorCode="100000000.0" ErrorInfo="注册失败" />
+  <Error ErrorCode="1000000000" ErrorInfo="手机号不能为空" />
+  <Error ErrorCode="1000000001" ErrorInfo="手机号格式不正确" />
+  <Error ErrorCode="1000000002" ErrorInfo="手机号已被注册" />
+  <Error ErrorCode="1000000003" ErrorInfo="手机验证码不正确" />
+  <Error ErrorCode="1000000004" ErrorInfo="手机验证码不存在" />
+  <Error ErrorCode="1000000005" ErrorInfo="短信发送太频繁!请稍后再试" />
+  <Error ErrorCode="1000000006" ErrorInfo="短信发送太频繁!请与客服联系" />
+  <Error ErrorCode="1000000099" ErrorInfo="验证码发送成功" />
+  <Error ErrorCode="1000000007" ErrorInfo="用户名不能为空" />
+  <Error ErrorCode="1000000008" ErrorInfo="密码不能为空" />
+  <Error ErrorCode="1000000009" ErrorInfo="用户名或密码不正确,请重新输入" />
+
+  <Error ErrorCode="1000000010" ErrorInfo="未找到相关记录" />
+  <Error ErrorCode="1000000011" ErrorInfo="验证码不存在或已过期" />
+  <Error ErrorCode="1000000012" ErrorInfo="原始密码输入错误" />
+
+
+  <Error ErrorCode="1000000013" ErrorInfo="原始手机号输入错误" />
+  <Error ErrorCode="1000000014" ErrorInfo="检查标Id是否正确" />
+
+
+
+  <Error ErrorCode="1000000015" ErrorInfo="检查用户Id是否正确" />
+  <Error ErrorCode="1000000016" ErrorInfo="请选择省份数据" />
+  <Error ErrorCode="1000000017" ErrorInfo="请选择城市数据" />
+  <Error ErrorCode="1000000018" ErrorInfo="请选择县城数据" />
+  <Error ErrorCode="1000000019" ErrorInfo="详细地址不能为空" />
+  <Error ErrorCode="1000000020" ErrorInfo="详细地址过长" />
+  <Error ErrorCode="1000000021" ErrorInfo="该用户未注册" />
+
+  <Error ErrorCode="1000000060" ErrorInfo="密码重置成功" />
+
+
+  <Error ErrorCode="2000000000" ErrorInfo="投资金额不能低于起投金额" />
+  <Error ErrorCode="2000000001" ErrorInfo="投资金额不能超过最高可投限额" />
+  <Error ErrorCode="2000000002" ErrorInfo="投资金额超出可投金额" />
+  <Error ErrorCode="2000000003" ErrorInfo="帐户余额不足，请充值" />
+  <Error ErrorCode="2000000004" ErrorInfo="本标的投资未付款已超过三次" />
+  <Error ErrorCode="2000000005" ErrorInfo="出现异常,回滚事务" />
+  <Error ErrorCode="2000000006" ErrorInfo="优惠券数据有问题，请重新选择" />
+  <Error ErrorCode="2000000007" ErrorInfo="个别优惠券不可用" />
+  <Error ErrorCode="2000000008" ErrorInfo="投资金额不能低于最低限额" />
+  <Error ErrorCode="2000000009" ErrorInfo="投资金额不能高于最高限额" />
+  <Error ErrorCode="2000000010" ErrorInfo="投资新手标，不允许使用加息卷和或红包" />
+  <Error ErrorCode="2000000011" ErrorInfo="投资新手标失败！只允许注册30天内的用户投资" />
+  <Error ErrorCode="2000000012" ErrorInfo="投资新手标失败！每个新手标只允许新用户投资3次" />
+  <Error ErrorCode="2999999999" ErrorInfo="投资失败！标的数据无效或已结束，请刷新标的列表" />
+
+
+  <Error ErrorCode="3000000000" ErrorInfo="检查优惠券Id是否正确" />
+  <Error ErrorCode="3000000001" ErrorInfo="当前优惠券不属于当前用户" />
+  <Error ErrorCode="3000000002" ErrorInfo="当前优惠券已在其他地方使用" />
+  <Error ErrorCode="3000000003" ErrorInfo="当前优惠券已过期" />
+  <Error ErrorCode="3000000004" ErrorInfo="当前优惠券已被锁定" />
+  <Error ErrorCode="3000000005" ErrorInfo="投资金额满$limit$元才可以使用该优惠券" />
+  <Error ErrorCode="3000000006" ErrorInfo="检查优惠券是否正确" />
+
+
+
+
+  <Error ErrorCode="4000000000" ErrorInfo="无银行卡数据" />
+  <Error ErrorCode="4000000001" ErrorInfo="提现失败,提现审核中,暂不能进行其他操作" />
+  <Error ErrorCode="5000000000" ErrorInfo="数据有误，签名失败!" />
+
+</ErrorList>

@@ -1,0 +1,85 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuanglitouP2P.Model;
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<hx_UserAct>
+@{
+    ViewBag.Title = "奖励管理-现金奖励-创利投";
+    ViewBag.keywords = "奖励管理-现金奖励-创利投";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+}
+<script src="~/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<link href="~/Content/pagecss.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    var dff;
+    function AjaxStart() {dff= layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        var index = parent.layer.close(dff); //获取窗口索引
+        parent.layer.close(index);
+    }
+</script>
+<div class="content">
+    <!--公共的左侧-->
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+    <div>
+
+        <div class="xj">
+            <h2 class="xj_h2">
+                <span class="xj_span">现金奖励</span>
+            </h2>
+            <h3 class="xI">
+                截止 @DateTime.Now ，您的现金奖励是：<em>@ViewBag.Totals</em>笔，您历史累计获得现金奖励总额是：<em>@ViewBag.succTotal 元</em> 。
+            </h3>
+            
+               
+
+
+                @Html.Partial("_RewardList1", Model)
+               
+
+            
+            <div class="page_box">
+                <div class="page_left">
+                    @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox2", GoToButtonId = "goToBtn2" }, new MvcAjaxOptions
+       { UpdateTargetId = "dTable", HttpMethod = "Post", DataFormId = "searchForm", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "dTable")).AjaxOptions(a => a.SetUpdateTargetId("dTable"))
+                </div>
+                <div class="page_right">
+                    <div class="input-group" style="margin:20px 0">
+                        <span class="input-group-addon">转到第</span>
+                        <input type="text" id="pageIndexBox2" class="form-control input-sm" />
+                        <span class="input-group-addon">页</span>
+                        <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn2">跳转</button></span>
+                    </div>
+                </div>
+            </div>
+
+
+
+              
+                @section Scripts{@{Html.RegisterMvcPagerScriptResource();}}
+
+
+                <p class="xJx"></p>
+                <h2 class="xH2">
+                    现金奖励使用说明
+                </h2>
+                <p class="xContent">
+                    1.
+                    创利投平台会不定期开展回馈新老用户活动，请持续关注创利投平台动态，获得现金奖励；
+                </p>
+                <p class="xContent">
+                    2.
+                    用户所获现金奖励可以用于创利投投资，也可用于提现；
+                </p>
+                <p class="xContent">
+                    3.
+                    如您在操作过程中，遇到任何问题，请拨打创利投客服电话：010-53732056。
+                </p>
+</div>
+
+    </div>
+    </div>

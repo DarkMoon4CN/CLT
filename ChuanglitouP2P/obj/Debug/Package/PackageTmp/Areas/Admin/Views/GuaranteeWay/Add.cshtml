@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "新增担保方式";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="/Scripts/Validform_v5.3.2_min.js"></script>
+<script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+<script type="text/javascript">
+    function checkForm()
+    {
+        if ($("#guarantee_way_name").val() == "")
+        {
+            alert("担保名称不能为空!");
+            $("#guarantee_way_name").focus();
+            return false;
+        }
+    }
+
+    function afterAdd(data)
+    {
+        alert(data.info);
+
+    }
+    function clearNoNum(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+        obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+    }
+</script>
+<style type="text/css">
+    .tdleft {
+        width: 20%;
+        text-align: right;
+    }
+
+    .tdright {
+        width: 80%;
+        text-align: left;
+    }
+
+    tr {
+        background: rgb(255, 255, 255);
+    }
+</style>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="/Admin/GuaranteeWay/Index" class="z_mg5">担保方式管理</a>><a href="javascript:void(0)"> 增加</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        项目类型管理
+    </h3>
+    <div class="tz_box cz_box">
+        @using (Html.BeginForm("AddPost", "GuaranteeWay", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+            {
+            <div class="z_cont2">
+                <br />
+                @Html.AntiForgeryToken()
+
+                <table width="100%" style="table-layout:fixed;padding-left:10px;margin-top:10px;">
+                    <tr>
+                        <td class="tdleft"><label for="contract_type_id">担保名称：</label></td>
+                        <td class="tdright">
+                            <input type="text" id="guarantee_way_name" name="guarantee_way_name" class="" style="width:240px; height:24px;" datatype="*2-30" nullmsg="担保名称不能为空！" errormsg="担保名称在2~30位之间！" />
+                            <span class="Validform_checktip"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft"><label for="contract_type_id">担保金额：</label></td>
+                        <td class="tdright">
+                            <input type="text" id="amount_guaranteed" name="amount_guaranteed" class="" style="width:240px; height:24px;" datatype="*" nullmsg="担保金额不能为空！" errormsg="担保金额为数字类型！"  placeholder="0.00"  onkeyup="clearNoNum(this)" />
+                            <span class="Validform_checktip"></span>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <br />
+
+            <div  class="submin_box">
+                <input type="submit" class="z_btn_01" value="确 定" style="width:90px; height:25px;" />
+
+                <a href="/admin/GuaranteeWay/Index" class="z_btn_01" style="width:90px; height:25px; line-height:25px">返 回</a>
+            </div>
+
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "n": /^\d+$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+
+
+    });
+
+
+
+</script>
+
+

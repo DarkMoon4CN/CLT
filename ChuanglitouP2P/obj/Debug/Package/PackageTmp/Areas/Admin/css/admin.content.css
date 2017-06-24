@@ -1,0 +1,218 @@
+BODY {
+	BACKGROUND-COLOR: #fff
+}
+.container {
+	HEIGHT: auto; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px auto; PADDING-RIGHT: 0px; WIDTH: 99%
+}
+.location {
+	HEIGHT: 30px; BORDER-BOTTOM: #cccccc 1px solid; COLOR: #666666; LINE-HEIGHT: 30px
+}
+.box {
+	BORDER-TOP: #cccccc 1px solid; HEIGHT: auto; BORDER-RIGHT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px auto; MIN-HEIGHT: 65px; BORDER-LEFT: #cccccc 1px solid; PADDING-RIGHT: 0px; WIDTH: 100%
+}
+.box-title {
+	HEIGHT: 27px; BACKGROUND: url(../images/box-title.gif) repeat-x; LINE-HEIGHT: 27px; TEXT-INDENT: 7px
+}
+.box-content {
+	HEIGHT: auto; PADDING-BOTTOM: 7px; PADDING-TOP: 7px; PADDING-LEFT: 7px; LINE-HEIGHT: 20px; PADDING-RIGHT: 7px
+}
+DIV.line {
+	HEIGHT: 1px; BACKGROUND: #ccc; MARGIN: 0px auto
+}
+.blank10 {
+	OVERFLOW: hidden; HEIGHT: 10px; MARGIN: 0px auto
+}
+.icon-sprite {
+	HEIGHT: 16px; BACKGROUND-IMAGE:url(../images/icons.png); BACKGROUND-REPEAT: no-repeat; POSITION: absolute; LEFT: 10px; MARGIN-TOP: -8px; DISPLAY: inline-block; TOP: 50%; WIDTH: 16px
+}
+.icon-alarm {
+	BACKGROUND-POSITION: 0px -2px
+}
+.icon-list {
+	BACKGROUND-POSITION: -21px -1px
+}
+.icon-magnifier {
+	BACKGROUND-POSITION: -41px -1px
+}
+.icon-edit {
+	BACKGROUND-POSITION: -63px -1px
+}
+.icon-delete {
+	BACKGROUND-POSITION: -83px -2px
+}
+.block {
+	BORDER-TOP: #cdcdcd 1px solid; BORDER-RIGHT: #cdcdcd 1px solid; BORDER-BOTTOM: #cdcdcd 1px solid; POSITION: relative; MARGIN: auto; BORDER-LEFT: #cdcdcd 1px solid; WIDTH: 99.8%; BACKGROUND-COLOR: #f7f7f7
+}
+.block .corner {
+	BACKGROUND-IMAGE: url(/admin/images/block-corner.png); BACKGROUND-REPEAT: no-repeat; POSITION: absolute
+}
+.block .tl {
+	HEIGHT: 32px; BACKGROUND-POSITION: 0px 0px; LEFT: -1px; TOP: -1px; WIDTH: 8px
+}
+.block .tr {
+	HEIGHT: 32px; RIGHT: -1px; BACKGROUND-POSITION: -8px 0px; TOP: -1px; WIDTH: 8px; _right: -2px
+}
+.block .bl {
+	HEIGHT: 12px; BACKGROUND-POSITION: 0px -32px; LEFT: -1px; WIDTH: 8px; BOTTOM: -1px; _bottom: -3px
+}
+.block .br {
+	HEIGHT: 12px; RIGHT: -1px; BACKGROUND-POSITION: -8px -32px; WIDTH: 8px; BOTTOM: -1px; _right: -2px; _bottom: -3px
+}
+.block .h {
+	HEIGHT: 32px; BACKGROUND: url(../images/block-h.gif) repeat-x; POSITION: absolute; TOP: -1px; WIDTH: 100%
+}
+.block .h H3 {
+	FONT-SIZE: 10pt; FONT-WEIGHT: normal; COLOR: #666666; LINE-HEIGHT: 32px; TEXT-INDENT: 35px
+}
+.block .cnt-wp {
+	PADDING-BOTTOM: 10px; PADDING-TOP: 35px; PADDING-LEFT: 10px; DISPLAY: block; PADDING-RIGHT: 10px; _display: inline-block
+}
+.block .cnt-wp .cnt {
+	BORDER-TOP: #dddddd 1px solid; BORDER-RIGHT: #dddddd 1px solid; BORDER-BOTTOM: #dddddd 1px solid; BORDER-LEFT: #dddddd 1px solid; BACKGROUND-COLOR: #ffffff;
+}
+.block .cnt-wp .form {
+	PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px
+}
+
+
+
+
+.block .h .bar {
+	RIGHT: 10px; POSITION: absolute; TEXT-ALIGN: right; PADDING-TOP: 6px; TOP: 0px;
+    height: 18px;
+}
+.block .h .bar A {
+	VERTICAL-ALIGN: middle
+}
+.block .h .bar SELECT {
+	VERTICAL-ALIGN: middle
+}
+.search-bar A {
+	VERTICAL-ALIGN: middle
+}
+.search .cnt {
+	BACKGROUND-COLOR: #ffffff
+}
+.search-bar {
+	PADDING-BOTTOM: 10px; TEXT-ALIGN: left; PADDING-TOP: 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px
+}
+.search LABEL {
+	PADDING-LEFT: 10px
+}
+.search LABEL.first {
+	PADDING-LEFT: 0px
+}
+.data-form {
+	BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; WIDTH: 100%
+}
+.data-form TR {
+	HEIGHT: 35px; LINE-HEIGHT: 35px
+}
+.data-form TH {
+	FONT-WEIGHT: normal; COLOR: #4b4a4a; TEXT-ALIGN: right; WIDTH: 200px
+}
+.data-form TD {
+	PADDING-LEFT: 5px
+}
+.data-form #tip {
+	FONT-WEIGHT: bold; COLOR: #ff6600; PADDING-LEFT: 5px
+}
+.search #tip {
+	FONT-WEIGHT: bold; COLOR: #ff6600; PADDING-LEFT: 5px
+}
+.data-table {
+	BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; WIDTH: 100%
+}
+.data-table TH {
+	FONT-SIZE: 12px; HEIGHT: 31px; BACKGROUND:url(../images/data-table-th.gif) repeat-x; FONT-WEIGHT: bold; COLOR: #456b0a; LINE-HEIGHT: 31px
+}
+.data-table .even {
+	BACKGROUND-COLOR: #f2f2f2
+}
+.data-table TD {
+	HEIGHT: 28px; BORDER-RIGHT: #dddddd 1px solid; WHITE-SPACE: nowrap; WORD-BREAK: break-all; LINE-HEIGHT: 28px
+}
+.data-table TD.l {
+	TEXT-ALIGN: left
+}
+.data-table TD.c {
+	TEXT-ALIGN: center
+}
+.data-table TD.r {
+	TEXT-ALIGN: right
+}
+.data-table TD.txt {
+	TEXT-INDENT: 5px
+}
+.data-table TD.chk {
+	TEXT-ALIGN: center; WIDTH: 3%; TEXT-INDENT: 1px
+}
+.data-table TD.txtb10 {
+	WIDTH: 10%; TEXT-INDENT: 5px
+}
+.data-table TD.txtb20 {
+	WIDTH: 20%; TEXT-INDENT: 5px
+}
+.data-table TD.txtb30 {
+	WIDTH: 30%; TEXT-INDENT: 5px
+}
+.data-table TD.txtb40 {
+	WIDTH: 40%; TEXT-INDENT: 5px
+}
+.data-table TD.txtb50 {
+	WIDTH: 50%; TEXT-INDENT: 5px
+}
+.data-table TD.txtb60 {
+	WIDTH: 60%; TEXT-INDENT: 5px
+}
+.data-table TD.txt40 {
+	WIDTH: 40px; TEXT-INDENT: 5px
+}
+.data-table TD.txt80 {
+	WIDTH: 80px; TEXT-INDENT: 5px
+}
+.data-table TD.txt120 {
+	TEXT-INDENT: 5px
+}
+.data-table TD.txt160 {
+	WIDTH: 160px; TEXT-INDENT: 5px
+}
+.data-table TD.txt200 {
+	WIDTH: 200px; TEXT-INDENT: 5px
+}
+.data-table TD.icon {
+	TEXT-ALIGN: center; WIDTH: 3%
+}
+.data-table TD.tail {
+	BORDER-RIGHT-WIDTH: 0px
+}
+.data-table .opt {
+	CURSOR: pointer; HEIGHT: 25px; POSITION: relative; TEXT-ALIGN: center; DISPLAY: block; WIDTH: 35px
+}
+.pager-bar {
+	HEIGHT: 25px; COLOR: #5b5959; TEXT-ALIGN: right; PADDING-TOP: 10px; LINE-HEIGHT: 25px
+}
+.pager-bar .msg {
+	FLOAT: left
+}
+.pager-bar .input-small {
+	BORDER-TOP: #d3e5b6 1px solid; BORDER-RIGHT: #d3e5b6 1px solid; BORDER-BOTTOM: #d3e5b6 1px solid; MARGIN: 0px 4px; BORDER-LEFT: #d3e5b6 1px solid; WIDTH: 30px
+}
+
+.pager-bar .input-Big {
+	BORDER-TOP: #d3e5b6 1px solid; BORDER-RIGHT: #d3e5b6 1px solid; BORDER-BOTTOM: #d3e5b6 1px solid; MARGIN: 0px 4px; BORDER-LEFT: #d3e5b6 1px solid; WIDTH: 90px
+}
+
+.button-white {
+	BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 26px; BACKGROUND-IMAGE: url(/admin/images/button-white.gif); BACKGROUND-REPEAT: no-repeat; BORDER-BOTTOM-STYLE: none; BACKGROUND-POSITION: 0px 0px; FONT-WEIGHT: normal; COLOR: #5b5959; PADDING-BOTTOM: 0px; TEXT-ALIGN: center; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; PADDING-LEFT: 12px; TEXT-DECORATION: none; DISPLAY: inline-block; LINE-HEIGHT: 26px; PADDING-RIGHT: 0px
+}
+.button-white SPAN {
+	FONT-SIZE: 12px; FONT-FAMILY: "??????","????"; BACKGROUND-IMAGE: url(/admin/images/button-white.gif); BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: right 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; DISPLAY: block; PADDING-RIGHT: 12px
+}
+
+.cnt-list-pic ul
+{ list-style:none; margin:0; padding:0;
+}
+.cnt-list-pic ul li{ width:120px; float:left; text-align:center; margin:10px;}
+
+

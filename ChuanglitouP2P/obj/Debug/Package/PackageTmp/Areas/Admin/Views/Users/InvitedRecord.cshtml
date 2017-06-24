@@ -1,0 +1,155 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<InvitedRecordViewModel>
+@{
+    ViewBag.Title = "邀请投资记录";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link href="/Areas/Admin/styleCont/style.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("input.jcDate").jcDate({
+            IcoClass: "jcDateIco",
+            Event: "click",
+            Speed: 100,
+            Left: 0,
+            Top: 28,
+            format: "-",
+            Timeout: 100
+        });
+    });
+    function CheckDateTime(from, to) {
+        var $startTime = $(from).val();
+        var $endTime = $(to).val();
+        if ($startTime == undefined)
+            return;
+        if ($endTime == undefined)
+            return;
+        var time = (Date.parse($endTime) - Date.parse($startTime)) / 3600 / 1000; //小时差
+        if (time < 1) {
+            alert(time);
+            alert('结束时间必须大于或等于开始时间!');
+            $(to).val('');
+        }
+    }
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>><a href="javascript:void(0)"> 邀请投资记录</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+    <p class="tP3">
+        快速搜索
+    </p>
+    @using (Html.BeginForm("InvitedRecord", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="tP4 tx_tp4" style="height:60px; padding-bottom:15px; ">
+            <label for="username">邀请用户名：</label><input type="text" class="txt1" id="username" name="username" value="@(ViewBag.username)" style="width:100px;" />&nbsp;
+            <label for="realname">邀请用户真实姓名：</label><input type="text" class="txt1" id="realname" name="realname" value="@(ViewBag.realname)" style="width:100px;" />&nbsp;
+            <label for="time1">投资日期(开始)：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="investTimeFrom" name="investTimeFrom" value="@(ViewBag.investTimeFrom)" autocomplete="off" onblur="CheckDateTime('#investTimeFrom', '#investTimeTo')" />&nbsp;-
+            <label for="time1">投资日期(结束)：</label><input type="text" class="jcDate jcDateIco" style="padding-left:40px; line-height:20px;" id="investTimeTo" name="investTimeTo" value="@(ViewBag.investTimeTo)" autocomplete="off" onblur="CheckDateTime('#investTimeFrom', '#investTimeTo')" />&nbsp;
+            <input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" />
+        </p>
+    }
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        邀请投资记录列表
+    </h3>
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th>编号</th>
+                <th>邀请用户ID</th>
+                <th>邀请用户名</th>
+                <th>邀请用户真实姓名</th>
+                <th>被邀请用户ID</th>
+                <th>被邀请用户名</th>
+                <th>被邀请用户真实姓名</th>
+                <th>投资时间</th>
+                <th>投资金额</th>
+                <th>投资订单号</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.InvestRecordId</td>
+                        @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                        {
+
+                            if (item.InviterAccount.Length == 11 && !String.IsNullOrEmpty(item.InviterAccount))
+                            {
+                                item.InviterAccount = item.InviterAccount.Substring(0, 3) + "****" + item.InviterAccount.Substring(7, 4);
+                            }
+                            if (item.InviterAccount.Length != 11 && !String.IsNullOrEmpty(item.InviterAccount) && item.InviterAccount.Length > 1)
+                            {
+                                item.InviterAccount = item.InviterAccount.Substring(0, 1) + "**";
+                            }
+                            if (item.InviterRealName != null && item.InviterRealName.Length > 1)
+                            {
+                                item.InviterRealName = item.InviterRealName.Substring(0, 1) + "**";
+                            }
+
+
+                            if (item.BeInvitedAccount.Length == 11 && !String.IsNullOrEmpty(item.BeInvitedAccount))
+                            {
+                                item.BeInvitedAccount = item.BeInvitedAccount.Substring(0, 3) + "****" + item.BeInvitedAccount.Substring(7, 4);
+                            }
+                            if (item.BeInvitedAccount.Length != 11 && !String.IsNullOrEmpty(item.BeInvitedAccount) && item.BeInvitedAccount.Length > 1)
+                            {
+                                item.BeInvitedAccount = item.BeInvitedAccount.Substring(0, 1) + "**";
+                            }
+                            if (item.BeInvitedRealName != null && item.BeInvitedRealName.Length > 1)
+                            {
+                                item.BeInvitedRealName = item.BeInvitedRealName.Substring(0, 1) + "**";
+                            }
+
+
+                        }
+                        <td>@item.YaoUid</td>
+                        <td>@item.InviterAccount</td>
+                        <td>@item.InviterRealName</td>
+                        <td>@item.InvUid</td>
+                        <td>@item.BeInvitedAccount</td>
+                        <td>@item.BeInvitedRealName</td>
+                        <td>@item.InvestDatetime</td>
+                        <td>@item.InvestAmount</td>
+                        <td>@item.InvestOrderNo</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="pagination ue-clear">
+        <div class="pagination-container">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("InvitedRecord", new
+       {
+           page,
+           username = @ViewBag.username,
+           realname = @ViewBag.realname,
+           investTimeFrom = ViewBag.investTimeFrom,
+           investTimeTo = @ViewBag.investTimeTo
+       }))
+        </div>
+    </div>
+</div>

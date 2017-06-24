@@ -1,0 +1,234 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+@model Dictionary<int, List<hx_td_department>>
+@{
+    ViewBag.Title = "部门列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+    var list = Model;
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".setlimit").bind("click", function () {
+            var did = $(this).attr("did");
+            SetLimit(did);
+        });
+
+        $("#btnAdd").bind("click", function () {
+            openAddfrm();
+        });
+        $(".modifyDep").bind("click", function () {
+            var did = $(this).attr("did");
+            openModifyfrm(did);
+        });
+    });
+    //修改
+    function openModifyfrm(id) {
+        var url = "/admin/Deparment/Editor?id="+id;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '修改部门信息',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['989px', "510px"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+    //新增
+    function openAddfrm() {
+        var url = "/admin/Deparment/Add";
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '新增部门信息',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['989px', "510px"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+
+    //设置权限
+    function SetLimit(departmentid) {
+        var url = "/admin/Limit/DepartmentLimit?departmentid=" + departmentid;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '设置部门权限',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['90%', "96%"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+
+    function closewindows() {
+        layer.close(editwindow);
+        window.location.href = location.href;
+    }
+ </script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">权限管理</a>><a href="javascript:void(0)"> 部门列表</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        部门列表
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn1" id="btnAdd" value="添加部门" />
+    </h3>
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th>部门名称</th>
+                <th>创建日期</th>
+                <td>设置权限</td>
+                <th>修改</th>
+                <th>删除</th>
+            </tr>
+            @if (list != null && list.Count() > 0)
+            {
+                var list0 = new List<hx_td_department>();
+                if (list.TryGetValue(0, out list0))
+                {
+                    foreach (var item in list0)
+                    {
+                        <tr>
+                            <td style="text-align:left;">
+                                <img src="/areas/admin/images/openfolder.gif" align="middle" style="padding-left:10px;" />
+                                <span>@(item.department_name)</span>
+                            </td>
+                            <td>
+                                @(((DateTime)item.createtime).ToString("yyyy-MM-dd HH:mm:ss"))
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" did="@(item.department_id)" class="setlimit">
+                                    <img src="/areas/admin/images/edit.gif" width="16" />
+                                </a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" did="@(item.department_id)" class="modifyDep">
+                                    <img src="/areas/admin/images/edit.gif" width="16" />
+                                </a>
+                            </td>
+                            <td>
+                                <a class="opt" title="删除" href="/admin/Deparment/Remove?id=@(item.department_id)" onclick="if(confirm('确认删除部门吗？')){}else{return false;}"><img src="/areas/admin/images/no.gif" width="16"></a>
+                            </td>
+                        </tr>
+
+                        var list1 = new List<hx_td_department>();
+                        if (list.TryGetValue(item.department_id, out list1))
+                        {
+                            foreach (var item1 in list1)
+                            {
+                                <tr>
+                                    <td style="text-align:left;">
+                                        <img src="/areas/admin/images/file.gif" align="middle" style="padding-left:30px;" />
+                                        <span>@(item1.department_name)</span>
+                                    </td>
+                                    <td>
+                                        @(((DateTime)item1.createtime).ToString("yyyy-MM-dd HH:mm:ss"))
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" did="@(item1.department_id)" class="setlimit">
+                                            <img src="/areas/admin/images/edit.gif" width="16" />
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" did="@(item1.department_id)" class="modifyDep">
+                                            <img src="/areas/admin/images/edit.gif" width="16" />
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="opt" title="删除" href="/admin/Deparment/Remove?id=@(item1.department_id)" onclick="if(confirm('确认删除部门吗？')){}else{return false;}"><img src="/areas/admin/images/no.gif" width="16"></a>
+                                    </td>
+                                </tr>
+                                var list2 = new List<hx_td_department>();
+                                if (list.TryGetValue(item1.department_id, out list2))
+                                {
+                                    foreach (var item2 in list2)
+                                    {
+                                        <tr>
+                                            <td style="text-align:left;">
+                                                <img src="/areas/admin/images/file.gif" align="middle" style="padding-left:50px;" />
+                                                <span>@(item2.department_name)</span>
+                                            </td>
+                                            <td>
+                                                @(((DateTime)item2.createtime).ToString("yyyy-MM-dd HH:mm:ss"))
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0);" did="@(item2.department_id)" class="setlimit">
+                                                    <img src="/areas/admin/images/edit.gif" width="16" />
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0);" did="@(item2.department_id)" class="modifyDep">
+                                                    <img src="/areas/admin/images/edit.gif" width="16" />
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="opt" title="删除" href="/admin/Deparment/Remove?id=@(item2.department_id)" onclick="if(confirm('确认删除部门吗？')){}else{return false;}"><img src="/areas/admin/images/no.gif" width="16"></a>
+                                            </td>
+                                        </tr>
+                                        var list3 = new List<hx_td_department>();
+                                        if (list.TryGetValue(item2.department_id, out list3))
+                                        {
+                                            foreach (var item3 in list3)
+                                            {
+                                                <tr>
+                                                    <td style="text-align:left;">
+                                                        <img src="~/areas/admin/images/file.gif" align="middle" style="padding-left:70px;" />
+                                                        <span>@(item3.department_name)</span>
+                                                    </td>
+                                                    <td>
+                                                        @(((DateTime)item3.createtime).ToString("yyyy-MM-dd HH:mm:ss"))
+                                                    </td>
+                                                    <td>
+                                                        <a href="javascript:void(0);" did="@(item3.department_id)" class="setlimit">
+                                                            <img src="/areas/admin/images/edit.gif" width="16" />
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="javascript:void(0);" did="@(item3.department_id)" class="modifyDep">
+                                                            <img src="/areas/admin/images/edit.gif" width="16" />
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="opt" title="删除" href="/admin/Deparment/Remove?id=@(item3.department_id)" onclick="if(confirm('确认删除部门吗？')){}else{return false;}"><img src="/areas/admin/images/no.gif" width="16"></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+
+        </tbody>
+    </table>
+
+
+</div>
+

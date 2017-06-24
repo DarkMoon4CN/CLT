@@ -1,0 +1,70 @@
+﻿
+@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.hx_member_table>
+@{
+    ViewBag.Title = "余额";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script type="text/javascript">
+    function GetAccount() {
+        var avlBal = $("#AvlBal").val();
+        var frzBal = $("#FrzBal").val();
+        var usrCustId = $("#UsrCustId").val();
+        if (usrCustId == "") {
+            layer.alert("信息错误！")
+        } else {
+            //  alert(smstext);
+            $.getJSON("/Users/GetTBXX", { AvlBal: avlBal, FrzBal: frzBal, UsrCustId: usrCustId }, function (data) {
+
+                if (data == 1) {
+                    layer.alert("同步成功！")
+                    window.parent.closewindows();
+                } else if (data == 2) {
+                    layer.alert("信息错误！");
+                } else {
+                    layer.alert("同步失败！");
+                }
+            });
+        }
+    }
+
+</script>
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">会员管理</a>><a href="javascript:void(0)"> 会员资金同步</a></h2>
+<div class="z_body">
+    <div style="margin:15px; font-size:14px;">
+        @ViewBag.fhContent
+        <div>
+
+            @Html.AntiForgeryToken()
+            <input type="hidden" id="AvlBal" name="AvlBal" value="@ViewBag.AvlBal" />
+            <input type="hidden" id="FrzBal" name="FrzBal" value="@ViewBag.FrzBal" />
+            <input type="hidden" id="UsrCustId" name="UsrCustId" value="@ViewBag.UsrCustId" />
+            <input type="button" onclick="GetAccount()" value="同步" />
+            <br />
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,418 @@
+﻿
+using System;
+using System.Data;
+using System.Text;
+using System.Data.SqlClient;
+using ChuanglitouP2P.DBUtility;
+using ChuanglitouP2P.Model;
+
+namespace ChuanglitouP2P.DAL
+{
+	/// <summary>
+	/// 数据访问类:td_Myborrow
+	/// </summary>
+	public partial class D_td_Myborrow
+	{
+		public D_td_Myborrow()
+		{}
+		#region  BasicMethod
+
+		/// <summary>
+		/// 得到最大ID
+		/// </summary>
+		public int GetMaxId()
+		{
+		return DbHelperSQL.GetMaxID("Myborrowid", "hx_td_Myborrow"); 
+		}
+
+		/// <summary>
+		/// 是否存在该记录
+		/// </summary>
+		public bool Exists(int Myborrowid)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("select count(1) from hx_td_Myborrow");
+			strSql.Append(" where Myborrowid=@Myborrowid");
+			SqlParameter[] parameters = {
+					new SqlParameter("@Myborrowid", SqlDbType.Int,4)
+			};
+			parameters[0].Value = Myborrowid;
+
+			return DbHelperSQL.Exists(strSql.ToString(),parameters);
+		}
+
+
+		/// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public int Add(M_td_Myborrow model)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("insert into hx_td_Myborrow(");
+			strSql.Append("Username,userTel,BorrAMT,BorrPurposes,Area,CompName,Industry,RegCapital,TimeLimit,FoundingTime,Mortgage,EntryTime,BorrType,BorrState)");
+			strSql.Append(" values (");
+			strSql.Append("@Username,@userTel,@BorrAMT,@BorrPurposes,@Area,@CompName,@Industry,@RegCapital,@TimeLimit,@FoundingTime,@Mortgage,@EntryTime,@BorrType,@BorrState)");
+			strSql.Append(";select @@IDENTITY");
+			SqlParameter[] parameters = {
+					new SqlParameter("@Username", SqlDbType.VarChar,255),
+					new SqlParameter("@userTel", SqlDbType.VarChar,255),
+					new SqlParameter("@BorrAMT", SqlDbType.VarChar,255),
+					new SqlParameter("@BorrPurposes", SqlDbType.VarChar,255),
+					new SqlParameter("@Area", SqlDbType.VarChar,255),
+					new SqlParameter("@CompName", SqlDbType.VarChar,255),
+					new SqlParameter("@Industry", SqlDbType.VarChar,255),
+					new SqlParameter("@RegCapital", SqlDbType.VarChar,255),
+					new SqlParameter("@TimeLimit", SqlDbType.Int,4),
+					new SqlParameter("@FoundingTime", SqlDbType.DateTime),
+					new SqlParameter("@Mortgage", SqlDbType.Int,4),
+					new SqlParameter("@EntryTime", SqlDbType.DateTime),
+					new SqlParameter("@BorrType", SqlDbType.Int,4),
+					new SqlParameter("@BorrState", SqlDbType.Int,4)};
+			parameters[0].Value = model.Username;
+			parameters[1].Value = model.userTel;
+			parameters[2].Value = model.BorrAMT;
+			parameters[3].Value = model.BorrPurposes;
+			parameters[4].Value = model.Area;
+			parameters[5].Value = model.CompName;
+			parameters[6].Value = model.Industry;
+			parameters[7].Value = model.RegCapital;
+			parameters[8].Value = model.TimeLimit;
+			parameters[9].Value = model.FoundingTime;
+			parameters[10].Value = model.Mortgage;
+			parameters[11].Value = model.EntryTime;
+			parameters[12].Value = model.BorrType;
+			parameters[13].Value = model.BorrState;
+
+			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
+			if (obj == null)
+			{
+				return 0;
+			}
+			else
+			{
+				return Convert.ToInt32(obj);
+			}
+		}
+		/// <summary>
+		/// 更新一条数据
+		/// </summary>
+		public bool Update(M_td_Myborrow model)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("update hx_td_Myborrow set ");
+			strSql.Append("Username=@Username,");
+			strSql.Append("userTel=@userTel,");
+			strSql.Append("BorrAMT=@BorrAMT,");
+			strSql.Append("BorrPurposes=@BorrPurposes,");
+			strSql.Append("Area=@Area,");
+			strSql.Append("CompName=@CompName,");
+			strSql.Append("Industry=@Industry,");
+			strSql.Append("RegCapital=@RegCapital,");
+			strSql.Append("TimeLimit=@TimeLimit,");
+			strSql.Append("FoundingTime=@FoundingTime,");
+			strSql.Append("Mortgage=@Mortgage,");
+			strSql.Append("EntryTime=@EntryTime,");
+			strSql.Append("BorrType=@BorrType,");
+			strSql.Append("BorrState=@BorrState");
+			strSql.Append(" where Myborrowid=@Myborrowid");
+			SqlParameter[] parameters = {
+					new SqlParameter("@Username", SqlDbType.VarChar,255),
+					new SqlParameter("@userTel", SqlDbType.VarChar,255),
+					new SqlParameter("@BorrAMT", SqlDbType.VarChar,255),
+					new SqlParameter("@BorrPurposes", SqlDbType.VarChar,255),
+					new SqlParameter("@Area", SqlDbType.VarChar,255),
+					new SqlParameter("@CompName", SqlDbType.VarChar,255),
+					new SqlParameter("@Industry", SqlDbType.VarChar,255),
+					new SqlParameter("@RegCapital", SqlDbType.VarChar,255),
+					new SqlParameter("@TimeLimit", SqlDbType.Int,4),
+					new SqlParameter("@FoundingTime", SqlDbType.DateTime),
+					new SqlParameter("@Mortgage", SqlDbType.Int,4),
+					new SqlParameter("@EntryTime", SqlDbType.DateTime),
+					new SqlParameter("@BorrType", SqlDbType.Int,4),
+					new SqlParameter("@BorrState", SqlDbType.Int,4),
+					new SqlParameter("@Myborrowid", SqlDbType.Int,4)};
+			parameters[0].Value = model.Username;
+			parameters[1].Value = model.userTel;
+			parameters[2].Value = model.BorrAMT;
+			parameters[3].Value = model.BorrPurposes;
+			parameters[4].Value = model.Area;
+			parameters[5].Value = model.CompName;
+			parameters[6].Value = model.Industry;
+			parameters[7].Value = model.RegCapital;
+			parameters[8].Value = model.TimeLimit;
+			parameters[9].Value = model.FoundingTime;
+			parameters[10].Value = model.Mortgage;
+			parameters[11].Value = model.EntryTime;
+			parameters[12].Value = model.BorrType;
+			parameters[13].Value = model.BorrState;
+			parameters[14].Value = model.Myborrowid;
+
+			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
+			if (rows > 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// 删除一条数据
+		/// </summary>
+		public bool Delete(int Myborrowid)
+		{
+			
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("delete from hx_td_Myborrow ");
+			strSql.Append(" where Myborrowid=@Myborrowid");
+			SqlParameter[] parameters = {
+					new SqlParameter("@Myborrowid", SqlDbType.Int,4)
+			};
+			parameters[0].Value = Myborrowid;
+
+			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
+			if (rows > 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		/// <summary>
+		/// 批量删除数据
+		/// </summary>
+		public bool DeleteList(string Myborrowidlist )
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("delete from hx_td_Myborrow ");
+			strSql.Append(" where Myborrowid in ("+Myborrowidlist + ")  ");
+			int rows=DbHelperSQL.ExecuteSql(strSql.ToString());
+			if (rows > 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+
+		/// <summary>
+		/// 得到一个对象实体
+		/// </summary>
+		public M_td_Myborrow GetModel(int Myborrowid)
+		{
+			
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("select  top 1 Myborrowid,Username,userTel,BorrAMT,BorrPurposes,Area,CompName,Industry,RegCapital,TimeLimit,FoundingTime,Mortgage,EntryTime,BorrType,BorrState from hx_td_Myborrow ");
+			strSql.Append(" where Myborrowid=@Myborrowid");
+			SqlParameter[] parameters = {
+					new SqlParameter("@Myborrowid", SqlDbType.Int,4)
+			};
+			parameters[0].Value = Myborrowid;
+
+			M_td_Myborrow model=new M_td_Myborrow();
+			DataSet ds=DbHelperSQL.Query(strSql.ToString(),parameters);
+			if(ds.Tables[0].Rows.Count>0)
+			{
+				return DataRowToModel(ds.Tables[0].Rows[0]);
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+
+		/// <summary>
+		/// 得到一个对象实体
+		/// </summary>
+		public M_td_Myborrow DataRowToModel(DataRow row)
+		{
+			M_td_Myborrow model=new M_td_Myborrow();
+			if (row != null)
+			{
+				if(row["Myborrowid"]!=null && row["Myborrowid"].ToString()!="")
+				{
+					model.Myborrowid=int.Parse(row["Myborrowid"].ToString());
+				}
+				if(row["Username"]!=null)
+				{
+					model.Username=row["Username"].ToString();
+				}
+				if(row["userTel"]!=null)
+				{
+					model.userTel=row["userTel"].ToString();
+				}
+				if(row["BorrAMT"]!=null)
+				{
+					model.BorrAMT=row["BorrAMT"].ToString();
+				}
+				if(row["BorrPurposes"]!=null)
+				{
+					model.BorrPurposes=row["BorrPurposes"].ToString();
+				}
+				if(row["Area"]!=null)
+				{
+					model.Area=row["Area"].ToString();
+				}
+				if(row["CompName"]!=null)
+				{
+					model.CompName=row["CompName"].ToString();
+				}
+				if(row["Industry"]!=null)
+				{
+					model.Industry=row["Industry"].ToString();
+				}
+				if(row["RegCapital"]!=null)
+				{
+					model.RegCapital=row["RegCapital"].ToString();
+				}
+				if(row["TimeLimit"]!=null && row["TimeLimit"].ToString()!="")
+				{
+					model.TimeLimit=int.Parse(row["TimeLimit"].ToString());
+				}
+				if(row["FoundingTime"]!=null && row["FoundingTime"].ToString()!="")
+				{
+					model.FoundingTime=DateTime.Parse(row["FoundingTime"].ToString());
+				}
+				if(row["Mortgage"]!=null && row["Mortgage"].ToString()!="")
+				{
+					model.Mortgage=int.Parse(row["Mortgage"].ToString());
+				}
+				if(row["EntryTime"]!=null && row["EntryTime"].ToString()!="")
+				{
+					model.EntryTime=DateTime.Parse(row["EntryTime"].ToString());
+				}
+				if(row["BorrType"]!=null && row["BorrType"].ToString()!="")
+				{
+					model.BorrType=int.Parse(row["BorrType"].ToString());
+				}
+				if(row["BorrState"]!=null && row["BorrState"].ToString()!="")
+				{
+					model.BorrState=int.Parse(row["BorrState"].ToString());
+				}
+			}
+			return model;
+		}
+
+		/// <summary>
+		/// 获得数据列表
+		/// </summary>
+		public DataSet GetList(string strWhere)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("select Myborrowid,Username,userTel,BorrAMT,BorrPurposes,Area,CompName,Industry,RegCapital,TimeLimit,FoundingTime,Mortgage,EntryTime,BorrType,BorrState ");
+			strSql.Append(" FROM hx_td_Myborrow ");
+			if(strWhere.Trim()!="")
+			{
+				strSql.Append(" where "+strWhere);
+			}
+			return DbHelperSQL.Query(strSql.ToString());
+		}
+
+		/// <summary>
+		/// 获得前几行数据
+		/// </summary>
+		public DataSet GetList(int Top,string strWhere,string filedOrder)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("select ");
+			if(Top>0)
+			{
+				strSql.Append(" top "+Top.ToString());
+			}
+			strSql.Append(" Myborrowid,Username,userTel,BorrAMT,BorrPurposes,Area,CompName,Industry,RegCapital,TimeLimit,FoundingTime,Mortgage,EntryTime,BorrType,BorrState ");
+			strSql.Append(" FROM hx_td_Myborrow ");
+			if(strWhere.Trim()!="")
+			{
+				strSql.Append(" where "+strWhere);
+			}
+			strSql.Append(" order by " + filedOrder);
+			return DbHelperSQL.Query(strSql.ToString());
+		}
+
+		/// <summary>
+		/// 获取记录总数
+		/// </summary>
+		public int GetRecordCount(string strWhere)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("select count(1) FROM hx_td_Myborrow ");
+			if(strWhere.Trim()!="")
+			{
+				strSql.Append(" where "+strWhere);
+			}
+			object obj = DbHelperSQL.GetSingle(strSql.ToString());
+			if (obj == null)
+			{
+				return 0;
+			}
+			else
+			{
+				return Convert.ToInt32(obj);
+			}
+		}
+		/// <summary>
+		/// 分页获取数据列表
+		/// </summary>
+		public DataSet GetListByPage(string strWhere, string orderby, int startIndex, int endIndex)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("SELECT * FROM ( ");
+			strSql.Append(" SELECT ROW_NUMBER() OVER (");
+			if (!string.IsNullOrEmpty(orderby.Trim()))
+			{
+				strSql.Append("order by T." + orderby );
+			}
+			else
+			{
+				strSql.Append("order by T.Myborrowid desc");
+			}
+			strSql.Append(")AS Row, T.*  from hx_td_Myborrow T ");
+			if (!string.IsNullOrEmpty(strWhere.Trim()))
+			{
+				strSql.Append(" WHERE " + strWhere);
+			}
+			strSql.Append(" ) TT");
+			strSql.AppendFormat(" WHERE TT.Row between {0} and {1}", startIndex, endIndex);
+			return DbHelperSQL.Query(strSql.ToString());
+		}
+
+		/*
+		/// <summary>
+		/// 分页获取数据列表
+		/// </summary>
+		public DataSet GetList(int PageSize,int PageIndex,string strWhere)
+		{
+			SqlParameter[] parameters = {
+					new SqlParameter("@tblName", SqlDbType.VarChar, 255),
+					new SqlParameter("@fldName", SqlDbType.VarChar, 255),
+					new SqlParameter("@PageSize", SqlDbType.Int),
+					new SqlParameter("@PageIndex", SqlDbType.Int),
+					new SqlParameter("@IsReCount", SqlDbType.Bit),
+					new SqlParameter("@OrderType", SqlDbType.Bit),
+					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
+					};
+			parameters[0].Value = "hx_td_Myborrow";
+			parameters[1].Value = "Myborrowid";
+			parameters[2].Value = PageSize;
+			parameters[3].Value = PageIndex;
+			parameters[4].Value = 0;
+			parameters[5].Value = 0;
+			parameters[6].Value = strWhere;	
+			return DbHelperSQL.RunProcedure("UP_GetRecordByPage",parameters,"ds");
+		}*/
+
+		#endregion  BasicMethod
+		#region  ExtensionMethod
+
+		#endregion  ExtensionMethod
+	}
+}
+

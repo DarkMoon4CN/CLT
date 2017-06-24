@@ -1,0 +1,18 @@
+﻿@using ChuangLiTou.Core.Helpers
+@using ChuangLiTou.Core.Entities.Request;
+@using ChuangLiTou.Core.Entities.Request.Recharge;
+
+@model RequestParam<RequestRecharge>
+@{
+    ViewBag.Title = "充值接口";
+    Layout = null;
+}
+
+@using (Html.BeginForm("Index", "ThirdManage", new { area = "MemberCenter" }, FormMethod.Post, new { id = "ModifyForm" }))
+{
+    <div>
+        UserId:@Html.TextBoxFor(m => m.body.userId)
+    </div>
+   
+    <input id="btnSubmit" type="submit" value="我去管理我的账号啦" />
+}

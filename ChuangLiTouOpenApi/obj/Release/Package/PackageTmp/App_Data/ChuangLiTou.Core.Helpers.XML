@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ChuangLiTou.Core.Helpers</name>
+    </assembly>
+    <members>
+        <member name="T:ChuangLiTou.Core.Helpers.SMSService.statusReport">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.errorCode">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.memo">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.mobile">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.receiveDate">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.reportStatus">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.seqID">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.serviceCodeAdd">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.statusReport.submitDate">
+            <remarks/>
+        </member>
+        <member name="T:ChuangLiTou.Core.Helpers.SMSService.mo">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.addSerial">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.addSerialRev">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.channelnumber">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.mobileNumber">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.sentTime">
+            <remarks/>
+        </member>
+        <member name="P:ChuangLiTou.Core.Helpers.SMSService.mo.smsContent">
+            <remarks/>
+        </member>
+    </members>
+</doc>

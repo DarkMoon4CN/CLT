@@ -1,0 +1,312 @@
+﻿@using ChuanglitouP2P.Common;
+@model ChuangLitouP2P.Models.V_borrow_repayment_plan
+@{
+    Layout = null;
+    var fees = Calculator.C_fees(decimal.Parse(Model.loan_management_fee.ToString()), decimal.Parse(Model.repayment_amount.ToString()));
+    var O_penalty = Calculator.O_penalty(Model.targetid.ToString(), ViewBag.planid.ToString()); //这里逾期需要计算上期的逾期金额，
+    var Inves_Repayment_amount = Calculator.Inves_Repayment_amount(Model.targetid.ToString(), Model.repayment_period.ToString());
+    var Interest_spreads = decimal.Parse(Model.repayment_amount.ToString()) - Inves_Repayment_amount;
+    var count_AMT = decimal.Parse(Model.repayment_amount.ToString()) + fees + O_penalty;
+    var shall_repayment= Math.Round(count_AMT, 2).ToString();
+
+    var planid=ViewBag.planid as string;
+    var targetid = ViewBag.targetid as string;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>还款</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 105px;
+        }
+
+        .auto-style5 {
+            width: 256px;
+        }
+
+        .auto-style6 {
+            width: 25px;
+        }
+
+        .auto-style7 {
+            width: 537px;
+        }
+        .Validform_error {
+            background-color: #ffe7e7;
+        }
+    </style>
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Areas/Admin/js/common.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $("#reviewremarks").bind("onblur", function () {
+                if ($.trim($(this).val) == "") {
+                    $(this).addClass("Validform_error");
+                } else {
+                    $(this).removeClass("Validform_error");
+                }
+            });
+
+            $("#postre").on("click", function () {
+                frmSubmit();
+            });
+        });
+
+        function frmSubmit() {
+            $("#postre").attr('disabled', true);
+            $("#postre").val('已禁用');
+            var reviewremarks = $("#reviewremarks");
+            if (reviewremarks.val() == "") {
+                reviewremarks.addClass("Validform_error");
+                layer.alert("请设置初审处理意见", 2, "表单验证");
+                $("#postre").removeAttr('disabled');
+                $("#postre").val('还款');
+                return;
+            }
+            var available_balance = parseFloat($("#available_balance").val()); //可用余额
+            var shall_repayment = parseFloat($("#shall_repayment").val()); //应还总额
+            var bondingMoneyStr="@(string.IsNullOrEmpty(ViewBag.DanbaoBalance)? "0.00": ViewBag.DanbaoBalance.ToString())";
+            var bondingMoney=parseFloat(bondingMoneyStr.split(",").join(""));//.replace(',',''));
+
+            if (available_balance < shall_repayment&&$('input[name="repayment_type"]:checked').val()==1) {
+                layer.alert("可用余额不足,请保证有足够可用金额后再还款", 2, "表单验证");
+                $("#postre").removeAttr('disabled');
+                $("#postre").val('还款');
+                return;
+            } else if($('input[name="repayment_type"]:checked').val()==3&&bondingMoney<shall_repayment){
+                layer.alert("担保公司帐户可用余额不足,请保证有足够可用金额后再还款", 2, "表单验证");
+                $("#postre").removeAttr('disabled');
+                $("#postre").val('还款');
+                return;
+            }
+            var repayment_plan_id = $("#hid_planid").val();
+            var targetid = $("#hid_targetid").val();
+            var reviewremarks = $("#reviewremarks").val();
+            var shall_repayment = $("#shall_repayment").val();
+            var repayment_type = $('input[name="repayment_type"]:checked ').val();
+
+            //$.post("/admin/Replay/PostRepayment", { repayment_plan_id: repayment_plan_id, targetid: targetid, reviewremarks: reviewremarks, shall_repayment: shall_repayment, repayment_type: repayment_type }, function (data) {
+
+            //    alert(data.msg);
+            //    closewindows();
+            //});
+
+            var index = layer.msg("正在处理中，请稍后...", 50, 1);
+
+            var url = "/admin/Replay/NewPostRepayment";
+            data = { hid_planid: repayment_plan_id, hid_targetid: targetid, reviewremarks: reviewremarks, shall_repayment: shall_repayment, repayment_type: repayment_type, available_balance: available_balance };
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                async: true,
+                error: function () {
+                    layer.alert("服务器连接异常", 2, "复审结果");
+                },
+                success: function (d) {
+                    layer.close(index);
+                    var ds = $.parseJSON(d);
+                    if (ds.ret == 1) {
+                        $("#reviewremarks").attr('disabled', true);
+                        layer.alert(ds.msg, 1, "还款结果");
+                    } else {
+                        $("#postre").attr('disabled', false);
+                        $("#postre").val('还款');
+                        layer.alert(ds.msg, 2, "还款结果");
+                    }
+
+                }
+            });
+
+            //$.getJSON("/admin/Replay/PostRepayment"
+            //     , { repayment_plan_id: repayment_plan_id, targetid: targetid, reviewremarks: reviewremarks, shall_repayment: shall_repayment, repayment_type: repayment_type }
+            //     , function (data) {
+            //    alert(data.msg);
+            //    closewindows();
+            //});
+
+        }
+
+        function checkfrm() {
+            var reviewremarks = $("#reviewremarks");
+            if (reviewremarks.val() == "") {
+                reviewremarks.addClass("Validform_error");
+                alert("请设置初审处理意见");
+                return;
+            }
+            var available_balance = parseFloat($("#available_balance").val()); //可用余额
+            var shall_repayment = parseFloat($("#shall_repayment").val()); //应还总额
+
+            if (available_balance < shall_repayment) {
+
+                alert("可用余额不足,请保证有足够可用金额后再还款");
+                return;
+            }
+        }
+
+        function closewindows() {
+            window.parent.closewindows();
+
+        }
+    </script>
+</head>
+<body>
+    <h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">还款</a></h2>
+
+@using (Html.BeginForm("NewPostRepayment", "Replay", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="z_body">
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            第 @(Model.current_period) 期还款
+        </h3>
+        <table width="100%" style="table-layout:fixed;margin-top:10px;">
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">借款人：</td>
+                <td class="auto-style7">
+                    @*<asp:TextBox ID="realname" ReadOnly="true" runat="server" Width="230" Height="25" CssClass="inputxt"></asp:TextBox>*@
+                    @Html.TextBoxFor(model => model.realname, new { htmlAttributes = new { @style = "width:230px;height:25px;", @class = "inpuptxt", @readonly = "readonly" } })
+                    @Html.Hidden("hid_planid", Model.repayment_plan_id.ToString())
+                    @Html.Hidden("hid_targetid", Model.targetid.ToString())
+
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">帐户余额：</td>
+                <td class="auto-style7">
+                    @*<asp:TextBox ID="available_balance" ReadOnly="true" runat="server" Width="230" Height="25" CssClass="inputxt"></asp:TextBox>*@
+                    @Html.TextBoxFor(model => model.available_balance, new { htmlAttributes = new { @style = "width:230px;height:25px;", @class = "inpuptxt", @readonly = "readonly" } })
+
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">借款金额：</td>
+                <td class="auto-style7">
+                    @*<asp:TextBox ID="borrowing_balance" ReadOnly="true" runat="server" Width="230" Height="25" CssClass="inputxt"></asp:TextBox>*@
+                    @Html.TextBoxFor(model => model.borrowing_balance, new { htmlAttributes = new { @style = "width:230px;height:25px;", @class = "inpuptxt", @readonly = "readonly" } })
+
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">应还本息：</td>
+                <td class="auto-style7">
+                    @*<asp:TextBox ID="repayment_amount" onkeyup="clearNoNum(this)" ReadOnly="true" runat="server" Width="230" Height="25" CssClass="inputxt"></asp:TextBox>*@
+                    @Html.TextBoxFor(model => model.repayment_amount, new { htmlAttributes = new { @style = "width:230px;height:25px;", @class = "inpuptxt", @readonly = "readonly" } })
+                    <span></span>
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr style="display:none">
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">管理费:</td>
+                <td class="auto-style7">
+                    @*<asp:TextBox ID="fees1" onkeyup="clearNoNum(this)" ReadOnly="true" runat="server" Width="230" Height="25" CssClass="inputxt"></asp:TextBox>*@
+                    @Html.TextBox("fees", fees.ToString("0.00"), new { htmlAttributes = new { @style = "width:230px;height:25px;", @class = "inpuptxt", @readonly = "readonly" } })
+                    <span></span>
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr style="display:none">
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">逾期罚息:</td>
+                <td class="auto-style7">
+                    @*<asp:TextBox ID="O_penalty1" onkeyup="clearNoNum(this)" ReadOnly="true" runat="server" Width="230" Height="25" CssClass="inputxt"></asp:TextBox>*@
+                    @Html.TextBox("O_penalty", O_penalty as string, new { htmlAttributes = new { @style = "width:230px;height:25px;", @class = "inpuptxt", @readonly = "readonly" } })
+                    <span></span>
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">应还总额:</td>
+                <td class="auto-style7">
+                    @*<asp:TextBox ID="shall_repayment" onkeyup="clearNoNum(this)" ReadOnly="true" runat="server" Width="230" Height="25" CssClass="inputxt"></asp:TextBox>*@
+                    @Html.TextBoxFor(model => shall_repayment, new { htmlAttributes = new { @style = "width:230px;height:25px;", @class = "inpuptxt", @readonly = "readonly" } })
+                    <span></span>
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">投资本息:</td>
+                <td class="auto-style7">
+                    @*<asp:TextBox ID="Inves_Repayment_amount" onkeyup="clearNoNum(this)" ReadOnly="true" runat="server" Width="230" Height="25" CssClass="inputxt"></asp:TextBox>*@
+                    @Html.TextBox("Inves_Repayment_amount", Inves_Repayment_amount.ToString("0.00"), new { htmlAttributes = new { @style = "width:230px;height:25px;", @class = "inpuptxt", @readonly = "readonly" } })
+                    <span></span>
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+
+            <tr style="display:none">
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">本息利差:</td>
+                <td class="auto-style7">
+                    @*<asp:TextBox ID="Interest_spreads" onkeyup="clearNoNum(this)" ReadOnly="true" runat="server" Width="230" Height="25" CssClass="inputxt"></asp:TextBox>*@
+                    @Html.TextBox("Interest_spreads", Interest_spreads.ToString("0.00"), new { htmlAttributes = new { @style = "width:230px;height:25px;", @class = "inpuptxt", @readonly = "readonly" } })
+                    <span></span>
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1"><span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">还款备注</span>：</td>
+                <td class="auto-style5" colspan="2">
+                    <textarea id="reviewremarks" name="reviewremarks" style="width:75%; height: 98px;" datatype="*" nullmsg="请设置初审处理意见！" errormsg="请设置初审处理意见！"></textarea>
+
+                    <span class="Validform_checktip">请设置初审处理意见！</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style1">还款方式：</td>
+                <td class="auto-style7">
+                    <input id="radio1" name="repayment_type" type="radio" value="1" checked="checked" /> 正常还款  
+                    <!--<input id="radio2" name="repayment_type" type="radio" value="2" /> 平台代还-->
+                    <input id="ridio3" name="repayment_type" type="radio" value="3" /> 担保公司代还(可用余额 @(ViewBag.DanbaoBalance==null?"未知": ViewBag.DanbaoBalance.ToString()) 元)
+                </td>
+                <td><span class="Validform_checktip"></span></td>
+            </tr>
+            <tr>
+                <td class="auto-style6"></td>
+                <td class="auto-style1"></td>
+                <td class="auto-style7">
+                    <input  type="button"  value="还款" class="button white medium" id="postre" name="postre" />
+                    &nbsp;<input type="button" value="关闭" Class="button white medium" onclick="javascript:closewindows();" />
+                </td>
+                <td></td>
+            </tr>
+
+        </table>
+
+
+    </div>
+
+
+}
+
+</body>
+</html>

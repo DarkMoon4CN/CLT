@@ -1,0 +1,8 @@
+<!--傲融导入数据接口  正式-->
+    <add key="AoRongInsert" value="http://121.69.54.90:9999/api/publicCustomer/insert" />
+    <!--傲融获取员工数据接口  正式-->
+    <add key="AoRongEmployeeList" value="http://121.69.54.90:9999/api/employee/listSub" />
+    <!--傲融获取明细接口  正式-->
+    <add key="AoRongDetails" value="http://121.69.54.90:9999/api/callOut/list" />
+    <!--傲融获取统计接口  正式-->
+    <add key="AoRongStatistics" value="http://121.69.54.90:9999/api/callOut/count" />

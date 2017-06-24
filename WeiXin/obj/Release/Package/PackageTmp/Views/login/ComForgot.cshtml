@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "确认密码";
+    Layout = "~/Views/Shared/Index_Layout.cshtml";
+}
+<script src="~/Scripts/layer.min.js"></script>
+<script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4,
+            ajaxPost: true,
+            callback: function (data) {
+                if (data.rs == "y") {
+                    layer.msg(data.info, 5, 1);
+                    //location.href = data.url;
+                    window.setTimeout('jump("' + data.url + '")', 5 * 1000);
+                }
+                else {
+                    layer.msg("登录失败：" + data.info + "", 2, 5);
+                }
+            }
+        });
+
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|14[57]|17[0678])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/
+
+        });
+    });
+
+    function jump(url) {
+        location.href = url;
+    }
+
+</script>
+
+	
+<header class="header" onclick="window.location.href='/'">
+    <div class="return"><a href="/"></a></div>
+    <h2 class="head_title">找回密码</h2>
+</header>
+<form id="form1" class="registerform" action="/login/Changepass" method="post">
+    <input type="hidden" id="t" name="t" value="@ViewBag.tel1 " />
+    <input type="hidden" id="key" name="key" value="@ViewBag.rid1" />
+    <input type="hidden" id="c" name="c" value="@ViewBag.vcode1" />
+
+    <input type="hidden" id="p" name="p" value="@ViewBag.type1" />
+    <div class="form_box">
+        <ul>
+
+            <li><input name="userpassword" type="password" id="userpassword" class="form_text" placeholder="请设置密码" datatype="*6-16" nullmsg="请输入新密码！" errormsg="密码范围在6~16位之间！"><span class="reg_icon password_icon"></span></li>
+            <li><input name="reuserpassword" type="password" id="reuserpassword" class="form_text" placeholder="请再次输入新密码" datatype="*" recheck="userpassword" nullmsg="请再输入一次密码！" errormsg="您两次输入的密码不一致！"><span class="reg_icon passwordc_icon"></span></li>
+        </ul>
+    </div>
+    <div class="confirm_btn_box">
+        <input name="" value="确认"  type="submit" class="invest_btn" >
+    </div>
+</form>
+<div class="bot_height"></div>

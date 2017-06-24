@@ -1,0 +1,84 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+
+@model PagedList<hx_ActivityTable>
+
+<div id="dTable">
+
+    <table cellpadding="0" cellspacing="0" class="dq_tab">
+        <tr class="tz_tr">
+            <td>序号</td>
+            <td>活动名称</td>
+            <td>时间</td>
+            <td>奖励</td>
+            <td>状态</td>
+            <td>操作</td>
+            <td>统计</td>
+        </tr>
+
+        @if (Model.Count > 0)
+        {
+            foreach (hx_ActivityTable item in Model)
+            {
+                <tr>
+                    <td style="padding: 0 25px;">@item.ActID</td>
+                    <td style="padding: 0 35px;">@item.ActName</td>
+                    <td style="padding: 0 15px;">@DateTime.Parse(item.ActStarttime.ToString()).ToString("yyyy.MM.dd")——@DateTime.Parse(item.ActEndtime.ToString()).ToString("yyyy.MM.dd")</td>
+                    <td style="padding: 0 25px;">@item.hx_ActivityType.ActName</td>
+                    @{ int acstate = int.Parse(item.ActState.ToString()); }
+                    <td style="padding: 0 15px;"> @Utils.GetActState(acstate)</td>
+                    <td class="dq_td_a">
+
+                        @if (acstate == -1)
+                        {
+                            <a class="dq_a1 dq_a4" href="javascript:void(0)" onclick="SetACTState(@item.ActID,0)">恢复</a>
+                            <a class="dq_a1 dq_a4" href="javascript:void(0)" onclick="SetACTState(@item.ActID,-2)">彻底删除</a>
+
+                        }
+                        else if (acstate == 0)
+                        {
+                            <a class="dq_a1 dq_a4" href="javascript:void(0)" onclick="SetACTState(@item.ActID,1)">发布</a>
+                            <a class="dq_a1 dq_a4" href="javascript:void(0)" onclick="SetACTState(@item.ActID,-1)">删除</a>
+                        }
+                        else if (acstate == 1)
+                        {
+                            <a class="dq_a1 dq_a4" href="javascript:void(0)" onclick="SetACTState(@item.ActID,3)">停止</a>
+                        }
+                        else if (acstate == 2 || acstate == 3)
+                        {
+                            <a class="dq_a1 dq_a4" href="javascript:void(0)" onclick="SetACTState(@item.ActID,1)">发布</a>
+                        }
+
+                    </td>
+                    <td style="padding: 0 15px;">
+                        <a class="dq_a3" href="/admin/Activity/GeneralCount?actid=@item.ActID">详情</a>
+                    </td>
+                </tr>
+
+                            }
+                        }
+
+
+
+
+
+    </table>
+    <div class="page_box">
+        <div class="page_left">
+            @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox2", GoToButtonId = "goToBtn2" }, new MvcAjaxOptions
+       { UpdateTargetId = "dTable", HttpMethod = "Post", DataFormId = "searchForm", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "dTable")).AjaxOptions(a => a.SetUpdateTargetId("dTable"))
+        </div>
+        <div class="page_right">
+            <div class="input-group" style="margin:20px 0">
+                <span class="input-group-addon">转到第</span>
+                <input type="text" id="pageIndexBox2" class="form-control input-sm" />
+                <span class="input-group-addon">页</span>
+                <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn2">跳转</button></span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

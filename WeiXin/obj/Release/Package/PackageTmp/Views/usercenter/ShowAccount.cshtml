@@ -1,0 +1,37 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuangLitouP2P.Models;
+@model ChuangLitouP2P.Models.hx_member_table
+@{
+    ViewBag.Title = "账户总览";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+
+    B_usercenter o = new B_usercenter();
+
+    int userid = Model.registerid;
+}
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">账户总览</h2>
+</header>
+<section class="zonglan_box clearfix">
+    <div class="zonglan">
+        <dl>
+            <dt>账户收益</dt>
+            <dd><span>@Math.Round(o.GetCumulativeearned(userid), 2).ToString()元</span>累计净赚收益</dd>
+            <dd><span>@Math.Round(o.Getcollecttotalamountinterest(userid), 2).ToString()</span>待收收益</dd>
+           
+        </dl>
+        <dl>
+            <dt>账户金额</dt>
+            <dd><span>@Math.Round(o.TetTotalCapital(userid), 2).ToString() 元</span>账户总额</dd>
+            <dd><span>@Model.available_balance 元</span>可用余额</dd>
+            <dd><span>@Math.Round(o.GetInterest(Model.registerid), 2).ToString() 元</span>已收收益</dd>
+            <dd><span>@o.GetPrincipal(Model.registerid).ToString() 元</span>待收本金</dd>
+            <dd><span>@Model.frozen_sum 元</span>冻结金额</dd>
+            <dd><span>@Math.Round(o.GetBonuses(Model.registerid), 2).ToString() 元</span>奖励金额</dd>
+        </dl>
+    </div>
+</section>
+<div class="bot_height"></div>

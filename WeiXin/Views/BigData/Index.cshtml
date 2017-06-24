@@ -1,0 +1,306 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://m.chuanglitou.cn/Activity/20160425xshb.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" style="font-size: 23.4375px;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+        创利投 - 运营数据报告
+    </title>
+    <meta name="keywords" content="新手理财活动,投资理财活动,理财送现金，创利投活动，创利投">
+    <meta name="description" content="创利投推出新手理财送好礼，现金红包送不停活动，活动期间新用户注册就送50元，首次投资成功再送您50元，挂牌上市企业创利投等您来赚钱！">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="~/js/jquery-1.9.1.min.js"></script>
+    <link href="~/css/bigData.css" rel="stylesheet" />
+    <link href="~/css/common.css" rel="stylesheet" />
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+    </script>
+</head>
+<body>
+    <style>
+        .w_yunying_2main_bottom ul li span sub {
+            text-align: center;
+            color: #257be5;
+            font-size: 1em;
+            bottom: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            //if (!isWeiXin()) {
+            //    alert(1);
+            //    $("div.fixed_Bar").hide();
+            //}
+            function isWeiXin() {
+                var ua = window.navigator.userAgent.toLowerCase();
+                if (parseInt(ua.indexOf('micromessenger'))<0) {
+                    $("div.fixed_Bar").hide();
+                }
+            }
+            isWeiXin();
+        });
+        var _oztime = (new Date()).getTime();
+    </script>
+
+    <div class="w_yunying">
+        <div class="w_yunying_1">
+            <img src="../images/BigData/w_yunying_1.jpg" class="w_yunying_1bg">
+            <div class="w_yunying_1main">
+                <h3>已安全运营 @ViewBag.Days 天</h3>
+                <p class="time_txt1">数据统计截止时间 @ViewBag.ShowTime</p>
+            </div>
+        </div>
+        <div class="w_yunying_2">
+
+            <div class="w_yunying_2main">
+                <div class="w_yunying_2main_top">
+                    <h3>数据总览</h3>
+                    <p class="time_txt1">数据统计截止时间 @ViewBag.ShowTime</p>
+                </div>
+                <div class="w_yunying_2main_bottom">
+                    <ul>
+                        <li>
+                            <img src="../images/BigData/w_yunying_1.png">
+                            <small>累计为企业和个人融资</small>
+                            <span id="allAmt">@ViewBag.AllAmt 元</span>
+                        </li>
+                        <li>
+                            <img src="../images/BigData/w_yunying_2.png">
+                            <small>累计为投资人赚取收益</small>
+                            <span id="profitAmt">@ViewBag.ProfitAmt 元</span>
+                        </li>
+                        <li>
+                            <img src="../images/BigData/w_yunying_3.png">
+                            <small>累计投资笔数</small>
+                            <span id="businessCount">@ViewBag.BusinessCount 笔</span>
+                        </li>
+                        <li>
+                            <img src="../images/BigData/w_yunying_4.png">
+                            <small>平台注册人数</small>
+                            <span id="registerCount">@ViewBag.RegisterCount 人</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="w_yunying_3">
+            <div class="w_yunying_3main">
+                <div class="w_yunying_3main_1" id="di1">
+                    <div class="w_yunying_3main_1_top">
+                        <h3><small>01</small>交易数据</h3>
+                        <p>数据统计截止时间 @ViewBag.ShowTime</p>
+                    </div>
+                    <table cellpadding="0" cellspacing="0" border="0" class="w_yunying_3main_1_table" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th width="25%">数据名称</th>
+                                <th width="35%">数据</th>
+                                <th width="40%">数据说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #dce9ff;">
+                                <td width="25%" style="text-align:center;">交易总额</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">@ViewBag.PrincipalAmt 元</td>
+                                <td width="50%" style="text-align: left;">指自平台上线运营时起，所有实际撮合成功的融资项目的资金（本金）总额，实时更新；</td>
+                            </tr>
+                            <tr style="background: #e9f1ff;">
+                                <td width="25%" style="text-align:center;">交易总笔数</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">@ViewBag.BusinessCount 笔</td>
+                                <td width="50%" style="text-align: left;">指自平台上线运营时起，平台实际撮合成功的所有融资项目总笔数，实时更新；</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="w_yunying_3main_1" id="di2">
+                    <div class="w_yunying_3main_1_top">
+                        <h3><small>02</small>投资数据</h3>
+                        <p class="time_txt">数据统计截止时间 @ViewBag.ShowTime</p>
+                    </div>
+                    <table cellpadding="0" cellspacing="0" border="0" class="w_yunying_3main_1_table" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th width="25%">数据名称</th>
+                                <th width="35%">数据</th>
+                                <th width="40%">数据说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #dce9ff;">
+                                <td width="25%" style="text-align:center;">投资人总数</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">@ViewBag.TotalNumber 人</td>
+                                <td width="50%" style="text-align: left;">指自平台上线运营时起，平台实际撮合成功的融资项目中投资人总数，实时更新；</td>
+                            </tr>
+                            <tr style="background: #e9f1ff;">
+                                <td width="25%" style="text-align:center;">总投资额</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">@ViewBag.AllAmt 元</td>
+                                <td width="50%" style="text-align: left;">指自平台上线运营时起，所有实际撮合成功的融资项目的投资资金（本金）总额，实时更新；</td>
+                            </tr>
+                            <tr style="background: #dce9ff;">
+                                <td width="25%" style="text-align:center;">人均投资额</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">@ViewBag.AvgAmt 元</td>
+                                <td width="50%" style="text-align: left;">指自平台上线运营之日起，交易总额与投资人总数之比，实时更新；</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="w_yunying_3main_1" id="di3">
+                    <div class="w_yunying_3main_1_top">
+                        <h3><small>03</small>借款数据</h3>
+                        <p class="time_txt">数据统计截止时间 @ViewBag.ShowTime</p>
+                    </div>
+                    <table cellpadding="0" cellspacing="0" border="0" class="w_yunying_3main_1_table" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th width="25%">数据名称</th>
+                                <th width="35%">数据</th>
+                                <th width="40%">数据说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #dce9ff;">
+                                <td width="25%" style="text-align:center;">借款总数</td>
+                                <td width="35%" style="text-align:center;padding-right:1%;">@ViewBag.LoanCompletedCount 次</td>
+                                <td width="40%" style="text-align: left;">指自平台上线运营时起，平台实际撮合成功的融资项目总数，实时更新；</td>
+                            </tr>
+                            <tr style="background: #e9f1ff;">
+                                <td width="25%" style="text-align:center;">借款总额</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">@ViewBag.LoanCompletedAmt 元</td>
+                                <td width="50%" style="text-align: left;">指自平台上线运营时起，所有实际撮合成功的融资项目的借款资金（本金）总额，实时更新；</td>
+                            </tr>
+                            <tr style="background: #dce9ff;">
+                                <td width="25%" style="text-align:center;">待偿金额</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">@ViewBag.CollectLoanCompletedAmt 元</td>
+                                <td width="50%" style="text-align: left;">指截至统计时点，平台所有融资人尚未偿还的本金总金额（不包括利息部分），实时更新；</td>
+                            </tr>
+                            <tr style="background: #e9f1ff;">
+                                <td width="25%" style="text-align:center;">人均借款额</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">@ViewBag.AvgLoanCompletedAmt 元</td>
+                                <td width="50%" style="text-align: left;">指自平台上线运营之日起，交易总额与借款人总数之比，实时更新；</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="w_yunying_3main_1" id="di4">
+                    <div class="w_yunying_3main_1_top">
+                        <h3><small>04</small>风控数据</h3>
+                        <p class="time_txt">数据统计截止时间 @ViewBag.ShowTime</p>
+                    </div>
+                    <table cellpadding="0" cellspacing="0" border="0" class="w_yunying_3main_1_table" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th width="25%">数据名称</th>
+                                <th width="35%">数据</th>
+                                <th width="40%">数据说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #dce9ff;">
+                                <td width="25%" style="text-align:center;">逾期金额</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">0 人</td>
+                                <td width="50%" style="text-align: left;">指截至统计时点，所有逾期的且尚未偿还的本金金额总和，实时更新；</td>
+                            </tr>
+                            <tr style="background: #e9f1ff;">
+                                <td width="25%" style="text-align:center;">项目逾期率</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">0</td>
+                                <td width="50%" style="text-align: left;">指截至统计时点，当前所有处于逾期状态的项目数与尚未偿还交易总笔数之比，实时统计与更新；</td>
+                            </tr>
+                            <tr style="background: #dce9ff;">
+                                <td width="25%" style="text-align:center;">金额逾期率</td>
+                                <td width="25%" style="text-align:center;padding-right:1%;">0</td>
+                                <td width="50%" style="text-align: left;">指截至统计时点，逾期金额与待偿金额之比，实时统计与更新；</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="w_yunying_4">
+
+            <div class="w_yunying_4main">
+                <div class="w_yunying_4main_top">
+                    <h3>风险控制</h3>
+                    <p class="time_txt">数据统计截止时间 @ViewBag.ShowTime</p>
+                    <span>平台安全运营 @ViewBag.Days 天，用户本息0损失</span>
+                </div>
+                <div class="w_yunying_4main_bottom">
+                    <div class="w_yunying_4main_bottom_left">
+                        <h3>历史兑付率</h3>
+                        <h1>100<span>%兑付</span></h1>
+                    </div>
+                    <div class="w_yunying_4main_bottom_right">
+                        <h3>近三个月的逾期信息</h3>
+                        <p><span>逾期项目数量：</span><small>0 个</small></p>
+                        <p><span>累计逾期金额：</span><small>0 元</small></p>
+                        <p><span>累计代偿金额：</span><small>0 元</small></p>
+                        <p><span>借贷逾期率：</span><small>0 </small></p>
+                        <p><span>项目逾期率：</span><small>0 </small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed_Bar">
+        <div class="BarCentert">
+            <a href="http://m.chuanglitou.cn/register.html">马上注册</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1254620195'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254620195%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        $(function () {
+
+            var offsetTop = $(window).height() / 3.5;
+            var diTop1 = $("#di1").offset().top - offsetTop;
+            var diTop2 = $("#di2").offset().top - offsetTop;
+            var diTop3 = $("#di3").offset().top - offsetTop;
+            var diTop4 = $("#di4").offset().top - offsetTop;
+            $(".yunying_fixed>ul li").eq(0).attr("scTop", diTop1 + 10);
+            $(".yunying_fixed>ul li").eq(1).attr("scTop", diTop2 + 10);
+            $(".yunying_fixed>ul li").eq(2).attr("scTop", diTop3 + 10);
+            $(".yunying_fixed>ul li").eq(3).attr("scTop", diTop4 + 10);
+            $(window).scroll(function () {
+                var scrollTopT = $(this).scrollTop();
+                if (scrollTopT >= 700) {
+                    $(".yunying_fixed").show();
+                } else {
+                    $(".yunying_fixed").hide();
+                }
+                if (scrollTopT >= diTop1) {
+                    $(".yunying_fixed>ul li").eq(0).addClass("san").siblings().removeClass("san");
+                }
+                if (scrollTopT >= diTop2) {
+                    $(".yunying_fixed>ul li").eq(1).addClass("san").siblings().removeClass("san");
+                }
+                if (scrollTopT >= diTop3) {
+                    $(".yunying_fixed>ul li").eq(2).addClass("san").siblings().removeClass("san");
+                }
+                if (scrollTopT >= diTop4) {
+                    $(".yunying_fixed>ul li").eq(3).addClass("san").siblings().removeClass("san");
+                }
+            })
+
+            $(".yunying_fixed ul li").click(function () {
+                $(this).addClass("san").siblings().removeClass("san");
+                var sTop = $(this).attr("scTop");
+                window.scroll(0, sTop);
+            });
+        });
+    </script>
+
+    <span id="cnzz_stat_icon_1254620195">
+        <a href="http://www.cnzz.com/stat/website.php?web_id=1254620195" target="_blank" title="站长统计">
+        </a>
+    </span>
+</body>
+</html>

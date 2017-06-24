@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "全民友福同享";
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>全民友福同享</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="style/css.css?v=1">
+    <link href="~/Areas/activity/Sources/20161110/style/css.css" rel="stylesheet" />
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="~/js/appScript.js"></script>
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) { return } var w = 20 * (clientWidth / 320); if (w > 40) { w = 40 } docEl.style.fontSize = w + "px" }; if (!doc.addEventListener) { return } if ("orientationchange" in window) { win.addEventListener("orientationchange", recalc, false) } win.addEventListener("resize", recalc, false); win.addEventListener("load", recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false); recalc() })(document, window);
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var paramVal = getUrlParam("app");
+            if (paramVal == "clt") {
+                $(".fenxiang").remove();
+                $(".fixed").unbind("click");
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="w_quanmin">
+        <img src="~/Areas/activity/Sources/20161110/images/w_quanmin_01.jpg" class="w_quanminbg">
+        <div class="w_quanmin_main">
+            <div class="w_quanmin_main_1">
+                <img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_1_top.png" class="w_quanmin_main_1_top">
+                <div class="w_quanmin_main_1_nei">
+                    <img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_1_left.png">
+                    <img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_1_right.png">
+                </div>
+                <a id="fixed2" href="#invite"><img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_1_btn.png"></a>
+            </div>
+            <div class="w_quanmin_main_2">
+                <img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_2_top.png" class="w_quanmin_main_2_top">
+                <div class="w_quanmin_main_2_nei">
+                    <img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_2_tu.png">
+                </div>
+                <a href="/index.html"><img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_2_btn.png"></a>
+            </div>
+            <div class="w_quanmin_main_3">
+                <img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_3_top.png" class="w_quanmin_main_3_top">
+                <div class="w_quanmin_main_3_nei">
+                    <img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_3_left.png">
+                    <img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_3_right.png">
+                </div>
+                <a href="/index.html"><img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_2_btn.png"></a>
+            </div>
+            <div class="w_quanmin_main_4">
+                <dl>
+                    <dt>活动规则</dt>
+                    <dd>1、活动时间：2016年11月10日——2016年12月15日；</dd>
+                    <dd>2、活动期间每投资一笔（不分首投复投），当即进行返现，具体奖励细节请参见下表；</dd>
+                    <dd><img src="~/Areas/activity/Sources/20161110/images/w_quanmin_main_4_tu.png"></dd>
+                    <dd>3、活动实物奖励将在活动结束后的10个工作日进行信息核对及奖品发放；</dd>
+                    <dd id="ddApple">4、本活动由创利投提供，与苹果公司无关；</dd>
+                    <dd style="text-align:right;margin-top:20px;font-size:0.35em;">活动最终解释权在法律范围内归北京创利投网络科技有限公司所有</dd>
+                </dl>
+            </div>
+            <div class="fenxiang">
+                <img src="~/Areas/activity/Sources/20161110/images/fenxiang.png">
+            </div>
+            <div class="fixed">
+                <a href="#invite">分享好友</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $("#fixed2").on("click", function () {
+            $(".fixed").hide();
+            $(".fenxiang").show();
+        });
+        $(".fixed").on("click", "a", function () {
+            $(".fixed").hide();
+            $(".fenxiang").show();
+        });
+        $(".fenxiang").on("click", "img", function () {
+            $(".fenxiang").hide();
+            $(".fixed").show();
+        });
+    </script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        wx.config({
+            debug: false,
+            appId: '@ViewBag.TXShareHelper.appid',
+            timestamp: '@ViewBag.TXShareHelper.ts',
+            nonceStr: '@ViewBag.TXShareHelper.ns',
+            signature: '@ViewBag.TXShareHelper.sign',
+            jsApiList: [
+                'onMenuShareAppMessage',
+                'onMenuShareTimeline'
+            ]
+
+        });
+        wx.ready(function () {
+            wx.onMenuShareAppMessage({
+                title: '@ViewBag.TXShareHelper.title',
+                desc: '@ViewBag.TXShareHelper.desc',
+                link: '@ViewBag.TXShareHelper.link',
+                imgUrl: '@ViewBag.TXShareHelper.imgUrl',
+                type: 'link',
+                dataUrl: '',
+                success: function () {
+
+                },
+                cancel: function () {
+
+                }
+            });
+            wx.onMenuShareTimeline({
+                title: '@ViewBag.TXShareHelper.title',
+                link: '@ViewBag.TXShareHelper.link',
+                imgUrl: '@ViewBag.TXShareHelper.imgUrl',
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+        });
+        wx.error(function (res) {
+            //alert(res);
+        });
+    </script>
+    <script src="~/js/om_code.js"></script>
+</body>
+</html>

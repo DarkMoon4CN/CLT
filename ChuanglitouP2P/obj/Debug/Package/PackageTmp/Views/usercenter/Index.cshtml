@@ -1,0 +1,374 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuangLitouP2P.Models;
+@using System.Data;
+@model ChuangLitouP2P.Models.hx_member_table
+@{
+    ViewBag.Title = "我的账户 - 创利投";
+    ViewBag.keywords = "创利投,创利投登录,登录创利投,创利投用户登录";
+    ViewBag.desc = "创利投是阳光可信赖的互联网金融理财服务平台，主要从事P2P理财、P2B理财、理财网络借贷、投资理财、个人理财等互联网金融服务，历史平均年化收益率8%-12%，由受金融局监管的担保机构提供担保，当日投资当日计息。创利投励志成为客户值得信赖的互联网投融资理财平台。";
+
+    Layout = "~/Views/Shared/Ucenter_Layout.cshtml";
+    B_usercenter o = new B_usercenter();
+    List<V_borrowing_Bid_records_income_statement_uc> income = ViewBag.income == null ? null : ViewBag.income as List<V_borrowing_Bid_records_income_statement_uc>;
+    List<V_hx_Bid_records_borrowing_target> vbht = ViewBag.vbht == null ? null : ViewBag.vbht as List<V_hx_Bid_records_borrowing_target>;
+
+    DataTable lixishuyi = o.GetTotalAmt(int.Parse(Model.registerid.ToString()));
+
+    DataTable benjin = o.GetToatlPrincipal(int.Parse(Model.registerid.ToString()));
+
+    DataTable benall = o.GetToatlPrincipalALL(int.Parse(Model.registerid.ToString()));
+
+    List<V_type_news> gonggao = ViewBag.gonggao == null ? null : ViewBag.gonggao;
+}
+
+@Url.File("/Scripts/highcharts.js").ToHtml()
+@Url.File("/Scripts/exporting.js").ToHtml()
+@Url.File("/Scripts/layer.min.js").ToHtml()
+<style>
+    .navwrap a{
+        margin-top:40px;
+    }
+</style>
+<div class="content">
+    <!--公共的左侧-->
+    @UCLeft.HX_UCLeft()
+    <!--右侧不同的地方-->
+    <div>
+        <!--主页部分-->
+        <div class="conRig">
+            <!--最上面滚动的部分-->
+            <div id="container" class="banner">
+                <ol>
+                    @if (gonggao != null)
+                    {
+                        foreach (V_type_news item in gonggao)
+                        {
+                            <li><a href="/about/Detail/@item.newid" target=_blank>@item.News_title</a></li>
+                        }
+                    }
+                </ol>
+                <div class=mouse_direction>
+                    <div class=mouse_top></div>
+                    <div class=mouse_bottom></div>
+                </div>
+            </div>
+            <!--个人信息-->
+            <div class="massage">
+                <dl>
+                    <dt>
+
+                        @if (Model.avatar != null && !string.IsNullOrEmpty(Model.avatar) && Model.avatar.Length > 1)
+                        {
+                            <img src="@Model.avatar" alt="" height="83" width="83" />
+                        }
+                        else
+                        {
+                            <img src="/Avatar/ulogo.jpg" alt="" height="83" width="83" />
+                        }
+                    </dt>
+                    <dd><a href="/usercenter/Userinfo">修改头像</a></dd>
+                </dl>
+                <div class="masRig">
+                    <p>
+                        &nbsp;&nbsp;&nbsp;账户名：
+                        <span>
+                            @(Model.username)
+                        </span>
+                    </p>
+                    <p>
+                        信息认证：
+
+                        <em class="em@(Model.isrealname == 0 ? 0 : 1)">
+                            <img src="/images/man.png" alt="" />
+                        </em>
+                        <em class="em@(Model.ismobile == 0 ? 0 : 1)">
+                            <img src="/images/tel.png" alt="" />
+                        </em>
+                        <em class="em@(Model.isemail == 0 ? 0 : 1)">
+                            <img src="/images/mas.png" alt="" />
+                        </em>
+                        <em class="em@(Model.isbankcard == 0 ? 0 : 1)">
+                            <img src="/images/safe.png" alt="" />
+                        </em>
+                    </p>
+                    <p style="position: relative;">
+                        <span  style="text-align:center; margin-left:45px; ">
+                            <b style="font-size:18px;font-family:'微软雅黑';color: #000;">累计赚取</b>
+                            <img id="lj_qus" src="../images/qus.jpg" alt="" style="position: absolute;right: -20px;">
+                        </span>
+                        <span class="explain1" style="width:200px;">
+                            指已到账所有投资的利息总和
+                        </span>
+                    </p>
+                    
+                    <br />
+                    <p class="member">
+                        会员级别：
+                        <span>
+                            <img src="/images/member.jpg" alt="" />
+                        </span>
+                    </p>
+                    <p class="em2">
+                        &nbsp;&nbsp;安全等级：
+                        <em class="em">
+                            <i style="width:70%"></i>
+                        </em>
+
+                    </p>
+                    <i style="font-size:12px;font-style: normal;margin-right: 30px;">中</i>
+                    <p class="pElse" style="text-align:center; margin-left:40px;">
+                        <b style="font-size:21px;color:red;font-family:'微软雅黑';">@Math.Round(o.GetInterest(Model.registerid), 2).ToString() 元</b>
+
+                    </p>
+                </div>
+            </div>
+            <div class="gap"></div>
+            <!--投资管理-->
+            @{
+                decimal available_balance = 0.0M; //余额
+                decimal sy = Math.Round(o.Getcollecttotalamountinterest(Model.registerid), 2); //收益
+                decimal benji = o.GetPrincipal(Model.registerid);  //待收本金
+                decimal jianli = Math.Round(o.GetBonuses(Model.registerid), 2);//奖励
+                decimal dongjie = 0.00M;
+                decimal.TryParse(Model.available_balance.ToString(), out available_balance);
+
+                decimal.TryParse(Model.frozen_sum.ToString(), out dongjie);
+
+                decimal TotalCapital = 0.00M; //总资产
+
+                TotalCapital = available_balance + sy + benji + jianli + dongjie;
+
+            }
+
+            <div class="money" style="height:140px;">
+                <div class="money_01">
+                    <p class="mP1"> 资产总计</p>
+                    <p> 账户余额：<strong>@available_balance</strong>元</p>
+                    <p class="mP2">待收收益：<strong>@sy</strong>元 </p>
+                    <input class="cz" style="cursor:pointer;" value="充值" onclick="window.location.href='/usercenter/recharge'" type="button">
+                    <p class="mP3"> <strong>@TotalCapital.ToString()</strong>元</p>
+                    <p>待收本金：<strong>@benji.ToString()</strong>元</p>
+                    <p class="mP4"> 可用奖励：<strong>@jianli.ToString()</strong>元</p>
+                    <input class="tx" style="cursor:pointer;" value="提现" onclick="window.location.href = '/Cash/Index'" type="button">
+                    <p style="margin-left: 271px;">冻结金额：<strong>@dongjie.ToString("0.00")</strong>元</p>
+                    
+                    <p class="mP4" style="width:200px;">您还有 <b style="color:red">@ViewBag.jiaxinum</b> 张加息券 <a href="/Reward/jiaxi">立即使用</a> </p>
+                </div>
+                <img class="qus" src="../images/qus.jpg" alt="">
+                <div class="explain" style="width:400px">
+                    资产总计 = 账户余额 + 待收本金 + 待收收益 + 冻结金额 + 可用奖励
+                </div>
+
+            </div>
+
+
+            <div class="gap"></div>
+            <!--曲线图-->
+
+            <div class="gap"></div>
+            <!--回款计划-->
+
+
+            <div class="return">
+                <div class="comeHea comeHe">
+                    <h2 class="">回款计划</h2>
+                    <a href="/usercenter/huikuan">更多></a>
+                </div>
+                @if (income != null)
+                {
+                    <div class="reTab">
+                        <table class="commonTable" cellpadding="0" cellspacing="0">
+                            <tr class="changeB">
+                                <td class="changeB_td1">回款项目</td>
+                                <td class="changeB_td2">投资金额</td>
+                                <td class="changeB_td3">预计本息</td>
+                                <td class="changeB_td4">预计回款时间</td>
+                                <td class="changeB_td4">回款时间</td>
+                                <td class="tdElse changeB_td5">状态</td>
+                            </tr>
+
+                            @foreach (var item in income)
+                            {
+                                <tr>
+                                    <td class="changeB_td1">@item.borrowing_title</td>
+                                    <td class="changeB_td2">@string.Format("{0}元", item.investment_amount)</td>
+                                    <td class="changeB_td3">@item.repayment_amount</td>
+                                    <td class="changeB_td4">@(DateTime.Parse(item.interest_payment_date.ToString()).ToString("yyyy-MM-dd"))</td>
+
+                                    <td class="changeB_td4">@(item.repayment_period == null ? "--" : DateTime.Parse(item.repayment_period.ToString()).ToString("yyyy-MM-dd"))</td>
+
+                                    <td class="tdElse changeB_td5">
+                                        @if (item.payment_status == 0)
+                                        {
+                                            @:未回款
+                       }
+                                        else
+                                        {
+                                            @:已回款
+                       }
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                }
+            </div>
+            <div class="gap"></div>
+            <!-- 投资记录-->
+            <div class="record" style="padding-bottom:30px;">
+                <div class="comeHea comeHe comeShe">
+                    <h2 class="/usercenter/touzi">投资记录</h2>
+                    <a href="/usercenter/touzi">更多></a>
+                </div>
+                <div class="reTab">
+                    <table class="comTab commonTable" style="background-color:#fff" cellpadding="0" cellspacing="0">
+                        <tr class="trElse">
+                            <td class="td1">项目名称</td>
+                            <td class="td2">收益率</td>
+                            <td class="td3">投资期限</td>
+                            <td class="td4">投资区间</td>
+                            <td class="td5">投资金额</td>
+                            <td class="td6">应收回款</td>
+                            <td class="tdElse td4">合同</td>
+                        </tr>
+                        @if (vbht != null)
+                        {
+
+                            foreach (var item in vbht)
+                            {
+                                <tr>
+                                    <td class="td1">@item.borrowing_title</td>
+                                    <td class="td2">
+                                        <p class="pTop">@(item.annual_interest_rate)%</p>
+                                        <p>+</p>
+                                        <p>@(item.JiaxiNum)%</p>
+                                    </td>
+                                    <td class="td3">@Utils.GetLife_of_loan(item.life_of_loan.ToString(), item.unit_day.ToString())</td>
+                                    <td class="td4">
+                                        <p class="pTop">@DateTime.Parse(item.value_date.ToString()).ToString("yyyy-MM-dd")</p>
+                                        <p>至</p>
+                                        <p>@DateTime.Parse(item.investment_maturity.ToString()).ToString("yyyy-MM-dd")</p>
+                                    </td>
+                                    <td class="td5">@string.Format("{0}元", item.investment_amount)</td>
+                                    <td class="td6">
+                                        @{ 
+                                            decimal souyi = 0M;
+                                            decimal totals = 0M;
+                                            try
+                                            {
+
+                                                souyi = decimal.Parse(item.haveinterest.ToString()) + decimal.Parse(item.withoutinterest.ToString());
+                                                totals = decimal.Parse(item.investment_amount.ToString()) + souyi + decimal.Parse(item.BonusAmt.ToString());
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                 
+                                            }
+                                        }
+
+                                        <em>本金：@string.Format("{0}元", item.investment_amount- item.BonusAmt)</em>
+                                        <em class="em5">收益：@(souyi.ToString("0.00"))元</em>
+                                        <em class="em5">奖励：@(item.BonusAmt)元</em>
+                                        <i>总计：@(item.investment_amount + souyi)元</i>
+                                    </td>
+                                    <td class="tdElse td4">
+                                        <a href="javascript:void(0)" onclick="javascript:viewpdf('@item.contractpath','@item.bid_records_id')">查看</a>
+                                        |
+                                        <a href="/pdf/DownPDf/@item.bid_records_id">下载</a>
+                                    </td>
+                                </tr>
+                                                }
+                                            }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    @{  var str1 = "";
+        var str2 = "";
+        var str3 = ""; }
+    var a_canvas = document.getElementById('a_canvas');
+
+
+    @for (int i = 0; i < benall.Rows.Count; i++)
+     {
+         if(i+1== benall.Rows.Count)
+         {
+             str1 = str1 + benall.Rows[i]["ben"];
+         }
+         else
+         {
+             str1 = str1 + benall.Rows[i]["ben"] + ",";
+         }
+
+     }
+
+    canvas(a_canvas, [@str1], 4);
+
+    var a_canvas2 = document.getElementById('a_canvas2');
+
+
+    @for (int i = 0; i < lixishuyi.Rows.Count; i++)
+    {
+        if(i + 1 == lixishuyi.Rows.Count)
+        {
+            str2 = str2 + lixishuyi.Rows[i]["withoutinterest"];
+        }
+        else
+        {
+            str2 = str2 + lixishuyi.Rows[i]["withoutinterest"] + ",";
+        }
+
+    }
+
+
+    canvas(a_canvas2, [@str2], 4);
+    var a_canvas3 = document.getElementById('a_canvas3');
+
+    @for (int i = 0; i < benjin.Rows.Count; i++)
+     {
+         if(i + 1 == benjin.Rows.Count)
+         {
+             str3 = str3 + benjin.Rows[i]["withoutinterest"];
+         }
+         else
+         {
+             str3 = str3 + benjin.Rows[i]["withoutinterest"] + ",";
+         }
+
+     }
+
+
+    canvas(a_canvas3, [@str3], 4);
+
+    function viewpdf(text,id) {
+       
+
+            var url="/pdf/MakePdf";
+            $.get(url, { id: id },
+                 function (data) {
+                    
+                     if (data.Path!="") {
+
+                         window.open(data.Path);
+                     } else {
+
+                         layer.alert("PDF合同生成不存在", 0, "系统提示");
+                     }
+                 }, "json");
+         
+    }
+    $(function () {
+        $("#lj_qus").on("mousemove", function () {
+            $(".explain1").show();
+        });
+
+        $("#lj_qus").on("mouseout", function () {
+            $(".explain1").hide();
+        });
+    });
+</script>

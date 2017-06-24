@@ -1,0 +1,648 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuanglitouP2P.Areas.Admin.Controllers;
+@using ChuangLitouP2P.Models;
+@using Webdiyer.WebControls.Mvc;
+@model ChuangLitouP2P.Models.UsrAllInfoMode
+
+@{
+    ViewBag.Title = "用户详情";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+    hx_member_table Useritem = new hx_member_table();
+
+    B_usercenter o = new B_usercenter();
+    Useritem = Model.UserMode == null ? new hx_member_table() : (hx_member_table)Model.UserMode;
+
+    var mobile = Useritem.mobile;
+
+    List<V_UsrBindCardBank> Ucard = ViewBag.Ucard == null ? null : ViewBag.Ucard as List<V_UsrBindCardBank>;
+
+
+
+}
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/xiangqing.css" rel="stylesheet" />
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+<script src="~/Areas/Admin/js/xiangqing.js"></script>
+
+<script src="/Scripts/layer.min.js" type="text/javascript" charset="utf-8"></script>
+<link href="/Content/pagecss.css" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript">
+    var dff;
+    function AjaxStart() {
+        //dff = layer.msg("正在获取数据，请稍候...", 0.5, 1);
+    }
+    function AjaxStop() {
+        //var index = parent.layer.close(dff); //获取窗口索引
+       // parent.layer.close(index);
+    }
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#CopName").removeAttr("datatype");
+
+        $("#usertypes").change(function () {
+            var checkValue = $("#usertypes").val();
+            if (checkValue == "2") {
+
+                $("#DispCopName").show();
+
+                $("#CopName").attr("datatype", "*");
+
+                //datatype = "*"
+                //setAttribute("textAlign", Dalign);
+            }
+            else {
+                $("#DispCopName").hide();
+                $("#CopName").removeAttr("datatype");
+                //alert("选中的值为:" + checkValue);
+            }
+        });
+
+
+        $("#useridentity").val(@Useritem.useridentity);
+        $("#usertypes").val(@Useritem.usertypes);
+
+    });
+
+
+
+    function updateAddress() {
+        var key = $("#key").val();
+        var txtaddress = $("#txtaddress").val();
+        if (txtaddress == undefined || $.trim(txtaddress) == "") {
+            layer.alert("地址不可以为空！");
+            return;
+        }
+
+        $.getJSON("/admin/Users/UpdateUserAddress", { id: key, address: txtaddress }, function (data) {
+
+            alert(data.msg);
+        });
+    }
+
+
+    function updatetype(i) {
+        var key = $("#key").val();
+        var values;
+        var comname;
+        if(i==0)
+        {
+            values = $("#useridentity").val();
+        }
+        else {
+            values = $("#usertypes").val();
+        }
+        var checkValue = $("#usertypes").val();
+        if (checkValue == "2") {
+
+            comname = $("#CopName").val();
+        }
+        $.getJSON("/admin/Users/UpdateTypes", { id: key,comname:comname, values1: values, ty: i }, function (data) {
+
+            alert(data.msg);
+        });
+
+    }
+
+    function Setacttype(i)
+    {
+        $('#acttype').val(i);
+        $('#searchFormjiang').submit();
+    }
+
+</script>
+
+<div class="v_right xq_right">
+    <div class="xq_rig_top">
+        当前位置：会员管理>会员@(Useritem.realname)的详情页
+    </div>
+    <div class="xq_rig_content">
+        <div class="xq_rig_con">
+            <div class="xq_con_top">
+                <a href="#" style="background: #fff;border-bottom: 0;">
+                    @(Useritem.realname)详情页
+                </a>
+                <a href="/admin/Users/ContactRecords?id=@(Useritem.registerid)" class="xq_con_top_p">
+                    会员沟通
+                </a>
+            </div>
+            <!--详情的-->
+            <input type="hidden" id="key" name="key" value="@(Useritem.registerid)" />
+            <div class="xq_con_mid">
+                <!--基本信息-->
+                <div class="xq_mid_mass">
+                    <p class="xq_mass_top">
+                        <span class="xq_js1">
+                            基本信息:
+                            <img src="/Areas/Admin/img/xq_xx.jpg" alt="" />
+                        </span>
+                    </p>
+                    <div class="xq_mass_con">
+                        <ul>
+                            <li class="xq_li1">姓名：</li>
+                            @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                            {
+                                if (Useritem.realname != null)
+                                {
+                                    Useritem.realname = Useritem.realname.Substring(0, 1) + "**";
+                                }
+                            }
+                            <li class="xq_li2">@(Useritem.realname)</li>
+                        </ul>
+
+                        <ul>
+                            <li class="xq_li1">会员身份：</li>
+                            <li class="xq_li2">@UserControl.HX_SelectActUser(1, 1)</li>
+                            <li class="xq_li3">
+                                <a href="javascript:void(0);" onclick="javascript: updatetype(0);">修改</a>
+                            </li>
+                        </ul>
+
+                        <ul>
+                            <li class="xq_li1">会员类型：</li>
+                            <li class="xq_li2">@UserControl.HX_SelectActUser(4, 1)</li>
+                            <li class="xq_li3">
+                                <a href="javascript:void(0);" onclick="javascript: updatetype(1);">修改</a>
+                            </li>
+                        </ul>
+                        <ul id="DispCopName" style="display: @(Useritem.usertypes==2?"":"none")">
+                            <li class="xq_li1">借款企业名称：</li>
+                            <li class="xq_li2"><input type="text" name="CopName" id="CopName" value="@Useritem.CopName" class="inputxt" datatype="*" nullmsg="请输入借款企业名称！" errormsg="请输入借款企业名称！" /></li>
+                        </ul>
+
+                        <ul>
+                            <li class="xq_li1">账户名：</li>
+                            @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                            {
+                                @*VIP以及以上全部不显示完整手机号*@
+                                if (Useritem.username.Length == 11 )
+                                {
+                                    Useritem.username = Useritem.username.Substring(0, 3) + "****" + Useritem.username.Substring(7, 4);
+                                }
+                            }
+                            <li class="xq_li2">@(Useritem.username)</li>
+                        </ul>
+                        <ul>
+                            <li class="xq_li1">邀请码：</li>
+                            <li class="xq_li2">@(Useritem.invitedcode)</li>
+                        </ul>
+                        <ul>
+                            <li class="xq_li1">渠道邀请：</li>
+                            <li class="xq_li2">
+                                @{
+                                    string channelName = o.GetYQGX(Useritem.registerid, Convert.ToInt32(Useritem.useridentity));
+                                }
+                                @(channelName == "" ? "否" : channelName)
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="xq_li1">客户号：</li>
+                            <li class="xq_li2">@(Useritem.UsrCustId)</li>
+                        </ul>
+                        <ul>
+                            <li class="xq_li1">性别：</li>
+                            <li class="xq_li2">@(Extensions.GetSexByIdNumber(Useritem.iD_number))</li>
+                        </ul>
+                        <ul>
+                            <li class="xq_li1">身份证：</li>
+                            <li class="xq_li2">@(Extensions.GetFormatIdNumber(Useritem.iD_number, 6, 8, 4))</li>
+                        </ul>
+                        <ul>
+                            <li class="xq_li1">手机号：</li>
+
+                            @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                            {
+                                //除最高管理员以外其余账号均显示*号
+                                Useritem.mobile = Useritem.mobile.Substring(0, 3) + "****" + Useritem.mobile.Substring(7, 4);
+                            }
+                            <li class="xq_li2">@Useritem.mobile</li>
+                            @*<li class="xq_li3"><a href="javascript:void(0);" onclick="javascript: updateMobile();" >修改</a></li>*@
+                        </ul>
+                        <ul style="height: 34px;">
+                            <li class="xq_li1">绑定银行卡：</li>
+
+                            @foreach (var itc in Ucard)
+                            {
+                                <li class="xq_li2">
+
+                                    <input class="xq_txt1" type="text" value="@StringUtils.MaskStr(itc.OpenAcctId,3,3)" readonly />
+                                </li>
+
+                            }
+
+                            @*<li class="xq_li3"><a href="">修改</a></li>*@
+                        </ul>
+                        <ul>
+                            <li class="xq_li1">注册时间：</li>
+                            <li class="xq_li2">@(((DateTime)Useritem.registration_time).ToString("yyyy-MM-dd HH:mm:ss"))</li>
+                        </ul>
+                        <ul>
+                            <li class="xq_li1">QQ：</li>
+                            <li class="xq_li2">@(Extensions.GetFormatIdNumber(Useritem.qq, 3, 3, 3))</li>
+                        </ul>
+                        <ul>
+                            <li class="xq_li1">微信：</li>
+                            <li class="xq_li2">@(Useritem.WXAppId)</li>
+                        </ul>
+                        <ul>
+                            <li class="xq_li1">地址：</li>
+                            <li class="xq_li2">
+                                <input type="text" id="txtaddress" name="txtaddress" value="@(Useritem.contactaddress)" />
+                            </li>
+                            <li class="xq_li3">
+                                <a href="javascript:void(0);" onclick="javascript:updateAddress();">修改</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--资金信息-->
+                <div class="xq_mid_zj">
+                    <p class="xq_mass_top">
+                        <span class="xq_js1 xq_js2">
+                            资金信息:
+                            <img src="/Areas/Admin/img/xq_xx.jpg" alt="" />
+                        </span>
+                    </p>
+                    <div class="xq_zj_con">
+                        <ul>
+                            <li style="background:#F95151;">资金总览</li>
+                            <li>资金明细</li>
+                            <li>充值记录</li>
+                            <li>连连充值记录</li>
+                            <li>提现记录</li>
+                            <li>连连提现记录</li>
+                        </ul>
+
+                        @{
+                            decimal available_balance = 0.0M; //余额
+                            decimal sy = Math.Round(o.Getcollecttotalamountinterest(Useritem.registerid), 2); //收益
+                            decimal benji = o.GetPrincipal(Useritem.registerid);  //待收本金
+                            decimal jianli = Math.Round(o.GetBonuses(Useritem.registerid), 2);//奖励
+                            decimal dongjie = 0.00M;
+                            decimal.TryParse(Useritem.available_balance.ToString(), out available_balance);
+
+                            decimal.TryParse(Useritem.frozen_sum.ToString(), out dongjie);
+
+                            decimal TotalCapital = 0.00M; //总资产
+
+                            TotalCapital = available_balance + sy + benji + jianli + dongjie;
+
+                        }
+
+                        <div class="xq_zj_tab">
+                            <div class="wsh_tab xq_zj_tab1">
+                                <p>
+                                    <i>
+                                        资产总计：<span>@TotalCapital.ToString()</span>元
+                                    </i>
+                                    <i>
+                                        账户余额：<span>@Useritem.available_balance</span>元
+                                    </i>
+                                    <i>
+                                        待收本金：<span>@benji.ToString()</span>元
+                                    </i>
+                                    <i>
+                                        待收收益：<span>@sy.ToString()</span>元
+                                    </i>
+                                    <i>
+                                        奖励金额：<span>@jianli.ToString()</span>元
+                                    </i>
+                                    <i>
+                                        冻结金额：<span>@Useritem.frozen_sum </span>元
+                                    </i>
+                                </p>
+                                <table cellpadding="0" cellspacing="0">
+                                    <tr class="xq_zj_tr">
+                                        <td width="139">资金类型</td>
+                                        <td width="150">创业贷</td>
+                                        <td width="150">投房贷</td>
+                                        <td width="150">利车贷</td>
+                                        <td width="150">新手标</td>
+                                        <td width="200">总计</td>
+                                    </tr>
+                                    <tr>
+                                        @{
+                                            Decimal chuan = o.GetTotalinvestment(Useritem.registerid, 2);
+                                            decimal fang = o.GetTotalinvestment(Useritem.registerid, 4);
+                                            decimal che = o.GetTotalinvestment(Useritem.registerid, 3);
+                                            decimal xinshou = o.GetTotalinvestment(Useritem.registerid, 6);
+                                            decimal totalc = chuan + fang + che + xinshou;
+                                        }
+
+                                        <td>累计投资</td>
+                                        <td>@Math.Round(chuan, 2).ToString()元</td>
+                                        <td>@Math.Round(fang, 2).ToString()元</td>
+                                        <td>@Math.Round(che, 2).ToString()元</td>
+                                        <td>@Math.Round(xinshou, 2).ToString()元</td>
+                                        <td>@Math.Round(totalc, 2).ToString()元</td>
+                                    </tr>
+                                    <tr>
+
+                                        @{
+                                            decimal chuands = o.Getcollecttotalamountinterest(Useritem.registerid, 2);
+                                            decimal fangds = o.Getcollecttotalamountinterest(Useritem.registerid, 4);
+                                            decimal cheds = o.Getcollecttotalamountinterest(Useritem.registerid, 3);
+                                            decimal xinshouds = o.Getcollecttotalamountinterest(Useritem.registerid, 6);
+                                            decimal dstotalc = chuands + fangds + cheds + xinshouds;
+                                        }
+                                        <td>待收收益</td>
+                                        <td>@Math.Round(chuands, 2).ToString()元</td>
+                                        <td>@Math.Round(fangds, 2).ToString()元</td>
+                                        <td>@Math.Round(cheds, 2).ToString()元</td>
+                                        <td>@Math.Round(xinshouds, 2).ToString()元</td>
+                                        <td>@Math.Round(dstotalc, 2).ToString()元</td>
+                                    </tr>
+                                    <tr>
+                                        @{
+                                            decimal chuanys = o.GetInterest(Useritem.registerid, 2);
+                                            decimal fangys = o.GetInterest(Useritem.registerid, 4);
+                                            decimal cheys = o.GetInterest(Useritem.registerid, 3);
+                                            decimal xinshouys = o.GetInterest(Useritem.registerid, 6);
+                                            decimal ystotal = chuanys + fangys + cheys + xinshouys;
+                                        }
+                                        <td>已收收益</td>
+                                        <td>@Math.Round(chuanys, 2).ToString()元</td>
+                                        <td>@Math.Round(fangys, 2).ToString()元</td>
+                                        <td>@Math.Round(cheys, 2).ToString()元</td>
+                                        <td>@Math.Round(xinshouys, 2).ToString()元</td>
+                                        <td>@Math.Round(ystotal, 2).ToString()元</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="display: none;" class="wsh_tab xq_zj_tab2">
+                                <div class="xq_tab2_cz">
+                                    <p>
+                                        @Useritem.realname 共有 <span>@ViewBag.CapticalCount</span> 条资金明细记录
+                                    </p>
+                                    @using (Html.BeginForm("Detail", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchFormCapital", @class = "form-inline well well-sm" }))
+                                    {
+                                        <div class="xq_cz1 xq_cz3">
+
+                                            <input class="jcDate" autocomplete="off" name="startdatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" />
+                                            <i class="oI" style="margin-right: 10px;">至</i>
+                                            <input class="jcDate" autocomplete="off" name="enddatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" />
+                                            <input style="color:#fff;" type="submit" class="xq_btn" value="查&nbsp;&nbsp;询" />
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="xq_cz_tab xq_cz_tab2" id="capitallist">
+
+                                    @Html.Partial("_CapitcalWater", Model.Capitcal_water)
+
+                                </div>
+                            </div>
+                            <div style="display: none;" class="wsh_tab xq_zj_tab2">
+                                <div class="xq_tab2_cz">
+                                    <p>
+                                        @Useritem.realname 累计充值<span>@ViewBag.succCount</span>笔，累计充值金额为<span>@ViewBag.succTotal</span>元。
+                                    </p>
+                                    @using (Html.BeginForm("Detail", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchForm", @class = "form-inline well well-sm" }))
+                                    {
+                                        <div class="xq_cz1 xq_cz3">
+
+                                            <input class="jcDate" autocomplete="off" name="startdatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" />
+                                            <i class="oI" style="margin-right: 10px;">至</i>
+                                            <input class="jcDate" autocomplete="off" name="enddatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" />
+                                            <input style="color:#fff;" type="submit" class="xq_btn" value="查&nbsp;&nbsp;询" />
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="xq_cz_tab xq_cz_tab2" id="rechargelist">
+
+                                    @Html.Partial("_rechargelist", Model.Recharge)
+
+                                </div>
+
+                            </div>
+                            <div style="display: none;" class="wsh_tab xq_zj_tab2">
+                                <div class="xq_tab2_cz">
+                                    <p>
+                                        @Useritem.realname 连连累计充值成功<span>@ViewBag.llsuccCount</span>笔，连连累计充值成功金额为<span>@ViewBag.llsuccTotal</span>元。
+                                    </p>
+                                    @using (Html.BeginForm("Detail", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchFormLL", @class = "form-inline well well-sm" }))
+                                    {
+                                        <div class="xq_cz1 xq_cz3">
+
+                                            <input class="jcDate" autocomplete="off" name="startdatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" />
+                                            <i class="oI" style="margin-right: 10px;">至</i>
+                                            <input class="jcDate" autocomplete="off" name="enddatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" />
+                                            <input style="color:#fff;" type="submit" class="xq_btn" value="查&nbsp;&nbsp;询" />
+                                        </div>
+                                    }
+                                </div>
+                                <div class="xq_cz_tab xq_cz_tab2" id="llrechargelist">
+
+                                    @Html.Partial("_LLrechargelist", Model.LLRecharge);
+
+                                </div>
+                            </div>
+                            <div style="display: none;" class="wsh_tab xq_zj_tab2">
+                                <div class="xq_tab2_cz">
+                                    <p>
+                                        @Useritem.realname 累计提现<span>@ViewBag.succCountCash</span>笔，累计提现金额为<span>@ViewBag.succTotalcash</span>元。
+                                    </p>
+
+                                    @using (Html.BeginForm("Detail", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchFormCash", @class = "form-inline well well-sm" }))
+                                    {
+                                        <div class="xq_cz1 xq_cz3">
+                                            <input class="jcDate" autocomplete="off" name="startdatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" />
+                                            <i class="oI" style="margin-right: 10px;">至</i>
+                                            <input class="jcDate" autocomplete="off" name="enddatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" />
+                                            <input style="color:#fff;" type="submit" class="xq_btn" value="查&nbsp;&nbsp;询" />
+
+                                            <input type="hidden" id="pageIndex" name="pageIndex" />
+                                        </div>
+                                    }
+                                </div>
+                                <div class="xq_cz_tab xq_cz_tab2" id="cashlistd">
+
+                                    @Html.Partial("_cashlist", Model.UserCash)
+
+                                </div>
+
+
+
+                            </div>
+                            <div style="display: none;" class="wsh_tab xq_zj_tab2">
+                                <div class="xq_tab2_cz">
+                                    <p>
+                                        @Useritem.realname 累计成功提现<span>@ViewBag.succCountLLCash</span>笔，累计成功提现金额为<span>@ViewBag.succTotalLLCash</span>元。
+                                    </p>
+
+                                    @using (Html.BeginForm("Detail", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchFormCashLL", @class = "form-inline well well-sm" }))
+                                    {
+                                        <div class="xq_cz1 xq_cz3">
+                                            <input class="jcDate" autocomplete="off" name="startdatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" />
+                                            <i class="oI" style="margin-right: 10px;">至</i>
+                                            <input class="jcDate" autocomplete="off" name="enddatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" />
+                                            <input style="color:#fff;" type="submit" class="xq_btn" value="查&nbsp;&nbsp;询" />
+
+                                            <input type="hidden" id="pageIndex" name="pageIndex" />
+                                        </div>
+                                    }
+                                </div>
+                                <div class="xq_cz_tab xq_cz_tab2" id="llcashlistd">
+
+                                    @Html.Partial("_LLcashlist", Model.UserLLCash)
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!--投资信息-->
+                <div class="xq_mid_tz">
+                    <p class="xq_mass_top xq_mass_top1">
+                        <span class="xq_js1 xq_js3">
+                            投资信息:
+                            <img src="/Areas/Admin/img/xq_xx.jpg" alt="" />
+                        </span>
+                    </p>
+                    <div class="xq_zj_con" style="margin-left: 22px;">
+                        <ul>
+                            <li style="background:#F95151;">投资记录</li>
+                            <li>回款记录</li>
+                        </ul>
+                        <div>
+                            <div class="wsh_tab xq_zj_tab2">
+                                <div class="xq_tab2_cz">
+                                    <p>
+                                        @Useritem.realname 累计投资<span>@ViewBag.invcount</span>笔，累计投资金额为<span>@ViewBag.invtotal</span>元。
+                                    </p>
+                                    @using (Html.BeginForm("Detail", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchFormInv", @class = "form-inline well well-sm" }))
+                                    {
+
+                                        <div class="xq_cz1 xq_cz2">
+
+                                            <input class="jcDate" autocomplete="off" name="startdatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" />
+                                            <i class="oI" style="margin-right: 10px;">至</i>
+                                            <input class="jcDate" autocomplete="off" name="enddatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" />
+                                            <input style="color:#fff;" type="submit" class="xq_btn" value="查&nbsp;&nbsp;询" />
+                                        </div>
+
+                                    }
+
+                                </div>
+                                <div class="xq_cz_tab xq_cz_tab1" id="invsList">
+
+
+                                    @Html.Partial("_invsList", Model.Bid_Records)
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div style="display: none;" class="wsh_tab xq_zj_tab2">
+                                <div class="xq_tab2_cz">
+
+                                    @using (Html.BeginForm("Detail", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchFormH", @class = "form-inline well well-sm" }))
+                                    {
+                                        <div class="xq_cz1 xq_cz5">
+
+                                            <input class="jcDate" autocomplete="off" name="startdatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin:0 10px" />
+                                            <i class="oI" style="margin-right: 10px;">至</i>
+                                            <input class="jcDate" autocomplete="off" name="enddatetime" style="width:140px; height:18px; line-height:20px; padding-left:40px;margin-right: 10px;" />
+                                            <input style="color:#fff;" type="submit" class="xq_btn" value="查&nbsp;&nbsp;询" />
+
+                                        </div>
+                                    }
+
+                                </div>
+
+
+                                <div class="xq_cz_tab xq_cz_tab5 xq_jl_tab" id="invhuilist">
+
+
+                                    @Html.Partial("_invhuilist", Model.Bid_Records_income)
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--奖励信息-->
+                <div class="xq_mid_jl">
+                    <p class="xq_mass_top xq_jl_top">
+                        <span class="xq_js1">
+                            奖励信息:
+                            <img src="/Areas/Admin/img/xq_xx.jpg" alt="" />
+                        </span>
+                    </p>
+                    @using (Html.BeginForm("Detail", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchFormjiang", @class = "form-inline well well-sm" }))
+                    {
+                        <div class="xq_jl_con">
+
+
+                            <ul>
+                                <li style="background:#F95151;" onclick="Setacttype(1)">现金</li>
+                                <li onclick="Setacttype(2)">抵扣券</li>
+                                <li onclick="Setacttype(3)">加息券</li>
+                                <li onclick="Setacttype(4)">邀请奖励</li>
+                            </ul>
+
+                            <input type="hidden" id="acttype" name="acttype" />
+
+
+
+                            <div class="hy_cash hy_cashq wsh_tab1" id="jiangli">
+
+
+
+                                @Html.Partial("_jianglilist", Model.cash)
+
+                            </div>
+
+
+
+
+                        </div>
+                    }
+                </div>
+                <!--行为记录-->
+                <div class="xq_mid_xw">
+                    <p class="xq_mass_top xq_xw_top">
+                        <span class="xq_js1">
+                            行为记录:
+                            <img src="/Areas/Admin/img/xq_xx.jpg" alt="" />
+                        </span>
+                    </p>
+                    @using (Html.BeginForm("Detail", ViewContext.RouteData.GetRequiredString("controller"), new { id = "" }, FormMethod.Post, new { id = "searchFormcity", @class = "form-inline well well-sm" }))
+                    {
+                    }
+                    <div class="xq_xw_con" id="cityinfo">
+
+                        @Html.Partial("_cityinfrolist", Model.usrlogin)
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}

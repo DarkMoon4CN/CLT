@@ -1,0 +1,42 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuangLitouP2P.Models;
+@model ChuangLitouP2P.Models.V_UsrBindCardBank
+@{
+    ViewBag.Title = "绑定银行卡";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+    List<V_UsrBindCardBank> listcard = ViewBag.listcard == null ? null : ViewBag.listcard as List<V_UsrBindCardBank>;
+}
+
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">绑定银行卡</h2>
+</header>
+<section class="withd_box clearfix">
+    <div class="withd_bank_list">
+        <ul>
+            @if (Model != null)
+            {
+                if (listcard.Count > 0)
+                {
+                    foreach (var item in listcard)
+                    {
+
+                        <li>
+                            <div><img src="@Utils.GetImage_url(item.CardImage)" /> </div><div class="wbank">
+                                <a href="javascript:void(0)"><strong>@(item.BankName)</strong><p>尾号：@Utils.ReplaceWithSpecialChar(item.OpenAcctId, 4, 4, '*') </p></a>
+                            </div>
+                        </li>
+                    }
+                }
+
+            }
+            
+        </ul>
+    </div>
+    @if (ViewBag.flag == false)
+    {
+        <div class="add_bank"><a href="/Bank/Bind">+ 添加银行卡<i></i></a></div>
+    }
+    
+</section>
+<div class="bot_height"></div>

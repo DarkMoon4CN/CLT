@@ -1,0 +1,448 @@
+﻿
+@{
+    ViewBag.Title = "新增担保公司";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+ 
+
+
+<link rel="stylesheet" href="~/Areas/Admin/css/validstyle.css" type="text/css" media="all" />
+<link href="~/Areas/Admin/css/style.css" rel="stylesheet" type="text/css">
+<link href="/Areas/Admin/styleCont/jcDate.css" rel="stylesheet" type="text/css" />
+<link href="~/Areas/Admin/css/valid.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Areas/Admin/css/validstyle.css" type="text/css" media="all" />
+<link href="~/Areas/Admin/css/admin.content.css" rel="stylesheet" type="text/css" />
+<link href="~/Areas/Admin/css/admin.global.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Areas/Admin/js/jquery-1.9.1.min.js"></script>
+<script src="/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script type="text/javascript" src="~/Areas/Admin/js/Validform_v5.3.2_min.js"></script>
+
+
+
+
+<script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+<link href="/Content/kindeditor/themes/default/default.css" rel="stylesheet" />
+<link href="/Content/kindeditor/plugins/code/prettify.css" rel="stylesheet" />
+<script src="/Content/kindeditor/kindeditor.js"></script>
+<script src="/Content/kindeditor/lang/zh_CN.js"></script>
+<script src="/Content/kindeditor/plugins/code/prettify.js"></script>
+
+
+
+
+ 
+ 
+
+ 
+
+
+<script type="text/javascript">
+    $(function () {
+            $(".jcDate").jcDate({					       
+                IcoClass : "jcDateIco",
+                Event : "click",
+                Speed : 100,
+                Left : 0,
+                Top : 28,
+                format : "-",
+                Timeout : 100
+            });
+
+
+            //$(".registerform").Validform();  //就这一行代码！;
+            $(".registerform").Validform({
+                tiptype: 2
+            });
+            var utilityHandle = {
+                setFocus: function (objFocusEven, values) {
+                    objFocusEven.focus(); // 默认使用focus方法聚焦
+                    var objEven = objFocusEven[0]; // 将Jquery对象转换为Dom对象
+                    if (window.getSelection) {
+                        // 现代浏览器
+                        objEven.selectionStart = objEven.selectionEnd = values;
+                    } else if (document.selection) {
+                        var txt = objEven.createTextRange(); // 将传入的控件对象转换为Dom对象，并创建一个TextRange对象
+                        txt.moveStart('character', values);   // 设置光标显示的位置
+                        txt.collapse(true);
+                        txt.select();
+                    }
+                }
+            };
+           var setFocusText = $("#company_name");
+           utilityHandle.setFocus(setFocusText, setFocusText.val().length);
+        })
+        function clearNoNum(obj) {
+            obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+            obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+            obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+            obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+        }
+
+
+        var editor1;
+        KindEditor.ready(function (K) {
+            editor1 = K.create('#company_profile', {
+                cssPath: 'kindeditor/plugins/code/prettify.css',
+                uploadJson: '/Areas/admin/common/upload_json.ashx',
+                fileManagerJson: '/Areas/admin/common/file_manager_json.ashx',
+                allowFileManager: true,
+                filterMode: false,//是否开启过滤模式
+                afterCreate: function () {
+                    var self = this;
+                    K.ctrl(document, 13, function () {
+                        self.sync();
+                        K('form[name=example]')[0].submit();
+                    });
+                    K.ctrl(self.edit.doc, 13, function () {
+                        self.sync();
+                        K('form[name=example]')[0].submit();
+                    });
+                }
+            });
+            prettyPrint();
+        });
+
+</script>
+
+<style type="text/css">
+    .auto-style1 {
+        width: 105px;
+    }
+    .jcDate { text-indent:30px;
+    }
+</style></head>
+<body>
+
+    @using (Html.BeginForm("AddPost", "BondingCompany", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="so_main">
+            <div class="location">当前位置：担保公司</div>
+            <div class="blank10"></div>
+
+
+
+            <div class="search block">
+                <div class="h">
+                    <span class="icon-sprite icon-list"></span>
+                    <h3>担保公司管理</h3>
+                </div>
+
+                <div class="cnt-wp">
+                    <div class="cnt">
+
+
+                        <table width="100%" style="table-layout:fixed;padding-left:15%;margin-top:10px;">
+                            <tr>
+                                <td class="need" style="width:10px;">*</td>
+                                <td class="auto-style1">担保公司名称：</td>
+                                <td style="width:205px;">
+
+                                    <input type="text" name="company_name" id="company_name" class="inputxt" datatype="*2-20" errormsg="请输入担保公司名称在2~20位之间！" nullmsg="担保公司名称不能为空！" ajaxurl="/admin/BondingCompany/CheckName"  />
+                                </td>
+                                <td><div class="Validform_checktip">担保公司名称</div></td>
+                            </tr>
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">注册资金：</td>
+                                <td>
+                                    <input type="text" name="registered_capital" id="registered_capital" onkeyup="clearNoNum(this)" placeholder="0.00" class="inputxt" datatype="*" nullmsg="请输入注册资金！" errormsg="注册资金为数字类型！" />
+
+                                </td>
+                                <td><span class="Validform_checktip">请输入注册资金！</span></td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">公司成立日期：</td>
+                                <td>
+                                    <input type="text" name="Date_incorporation" id="Date_incorporation" class="jcDate jcDateIco inputxt " datatype="*" nullmsg="请选择公司成立日期！" autocomplete="off" />
+                                </td>
+                                <td><span class="Validform_checktip">请选择公司成立日期！</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">公司电话：</td>
+                                <td>
+                                    <input type="text" name="company_tel" id="company_tel" class="inputxt" />
+                                </td>
+                                <td><span class="Validform_checktip">请输入公司电话！</span></td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">公司地址：</td>
+                                <td>
+                                    <input type="text" name="company_address" id="company_address" class="inputxt" datatype="*" errormsg="请输入公司地址！" nullmsg="公司地址不能为空！" />
+                                </td>
+                                <td><span class="Validform_checktip">请输入公司地址！</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">公司网址：</td>
+                                <td>
+                                    <input type="text" name="company_Url" id="company_Url" class="inputxt" />
+                                </td>
+                                <td><span class="Validform_checktip">请输入公司网址！</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">公司简介：</td>
+                                <td colspan="2">
+                                    <textarea id="company_profile" name="company_profile" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;" ></textarea>
+                                    <span class="Validform_checktip">请输入公司简介！</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">营业执照编号：</td>
+                                <td>
+                                    <input type="text" name="business_licence" id="business_licence" class="inputxt" datatype="*" errormsg="请输入营业执照编号！" nullmsg="营业执照编号不能为空！" />
+                                </td>
+                                <td><span class="Validform_checktip">请输入营业执照编号！</span></td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">组织机构代码：</td>
+                                <td>
+                                    <input type="text" name="business_certificate" id="business_certificate" maxlength="9" class="inputxt" datatype="*" errormsg="请输入组织机构代码！" nullmsg="组织机构代码不能为空！" />
+                                </td>
+                                <td><span class="Validform_checktip">请输入组织机构代码！</span></td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">税务登记号：</td>
+                                <td>
+                                    <input type="text" name="Tax_NO" id="Tax_NO" class="inputxt" datatype="*" errormsg="请输入税务登记号！" nullmsg="税务登记编号不能为空！" />
+                                </td>
+                                <td><span class="Validform_checktip">请输入税务登记号！</span></td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">合同封面：</td>
+                                <td>
+
+                                    <input type="text" name="contract_covers" id="contract_covers" class="inputxt" datatype="*" errormsg="请上传合同封面！" nullmsg="合同封面不能为空！" />
+
+                                    <input type="file" id="fileImg" name="fileImg" class="inputxt up_file" /><input type="button" id="btnUpload" class="up_file"  value="上传图片" />
+
+                                </td>
+                                <td><span class="Validform_checktip">合同盖章封面！</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">合同盖章底面：</td>
+                                <td>
+
+                                    <input type="text" name="contract_bottom" id="contract_bottom" class="inputxt" datatype="*" errormsg="请上合同盖章底面！" nullmsg="合同盖章底面为空！" />
+
+
+                                    <input type="file" id="fileImg2" name="fileImg2" class="inputxt" /><input type="button" id="btnUpload2" value="上传图片" />
+                                </td>
+                                <td><span class="Validform_checktip">合同盖章底面！</span></td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">法定代表人：</td>
+                                <td>
+                                    <input type="text" name="legal_representative" id="legal_representative" class="inputxt" datatype="*" errormsg="请输入法定代表人！" nullmsg="法定代表人不能为空！" />
+                                </td>
+                                <td><span class="Validform_checktip">请输入代表人！</span></td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">代理人：</td>
+                                <td>
+                                    <input type="text" name="agent" id="agent" class="inputxt" datatype="*" errormsg="请输入代理人！" nullmsg="代理人不能为空！" />
+                                </td>
+                                <td><span class="Validform_checktip">请输入代理人！</span></td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">代理人用户名：</td>
+                                <td>
+                                    <input type="text" name="agent_name" id="agent_name" class="inputxt" datatype="*" errormsg="请输入代理人用户名！" nullmsg="代理人用户名不能为空！" />
+                                </td>
+                                <td><span class="Validform_checktip">请输入代理人用户名！</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">代理人身份证号：</td>
+                                <td>
+                                    <input type="text" name="agent_id_card" id="agent_id_card" class="inputxt" datatype="*" errormsg="请输入代理人身份证号！" nullmsg="代理人身份证号不能为空！" />
+                                </td>
+                                <td><span class="Validform_checktip">请输入代理人身份证号！</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="need">* </td>
+                                <td class="auto-style1">是否担保：</td>
+                                <td>
+
+                                    <select id="GuarType" name="GuarType">
+                                        <option value="1">是</option>
+                                        <option value="0">否</option>
+                                    </select>
+                                </td>
+                                <td><span class="Validform_checktip">是否担保！</span></td>
+                            </tr>
+
+
+
+
+                            <tr>
+                                <td class="need"></td>
+                                <td class="auto-style1"></td>
+                                <td>
+                                    <input type="submit" value="确定" class="button white medium" />
+                                    &nbsp;<a href="/Admin/BondingCompany/Index"><span class="button white medium">返回</span></a>
+                                </td>
+                                <td></td>
+                            </tr>
+
+                        </table>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+
+    }
+
+
+       
+      
+
+        <script type="text/javascript">
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "n": /^\d+$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+        //图片
+        $("#btnUpload").bind("click", function () {
+            if ($("#fileImg").val().length > 0) {
+                ajaxFileUpload();
+            }
+            else {
+                alert("请选择图片");
+            }
+        });
+        //图片
+        $("#btnUpload2").bind("click", function () {
+            if ($("#fileImg2").val().length > 0) {
+                ajaxFileUpload2();
+            }
+            else {
+                alert("请选择图片");
+            }
+        });
+
+    });
+
+     
+    //上传图片
+    function ajaxFileUpload() {
+        $.ajaxFileUpload
+        (
+            {
+                url: '/admin/UploadFile/CompanyPicture', //用于文件上传的服务器端请求地址
+                secureuri: false, //一般设置为false
+                fileElementId: 'fileImg', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                dataType: 'json', //返回值类型 一般设置为json
+                success: function (data, status)  //服务器成功响应处理函数
+                {
+                    if (data.ret == 1) {
+                        $("#contract_covers").val(data.path);
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (data, status, e)//服务器响应失败处理函数
+                {
+                    alert("操作失败，请重新操作！");
+                }
+            }
+        )
+        return false;
+    }
+    //上传图片
+    function ajaxFileUpload2() {
+        $.ajaxFileUpload
+        (
+            {
+                url: '/admin/UploadFile/CompanyPicture', //用于文件上传的服务器端请求地址
+                secureuri: false, //一般设置为false
+                fileElementId: 'fileImg2', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                dataType: 'json', //返回值类型 一般设置为json
+                success: function (data, status)  //服务器成功响应处理函数
+                {
+                    if (data.ret == 1) {
+                        $("#contract_bottom").val(data.path);
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (data, status, e)//服务器响应失败处理函数
+                {
+                    alert("操作失败，请重新操作！");
+                }
+            }
+        )
+        return false;
+    }
+        </script>
+

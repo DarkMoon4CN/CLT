@@ -1,0 +1,81 @@
+﻿
+@using ChuanglitouP2P.Common
+@model  IEnumerable<ChuangLitouP2P.Models.V_borrow_repayment_plan>
+@{
+    ViewBag.Title = "三日内需还款";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">贷款管理</a>><a href="javascript:void(0)">三日内需还款</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        3天内需还款列表
+    </h3>
+    <table cellspacing="0" cellpadding="0" class="listtable">
+        <tbody>
+            <tr class="tz_tr">
+                <th scope="col">合同编号 </th>
+                <th scope="col">标题</th>
+                <th scope="col">借款人</th>
+                <th scope="col">借款金额</th>
+                <th scope="col">已还金额</th>
+                <th scope="col">还款期限</th>
+                <th scope="col">还款期数</th>
+                <th scope="col">需还款日</th>
+                <th scope="col">操作</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    var title = Utils.GetSubString(item.borrowing_title, 100, "...");
+                    <tr>
+                        <td>@(item.loan_number) </td>
+                        <td>@(title)</td>
+                        @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                        {
+                            if (item.realname != null && item.realname.Length > 1)
+                            {
+                                item.realname = item.realname.Substring(0, 1) + "**";
+                            }
+
+                        }
+                        <td>@(item.realname)</td>
+                        <td>@RMB.GetWebConvertdisp(decimal.Parse((item.borrowing_balance.ToString())), 2, true)</td>
+                        <td>@RMB.GetWebConvertdisp(decimal.Parse(item.H_Repayment_Amt==null?"0.00":item.H_Repayment_Amt.ToString()), 2, true)</td>
+                        <td>@Utils.GetLife_of_loan(item.life_of_loan.ToString(),item.unit_day.ToString())</td>
+                        <td>@(item.repaymentperiods<=0? "还未还款" : "第 "+item.repaymentperiods + " 期")</td>
+                        <td>@(((DateTime)item.repayment_period).ToString("yyyy-MM-dd"))</td>
+                        <td>
+                            @if (item.tender_state == 4)
+                            {
+                                <a href="/admin/Replay/Details?id=@(item.targetid)">还款明细</a>
+                            }
+                            
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>

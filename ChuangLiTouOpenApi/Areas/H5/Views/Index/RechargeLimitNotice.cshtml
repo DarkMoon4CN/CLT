@@ -1,0 +1,48 @@
+﻿@using ChuanglitouP2P.Common;
+@using ChuanglitouP2P.BLL;
+@using ChuangLitouP2P.Models;
+@model  List<hx_td_Bank>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>银行限额说明</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @Url.ApiFile("about.css").ToHtml()
+    <link href="@Settings.Instance.GetWeixinUrlAddress/css/RechargeTips.css" rel="stylesheet" type="text/css" />
+    <script>
+        (function (doc, win) { var docEl = doc.documentElement, resizeEvt = "orientationchange" in window ? "orientationchange" : "resize", recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; docEl.style.fontSize = 20 * (clientWidth / 320) + "px" }; if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false) })(document, window)
+    </script>
+</head>
+<body>
+    <div id="recharge">
+        <table style="" cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th style="text-align:center">银行名称</th>
+                    <th>单笔限额</th>
+                    <th>单卡单日累计限额</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><img src="@item.CardImageNew">@item.BankName</td>
+                            <td>@(Utils.GetMaximumDecimalValue(item.SingleTransQuota))万元/笔</td>
+                            <td>@(Utils.GetMaximumDecimalValue(item.CardDailyTransQuota))万元/日</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

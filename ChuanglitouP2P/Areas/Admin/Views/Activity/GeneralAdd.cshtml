@@ -1,0 +1,646 @@
+﻿
+@{
+    ViewBag.Title = "常规投资";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="/Areas/Admin/styleCont/jcDate.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/Admin/styleCont/nav_style.css" rel="stylesheet" type="text/css">
+<script src="/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="/Areas/Admin/js/common.js"></script>
+<script src="/Areas/Admin/js/js_tab.js"></script>
+<script src="/Areas/Admin/js/huodong_js.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+
+<script type="text/javascript">
+    function checkForm() {
+
+
+        if ($("#ActName").val() == "") {
+            alert("活动名称不能为空!");
+            $("#ActName").focus();
+            return false;
+        }
+        if ($("#ActStarttime").val() == "") {
+
+            alert("活动开始时间不能为空!");
+            $("#ActStarttime").focus();
+            return false;
+        }
+        if ($("#ActEndtime").val() == "") {
+
+            alert("活动结束时间不能为空!");
+            $("#ActEndtime").focus();
+            return false;
+        }
+
+        var rt1 = $("#z_div01").css("display");
+        var rt2 = $("#z_div02").css("display");
+        var rt3 = $("#z_div03").css("display");
+
+        if (rt1 == "block")//现金
+        {
+            var value = $("input[id='require']:checked").val();
+            if (value == 1) {
+                if ($("#startAmt").val() == "") {
+                    alert("投资人金额不能为空!");
+                    $("#startAmt").focus();
+                    return false;
+                }
+                else if ($("#endAmt").val() == "") {
+                    alert("投资人金额不能为空!");
+                    $("#endAmt").focus();
+                    return false;
+                }
+
+                if ($("#percent").val() == "") {
+                    alert("赠送现金百分比不能为空!");
+                    $("#percent").focus();
+                    return false;
+                }
+            }
+            else {
+                if ($("#startAmt1").val() == "") {
+                    alert("投资人金额不能为空!");
+                    $("#startAmt1").focus();
+                    return false;
+                }
+                else if ($("#endAmt1").val() == "") {
+                    alert("投资人金额不能为空!");
+                    $("#endAmt1").focus();
+                    return false;
+                }
+
+                if ($("#percent1").val() == "") {
+                    alert("赠送现金百分比不能为空!");
+                    $("#percent1").focus();
+                    return false;
+                }
+            }
+            if ($("#TopAmt").val() == "") {
+                alert("封顶金额不能为空!");
+                $("#TopAmt").focus();
+                return false;
+            }
+            if ($("#TopNum").val() == "") {
+                alert("封顶人数不能为空!");
+                $("#TopNum").focus();
+                return false;
+            }
+        }
+        else if (rt2 == "block")//现金劵
+        {
+            var value = $("input[id='rule']:checked").val();
+            var isSplit = $("input[id='ISsplit']:checked").val();
+            if (value == 1) {
+                if ($("#cash1").val() == "") {
+                    alert("抵扣券不能为空!");
+                    $("#cash1").focus();
+                    return false;
+                }
+            } else if (value == 2) {
+                if ($("#startAmt2_0").val() == "") {
+                    alert("投资金额不能为空!");
+                    $("#startAmt2_0").focus();
+                    return false;
+                }
+                if ($("#endAmt2_0").val() == "") {
+                    alert("投资金额不能为空!");
+                    $("#endAmt2_0").focus();
+                    return false;
+                }
+                if ($("#percent2_0").val() == "") {
+                    alert("抵扣券不能为空!");
+                    $("#percent2_0").focus();
+                    return false;
+                }
+
+            } else {
+                if ($("#startAmt3_0").val() == "") {
+                    alert("投资金额不能为空!");
+                    $("#startAmt3_0").focus();
+                    return false;
+                }
+                if ($("#endAmt3_0").val() == "") {
+                    alert("投资金额不能为空!");
+                    $("#endAmt3_0").focus();
+                    return false;
+                }
+                if ($("#num3_0").val() == "") {
+                    alert("请写入张数!");
+                    $("#num3_0").focus();
+                    return false;
+                }
+                if ($("#Amtstr3_01").val() == "") {
+                    alert("抵扣券面值不能为空!");
+                    $("#Amtstr3_01").focus();
+                    return false;
+                }
+                if ($("#Amtstr3_02").val() == "") {
+                    alert("抵扣券面值不能为空!");
+                    $("#Amtstr3_02").focus();
+                    return false;
+                }
+            }
+            if (isSplit == 1) {
+                if ($("#cashAmtsplit1").val() == "") {
+                    alert("拆分金额不能为空!");
+                    $("#cashAmtsplit1").focus();
+                    return false;
+                }
+
+                if ($("#startAmtsplit1").val() == "") {
+                    alert("最低投资金额不能为空!");
+                    $("#startAmtsplit1").focus();
+                    return false;
+                }
+                if ($("#endAmtsplit1").val() == "") {
+                    alert("最高投资金额不能为空!");
+                    $("#endAmtsplit1").focus();
+                    return false;
+                }
+                if ($("#endTimesplit1").val() == "") {
+                    alert("过期时间不能为空!");
+                    $("#endTimesplit1").focus();
+                    return false;
+                }
+            }
+            else {
+                if ($("#cashAmtsplit2").val() == "") {
+                    alert("现金劵金额不能为空!");
+                    $("#cashAmtsplit2").focus();
+                    return false;
+                }
+
+                if ($("#startAmtsplit2").val() == "") {
+                    alert("最低投资金额不能为空!");
+                    $("#startAmtsplit2").focus();
+                    return false;
+                }
+                if ($("#endAmtsplit2").val() == "") {
+                    alert("最高投资金额不能为空!");
+                    $("#endAmtsplit2").focus();
+                    return false;
+                }
+                if ($("#endTimesplit2").val() == "") {
+                    alert("过期时间不能为空!");
+                    $("#endTimesplit2").focus();
+                    return false;
+                }
+            }
+        }
+        else //if(rt3 == "block") 加息
+        {
+            var value = $("input[id='jiaxirule']:checked").val();
+            if (value == 1) {
+                if ($("#cash2").val() == "") {
+                    alert("加息劵百分比不能为空!");
+                    $("#cash2").focus();
+                    return false;
+                }
+            }
+            else if (value == 2) {
+                if ($("#startAmt4_0").val() == "") {
+                    alert("投资金额不能为空!");
+                    $("#startAmt4_0").focus();
+                    return false;
+                }
+                if ($("#endAmt4_0").val() == "") {
+                    alert("投资金额不能为空!");
+                    $("#endAmt4_0").focus();
+                    return false;
+                }
+                if ($("#percent4").val() == "") {
+                    alert("赠送加息券不能为空!");
+                    $("#percent4").focus();
+                    return false;
+                }
+            } else {
+                if ($("#startAmt5_0").val() == "") {
+                    alert("赠送加息券不能为空!");
+                    $("#startAmt5_0").focus();
+                    return false;
+                }
+                if ($("#endAmt5_0").val() == "") {
+                    alert("赠送加息券不能为空!");
+                    $("#endAmt5_0").focus();
+                    return false;
+                }
+                if ($("#num5_0").val() == "") {
+                    alert("加息券数量不能为空!");
+                    $("#num5_0").focus();
+                    return false;
+                }
+
+                if ($("#Amtstr5_01").val() == "") {
+                    alert("加息券百分比不能为空!");
+                    $("#Amtstr5_01").focus();
+                    return false;
+                }
+                if ($("#Amtstr5_02").val() == "") {
+                    alert("加息券百分比不能为空!");
+                    $("#Amtstr5_02").focus();
+                    return false;
+                }
+                if ($("#Amtstr5_03").val() == "") {
+                    alert("加息券百分比不能为空!");
+                    $("#Amtstr5_03").focus();
+                    return false;
+                }
+            }
+
+            if ($("#cashAmtsplit3").val() == "") {
+                alert("加息券百分比不能为空!");
+                $("#cashAmtsplit3").focus();
+                return false;
+            }
+            if ($("#startAmtsplit3").val() == "") {
+                alert("投资金额不能为空!");
+                $("#startAmtsplit3").focus();
+                return false;
+            }
+
+            if ($("#endAmtsplit3").val() == "") {
+                alert("投资金额不能为空!");
+                $("#endAmtsplit3").focus();
+                return false;
+            }
+
+            if ($("#endTimesplit3").val() == "") {
+                alert("过期时间不能为空!");
+                $("#endTimesplit3").focus();
+                return false;
+            }
+        }
+
+    }
+
+    function afterAdd(data) {
+        //alert(data.info);
+
+        if (confirm(data.info + "确定转到列表页,取消留在当前页")) {
+            window.location.href = "/Admin/Activity/index";
+        }
+
+    }
+    
+</script>
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">活动管理</a>><a href="javascript:void(0)"> 新人注册</a></h2>
+<div class="z_body">
+    <h3 class="z_h3">短期活动奖励设置</h3>
+
+    @using (Ajax.BeginForm("AddPost", new AjaxOptions { }, new AjaxOptions() { Confirm = "", HttpMethod = "post", OnSuccess = "afterAdd" }, new { id = "addForm", @class = "registerform1test" }))
+    {
+
+
+
+        <div class="z_02 z_main">
+            <h2 class="z_t_h2"><span class="z_span1 w_span1" style="width:93px;">活动1规则设置：</span><span class="z_span2"></span></h2>
+            <div class="z_cont2">
+                <ul class="zTab_ul">
+
+
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <span>活动名称：<input type="hidden" name="ActTypeId" value="3" id="ActTypeId" /></span>
+
+                        <input type="text" name="ActName" id="ActName" datatype="s6-60" nullmsg="活动名称不能空！" errormsg="活动名称至少6个字符,最多60个字符！">
+                    </li>
+
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <span>活动时间：</span>
+                        <input class="jcDate" type="text" name="ActStarttime" id="ActStarttime" datatype="d" nullmsg="活动开始时间不能为空" errormsg="活动开始时间格式不对" autocomplete="off">
+                        <i>至</i>
+                        <input class="jcDate" type="text" id="ActEndtime" name="ActEndtime" datatype="d" nullmsg="活动结束时间不能为空" errormsg="活动结束时间格式不对" autocomplete="off">
+                    </li>
+                    <li style="margin-bottom:28px;"><span>面向用户：</span>@UserControl.HX_RadioActUser(4)</li>
+
+
+                    <li style="margin-bottom:18px;" class="z_li_02">
+                        <span>奖励类型：</span><lable style="margin-right: 12px;"><input checked="checked" type="radio" name="RewTypeID" id="RewTypeID1" onClick=" Hovertab(1,3,'z_')" value="1"><i><label for="RewTypeID1">现金</label></i></lable>
+                        <label style="line-height: 12px;"><input type="radio" name="RewTypeID" id="RewTypeID2" onClick=" Hovertab(2,3,'z_')" value="2"><i><label for="RewTypeID2">抵扣券</label></i></label>
+                        <label onClick="Hovertab(3,3,'z_')"><input name="RewTypeID" id="RewTypeID3" type="radio" value="3"><i><label for="RewTypeID3">加息券</label></i></label>
+                    </li>
+                </ul>
+
+                <!-- 切换区域一 -->
+
+                <div class="z_tab01" id="z_div01" style="display:block;margin:0 30px;width:auto;">
+                    <div class="z_t_01">
+                        <h2>投资金额要求：</h2>
+                        <ul class="zTab_ul2" id='tj_11' style="padding-bottom:11px">
+                            <li style="margin-bottom: 11px;">
+                                <em>
+                                    <label>
+                                        <input type="radio" checked="checked" name="require" id="require" value="1" onclick="clickradio(1)">按百分比赠送：
+                                    </label>
+                                </em>
+
+                                <span>投资金额<input type="text" name="startAmt" id="startAmt"><i>-</i><input type="text" name="endAmt" id="endAmt">元</span>
+                                <span class="z_span">赠送现金百分比<input type="text" name="percent" id="percent">%</span>
+                                <span class="z_span">
+                                    项目借款期限：
+                                    <select style="width:60px;height: 18px;" name="LifeLoan" id="LifeLoan"><option value="0" selected="selected">不限</option><option value="1">1个月</option><option value="3">3个月</option><option value="6">6个月</option></select>
+                                </span>
+                                <a style="margin-left: 19px;" href="javascript:void(0)" id="z_ap11"><img src="/Areas/admin/img/icon_03.png"></a>
+                            </li>
+                            <li id="tj_12" class="zTab_li2 wTab_li2">
+                                <em>
+                                    <label>
+                                        <input type="radio" name="require" id="require" value="2" onclick="clickradio(2)">按投资赠送：
+                                    </label>
+                                </em>
+
+                                <span>投资金额<input type="text" name="startAmt1" id="startAmt1" datatype="float" nullmsg="金额不能为空" errormsg="金额格式不对! 如100.00"><i>-</i><input type="text" name="endAmt1" id="endAmt1" datatype="float" nullmsg="金额不能为空" errormsg="金额格式不对! 如100.00">元</span><span class="z_span">赠送现金<input class="z_num" type="text" name="percent1" id="percent1" datatype="float" nullmsg="赠送现金不能为空" errormsg="赠送现金格式不对! 如100.00">元</span>
+                                <span class="z_span" style="overflow:hidden;">
+                                    项目借款期限：
+                                    <select style="width:60px;height: 18px;" name="LifeLoan1" id="LifeLoan1"><option value="0" selected="selected">不限</option><option value="1">1个月</option><option value="3">3个月</option><option value="6">6个月</option></select>
+                                </span>
+                                <a style="margin-left: 19px;" href="javascript:void(0)" id="z_ap18"><img src="/Areas/admin/img/icon_03.png"></a>
+                            </li>
+                        </ul>
+                        <h2>封顶金额：<input type="text" style="width:60px;height: 18px;" name="TopAmt" id="TopAmt" /><span style="font-weight: 100;">&nbsp;元</span></h2>
+                        <h2>封顶人数：<input type="text" style="width:60px;height: 18px;" name="TopNum" id="TopNum" /><span style="font-weight: 100;">&nbsp;人</span></h2>
+
+                    </div>
+                </div>
+
+
+
+                <!-- 切换区域一 -->
+
+                <div class="z_tab01" id="z_div02" style="display:none;margin:0 30px;width:auto;">
+                    <div class="z_t_01">
+
+                        <h2>赠送规则：</h2>
+                        <ul class="zTab_ul2" id='tj_01'>
+                            <li style="margin-bottom: 11px;">
+                                <em>
+                                    <label>
+                                        <input type="radio" checked name="rule" id="rule" value="1">统一赠送：
+                                    </label>
+                                </em>
+                                <span>抵扣券<input type="text" name="cash1" id="cash1">元</span>
+                            </li>
+                            <li class="zTab_li2">
+                                <em>
+                                    <label>
+                                        <input type="radio" name="rule" id="rule" value="2">按投资赠送：
+                                    </label>
+                                </em>
+
+                                <span>投资金额<input type="text" name="startAmt2_0" id="startAmt2_0"><i>-</i><input type="text" name="endAmt2_0" id="endAmt2_0">元</span><span class="z_span">赠送抵扣券<input class="z_num" type="text" name="percent2_0" id="percent2_0">元</span><a href="javascript:void(0)" id="z_ap01"><img src="/Areas/admin/img/icon_03.png"></a>
+                            </li>
+                            <li class="z_sj" id="tj_02">
+                                <em><label><input type="radio" name="rule" id="rule" value="3">随机赠送：</label></em>
+                                <ul id="z_ad_ul01">
+                                    <li style="margin-bottom:11px;"><span>投资金额<input type="text" name="startAmt3_0" id="startAmt3_0"><i>-</i><input type="text" name="endAmt3_0" id="endAmt3_0">元</span><span class="z_span">赠送抵扣券<input type="text" name="num3_0" id="num3_0">张，分别为<input type="text" class="z_41" name="Amtstr3_01" id="Amtstr3_01">元、<input type="text" class="z_41" name="Amtstr3_02" id="Amtstr3_02">元</span><a href="javascript:void(0)" id="z_ap03"><img src="/Areas/admin/img/icon_03.png"></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="z_t_02" style="padding-bottom:10px;">
+                        <h3>是否拆分：</h3>
+                        <ul class="zTab_ul3" id="z_ad_ul02">
+                            <li class="zTab_li3">
+                                <label><input type="radio" name="ISsplit" id="ISsplit" value="1">是：</label>
+                                <span><input type="text" name="cashAmtsplit1" id="cashAmtsplit1">元抵扣券，投资金额<input type="text" name="startAmtsplit1" id="startAmtsplit1"><i>-</i><input type="text" name="endAmtsplit1" id="endAmtsplit1">元可用，过期时间<input type="text" class="z_time jcDate" name="endTimesplit1" id="endTimesplit1"></span>
+                                <span class="z_span">
+                                    项目期限：
+                                    <input name="startLife" style="width:1em;" /> - <input name="endLife" style="width:1em;" />个月
+                                </span>
+                                <a href="javascript:void(0)" id="z_ap05"><img src="/Areas/admin/img/icon_03.png"></a>
+                            </li>
+                            <li id="z_ad_li02">
+                                <label><input type="radio" name="ISsplit" checked="checked" id="ISsplit" value="2">否：</label>
+                                <span><input type="text" name="cashAmtsplit2" id="cashAmtsplit2">元抵扣券，投资金额<input type="text" name="startAmtsplit2" id="startAmtsplit2"><i>-</i><input type="text" name="endAmtsplit2" id="endAmtsplit2">元可用，过期时间<input type="text" class="z_time jcDate" name="endTimesplit2" id="endTimesplit2"></span>
+                                <span class="z_span">
+                                    项目期限：
+                                    <input name="startLife1" style="width:1em;" /> - <input name="endLife1" style="width:1em;" />个月
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                    <div class="z_t_03">
+                        <h3>使用数量要求</h3>
+                        <ul>
+                            <li><em><input type="radio" checked name="Uses" id="Uses" value="1"></em><span>此券仅单独使用</span></li>
+                            <li><em><input type="radio" name="Uses" id="Uses" value="2"></em><span>只要满足投资金额条件，可与其他奖励叠加使用。</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--   切换区域二  -->
+
+                <div class="z_tab01" id="z_div03" style="margin:0 30px;width:auto;">
+                    <div class="z_t_01">
+                        <h2>赠送规则：</h2>
+                        <ul class="zTab_ul2" id="z_aPul">
+                            <li style="margin-bottom: 11px;">
+                                <em><label><input type="radio" checked name="jiaxirule" id="jiaxirule" value="1">统一赠送：</label></em>
+                                <span>加息券<input type="text" name="cash2" id="cash2">%</span>
+                            </li>
+                            <li class="zTab_li2">
+                                <em>
+                                    <label>
+                                        <input type="radio" name="jiaxirule" id="jiaxirule" value="2">
+                                        按投资赠送：
+                                    </label>
+                                </em>
+
+                                <span>投资金额<input type="text" name="startAmt4_0" id="startAmt4_0"><i>-</i><input type="text" name="endAmt4_0" id="endAmt4_0">元</span><span class="z_span">赠送加息券百分比<input class="z_num" type="text" name="percent4" id="percent4">%</span><a href="javascript:void(0)" id="z_ap_01"><img src="/Areas/admin/img/icon_03.png"></a>
+                            </li>
+                            <li id="z_aPLi" class="z_sj">
+                                <em>
+                                    <label>
+                                        <input type="radio" name="jiaxirule" id="jiaxirule" value="3">
+                                        随机赠送：
+                                    </label>
+                                </em>
+                                <ul id="z_aPul2" style="width:auto;">
+                                    <li style="margin-bottom:14px;">
+
+                                        <span>投资金额<input type="text" name="startAmt5_0" id="startAmt5_0"><i>-</i><input type="text" name="endAmt5_0" id="endAmt5_0">元</span><span class="z_span">赠送加息券<input type="text" name="num5_0" id="num5_0">张，分别为<input type="text" name="Amtstr5_01" id="Amtstr5_01">%、<input type="text" name="Amtstr5_02" id="Amtstr5_02">%、<input type="text" name="Amtstr5_03" id="Amtstr5_03">%不等<a href="javascript:void(0)" id="z_ad_03"><img src="/Areas/admin/img/icon_03.png"></a></span>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="z_t_02 z_sy">
+                        <h3>使用条件</h3>
+                        <ul class="zTab_ul3" id="z_aPul3" style="width:auto;">
+                            <li>
+                                <span>
+
+                                    <input type="text" name="cashAmtsplit3" id="cashAmtsplit3">%加息券，投资金额
+
+                                    <input type="text" name="startAmtsplit3" id="startAmtsplit3" value="0"><i>-</i>
+                                    <input type="text" name="endAmtsplit3" id="endAmtsplit3" value="100">元可用，过期时间
+                                    <input type="text" class="z_time jcDate" name="endTimesplit3" id="endTimesplit3">
+                                </span>
+                                <span class="z_span">
+                                    项目期限：
+                                    <input name="startLife2" style="width:1em;" /> - <input name="endLife2" style="width:1em;" />个月
+                                </span><a href="javascript:void(0)" id="z_ad_05"><img src="/Areas/admin/img/icon_03.png"></a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="z_t_03" style="height:102px;">
+                        <h3>使用数量要求</h3>
+                        <ul>
+                            <li><em><input type="radio" name="Uses2" checked="checked" id="Uses2" value="1"></em><span>此券仅单独使用</span></li>
+                            <li><em><input type="radio" name="Uses2" id="Uses2" value="2"></em><span>只要满足投资金额条件，可与其他奖励叠加使用。</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--短信提醒区域-->
+                @*
+                    <div class="z_Message">
+                        <span class="z_m_h2">短信提醒：</span>
+                        <ul>
+                            <li>
+                                <p class="z_pText"><span>奖励及时到账：</span><a href="javascript:void(0)" class="z_aShow">保存编辑<i>-</i></a></p>
+                                <textarea class="z_M_text on">随着创利投平台自身的逐渐强大，对外影响力和公信力日渐扩大，大量新用户涌入我们平台，为答谢广大投资用户对创利投的信任和支持，创利投特推出“新手专享标”产品。</textarea>
+                                <p class="z_pText1"></p>
+                            </li>
+                            <li class="z_text">
+                                <p class="z_pText"><span>奖励到账3天（监测未使用奖励用户，并群发短信）：</span><a href="javascript:void(0)" class="z_aShow">编辑内容<i>+</i></a></p>
+                                <textarea class="z_M_text"></textarea>
+                                <p class="z_pText1"></p>
+                            </li>
+                            <li class="z_text">
+                                <p class="z_pText"><span>奖励到账7天（监测未使用奖励用户，并群发短信）：</span><a href="javascript:void(0)" class="z_aShow">编辑内容<i>+</i></a></p>
+                                <textarea class="z_M_text"></textarea>
+                                <p class="z_pText1"></p>
+                            </li>
+                            <li class="z_text">
+                                <p class="z_pText"><span>奖励到账15天（监测未使用奖励用户，并群发短信）：</span><a href="javascript:void(0)" class="z_aShow">编辑内容<i>+</i></a></p>
+                                <textarea class="z_M_text"></textarea>
+                                <p class="z_pText1"></p>
+                            </li>
+                            <li>奖励到账16天：客服沟通未使用奖励用户</li>
+                        </ul>
+                    </div>
+
+                *@
+                <div style="display:block;margin:0 30px;width:auto;">
+                    <div class="z_t_01">
+                        <input type="checkbox" id="checkAll" checked="checked" /><label for="checkAll">全选/反选</label>
+                        <input type="checkbox" id="checkWeb" checked="checked" actionData="web" /><label for="checkWeb">Web</label>
+                        <input type="checkbox" id="checkWap" checked="checked" actionData="wap" /><label for="checkWap">Wap</label>
+                        <input type="checkbox" id="checkAndroid" checked="checked" actionData="android" /><label for="checkAndroid">Android</label>
+                        <input type="checkbox" id="checkIOS" checked="checked" actionData="ios" /><label for="checkIOS">IOS</label>
+                    </div>
+                    <input type="hidden" id="hidTargetPlatform" value="1111" name="hidTargetPlatform" />
+                </div>
+
+                <div class="z_btn">
+                    <input type="submit" class="z_btn_01" value="保存" onclick="return checkForm();">
+                    <input type="reset" class="z_btn_02" value="取消">
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        //$(".registerform").Validform();  //就这一行代码！;
+
+        $.Tipmsg.r = null;
+
+        var showmsg = function (msg) {//假定你的信息提示方法为showmsg， 在方法里可以接收参数msg，当然也可以接收到o及cssctl;
+            alert(msg);
+        }
+        $(".registerform").Validform({
+            tiptype: function (msg) {
+                showmsg(msg);
+            },
+            tipSweep: true,
+            ajaxPost: false
+        });
+
+
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})|(\d{4})\-(\d{1})\-(\d{1})|(\d{4})\-(\d{1})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/
+
+        });
+
+    })
+
+
+    function clickradio(radiostr) {
+        if (radiostr == 1) {
+
+            /*
+            $("#startAmt1").attr("datatype", null);
+            $("#endAmt1").attr("datatype", null);
+            $("#percent1").attr("datatype", null);
+
+
+            $("#startAmt").attr("datatype", "float");
+            $("#startAmt").attr("nullmsg", "金额不能为空");
+            $("#startAmt").attr("errormsg", "金额格式不对! 如100.00");
+
+            $("#endAmt").attr("datatype", "float");
+            $("#endAmt").attr("nullmsg", "金额不能为空");
+            $("#endAmt").attr("errormsg", "金额格式不对! 如100.00");
+            $("#percent").attr("datatype", "float");
+            $("#percent").attr("nullmsg", "赠送现金百分比不能为空");
+            $("#percent").attr("errormsg", "赠送现金百分比格式不对! 如5% 请输入0.50");
+            */
+
+        } else {
+            /*
+            $("#startAmt1").attr("datatype", "float");
+            $("#startAmt1").attr("nullmsg", "金额不能为空");
+            $("#startAmt1").attr("errormsg", "金额格式不对! 如100.00");
+
+            $("#endAmt1").attr("datatype", "float");
+            $("#endAmt1").attr("nullmsg", "金额不能为空");
+            $("#endAmt1").attr("errormsg", "金额格式不对! 如100.00");
+
+            $("#percent1").attr("datatype", "float");
+            $("#percent1").attr("nullmsg", "赠送现金百分比不能为空");
+            $("#percent1").attr("errormsg", "赠送现金百分比格式不对! 如5% 请输入0.50");
+            */
+
+            var dd = $("input[type=text][name=startAmt]");
+            dd.each(function (index) {
+                $(this).attr("datatype", "float");
+                $(this).attr("nullmsg", "金额不能为空");
+                $(this).attr("errormsg", "金额格式不对! 如100.00");
+            });
+
+            /*
+            $("#startAmt").attr("datatype", null);
+            $("#endAmt").attr("datatype", null);
+            $("#percent").attr("datatype", null);*/
+        }
+
+    }
+</script>

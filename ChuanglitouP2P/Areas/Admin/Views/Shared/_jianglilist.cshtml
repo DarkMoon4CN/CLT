@@ -1,0 +1,85 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using ChuangLitouP2P.Models;
+@using ChuanglitouP2P.Common;
+@model PagedList<hx_UserAct>
+
+<table class="hy_cash_tab" cellpadding="0" cellspacing="0">
+    <tr class="hy_cash_tab_tr tz_tr">
+        <td width="230">来源  </td>
+        <td width="210">奖励金额</td>
+
+        @if (ViewBag.acttype == "1")
+        {
+        <td width="300">领取时间</td>
+        }
+        else
+        {
+        <td width="300">有效期</td>
+        }
+
+
+
+
+        <td class="hy_cash_tab_td" width="195">
+            状态
+
+        </td>
+    </tr>
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.hx_ActivityTable.ActName</td>
+                <td>
+                    @if (item.RewTypeID == 1 || item.RewTypeID == 2)
+                    {
+                        @item.Amt @: 元
+                    }
+                    else
+                    {
+                        @item.Amt @: %
+                    }
+
+
+                </td>
+                @if (item.RewTypeID == 1)
+                {
+                    <td>@DateTime.Parse(item.Createtime.ToString()).ToString("yyyy.MM-dd") </td>
+                }
+                else
+                {
+
+                    <td>@DateTime.Parse(item.Createtime.ToString()).ToString("yyyy.MM-dd") 至 @DateTime.Parse(item.AmtEndtime.ToString()).ToString("yyyy.MM-dd")</td>
+
+                }
+                <td>
+
+                    @Utils.GetRewardState(item.UseState.ToString())
+
+
+                </td>
+            </tr>
+
+        }
+    }
+
+
+</table>
+
+
+<div class="page_box" style="padding-bottom:70px;">
+    <div class="page_left">
+        @Ajax.Pager(Model, new PagerOptions { FirstPageText = "<<", LastPageText = ">>", NextPageText = ">", PrevPageText = "<", ContainerTagName = "ul", PageIndexParameterName = "Cashpageindex", NumericPagerItemCount = 5, CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBoxjiang", GoToButtonId = "goToBtnjiang" }, new MvcAjaxOptions
+   { UpdateTargetId = "jiangli", HttpMethod = "Post", DataFormId = "searchFormjiang", OnBegin = "AjaxStart()", OnComplete = "AjaxStop()" }).Options(o => o.AddRouteValue("target", "jiangli")).AjaxOptions(a => a.SetUpdateTargetId("jiangli"))
+    </div>
+    <div class="page_right">
+        <div class="input-group" style="margin:20px 0">
+            <span class="input-group-addon">转到第</span>
+            <input type="text" id="pageIndexBoxjiang" class="form-control input-sm" />
+            <span class="input-group-addon">页</span>
+            <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtnjiang">跳转</button></span>
+        </div>
+    </div>
+</div>

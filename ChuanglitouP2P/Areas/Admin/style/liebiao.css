@@ -1,0 +1,42 @@
+﻿  
+.listtitle{
+        height: 25px;
+    padding-top: 15px;
+    margin-left: 10px;
+    background: url(../img/items.jpg) no-repeat 0 15px;
+    padding-left: 23px;
+    font-weight: 100;
+}
+.listtable{
+    border: 1px solid #CBCBCB; width:100%;
+    border-right: 0;
+}
+.listtable tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.listtable tbody tr td{
+    height: 46px;
+    text-align: center;
+    border-right: 1px solid #CBCBCB;
+}
+.tz_tr{
+    width:100%;
+    background: rgb(230, 230, 230) none repeat scroll 0% 0%; 
+    height:30px;
+}
+
+.add_btn{ float:right; margin:-8px 40px 0 0;
+	height: 25px; line-height:25px; text-align:center; display:inline-block; padding:0 15px;
+	border-radius: 3px;
+	background: #388EF1;
+	color:#fff;
+}
+
+.submin_box {
+     margin:20px 0 0 220px; 
+}
+
+.submin_box .z_btn_01 { border:none; cursor:pointer; height:30px; line-height:30px; display:inline-block; width:80px; text-align:center;
+}

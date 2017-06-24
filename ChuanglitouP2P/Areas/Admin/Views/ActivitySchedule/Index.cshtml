@@ -1,0 +1,128 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc;
+@using ChuangLitouP2P.Models;
+@using PagedList
+@model PagedList.IPagedList<hx_Activity_schedule>
+@{
+    ViewBag.Title = "活动计划奖励表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<style type="text/css">
+    tfoot tr {
+        height: 35px;
+        line-height: 35px;
+        left: 30px;
+    }
+</style>
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script src="~/Areas/Admin/js/DateJs,js.js"></script>
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">活动计划管理</a></h2>
+<div class="z_body">
+    
+        <p class="tP3">
+            <a href="/Admin/ActivitySchedule/Add" class="add_btn">新增</a>
+            快速搜索
+        </p>
+       
+        @using (Html.BeginForm("Index", "ActivitySchedule", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <p class="tP4 tx_tp4" style="height:40px; ">
+                <label class="first txt-green">计划名称：</label>
+
+                <input name="activity_schedule_name" type="text" id="activity_schedule_name" class="input-small" style="height:16px;" value="@(ViewBag.activity_schedule_name)" />
+                <label class="first txt-green">奖励方式：</label>
+                <select name="reward" id="reward">
+                    @if (ViewBag.reward == 0)
+                    {
+                        <option value="-1">请选择单位  </option>
+                                <option selected="selected" value="0">常规(只奖励单方) </option>
+                                <option value="1">奖励双方 </option>
+                    }
+                    else if (ViewBag.reward == 1)
+                    {
+                        <option value="-1">请选择单位  </option>
+                                <option value="0">常规(只奖励单方) </option>
+                                <option selected="selected" value="1">奖励双方 </option>
+                    }
+                    else
+                    {
+                        <option selected="selected" value="-1">请选择单位  </option>
+                                <option value="0">常规(只奖励单方) </option>
+                                <option value="1">奖励双方 </option>
+                    }
+
+
+                </select>
+                <label><input type="submit" class="btn2" value="查&nbsp;&nbsp;&nbsp;询" /></label>
+                   
+
+</p>
+        }
+        <span class="icon-sprite icon-list"></span>
+      
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    <th scope="col">编号 </th>
+                    <th scope="col">活动计划名称</th>
+                    <th scope="col">奖励金额</th>
+                    <th scope="col">使用下限</th>
+                    <th scope="col">奖励方式</th>
+                    <th scope="col">有效开始日期</th>
+                    <th scope="col">结束日期</th>
+                    <th scope="col">操作</th>
+                     
+                </tr>
+                @if (Model != null)
+                {
+                    foreach (hx_Activity_schedule item in Model)
+                    {
+
+                        <tr>
+                            <td>@(item.activity_schedule_id)</td>
+                            <td>@(item.activity_schedule_name)</td>
+                            <td>@string.Format("{0:C}", item.amount_of_reward)</td>
+                            <td>@string.Format("{0:C}", item.use_lower_limit)</td>
+
+                            
+                            @if (item.reward == 1)
+                            {
+                            <td>奖励双方</td>
+                            }
+                            else
+                            {
+                                <td>常规(只奖励单方)</td>
+                            }
+                            
+                            <td>@(((DateTime)item.start_date).ToString("yyyy-MM-dd"))</td>
+                            <td>@(((DateTime)item.end_date).ToString("yyyy-MM-dd"))</td>
+                           
+                            <td>
+                                <a class="opt" title="编辑" href="/admin/ActivitySchedule/Edit?id=@item.activity_schedule_id&page=@ViewBag.page&activity_schedule_name=@ViewBag.activity_schedule_name&reward=@ViewBag.reward">编辑</a> &nbsp;
+                                <a class="opt" title="删除" href="/admin/ActivitySchedule/DelById?id=@item.activity_schedule_id&page=@ViewBag.page&activity_schedule_name=@ViewBag.activity_schedule_name&reward=@ViewBag.reward" onclick="return confirm('确定将此记录删除?删除将不能恢复!')">  删除</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="pagination ue-clear">
+            <div class="pagination-container">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, activity_schedule_name = @ViewBag.activity_schedule_name, reward = ViewBag.reward }))
+            </div>
+        </div>
+</div>
+
+

@@ -1,0 +1,209 @@
+﻿@using ChuanglitouP2P.Common;
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<ChuangLitouP2P.Models.V_LL_Cash_User>
+@{
+    ViewBag.Title = "连连提现列表";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="~/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">资金管理</a>><a href="javascript:void(0)"> 连连提现列表</a></h2>
+<div class="z_body">
+    @*<div class="tz_box cz_box">*@
+        <p class="tP3">
+            快速搜索
+        </p>
+        @using (Html.BeginForm("Index", "LLManage", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "form1", @id= "form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <p class="tP4 tx_tp4" style="height:50px; ">
+                <label for="username">姓名：</label><input type="text" class="txt1" id="username" name="username" value="@(ViewBag.username)" style="width:150px;" />
+               
+                    @ZiJinControl.HX_dropdownlistByCapital((int)ViewBag.ddlType,(int)ViewBag.OrdIdState)
+                <input type="hidden" id="hid_type" value="@(ViewBag.OrdIdState)" />
+
+                <input type="hidden" id="ddlType" name="ddlType" value="@(ViewBag.ddlType)" />
+
+                <input type="submit" class="btn2" value="查&nbsp;询" />
+                @if ((int)ViewBag.OrdIdState == 3)
+                {
+                    <input type="button" class="btn2" value="批量复核" id="btnpiliang" />
+                }
+            </p>
+        }
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            提现列表
+        </h3>
+
+        <table cellspacing="0" cellpadding="0" class="listtable">
+            <tbody>
+                <tr class="tz_tr">
+                    @if ((int)ViewBag.OrdIdState == 3)
+                    {
+                        <th scope="col"> <input name="checkall" id="checkallc" type="checkbox" value="0" /> </th>
+                    }
+                    <th scope="col">编号</th>
+                    <th scope="col">连连订单号</th>
+                    <th scope="col">取现金额</th>
+                    <th scope="col">姓名</th>
+                    <th scope="col">提现银行</th>
+                    <th scope="col">申请时间</th>
+                    <th scope="col">汇付转账</th>
+                    <th scope="col">提现状态</th>
+                    <th scope="col">处理时间</th>
+                    <th scope="col">操作</th>            
+                </tr>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        int paystate = (int)item.paystate;
+                        int h_state = (int)item.h_state;
+                        <tr>
+                            @if ((int)ViewBag.OrdIdState ==3)
+                            {
+                                <td><input name="checkallb" id="checkall" type="checkbox" value="@(item.LLcashid)" /></td>
+                            }
+                            <td>@(item.LLcashid)</td>
+                            <td>@(item.no_order)</td>
+                            <td>@(item.money_order)</td>
+                            @if (!ConfigHelper.GetConfigString("SupAuthorityUsers").ToString().Contains(Session["username"].ToString()))
+                            {
+
+                                if (item.acct_name != null && item.acct_name.Length > 1)
+                                {
+                                    item.acct_name = item.acct_name.Substring(0, 1) + "**";
+                                }
+
+                            }
+                            <td>@(item.acct_name)</td>
+                            <td>@(item.BankName)</td>
+                            <td>@(((DateTime)item.ordertime).ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                            <td>@(Utils.Huizhuanzhong((int)item.h_state))</td>
+                            <td>@(Utils.GetEnumLLPayState((int)item.paystate))</td>
+                            <td>@(item.OperTime== null?"":((DateTime)item.OperTime).ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                            @if (paystate == 3 && h_state == 1)
+                            {
+                                <td ><a class="opt" title="查看/处理" href="javascript:void(0)" onclick=" return GetCashProcessing(@(item.LLcashid));">查看/处理</a></td>
+                            }
+                            else if (paystate == 2 && h_state == 1)
+                            {
+                                <td><a class="opt" title="重新支付" href="javascript:void(0)" onclick=" return GetReLLCash(@(item.no_order));">重新支付</a></td>
+                            }
+                            else if (paystate == 0 && h_state == 1)
+                            {
+                               <td ><a class="opt" title="支付" href="/admin/LLManage/PayMoney?norid=@(item.no_order)&username=@(ViewBag.username)&OrdIdState=@(ViewBag.OrdIdState)&ddlType=@(ViewBag.ddlType)">支付</a></td>
+                            }
+                            else if (paystate == 1 && h_state == 1)
+                            {
+                                <td > 提现支付成功</td>
+                            }
+                            else
+                            {
+                                <td ><a class="opt" title="未支付" href="javascript:void(0)">  </a></td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="pagination ue-clear">
+            <div class="pagination-container">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, username = @ViewBag.username, OrdIdState = @ViewBag.OrdIdState, ddlType = @ViewBag.ddlType, OrdIdState1 = ViewBag.OrdIdState1 }))
+            </div>
+        </div>
+    @*</div>*@
+</div>
+<script type="text/javascript">
+    $(function () {
+        setDefaultddlType();
+        $("#btnpiliang").bind("click", function () {
+            CashProcessingmore();
+        });
+        $("#checkallc").bind("click", function () {
+            //var check = $(this).attr("checked");
+            //$('input[type="checkbox"][name="checkallb"]').attr("checked",check);
+
+            if ($("#checkallc").attr("checked")) {  
+                $(":checkbox").attr("checked", true);  
+            } else {  
+                $(":checkbox").attr("checked", false);  
+            }  
+
+        });
+    });
+
+    //批量审核
+    function CashProcessingmore() {
+        var string = "";
+        $('input[type="checkbox"][name="checkallb"]:checked').each(function (index, el) {
+            if (string == "") {
+                string = $(el).val();
+            } else {
+                string += ","+$(el).val() ;
+            }
+        });
+
+        if (string.length > 1) {
+            $.post("/admin/LLManage/LLCashProcessingmore", { str2: string }, function (data) {
+                if (data.ret == 1) {
+                  
+                    alert(data.msg);
+                } else {
+                    alert(data.msg);
+                }
+            });
+        }
+        else {
+            alert('请选择要复核的记录');
+        }
+    }
+    //设置下拉框默认
+    function setDefaultddlType() {
+        var _type = $("#hid_type").val();
+        $("#OrdIdState").val(_type);
+    }
+
+    //重新支付
+    function GetReLLCash(no_order) {
+        $.post("/admin/LLManage/ReLLCash", { no_order: no_order,bu:1 }, function (data) {
+            if (data.ret == 1) {
+                alert("操作成功");
+            } else {
+                alert(data.msg);
+            }
+        });
+    }
+
+    ///查看/处理
+    function GetCashProcessing(LLcashid) {
+        ///TODO
+      //  alert("待完善,在原系统中没有找到页面");
+        var url = "/admin/LLManage/LLCashProcessing?LLcashid=" + LLcashid;
+        editwindow = $.layer({
+            type: 2,
+            shadeClose: false,
+            title: '取现审核处理',
+            shade: [0.7, '#999'],
+            offset: ['', ''],
+            area: ['989px', "500px"],
+            iframe: { src: url, scrolling: false }
+        });
+    }
+    function closewindows() {
+        layer.close(editwindow);
+    }
+</script>
+

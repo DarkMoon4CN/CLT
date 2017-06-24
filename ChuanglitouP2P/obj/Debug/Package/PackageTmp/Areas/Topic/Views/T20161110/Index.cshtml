@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "全民友福同享";
+    Layout = "~/Views/Shared/Index_LayoutStatic.cshtml";
+}
+<link href="~/Areas/Topic/Sources/20161110/css/css.css" rel="stylesheet" />
+<script src="~/Areas/Topic/Sources/20161110/Scripts/jquery.flexslider.js"></script>
+<script src="~/Areas/Topic/Sources/20161110/Scripts/index.js"></script>
+<script src="~/Areas/Topic/Sources/20161110/Scripts/clock_time.js"></script>
+<script src="~/Scripts/qrcode/jquery.qrcode.min.js"></script>
+<script>
+    $(function () {
+        $("#weixin").on("click", function () {
+            if ($(this).attr("tag").indexOf("login") != -1) {
+                window.location.href = $(this).attr("tag");
+            }
+            else
+            {
+                $("#weixin_layer").fadeIn(200);
+                $('#weixin_pop').fadeIn(200);
+                $('#qrcode').qrcode({ width: 200, height: 200, text: $("#hidQrCode").val() });
+            }
+        });
+      
+        $('.weixin_layer').click(function () {
+            $("#weixin_layer").hide();
+            $('#weixin_pop').hide();
+        });
+    });
+ </script>
+@{string yqUrl = ViewBag.UserUrl ==string.Empty ? "/usercenter/yaoqing" : ViewBag.USerUrl; }
+<div class="quanmin">
+    <div class="quanmin1">
+        <img src="~/Areas/Topic/Sources/20161110/images/quanmin_main1bg.png" class="quanminbg" />
+        <div class="quanmin1_main">
+            <img src="~/Areas/Topic/Sources/20161110/images/quanmin_main1_left.png">
+            <img src="~/Areas/Topic/Sources/20161110/images/quanmin_main1_right.png">
+            <a href="@yqUrl"></a>
+        </div>
+    </div>
+    <div class="quanmin2">
+        <img src="~/Areas/Topic/Sources/20161110/images/quanmin_main2bg.png" class="quanminbg" />
+        <div class="quanmin2_main">
+            <img src="~/Areas/Topic/Sources/20161110/images/quanmin_main2.png">
+            <a href="/Investlist.html"></a>
+        </div>
+    </div>
+    <div class="quanmin3">
+        <img src="~/Areas/Topic/Sources/20161110/images/quanmin_main3bg.png" class="quanminbg" />
+        <div class="quanmin3_main">
+            <img src="~/Areas/Topic/Sources/20161110/images/quanmin_main3_left.png">
+            <img src="~/Areas/Topic/Sources/20161110/images/quanmin_main3_right.png">
+            <a href="/Investlist.html"></a>
+        </div>
+    </div>
+    <div class="quanmin4">
+        <div class="quanmin4_main_dl">
+            <dl>
+                <dt>活动规则</dt>
+                <dd>1、活动时间：2016年11月23日——2016年12月15日；</dd>
+                <dd>2、活动期间每投资一笔（不分首投复投），当即进行返现，具体奖励细节请参见下表；</dd>
+                <dd><img src="~/Areas/Topic/Sources/20161110/images/quanmin_guize.png"></dd>
+                <dd>3、活动实物奖励将在活动结束后的10个工作日进行信息核对及奖品发放；</dd>
+                <dd style="text-align:right;margin-top:20px;">活动最终解释权在法律范围内归北京创利投网络科技有限公司所有</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="quanmin_fixed">
+            <ul>
+                <li>分享好友：</li>
+                <li><a href="@ViewBag.doubai"><img src="~/Areas/Topic/Sources/20161110/images/dib1.png"></a></li>
+                <li><a href="@ViewBag.qzone"><img src="~/Areas/Topic/Sources/20161110/images/dib2.png"></a></li>
+                <li><a href="@ViewBag.QQ"><img src="~/Areas/Topic/Sources/20161110/images/dib3.png"></a></li>
+                <li><a href="@ViewBag.QQweibo"><img src="~/Areas/Topic/Sources/20161110/images/dib4.png"></a></li>
+                <li><a href="@ViewBag.weibo"><img src="~/Areas/Topic/Sources/20161110/images/dib5.png"></a></li>
+                <li id="weixin" tag="@ViewBag.NewWxUrl"><img src="~/Areas/Topic/Sources/20161110/images/dib6.png"></li>
+            </ul>
+    </div>
+</div>
+
+<div class="weixin_layer" id="weixin_layer" style="display: none;"></div>
+<div class="weixin_pop" id="weixin_pop" style="display: none;">
+    <div class="weixin_panel">
+        <p>
+            @*<img src="/images/share-weixin-ewm.jpg" />*@
+            <input type="hidden" id="hidQrCode" value="@ViewBag.NewWxUrl">
+            <div id="qrcode" class="wx_qrcode"></div>
+
+        </p>
+    </div>
+</div>
+
+<style>
+    body {
+        min-width:1200px;
+         position: inherit;
+    }
+    .weixin_layer {
+        z-index: 10002;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #ccc;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.5;
+        top: 0px;
+        left: 0px;
+        z-index: 98;
+    }
+
+    .weixin_pop {
+        width: 780px;
+        height: 540px;
+        background: #fff;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        z-index: 99;
+        margin: -240px 0 0 -310px;
+        border-radius: 5px;
+        background-image: url('/Images/qr.jpg');
+    }
+
+    .weixin_panel {
+       
+        text-align: center;
+        color: #666;
+        margin: 50px auto 0 auto;
+    }
+
+        .weixin_panel p {
+            margin: 50px 0 0 0;
+        }
+
+    .wx_qrcode {
+        width: 162px;
+        height: 162px;
+        margin: 22% 0px 0% 8%;
+    }
+</style>

@@ -1,0 +1,89 @@
+﻿@using ChuanglitouP2P.Common
+    @{
+        Layout = null;
+    }
+
+    <!doctype html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>认证安全</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        @Url.ApiFile("about.css").ToHtml()
+        @Url.ApiFile("jquery-1.11.1.min.js").ToHtml()
+        <script>
+            (function (doc, win) { var docEl = doc.documentElement, resizeEvt = "orientationchange" in window ? "orientationchange" : "resize", recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; docEl.style.fontSize = 20 * (clientWidth / 320) + "px" }; if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); doc.addEventListener("DOMContentLoaded", recalc, false) })(document, window)
+        </script>
+    </head>
+
+    <body>
+        <article>
+            <ul class="helpList">
+                <li>
+                    <a href="javascript:;">如果创利投不存在了，投资人的收益如何保障？ <span class="icon-up"></span></a>
+                    <p class="txtBox" style="display:block">
+                        创利投作为信息中介平台，提供的是居间服务。即使平台不存在，投资人与借款人的债权债务关系依然有效，且担保公司会负责投资人的全额本息担保，而第三方支付平台依然保证还本付息的资金会在项目到期日自动划转到投资人在创利投绑定的银行账户中。<br>
+
+                    </p>
+                </li>
+                <li>
+                    <a href="javascript:;">创利投一旦受到黑客攻击系统瘫痪怎么办？ <span class="icon-down"></span></a>
+                    <p class="txtBox" style="display:none">
+                        1.创利投为确保投资的安全性，采用了超文本传输技术（https），对数据传输进行了加密处理。即使黑客截取了用户的数据包，也无法读取数据内容。<br>
+                        2.创利投采用了秒级同步备份，完善了灾备系统。即便遭受攻击，系统也可以恢复至 受攻击前的状态，投资人的任何信息都不会丢失。<br>
+                        3.创利投数据与第三方支付数据实时复核，多地存储，资金数据和安全性获得多重保障。<br>
+
+                    </p>
+                </li>
+                <li>
+                    <a href="javascript:;">创利投如何保障投资人本金和收益安全？ <span class="icon-down"></span></a>
+                    <p class="txtBox" style="display:none">
+                        创利投通过担保公司本息担保、风险金优先偿付、第三方资金托管，层层独立保护投资人的利益。<br>
+
+                    </p>
+                </li>
+                <li>
+                    <a href="javascript:;">为什么收不到邮箱认证邮件？ <span class="icon-down"></span></a>
+                    <p class="txtBox" style="display:none">
+                        部分电子邮件系统可能误判，将认证邮件分类到电子邮箱的垃圾箱中。请查找后点击确认链接，同时将该邮件标注为“不是垃圾邮件”。<br>
+
+                    </p>
+                </li>
+                <li>
+                    <a href="javascript:;">为什么要验证邮箱？ <span class="icon-down"></span></a>
+                    <p class="txtBox" style="display:none">
+                        验证邮箱后，投资人可以及时收到投资项目的还款信息、新项目的投资时间及获奖信息。可以通过邮箱找回密码<br>
+
+                    </p>
+                </li>
+                <li>
+                    <a href="javascript:;">为什么要绑定手机？<span class="icon-down"></span></a>
+                    <p class="txtBox" style="display:none">
+                        1.通过绑定手机，可以提高账户的安全级别，并及时得到在创利投的操作信息，随时掌控账户动态。可以使用手机找回密码。<br>
+                        2.创利投承诺对所有用户资料严格保密。 <br>
+                    </p>
+                </li>
+                <li>
+                    <a href="javascript:;">为什么要在汇付天下进行实名认证？<span class="icon-down"></span></a>
+                    <p class="txtBox" style="display:none">
+                        1. 保证投资借款合同的有效性与合法性；<br>
+                        2. 确认提现银行账户的有效性，增加了资金安全保障。 <br>
+                        创利投承诺对所有用户资料严格保密。 <br>
+                    </p>
+                </li>
+                <li>
+                    <a href="javascript:;">什么是账户交易密码？<span class="icon-down"></span></a>
+                    <p class="txtBox" style="display:none">
+                        1.在创利投进行投资理财，投资人需要在第三方支付机构“汇付天下”开设资金托管账户。<br>
+                        2.账户交易密码是投资时需要输入的密码。 <br>
+                        3. 账户交易密码是独立于登录密码的资金安全保护机制。即使账户密码处于异常状态，有账户交易密码保护即可确保账户资金不被挪用。<br>
+                    </p>
+                </li>
+
+            </ul>
+        </article>
+        @Url.ApiFile("helpCenter.js").ToHtml()
+    </body>
+</html>

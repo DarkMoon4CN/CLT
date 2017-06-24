@@ -1,0 +1,516 @@
+﻿
+@model ChuangLitouP2P.Models.hx_borrowing_target
+@{
+    ViewBag.Title = "发布新项目";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+
+    var oper = ViewBag.oper == null ? "" : ViewBag.oper;}
+<link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+<link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+<script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+<script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+<script src="~/Scripts/layer/layer.min.js"></script>
+<script type="text/javascript" src="~/Areas/Admin/js/lhgcore.min.js"></script>
+<script type="text/javascript" src="~/Areas/Admin/js/lhgcalendar.min.js"></script>
+
+
+
+<style type="text/css">
+    .tdleft {
+        width: 20%;
+        text-align: right;
+    }
+
+    .tdright {
+        width: 80%;
+        text-align: left;
+    }
+
+    tr {
+        background: rgb(255, 255, 255);
+        line-height: 25px;
+    }
+
+        tr td input {
+            height: 20px;
+            line-height: 20px;
+        }
+</style>
+
+
+
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="javascript:void(0)" class="z_mg5">贷款管理</a>><a href="javascript:void(0)"> 贷款信息</a></h2>
+<div class="z_body">
+    <span class="icon-sprite icon-list"></span>
+    <h3 class="listtitle">
+        贷款信息
+    </h3>
+    <div class="tz_box cz_box" style="height:1200px;">
+
+        @using (Html.BeginForm("EditorPost", "DaiKuan", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.targetid)
+
+            <div class="z_cont2">
+
+                <table width="100%" style="table-layout:fixed;padding-left:10px;margin-top:10px;">
+                    <tr>
+                        <td class="tdleft">
+                            <label for="">借款人Id:</label>
+                        </td>
+                        <td class="tdright">
+                            <input type="text" name="username" id="username" readonly="readonly" class="inputxt" value="@(ViewBag.daikuanren)" />
+
+                            <input id="btnSelectBorrower" class="button white medium" type="button" onclick="javascript: getSection();" value="选择借款人" />
+                            <input id="btnAddUser" class="button white medium" type="button" onclick="javascript: window.location = '/admin/Users/AddUser';" value="添加客户" />
+                            @Html.HiddenFor(model => model.borrower_registerid)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="">合同编号：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.loan_number, new { htmlAttributes = new { @datatype = "*2-30", @nullmsg = "请输入合同编号！", @errormsg = "合同编号为2-30个字符！" } })
+                            <input id="btnloan_number" class="button white medium" type="button" value="生成合同编号" />
+                            <span class="Validform_checktip">请输入合同编号！</span> <span> 规则:年+月+日+0001(201412020001)12位</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="borrowing_title">项目标题：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.borrowing_title, new { htmlAttributes = new { @ajaxurl = "/admin/DaiKuan/CheckTitle", @datatype = "*2-60", @nullmsg = "请设置项目标题！", @errormsg = "请项目标题为2-60个字符！" } })
+                            <span class="Validform_checktip">请设置项目标题！</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="project_type_id">项目类别：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.DropDownList("project_type_id", ViewBag.ProjectType as IEnumerable<SelectListItem>)
+                        </td>
+                    </tr>
+                    <tr style="display:none;">
+                        <td class="tdleft">
+                            <label for="borrowing_thumbnail">项目图片：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.borrowing_thumbnail, new { htmlAttributes = new {  } })
+                            <span class="Validform_checktip">请上传项目图片！</span><br />
+                            <input type="file" id="fileImg" name="fileImg" /><input type="button" id="btnUpload" value="上传图片" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="borrowing_balance">借款金额：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.borrowing_balance, new { htmlAttributes = new { @placeholder = "0.00", @class = "inputxt", @datatype = "*", @nullmsg = "请设置借款金额！", @errormsg = "借款金额为数字型！" } })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="annual_interest_rate">网站年利率：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.annual_interest_rate, new { htmlAttributes = new { @placeholder = "0.00", @class = "inputxt", @datatype = "*", @nullmsg = "请输入借款年利率！", @errormsg = "年利率为数字类型！", onkeyup = "clearNoNum(this)" } })
+                            <span class="Validform_checktip">请输入借款年利率！</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tdleft">
+                            <label for="annual_interest_rate">借款年利率：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.B_Rates, new { htmlAttributes = new { @placeholder = "0.00", @class = "inputxt", @datatype = "*", @nullmsg = "请输入借款年利率！", @errormsg = "年利率为数字类型！", onkeyup = "clearNoNum(this)" } })
+                            <span class="Validform_checktip">请输入借款年利率！</span>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="tdleft">
+
+                            <label for="release_date">借款日期：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.release_date, new { htmlAttributes = new { @datatype = "d", @nullmsg = "请设置借款日期！", @errormsg = "借款日期为日期格式！", @style = "padding-left:40px;", @autocomplete = "off" } })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="life_of_loan">借款期限：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.life_of_loan, new { htmlAttributes = new { @class = "inputxt", @datatype = "n", @nullmsg = "请设置借款期限！", @errormsg = "借款期限为数字型！", onchange = "javascript:Calculationdate();" } })
+                            <span class="Validform_checktip">请设置借款期限！</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="unit_day">单位(月/天)：</label>
+                        </td>
+                        <td class="tdright">
+                            <select id="unit_day" name="unit_day">
+                                @if (Model.unit_day == 3)
+                                {
+                                    <option value="1">月</option>
+                                    <option value="3" selected="selected">天</option>
+                                }
+                                else
+                                {
+                                    <option value="1" selected="selected">月</option>
+                                    <option value="3">天</option>
+                                }
+
+                            </select><div class="Validform_checktip"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="repayment_date">还款日期：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.repayment_date, new { htmlAttributes = new { @datatype = "d", @nullmsg = "请设置还款日期！", @errormsg = "还款日期为日期格式！", @style = "padding-left:40px;", @autocomplete = "off" } })
+                            <span class="Validform_checktip">请设置还款日期！</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="month_payment_date">每月付息日：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.month_payment_date, new { htmlAttributes = new { @datatype = "day2", @nullmsg = "请设置每月付息日！", @errormsg = "每月付息日应输入1-28号任一天数！" } })
+                            <span class="Validform_checktip">请设置每月付息日！</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="minimum">最低投资：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.minimum, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置最低投资金额限制！", @errormsg = "最低投资金额限制为1-38位数字！" } })
+                            <span class="Validform_checktip">请设置最低投资金额限制！</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="maxmum">最高投资：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.maxmum, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置最高投资金额限制！", @errormsg = "最高投资金额限制为1-38位数字！" } })
+                            <span class="Validform_checktip">请设置最高投资金额限制 (0.00 表示不限)！</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="companyid">担保公司：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.DropDownList("companyid", ViewBag.Company as IEnumerable<SelectListItem>)
+                            <div class="Validform_checktip"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="guarantee_way_id">担保方式：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.DropDownList("guarantee_way_id", ViewBag.Way as IEnumerable<SelectListItem>)
+                            <div class="Validform_checktip">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="payment_options">还款方式：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.DropDownList("payment_options", ViewBag.Option as IEnumerable<SelectListItem>)
+                            <div class="Validform_checktip"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="start_time">开始宣传时间：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.start_time, new { htmlAttributes = new { @datatype = "d", @nullmsg = "请设置招标开始宣传时间！", @errormsg = "招标开始宣传时间为日期格式！", @style = "padding-left:40px;", @autocomplete = "off" } })
+                            <span class="Validform_checktip">请设置招标开始宣传时间！</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="sys_time">招标上线时间：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.sys_time, new { htmlAttributes = new { @datatype = "d", @nullmsg = "请设置招标上线时间！", @errormsg = "招标上线时间日期格式！", @style = "padding-left:40px;", @autocomplete = "off" } })
+                            <span class="Validform_checktip">请设置招标上线时间！</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="end_time">宣传结束时间：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.end_time, new { htmlAttributes = new { @datatype = "d", @nullmsg = "请设置招标宣传结束时间！", @errormsg = "招标宣传结束时间为日期格式！", @style = "padding-left:40px;", @autocomplete = "off" } })
+                            <span class="Validform_checktip">请设置招标结束时间！</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="service_charge">手续费：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.service_charge, new { htmlAttributes = new { @datatype = "*", @nullmsg = "请设置手续费！", @errormsg = "手续费限制为1-38位数字！", onkeyup = "clearNoNum(this)" } })
+                            <span class="Validform_checktip">请设置手续费！</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tdleft">
+                            <label for="recommend">是否推荐：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.DropDownList("recommend", ViewBag.Recommend as IEnumerable<SelectListItem>)
+                            <div class="Validform_checktip"></div>
+                            @Html.Hidden("hid_recommend", Model.recommend.ToString())
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="IsUse">是否担保：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.DropDownList("IsUse", ViewBag.IsUse as IEnumerable<SelectListItem>)
+                            <div class="Validform_checktip"></div>
+                            @Html.Hidden("hid_IsUse", Model.IsUse.ToString())
+                        </td>
+                    </tr>
+                    <tr style="display:none">
+                        <td class="tdleft">
+                            <label for="IsIRC">是否可用加息劵：</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="Purpose">借款用途：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.Purpose)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="PaySource">还款来源：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.PaySource)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft">
+                            <label for="Collateral">抵押房产：</label>
+                        </td>
+                        <td class="tdright">
+                            @Html.EditorFor(model => model.Collateral)
+                        </td>
+                    </tr>
+                    <tr style="display:none">
+                        <td class="tdleft">
+                            <label for="Isinterest">是否加息：</label>
+                        </td>
+                        <td class="tdright">
+                            @if (Model.Isinterest == null || Model.Isinterest == 0)
+                            {
+                                <input type="radio" id="radio1" name="Isinterest" value="0" checked="checked" />
+                                <label for="radio1">不加息</label>
+                                <input type="radio" id="radio2" name="Isinterest" value="1" />
+                                <label for="radio2">加息</label>
+
+                            }
+                            else
+                            {
+                                <input type="radio" id="radio1" name="Isinterest" value="0" />
+                                <label for="radio1">不加息</label>
+                                <input type="radio" id="radio2" name="Isinterest" value="1" checked="checked" />
+                                <label for="radio2">加息</label>
+                            }
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdleft"></td>
+                        <td class="tdright">
+                            @if (oper != "look")
+                            {
+                                <input type="submit" id="btnSubmit" value="确定" class="btn1" />
+                            }
+                            &nbsp;<a href="#" onclick="javascript:history.back()" class="btn1" style="height:25px;">&nbsp;&nbsp;<span class="button white medium" id="getback">返回</span>&nbsp;&nbsp;</a>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+        }
+
+    </div>
+
+
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#borrowing_title").attr("ajaxurl", "/admin/DaiKuan/CheckTitle?key=@(ViewBag.id)");
+        $(".registerform").Validform({
+            tiptype: 4
+
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})|(\d{4})\-(\d{1})\-(\d{1})|(\d{4})\-(\d{1})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "day2": /^([1-9]|(1[0-9])|(2[0-8]))$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "n": /^\d+$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "time2": /^(\d{4})\-(\d{1,2})\-(\d{1,2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+        J('#release_date').calendar({ format: 'yyyy-MM-dd HH:mm:ss' });
+        J('#repayment_date').calendar({ format: 'yyyy-MM-dd HH:mm:ss' });
+        J('#end_time').calendar({ format: 'yyyy-MM-dd HH:mm:ss' });
+        J('#start_time').calendar({ format: 'yyyy-MM-dd HH:mm:ss' });
+        J('#sys_time').calendar({ format: 'yyyy-MM-dd HH:mm:ss' });
+
+        $("#unit_day").bind("change", function () {
+            Calculationdate();
+        });
+
+        //合同编号
+        $("#btnloan_number").bind("click", function () {
+            GetLoanNumber();
+        });
+
+        //图片
+        $("#btnUpload").bind("click", function () {
+            if ($("#fileImg").val().length > 0) {
+                ajaxFileUpload();
+            }
+            else {
+                alert("请选择图片");
+            }
+        });
+        $("#btnSelectBorrower").bind("click", function () {
+            var url = "/admin/Users/SelectUser";
+            editwindow = $.layer({
+                type: 2,
+                shadeClose: false,
+                title: '选择客户',
+                shade: [0.7, '#999'],
+                offset: ['10px', '10px'],
+                area: ['990px', "800px"],
+                iframe: { src: url, scrolling: false }
+            });
+        });
+
+        GetLoanNumber();
+        initPage();
+    });
+
+    function initPage() {
+        var IsUse = $("#hid_IsUse").val();
+        $("#IsUse").val(IsUse);
+
+        var recommend = $("#hid_recommend").val();
+        $("#recommend").val(recommend);
+    }
+
+    function SetUser(userid, username) {
+
+
+        $("#username").val(username);
+        $("#borrower_registerid").val(userid);
+        layer.close(editwindow);
+
+        //alert($("#borrower_registerid").val());
+    }
+
+    //上次图片
+    function ajaxFileUpload() {
+        $.ajaxFileUpload
+        (
+            {
+                url: '/admin/UploadFile/ProductPicture', //用于文件上传的服务器端请求地址
+                secureuri: false, //一般设置为false
+                fileElementId: 'fileImg', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                dataType: 'json', //返回值类型 一般设置为json
+                success: function (data, status)  //服务器成功响应处理函数
+                {
+                    if (data.ret == 1) {
+                        $("#borrowing_thumbnail").val(data.path);
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (data, status, e)//服务器响应失败处理函数
+                {
+                    alert("操作失败，请重新操作！");
+                }
+            }
+        )
+        return false;
+    }
+
+    //获取合同号
+    function GetLoanNumber() {
+        $.post("/admin/DaiKuan/GetLoanNumber", null, function (json) {
+            if (json.ret == 1) {
+                $("#loan_number").val(json.number);
+            } else {
+                alert("获取合同编号错误！");
+            }
+        });
+    }
+    function clearNoNum(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+        obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+    }
+    function Calculationdate() {
+        if ($("#life_of_loan").val() != "") {
+            var selectid = $("#unit_day").val();
+            var lift = $("#life_of_loan").val();
+            var release_date = $("#release_date").val();
+            var df = "";
+            $.post("/admin/DaiKuan/Calculationdate?method=post", { "selectid": selectid, "lift": lift, "release_date": release_date }, function (msg) {
+                $("#repayment_date").val(msg);
+            });
+
+
+        }
+    }
+
+
+
+
+</script>
+
+

@@ -1,0 +1,34 @@
+
+/****** Object:  View [dbo].[ViewInvestList]    Script Date: 10/27/2016 13:17:24 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER VIEW [dbo].[ViewInvestList]
+AS 
+SELECT 
+br.bid_records_id AS recordId
+,br.targetid AS targetId
+,bt.borrowing_title AS targetTitle
+,br.investor_registerid AS investMemberId
+,mt.username AS investMemberName
+,bt.life_of_loan AS deadLine--期限
+,bt.unit_day AS unitDay--单位(月/天) 1 月  3 天
+,br.annual_interest_rate AS rate --年化收益
+,br.investment_amount AS investAmount--投资金额
+,br.payment_status AS paymentStatus
+,br.value_date AS rateBeginOn--开始计算利息日期
+,bt.month_payment_date --付息日期
+,br.investment_maturity AS investMaturity--投资到期日
+,br.invest_time AS createdOn
+,(br.withoutinterest+br.haveinterest) AS receivableInterest--应得利息
+,br.ordstate
+,br.jiaxiNum
+,br.BonusAmt
+ FROM dbo.hx_Bid_records (NOLOCK) br
+LEFT JOIN dbo.hx_member_table (NOLOCK) mt ON br.investor_registerid=mt.registerid
+LEFT JOIN dbo.hx_borrowing_target (NOLOCK) bt ON bt.targetid=br.targetid
+
+GO

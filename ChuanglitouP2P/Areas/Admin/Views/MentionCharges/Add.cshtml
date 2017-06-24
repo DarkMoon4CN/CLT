@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "新增提现费用";
+    Layout = "~/Areas/Admin/Views/Shared/_BodyView.cshtml";
+}
+
+<link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+<link href="/Areas/Admin/styleCont/jcDate.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/Admin/styleCont/nav_style.css" rel="stylesheet" type="text/css">
+<script src="/Areas/Admin/js/jquery-1.7.1.js"></script>
+<script src="/Areas/Admin/js/jQuery-jcDate.js"></script>
+<script src="/Areas/Admin/js/common.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+
+<script type="text/javascript">
+    function checkForm()
+    {
+        if ($("#mention_charges_name").val() == "")
+        {
+            alert("提现费用名称不能为空!");
+            $("#mention_charges_name").focus();
+            return false;
+        }
+    }
+
+    function afterAdd(data)
+    {
+        alert(data.info);
+
+    }
+    function clearNoNum(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+        obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+    }
+</script>
+
+<h2 class="z_location"><a href="javascript:void(0)">当前位置：</a><a href="/Admin/MentionCharges/Index" class="z_mg5">提现费用管理</a>><a href="javascript:void(0)"> 新增提现费用</a></h2>
+<div class="z_body">
+    <h3 class="z_h3">新增提现费用</h3>
+    <div class="z_02 z_main">
+        @using (Html.BeginForm("AddPost", "MentionCharges", FormMethod.Post, new { enctype = "multipart/form-data", @class = "registerform", @name = "Form1" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="z_cont2">
+
+                <ul class="zTab_ul">
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label>手续费名称：</label>
+                        <input type="text" id="mention_charges_name" name="mention_charges_name" class="" style="width:240px" datatype="*2-60" nullmsg="手续费名称不能空！" errormsg="手续费名称至少2个字符,最多60个字符！" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01" id="logodisp">
+                        <label for="money">&nbsp; &nbsp; 最低金额：</label>
+                        <input type="text" id="minimum_amount" name="minimum_amount" class="" style="width:240px;" datatype="*" nullmsg="请设置最低金额！" errormsg="最低金额为数字类型！"  onkeyup="clearNoNum(this)" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01" id="logodisp">
+                        <label for="money">&nbsp; &nbsp; 最高金额：</label>
+                        <input type="text" id="maximum_amount" name="maximum_amount" class="" style="width:240px;" datatype="*" nullmsg="请设置最高金额！" errormsg="最高金额为数字类型！"  onkeyup="clearNoNum(this)" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01" id="logodisp">
+                        <label for="money">&nbsp; &nbsp; &nbsp; &nbsp; 手续费：</label>
+                        <input type="text" id="fees" name="fees" class="" style="width:240px;" datatype="*" nullmsg="请设置手续费！" errormsg="手续费为数字类型！"   onkeyup="clearNoNum(this)" />
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+                    <li style="margin-bottom:24px;" class="z_li_01">
+                        <label for="money">&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; 单位：</label>
+                        <select id="fees_unit" name="fees_unit">
+                            <option selected="selected" value="0">单笔(元)  </option>
+                            <option value="1">单笔百分比(%) </option>
+                        </select>
+                        <label class="Validform_checktip Validform_wrong" style=""></label>
+                    </li>
+
+
+                   
+                    <li style="margin-bottom:14px; " class="z_li_01">
+                        <div class="submin_box">
+                            <input type="submit" class="z_btn_01" value="保存">
+                            <input type="button" class="z_btn_02" value="返回" onclick="javascript:history.back()">
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+            
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".registerform").Validform({
+            tiptype: 4
+
+        });
+        $.extend($.Datatype, {
+            "z2-4": /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/,
+            "d": /^(\d{4})\-(\d{2})\-(\d{2})$/,
+            "day1": /^[1-2]\d{0,1}$|^28$/,
+            "mobile": /^0?(13[0-9]|15[012356789]|18[0123456789]|17[0123456789]|14[57])[0-9]{8}$/,
+            "regex": /^[^\u4E00-\u9FA5]{3,20}$/,
+            "regex1": /^[0-9A-Za-z]{6,25}$/,
+            "float": /([0-9]+.[0-9]{2})[0-9]*/,
+            "money": /^\d{1,12}(?:\.\d{1,2})?$/,
+            "daytime": /^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/,
+            "int": /[1-9]\d*/
+
+        });
+
+    });
+
+</script>
+

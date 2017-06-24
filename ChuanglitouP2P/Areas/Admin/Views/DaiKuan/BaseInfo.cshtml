@@ -1,0 +1,281 @@
+﻿
+@using ChuanglitouP2P.Common;
+@model IEnumerable<ChuangLitouP2P.Models.hx_borrower_guarantor_picture>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>基础材料</title>
+    <link href="~/Areas/Admin/style/chonzhi.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/Admin/styleCont/style.css" />
+    <link href="~/Areas/Admin/style/pagination.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/liebiao.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/jcDate.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/style/popStyle.css" rel="stylesheet" />
+    <style type="text/css">
+        #btnUpload {
+            margin-top: 5px;
+            left: 20px;
+        }
+
+        ul li {
+            list-style-type: none;
+            margin-right: 6px;
+        }
+    </style>
+    <script src="~/Areas/Admin/js/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Admin/js/jQuery-jcDate.js"></script>
+    <script src="~/Areas/Admin/js/common.js"></script>
+    <script src="~/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="~/Scripts/layer/layer.min.js"></script>
+    <script src="~/Areas/Admin/jsCont/ajaxfileupload.js"></script>
+    <script type="text/javascript">
+        var imgTag=0;
+        var num=0;
+        var upNum=0;
+        $(function () {
+            getMaxPid();
+            $("#fileUpload").attr("tag",imgTag);
+            $("#btnUploads").bind("click", function () {
+                //$("form").submit();
+                GetFileUpload();
+                
+            });
+            $("#btnAddFile").bind("click", function () {
+                addUploadFile();
+            });
+
+        });
+        function delUploadFile(obj) {
+            $(obj).parent().remove();
+        }
+        function addUploadFile() {
+            if ($("input[name='UploadFile']").length >= 8) {
+                alert("最多只能添加八个上传组件");
+                return;
+            }
+            imgTag++;
+            var html = "<div style=\"height:23px;\"><input type=\"file\" id=\"fileUpload\" tag="+imgTag+" name=\"UploadFile\" /> &nbsp; &nbsp;";
+            html = html + " 名称:<input type=\"text\" id=\"filenameid\" name=\"filename\" class=\"inputxt\" style=\"line-height:20px;\" />&nbsp; &nbsp;";
+            html = html + "<input type=\"button\" onclick=\"delUploadFile(this);\" class=\"btn1\" value=\"删除\" /></div>";
+
+            $("#DivUploads").append(html);
+
+        }
+        //上次图片
+        function ajaxFileUpload1(fileId, fileName,tag) {
+            var targetid = $("#hid_targetid").val();
+            var registerid = $("#hid_registerid").val();
+            var tp = $("#hid_tp").val();
+            var rd=parseInt(Math.random()*10000);
+
+            var url = '/admin/UploadFile/UploadImage?targetid=' + targetid + '&registerid=' + registerid + '&tp=' + tp + '&fname=' + fileName+"&rdm="+rd+"&tag="+tag;
+            
+            $.ajaxFileUpload
+            (
+                {
+                    url: url, //用于文件上传的服务器端请求地址
+                    secureuri: false, //一般设置为false
+                    fileElementId: fileId, //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                    dataType: 'json', //返回值类型 一般设置为json
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                        if (data.ret==1) {
+                            upNum++;
+                            appendImg(data.key, data.path);
+                            if(num==upNum)
+                            {
+                                layer.msg("进行重新排序..", 3, 1);
+                                window.location.reload();
+                            }
+
+                        } else {
+                            alert(data.msg);
+                            console.log("ret=0");
+                        }
+                        $("#filenameid").val('');
+                        $("#DivUploads").empty();
+
+                        document.getElementById("testup").reset(); 
+                       
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                       
+                    },
+                    handleError: function( s, xhr, status, e )      {
+                        // If a local callback was specified, fire it
+                        //if ( s.error ) {
+                        //    s.error.call( s.context || s, xhr, status, e );
+                        //}
+                        //console.log("ssss")
+                    }
+        }
+            )
+            return false;
+        }
+        function appendImg(id, src) {
+            src = src.replace("//", "/");
+            var html="";
+            html=html+'<li id="li_'+id+'" style="display:inline-table;">';
+            html=html+'<img src="'+src+'" width="120" height="120" /><br />';
+            html = html + '<a href="javascript:void(0);" onclick="removeImg(' + id + ')">删除</a></li>';
+            $("#ul_imgs").append(html);
+        }
+
+        function GetFileUpload() {
+            $("input[name='filename']").each(function (index) {
+                var id = "filename_" + index;
+                $(this).attr("id", id);
+            });
+            
+            $("input[name='UploadFile']").each(function (index) {
+                var id = "upload_" + index;
+                var fileid = "#filename_" + index;
+                $(this).attr("id", id);
+
+                if ($("#" + id).val().length > 1) {
+                    var filename = $(fileid).val();
+                    var tag =$(this).attr("tag");
+                    ajaxFileUpload1(id, filename,tag);
+                    num=num+1;
+                }
+            });
+            if (num<=0) {
+                alert("请选择图片后在上传！");
+            }
+            else{
+               //setTimeout(function(){
+               //    document.location.reload();
+               //},5000);
+            }
+            /*
+
+            //window.location.href = "/admin/DaiKuan/BaseInfo?targetid=" + targetid + "&registerid=" + registerid + "&tp=" + tp;
+            /*
+            $.ajaxFileUpload({
+                url: url,
+                secureuri: false,
+                //fileElementId: 'UploadFile',//'UploadFile',
+                fileElementId: arr,//['uploadfile1', 'uploadfile2', 'uploadfile3', 'uploadfile4', 'uploadfile5'],
+                dataType: 'json',
+                success: function (msg) {
+                    alert(msg.ret);
+                }
+            });
+            var targetid = $("#hid_targetid").val();
+            var registerid = $("#hid_registerid").val();
+            var tp = $("#hid_tp").val();
+            var url = '/admin/UploadFile/ProductImg?targetid=' + targetid + '&registerid=' + registerid + '&tp=' + tp;
+            $.ajaxFileUpload
+            (
+                {
+                    url: url, //用于文件上传的服务器端请求地址
+                    secureuri: false, //一般设置为false
+                    fileElementId: 'fileUpload', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                    dataType: 'json', //返回值类型 一般设置为json
+                    // data: { targetid: targetid, registerid: registerid, tp: tp },//一同上传的数据
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                        if (data.ret == 1) {
+                            alert("上传成功！");
+                            window.parent.closewindows();
+                        } else {
+                            alert(data.msg);
+                        }
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        alert("操作失败，请重新操作！");
+                    }
+                }
+            )
+            return false;
+
+           */
+        }
+        //删除
+        function removeImg(id) {
+            $.getJSON("/admin/DaiKuan/RemoveImg", { id: id }, function (json) {
+                if (json.ret == 1) {
+                    alert("操作成功");
+                    $("#li_" + id).remove();
+                } else {
+                    alert("操作失败");
+                }
+            });
+        }
+
+        function getMaxPid(){
+            var targetid = $("#hid_targetid").val();
+            var url="/admin/DaiKuan/GetMaxPictureIndex";
+            var data={targetid:targetid};
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                async: false,
+                error: function () {
+                    alert("服务器断开连接，稍后再试！");
+                    return;
+                },
+                success: function(d)
+                {
+                    if(d.ret==1)
+                    {
+                        imgTag=d.data+1;
+                    }
+                }
+            });
+               
+        }
+    </script>
+</head>
+<body>
+    <div class="z_body">
+        <p class="tP3">
+            基础材料
+        </p>
+        <div class="tz_box cz_box" style="height:210px;">
+
+            <form id="testup">
+
+                <input type="file" id="fileUpload" name="UploadFile" />
+                <label>名称:</label><input type="text" id="filenameid" name="filename" class="inputxt" style="line-height:20px;" />
+                <input type="button" id="btnAddFile" class="btn1" value="添加" style="height:23px;line-height:23px; margin-bottom:1px;" />
+                <div id="DivUploads" style="border: 0px solid; width: 550px; ">
+                </div>
+                <input type="button" id="btnUploads" value="上传图片" class="btn1" />
+
+                <input type="hidden" id="hid_targetid" value="@ViewBag.targetid" />
+                <input type="hidden" id="hid_registerid" value="@ViewBag.registerid" />
+                <input type="hidden" id="hid_tp" value="@ViewBag.tp" />
+            </form>
+        </div>
+        <span class="icon-sprite icon-list"></span>
+        <h3 class="listtitle">
+            图片列表
+        </h3>
+        <div id="div_imgs">
+
+            <ul id="ul_imgs">
+                @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                        <li id="li_@(item.borrower_guarantor_picture_id)" style="display:inline-table;">
+                            <img src="@(item.picture_path)" width="120" height="120" /><br />
+                            <a href="javascript:void(0);" onclick="removeImg(@(item.borrower_guarantor_picture_id))">删除</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

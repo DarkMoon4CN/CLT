@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "修改密码";
+    Layout = "~/Views/Shared/IndexBottom_Layout.cshtml";
+}
+<style type="text/css">
+    .xubox_layer {
+        margin-left: -98.5px !important;
+    }
+</style>
+<script src="~/Scripts/layer.min.js"></script>
+<script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript">
+    var editwindow;
+    $(function () {
+        $("#signupForm").Validform({
+            tiptype: 4,
+            ajaxPost: true,
+            callback: function (data) {
+                if (data.rs == "y") {
+                    layer.msg("密码修改成功!", 1, 1);
+
+                }
+                else {
+                    layer.msg("" + data.error + "", 2, 5);
+                }
+            }
+        });
+
+
+
+    });
+
+</script>
+<header class="header">
+    <div class="return"><a href="javascript:history.go(-1);"></a></div>
+    <h2 class="head_title">修改密码</h2>
+</header>
+@using (Html.BeginForm("PostChangepassword", "usercenter", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal m-t", @name = "signupForm", id = "signupForm" }))
+{
+    <section class="invest_box user_form">
+        <div class="group_item">
+            <div class="group_tit">原密码：</div>
+            <div class="group_txt"><input placeholder="请输入原密码" value="" class="group_text" name="olduserpassword" id="olduserpassword" type="password" datatype="*6-16" nullmsg="原始密码不能空！" errormsg="原始密码范围在6~16位之间！" /></div>
+            <div class="group_chevron"></div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">新密码：</div>
+            <div class="group_txt"><input name="newuserpassword" id="newuserpassword" type="password" datatype="*6-16" nullmsg="请设置新密码！" errormsg="新密码范围在6~16位之间！" value="" class="group_text" /></div>
+            <div class="group_chevron"></div>
+        </div>
+        <div class="group_item">
+            <div class="group_tit">确认新密码：</div>
+            <div class="group_txt"><input name="reuserpassword" id="reuserpassword" type="password" datatype="*" recheck="newuserpassword" nullmsg="请再输入一次新密码！" errormsg="您两次输入的账号新密码不一致！" value="" class="group_text" /></div>
+            <div class="group_chevron"></div>
+        </div>
+    </section>
+    <div class="confirm_btn_box">
+        <input name="" value="确认修改" type="submit" class="invest_btn">
+    </div>
+}
+<div class="bot_height"></div>
+
