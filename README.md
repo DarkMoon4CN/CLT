@@ -1,5 +1,5 @@
 # CLT
-某公司金融P2P的网站
+金融P2P的网站
 1.MVC+EF+sql server2008视图
 2.有PC端+APP端(html5 + MVC)
 3.支持IOS Android 的WebApi
